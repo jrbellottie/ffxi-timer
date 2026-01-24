@@ -18,6 +18,7 @@ import { formatCountdown, nextOccurrenceLocal, pad2, parseLocalDateTimeToMs, uid
 import { AnyTimer, MoonDirection } from "./types";
 import { WEEKDAYS, WEEKDAY_COLORS, weekdayStyle } from "./utils/weekday";
 import { moonDirGlyph, moonGlyphStyle, moonPhaseStyle } from "./utils/moon";
+import { nextCookingGuildPrepTarget, nextTenshodoPrepTargets } from "./utils/guilds";
 
 function clampInt(n: number, min: number, max: number) {
   return Math.max(min, Math.min(max, Math.floor(n)));
@@ -99,6 +100,33 @@ export default function AppShell() {
       dir: moonDirectionFromStep(after.moonStep),
     };
   }, [nextMoonAt, cal]);
+
+  // --- Guild previews ---
+  const cookingGuildPreview = useMemo(() => {
+    const target = nextCookingGuildPrepTarget(now);
+    const nextAt = nextEarthMsForVanaWeekdayTime({
+      nowEarthMs: nowMs,
+      cal,
+      targetWeekday: target.targetWeekday,
+      targetHour: target.targetHour,
+      targetMinute: target.targetMinute,
+    });
+    return { label: "Cooking Guild", ...target, nextAt };
+  }, [now, nowMs, cal]);
+
+  const tenshodoPreviews = useMemo(() => {
+    const targets = nextTenshodoPrepTargets(now);
+    return targets.map((t) => {
+      const nextAt = nextEarthMsForVanaWeekdayTime({
+        nowEarthMs: nowMs,
+        cal,
+        targetWeekday: t.targetWeekday,
+        targetHour: t.targetHour,
+        targetMinute: t.targetMinute,
+      });
+      return { ...t, nextAt };
+    });
+  }, [now, nowMs, cal]);
 
   useEffect(() => {
     if (!window.electron?.ipcRenderer?.on) return;
@@ -256,6 +284,42 @@ export default function AppShell() {
         targetEarthMs: nextMs,
         rawInput: rWhen,
       },
+      ...prev,
+    ]);
+  }
+
+  function addCookingGuildTimer() {
+    const target = nextCookingGuildPrepTarget(now);
+
+    setTimers((prev) => [
+      {
+        id: uid(),
+        kind: "VANA_WEEKDAY_TIME",
+        label: `Cooking Guild (prep) — ${target.targetWeekday} ${pad2(target.targetHour)}:${pad2(target.targetMinute)}`,
+        enabled: true,
+        createdAtMs: Date.now(),
+        targetWeekday: target.targetWeekday,
+        targetHour: target.targetHour,
+        targetMinute: target.targetMinute,
+      },
+      ...prev,
+    ]);
+  }
+
+  function addTenshodoTimers() {
+    const targets = nextTenshodoPrepTargets(now);
+
+    setTimers((prev) => [
+      ...targets.map((t) => ({
+        id: uid(),
+        kind: "VANA_WEEKDAY_TIME" as const,
+        label: `${t.label} (prep) — ${t.targetWeekday} ${pad2(t.targetHour)}:${pad2(t.targetMinute)}`,
+        enabled: true,
+        createdAtMs: Date.now(),
+        targetWeekday: t.targetWeekday,
+        targetHour: t.targetHour,
+        targetMinute: t.targetMinute,
+      })),
       ...prev,
     ]);
   }
@@ -606,7 +670,74 @@ export default function AppShell() {
         </section>
       </div>
 
-      {/* ✅ Timers list uses NORMAL card now */}
+      {/* Guild timers */}
+      <div style={styles.timersSection}>
+        <section style={styles.card}>
+          <div style={styles.titleRow}>
+            <h3 style={styles.h3}>Guild timers</h3>
+            <div style={styles.sub}>Quick presets (prep timers)</div>
+          </div>
+
+          <div style={{ marginTop: 10, display: "grid", gap: 12 }}>
+            {/* Cooking */}
+            <div style={styles.subCard}>
+              <div style={styles.titleRow}>
+                <div style={{ fontWeight: 800 }}>Cooking Guild</div>
+                <div style={styles.sub}>Opens 05:00 → fires 04:00, closed Darksday</div>
+              </div>
+
+              <div style={{ marginTop: 8, ...styles.sub }}>
+                Will set:{" "}
+                <span style={weekdayStyle(cookingGuildPreview.targetWeekday)}>{cookingGuildPreview.targetWeekday}</span>{" "}
+                {pad2(cookingGuildPreview.targetHour)}:{pad2(cookingGuildPreview.targetMinute)}
+                <br />
+                Next: {new Date(cookingGuildPreview.nextAt).toLocaleString()} — In:{" "}
+                {formatCountdown(cookingGuildPreview.nextAt - nowMs)}
+              </div>
+
+              <div style={{ marginTop: 10, ...styles.buttonRow }}>
+                <button style={styles.buttonPrimary} onClick={addCookingGuildTimer}>
+                  Add Cooking Guild timer
+                </button>
+              </div>
+            </div>
+
+            {/* Tenshodo */}
+            <div style={styles.subCard}>
+              <div style={styles.titleRow}>
+                <div style={{ fontWeight: 800 }}>Tenshodo</div>
+                <div style={styles.sub}>Adds 2–3 timers (merged when hours+holiday match)</div>
+              </div>
+
+              <div style={{ marginTop: 8, display: "grid", gap: 10 }}>
+                {tenshodoPreviews.map((t) => (
+                  <div key={t.label} style={{ ...styles.sub, opacity: 0.95 }}>
+                    <div style={{ fontWeight: 800 }}>{t.label}</div>
+                    Will set:{" "}
+                    <span style={weekdayStyle(t.targetWeekday)}>{t.targetWeekday}</span> {pad2(t.targetHour)}:
+                    {pad2(t.targetMinute)}
+                    <br />
+                    Next: {new Date(t.nextAt).toLocaleString()} — In: {formatCountdown(t.nextAt - nowMs)}
+                  </div>
+                ))}
+              </div>
+
+              <div style={{ marginTop: 10, ...styles.buttonRow }}>
+                <button style={styles.buttonPrimary} onClick={addTenshodoTimers}>
+                  Add Tenshodo timers
+                </button>
+              </div>
+
+              <div style={{ marginTop: 8, ...styles.sub }}>
+                Notes: Lower Jeuno closed Earthsday; Port Bastok closed Iceday; Norg closed Darksday. Prep is 1 hour before
+                open.
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      {/* Timers list */}
       <div style={styles.timersSection}>
         <section style={styles.card}>
           <div style={styles.titleRow}>
