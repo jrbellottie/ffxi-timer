@@ -38,6 +38,38 @@ const optionBaseStyle: React.CSSProperties = {
   color: "#eaeaea",
 };
 
+type TenshodoTarget = {
+  label: string;
+  targetWeekday: VanaWeekday;
+  targetHour: number;
+  targetMinute: number;
+};
+
+function mergeTenshodoTargets(targets: TenshodoTarget[]): TenshodoTarget[] {
+  const map = new Map<string, TenshodoTarget>();
+
+  for (const t of targets) {
+    const key = `${t.targetWeekday}|${t.targetHour}|${t.targetMinute}`;
+
+    const existing = map.get(key);
+    if (!existing) {
+      map.set(key, { ...t });
+      continue;
+    }
+
+    // Merge labels, keeping stable order and avoiding duplicates
+    const parts = existing.label.split(" / ").map((s) => s.trim());
+    if (!parts.includes(t.label)) parts.push(t.label);
+
+    map.set(key, {
+      ...existing,
+      label: parts.join(" / "),
+    });
+  }
+
+  return Array.from(map.values());
+}
+
 export default function AppShell() {
   const [nowMs, setNowMs] = useState(Date.now());
 
@@ -86,6 +118,12 @@ export default function AppShell() {
   useEffect(() => saveJson("ffxi_timers_v2", timers), [timers]);
   useEffect(() => saveJson("ffxi_show_cal_v1", showCalibration), [showCalibration]);
 
+  // Keep the app awake ONLY while at least one timer is enabled
+  const hasEnabledTimers = useMemo(() => timers.some((t) => t.enabled), [timers]);
+  useEffect(() => {
+    window.electron?.ipcRenderer?.send?.("ffxi:keepAwake", { enabled: hasEnabledTimers });
+  }, [hasEnabledTimers]);
+
   const now = useMemo(() => getVanaNow(nowMs, cal), [nowMs, cal]);
   const nowMoonDir = moonDirectionFromStep(now.moonStep);
 
@@ -115,8 +153,10 @@ export default function AppShell() {
   }, [now, nowMs, cal]);
 
   const tenshodoPreviews = useMemo(() => {
-    const targets = nextTenshodoPrepTargets(now);
-    return targets.map((t) => {
+    const rawTargets = nextTenshodoPrepTargets(now) as TenshodoTarget[];
+    const mergedTargets = mergeTenshodoTargets(rawTargets);
+
+    return mergedTargets.map((t) => {
       const nextAt = nextEarthMsForVanaWeekdayTime({
         nowEarthMs: nowMs,
         cal,
@@ -307,10 +347,11 @@ export default function AppShell() {
   }
 
   function addTenshodoTimers() {
-    const targets = nextTenshodoPrepTargets(now);
+    const rawTargets = nextTenshodoPrepTargets(now) as TenshodoTarget[];
+    const mergedTargets = mergeTenshodoTargets(rawTargets);
 
     setTimers((prev) => [
-      ...targets.map((t) => ({
+      ...mergedTargets.map((t) => ({
         id: uid(),
         kind: "VANA_WEEKDAY_TIME" as const,
         label: `${t.label} (prep) — ${t.targetWeekday} ${pad2(t.targetHour)}:${pad2(t.targetMinute)}`,
@@ -775,6 +816,8 @@ export default function AppShell() {
 
                 const inMs = nextAt - nowMs;
 
+                const vanaAt = getVanaNow(nextAt, cal);
+
                 let detailLine: React.ReactNode = null;
 
                 if (t.kind === "VANA_WEEKDAY_TIME") {
@@ -817,7 +860,11 @@ export default function AppShell() {
                     {detailLine}
 
                     <div style={{ marginTop: 6, ...styles.muted }}>
-                      Next: {new Date(nextAt).toLocaleString()} — In: {formatCountdown(inMs)}
+                      Next (Earth): {new Date(nextAt).toLocaleString()} — In: {formatCountdown(inMs)}
+                      <br />
+                      Next (Vana):{" "}
+                      <span style={weekdayStyle(vanaAt.weekday)}>{vanaAt.weekday}</span> {pad2(vanaAt.hour)}:
+                      {pad2(vanaAt.minute)}
                     </div>
 
                     <div style={styles.buttonRow}>

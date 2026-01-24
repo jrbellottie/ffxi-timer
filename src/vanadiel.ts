@@ -124,7 +124,7 @@ function nextMoonStepBoundaryEarthMs(nowEarthMs: number, cal?: Calibration): num
 
 /**
  * START time of the current moon step window (stable within a step).
- * This is the key fix: compute schedules from the step start, not from "now".
+ * Compute schedules from the step start, not from "now".
  */
 function currentMoonStepStartEarthMs(nowEarthMs: number, cal?: Calibration): number {
   const nextBoundary = nextMoonStepBoundaryEarthMs(nowEarthMs, cal);
@@ -182,10 +182,6 @@ export function nextEarthMsForVanaWeekdayTime(args: {
   return nowEarthMs + deltaVanaSeconds * VANA_MS_PER_VANA_SECOND;
 }
 
-/**
- * Legacy (ambiguous) percent timer.
- * FIXED: schedule from current step start so "Next" doesn't drift every tick.
- */
 export function nextEarthMsForMoonPercent(args: {
   nowEarthMs: number;
   cal?: Calibration;
@@ -214,10 +210,6 @@ export function nextEarthMsForMoonPercent(args: {
   return base + bestDeltaSteps * EARTH_MS_PER_MOON_STEP;
 }
 
-/**
- * NEW: unambiguous step timer.
- * FIXED: schedule from current step start so "Next" doesn't drift every tick.
- */
 export function nextEarthMsForMoonStep(args: {
   nowEarthMs: number;
   cal?: Calibration;

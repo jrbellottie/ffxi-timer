@@ -188,3 +188,4 @@ Future expansions (already supported by the architecture):
 - Additional guild presets
 - Import/export calibration
 - Visual moon cycle tools
+- NM quick timers
