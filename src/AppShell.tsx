@@ -32,7 +32,6 @@ function stepFromDirectionAndPercent(dir: MoonDirection, pct: number): number {
   return 200 - p;
 }
 
-// ✅ Shared option style so dropdown list stays dark (Electron/Chromium respects this)
 const optionBaseStyle: React.CSSProperties = {
   backgroundColor: "#0c0c0c",
   color: "#eaeaea",
@@ -57,7 +56,6 @@ function mergeTenshodoTargets(targets: TenshodoTarget[]): TenshodoTarget[] {
       continue;
     }
 
-    // Merge labels, keeping stable order and avoiding duplicates
     const parts = existing.label.split(" / ").map((s) => s.trim());
     if (!parts.includes(t.label)) parts.push(t.label);
 
@@ -70,6 +68,28 @@ function mergeTenshodoTargets(targets: TenshodoTarget[]): TenshodoTarget[] {
   return Array.from(map.values());
 }
 
+function nextWeekdayOf(d: VanaWeekday): VanaWeekday {
+  const idx = WEEKDAYS.indexOf(d);
+  return WEEKDAYS[(idx + 1) % WEEKDAYS.length];
+}
+
+function computeNextDigTarget(now: ReturnType<typeof getVanaNow>): {
+  targetWeekday: VanaWeekday;
+  targetHour: number;
+  targetMinute: number;
+} {
+  const targetHour = 22;
+  const targetMinute = 0;
+
+  const isPastToday = now.hour > targetHour || (now.hour === targetHour && now.minute >= targetMinute);
+
+  return {
+    targetWeekday: isPastToday ? nextWeekdayOf(now.weekday) : now.weekday,
+    targetHour,
+    targetMinute,
+  };
+}
+
 export default function AppShell() {
   const [nowMs, setNowMs] = useState(Date.now());
 
@@ -80,6 +100,10 @@ export default function AppShell() {
 
   const [showCalibration, setShowCalibration] = useState<boolean>(() =>
     loadJson<boolean>("ffxi_show_cal_v1", true)
+  );
+
+  const [showPresets, setShowPresets] = useState<boolean>(() =>
+    loadJson<boolean>("ffxi_show_presets_v1", true)
   );
 
   const [cWeekday, setCWeekday] = useState<VanaWeekday>("Firesday");
@@ -117,8 +141,8 @@ export default function AppShell() {
   useEffect(() => saveJson("ffxi_cal_v1", cal), [cal]);
   useEffect(() => saveJson("ffxi_timers_v2", timers), [timers]);
   useEffect(() => saveJson("ffxi_show_cal_v1", showCalibration), [showCalibration]);
+  useEffect(() => saveJson("ffxi_show_presets_v1", showPresets), [showPresets]);
 
-  // Keep the app awake ONLY while at least one timer is enabled
   const hasEnabledTimers = useMemo(() => timers.some((t) => t.enabled), [timers]);
   useEffect(() => {
     window.electron?.ipcRenderer?.send?.("ffxi:keepAwake", { enabled: hasEnabledTimers });
@@ -139,7 +163,6 @@ export default function AppShell() {
     };
   }, [nextMoonAt, cal]);
 
-  // --- Guild previews ---
   const cookingGuildPreview = useMemo(() => {
     const target = nextCookingGuildPrepTarget(now);
     const nextAt = nextEarthMsForVanaWeekdayTime({
@@ -166,6 +189,18 @@ export default function AppShell() {
       });
       return { ...t, nextAt };
     });
+  }, [now, nowMs, cal]);
+
+  const nextDigPreview = useMemo(() => {
+    const target = computeNextDigTarget(now);
+    const nextAt = nextEarthMsForVanaWeekdayTime({
+      nowEarthMs: nowMs,
+      cal,
+      targetWeekday: target.targetWeekday,
+      targetHour: target.targetHour,
+      targetMinute: target.targetMinute,
+    });
+    return { label: "Next Dig", ...target, nextAt };
   }, [now, nowMs, cal]);
 
   useEffect(() => {
@@ -361,6 +396,24 @@ export default function AppShell() {
         targetHour: t.targetHour,
         targetMinute: t.targetMinute,
       })),
+      ...prev,
+    ]);
+  }
+
+  function addNextDigTimer() {
+    const target = computeNextDigTarget(now);
+
+    setTimers((prev) => [
+      {
+        id: uid(),
+        kind: "VANA_WEEKDAY_TIME",
+        label: `Next Dig — ${target.targetWeekday} 22:00`,
+        enabled: true,
+        createdAtMs: Date.now(),
+        targetWeekday: target.targetWeekday,
+        targetHour: target.targetHour,
+        targetMinute: target.targetMinute,
+      },
       ...prev,
     ]);
   }
@@ -711,70 +764,102 @@ export default function AppShell() {
         </section>
       </div>
 
-      {/* Guild timers */}
+      {/* Preset timers */}
       <div style={styles.timersSection}>
         <section style={styles.card}>
           <div style={styles.titleRow}>
-            <h3 style={styles.h3}>Guild timers</h3>
-            <div style={styles.sub}>Quick presets (prep timers)</div>
-          </div>
-
-          <div style={{ marginTop: 10, display: "grid", gap: 12 }}>
-            {/* Cooking */}
-            <div style={styles.subCard}>
-              <div style={styles.titleRow}>
-                <div style={{ fontWeight: 800 }}>Cooking Guild</div>
-                <div style={styles.sub}>Opens 05:00 → fires 04:00, closed Darksday</div>
-              </div>
-
-              <div style={{ marginTop: 8, ...styles.sub }}>
-                Will set:{" "}
-                <span style={weekdayStyle(cookingGuildPreview.targetWeekday)}>{cookingGuildPreview.targetWeekday}</span>{" "}
-                {pad2(cookingGuildPreview.targetHour)}:{pad2(cookingGuildPreview.targetMinute)}
-                <br />
-                Next: {new Date(cookingGuildPreview.nextAt).toLocaleString()} — In:{" "}
-                {formatCountdown(cookingGuildPreview.nextAt - nowMs)}
-              </div>
-
-              <div style={{ marginTop: 10, ...styles.buttonRow }}>
-                <button style={styles.buttonPrimary} onClick={addCookingGuildTimer}>
-                  Add Cooking Guild timer
-                </button>
-              </div>
-            </div>
-
-            {/* Tenshodo */}
-            <div style={styles.subCard}>
-              <div style={styles.titleRow}>
-                <div style={{ fontWeight: 800 }}>Tenshodo</div>
-                <div style={styles.sub}>Adds 2–3 timers (merged when hours+holiday match)</div>
-              </div>
-
-              <div style={{ marginTop: 8, display: "grid", gap: 10 }}>
-                {tenshodoPreviews.map((t) => (
-                  <div key={t.label} style={{ ...styles.sub, opacity: 0.95 }}>
-                    <div style={{ fontWeight: 800 }}>{t.label}</div>
-                    Will set:{" "}
-                    <span style={weekdayStyle(t.targetWeekday)}>{t.targetWeekday}</span> {pad2(t.targetHour)}:
-                    {pad2(t.targetMinute)}
-                    <br />
-                    Next: {new Date(t.nextAt).toLocaleString()} — In: {formatCountdown(t.nextAt - nowMs)}
-                  </div>
-                ))}
-              </div>
-
-              <div style={{ marginTop: 10, ...styles.buttonRow }}>
-                <button style={styles.buttonPrimary} onClick={addTenshodoTimers}>
-                  Add Tenshodo timers
-                </button>
-              </div>
-
-              <div style={{ marginTop: 8, ...styles.sub }}>
-                Notes: Lower Jeuno closed Earthsday; Port Bastok closed Iceday; Norg closed Darksday. Prep is 1 hour before
-                open.
-              </div>
+            <h3 style={styles.h3}>Preset timers</h3>
+            <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+              <div style={styles.sub}>Quick presets (prep timers)</div>
+              <button style={styles.button} onClick={() => setShowPresets((v) => !v)}>
+                {showPresets ? "Hide" : "Show"}
+              </button>
             </div>
           </div>
+
+          {!showPresets ? (
+            <div style={{ marginTop: 10, ...styles.muted }}>Hidden.</div>
+          ) : (
+            <div style={{ marginTop: 10, display: "grid", gap: 12 }}>
+              {/* Next Dig */}
+              <div style={styles.subCard}>
+                <div style={styles.titleRow}>
+                  <div style={{ fontWeight: 800 }}>Next Dig</div>
+                  <div style={styles.sub}>Sets a timer for 22:00 on the current Vana day</div>
+                </div>
+
+                <div style={{ marginTop: 8, ...styles.sub }}>
+                  Will set:{" "}
+                  <span style={weekdayStyle(nextDigPreview.targetWeekday)}>{nextDigPreview.targetWeekday}</span>{" "}
+                  {pad2(nextDigPreview.targetHour)}:{pad2(nextDigPreview.targetMinute)}
+                  <br />
+                  Next: {new Date(nextDigPreview.nextAt).toLocaleString()} — In:{" "}
+                  {formatCountdown(nextDigPreview.nextAt - nowMs)}
+                </div>
+
+                <div style={{ marginTop: 10, ...styles.buttonRow }}>
+                  <button style={styles.buttonPrimary} onClick={addNextDigTimer}>
+                    Add Next Dig timer
+                  </button>
+                </div>
+              </div>
+
+              {/* Cooking */}
+              <div style={styles.subCard}>
+                <div style={styles.titleRow}>
+                  <div style={{ fontWeight: 800 }}>Cooking Guild</div>
+                  <div style={styles.sub}>Opens 05:00 → fires 04:00, closed Darksday</div>
+                </div>
+
+                <div style={{ marginTop: 8, ...styles.sub }}>
+                  Will set:{" "}
+                  <span style={weekdayStyle(cookingGuildPreview.targetWeekday)}>{cookingGuildPreview.targetWeekday}</span>{" "}
+                  {pad2(cookingGuildPreview.targetHour)}:{pad2(cookingGuildPreview.targetMinute)}
+                  <br />
+                  Next: {new Date(cookingGuildPreview.nextAt).toLocaleString()} — In:{" "}
+                  {formatCountdown(cookingGuildPreview.nextAt - nowMs)}
+                </div>
+
+                <div style={{ marginTop: 10, ...styles.buttonRow }}>
+                  <button style={styles.buttonPrimary} onClick={addCookingGuildTimer}>
+                    Add Cooking Guild timer
+                  </button>
+                </div>
+              </div>
+
+              {/* Tenshodo */}
+              <div style={styles.subCard}>
+                <div style={styles.titleRow}>
+                  <div style={{ fontWeight: 800 }}>Tenshodo</div>
+                  <div style={styles.sub}>Adds 2–3 timers (merged when hours+holiday match)</div>
+                </div>
+
+                <div style={{ marginTop: 8, display: "grid", gap: 10 }}>
+                  {tenshodoPreviews.map((t) => (
+                    <div key={t.label} style={{ ...styles.sub, opacity: 0.95 }}>
+                      <div style={{ fontWeight: 800 }}>{t.label}</div>
+                      Will set:{" "}
+                      <span style={weekdayStyle(t.targetWeekday)}>{t.targetWeekday}</span> {pad2(t.targetHour)}:
+                      {pad2(t.targetMinute)}
+                      <br />
+                      Next: {new Date(t.nextAt).toLocaleString()} — In: {formatCountdown(t.nextAt - nowMs)}
+                    </div>
+                  ))}
+                </div>
+
+                <div style={{ marginTop: 10, ...styles.buttonRow }}>
+                  <button style={styles.buttonPrimary} onClick={addTenshodoTimers}>
+                    Add Tenshodo timers
+                  </button>
+                </div>
+
+                <div style={{ marginTop: 8, ...styles.sub }}>
+                  Notes: Lower Jeuno closed Earthsday; Port Bastok closed Iceday; Norg closed Darksday. Prep is 1 hour before
+                  open.
+                </div>
+              </div>
+            </div>
+          )}
         </section>
       </div>
 
