@@ -2,6 +2,7 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import {
   Calibration,
+  DEFAULT_CALIBRATION,
   VanaWeekday,
   getVanaNow,
   moonDirectionFromStep,
@@ -98,14 +99,15 @@ function computeNextDigTarget(now: ReturnType<typeof getVanaNow>): {
 export default function AppShell() {
   const [nowMs, setNowMs] = useState(Date.now());
 
-  const [cal, setCal] = useState<Calibration | undefined>(() =>
-    loadJson<Calibration | undefined>("ffxi_cal_v1", undefined)
-  );
+  // Ship a sensible default so most users can skip manual setup.
+  // If older installs saved `null`, treat it as "no value" and fall back to defaults.
+  const [cal, setCal] = useState<Calibration>(() => {
+    const stored = loadJson<Calibration | null>("ffxi_cal_v1", DEFAULT_CALIBRATION);
+    return stored ?? DEFAULT_CALIBRATION;
+  });
   const [timers, setTimers] = useState<AnyTimer[]>(() => loadJson<AnyTimer[]>("ffxi_timers_v2", []));
 
-  const [showCalibration, setShowCalibration] = useState<boolean>(() =>
-    loadJson<boolean>("ffxi_show_cal_v1", true)
-  );
+  const [showCalibration, setShowCalibration] = useState<boolean>(() => loadJson<boolean>("ffxi_show_cal_v1", false));
 
   const [showPresets, setShowPresets] = useState<boolean>(() =>
     loadJson<boolean>("ffxi_show_presets_v1", true)
@@ -311,7 +313,7 @@ export default function AppShell() {
 
   function saveDayCalibration() {
     const snapshotEarthMs = Date.now();
-    const existingMoon = cal?.newMoonStartEarthMs ?? snapshotEarthMs;
+    const existingMoon = cal.newMoonStartEarthMs;
 
     const calObj = calibrationFromSnapshot({
       snapshotEarthMs,
@@ -338,7 +340,7 @@ export default function AppShell() {
     }
 
     setCal({
-      timeOffsetMs: cal?.timeOffsetMs ?? 0,
+      timeOffsetMs: cal.timeOffsetMs,
       newMoonStartEarthMs: newMoonStartEarthMs as number,
     });
 
@@ -346,8 +348,8 @@ export default function AppShell() {
   }
 
   function clearCalibration() {
-    setCal(undefined);
-    localStorage.removeItem("ffxi_cal_v1");
+    // Revert to baked-in defaults (users can still manually recalibrate if desired).
+    setCal(DEFAULT_CALIBRATION);
     setShowCalibration(true);
   }
 
@@ -995,7 +997,7 @@ export default function AppShell() {
                   t.kind === "VANA_WEEKDAY_TIME"
                     ? nextEarthMsForVanaWeekdayTime({
                         nowEarthMs: nowMs,
-                        cal,
+                        cal: cal ?? undefined,
                         targetWeekday: t.targetWeekday,
                         targetHour: t.targetHour,
                         targetMinute: t.targetMinute,
@@ -1003,20 +1005,20 @@ export default function AppShell() {
                     : t.kind === "MOON_STEP"
                       ? nextEarthMsForMoonStep({
                           nowEarthMs: nowMs,
-                          cal,
+                          cal: cal ?? undefined,
                           targetMoonStep: t.targetMoonStep,
                         })
                       : t.kind === "MOON_PERCENT"
                         ? nextEarthMsForMoonPercent({
                             nowEarthMs: nowMs,
-                            cal,
+                            cal: cal ?? undefined,
                             targetPercent: t.targetPercent,
                           })
                         : t.targetEarthMs;
 
                 const inMs = nextAt - nowMs;
 
-                const vanaAt = getVanaNow(nextAt, cal);
+                const vanaAt = getVanaNow(nextAt, cal ?? undefined);
 
                 let detailLine: React.ReactNode = null;
 

@@ -15,6 +15,17 @@ export type Calibration = {
   newMoonStartEarthMs: number;
 };
 
+// Default calibration (baked-in):
+// - timeOffsetMs was captured from an in-game /clock snapshot.
+// - newMoonStartEarthMs is a local-time anchor (per user locale) for the
+//   "New Moon Start" moment.
+// Users can still recalibrate if they want.
+export const DEFAULT_CALIBRATION: Calibration = {
+  timeOffsetMs: 4_753_280,
+  // Local time: 01/24/2026 03:14:24 AM
+  newMoonStartEarthMs: new Date(2026, 0, 24, 3, 14, 24, 0).getTime(),
+};
+
 const VANA_MS_PER_VANA_SECOND = 40;
 const VANA_SECONDS_PER_DAY = 86400;
 const VANA_SECONDS_PER_WEEK = VANA_SECONDS_PER_DAY * 8;
