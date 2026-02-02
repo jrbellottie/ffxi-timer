@@ -18,7 +18,12 @@ import { formatCountdown, nextOccurrenceLocal, pad2, parseLocalDateTimeToMs, uid
 import { AnyTimer, MoonDirection } from "./types";
 import { WEEKDAYS, WEEKDAY_COLORS, weekdayStyle } from "./utils/weekday";
 import { moonDirGlyph, moonGlyphStyle, moonPhaseStyle } from "./utils/moon";
-import { nextCookingGuildPrepTarget, nextTenshodoPrepTargets } from "./utils/guilds";
+import {
+  nextClothcraftGuildPrepTarget,
+  nextCookingGuildPrepTarget,
+  nextLeathercraftGuildPrepTarget,
+  nextTenshodoPrepTargets,
+} from "./utils/guilds";
 
 function clampInt(n: number, min: number, max: number) {
   return Math.max(min, Math.min(max, Math.floor(n)));
@@ -173,6 +178,30 @@ export default function AppShell() {
       targetMinute: target.targetMinute,
     });
     return { label: "Cooking Guild", ...target, nextAt };
+  }, [now, nowMs, cal]);
+
+  const leathercraftGuildPreview = useMemo(() => {
+    const target = nextLeathercraftGuildPrepTarget(now);
+    const nextAt = nextEarthMsForVanaWeekdayTime({
+      nowEarthMs: nowMs,
+      cal,
+      targetWeekday: target.targetWeekday,
+      targetHour: target.targetHour,
+      targetMinute: target.targetMinute,
+    });
+    return { label: "Leathercraft Guild", ...target, nextAt };
+  }, [now, nowMs, cal]);
+
+  const clothcraftGuildPreview = useMemo(() => {
+    const target = nextClothcraftGuildPrepTarget(now);
+    const nextAt = nextEarthMsForVanaWeekdayTime({
+      nowEarthMs: nowMs,
+      cal,
+      targetWeekday: target.targetWeekday,
+      targetHour: target.targetHour,
+      targetMinute: target.targetMinute,
+    });
+    return { label: "Clothcraft Guild", ...target, nextAt };
   }, [now, nowMs, cal]);
 
   const tenshodoPreviews = useMemo(() => {
@@ -371,6 +400,42 @@ export default function AppShell() {
         id: uid(),
         kind: "VANA_WEEKDAY_TIME",
         label: `Cooking Guild (prep) — ${target.targetWeekday} ${pad2(target.targetHour)}:${pad2(target.targetMinute)}`,
+        enabled: true,
+        createdAtMs: Date.now(),
+        targetWeekday: target.targetWeekday,
+        targetHour: target.targetHour,
+        targetMinute: target.targetMinute,
+      },
+      ...prev,
+    ]);
+  }
+
+  function addLeathercraftGuildTimer() {
+    const target = nextLeathercraftGuildPrepTarget(now);
+
+    setTimers((prev) => [
+      {
+        id: uid(),
+        kind: "VANA_WEEKDAY_TIME",
+        label: `Leathercraft Guild (prep) — ${target.targetWeekday} ${pad2(target.targetHour)}:${pad2(target.targetMinute)}`,
+        enabled: true,
+        createdAtMs: Date.now(),
+        targetWeekday: target.targetWeekday,
+        targetHour: target.targetHour,
+        targetMinute: target.targetMinute,
+      },
+      ...prev,
+    ]);
+  }
+
+  function addClothcraftGuildTimer() {
+    const target = nextClothcraftGuildPrepTarget(now);
+
+    setTimers((prev) => [
+      {
+        id: uid(),
+        kind: "VANA_WEEKDAY_TIME",
+        label: `Clothcraft Guild (prep) — ${target.targetWeekday} ${pad2(target.targetHour)}:${pad2(target.targetMinute)}`,
         enabled: true,
         createdAtMs: Date.now(),
         targetWeekday: target.targetWeekday,
@@ -823,6 +888,56 @@ export default function AppShell() {
                 <div style={{ marginTop: 10, ...styles.buttonRow }}>
                   <button style={styles.buttonPrimary} onClick={addCookingGuildTimer}>
                     Add Cooking Guild timer
+                  </button>
+                </div>
+              </div>
+
+              {/* Leathercraft */}
+              <div style={styles.subCard}>
+                <div style={styles.titleRow}>
+                  <div style={{ fontWeight: 800 }}>Leathercraft Guild</div>
+                  <div style={styles.sub}>Opens 03:00–18:00 → fires 02:00, closed Iceday</div>
+                </div>
+
+                <div style={{ marginTop: 8, ...styles.sub }}>
+                  Will set:{" "}
+                  <span style={weekdayStyle(leathercraftGuildPreview.targetWeekday)}>
+                    {leathercraftGuildPreview.targetWeekday}
+                  </span>{" "}
+                  {pad2(leathercraftGuildPreview.targetHour)}:{pad2(leathercraftGuildPreview.targetMinute)}
+                  <br />
+                  Next: {new Date(leathercraftGuildPreview.nextAt).toLocaleString()} — In:{" "}
+                  {formatCountdown(leathercraftGuildPreview.nextAt - nowMs)}
+                </div>
+
+                <div style={{ marginTop: 10, ...styles.buttonRow }}>
+                  <button style={styles.buttonPrimary} onClick={addLeathercraftGuildTimer}>
+                    Add Leathercraft Guild timer
+                  </button>
+                </div>
+              </div>
+
+              {/* Clothcraft */}
+              <div style={styles.subCard}>
+                <div style={styles.titleRow}>
+                  <div style={{ fontWeight: 800 }}>Clothcraft Guild</div>
+                  <div style={styles.sub}>Opens 06:00–21:00 → fires 05:00, closed Firesday</div>
+                </div>
+
+                <div style={{ marginTop: 8, ...styles.sub }}>
+                  Will set:{" "}
+                  <span style={weekdayStyle(clothcraftGuildPreview.targetWeekday)}>
+                    {clothcraftGuildPreview.targetWeekday}
+                  </span>{" "}
+                  {pad2(clothcraftGuildPreview.targetHour)}:{pad2(clothcraftGuildPreview.targetMinute)}
+                  <br />
+                  Next: {new Date(clothcraftGuildPreview.nextAt).toLocaleString()} — In:{" "}
+                  {formatCountdown(clothcraftGuildPreview.nextAt - nowMs)}
+                </div>
+
+                <div style={{ marginTop: 10, ...styles.buttonRow }}>
+                  <button style={styles.buttonPrimary} onClick={addClothcraftGuildTimer}>
+                    Add Clothcraft Guild timer
                   </button>
                 </div>
               </div>

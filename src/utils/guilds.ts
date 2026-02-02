@@ -91,6 +91,36 @@ export function nextCookingGuildPrepTarget(now: VanaNowLite): PrepTarget {
   });
 }
 
+/**
+ * Leathercraft Guild:
+ * - opens 03:00
+ * - prep timer 2 hours earlier => 01:00
+ * - closed on Iceday
+ */
+export function nextLeathercraftGuildPrepTarget(now: VanaNowLite): PrepTarget {
+  return nextGuildPrepTarget(now, {
+    openHour: 3,
+    openMinute: 0,
+    prepLeadHours: 2,
+    closedOn: "Iceday",
+  });
+}
+
+/**
+ * Clothcraft Guild:
+ * - opens 06:00
+ * - prep timer 2 hours earlier => 04:00
+ * - closed on Firesday
+ */
+export function nextClothcraftGuildPrepTarget(now: VanaNowLite): PrepTarget {
+  return nextGuildPrepTarget(now, {
+    openHour: 6,
+    openMinute: 0,
+    prepLeadHours: 2,
+    closedOn: "Firesday",
+  });
+}
+
 // ---------- Tenshodo ----------
 
 export type TenshodoPreset = {
@@ -105,7 +135,6 @@ type TenshodoLocation = {
   schedule: GuildSchedule;
 };
 
-// Your rules (prep is still 1 hour before open)
 const TENSHODO_LOCATIONS: TenshodoLocation[] = [
   {
     name: "Lower Jeuno",
