@@ -23,102 +23,121 @@ export type GuildSchedule = {
   openHour: number; // 0..23
   openMinute?: number; // default 0
   closedOn?: VanaWeekday | null; // holiday weekday closure, optional
-  prepLeadHours?: number; // default 1
 };
 
-function isBefore(h1: number, m1: number, h2: number, m2: number) {
-  return h1 < h2 || (h1 === h2 && m1 < m2);
-}
-
 /**
- * Generic:
- * - compute "prep time" = open time minus prepLeadHours
- * - schedule the next occurrence of that prep time
- * - skip "closedOn" weekdays entirely (if provided)
+ * Compute the next preset "alert" time for a daily open schedule.
  *
- * Rules:
- * - If today is NOT closed and it's still before prep time, use today at prep time.
- * - Otherwise advance day-by-day to the next non-closed weekday, and schedule prep time.
+ * - The schedule's `closedOn` is a closure of the OPEN day.
+ * - The alert time is `offsetHours` Vana hours before open.
+ * - Offset can cross midnight; closure logic still applies to the open day.
  */
-export function nextGuildPrepTarget(now: VanaNowLite, schedule: GuildSchedule): PrepTarget {
+export function nextGuildAlertTarget(now: VanaNowLite, schedule: GuildSchedule, offsetHours: number): PrepTarget {
   const openMinute = schedule.openMinute ?? 0;
-  const prepLead = schedule.prepLeadHours ?? 1;
   const closedOn = schedule.closedOn ?? null;
 
-  // Prep time is open time minus prepLeadHours, with wrap if needed.
-  // (You can extend to minutes later if needed.)
-  let prepHour = schedule.openHour - prepLead;
-  const prepMinute = openMinute;
+  const offset = Math.max(0, Math.min(23, Math.floor(Number.isFinite(offsetHours) ? offsetHours : 0)));
+  const offsetMinutes = offset * 60;
 
-  if (prepHour < 0) prepHour += 24;
-
+  const weekMinutes = WEEKDAYS.length * 24 * 60; // 8 * 1440
   const nowDayIndex = WEEKDAYS.indexOf(now.weekday);
+  const nowAbsMinutes = nowDayIndex * 24 * 60 + now.hour * 60 + now.minute;
 
-  const todayClosed = closedOn ? now.weekday === closedOn : false;
-  const beforePrep = isBefore(now.hour, now.minute, prepHour, prepMinute);
+  let bestAlertAbsMinutes = Number.POSITIVE_INFINITY;
 
-  let dayIndex = nowDayIndex;
+  // Consider the next occurrence of "open" for each weekday (within the next week).
+  // Pick the earliest alert time that is still in the future.
+  for (const d of WEEKDAYS) {
+    if (closedOn && d === closedOn) continue;
 
-  // If today is closed OR we already passed prep time, start from tomorrow.
-  if (todayClosed || !beforePrep) {
-    dayIndex = mod(nowDayIndex + 1, WEEKDAYS.length);
+    const dayIndex = WEEKDAYS.indexOf(d);
+    let openAbsMinutes = dayIndex * 24 * 60 + schedule.openHour * 60 + openMinute;
+
+    // Ensure this open is in the future (else it refers to next week's same weekday).
+    if (openAbsMinutes <= nowAbsMinutes) openAbsMinutes += weekMinutes;
+
+    const alertAbsMinutes = openAbsMinutes - offsetMinutes;
+    if (alertAbsMinutes <= nowAbsMinutes) continue;
+
+    if (alertAbsMinutes < bestAlertAbsMinutes) bestAlertAbsMinutes = alertAbsMinutes;
   }
 
-  // Skip closedOn day(s)
-  while (closedOn && WEEKDAYS[dayIndex] === closedOn) {
-    dayIndex = mod(dayIndex + 1, WEEKDAYS.length);
+  // Fallback: if offset is extremely large or the loop found nothing (should be rare),
+  // schedule the earliest possible alert by taking the next open and subtracting.
+  if (!Number.isFinite(bestAlertAbsMinutes)) {
+    for (const d of WEEKDAYS) {
+      if (closedOn && d === closedOn) continue;
+      const dayIndex = WEEKDAYS.indexOf(d);
+      let openAbsMinutes = dayIndex * 24 * 60 + schedule.openHour * 60 + openMinute;
+      if (openAbsMinutes <= nowAbsMinutes) openAbsMinutes += weekMinutes;
+      const alertAbsMinutes = openAbsMinutes - offsetMinutes;
+      if (alertAbsMinutes < bestAlertAbsMinutes) bestAlertAbsMinutes = alertAbsMinutes;
+    }
   }
+
+  const normalized = mod(bestAlertAbsMinutes, weekMinutes);
+  const targetDayIndex = Math.floor(normalized / (24 * 60));
+  const dayMinutes = normalized % (24 * 60);
+  const targetHour = Math.floor(dayMinutes / 60);
+  const targetMinute = dayMinutes % 60;
 
   return {
-    targetWeekday: WEEKDAYS[dayIndex],
-    targetHour: prepHour,
-    targetMinute: prepMinute,
+    targetWeekday: WEEKDAYS[targetDayIndex],
+    targetHour,
+    targetMinute,
   };
 }
 
 /**
  * Cooking Guild:
  * - opens 05:00
- * - prep timer 1 hour earlier => 04:00
  * - closed on Darksday
  */
 export function nextCookingGuildPrepTarget(now: VanaNowLite): PrepTarget {
-  return nextGuildPrepTarget(now, {
-    openHour: 5,
-    openMinute: 0,
-    prepLeadHours: 1,
-    closedOn: "Darksday",
-  });
+  return nextGuildAlertTarget(
+    now,
+    {
+      openHour: 5,
+      openMinute: 0,
+      closedOn: "Darksday",
+    },
+    1
+  );
 }
 
 /**
  * Leathercraft Guild:
  * - opens 03:00
- * - prep timer 2 hours earlier => 01:00
  * - closed on Iceday
  */
 export function nextLeathercraftGuildPrepTarget(now: VanaNowLite): PrepTarget {
-  return nextGuildPrepTarget(now, {
-    openHour: 3,
-    openMinute: 0,
-    prepLeadHours: 2,
-    closedOn: "Iceday",
-  });
+  return nextGuildAlertTarget(
+    now,
+    {
+      openHour: 3,
+      openMinute: 0,
+      closedOn: "Iceday",
+    },
+    2
+  );
 }
 
 /**
  * Clothcraft Guild:
  * - opens 06:00
- * - prep timer 2 hours earlier => 04:00
  * - closed on Firesday
  */
 export function nextClothcraftGuildPrepTarget(now: VanaNowLite): PrepTarget {
-  return nextGuildPrepTarget(now, {
-    openHour: 6,
-    openMinute: 0,
-    prepLeadHours: 2,
-    closedOn: "Firesday",
-  });
+  // Back-compat default: 1 hour before open
+  return nextGuildAlertTarget(
+    now,
+    {
+      openHour: 6,
+      openMinute: 0,
+      closedOn: "Firesday",
+    },
+    1
+  );
 }
 
 // ---------- Tenshodo ----------
@@ -138,15 +157,15 @@ type TenshodoLocation = {
 const TENSHODO_LOCATIONS: TenshodoLocation[] = [
   {
     name: "Lower Jeuno",
-    schedule: { openHour: 1, openMinute: 0, prepLeadHours: 1, closedOn: "Earthsday" },
+    schedule: { openHour: 1, openMinute: 0, closedOn: "Earthsday" },
   },
   {
     name: "Port Bastok",
-    schedule: { openHour: 1, openMinute: 0, prepLeadHours: 1, closedOn: "Iceday" },
+    schedule: { openHour: 1, openMinute: 0, closedOn: "Iceday" },
   },
   {
     name: "Norg",
-    schedule: { openHour: 9, openMinute: 0, prepLeadHours: 1, closedOn: "Darksday" },
+    schedule: { openHour: 9, openMinute: 0, closedOn: "Darksday" },
   },
 ];
 
@@ -166,7 +185,6 @@ export function buildTenshodoPresets(): TenshodoPreset[] {
     const s = loc.schedule;
     const key = [
       `open:${s.openHour}:${s.openMinute ?? 0}`,
-      `prep:${s.prepLeadHours ?? 1}`,
       `closed:${s.closedOn ?? "none"}`,
     ].join("|");
 
@@ -199,6 +217,6 @@ export function nextTenshodoPrepTargets(now: VanaNowLite): Array<{ label: string
   const presets = buildTenshodoPresets();
   return presets.map((p) => ({
     label: p.label,
-    ...nextGuildPrepTarget(now, p.schedule),
+    ...nextGuildAlertTarget(now, p.schedule, 1),
   }));
 }

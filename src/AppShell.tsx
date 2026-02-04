@@ -19,12 +19,7 @@ import { formatCountdown, nextOccurrenceLocal, pad2, parseLocalDateTimeToMs, uid
 import { AnyTimer, MoonDirection } from "./types";
 import { WEEKDAYS, WEEKDAY_COLORS, weekdayStyle } from "./utils/weekday";
 import { moonDirGlyph, moonGlyphStyle, moonPhaseStyle } from "./utils/moon";
-import {
-  nextClothcraftGuildPrepTarget,
-  nextCookingGuildPrepTarget,
-  nextLeathercraftGuildPrepTarget,
-  nextTenshodoPrepTargets,
-} from "./utils/guilds";
+import { buildTenshodoPresets, nextGuildAlertTarget } from "./utils/guilds";
 
 function clampInt(n: number, min: number, max: number) {
   return Math.max(min, Math.min(max, Math.floor(n)));
@@ -74,27 +69,8 @@ function mergeTenshodoTargets(targets: TenshodoTarget[]): TenshodoTarget[] {
   return Array.from(map.values());
 }
 
-function nextWeekdayOf(d: VanaWeekday): VanaWeekday {
-  const idx = WEEKDAYS.indexOf(d);
-  return WEEKDAYS[(idx + 1) % WEEKDAYS.length];
-}
-
-function computeNextDigTarget(now: ReturnType<typeof getVanaNow>): {
-  targetWeekday: VanaWeekday;
-  targetHour: number;
-  targetMinute: number;
-} {
-  const targetHour = 22;
-  const targetMinute = 0;
-
-  const isPastToday = now.hour > targetHour || (now.hour === targetHour && now.minute >= targetMinute);
-
-  return {
-    targetWeekday: isPastToday ? nextWeekdayOf(now.weekday) : now.weekday,
-    targetHour,
-    targetMinute,
-  };
-}
+const PRESET_OFFSET_MIN = 0;
+const PRESET_OFFSET_MAX = 23;
 
 export default function AppShell() {
   const [nowMs, setNowMs] = useState(Date.now());
@@ -111,6 +87,10 @@ export default function AppShell() {
 
   const [showPresets, setShowPresets] = useState<boolean>(() =>
     loadJson<boolean>("ffxi_show_presets_v1", true)
+  );
+
+  const [presetOffsetHours, setPresetOffsetHours] = useState<number>(() =>
+    clampInt(loadJson<number>("ffxi_preset_offset_hours_v1", 2), PRESET_OFFSET_MIN, PRESET_OFFSET_MAX)
   );
 
   const [cWeekday, setCWeekday] = useState<VanaWeekday>("Firesday");
@@ -149,6 +129,7 @@ export default function AppShell() {
   useEffect(() => saveJson("ffxi_timers_v2", timers), [timers]);
   useEffect(() => saveJson("ffxi_show_cal_v1", showCalibration), [showCalibration]);
   useEffect(() => saveJson("ffxi_show_presets_v1", showPresets), [showPresets]);
+  useEffect(() => saveJson("ffxi_preset_offset_hours_v1", presetOffsetHours), [presetOffsetHours]);
 
   const hasEnabledTimers = useMemo(() => timers.some((t) => t.enabled), [timers]);
   useEffect(() => {
@@ -171,7 +152,15 @@ export default function AppShell() {
   }, [nextMoonAt, cal]);
 
   const cookingGuildPreview = useMemo(() => {
-    const target = nextCookingGuildPrepTarget(now);
+    const target = nextGuildAlertTarget(
+      now,
+      {
+        openHour: 5,
+        openMinute: 0,
+        closedOn: "Darksday",
+      },
+      presetOffsetHours
+    );
     const nextAt = nextEarthMsForVanaWeekdayTime({
       nowEarthMs: nowMs,
       cal,
@@ -180,10 +169,18 @@ export default function AppShell() {
       targetMinute: target.targetMinute,
     });
     return { label: "Cooking Guild", ...target, nextAt };
-  }, [now, nowMs, cal]);
+  }, [now, nowMs, cal, presetOffsetHours]);
 
   const leathercraftGuildPreview = useMemo(() => {
-    const target = nextLeathercraftGuildPrepTarget(now);
+    const target = nextGuildAlertTarget(
+      now,
+      {
+        openHour: 3,
+        openMinute: 0,
+        closedOn: "Iceday",
+      },
+      presetOffsetHours
+    );
     const nextAt = nextEarthMsForVanaWeekdayTime({
       nowEarthMs: nowMs,
       cal,
@@ -192,10 +189,18 @@ export default function AppShell() {
       targetMinute: target.targetMinute,
     });
     return { label: "Leathercraft Guild", ...target, nextAt };
-  }, [now, nowMs, cal]);
+  }, [now, nowMs, cal, presetOffsetHours]);
 
   const clothcraftGuildPreview = useMemo(() => {
-    const target = nextClothcraftGuildPrepTarget(now);
+    const target = nextGuildAlertTarget(
+      now,
+      {
+        openHour: 6,
+        openMinute: 0,
+        closedOn: "Firesday",
+      },
+      presetOffsetHours
+    );
     const nextAt = nextEarthMsForVanaWeekdayTime({
       nowEarthMs: nowMs,
       cal,
@@ -204,10 +209,15 @@ export default function AppShell() {
       targetMinute: target.targetMinute,
     });
     return { label: "Clothcraft Guild", ...target, nextAt };
-  }, [now, nowMs, cal]);
+  }, [now, nowMs, cal, presetOffsetHours]);
 
   const tenshodoPreviews = useMemo(() => {
-    const rawTargets = nextTenshodoPrepTargets(now) as TenshodoTarget[];
+    const presets = buildTenshodoPresets();
+    const rawTargets = presets.map((p) => ({
+      label: p.label,
+      ...nextGuildAlertTarget(now, p.schedule, presetOffsetHours),
+    })) as TenshodoTarget[];
+
     const mergedTargets = mergeTenshodoTargets(rawTargets);
 
     return mergedTargets.map((t) => {
@@ -220,10 +230,19 @@ export default function AppShell() {
       });
       return { ...t, nextAt };
     });
-  }, [now, nowMs, cal]);
+  }, [now, nowMs, cal, presetOffsetHours]);
 
   const nextDigPreview = useMemo(() => {
-    const target = computeNextDigTarget(now);
+    // "Next Dig" target is 00:00; we alert `presetOffsetHours` before that.
+    const target = nextGuildAlertTarget(
+      now,
+      {
+        openHour: 0,
+        openMinute: 0,
+        closedOn: null,
+      },
+      presetOffsetHours
+    );
     const nextAt = nextEarthMsForVanaWeekdayTime({
       nowEarthMs: nowMs,
       cal,
@@ -232,7 +251,7 @@ export default function AppShell() {
       targetMinute: target.targetMinute,
     });
     return { label: "Next Dig", ...target, nextAt };
-  }, [now, nowMs, cal]);
+  }, [now, nowMs, cal, presetOffsetHours]);
 
   useEffect(() => {
     if (!window.electron?.ipcRenderer?.on) return;
@@ -395,13 +414,23 @@ export default function AppShell() {
   }
 
   function addCookingGuildTimer() {
-    const target = nextCookingGuildPrepTarget(now);
+    const target = nextGuildAlertTarget(
+      now,
+      {
+        openHour: 5,
+        openMinute: 0,
+        closedOn: "Darksday",
+      },
+      presetOffsetHours
+    );
 
     setTimers((prev) => [
       {
         id: uid(),
         kind: "VANA_WEEKDAY_TIME",
-        label: `Cooking Guild (prep) — ${target.targetWeekday} ${pad2(target.targetHour)}:${pad2(target.targetMinute)}`,
+        label: `Cooking Guild (offset ${presetOffsetHours}h) — ${target.targetWeekday} ${pad2(target.targetHour)}:${pad2(
+          target.targetMinute
+        )}`,
         enabled: true,
         createdAtMs: Date.now(),
         targetWeekday: target.targetWeekday,
@@ -413,13 +442,23 @@ export default function AppShell() {
   }
 
   function addLeathercraftGuildTimer() {
-    const target = nextLeathercraftGuildPrepTarget(now);
+    const target = nextGuildAlertTarget(
+      now,
+      {
+        openHour: 3,
+        openMinute: 0,
+        closedOn: "Iceday",
+      },
+      presetOffsetHours
+    );
 
     setTimers((prev) => [
       {
         id: uid(),
         kind: "VANA_WEEKDAY_TIME",
-        label: `Leathercraft Guild (prep) — ${target.targetWeekday} ${pad2(target.targetHour)}:${pad2(target.targetMinute)}`,
+        label: `Leathercraft Guild (offset ${presetOffsetHours}h) — ${target.targetWeekday} ${pad2(
+          target.targetHour
+        )}:${pad2(target.targetMinute)}`,
         enabled: true,
         createdAtMs: Date.now(),
         targetWeekday: target.targetWeekday,
@@ -431,13 +470,23 @@ export default function AppShell() {
   }
 
   function addClothcraftGuildTimer() {
-    const target = nextClothcraftGuildPrepTarget(now);
+    const target = nextGuildAlertTarget(
+      now,
+      {
+        openHour: 6,
+        openMinute: 0,
+        closedOn: "Firesday",
+      },
+      presetOffsetHours
+    );
 
     setTimers((prev) => [
       {
         id: uid(),
         kind: "VANA_WEEKDAY_TIME",
-        label: `Clothcraft Guild (prep) — ${target.targetWeekday} ${pad2(target.targetHour)}:${pad2(target.targetMinute)}`,
+        label: `Clothcraft Guild (offset ${presetOffsetHours}h) — ${target.targetWeekday} ${pad2(
+          target.targetHour
+        )}:${pad2(target.targetMinute)}`,
         enabled: true,
         createdAtMs: Date.now(),
         targetWeekday: target.targetWeekday,
@@ -449,14 +498,20 @@ export default function AppShell() {
   }
 
   function addTenshodoTimers() {
-    const rawTargets = nextTenshodoPrepTargets(now) as TenshodoTarget[];
+    const presets = buildTenshodoPresets();
+    const rawTargets = presets.map((p) => ({
+      label: p.label,
+      ...nextGuildAlertTarget(now, p.schedule, presetOffsetHours),
+    })) as TenshodoTarget[];
     const mergedTargets = mergeTenshodoTargets(rawTargets);
 
     setTimers((prev) => [
       ...mergedTargets.map((t) => ({
         id: uid(),
         kind: "VANA_WEEKDAY_TIME" as const,
-        label: `${t.label} (prep) — ${t.targetWeekday} ${pad2(t.targetHour)}:${pad2(t.targetMinute)}`,
+        label: `${t.label} (offset ${presetOffsetHours}h) — ${t.targetWeekday} ${pad2(t.targetHour)}:${pad2(
+          t.targetMinute
+        )}`,
         enabled: true,
         createdAtMs: Date.now(),
         targetWeekday: t.targetWeekday,
@@ -468,13 +523,23 @@ export default function AppShell() {
   }
 
   function addNextDigTimer() {
-    const target = computeNextDigTarget(now);
+    const target = nextGuildAlertTarget(
+      now,
+      {
+        openHour: 0,
+        openMinute: 0,
+        closedOn: null,
+      },
+      presetOffsetHours
+    );
 
     setTimers((prev) => [
       {
         id: uid(),
         kind: "VANA_WEEKDAY_TIME",
-        label: `Next Dig — ${target.targetWeekday} 22:00`,
+        label: `Next Dig (offset ${presetOffsetHours}h) — ${target.targetWeekday} ${pad2(target.targetHour)}:${pad2(
+          target.targetMinute
+        )}`,
         enabled: true,
         createdAtMs: Date.now(),
         targetWeekday: target.targetWeekday,
@@ -559,114 +624,6 @@ export default function AppShell() {
               </span>{" "}
               ({nextMoonLabel.pct}%)
             </div>
-
-            <div style={styles.divider} />
-
-            <div style={styles.titleRow}>
-              <h3 style={styles.h3}>Calibration</h3>
-              <button style={styles.button} onClick={() => setShowCalibration((v) => !v)}>
-                {showCalibration ? "Hide" : "Show"}
-              </button>
-            </div>
-
-            {!showCalibration ? (
-              <div style={{ marginTop: 10, ...styles.sub }}>Hidden (use “Show” if you need to recalibrate).</div>
-            ) : (
-              <>
-                <div style={{ marginTop: 8, ...styles.sub }}>
-                  Day and Moon are calibrated separately. Once set, this can stay hidden.
-                </div>
-
-                <div style={{ marginTop: 12, display: "grid", gap: 12 }}>
-                  <div style={styles.subCard}>
-                    <div style={styles.titleRow}>
-                      <div style={{ fontWeight: 800 }}>Day calibration</div>
-                      <div style={styles.sub}>Match /clock</div>
-                    </div>
-
-                    <div style={{ marginTop: 10, ...styles.compactRow }}>
-                      <div style={styles.field}>
-                        <div style={styles.label}>Weekday</div>
-                        <select
-                          style={styles.select}
-                          value={cWeekday}
-                          onChange={(e) => setCWeekday(e.target.value as VanaWeekday)}
-                        >
-                          {WEEKDAYS.map((d) => (
-                            <option
-                              key={d}
-                              value={d}
-                              style={{
-                                ...optionBaseStyle,
-                                color: WEEKDAY_COLORS[d],
-                                fontWeight: 800,
-                              }}
-                            >
-                              {d}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-
-                      <div style={styles.compactRow}>
-                        <div style={styles.field}>
-                          <div style={styles.label}>Hour</div>
-                          <input style={styles.input} value={cHour} onChange={(e) => setCHour(e.target.value)} />
-                        </div>
-                        <div style={styles.field}>
-                          <div style={styles.label}>Min</div>
-                          <input style={styles.input} value={cMin} onChange={(e) => setCMin(e.target.value)} />
-                        </div>
-                      </div>
-                    </div>
-
-                    <div style={styles.buttonRow}>
-                      <button style={styles.buttonPrimary} onClick={saveDayCalibration}>
-                        Save day calibration
-                      </button>
-                    </div>
-
-                    <div style={{ marginTop: 8, ...styles.sub }}>
-                      Stored offset (ms): {cal ? String(cal.timeOffsetMs) : "0"}
-                    </div>
-                  </div>
-
-                  <div style={styles.subCard}>
-                    <div style={styles.titleRow}>
-                      <div style={{ fontWeight: 800 }}>Moon calibration</div>
-                      <div style={styles.sub}>Local time</div>
-                    </div>
-
-                    <div style={{ marginTop: 10, ...styles.field }}>
-                      <div style={styles.label}>New Moon Start</div>
-                      <input
-                        style={styles.input}
-                        type="text"
-                        value={newMoonInput}
-                        onChange={(e) => setNewMoonInput(e.target.value)}
-                        placeholder="01/24/2026 03:14:24 AM  (or 2026-01-24T03:14:24)"
-                      />
-                      <div style={styles.sub}>Supports: MM/DD/YYYY HH:MM:SS AM, or YYYY-MM-DDTHH:MM(:SS)</div>
-                    </div>
-
-                    <div style={styles.buttonRow}>
-                      <button style={styles.buttonPrimary} onClick={saveMoonCalibration}>
-                        Save moon calibration
-                      </button>
-                      <button style={styles.button} onClick={clearCalibration}>
-                        Clear all
-                      </button>
-                    </div>
-
-                    <div style={{ marginTop: 8, ...styles.sub }}>
-                      Stored New Moon Start:{" "}
-                      {cal?.newMoonStartEarthMs ? new Date(cal.newMoonStartEarthMs).toLocaleString() : "Not set"}
-                    </div>
-                  </div>
-                </div>
-              </>
-            )}
-
             <div style={styles.cardFooter} />
           </div>
         </section>
@@ -836,8 +793,19 @@ export default function AppShell() {
         <section style={styles.card}>
           <div style={styles.titleRow}>
             <h3 style={styles.h3}>Preset timers</h3>
-            <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-              <div style={styles.sub}>Quick presets (prep timers)</div>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap", justifyContent: "flex-end" }}>
+              <div style={styles.sub}>Offset (Vana hours):</div>
+              <input
+                style={{ ...styles.input, width: 72 }}
+                type="number"
+                min={PRESET_OFFSET_MIN}
+                max={PRESET_OFFSET_MAX}
+                step={1}
+                value={presetOffsetHours}
+                onChange={(e) => setPresetOffsetHours(clampInt(Number(e.target.value) || 0, PRESET_OFFSET_MIN, PRESET_OFFSET_MAX))}
+                title="Hours before the target/open time (Vana hours)"
+              />
+              <div style={styles.sub}>hours before target/open</div>
               <button style={styles.button} onClick={() => setShowPresets((v) => !v)}>
                 {showPresets ? "Hide" : "Show"}
               </button>
@@ -847,12 +815,22 @@ export default function AppShell() {
           {!showPresets ? (
             <div style={{ marginTop: 10, ...styles.muted }}>Hidden.</div>
           ) : (
-            <div style={{ marginTop: 10, display: "grid", gap: 12 }}>
+            <div
+              style={{
+                marginTop: 10,
+                display: "grid",
+                gap: 12,
+                gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+                alignItems: "start",
+              }}
+            >
               {/* Next Dig */}
               <div style={styles.subCard}>
                 <div style={styles.titleRow}>
                   <div style={{ fontWeight: 800 }}>Next Dig</div>
-                  <div style={styles.sub}>Sets a timer for 22:00 on the current Vana day</div>
+                  <div style={styles.sub}>
+                    Targets 00:00 → fires {pad2(nextDigPreview.targetHour)}:{pad2(nextDigPreview.targetMinute)} (offset {presetOffsetHours}h)
+                  </div>
                 </div>
 
                 <div style={{ marginTop: 8, ...styles.sub }}>
@@ -875,7 +853,9 @@ export default function AppShell() {
               <div style={styles.subCard}>
                 <div style={styles.titleRow}>
                   <div style={{ fontWeight: 800 }}>Cooking Guild</div>
-                  <div style={styles.sub}>Opens 05:00 → fires 04:00, closed Darksday</div>
+                  <div style={styles.sub}>
+                    Opens 05:00 → fires {pad2(cookingGuildPreview.targetHour)}:{pad2(cookingGuildPreview.targetMinute)} (offset {presetOffsetHours}h), closed Darksday
+                  </div>
                 </div>
 
                 <div style={{ marginTop: 8, ...styles.sub }}>
@@ -898,7 +878,9 @@ export default function AppShell() {
               <div style={styles.subCard}>
                 <div style={styles.titleRow}>
                   <div style={{ fontWeight: 800 }}>Leathercraft Guild</div>
-                  <div style={styles.sub}>Opens 03:00–18:00 → fires 02:00, closed Iceday</div>
+                  <div style={styles.sub}>
+                    Opens 03:00–18:00 → fires {pad2(leathercraftGuildPreview.targetHour)}:{pad2(leathercraftGuildPreview.targetMinute)} (offset {presetOffsetHours}h), closed Iceday
+                  </div>
                 </div>
 
                 <div style={{ marginTop: 8, ...styles.sub }}>
@@ -923,7 +905,9 @@ export default function AppShell() {
               <div style={styles.subCard}>
                 <div style={styles.titleRow}>
                   <div style={{ fontWeight: 800 }}>Clothcraft Guild</div>
-                  <div style={styles.sub}>Opens 06:00–21:00 → fires 05:00, closed Firesday</div>
+                  <div style={styles.sub}>
+                    Opens 06:00–21:00 → fires {pad2(clothcraftGuildPreview.targetHour)}:{pad2(clothcraftGuildPreview.targetMinute)} (offset {presetOffsetHours}h), closed Firesday
+                  </div>
                 </div>
 
                 <div style={{ marginTop: 8, ...styles.sub }}>
@@ -948,7 +932,7 @@ export default function AppShell() {
               <div style={styles.subCard}>
                 <div style={styles.titleRow}>
                   <div style={{ fontWeight: 800 }}>Tenshodo</div>
-                  <div style={styles.sub}>Adds 2–3 timers (merged when hours+holiday match)</div>
+                  <div style={styles.sub}>Adds 2–3 timers (merged when fire time matches)</div>
                 </div>
 
                 <div style={{ marginTop: 8, display: "grid", gap: 10 }}>
@@ -971,8 +955,8 @@ export default function AppShell() {
                 </div>
 
                 <div style={{ marginTop: 8, ...styles.sub }}>
-                  Notes: Lower Jeuno closed Earthsday; Port Bastok closed Iceday; Norg closed Darksday. Prep is 1 hour before
-                  open.
+                  Notes: Lower Jeuno closed Earthsday; Port Bastok closed Iceday; Norg closed Darksday. Offset is {presetOffsetHours}h
+                  before open.
                 </div>
               </div>
             </div>
@@ -1080,6 +1064,115 @@ export default function AppShell() {
                   </div>
                 );
               })}
+            </div>
+          )}
+        </section>
+      </div>
+
+      {/* Manual calibration */}
+      <div style={styles.timersSection}>
+        <section style={styles.card}>
+          <div style={styles.titleRow}>
+            <h3 style={styles.h3}>Manual calibration</h3>
+            <button style={styles.button} onClick={() => setShowCalibration((v) => !v)}>
+              {showCalibration ? "Hide" : "Show"}
+            </button>
+          </div>
+
+          {!showCalibration ? (
+            <div style={{ marginTop: 10, ...styles.sub }}>
+              Defaults are applied automatically. Use “Show” only if you want to recalibrate.
+            </div>
+          ) : (
+            <div style={{ marginTop: 10, display: "grid", gap: 12 }}>
+              <div style={{ ...styles.sub, opacity: 0.9 }}>
+                Day and Moon are calibrated separately. Saving either one overrides the default.
+              </div>
+
+              <div style={{ display: "grid", gap: 12 }}>
+                <div style={styles.subCard}>
+                  <div style={styles.titleRow}>
+                    <div style={{ fontWeight: 800 }}>Day calibration</div>
+                    <div style={styles.sub}>Match /clock</div>
+                  </div>
+
+                  <div style={{ marginTop: 10, ...styles.compactRow }}>
+                    <div style={styles.field}>
+                      <div style={styles.label}>Weekday</div>
+                      <select
+                        style={styles.select}
+                        value={cWeekday}
+                        onChange={(e) => setCWeekday(e.target.value as VanaWeekday)}
+                      >
+                        {WEEKDAYS.map((d) => (
+                          <option
+                            key={d}
+                            value={d}
+                            style={{
+                              ...optionBaseStyle,
+                              color: WEEKDAY_COLORS[d],
+                              fontWeight: 800,
+                            }}
+                          >
+                            {d}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+
+                    <div style={styles.compactRow}>
+                      <div style={styles.field}>
+                        <div style={styles.label}>Hour</div>
+                        <input style={styles.input} value={cHour} onChange={(e) => setCHour(e.target.value)} />
+                      </div>
+                      <div style={styles.field}>
+                        <div style={styles.label}>Min</div>
+                        <input style={styles.input} value={cMin} onChange={(e) => setCMin(e.target.value)} />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div style={styles.buttonRow}>
+                    <button style={styles.buttonPrimary} onClick={saveDayCalibration}>
+                      Save day calibration
+                    </button>
+                  </div>
+
+                  <div style={{ marginTop: 8, ...styles.sub }}>Stored offset (ms): {String(cal.timeOffsetMs)}</div>
+                </div>
+
+                <div style={styles.subCard}>
+                  <div style={styles.titleRow}>
+                    <div style={{ fontWeight: 800 }}>Moon calibration</div>
+                    <div style={styles.sub}>Local time</div>
+                  </div>
+
+                  <div style={{ marginTop: 10, ...styles.field }}>
+                    <div style={styles.label}>New Moon Start</div>
+                    <input
+                      style={styles.input}
+                      type="text"
+                      value={newMoonInput}
+                      onChange={(e) => setNewMoonInput(e.target.value)}
+                      placeholder="01/24/2026 03:14:24 AM  (or 2026-01-24T03:14:24)"
+                    />
+                    <div style={styles.sub}>Supports: MM/DD/YYYY HH:MM:SS AM, or YYYY-MM-DDTHH:MM(:SS)</div>
+                  </div>
+
+                  <div style={styles.buttonRow}>
+                    <button style={styles.buttonPrimary} onClick={saveMoonCalibration}>
+                      Save moon calibration
+                    </button>
+                    <button style={styles.button} onClick={clearCalibration}>
+                      Reset to defaults
+                    </button>
+                  </div>
+
+                  <div style={{ marginTop: 8, ...styles.sub }}>
+                    Stored New Moon Start: {new Date(cal.newMoonStartEarthMs).toLocaleString()}
+                  </div>
+                </div>
+              </div>
             </div>
           )}
         </section>
