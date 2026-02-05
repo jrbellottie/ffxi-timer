@@ -89,36 +89,54 @@ ipcMain.on("ffxi:keepAwake", (_event, payload: { enabled: boolean }) => {
   else ensureKeepAwakeOff();
 });
 
-// Renderer -> Main: start repeating notifications (click toast to stop)
-ipcMain.on("ffxi:notify", (_event, payload: { id: string; title: string; body: string }) => {
-  const { id, title, body } = payload;
+// Renderer -> Main: show a notification.
+// - Default behavior repeats every 20s until user clicks the toast.
+// - For one-shot notifications (e.g. NM intervals), pass repeat: false.
+ipcMain.on(
+  "ffxi:notify",
+  (
+    _event,
+    payload: { id: string; title: string; body: string; repeat?: boolean; repeatEveryMs?: number }
+  ) => {
+    const { id, title, body } = payload;
+    const repeat = payload.repeat ?? true;
+    const repeatEveryMs = Math.max(1_000, Math.floor(payload.repeatEveryMs ?? 20_000));
 
-  // already repeating? ignore
-  if (repeaters.has(id)) return;
+    const showToast = (wireDismiss: boolean) => {
+      try {
+        const n = new Notification({ title, body });
 
-  const showToast = () => {
-    try {
-      const n = new Notification({ title, body });
+        if (wireDismiss) {
+          // Clicking the toast stops the spam
+          n.on("click", () => {
+            stopRepeater(id);
+            BrowserWindow.getAllWindows()[0]?.webContents.send("ffxi:timerDismissed", { id });
+          });
+        }
 
-      // Clicking the toast stops the spam
-      n.on("click", () => {
-        stopRepeater(id);
-        BrowserWindow.getAllWindows()[0]?.webContents.send("ffxi:timerDismissed", { id });
-      });
+        n.show();
+      } catch {
+        // ignore
+      }
+    };
 
-      n.show();
-    } catch {
-      // ignore
+    // One-shot: show once and do not register a repeater.
+    if (!repeat) {
+      showToast(false);
+      return;
     }
-  };
 
-  // Show once immediately
-  showToast();
+    // already repeating? ignore
+    if (repeaters.has(id)) return;
 
-  // Repeat every 20 seconds until dismissed
-  const interval = setInterval(showToast, 20_000);
-  repeaters.set(id, interval);
-});
+    // Show once immediately
+    showToast(true);
+
+    // Repeat until dismissed
+    const interval = setInterval(() => showToast(true), repeatEveryMs);
+    repeaters.set(id, interval);
+  }
+);
 
 // optional manual stop
 ipcMain.on("ffxi:notifyStop", (_event, payload: { id: string }) => {

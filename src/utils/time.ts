@@ -33,7 +33,7 @@ export function parseLocalDateTimeToMs(raw: string): number | undefined {
   // Common paste: MM/DD/YYYY HH:MM:SS AM
   {
     const m = s.match(
-      /^(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{4})[ ,T]+(\d{1,2}):(\d{2})(?::(\d{2}))?\s*(AM|PM)?$/i
+        /^(\d{1,2})[/-](\d{1,2})[/-](\d{4})[ ,T]+(\d{1,2}):(\d{2})(?::(\d{2}))?\s*(AM|PM)?$/i
     );
     if (m) {
       const month = Number(m[1]);
@@ -85,4 +85,78 @@ export function nextOccurrenceLocal(targetMs: number, nowMs: number): number {
   let t = targetMs;
   while (t <= nowMs) t += dayMs;
   return t;
+}
+
+// -------------------- Duration parsing --------------------
+
+/**
+ * Parse a duration string into milliseconds.
+ *
+ * Supported:
+ * - `H:MM:SS` (e.g. `1:45:55`)
+ * - `HH:MM:SS`
+ * - `MM:SS`
+ * - `2h`, `2.5h`, `5m`, `10s`
+ * - `1h45m55s` (any order of h/m/s)
+ */
+export function parseDurationToMs(raw: string): number | undefined {
+  const s = raw.trim();
+  if (!s) return undefined;
+
+  // Colon formats
+  if (s.includes(":")) {
+    const parts = s.split(":").map((p) => p.trim());
+    if (parts.some((p) => p === "" || !/^-?\d+(?:\.\d+)?$/.test(p))) return undefined;
+
+    if (parts.length === 3) {
+      const h = Number(parts[0]);
+      const m = Number(parts[1]);
+      const sec = Number(parts[2]);
+      const ms = (h * 3600 + m * 60 + sec) * 1000;
+      return Number.isFinite(ms) && ms >= 0 ? ms : undefined;
+    }
+
+    if (parts.length === 2) {
+      const m = Number(parts[0]);
+      const sec = Number(parts[1]);
+      const ms = (m * 60 + sec) * 1000;
+      return Number.isFinite(ms) && ms >= 0 ? ms : undefined;
+    }
+
+    return undefined;
+  }
+
+  // Simple unit formats: 2h / 5m / 10s
+  {
+    const m = s.match(/^(-?\d+(?:\.\d+)?)\s*([hms])$/i);
+    if (m) {
+      const n = Number(m[1]);
+      const unit = m[2].toLowerCase();
+      if (!Number.isFinite(n) || n < 0) return undefined;
+      const mult = unit === "h" ? 3600_000 : unit === "m" ? 60_000 : 1000;
+      return Math.round(n * mult);
+    }
+  }
+
+  // Composite like 1h45m55s
+  {
+    const re = /(-?\d+(?:\.\d+)?)\s*([hms])/gi;
+    let match: RegExpExecArray | null;
+    let found = false;
+    let total = 0;
+    while ((match = re.exec(s))) {
+      found = true;
+      const n = Number(match[1]);
+      const unit = match[2].toLowerCase();
+      if (!Number.isFinite(n) || n < 0) return undefined;
+      const mult = unit === "h" ? 3600_000 : unit === "m" ? 60_000 : 1000;
+      total += n * mult;
+    }
+    if (found) {
+      const ms = Math.round(total);
+      return Number.isFinite(ms) && ms >= 0 ? ms : undefined;
+    }
+  }
+
+  return undefined;
 }

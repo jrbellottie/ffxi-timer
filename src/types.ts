@@ -1,6 +1,12 @@
 import type { VanaWeekday } from "./vanadiel";
 
-export type TimerKind = "VANA_WEEKDAY_TIME" | "MOON_STEP" | "MOON_PERCENT" | "EARTH_TIME";
+export type TimerKind =
+  | "VANA_WEEKDAY_TIME"
+  | "MOON_STEP"
+  | "MOON_PERCENT"
+  | "EARTH_TIME"
+  | "NM_TIMED_WINDOW"
+  | "NM_LOTTERY";
 
 export type BaseTimer = {
   id: string;
@@ -33,6 +39,24 @@ export type EarthTimer = BaseTimer & {
   rawInput: string;
 };
 
-export type AnyTimer = WeekdayTimer | MoonStepTimer | MoonPercentTimer | EarthTimer;
+export type NmTimedWindowTimer = BaseTimer & {
+  kind: "NM_TIMED_WINDOW";
+  baseEarthMs: number;
+  windowStartOffsetMs: number;
+  windowEndOffsetMs: number;
+  intervalMs: number;
+  warnLeadMs: number;
+};
+
+export type NmLotteryTimer = BaseTimer & {
+  kind: "NM_LOTTERY";
+  baseEarthMs: number;
+  windowStartOffsetMs: number;
+  warnLeadMs: number;
+  phRespawnMs: number;
+  phNextAtMs: number | null;
+};
+
+export type AnyTimer = WeekdayTimer | MoonStepTimer | MoonPercentTimer | EarthTimer | NmTimedWindowTimer | NmLotteryTimer;
 
 export type MoonDirection = "WAXING" | "WANING";

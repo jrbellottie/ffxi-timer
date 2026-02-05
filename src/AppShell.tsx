@@ -15,11 +15,12 @@ import {
 } from "./vanadiel";
 import { styles } from "./styles";
 import { loadJson, saveJson } from "./utils/storage";
-import { formatCountdown, nextOccurrenceLocal, pad2, parseLocalDateTimeToMs, uid } from "./utils/time";
+import { formatCountdown, nextOccurrenceLocal, pad2, parseDurationToMs, parseLocalDateTimeToMs, uid } from "./utils/time";
 import { AnyTimer, MoonDirection } from "./types";
 import { WEEKDAYS, WEEKDAY_COLORS, weekdayStyle } from "./utils/weekday";
 import { moonDirGlyph, moonGlyphStyle, moonPhaseStyle } from "./utils/moon";
 import { buildTenshodoPresets, nextGuildAlertTarget } from "./utils/guilds";
+import { getNextNmLotteryEvent, getNextNmTimedWindowEvent } from "./utils/nm";
 
 function clampInt(n: number, min: number, max: number) {
   return Math.max(min, Math.min(max, Math.floor(n)));
@@ -119,6 +120,20 @@ export default function AppShell() {
   const [mLabel, setMLabel] = useState("Moon Timer");
   const [mDir, setMDir] = useState<MoonDirection>("WAXING");
   const [mPercent, setMPercent] = useState("19");
+
+  const [nmMode, setNmMode] = useState<"TIMED_WINDOW" | "LOTTERY">("TIMED_WINDOW");
+  const [nmLabel, setNmLabel] = useState("NM Timer");
+  const [nmWarnLead, setNmWarnLead] = useState("10s");
+  const [nmTodInput, setNmTodInput] = useState("");
+
+  // Timed spawn window
+  const [nmWindowStart, setNmWindowStart] = useState("2h");
+  const [nmWindowEnd, setNmWindowEnd] = useState("2.5h");
+  const [nmWindowInterval, setNmWindowInterval] = useState("5m");
+
+  // Lottery NM (window open + PH respawn)
+  const [nmLotteryWindowOpen, setNmLotteryWindowOpen] = useState("1:45:55");
+  const [nmPhRespawn, setNmPhRespawn] = useState("5m");
 
   useEffect(() => {
     const id = setInterval(() => setNowMs(Date.now()), 250);
@@ -276,41 +291,96 @@ export default function AppShell() {
       const maxCatchupMs = 5 * 60 * 1000;
       const effectivePrevMs = nowMs2 - prevMs > maxCatchupMs ? nowMs2 - maxCatchupMs : prevMs;
 
+      const timedWindowExpiredIds: string[] = [];
+      const lotteryClearPhIds: string[] = [];
+
       for (const t of timers) {
         if (!t.enabled) continue;
 
-        const dueAt =
-          t.kind === "VANA_WEEKDAY_TIME"
-            ? nextEarthMsForVanaWeekdayTime({
-                nowEarthMs: effectivePrevMs,
-                cal,
-                targetWeekday: t.targetWeekday,
-                targetHour: t.targetHour,
-                targetMinute: t.targetMinute,
-              })
-            : t.kind === "MOON_STEP"
-              ? nextEarthMsForMoonStep({
-                  nowEarthMs: effectivePrevMs,
-                  cal,
-                  targetMoonStep: t.targetMoonStep,
-                })
-              : t.kind === "MOON_PERCENT"
-                ? nextEarthMsForMoonPercent({
-                    nowEarthMs: effectivePrevMs,
-                    cal,
-                    targetPercent: t.targetPercent,
-                  })
-                : t.targetEarthMs;
+        // NM timers have multiple internal events (warn + pop), so they use a different scheduler.
+        let event:
+          | {
+              atMs: number;
+              title: string;
+              body: string;
+              fireKey: string;
+              repeat?: boolean;
+              action?: { type: "NM_LOTTERY_CLEAR_PH" };
+            }
+          | null = null;
 
-        if (dueAt <= nowMs2) {
-          const last = lastFireRef.current[t.id] ?? 0;
+        if (t.kind === "NM_TIMED_WINDOW") {
+          const endAt = t.baseEarthMs + t.windowEndOffsetMs;
+          if (nowMs2 > endAt + 60_000) {
+            timedWindowExpiredIds.push(t.id);
+            continue;
+          }
+
+          event = getNextNmTimedWindowEvent(t, effectivePrevMs);
+          if (event) event = { ...event, repeat: false };
+        } else if (t.kind === "NM_LOTTERY") {
+          if (t.phNextAtMs !== null && nowMs2 > t.phNextAtMs + 60_000) {
+            lotteryClearPhIds.push(t.id);
+          }
+
+          event = getNextNmLotteryEvent(t, effectivePrevMs);
+          if (event) event = { ...event, repeat: false };
+        }
+
+        if (!event && (t.kind === "NM_TIMED_WINDOW" || t.kind === "NM_LOTTERY")) {
+          continue;
+        }
+
+        // All other timer kinds behave like "one next due time".
+        if (!event) {
+          let dueAt: number;
+
+          if (t.kind === "VANA_WEEKDAY_TIME") {
+            dueAt = nextEarthMsForVanaWeekdayTime({
+              nowEarthMs: effectivePrevMs,
+              cal,
+              targetWeekday: t.targetWeekday,
+              targetHour: t.targetHour,
+              targetMinute: t.targetMinute,
+            });
+          } else if (t.kind === "MOON_STEP") {
+            dueAt = nextEarthMsForMoonStep({
+              nowEarthMs: effectivePrevMs,
+              cal,
+              targetMoonStep: t.targetMoonStep,
+            });
+          } else if (t.kind === "MOON_PERCENT") {
+            dueAt = nextEarthMsForMoonPercent({
+              nowEarthMs: effectivePrevMs,
+              cal,
+              targetPercent: t.targetPercent,
+            });
+          } else if (t.kind === "EARTH_TIME") {
+            dueAt = t.targetEarthMs;
+          } else {
+            continue;
+          }
+
+          event = {
+            atMs: dueAt,
+            title: "FFXI Timer",
+            body: `${t.label} is due now! (click to stop)`,
+            fireKey: "due",
+            repeat: true,
+          };
+        }
+
+        if (event.atMs <= nowMs2) {
+          const fireKey = `${t.id}|${event.fireKey}`;
+          const last = lastFireRef.current[fireKey] ?? 0;
           if (nowMs2 - last > 10_000) {
-            lastFireRef.current[t.id] = nowMs2;
+            lastFireRef.current[fireKey] = nowMs2;
 
             window.electron?.ipcRenderer?.send("ffxi:notify", {
               id: t.id,
-              title: "FFXI Timer",
-              body: `${t.label} is due now! (click to stop)`,
+              title: event.title,
+              body: event.body,
+              repeat: event.repeat,
             });
           }
 
@@ -323,7 +393,21 @@ export default function AppShell() {
               })
             );
           }
+
+          if (t.kind === "NM_LOTTERY" && event.action?.type === "NM_LOTTERY_CLEAR_PH") {
+            lotteryClearPhIds.push(t.id);
+          }
         }
+      }
+
+      if (timedWindowExpiredIds.length > 0 || lotteryClearPhIds.length > 0) {
+        setTimers((prev) =>
+          prev.map((x) => {
+            if (timedWindowExpiredIds.includes(x.id)) return { ...x, enabled: false };
+            if (lotteryClearPhIds.includes(x.id) && x.kind === "NM_LOTTERY") return { ...x, phNextAtMs: null };
+            return x;
+          })
+        );
       }
     }, 250);
 
@@ -571,6 +655,134 @@ export default function AppShell() {
     ]);
   }
 
+  function addNmTimedWindowTimer() {
+    const warnLeadMs = parseDurationToMs(nmWarnLead) ?? 10_000;
+    const startMs = parseDurationToMs(nmWindowStart);
+    const endMs = parseDurationToMs(nmWindowEnd);
+    const intervalMs = parseDurationToMs(nmWindowInterval);
+
+    if (!Number.isFinite(startMs as number) || !Number.isFinite(endMs as number) || !Number.isFinite(intervalMs as number)) {
+      alert("Invalid NM window values. Try: 2h, 2.5h, 5m, or 1:45:55");
+      return;
+    }
+
+    if ((endMs as number) < (startMs as number)) {
+      alert("Window end must be >= window start.");
+      return;
+    }
+
+    const createdAtMs = Date.now();
+    const baseEarthMsRaw = nmTodInput.trim() ? parseLocalDateTimeToMs(nmTodInput) : undefined;
+    if (nmTodInput.trim() && !Number.isFinite(baseEarthMsRaw as number)) {
+      alert("Invalid ToD time. Leave blank for now, or use formats like YYYY-MM-DDTHH:MM:SS or MM/DD/YYYY HH:MM:SS AM.");
+      return;
+    }
+    const baseEarthMs = Number.isFinite(baseEarthMsRaw as number) ? (baseEarthMsRaw as number) : createdAtMs;
+
+    setTimers((prev) => [
+      {
+        id: uid(),
+        kind: "NM_TIMED_WINDOW",
+        label: nmLabel.trim() || "NM Timer",
+        enabled: true,
+        createdAtMs,
+        baseEarthMs,
+        windowStartOffsetMs: Math.floor(startMs as number),
+        windowEndOffsetMs: Math.floor(endMs as number),
+        intervalMs: Math.max(1_000, Math.floor(intervalMs as number)),
+        warnLeadMs: Math.max(0, Math.floor(warnLeadMs)),
+      },
+      ...prev,
+    ]);
+  }
+
+  function addNmLotteryTimer() {
+    const warnLeadMs = parseDurationToMs(nmWarnLead) ?? 10_000;
+    const windowOpenMs = parseDurationToMs(nmLotteryWindowOpen);
+    const phRespawnMs = parseDurationToMs(nmPhRespawn);
+
+    if (!Number.isFinite(windowOpenMs as number) || !Number.isFinite(phRespawnMs as number)) {
+      alert("Invalid Lottery NM values. Try: 1:45:55 for window, and 5m for PH.");
+      return;
+    }
+
+    const createdAtMs = Date.now();
+    const baseEarthMsRaw = nmTodInput.trim() ? parseLocalDateTimeToMs(nmTodInput) : undefined;
+    if (nmTodInput.trim() && !Number.isFinite(baseEarthMsRaw as number)) {
+      alert("Invalid ToD time. Leave blank for now, or use formats like YYYY-MM-DDTHH:MM:SS or MM/DD/YYYY HH:MM:SS AM.");
+      return;
+    }
+    const baseEarthMs = Number.isFinite(baseEarthMsRaw as number) ? (baseEarthMsRaw as number) : createdAtMs;
+
+    setTimers((prev) => [
+      {
+        id: uid(),
+        kind: "NM_LOTTERY",
+        label: nmLabel.trim() || "Lottery NM",
+        enabled: true,
+        createdAtMs,
+        baseEarthMs,
+        windowStartOffsetMs: Math.floor(windowOpenMs as number),
+        warnLeadMs: Math.max(0, Math.floor(warnLeadMs)),
+        phRespawnMs: Math.max(1_000, Math.floor(phRespawnMs as number)),
+        phNextAtMs: null,
+      },
+      ...prev,
+    ]);
+  }
+
+  function setNmTodNow() {
+    setNmTodInput(new Date(Date.now()).toLocaleString());
+  }
+
+  function setNmBaseManual(id: string) {
+    const raw = window.prompt(
+      "Enter ToD (local). Supported: YYYY-MM-DDTHH:MM(:SS) or MM/DD/YYYY HH:MM(:SS) AM/PM",
+      ""
+    );
+    if (raw === null) return;
+    const ms = parseLocalDateTimeToMs(raw);
+    if (!Number.isFinite(ms as number)) {
+      alert("Invalid ToD time.");
+      return;
+    }
+
+    setTimers((prev) =>
+      prev.map((t) => {
+        if (t.id !== id) return t;
+        if (t.kind === "NM_TIMED_WINDOW") return { ...t, baseEarthMs: ms as number, enabled: true };
+        if (t.kind === "NM_LOTTERY") return { ...t, baseEarthMs: ms as number, phNextAtMs: null, enabled: true };
+        return t;
+      })
+    );
+  }
+
+  function resetNmBaseNow(id: string) {
+    const now = Date.now();
+    setTimers((prev) =>
+      prev.map((t) => {
+        if (t.id !== id) return t;
+        if (t.kind === "NM_TIMED_WINDOW") return { ...t, baseEarthMs: now, enabled: true };
+        if (t.kind === "NM_LOTTERY") return { ...t, baseEarthMs: now, phNextAtMs: null, enabled: true };
+        return t;
+      })
+    );
+  }
+
+  function lotteryPhKilledNow(id: string) {
+    const now = Date.now();
+    setTimers((prev) =>
+      prev.map((t) => {
+        if (t.id !== id || t.kind !== "NM_LOTTERY") return t;
+        return { ...t, phNextAtMs: now + t.phRespawnMs, enabled: true };
+      })
+    );
+  }
+
+  function lotteryClearPh(id: string) {
+    setTimers((prev) => prev.map((t) => (t.id === id && t.kind === "NM_LOTTERY" ? { ...t, phNextAtMs: null } : t)));
+  }
+
   function toggleTimer(id: string) {
     setTimers((prev) => prev.map((t) => (t.id === id ? { ...t, enabled: !t.enabled } : t)));
   }
@@ -788,6 +1000,160 @@ export default function AppShell() {
         </section>
       </div>
 
+      {/* NM timers */}
+      <div style={styles.timersSection}>
+        <section style={styles.card}>
+          <div style={styles.titleRow}>
+            <h3 style={styles.h3}>Notorious Monster timers</h3>
+            <div style={styles.sub}>Timed window intervals, or lottery window + PH respawn</div>
+          </div>
+
+          <div style={{ marginTop: 10, display: "grid", gap: 12 }}>
+            <div style={styles.field}>
+              <div style={styles.label}>Mode</div>
+              <select
+                style={styles.select}
+                value={nmMode}
+                onChange={(e) => setNmMode(e.target.value as "TIMED_WINDOW" | "LOTTERY")}
+              >
+                <option value="TIMED_WINDOW" style={optionBaseStyle}>
+                  Timed spawn (window + interval)
+                </option>
+                <option value="LOTTERY" style={optionBaseStyle}>
+                  Lottery (window open + PH respawn)
+                </option>
+              </select>
+            </div>
+
+            <div style={styles.compactRow}>
+              <div style={styles.field}>
+                <div style={styles.label}>Label</div>
+                <input style={styles.input} value={nmLabel} onChange={(e) => setNmLabel(e.target.value)} />
+              </div>
+
+              <div style={styles.field}>
+                <div style={styles.label}>Warn lead</div>
+                <input
+                  style={{ ...styles.input, width: 120 }}
+                  value={nmWarnLead}
+                  onChange={(e) => setNmWarnLead(e.target.value)}
+                  placeholder="10s"
+                  title="Example: 10s"
+                />
+                <div style={styles.sub}>Example: 10s</div>
+              </div>
+            </div>
+
+            <div style={styles.field}>
+              <div style={styles.label}>ToD (local)</div>
+              <input
+                style={styles.input}
+                type="text"
+                value={nmTodInput}
+                onChange={(e) => setNmTodInput(e.target.value)}
+                placeholder="(blank = now)  e.g. 2026-02-04T13:22:10 or 02/04/2026 01:22:10 PM"
+              />
+              <div style={{ marginTop: 6, ...styles.buttonRow }}>
+                <button style={styles.button} onClick={setNmTodNow}>
+                  Use now
+                </button>
+                <button style={styles.button} onClick={() => setNmTodInput("")}
+                  title="Clear ToD input (will use now)">
+                  Clear
+                </button>
+              </div>
+              <div style={styles.sub}>
+                Leave blank to use now. If you set a manual ToD, timers will calculate offsets from that.
+              </div>
+            </div>
+
+            {nmMode === "TIMED_WINDOW" ? (
+              <>
+                <div style={styles.compactRow}>
+                  <div style={styles.field}>
+                    <div style={styles.label}>Window start</div>
+                    <input
+                      style={styles.input}
+                      value={nmWindowStart}
+                      onChange={(e) => setNmWindowStart(e.target.value)}
+                      placeholder="2h"
+                      title="Examples: 2h, 2.5h, 1:45:55"
+                    />
+                    <div style={styles.sub}>Examples: 2h, 2.5h, 1:45:55</div>
+                  </div>
+
+                  <div style={styles.field}>
+                    <div style={styles.label}>Window end</div>
+                    <input
+                      style={styles.input}
+                      value={nmWindowEnd}
+                      onChange={(e) => setNmWindowEnd(e.target.value)}
+                      placeholder="2.5h"
+                    />
+                  </div>
+
+                  <div style={styles.field}>
+                    <div style={styles.label}>Interval</div>
+                    <input
+                      style={styles.input}
+                      value={nmWindowInterval}
+                      onChange={(e) => setNmWindowInterval(e.target.value)}
+                      placeholder="5m"
+                      title="Example: 5m"
+                    />
+                    <div style={styles.sub}>Example: 5m</div>
+                  </div>
+                </div>
+
+                <div style={styles.buttonRow}>
+                  <button style={styles.buttonPrimary} onClick={addNmTimedWindowTimer}>
+                    Start timed NM
+                  </button>
+                </div>
+
+                <div style={styles.sub}>
+                  Example: start 2h, end 2.5h, interval 5m → warns at 1:59:50 then pops at 2:00:00, 2:05:00, … 2:30:00.
+                </div>
+              </>
+            ) : (
+              <>
+                <div style={styles.compactRow}>
+                  <div style={styles.field}>
+                    <div style={styles.label}>Window opens at</div>
+                    <input
+                      style={styles.input}
+                      value={nmLotteryWindowOpen}
+                      onChange={(e) => setNmLotteryWindowOpen(e.target.value)}
+                      placeholder="1:45:55"
+                      title="Examples: 1:45:55, 105m, 2h"
+                    />
+                    <div style={styles.sub}>Examples: 1:45:55, 105m, 2h</div>
+                  </div>
+
+                  <div style={styles.field}>
+                    <div style={styles.label}>PH respawn</div>
+                    <input
+                      style={styles.input}
+                      value={nmPhRespawn}
+                      onChange={(e) => setNmPhRespawn(e.target.value)}
+                      placeholder="5m"
+                      title="Example: 5m"
+                    />
+                    <div style={styles.sub}>Click "PH killed" each time you kill it.</div>
+                  </div>
+                </div>
+
+                <div style={styles.buttonRow}>
+                  <button style={styles.buttonPrimary} onClick={addNmLotteryTimer}>
+                    Start lottery NM
+                  </button>
+                </div>
+              </>
+            )}
+          </div>
+        </section>
+      </div>
+
       {/* Preset timers */}
       <div style={styles.timersSection}>
         <section style={styles.card}>
@@ -977,32 +1343,42 @@ export default function AppShell() {
           ) : (
             <div style={styles.timerGrid}>
               {timers.map((t) => {
-                const nextAt =
-                  t.kind === "VANA_WEEKDAY_TIME"
-                    ? nextEarthMsForVanaWeekdayTime({
-                        nowEarthMs: nowMs,
-                        cal: cal ?? undefined,
-                        targetWeekday: t.targetWeekday,
-                        targetHour: t.targetHour,
-                        targetMinute: t.targetMinute,
-                      })
-                    : t.kind === "MOON_STEP"
-                      ? nextEarthMsForMoonStep({
+                let nextAt: number | null = null;
+
+                if (t.kind === "NM_TIMED_WINDOW") {
+                  const ev = getNextNmTimedWindowEvent(t, nowMs);
+                  nextAt = ev?.atMs ?? null;
+                } else if (t.kind === "NM_LOTTERY") {
+                  const ev = getNextNmLotteryEvent(t, nowMs);
+                  nextAt = ev?.atMs ?? null;
+                } else {
+                  nextAt =
+                    t.kind === "VANA_WEEKDAY_TIME"
+                      ? nextEarthMsForVanaWeekdayTime({
                           nowEarthMs: nowMs,
                           cal: cal ?? undefined,
-                          targetMoonStep: t.targetMoonStep,
+                          targetWeekday: t.targetWeekday,
+                          targetHour: t.targetHour,
+                          targetMinute: t.targetMinute,
                         })
-                      : t.kind === "MOON_PERCENT"
-                        ? nextEarthMsForMoonPercent({
+                      : t.kind === "MOON_STEP"
+                        ? nextEarthMsForMoonStep({
                             nowEarthMs: nowMs,
                             cal: cal ?? undefined,
-                            targetPercent: t.targetPercent,
+                            targetMoonStep: t.targetMoonStep,
                           })
-                        : t.targetEarthMs;
+                        : t.kind === "MOON_PERCENT"
+                          ? nextEarthMsForMoonPercent({
+                              nowEarthMs: nowMs,
+                              cal: cal ?? undefined,
+                              targetPercent: t.targetPercent,
+                            })
+                          : t.targetEarthMs;
+                }
 
-                const inMs = nextAt - nowMs;
+                const inMs = nextAt === null ? Number.POSITIVE_INFINITY : nextAt - nowMs;
 
-                const vanaAt = getVanaNow(nextAt, cal ?? undefined);
+                const vanaAt = nextAt === null ? now : getVanaNow(nextAt, cal ?? undefined);
 
                 let detailLine: React.ReactNode = null;
 
@@ -1030,6 +1406,29 @@ export default function AppShell() {
                       Moon: {t.targetPercent}%
                     </div>
                   );
+                } else if (t.kind === "NM_TIMED_WINDOW") {
+                  detailLine = (
+                    <div style={{ marginTop: 6, opacity: 0.9 }}>
+                      NM (timed): window {formatCountdown(t.windowStartOffsetMs)} → {formatCountdown(t.windowEndOffsetMs)} every{" "}
+                      {formatCountdown(t.intervalMs)}
+                      <br />
+                      ToD: {new Date(t.baseEarthMs).toLocaleString()}
+                    </div>
+                  );
+                } else if (t.kind === "NM_LOTTERY") {
+                  detailLine = (
+                    <div style={{ marginTop: 6, opacity: 0.9 }}>
+                      NM (lottery): window opens at {formatCountdown(t.windowStartOffsetMs)} — PH respawn {formatCountdown(t.phRespawnMs)}
+                      <br />
+                      ToD: {new Date(t.baseEarthMs).toLocaleString()}
+                      {t.phNextAtMs ? (
+                        <>
+                          <br />
+                          PH next: {new Date(t.phNextAtMs).toLocaleString()} — In: {formatCountdown(t.phNextAtMs - nowMs)}
+                        </>
+                      ) : null}
+                    </div>
+                  );
                 } else {
                   detailLine = (
                     <div style={{ marginTop: 6, opacity: 0.9 }}>Real: {new Date(t.targetEarthMs).toLocaleString()}</div>
@@ -1046,14 +1445,45 @@ export default function AppShell() {
                     {detailLine}
 
                     <div style={{ marginTop: 6, ...styles.muted }}>
-                      Next (Earth): {new Date(nextAt).toLocaleString()} — In: {formatCountdown(inMs)}
-                      <br />
-                      Next (Vana):{" "}
-                      <span style={weekdayStyle(vanaAt.weekday)}>{vanaAt.weekday}</span> {pad2(vanaAt.hour)}:
-                      {pad2(vanaAt.minute)}
+                      {nextAt === null ? (
+                        <>Next: No upcoming events.</>
+                      ) : (
+                        <>
+                          Next (Earth): {new Date(nextAt).toLocaleString()} — In: {formatCountdown(inMs)}
+                          <br />
+                          Next (Vana):{" "}
+                          <span style={weekdayStyle(vanaAt.weekday)}>{vanaAt.weekday}</span> {pad2(vanaAt.hour)}:
+                          {pad2(vanaAt.minute)}
+                        </>
+                      )}
                     </div>
 
                     <div style={styles.buttonRow}>
+                      {(t.kind === "NM_TIMED_WINDOW" || t.kind === "NM_LOTTERY") && (
+                        <button style={styles.button} onClick={() => resetNmBaseNow(t.id)}>
+                          Set ToD now
+                        </button>
+                      )}
+
+                      {(t.kind === "NM_TIMED_WINDOW" || t.kind === "NM_LOTTERY") && (
+                        <button style={styles.button} onClick={() => setNmBaseManual(t.id)}>
+                          Set ToD...
+                        </button>
+                      )}
+
+                      {t.kind === "NM_LOTTERY" && (
+                        <>
+                          <button style={styles.button} onClick={() => lotteryPhKilledNow(t.id)}>
+                            PH killed now
+                          </button>
+                          {t.phNextAtMs ? (
+                            <button style={styles.button} onClick={() => lotteryClearPh(t.id)}>
+                              Clear PH
+                            </button>
+                          ) : null}
+                        </>
+                      )}
+
                       <button style={styles.button} onClick={() => toggleTimer(t.id)}>
                         {t.enabled ? "Disable" : "Enable"}
                       </button>
