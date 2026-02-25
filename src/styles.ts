@@ -52,6 +52,17 @@ export const styles: Record<string, React.CSSProperties> = {
     height: "100%",
   },
 
+  cardTop: {
+    border: "1px solid #333",
+    borderRadius: 12,
+    padding: 14,
+    background: "rgba(255,255,255,0.02)",
+    boxShadow: "0 10px 30px rgba(0,0,0,0.35)",
+    minWidth: 0,
+    display: "flex",
+    flexDirection: "column",
+  },
+
   cardBody: {
     flex: 1,
     display: "flex",
@@ -62,6 +73,11 @@ export const styles: Record<string, React.CSSProperties> = {
   cardFooter: {
     marginTop: "auto",
     paddingTop: 12,
+  },
+
+  topCardFooter: {
+    marginTop: "auto",
+    paddingTop: 0,
   },
 
   divider: {
@@ -112,6 +128,20 @@ export const styles: Record<string, React.CSSProperties> = {
     boxSizing: "border-box",
   },
 
+  inputCompact: {
+    height: 32,
+    borderRadius: 8,
+    border: "1px solid #444",
+    background: "linear-gradient(180deg, #101010 0%, #0c0c0c 100%)",
+    color: "#eaeaea",
+    padding: "0 10px",
+    outline: "none",
+    boxShadow: "inset 0 1px 0 rgba(255,255,255,0.04)",
+    width: "100%",
+    minWidth: 0,
+    boxSizing: "border-box",
+  },
+
   select: {
     height: 36,
     borderRadius: 8,
@@ -124,12 +154,27 @@ export const styles: Record<string, React.CSSProperties> = {
     width: "100%",
     minWidth: 0,
     boxSizing: "border-box",
+    colorScheme: "dark",
+  },
 
-    // ✅ Key: makes the dropdown list render dark in Chromium/Electron
+  selectCompact: {
+    height: 32,
+    borderRadius: 8,
+    border: "1px solid #444",
+    background: "linear-gradient(180deg, #101010 0%, #0c0c0c 100%)",
+    color: "#eaeaea",
+    padding: "0 10px",
+    outline: "none",
+    boxShadow: "inset 0 1px 0 rgba(255,255,255,0.04)",
+    width: "100%",
+    minWidth: 0,
+    boxSizing: "border-box",
     colorScheme: "dark",
   },
 
   buttonRow: { display: "flex", gap: 10, flexWrap: "wrap", marginTop: 10 },
+
+  buttonRowCompact: { display: "flex", gap: 10, flexWrap: "wrap", marginTop: 8 },
 
   button: {
     height: 36,
@@ -143,8 +188,33 @@ export const styles: Record<string, React.CSSProperties> = {
     whiteSpace: "nowrap",
   },
 
+  buttonCompact: {
+    height: 32,
+    padding: "0 12px",
+    borderRadius: 10,
+    border: "1px solid #555",
+    background: "linear-gradient(180deg, #1a1a1a 0%, #111 100%)",
+    color: "#fff",
+    cursor: "pointer",
+    boxShadow: "0 6px 18px rgba(0,0,0,0.25)",
+    whiteSpace: "nowrap",
+  },
+
   buttonPrimary: {
     height: 36,
+    padding: "0 12px",
+    borderRadius: 10,
+    border: "1px solid #6b6b6b",
+    background: "linear-gradient(180deg, #2b2b2b 0%, #1c1c1c 100%)",
+    color: "#fff",
+    cursor: "pointer",
+    fontWeight: 700,
+    boxShadow: "0 10px 24px rgba(0,0,0,0.35)",
+    whiteSpace: "nowrap",
+  },
+
+  buttonPrimaryCompact: {
+    height: 32,
     padding: "0 12px",
     borderRadius: 10,
     border: "1px solid #6b6b6b",

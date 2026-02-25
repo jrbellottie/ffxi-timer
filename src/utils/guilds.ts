@@ -25,13 +25,6 @@ export type GuildSchedule = {
   closedOn?: VanaWeekday | null; // holiday weekday closure, optional
 };
 
-/**
- * Compute the next preset "alert" time for a daily open schedule.
- *
- * - The schedule's `closedOn` is a closure of the OPEN day.
- * - The alert time is `offsetHours` Vana hours before open.
- * - Offset can cross midnight; closure logic still applies to the open day.
- */
 export function nextGuildAlertTarget(now: VanaNowLite, schedule: GuildSchedule, offsetHours: number): PrepTarget {
   const openMinute = schedule.openMinute ?? 0;
   const closedOn = schedule.closedOn ?? null;
@@ -43,10 +36,10 @@ export function nextGuildAlertTarget(now: VanaNowLite, schedule: GuildSchedule, 
   const nowDayIndex = WEEKDAYS.indexOf(now.weekday);
   const nowAbsMinutes = nowDayIndex * 24 * 60 + now.hour * 60 + now.minute;
 
-  let bestAlertAbsMinutes = Number.POSITIVE_INFINITY;
+  let bestFireAbsMinutes = Number.POSITIVE_INFINITY;
 
   // Consider the next occurrence of "open" for each weekday (within the next week).
-  // Pick the earliest alert time that is still in the future.
+  // Pick the earliest *fire* time in the future.
   for (const d of WEEKDAYS) {
     if (closedOn && d === closedOn) continue;
 
@@ -56,26 +49,29 @@ export function nextGuildAlertTarget(now: VanaNowLite, schedule: GuildSchedule, 
     // Ensure this open is in the future (else it refers to next week's same weekday).
     if (openAbsMinutes <= nowAbsMinutes) openAbsMinutes += weekMinutes;
 
-    const alertAbsMinutes = openAbsMinutes - offsetMinutes;
-    if (alertAbsMinutes <= nowAbsMinutes) continue;
+    let fireAbsMinutes = openAbsMinutes - offsetMinutes;
 
-    if (alertAbsMinutes < bestAlertAbsMinutes) bestAlertAbsMinutes = alertAbsMinutes;
+    // If we're already past the ideal alert time, but not past open, fire at open.
+    if (fireAbsMinutes <= nowAbsMinutes) fireAbsMinutes = openAbsMinutes;
+
+    if (fireAbsMinutes < bestFireAbsMinutes) bestFireAbsMinutes = fireAbsMinutes;
   }
 
   // Fallback: if offset is extremely large or the loop found nothing (should be rare),
-  // schedule the earliest possible alert by taking the next open and subtracting.
-  if (!Number.isFinite(bestAlertAbsMinutes)) {
+  // schedule the earliest possible fire by taking the next open and subtracting.
+  if (!Number.isFinite(bestFireAbsMinutes)) {
     for (const d of WEEKDAYS) {
       if (closedOn && d === closedOn) continue;
       const dayIndex = WEEKDAYS.indexOf(d);
       let openAbsMinutes = dayIndex * 24 * 60 + schedule.openHour * 60 + openMinute;
       if (openAbsMinutes <= nowAbsMinutes) openAbsMinutes += weekMinutes;
-      const alertAbsMinutes = openAbsMinutes - offsetMinutes;
-      if (alertAbsMinutes < bestAlertAbsMinutes) bestAlertAbsMinutes = alertAbsMinutes;
+      let fireAbsMinutes = openAbsMinutes - offsetMinutes;
+      if (fireAbsMinutes <= nowAbsMinutes) fireAbsMinutes = openAbsMinutes;
+      if (fireAbsMinutes < bestFireAbsMinutes) bestFireAbsMinutes = fireAbsMinutes;
     }
   }
 
-  const normalized = mod(bestAlertAbsMinutes, weekMinutes);
+  const normalized = mod(bestFireAbsMinutes, weekMinutes);
   const targetDayIndex = Math.floor(normalized / (24 * 60));
   const dayMinutes = normalized % (24 * 60);
   const targetHour = Math.floor(dayMinutes / 60);

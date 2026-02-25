@@ -73,6 +73,73 @@ function mergeTenshodoTargets(targets: TenshodoTarget[]): TenshodoTarget[] {
 const PRESET_OFFSET_MIN = 0;
 const PRESET_OFFSET_MAX = 23;
 
+type CounterWidgetState = {
+  increment: number;
+  success: number;
+  failure: number;
+  hq1: number;
+  hq2: number;
+  hq3: number;
+  nq: number;
+  break: number;
+};
+
+const COUNTER_INCREMENT_MIN = 1;
+const COUNTER_INCREMENT_MAX = 9999;
+
+const COUNTER_COUNT_MIN = 0;
+const COUNTER_COUNT_MAX = Number.MAX_SAFE_INTEGER;
+
+const DEFAULT_COUNTERS: CounterWidgetState = {
+  increment: 1,
+  success: 0,
+  failure: 0,
+  hq1: 0,
+  hq2: 0,
+  hq3: 0,
+  nq: 0,
+  break: 0,
+};
+
+function normalizeCounterWidgetState(raw: unknown): CounterWidgetState {
+  const obj = raw && typeof raw === "object" ? (raw as Record<string, unknown>) : {};
+
+  const increment = clampInt(Number(obj.increment) || 1, COUNTER_INCREMENT_MIN, COUNTER_INCREMENT_MAX);
+  const success = clampInt(Number(obj.success) || 0, COUNTER_COUNT_MIN, COUNTER_COUNT_MAX);
+  const failure = clampInt(Number(obj.failure) || 0, COUNTER_COUNT_MIN, COUNTER_COUNT_MAX);
+
+  // Migration from older installs that stored { hq, nq }.
+  const hasNewSynth =
+    "hq1" in obj || "hq2" in obj || "hq3" in obj || "nq" in obj || "break" in obj;
+
+  const nq = clampInt(Number(obj.nq) || 0, COUNTER_COUNT_MIN, COUNTER_COUNT_MAX);
+  const synthBreak = clampInt(Number(obj.break) || 0, COUNTER_COUNT_MIN, COUNTER_COUNT_MAX);
+
+  let hq1 = clampInt(Number(obj.hq1) || 0, COUNTER_COUNT_MIN, COUNTER_COUNT_MAX);
+  let hq2 = clampInt(Number(obj.hq2) || 0, COUNTER_COUNT_MIN, COUNTER_COUNT_MAX);
+  let hq3 = clampInt(Number(obj.hq3) || 0, COUNTER_COUNT_MIN, COUNTER_COUNT_MAX);
+
+  if (!hasNewSynth) {
+    const oldHq = clampInt(Number((obj as Record<string, unknown>).hq) || 0, COUNTER_COUNT_MIN, COUNTER_COUNT_MAX);
+    // Best-effort: treat old aggregate HQ as HQ1 to preserve the main success-rate math.
+    hq1 = oldHq;
+    hq2 = 0;
+    hq3 = 0;
+  }
+
+  return {
+    ...DEFAULT_COUNTERS,
+    increment,
+    success,
+    failure,
+    hq1,
+    hq2,
+    hq3,
+    nq,
+    break: synthBreak,
+  };
+}
+
 export default function AppShell() {
   const [nowMs, setNowMs] = useState(Date.now());
 
@@ -92,6 +159,10 @@ export default function AppShell() {
 
   const [presetOffsetHours, setPresetOffsetHours] = useState<number>(() =>
     clampInt(loadJson<number>("ffxi_preset_offset_hours_v1", 2), PRESET_OFFSET_MIN, PRESET_OFFSET_MAX)
+  );
+
+  const [counters, setCounters] = useState<CounterWidgetState>(() =>
+    normalizeCounterWidgetState(loadJson<unknown>("ffxi_counters_v1", DEFAULT_COUNTERS))
   );
 
   const [cWeekday, setCWeekday] = useState<VanaWeekday>("Firesday");
@@ -145,6 +216,7 @@ export default function AppShell() {
   useEffect(() => saveJson("ffxi_show_cal_v1", showCalibration), [showCalibration]);
   useEffect(() => saveJson("ffxi_show_presets_v1", showPresets), [showPresets]);
   useEffect(() => saveJson("ffxi_preset_offset_hours_v1", presetOffsetHours), [presetOffsetHours]);
+  useEffect(() => saveJson("ffxi_counters_v1", counters), [counters]);
 
   const hasEnabledTimers = useMemo(() => timers.some((t) => t.enabled), [timers]);
   useEffect(() => {
@@ -587,6 +659,7 @@ export default function AppShell() {
       label: p.label,
       ...nextGuildAlertTarget(now, p.schedule, presetOffsetHours),
     })) as TenshodoTarget[];
+
     const mergedTargets = mergeTenshodoTargets(rawTargets);
 
     setTimers((prev) => [
@@ -791,12 +864,67 @@ export default function AppShell() {
     setTimers((prev) => prev.filter((t) => t.id !== id));
   }
 
-  const hasDayCal = !!cal && Number.isFinite(cal.timeOffsetMs);
-  const hasMoonCal = !!cal && Number.isFinite(cal.newMoonStartEarthMs) && cal.newMoonStartEarthMs > 0;
-
   const previewPct = clampInt(Number(mPercent) || 0, 0, 100);
   const previewStep = stepFromDirectionAndPercent(mDir, previewPct);
   const previewPhase = moonPhaseNameFromStep(previewStep);
+
+  const counterIncrement = clampInt(counters.increment || 1, COUNTER_INCREMENT_MIN, COUNTER_INCREMENT_MAX);
+  const sfTotal = counters.success + counters.failure;
+  const successPct = sfTotal > 0 ? (counters.success / sfTotal) * 100 : 0;
+  const failurePct = sfTotal > 0 ? (counters.failure / sfTotal) * 100 : 0;
+
+  const synthHqTotal = counters.hq1 + counters.hq2 + counters.hq3;
+  const synthTotal = synthHqTotal + counters.nq + counters.break;
+
+  const hqTotalPct = synthTotal > 0 ? (synthHqTotal / synthTotal) * 100 : 0;
+  const hq1Pct = synthTotal > 0 ? (counters.hq1 / synthTotal) * 100 : 0;
+  const hq2Pct = synthTotal > 0 ? (counters.hq2 / synthTotal) * 100 : 0;
+  const hq3Pct = synthTotal > 0 ? (counters.hq3 / synthTotal) * 100 : 0;
+  const nqPct = synthTotal > 0 ? (counters.nq / synthTotal) * 100 : 0;
+  const breakPct = synthTotal > 0 ? (counters.break / synthTotal) * 100 : 0;
+
+  function adjustCounter(kind: "success" | "failure" | "hq1" | "hq2" | "hq3" | "nq" | "break", delta: number) {
+    setCounters((prev) => ({
+      ...prev,
+      [kind]: clampInt((prev[kind] ?? 0) + delta, COUNTER_COUNT_MIN, COUNTER_COUNT_MAX),
+    }));
+  }
+
+  function onCounterButtonClick(kind: "success" | "failure" | "hq1" | "hq2" | "hq3" | "nq" | "break") {
+    adjustCounter(kind, counterIncrement);
+  }
+
+  function onCounterButtonRightClick(
+    e: React.MouseEvent,
+    kind: "success" | "failure" | "hq1" | "hq2" | "hq3" | "nq" | "break"
+  ) {
+    e.preventDefault();
+    adjustCounter(kind, -counterIncrement);
+  }
+
+  function adjustIncrement(delta: number) {
+    setCounters((prev) => ({
+      ...prev,
+      increment: clampInt(
+        (Number(prev.increment) || 1) + delta,
+        COUNTER_INCREMENT_MIN,
+        COUNTER_INCREMENT_MAX
+      ),
+    }));
+  }
+
+  function resetCounters() {
+    setCounters((prev) => ({
+      ...prev,
+      success: 0,
+      failure: 0,
+      nq: 0,
+      break: 0,
+      hq1: 0,
+      hq2: 0,
+      hq3: 0,
+    }));
+  }
 
   return (
     <div style={styles.page}>
@@ -805,13 +933,10 @@ export default function AppShell() {
         <section style={styles.cardStretch}>
           <div style={styles.titleRow}>
             <h2 style={styles.h2}>Vana&apos;diel Clock</h2>
-            <div style={styles.sub}>
-              Day: {hasDayCal ? "ON" : "OFF"} | Moon: {hasMoonCal ? "ON" : "OFF"}
-            </div>
           </div>
 
           <div style={styles.cardBody}>
-            <div style={{ marginTop: 10, fontSize: 22, fontWeight: 800 }}>
+            <div style={{ marginTop: 8, fontSize: 22, fontWeight: 800 }}>
               <span style={weekdayStyle(now.weekday)}>{now.weekday}</span> {pad2(now.hour)}:{pad2(now.minute)}
             </div>
 
@@ -824,19 +949,16 @@ export default function AppShell() {
               ({now.moonPercent}%)
             </div>
 
-            <div style={{ marginTop: 10, ...styles.sub }}>
-              Next moon step boundary: {new Date(nextMoonAt).toLocaleString()}
-              <br />
-              Countdown: {formatCountdown(msUntilNextMoonStep)}
-              <br />
-              Next step:{" "}
+            <div style={{ marginTop: 8, ...styles.sub }}>
+              Next:{" "}
               <span style={moonPhaseStyle(nextMoonLabel.phase)}>
                 <span style={moonGlyphStyle()}>{moonDirGlyph(nextMoonLabel.dir)}</span>
                 {nextMoonLabel.phase}
               </span>{" "}
               ({nextMoonLabel.pct}%)
+              <br />
+              In: {formatCountdown(msUntilNextMoonStep)} (at {new Date(nextMoonAt).toLocaleTimeString()})
             </div>
-            <div style={styles.cardFooter} />
           </div>
         </section>
 
@@ -844,62 +966,62 @@ export default function AppShell() {
         <section style={styles.cardStretch}>
           <div style={styles.titleRow}>
             <h3 style={styles.h3}>Vana&apos;diel Timer</h3>
-            <div style={styles.sub}>Triggers at that Vana time</div>
           </div>
 
           <div style={styles.cardBody}>
-            <div style={{ marginTop: 10, display: "grid", gap: 12 }}>
+            <div style={{ marginTop: 8, display: "grid", gap: 10 }}>
               <div style={styles.field}>
                 <div style={styles.label}>Label</div>
-                <input style={styles.input} value={tLabel} onChange={(e) => setTLabel(e.target.value)} />
+                <input style={styles.inputCompact} value={tLabel} onChange={(e) => setTLabel(e.target.value)} />
               </div>
 
               <div style={styles.field}>
                 <div style={styles.label}>Weekday</div>
-                <select
-                  style={styles.select}
-                  value={tWeekday}
-                  onChange={(e) => setTWeekday(e.target.value as VanaWeekday)}
-                >
-                  {WEEKDAYS.map((d) => (
-                    <option
-                      key={d}
-                      value={d}
-                      style={{
-                        ...optionBaseStyle,
-                        color: WEEKDAY_COLORS[d],
-                        fontWeight: 800,
-                      }}
-                    >
-                      {d}
-                    </option>
-                  ))}
-                </select>
+                <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
+                  <select
+                    style={{ ...styles.selectCompact, flex: 1 }}
+                    value={tWeekday}
+                    onChange={(e) => setTWeekday(e.target.value as VanaWeekday)}
+                  >
+                    {WEEKDAYS.map((d) => (
+                      <option
+                        key={d}
+                        value={d}
+                        style={{
+                          ...optionBaseStyle,
+                          color: WEEKDAY_COLORS[d],
+                          fontWeight: 800,
+                        }}
+                      >
+                        {d}
+                      </option>
+                    ))}
+                  </select>
 
-                <div style={{ ...styles.sub, marginTop: 6 }}>
-                  Selected: <span style={weekdayStyle(tWeekday)}>{tWeekday}</span>
+                  <div style={{ ...styles.sub, whiteSpace: "nowrap" }}>
+                    <span style={{ opacity: 0.8 }}>Selected:</span> <span style={weekdayStyle(tWeekday)}>{tWeekday}</span>
+                  </div>
                 </div>
               </div>
 
               <div style={styles.compactRow}>
                 <div style={styles.field}>
                   <div style={styles.label}>Hour</div>
-                  <input style={styles.input} value={tHour} onChange={(e) => setTHour(e.target.value)} />
+                  <input style={styles.inputCompact} value={tHour} onChange={(e) => setTHour(e.target.value)} />
                 </div>
                 <div style={styles.field}>
                   <div style={styles.label}>Min</div>
-                  <input style={styles.input} value={tMin} onChange={(e) => setTMin(e.target.value)} />
+                  <input style={styles.inputCompact} value={tMin} onChange={(e) => setTMin(e.target.value)} />
                 </div>
               </div>
             </div>
 
-            <div style={styles.cardFooter}>
-              <div style={styles.buttonRow}>
-                <button style={styles.buttonPrimary} onClick={addWeekdayTimer}>
+            <div style={styles.topCardFooter}>
+              <div style={{ ...styles.buttonRowCompact, marginTop: 0 }}>
+                <button style={styles.buttonPrimaryCompact} onClick={addWeekdayTimer}>
                   Add Vana&apos;diel timer
                 </button>
               </div>
-              <div style={{ marginTop: 8, ...styles.sub }}>Triggers at that Vana time.</div>
             </div>
           </div>
         </section>
@@ -908,30 +1030,27 @@ export default function AppShell() {
         <section style={styles.cardStretch}>
           <div style={styles.titleRow}>
             <h3 style={styles.h3}>Real life timer</h3>
-            <div style={styles.sub}>Triggers at the next occurrence of that local time</div>
           </div>
 
           <div style={styles.cardBody}>
-            <div style={{ marginTop: 10, display: "grid", gap: 12 }}>
+            <div style={{ marginTop: 8, display: "grid", gap: 10 }}>
               <div style={styles.field}>
                 <div style={styles.label}>Label</div>
-                <input style={styles.input} value={rLabel} onChange={(e) => setRLabel(e.target.value)} />
+                <input style={styles.inputCompact} value={rLabel} onChange={(e) => setRLabel(e.target.value)} />
               </div>
 
               <div style={styles.field}>
                 <div style={styles.label}>When (local)</div>
-                <input style={styles.input} value={rWhen} onChange={(e) => setRWhen(e.target.value)} />
-                <div style={styles.sub}>Supports: YYYY-MM-DDTHH:MM(:SS), or MM/DD/YYYY HH:MM(:SS) AM/PM</div>
+                <input style={styles.inputCompact} value={rWhen} onChange={(e) => setRWhen(e.target.value)} />
               </div>
             </div>
 
-            <div style={styles.cardFooter}>
-              <div style={styles.buttonRow}>
-                <button style={styles.buttonPrimary} onClick={addRealLifeTimer}>
+            <div style={styles.topCardFooter}>
+              <div style={{ ...styles.buttonRowCompact, marginTop: 0 }}>
+                <button style={styles.buttonPrimaryCompact} onClick={addRealLifeTimer}>
                   Add real life timer
                 </button>
               </div>
-              <div style={{ marginTop: 8, ...styles.sub }}>Triggers at the next occurrence of that local time.</div>
             </div>
           </div>
         </section>
@@ -944,15 +1063,19 @@ export default function AppShell() {
           </div>
 
           <div style={styles.cardBody}>
-            <div style={{ marginTop: 10, display: "grid", gap: 12 }}>
+            <div style={{ marginTop: 8, display: "grid", gap: 10 }}>
               <div style={styles.field}>
                 <div style={styles.label}>Label</div>
-                <input style={styles.input} value={mLabel} onChange={(e) => setMLabel(e.target.value)} />
+                <input style={styles.inputCompact} value={mLabel} onChange={(e) => setMLabel(e.target.value)} />
               </div>
 
               <div style={styles.field}>
                 <div style={styles.label}>Direction</div>
-                <select style={styles.select} value={mDir} onChange={(e) => setMDir(e.target.value as MoonDirection)}>
+                <select
+                  style={styles.selectCompact}
+                  value={mDir}
+                  onChange={(e) => setMDir(e.target.value as MoonDirection)}
+                >
                   <option
                     value="WAXING"
                     style={{
@@ -978,7 +1101,7 @@ export default function AppShell() {
 
               <div style={styles.field}>
                 <div style={styles.label}>Target % (0..100)</div>
-                <input style={styles.input} value={mPercent} onChange={(e) => setMPercent(e.target.value)} />
+                <input style={styles.inputCompact} value={mPercent} onChange={(e) => setMPercent(e.target.value)} />
               </div>
 
               <div style={styles.sub}>
@@ -988,13 +1111,190 @@ export default function AppShell() {
               </div>
             </div>
 
-            <div style={styles.cardFooter}>
-              <div style={styles.buttonRow}>
-                <button style={styles.buttonPrimary} onClick={addMoonTimer}>
+            <div style={styles.topCardFooter}>
+              <div style={{ ...styles.buttonRowCompact, marginTop: 0 }}>
+                <button style={styles.buttonPrimaryCompact} onClick={addMoonTimer}>
                   Add moon timer
                 </button>
               </div>
-              <div style={{ marginTop: 8, ...styles.sub }}>Unambiguous: direction + percent maps to one step.</div>
+            </div>
+          </div>
+        </section>
+
+        {/* Counters */}
+        <section style={styles.cardStretch}>
+          <div style={styles.titleRow}>
+            <h3 style={styles.h3}>Counters</h3>
+            <div style={styles.sub}>Manual increment + reset</div>
+          </div>
+
+          <div style={styles.cardBody}>
+            <div style={{ marginTop: 8, display: "grid", gap: 10 }}>
+              <div style={styles.field}>
+                <div style={styles.label}>Increment</div>
+                <div style={{ display: "flex", gap: 10, alignItems: "center", flexWrap: "wrap" }}>
+                  <button
+                    style={{ ...styles.buttonCompact, width: 40, padding: 0 }}
+                    onClick={() => adjustIncrement(-1)}
+                    title="Decrement increment"
+                  >
+                    -
+                  </button>
+                  <input
+                    style={{ ...styles.inputCompact, width: 140 }}
+                    type="number"
+                    inputMode="numeric"
+                    min={COUNTER_INCREMENT_MIN}
+                    max={COUNTER_INCREMENT_MAX}
+                    step={1}
+                    value={counters.increment}
+                    onChange={(e) =>
+                      setCounters((prev) => ({
+                        ...prev,
+                        increment: clampInt(
+                          Number(e.target.value) || 1,
+                          COUNTER_INCREMENT_MIN,
+                          COUNTER_INCREMENT_MAX
+                        ),
+                      }))
+                    }
+                  />
+                  <button
+                    style={{ ...styles.buttonCompact, width: 40, padding: 0 }}
+                    onClick={() => adjustIncrement(1)}
+                    title="Increment increment"
+                  >
+                    +
+                  </button>
+                </div>
+                <div style={styles.sub}>Left click adds +{counterIncrement}. Right click subtracts -{counterIncrement}.</div>
+              </div>
+
+              <div style={styles.subCard}>
+                <div style={{ display: "flex", justifyContent: "space-between", gap: 12, flexWrap: "wrap" }}>
+                  <div style={{ fontWeight: 900 }}>Success / Failure</div>
+                  <div style={styles.sub}>
+                    Total: {sfTotal} • Success: {successPct.toFixed(1)}% • Failure: {failurePct.toFixed(1)}%
+                  </div>
+                </div>
+
+                <div style={{ marginTop: 10, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
+                  <div>
+                    <div style={styles.sub}>Success</div>
+                    <div style={{ fontSize: 26, fontWeight: 900 }}>{counters.success}</div>
+                  </div>
+                  <div>
+                    <div style={styles.sub}>Failure</div>
+                    <div style={{ fontSize: 26, fontWeight: 900 }}>{counters.failure}</div>
+                  </div>
+                </div>
+
+                <div style={styles.buttonRow}>
+                  <button
+                    style={styles.buttonPrimaryCompact}
+                    onClick={() => onCounterButtonClick("success")}
+                    onContextMenu={(e) => onCounterButtonRightClick(e, "success")}
+                    title="Left click: +  |  Right click: -"
+                  >
+                    Success +{counterIncrement}
+                  </button>
+                  <button
+                    style={styles.buttonCompact}
+                    onClick={() => onCounterButtonClick("failure")}
+                    onContextMenu={(e) => onCounterButtonRightClick(e, "failure")}
+                    title="Left click: +  |  Right click: -"
+                  >
+                    Failure +{counterIncrement}
+                  </button>
+                </div>
+              </div>
+
+              <div style={styles.subCard}>
+                <div style={{ display: "flex", justifyContent: "space-between", gap: 12, flexWrap: "wrap" }}>
+                  <div style={{ fontWeight: 900 }}>Synthesis</div>
+                  <div style={styles.sub}>
+                    Total: {synthTotal} • HQ Total: {hqTotalPct.toFixed(1)}% • NQ: {nqPct.toFixed(1)}% • Break: {breakPct.toFixed(1)}%
+                  </div>
+                </div>
+
+                <div style={{ marginTop: 10, display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: 12 }}>
+                  <div>
+                    <div style={styles.sub}>HQ1 ({hq1Pct.toFixed(1)}%)</div>
+                    <div style={{ fontSize: 22, fontWeight: 900 }}>{counters.hq1}</div>
+                  </div>
+                  <div>
+                    <div style={styles.sub}>HQ2 ({hq2Pct.toFixed(1)}%)</div>
+                    <div style={{ fontSize: 22, fontWeight: 900 }}>{counters.hq2}</div>
+                  </div>
+                  <div>
+                    <div style={styles.sub}>HQ3 ({hq3Pct.toFixed(1)}%)</div>
+                    <div style={{ fontSize: 22, fontWeight: 900 }}>{counters.hq3}</div>
+                  </div>
+                  <div>
+                    <div style={styles.sub}>NQ ({nqPct.toFixed(1)}%)</div>
+                    <div style={{ fontSize: 22, fontWeight: 900 }}>{counters.nq}</div>
+                  </div>
+                  <div>
+                    <div style={styles.sub}>Break ({breakPct.toFixed(1)}%)</div>
+                    <div style={{ fontSize: 22, fontWeight: 900 }}>{counters.break}</div>
+                  </div>
+                  <div>
+                    <div style={styles.sub}>HQ Total</div>
+                    <div style={{ fontSize: 22, fontWeight: 900 }}>{synthHqTotal}</div>
+                  </div>
+                </div>
+
+                <div style={styles.buttonRow}>
+                  <button
+                    style={styles.buttonPrimaryCompact}
+                    onClick={() => onCounterButtonClick("hq1")}
+                    onContextMenu={(e) => onCounterButtonRightClick(e, "hq1")}
+                    title="Left click: +  |  Right click: -"
+                  >
+                    HQ1 +{counterIncrement}
+                  </button>
+                  <button
+                    style={styles.buttonCompact}
+                    onClick={() => onCounterButtonClick("hq2")}
+                    onContextMenu={(e) => onCounterButtonRightClick(e, "hq2")}
+                    title="Left click: +  |  Right click: -"
+                  >
+                    HQ2 +{counterIncrement}
+                  </button>
+                  <button
+                    style={styles.buttonCompact}
+                    onClick={() => onCounterButtonClick("hq3")}
+                    onContextMenu={(e) => onCounterButtonRightClick(e, "hq3")}
+                    title="Left click: +  |  Right click: -"
+                  >
+                    HQ3 +{counterIncrement}
+                  </button>
+                  <button
+                    style={styles.buttonCompact}
+                    onClick={() => onCounterButtonClick("nq")}
+                    onContextMenu={(e) => onCounterButtonRightClick(e, "nq")}
+                    title="Left click: +  |  Right click: -"
+                  >
+                    NQ +{counterIncrement}
+                  </button>
+                  <button
+                    style={styles.buttonCompact}
+                    onClick={() => onCounterButtonClick("break")}
+                    onContextMenu={(e) => onCounterButtonRightClick(e, "break")}
+                    title="Left click: +  |  Right click: -"
+                  >
+                    Break +{counterIncrement}
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div style={styles.topCardFooter}>
+              <div style={{ ...styles.buttonRowCompact, marginTop: 0 }}>
+                <button style={styles.buttonCompact} onClick={resetCounters}>
+                  Reset counters
+                </button>
+              </div>
             </div>
           </div>
         </section>
