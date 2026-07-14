@@ -15,15 +15,25 @@ export type Calibration = {
   newMoonStartEarthMs: number;
 };
 
-// Default calibration (baked-in):
-// - timeOffsetMs was captured from an in-game /clock snapshot.
-// - newMoonStartEarthMs is a local-time anchor (per user locale) for the
-//   "New Moon Start" moment.
-// Users can still recalibrate if they want.
+// Default calibration (baked-in) — TIMEZONE-INDEPENDENT.
+//
+// Both values are anchored to absolute instants so the shipped defaults are
+// correct in every time zone without any manual setup:
+//
+// - timeOffsetMs: offset applied to `Date.now()` (UTC epoch ms) to derive
+//   Vana'diel time. Because Vana'diel time is global and Date.now() is UTC,
+//   this value is the same on every machine.
+//
+// - newMoonStartEarthMs: the real "New Moon Start" instant. Stored as a fixed
+//   UTC epoch (via Date.UTC) rather than a local-time Date(...) so it resolves
+//   to the identical absolute moment regardless of the user's time zone.
+//   Source reading: 01/24/2026 03:14:24 AM US Central (CST, UTC-6)
+//                 = 01/24/2026 09:14:24 UTC.
+//
+// Manual calibration remains available if a user ever wants to override these.
 export const DEFAULT_CALIBRATION: Calibration = {
   timeOffsetMs: 4_753_280,
-  // Local time: 01/24/2026 03:14:24 AM
-  newMoonStartEarthMs: new Date(2026, 0, 24, 3, 14, 24, 0).getTime(),
+  newMoonStartEarthMs: Date.UTC(2026, 0, 24, 9, 14, 24, 0),
 };
 
 const VANA_MS_PER_VANA_SECOND = 40;
