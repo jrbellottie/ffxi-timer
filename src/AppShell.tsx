@@ -91,6 +91,99 @@ function formatVanaTime(hour: number, minute: number): string {
   return `${pad2(hour)}:${pad2(minute)}`;
 }
 
+/** Valid if it parses to a finite, positive duration (e.g. "5m", "2.5h", "1:45:55"). */
+function isValidDuration(raw: string): boolean {
+  const ms = parseDurationToMs(raw);
+  return Number.isFinite(ms as number) && (ms as number) > 0;
+}
+
+/** Valid if it parses to a finite local date/time (e.g. "2026-02-04T13:22:10"). */
+function isValidDateTime(raw: string): boolean {
+  const ms = parseLocalDateTimeToMs(raw);
+  return Number.isFinite(ms as number);
+}
+
+/**
+ * Strict validation for the two ToD formats we advertise:
+ *  1. ISO 24-hour:  YYYY-MM-DDTHH:MM:SS  (seconds optional)
+ *  2. US 12-hour:   MM/DD/YYYY HH:MM:SS AM/PM  (seconds optional)
+ * Range-checks each component and verifies it's a real calendar date
+ * (JS Date silently rolls over out-of-range values, so we compare back).
+ */
+function isValidTod(raw: string): boolean {
+  const s = raw.trim();
+
+  let year: number;
+  let month: number; // 1..12
+  let day: number;
+  let hour: number; // 0..23 after AM/PM applied
+  let minute: number;
+  let second: number;
+
+  const iso = s.match(/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})(?::(\d{2}))?$/);
+  const us = s.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})\s+(\d{1,2}):(\d{2})(?::(\d{2}))?\s*(AM|PM)$/i);
+
+  if (iso) {
+    year = Number(iso[1]);
+    month = Number(iso[2]);
+    day = Number(iso[3]);
+    hour = Number(iso[4]);
+    minute = Number(iso[5]);
+    second = Number(iso[6] ?? 0);
+    if (hour > 23) return false;
+  } else if (us) {
+    month = Number(us[1]);
+    day = Number(us[2]);
+    year = Number(us[3]);
+    let h = Number(us[4]);
+    minute = Number(us[5]);
+    second = Number(us[6] ?? 0);
+    const ampm = us[7].toUpperCase();
+    if (h < 1 || h > 12) return false;
+    if (ampm === "AM") h = h === 12 ? 0 : h;
+    else h = h === 12 ? 12 : h + 12;
+    hour = h;
+  } else {
+    return false;
+  }
+
+  // Range checks (hour already validated per-format above).
+  if (month < 1 || month > 12) return false;
+  if (day < 1 || day > 31) return false;
+  if (minute > 59) return false;
+  if (second > 59) return false;
+
+  // Reject rolled-over dates like Feb 30 by comparing components back.
+  const d = new Date(year, month - 1, day, hour, minute, second, 0);
+  return (
+    d.getFullYear() === year &&
+    d.getMonth() === month - 1 &&
+    d.getDate() === day &&
+    d.getHours() === hour &&
+    d.getMinutes() === minute &&
+    d.getSeconds() === second
+  );
+}
+
+type TabId = "home" | "timers" | "nm" | "presets" | "counters" | "calibration";
+
+type TabDef = {
+  id: TabId;
+  label: string;
+  icon: string;
+};
+
+const TABS: TabDef[] = [
+  { id: "home", label: "Clock & Timers", icon: "🕐" },
+  { id: "timers", label: "Vana / Real / Moon", icon: "⏱️" },
+  { id: "nm", label: "NM Timers", icon: "👹" },
+  { id: "presets", label: "Presets", icon: "⭐" },
+  { id: "counters", label: "Counters", icon: "🔢" },
+  { id: "calibration", label: "Calibration", icon: "🛠️" },
+];
+
+const TAB_IDS: TabId[] = TABS.map((t) => t.id);
+
 type CounterWidgetState = {
   increment: number;
   success: number;
@@ -183,6 +276,11 @@ export default function AppShell() {
     normalizeCounterWidgetState(loadJson<unknown>("ffxi_counters_v1", DEFAULT_COUNTERS))
   );
 
+  const [activeTab, setActiveTab] = useState<TabId>(() => {
+    const stored = loadJson<TabId>("ffxi_active_tab_v1", "home");
+    return TAB_IDS.includes(stored) ? stored : "home";
+  });
+
   const [cWeekday, setCWeekday] = useState<VanaWeekday>("Firesday");
   const [cHour, setCHour] = useState("0");
   const [cMin, setCMin] = useState("0");
@@ -245,6 +343,35 @@ export default function AppShell() {
   useEffect(() => saveJson("ffxi_show_presets_v1", showPresets), [showPresets]);
   useEffect(() => saveJson("ffxi_preset_offset_hours_v1", presetOffsetHours), [presetOffsetHours]);
   useEffect(() => saveJson("ffxi_counters_v1", counters), [counters]);
+  useEffect(() => saveJson("ffxi_active_tab_v1", activeTab), [activeTab]);
+
+  // Flash the "Clock & Timers" tab when a new timer is added, so the user can
+  // see where the timer landed (especially when adding from another tab).
+  const [homeTabFlash, setHomeTabFlash] = useState(false);
+  const prevTimerCountRef = useRef(timers.length);
+  const flashTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const flashRafRef = useRef<number | null>(null);
+  useEffect(() => {
+    if (timers.length > prevTimerCountRef.current) {
+      // Restart the animation even if it's already running: remove the class,
+      // then re-add it on the next frame so the CSS animation replays.
+      if (flashTimeoutRef.current) clearTimeout(flashTimeoutRef.current);
+      if (flashRafRef.current) cancelAnimationFrame(flashRafRef.current);
+
+      setHomeTabFlash(false);
+      flashRafRef.current = requestAnimationFrame(() => {
+        flashRafRef.current = requestAnimationFrame(() => {
+          setHomeTabFlash(true);
+          flashTimeoutRef.current = setTimeout(() => setHomeTabFlash(false), 1500);
+        });
+      });
+    }
+    prevTimerCountRef.current = timers.length;
+  }, [timers.length]);
+  useEffect(() => () => {
+    if (flashTimeoutRef.current) clearTimeout(flashTimeoutRef.current);
+    if (flashRafRef.current) cancelAnimationFrame(flashRafRef.current);
+  }, []);
 
   const hasEnabledTimers = useMemo(() => timers.some((t) => t.enabled), [timers]);
   useEffect(() => {
@@ -795,6 +922,33 @@ export default function AppShell() {
   const previewStep = stepFromDirectionAndPercent(mDir, previewPct);
   const previewPhase = moonPhaseNameFromStep(previewStep);
 
+  // ---- Inline input validation ----
+  // Real life "When" is required and must be a valid date/time.
+  const rWhenValid = isValidDateTime(rWhen);
+
+  // NM: ToD is optional (blank = now), but if provided must be valid.
+  const nmTodValid = nmTodInput.trim() === "" || isValidTod(nmTodInput);
+  const nmWarnLeadValid = isValidDuration(nmWarnLead);
+  const nmWindowStartValid = isValidDuration(nmWindowStart);
+  const nmWindowEndValid = isValidDuration(nmWindowEnd);
+  const nmWindowIntervalValid = isValidDuration(nmWindowInterval);
+  const nmWindowOrderValid =
+    !nmWindowStartValid || !nmWindowEndValid
+      ? true
+      : (parseDurationToMs(nmWindowEnd) as number) >= (parseDurationToMs(nmWindowStart) as number);
+  const nmPhRespawnValid = isValidDuration(nmPhRespawn);
+
+  const nmTimedWindowFormValid =
+    nmTodValid &&
+    nmWarnLeadValid &&
+    nmWindowStartValid &&
+    nmWindowEndValid &&
+    nmWindowIntervalValid &&
+    nmWindowOrderValid;
+
+  const nmLotteryFormValid = nmTodValid && nmWarnLeadValid && nmPhRespawnValid;
+
+
   const counterIncrement = clampInt(counters.increment || 1, COUNTER_INCREMENT_MIN, COUNTER_INCREMENT_MAX);
   const sfTotal = counters.success + counters.failure;
   const successPct = sfTotal > 0 ? (counters.success / sfTotal) * 100 : 0;
@@ -853,11 +1007,8 @@ export default function AppShell() {
     }));
   }
 
-  return (
-    <div style={styles.page}>
-      <div style={styles.topRow}>
-        {/* LEFT: Clock + Calibration */}
-        <section style={styles.cardStretch}>
+  const clockCard = (
+        <section style={styles.card}>
           <div style={styles.titleRow}>
             <h2 style={styles.h2}>Vana&apos;diel Clock</h2>
           </div>
@@ -888,8 +1039,9 @@ export default function AppShell() {
             </div>
           </div>
         </section>
+  );
 
-        {/* Vana timer */}
+  const vanaTimerCard = (
         <section style={styles.cardStretch}>
           <div style={styles.titleRow}>
             <h3 style={styles.h3}>Vana&apos;diel Timer</h3>
@@ -952,8 +1104,9 @@ export default function AppShell() {
             </div>
           </div>
         </section>
+  );
 
-        {/* Real life timer */}
+  const realLifeCard = (
         <section style={styles.cardStretch}>
           <div style={styles.titleRow}>
             <h3 style={styles.h3}>Real life timer</h3>
@@ -968,21 +1121,36 @@ export default function AppShell() {
 
               <div style={styles.field}>
                 <div style={styles.label}>When (local)</div>
-                <input style={styles.inputCompact} value={rWhen} onChange={(e) => setRWhen(e.target.value)} />
+                <input
+                  style={{ ...styles.inputCompact, ...(rWhenValid ? {} : styles.inputError) }}
+                  value={rWhen}
+                  onChange={(e) => setRWhen(e.target.value)}
+                  placeholder="2026-07-14T14:06:40"
+                />
+                {!rWhenValid && (
+                  <div style={styles.errorText}>
+                    Invalid date/time. Use YYYY-MM-DDTHH:MM:SS or MM/DD/YYYY HH:MM:SS AM.
+                  </div>
+                )}
               </div>
             </div>
 
             <div style={styles.topCardFooter}>
               <div style={{ ...styles.buttonRowCompact, marginTop: 0 }}>
-                <button style={styles.buttonPrimaryCompact} onClick={addRealLifeTimer}>
+                <button
+                  style={{ ...styles.buttonPrimaryCompact, ...(rWhenValid ? {} : styles.buttonDisabled) }}
+                  onClick={addRealLifeTimer}
+                  disabled={!rWhenValid}
+                >
                   Add real life timer
                 </button>
               </div>
             </div>
           </div>
         </section>
+  );
 
-        {/* Moon timer */}
+  const moonCard = (
         <section style={styles.cardStretch}>
           <div style={styles.titleRow}>
             <h3 style={styles.h3}>Moon timer</h3>
@@ -1047,9 +1215,10 @@ export default function AppShell() {
             </div>
           </div>
         </section>
+  );
 
-        {/* Counters */}
-        <section style={styles.cardStretch}>
+  const countersCard = (
+        <section style={styles.card}>
           <div style={styles.titleRow}>
             <h3 style={styles.h3}>Counters</h3>
             <div style={styles.sub}>Manual increment + reset</div>
@@ -1225,17 +1394,16 @@ export default function AppShell() {
             </div>
           </div>
         </section>
-      </div>
+  );
 
-      {/* NM timers */}
-      <div style={styles.timersSection}>
+  const nmContent = (
         <section style={styles.card}>
           <div style={styles.titleRow}>
             <h3 style={styles.h3}>Notorious Monster timers</h3>
             <div style={styles.sub}>Timed window intervals, or lottery PH respawn loop</div>
           </div>
 
-          <div style={{ marginTop: 10, display: "grid", gap: 12 }}>
+          <div style={{ marginTop: 10, display: "grid", gap: 12, maxWidth: 640 }}>
             <div style={styles.field}>
               <div style={styles.label}>Mode</div>
               <select
@@ -1252,29 +1420,33 @@ export default function AppShell() {
               </select>
             </div>
 
-            <div style={styles.compactRow}>
-              <div style={styles.field}>
+            <div style={{ display: "flex", gap: 12, flexWrap: "wrap", alignItems: "flex-start" }}>
+              <div style={{ ...styles.field, width: 320 }}>
                 <div style={styles.label}>Label</div>
                 <input style={styles.input} value={nmLabel} onChange={(e) => setNmLabel(e.target.value)} />
               </div>
 
-              <div style={styles.field}>
+              <div style={{ ...styles.field, width: 160 }}>
                 <div style={styles.label}>Warn lead</div>
                 <input
-                  style={{ ...styles.input, width: 120 }}
+                  style={{ ...styles.input, ...(nmWarnLeadValid ? {} : styles.inputError) }}
                   value={nmWarnLead}
                   onChange={(e) => setNmWarnLead(e.target.value)}
                   placeholder="10s"
-                  title="Example: 10s"
+                  title="Examples: 10s, 1m, 1m30s, 1:30"
                 />
-                <div style={styles.sub}>Example: 10s</div>
+                {nmWarnLeadValid ? (
+                  <div style={styles.sub}>Examples: 10s, 1m, 1m30s, 1:30</div>
+                ) : (
+                  <div style={styles.errorText}>Invalid duration. Try 10s, 1m, 1m30s, or 1:30.</div>
+                )}
               </div>
             </div>
 
             <div style={styles.field}>
               <div style={styles.label}>ToD (local)</div>
               <input
-                style={styles.input}
+                style={{ ...styles.input, ...(nmTodValid ? {} : styles.inputError) }}
                 type="text"
                 value={nmTodInput}
                 onChange={(e) => setNmTodInput(e.target.value)}
@@ -1290,50 +1462,76 @@ export default function AppShell() {
                 </button>
               </div>
               <div style={styles.sub}>
-                Leave blank to use now. If you set a manual ToD, timers will calculate offsets from that.
+                Leave blank to use now. Accepted formats:
+                <br />
+                • ISO 24-hour: <code>YYYY-MM-DDTHH:MM:SS</code> (e.g. 2026-02-04T13:22:10)
+                <br />
+                • US 12-hour: <code>MM/DD/YYYY HH:MM:SS AM/PM</code> (e.g. 02/04/2026 01:22:10 PM)
               </div>
+              {!nmTodValid && (
+                <div style={styles.errorText}>
+                  Invalid date/time. Match one of the formats above, or leave blank for now.
+                </div>
+              )}
             </div>
 
             {nmMode === "TIMED_WINDOW" ? (
               <>
-                <div style={styles.compactRow}>
-                  <div style={styles.field}>
+                <div style={{ display: "flex", gap: 12, flexWrap: "wrap", alignItems: "flex-start" }}>
+                  <div style={{ ...styles.field, width: 200 }}>
                     <div style={styles.label}>Window start</div>
                     <input
-                      style={styles.input}
+                      style={{ ...styles.input, ...(nmWindowStartValid ? {} : styles.inputError) }}
                       value={nmWindowStart}
                       onChange={(e) => setNmWindowStart(e.target.value)}
                       placeholder="2h"
-                      title="Examples: 2h, 2.5h, 1:45:55"
+                      title="Examples: 2h, 2.5h, 1h45m, 1h45m55s, 1:45:55"
                     />
-                    <div style={styles.sub}>Examples: 2h, 2.5h, 1:45:55</div>
+                    {nmWindowStartValid ? (
+                      <div style={styles.sub}>Examples: 2h, 2.5h, 1h45m55s, 1:45:55</div>
+                    ) : (
+                      <div style={styles.errorText}>Invalid duration. Try 2h, 2.5h, 1h45m55s, or 1:45:55.</div>
+                    )}
                   </div>
 
-                  <div style={styles.field}>
+                  <div style={{ ...styles.field, width: 160 }}>
                     <div style={styles.label}>Window end</div>
                     <input
-                      style={styles.input}
+                      style={{ ...styles.input, ...(nmWindowEndValid && nmWindowOrderValid ? {} : styles.inputError) }}
                       value={nmWindowEnd}
                       onChange={(e) => setNmWindowEnd(e.target.value)}
                       placeholder="2.5h"
                     />
+                    {!nmWindowEndValid ? (
+                      <div style={styles.errorText}>Invalid duration. Try 2.5h or 2h30m.</div>
+                    ) : !nmWindowOrderValid ? (
+                      <div style={styles.errorText}>End must be ≥ start.</div>
+                    ) : null}
                   </div>
 
-                  <div style={styles.field}>
+                  <div style={{ ...styles.field, width: 160 }}>
                     <div style={styles.label}>Interval</div>
                     <input
-                      style={styles.input}
+                      style={{ ...styles.input, ...(nmWindowIntervalValid ? {} : styles.inputError) }}
                       value={nmWindowInterval}
                       onChange={(e) => setNmWindowInterval(e.target.value)}
                       placeholder="5m"
-                      title="Example: 5m"
+                      title="Examples: 5m, 90s, 1m30s"
                     />
-                    <div style={styles.sub}>Example: 5m</div>
+                    {nmWindowIntervalValid ? (
+                      <div style={styles.sub}>Examples: 5m, 90s, 1m30s</div>
+                    ) : (
+                      <div style={styles.errorText}>Invalid duration. Try 5m, 90s, or 1m30s.</div>
+                    )}
                   </div>
                 </div>
 
                 <div style={styles.buttonRow}>
-                  <button style={styles.buttonPrimary} onClick={addNmTimedWindowTimer}>
+                  <button
+                    style={{ ...styles.buttonPrimary, ...(nmTimedWindowFormValid ? {} : styles.buttonDisabled) }}
+                    onClick={addNmTimedWindowTimer}
+                    disabled={!nmTimedWindowFormValid}
+                  >
                     Start timed NM
                   </button>
                 </div>
@@ -1344,22 +1542,30 @@ export default function AppShell() {
               </>
             ) : (
               <>
-                <div style={styles.compactRow}>
-                  <div style={styles.field}>
+                <div style={{ display: "flex", gap: 12, flexWrap: "wrap", alignItems: "flex-start" }}>
+                  <div style={{ ...styles.field, width: 200 }}>
                     <div style={styles.label}>PH respawn</div>
                     <input
-                      style={styles.input}
+                      style={{ ...styles.input, ...(nmPhRespawnValid ? {} : styles.inputError) }}
                       value={nmPhRespawn}
                       onChange={(e) => setNmPhRespawn(e.target.value)}
                       placeholder="5m"
-                      title="Example: 5m"
+                      title="Examples: 5m, 90s, 1m30s"
                     />
-                    <div style={styles.sub}>Press “PH killed” each time you kill it to reset the respawn timer.</div>
+                    {nmPhRespawnValid ? (
+                      <div style={styles.sub}>Press “PH killed” each time you kill it to reset the PH timer each time.</div>
+                    ) : (
+                      <div style={styles.errorText}>Invalid duration. Try 5m, 90s, or 1m30s.</div>
+                    )}
                   </div>
                 </div>
 
                 <div style={styles.buttonRow}>
-                  <button style={styles.buttonPrimary} onClick={addNmLotteryTimer}>
+                  <button
+                    style={{ ...styles.buttonPrimary, ...(nmLotteryFormValid ? {} : styles.buttonDisabled) }}
+                    onClick={addNmLotteryTimer}
+                    disabled={!nmLotteryFormValid}
+                  >
                     Start lottery NM
                   </button>
                 </div>
@@ -1367,10 +1573,9 @@ export default function AppShell() {
             )}
           </div>
         </section>
-      </div>
+  );
 
-      {/* Preset timers */}
-      <div style={styles.timersSection}>
+  const presetContent = (
         <section style={styles.card}>
           <div style={styles.titleRow}>
             <h3 style={styles.h3}>Preset timers</h3>
@@ -1489,10 +1694,9 @@ export default function AppShell() {
             </div>
           )}
         </section>
-      </div>
+  );
 
-      {/* Timers list */}
-      <div style={styles.timersSection}>
+  const timersListContent = (
         <section style={styles.card}>
           <div style={styles.titleRow}>
             <h3 style={styles.h3}>Timers</h3>
@@ -1662,10 +1866,9 @@ export default function AppShell() {
             </div>
           )}
         </section>
-      </div>
+  );
 
-      {/* Manual calibration */}
-      <div style={styles.timersSection}>
+  const calibrationContent = (
         <section style={styles.card}>
           <div style={styles.titleRow}>
             <h3 style={styles.h3}>Manual calibration</h3>
@@ -1676,7 +1879,7 @@ export default function AppShell() {
 
           {!showCalibration ? (
             <div style={{ marginTop: 10, ...styles.sub }}>
-              Defaults are applied automatically. Use “Show” only if you want to recalibrate.
+              Calibration is applied automatically. Use “Show” only if you want to recalibrate.
             </div>
           ) : (
             <div style={{ marginTop: 10, display: "grid", gap: 12 }}>
@@ -1771,7 +1974,90 @@ export default function AppShell() {
             </div>
           )}
         </section>
-      </div>
+  );
+
+  const backBar = (
+    <div style={{ ...styles.tabHeaderRow, justifyContent: "flex-end" }}>
+      <button style={styles.backButton} onClick={() => setActiveTab("home")}>
+        ← Back to Clock &amp; Timers
+      </button>
+    </div>
+  );
+
+  const tabBar = (
+    <nav style={styles.tabBar}>
+      {TABS.map((tab) => {
+        const active = tab.id === activeTab;
+        const flashing = tab.id === "home" && homeTabFlash;
+        return (
+          <button
+            key={tab.id}
+            className={flashing ? "tab-flash" : undefined}
+            style={active ? styles.tabButtonActive : styles.tabButton}
+            onClick={() => setActiveTab(tab.id)}
+          >
+            <span aria-hidden>{tab.icon}</span>
+            {tab.label}
+            {tab.id === "home" && timers.length > 0 ? (
+              <span style={styles.tabBadge}>{timers.length}</span>
+            ) : null}
+          </button>
+        );
+      })}
+    </nav>
+  );
+
+  return (
+    <div style={styles.page}>
+      {tabBar}
+
+      {activeTab === "home" && (
+        <div style={{ ...styles.tabContent, gap: 16 }}>
+          <div style={{ ...styles.tabGrid, alignItems: "start", gridAutoRows: "max-content" }}>{clockCard}</div>
+          {timersListContent}
+        </div>
+      )}
+
+      {activeTab === "timers" && (
+        <div style={styles.tabContent}>
+          <div style={{ ...styles.tabGrid, alignItems: "stretch" }}>
+            {vanaTimerCard}
+            {realLifeCard}
+            {moonCard}
+          </div>
+          <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 28 }}>{backBar}</div>
+        </div>
+      )}
+
+      {activeTab === "nm" && (
+        <div style={styles.tabContent}>
+          {nmContent}
+          {backBar}
+        </div>
+      )}
+
+      {activeTab === "presets" && (
+        <div style={styles.tabContent}>
+          {presetContent}
+          {backBar}
+        </div>
+      )}
+
+      {activeTab === "counters" && (
+        <div style={styles.tabContent}>
+          <div>
+            <div style={{ ...styles.tabGrid, alignItems: "start", gridAutoRows: "max-content" }}>{countersCard}</div>
+          </div>
+          <div style={{ display: "flex", justifyContent: "flex-end" }}>{backBar}</div>
+        </div>
+      )}
+
+      {activeTab === "calibration" && (
+        <div style={styles.tabContent}>
+          {calibrationContent}
+          {backBar}
+        </div>
+      )}
     </div>
   );
 }

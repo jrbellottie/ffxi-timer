@@ -140,6 +140,10 @@ export function parseDurationToMs(raw: string): number | undefined {
 
   // Composite like 1h45m55s
   {
+    // Whole string must consist only of unit tokens (optionally space-separated),
+    // e.g. "1h45m55s", "1h 45m 55s". Reject any trailing/garbage characters.
+    if (!/^\s*(?:-?\d+(?:\.\d+)?\s*[hms]\s*)+$/i.test(s)) return undefined;
+
     const re = /(-?\d+(?:\.\d+)?)\s*([hms])/gi;
     let match: RegExpExecArray | null;
     let found = false;

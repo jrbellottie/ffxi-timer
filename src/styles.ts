@@ -4,6 +4,7 @@ import type React from "react";
 export const styles: Record<string, React.CSSProperties> = {
   page: {
     minHeight: "100vh",
+    width: "100%",
     padding: 16,
     paddingBottom: 48,
     display: "flex",
@@ -106,6 +107,22 @@ export const styles: Record<string, React.CSSProperties> = {
   h3: { margin: 0, fontSize: 18, letterSpacing: 0.2 },
   sub: { opacity: 0.75, fontSize: 12 },
   muted: { opacity: 0.75 },
+
+  inputError: {
+    border: "1px solid #ff5c5c",
+    boxShadow: "0 0 0 1px rgba(255,92,92,0.35), inset 0 1px 0 rgba(255,255,255,0.04)",
+  },
+
+  errorText: {
+    fontSize: 12,
+    color: "#ff7a7a",
+    fontWeight: 600,
+  },
+
+  buttonDisabled: {
+    opacity: 0.5,
+    cursor: "not-allowed",
+  },
 
   field: {
     display: "grid",
@@ -258,4 +275,103 @@ export const styles: Record<string, React.CSSProperties> = {
 
   timerTop: { display: "flex", justifyContent: "space-between", gap: 12, flexWrap: "wrap" },
   timerLabel: { fontWeight: 800 },
+
+  tabBar: {
+    display: "flex",
+    gap: 8,
+    flexWrap: "wrap",
+    alignItems: "center",
+    padding: 8,
+    border: "1px solid #333",
+    borderRadius: 12,
+    background: "rgba(255,255,255,0.02)",
+    boxShadow: "0 10px 30px rgba(0,0,0,0.35)",
+    position: "sticky",
+    top: 8,
+    zIndex: 10,
+    backdropFilter: "blur(6px)",
+  },
+
+  tabButton: {
+    height: 38,
+    padding: "0 14px",
+    borderRadius: 10,
+    border: "1px solid #444",
+    background: "linear-gradient(180deg, #141414 0%, #0d0d0d 100%)",
+    color: "#cfcfcf",
+    cursor: "pointer",
+    fontWeight: 600,
+    whiteSpace: "nowrap",
+    display: "inline-flex",
+    alignItems: "center",
+    gap: 8,
+  },
+
+  tabButtonActive: {
+    height: 38,
+    padding: "0 14px",
+    borderRadius: 10,
+    border: "1px solid #7a7a7a",
+    background: "linear-gradient(180deg, #33343a 0%, #202127 100%)",
+    color: "#fff",
+    cursor: "pointer",
+    fontWeight: 800,
+    whiteSpace: "nowrap",
+    display: "inline-flex",
+    alignItems: "center",
+    gap: 8,
+    boxShadow: "0 8px 22px rgba(0,0,0,0.35)",
+  },
+
+  tabBadge: {
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent: "center",
+    minWidth: 20,
+    height: 20,
+    padding: "0 6px",
+    borderRadius: 999,
+    fontSize: 11,
+    fontWeight: 800,
+    background: "rgba(255,255,255,0.12)",
+    color: "#fff",
+  },
+
+  tabContent: {
+    marginTop: 12,
+    display: "flex",
+    flexDirection: "column",
+    gap: 12,
+  },
+
+  tabGrid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+    gap: 12,
+    alignItems: "stretch",
+    justifyItems: "stretch",
+    width: "100%",
+  },
+
+  backButton: {
+    height: 34,
+    padding: "0 14px",
+    borderRadius: 10,
+    border: "1px solid #555",
+    background: "linear-gradient(180deg, #1a1a1a 0%, #111 100%)",
+    color: "#fff",
+    cursor: "pointer",
+    fontWeight: 700,
+    whiteSpace: "nowrap",
+    display: "inline-flex",
+    alignItems: "center",
+    gap: 8,
+  },
+
+  tabHeaderRow: {
+    display: "flex",
+    alignItems: "center",
+    gap: 12,
+    flexWrap: "wrap",
+  },
 };
