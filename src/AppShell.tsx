@@ -97,12 +97,6 @@ function isValidDuration(raw: string): boolean {
   return Number.isFinite(ms as number) && (ms as number) > 0;
 }
 
-/** Valid if it parses to a finite local date/time (e.g. "2026-02-04T13:22:10"). */
-function isValidDateTime(raw: string): boolean {
-  const ms = parseLocalDateTimeToMs(raw);
-  return Number.isFinite(ms as number);
-}
-
 /**
  * Strict validation for the two ToD formats we advertise:
  *  1. ISO 24-hour:  YYYY-MM-DDTHH:MM:SS  (seconds optional)
@@ -862,28 +856,6 @@ export default function AppShell() {
     setNmTodInput(formatLocalDateTimeLikeInput(Date.now()));
   }
 
-  function setNmBaseManual(id: string) {
-    const raw = window.prompt(
-      "Enter ToD (local). Supported: YYYY-MM-DDTHH:MM(:SS) or MM/DD/YYYY HH:MM(:SS) AM/PM",
-      ""
-    );
-    if (raw === null) return;
-    const ms = parseLocalDateTimeToMs(raw);
-    if (!Number.isFinite(ms as number)) {
-      alert("Invalid ToD time.");
-      return;
-    }
-
-    setTimers((prev) =>
-      prev.map((t) => {
-        if (t.id !== id) return t;
-        if (t.kind === "NM_TIMED_WINDOW") return { ...t, baseEarthMs: ms as number, enabled: true };
-        if (t.kind === "NM_LOTTERY") return { ...t, baseEarthMs: ms as number, enabled: true };
-        return t;
-      })
-    );
-  }
-
   function resetNmBaseNow(id: string) {
     const now = Date.now();
     setTimers((prev) =>
@@ -924,7 +896,7 @@ export default function AppShell() {
 
   // ---- Inline input validation ----
   // Real life "When" is required and must be a valid date/time.
-  const rWhenValid = isValidDateTime(rWhen);
+  const rWhenValid = isValidTod(rWhen);
 
   // NM: ToD is optional (blank = now), but if provided must be valid.
   const nmTodValid = nmTodInput.trim() === "" || isValidTod(nmTodInput);
@@ -1127,9 +1099,16 @@ export default function AppShell() {
                   onChange={(e) => setRWhen(e.target.value)}
                   placeholder="2026-07-14T14:06:40"
                 />
+                <div style={styles.sub}>
+                  Accepted formats:
+                  <br />
+                  • ISO 24-hour: <code>YYYY-MM-DDTHH:MM:SS</code> (e.g. 2026-07-14T14:06:40)
+                  <br />
+                  • US 12-hour: <code>MM/DD/YYYY HH:MM:SS AM/PM</code> (e.g. 07/14/2026 02:06:40 PM)
+                </div>
                 {!rWhenValid && (
                   <div style={styles.errorText}>
-                    Invalid date/time. Use YYYY-MM-DDTHH:MM:SS or MM/DD/YYYY HH:MM:SS AM.
+                    Invalid date/time. Match one of the formats above.
                   </div>
                 )}
               </div>
@@ -1827,12 +1806,6 @@ export default function AppShell() {
                       {(t.kind === "NM_TIMED_WINDOW" || t.kind === "NM_LOTTERY") && (
                         <button style={styles.button} onClick={() => resetNmBaseNow(t.id)}>
                           Set ToD now
-                        </button>
-                      )}
-
-                      {(t.kind === "NM_TIMED_WINDOW" || t.kind === "NM_LOTTERY") && (
-                        <button style={styles.button} onClick={() => setNmBaseManual(t.id)}>
-                          Set ToD...
                         </button>
                       )}
 
