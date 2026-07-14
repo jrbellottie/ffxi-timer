@@ -85,35 +85,10 @@ export function getNextNmTimedWindowEvent(timer: NmTimedWindowTimer, nowMs: numb
 
 export function getNextNmLotteryEvent(timer: NmLotteryTimer, nowMs: number): TimerEvent | null {
   const baseMs = clampNonNegInt(timer.baseEarthMs);
-  const windowStartOffsetMs = clampNonNegInt(timer.windowStartOffsetMs);
   const warnLeadMs = clampNonNegInt(timer.warnLeadMs);
 
-  const windowOpenAt = baseMs + windowStartOffsetMs;
-  const windowWarnAt = Math.max(baseMs, windowOpenAt - warnLeadMs);
-
-  // Candidate events: window open (warn + now), and PH (warn + now)
+  // Candidate events: PH (warn + now)
   const candidates: TimerEvent[] = [];
-
-  // Only include window-open events while they're still relevant
-  if (nowMs <= windowOpenAt + 60_000) {
-    if (warnLeadMs > 0 && windowWarnAt > nowMs) {
-      candidates.push({
-        atMs: windowWarnAt,
-        title: "FFXI Timer",
-        body: `${timer.label} — window opens in ${Math.round(warnLeadMs / 1000)}s. (click to stop)`,
-        fireKey: `window:warn:${windowOpenAt}`,
-      });
-    }
-
-    if (windowOpenAt >= nowMs) {
-      candidates.push({
-        atMs: windowOpenAt,
-        title: "FFXI Timer",
-        body: `${timer.label} — WINDOW OPEN. (click to stop)`,
-        fireKey: `window:open:${windowOpenAt}`,
-      });
-    }
-  }
 
   const phAt = timer.phNextAtMs ?? null;
   if (phAt !== null && Number.isFinite(phAt)) {

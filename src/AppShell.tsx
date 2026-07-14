@@ -19,7 +19,7 @@ import { formatCountdown, nextOccurrenceLocal, pad2, parseDurationToMs, parseLoc
 import { AnyTimer, MoonDirection } from "./types";
 import { WEEKDAYS, WEEKDAY_COLORS, weekdayStyle } from "./utils/weekday";
 import { moonDirGlyph, moonGlyphStyle, moonPhaseStyle } from "./utils/moon";
-import { buildTenshodoPresets, nextGuildAlertTarget } from "./utils/guilds";
+import { buildTenshodoPresets, GUILD_PRESETS, nextGuildAlertTarget } from "./utils/guilds";
 import { getNextNmLotteryEvent, getNextNmTimedWindowEvent } from "./utils/nm";
 
 function clampInt(n: number, min: number, max: number) {
@@ -44,6 +44,20 @@ type TenshodoTarget = {
   targetWeekday: VanaWeekday;
   targetHour: number;
   targetMinute: number;
+};
+
+type GuildPreview = {
+  id: string;
+  label: string;
+  openHour: number;
+  openMinute: number;
+  closeHour: number;
+  closeMinute: number;
+  closedOn: VanaWeekday | null;
+  targetWeekday: VanaWeekday;
+  targetHour: number;
+  targetMinute: number;
+  nextAt: number;
 };
 
 function mergeTenshodoTargets(targets: TenshodoTarget[]): TenshodoTarget[] {
@@ -72,6 +86,10 @@ function mergeTenshodoTargets(targets: TenshodoTarget[]): TenshodoTarget[] {
 
 const PRESET_OFFSET_MIN = 0;
 const PRESET_OFFSET_MAX = 23;
+
+function formatVanaTime(hour: number, minute: number): string {
+  return `${pad2(hour)}:${pad2(minute)}`;
+}
 
 type CounterWidgetState = {
   increment: number;
@@ -203,8 +221,18 @@ export default function AppShell() {
   const [nmWindowInterval, setNmWindowInterval] = useState("5m");
 
   // Lottery NM (window open + PH respawn)
-  const [nmLotteryWindowOpen, setNmLotteryWindowOpen] = useState("1:45:55");
   const [nmPhRespawn, setNmPhRespawn] = useState("5m");
+
+  function formatLocalDateTimeLikeInput(ms: number): string {
+    const d = new Date(ms);
+    const yyyy = d.getFullYear();
+    const mm = pad2(d.getMonth() + 1);
+    const dd = pad2(d.getDate());
+    const hh = pad2(d.getHours());
+    const mi = pad2(d.getMinutes());
+    const ss = pad2(d.getSeconds());
+    return `${yyyy}-${mm}-${dd}T${hh}:${mi}:${ss}`;
+  }
 
   useEffect(() => {
     const id = setInterval(() => setNowMs(Date.now()), 250);
@@ -238,64 +266,29 @@ export default function AppShell() {
     };
   }, [nextMoonAt, cal]);
 
-  const cookingGuildPreview = useMemo(() => {
-    const target = nextGuildAlertTarget(
-      now,
-      {
-        openHour: 5,
-        openMinute: 0,
-        closedOn: "Darksday",
-      },
-      presetOffsetHours
-    );
-    const nextAt = nextEarthMsForVanaWeekdayTime({
-      nowEarthMs: nowMs,
-      cal,
-      targetWeekday: target.targetWeekday,
-      targetHour: target.targetHour,
-      targetMinute: target.targetMinute,
-    });
-    return { label: "Cooking Guild", ...target, nextAt };
-  }, [now, nowMs, cal, presetOffsetHours]);
+  const guildPreviews = useMemo(() => {
+    return GUILD_PRESETS.map((guild): GuildPreview => {
+      const target = nextGuildAlertTarget(now, guild.schedule, presetOffsetHours);
+      const nextAt = nextEarthMsForVanaWeekdayTime({
+        nowEarthMs: nowMs,
+        cal,
+        targetWeekday: target.targetWeekday,
+        targetHour: target.targetHour,
+        targetMinute: target.targetMinute,
+      });
 
-  const leathercraftGuildPreview = useMemo(() => {
-    const target = nextGuildAlertTarget(
-      now,
-      {
-        openHour: 3,
-        openMinute: 0,
-        closedOn: "Iceday",
-      },
-      presetOffsetHours
-    );
-    const nextAt = nextEarthMsForVanaWeekdayTime({
-      nowEarthMs: nowMs,
-      cal,
-      targetWeekday: target.targetWeekday,
-      targetHour: target.targetHour,
-      targetMinute: target.targetMinute,
+      return {
+        id: guild.id,
+        label: guild.label,
+        openHour: guild.schedule.openHour,
+        openMinute: guild.schedule.openMinute ?? 0,
+        closeHour: guild.closeHour,
+        closeMinute: guild.closeMinute ?? 0,
+        closedOn: guild.schedule.closedOn ?? null,
+        ...target,
+        nextAt,
+      };
     });
-    return { label: "Leathercraft Guild", ...target, nextAt };
-  }, [now, nowMs, cal, presetOffsetHours]);
-
-  const clothcraftGuildPreview = useMemo(() => {
-    const target = nextGuildAlertTarget(
-      now,
-      {
-        openHour: 6,
-        openMinute: 0,
-        closedOn: "Firesday",
-      },
-      presetOffsetHours
-    );
-    const nextAt = nextEarthMsForVanaWeekdayTime({
-      nowEarthMs: nowMs,
-      cal,
-      targetWeekday: target.targetWeekday,
-      targetHour: target.targetHour,
-      targetMinute: target.targetMinute,
-    });
-    return { label: "Clothcraft Guild", ...target, nextAt };
   }, [now, nowMs, cal, presetOffsetHours]);
 
   const tenshodoPreviews = useMemo(() => {
@@ -569,85 +562,19 @@ export default function AppShell() {
     ]);
   }
 
-  function addCookingGuildTimer() {
-    const target = nextGuildAlertTarget(
-      now,
-      {
-        openHour: 5,
-        openMinute: 0,
-        closedOn: "Darksday",
-      },
-      presetOffsetHours
-    );
-
+  function addGuildTimer(guild: GuildPreview) {
     setTimers((prev) => [
       {
         id: uid(),
         kind: "VANA_WEEKDAY_TIME",
-        label: `Cooking Guild (offset ${presetOffsetHours}h) — ${target.targetWeekday} ${pad2(target.targetHour)}:${pad2(
-          target.targetMinute
+        label: `${guild.label} (offset ${presetOffsetHours}h) — ${guild.targetWeekday} ${pad2(guild.targetHour)}:${pad2(
+          guild.targetMinute
         )}`,
         enabled: true,
         createdAtMs: Date.now(),
-        targetWeekday: target.targetWeekday,
-        targetHour: target.targetHour,
-        targetMinute: target.targetMinute,
-      },
-      ...prev,
-    ]);
-  }
-
-  function addLeathercraftGuildTimer() {
-    const target = nextGuildAlertTarget(
-      now,
-      {
-        openHour: 3,
-        openMinute: 0,
-        closedOn: "Iceday",
-      },
-      presetOffsetHours
-    );
-
-    setTimers((prev) => [
-      {
-        id: uid(),
-        kind: "VANA_WEEKDAY_TIME",
-        label: `Leathercraft Guild (offset ${presetOffsetHours}h) — ${target.targetWeekday} ${pad2(
-          target.targetHour
-        )}:${pad2(target.targetMinute)}`,
-        enabled: true,
-        createdAtMs: Date.now(),
-        targetWeekday: target.targetWeekday,
-        targetHour: target.targetHour,
-        targetMinute: target.targetMinute,
-      },
-      ...prev,
-    ]);
-  }
-
-  function addClothcraftGuildTimer() {
-    const target = nextGuildAlertTarget(
-      now,
-      {
-        openHour: 6,
-        openMinute: 0,
-        closedOn: "Firesday",
-      },
-      presetOffsetHours
-    );
-
-    setTimers((prev) => [
-      {
-        id: uid(),
-        kind: "VANA_WEEKDAY_TIME",
-        label: `Clothcraft Guild (offset ${presetOffsetHours}h) — ${target.targetWeekday} ${pad2(
-          target.targetHour
-        )}:${pad2(target.targetMinute)}`,
-        enabled: true,
-        createdAtMs: Date.now(),
-        targetWeekday: target.targetWeekday,
-        targetHour: target.targetHour,
-        targetMinute: target.targetMinute,
+        targetWeekday: guild.targetWeekday,
+        targetHour: guild.targetHour,
+        targetMinute: guild.targetMinute,
       },
       ...prev,
     ]);
@@ -771,11 +698,10 @@ export default function AppShell() {
 
   function addNmLotteryTimer() {
     const warnLeadMs = parseDurationToMs(nmWarnLead) ?? 10_000;
-    const windowOpenMs = parseDurationToMs(nmLotteryWindowOpen);
     const phRespawnMs = parseDurationToMs(nmPhRespawn);
 
-    if (!Number.isFinite(windowOpenMs as number) || !Number.isFinite(phRespawnMs as number)) {
-      alert("Invalid Lottery NM values. Try: 1:45:55 for window, and 5m for PH.");
+    if (!Number.isFinite(phRespawnMs as number)) {
+      alert("Invalid Lottery NM values. Try: 5m for PH respawn.");
       return;
     }
 
@@ -795,17 +721,18 @@ export default function AppShell() {
         enabled: true,
         createdAtMs,
         baseEarthMs,
-        windowStartOffsetMs: Math.floor(windowOpenMs as number),
         warnLeadMs: Math.max(0, Math.floor(warnLeadMs)),
         phRespawnMs: Math.max(1_000, Math.floor(phRespawnMs as number)),
-        phNextAtMs: null,
+        // Start the PH respawn timer immediately; user can keep hitting "PH killed" to reset.
+        phNextAtMs: createdAtMs + Math.max(1_000, Math.floor(phRespawnMs as number)),
       },
       ...prev,
     ]);
   }
 
   function setNmTodNow() {
-    setNmTodInput(new Date(Date.now()).toLocaleString());
+    // Use a format parseLocalDateTimeToMs reliably accepts (local time).
+    setNmTodInput(formatLocalDateTimeLikeInput(Date.now()));
   }
 
   function setNmBaseManual(id: string) {
@@ -824,7 +751,7 @@ export default function AppShell() {
       prev.map((t) => {
         if (t.id !== id) return t;
         if (t.kind === "NM_TIMED_WINDOW") return { ...t, baseEarthMs: ms as number, enabled: true };
-        if (t.kind === "NM_LOTTERY") return { ...t, baseEarthMs: ms as number, phNextAtMs: null, enabled: true };
+        if (t.kind === "NM_LOTTERY") return { ...t, baseEarthMs: ms as number, enabled: true };
         return t;
       })
     );
@@ -836,7 +763,7 @@ export default function AppShell() {
       prev.map((t) => {
         if (t.id !== id) return t;
         if (t.kind === "NM_TIMED_WINDOW") return { ...t, baseEarthMs: now, enabled: true };
-        if (t.kind === "NM_LOTTERY") return { ...t, baseEarthMs: now, phNextAtMs: null, enabled: true };
+        if (t.kind === "NM_LOTTERY") return { ...t, baseEarthMs: now, phNextAtMs: now + t.phRespawnMs, enabled: true };
         return t;
       })
     );
@@ -1305,7 +1232,7 @@ export default function AppShell() {
         <section style={styles.card}>
           <div style={styles.titleRow}>
             <h3 style={styles.h3}>Notorious Monster timers</h3>
-            <div style={styles.sub}>Timed window intervals, or lottery window + PH respawn</div>
+            <div style={styles.sub}>Timed window intervals, or lottery PH respawn loop</div>
           </div>
 
           <div style={{ marginTop: 10, display: "grid", gap: 12 }}>
@@ -1320,7 +1247,7 @@ export default function AppShell() {
                   Timed spawn (window + interval)
                 </option>
                 <option value="LOTTERY" style={optionBaseStyle}>
-                  Lottery (window open + PH respawn)
+                  Lottery (PH respawn loop)
                 </option>
               </select>
             </div>
@@ -1419,18 +1346,6 @@ export default function AppShell() {
               <>
                 <div style={styles.compactRow}>
                   <div style={styles.field}>
-                    <div style={styles.label}>Window opens at</div>
-                    <input
-                      style={styles.input}
-                      value={nmLotteryWindowOpen}
-                      onChange={(e) => setNmLotteryWindowOpen(e.target.value)}
-                      placeholder="1:45:55"
-                      title="Examples: 1:45:55, 105m, 2h"
-                    />
-                    <div style={styles.sub}>Examples: 1:45:55, 105m, 2h</div>
-                  </div>
-
-                  <div style={styles.field}>
                     <div style={styles.label}>PH respawn</div>
                     <input
                       style={styles.input}
@@ -1439,7 +1354,7 @@ export default function AppShell() {
                       placeholder="5m"
                       title="Example: 5m"
                     />
-                    <div style={styles.sub}>Click "PH killed" each time you kill it.</div>
+                    <div style={styles.sub}>Press “PH killed” each time you kill it to reset the respawn timer.</div>
                   </div>
                 </div>
 
@@ -1515,84 +1430,30 @@ export default function AppShell() {
                 </div>
               </div>
 
-              {/* Cooking */}
-              <div style={styles.subCard}>
-                <div style={styles.titleRow}>
-                  <div style={{ fontWeight: 800 }}>Cooking Guild</div>
-                  <div style={styles.sub}>
-                    Opens 05:00 → fires {pad2(cookingGuildPreview.targetHour)}:{pad2(cookingGuildPreview.targetMinute)} (offset {presetOffsetHours}h), closed Darksday
+              {guildPreviews.map((guild) => (
+                <div key={guild.id} style={styles.subCard}>
+                  <div style={styles.titleRow}>
+                    <div style={{ fontWeight: 800 }}>{guild.label}</div>
+                    <div style={styles.sub}>
+                      Opens {formatVanaTime(guild.openHour, guild.openMinute)}–{formatVanaTime(guild.closeHour, guild.closeMinute)} → fires {pad2(guild.targetHour)}:{pad2(guild.targetMinute)} (offset {presetOffsetHours}h), closed {guild.closedOn ?? "Never"}
+                    </div>
+                  </div>
+
+                  <div style={{ marginTop: 8, ...styles.sub }}>
+                    Will set:{" "}
+                    <span style={weekdayStyle(guild.targetWeekday)}>{guild.targetWeekday}</span>{" "}
+                    {pad2(guild.targetHour)}:{pad2(guild.targetMinute)}
+                    <br />
+                    Next: {new Date(guild.nextAt).toLocaleString()} — In: {formatCountdown(guild.nextAt - nowMs)}
+                  </div>
+
+                  <div style={{ marginTop: 10, ...styles.buttonRow }}>
+                    <button style={styles.buttonPrimary} onClick={() => addGuildTimer(guild)}>
+                      Add {guild.label} timer
+                    </button>
                   </div>
                 </div>
-
-                <div style={{ marginTop: 8, ...styles.sub }}>
-                  Will set:{" "}
-                  <span style={weekdayStyle(cookingGuildPreview.targetWeekday)}>{cookingGuildPreview.targetWeekday}</span>{" "}
-                  {pad2(cookingGuildPreview.targetHour)}:{pad2(cookingGuildPreview.targetMinute)}
-                  <br />
-                  Next: {new Date(cookingGuildPreview.nextAt).toLocaleString()} — In:{" "}
-                  {formatCountdown(cookingGuildPreview.nextAt - nowMs)}
-                </div>
-
-                <div style={{ marginTop: 10, ...styles.buttonRow }}>
-                  <button style={styles.buttonPrimary} onClick={addCookingGuildTimer}>
-                    Add Cooking Guild timer
-                  </button>
-                </div>
-              </div>
-
-              {/* Leathercraft */}
-              <div style={styles.subCard}>
-                <div style={styles.titleRow}>
-                  <div style={{ fontWeight: 800 }}>Leathercraft Guild</div>
-                  <div style={styles.sub}>
-                    Opens 03:00–18:00 → fires {pad2(leathercraftGuildPreview.targetHour)}:{pad2(leathercraftGuildPreview.targetMinute)} (offset {presetOffsetHours}h), closed Iceday
-                  </div>
-                </div>
-
-                <div style={{ marginTop: 8, ...styles.sub }}>
-                  Will set:{" "}
-                  <span style={weekdayStyle(leathercraftGuildPreview.targetWeekday)}>
-                    {leathercraftGuildPreview.targetWeekday}
-                  </span>{" "}
-                  {pad2(leathercraftGuildPreview.targetHour)}:{pad2(leathercraftGuildPreview.targetMinute)}
-                  <br />
-                  Next: {new Date(leathercraftGuildPreview.nextAt).toLocaleString()} — In:{" "}
-                  {formatCountdown(leathercraftGuildPreview.nextAt - nowMs)}
-                </div>
-
-                <div style={{ marginTop: 10, ...styles.buttonRow }}>
-                  <button style={styles.buttonPrimary} onClick={addLeathercraftGuildTimer}>
-                    Add Leathercraft Guild timer
-                  </button>
-                </div>
-              </div>
-
-              {/* Clothcraft */}
-              <div style={styles.subCard}>
-                <div style={styles.titleRow}>
-                  <div style={{ fontWeight: 800 }}>Clothcraft Guild</div>
-                  <div style={styles.sub}>
-                    Opens 06:00–21:00 → fires {pad2(clothcraftGuildPreview.targetHour)}:{pad2(clothcraftGuildPreview.targetMinute)} (offset {presetOffsetHours}h), closed Firesday
-                  </div>
-                </div>
-
-                <div style={{ marginTop: 8, ...styles.sub }}>
-                  Will set:{" "}
-                  <span style={weekdayStyle(clothcraftGuildPreview.targetWeekday)}>
-                    {clothcraftGuildPreview.targetWeekday}
-                  </span>{" "}
-                  {pad2(clothcraftGuildPreview.targetHour)}:{pad2(clothcraftGuildPreview.targetMinute)}
-                  <br />
-                  Next: {new Date(clothcraftGuildPreview.nextAt).toLocaleString()} — In:{" "}
-                  {formatCountdown(clothcraftGuildPreview.nextAt - nowMs)}
-                </div>
-
-                <div style={{ marginTop: 10, ...styles.buttonRow }}>
-                  <button style={styles.buttonPrimary} onClick={addClothcraftGuildTimer}>
-                    Add Clothcraft Guild timer
-                  </button>
-                </div>
-              </div>
+              ))}
 
               {/* Tenshodo */}
               <div style={styles.subCard}>
@@ -1718,7 +1579,7 @@ export default function AppShell() {
                 } else if (t.kind === "NM_LOTTERY") {
                   detailLine = (
                     <div style={{ marginTop: 6, opacity: 0.9 }}>
-                      NM (lottery): window opens at {formatCountdown(t.windowStartOffsetMs)} — PH respawn {formatCountdown(t.phRespawnMs)}
+                      NM (lottery): PH respawn {formatCountdown(t.phRespawnMs)}
                       <br />
                       ToD: {new Date(t.baseEarthMs).toLocaleString()}
                       {t.phNextAtMs ? (
@@ -1773,8 +1634,12 @@ export default function AppShell() {
 
                       {t.kind === "NM_LOTTERY" && (
                         <>
-                          <button style={styles.button} onClick={() => lotteryPhKilledNow(t.id)}>
-                            PH killed now
+                          <button
+                            style={styles.button}
+                            onClick={() => lotteryPhKilledNow(t.id)}
+                            title="Resets the PH respawn countdown"
+                          >
+                            PH killed
                           </button>
                           {t.phNextAtMs ? (
                             <button style={styles.button} onClick={() => lotteryClearPh(t.id)}>

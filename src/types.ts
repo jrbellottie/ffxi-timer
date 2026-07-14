@@ -51,7 +51,6 @@ export type NmTimedWindowTimer = BaseTimer & {
 export type NmLotteryTimer = BaseTimer & {
   kind: "NM_LOTTERY";
   baseEarthMs: number;
-  windowStartOffsetMs: number;
   warnLeadMs: number;
   phRespawnMs: number;
   phNextAtMs: number | null;

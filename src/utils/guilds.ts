@@ -25,6 +25,89 @@ export type GuildSchedule = {
   closedOn?: VanaWeekday | null; // holiday weekday closure, optional
 };
 
+export type GuildPreset = {
+  id:
+    | "WOODWORKING"
+    | "CLOTHCRAFT"
+    | "SMITHING"
+    | "GOLDSMITHING"
+    | "BONECRAFT"
+    | "ALCHEMY"
+    | "COOKING"
+    | "FISHING"
+    | "LEATHERCRAFT";
+  label: string;
+  schedule: GuildSchedule;
+  closeHour: number;
+  closeMinute?: number;
+};
+
+export const GUILD_PRESETS: GuildPreset[] = [
+  {
+    id: "WOODWORKING",
+    label: "Woodworking Guild",
+    schedule: { openHour: 6, openMinute: 0, closedOn: "Firesday" },
+    closeHour: 21,
+    closeMinute: 0,
+  },
+  {
+    id: "CLOTHCRAFT",
+    label: "Clothcraft Guild",
+    schedule: { openHour: 6, openMinute: 0, closedOn: "Firesday" },
+    closeHour: 21,
+    closeMinute: 0,
+  },
+  {
+    id: "SMITHING",
+    label: "Smithing Guild",
+    schedule: { openHour: 8, openMinute: 0, closedOn: "Watersday" },
+    closeHour: 23,
+    closeMinute: 0,
+  },
+  {
+    id: "GOLDSMITHING",
+    label: "Goldsmithing Guild",
+    schedule: { openHour: 8, openMinute: 0, closedOn: "Iceday" },
+    closeHour: 23,
+    closeMinute: 0,
+  },
+  {
+    id: "BONECRAFT",
+    label: "Bonecraft Guild",
+    schedule: { openHour: 8, openMinute: 0, closedOn: "Windsday" },
+    closeHour: 23,
+    closeMinute: 0,
+  },
+  {
+    id: "ALCHEMY",
+    label: "Alchemy Guild",
+    schedule: { openHour: 8, openMinute: 0, closedOn: "Lightsday" },
+    closeHour: 23,
+    closeMinute: 0,
+  },
+  {
+    id: "COOKING",
+    label: "Cooking Guild",
+    schedule: { openHour: 5, openMinute: 0, closedOn: "Darksday" },
+    closeHour: 20,
+    closeMinute: 0,
+  },
+  {
+    id: "FISHING",
+    label: "Fishing Guild",
+    schedule: { openHour: 3, openMinute: 0, closedOn: "Lightningday" },
+    closeHour: 18,
+    closeMinute: 0,
+  },
+  {
+    id: "LEATHERCRAFT",
+    label: "Leathercraft Guild",
+    schedule: { openHour: 3, openMinute: 0, closedOn: "Iceday" },
+    closeHour: 18,
+    closeMinute: 0,
+  },
+];
+
 export function nextGuildAlertTarget(now: VanaNowLite, schedule: GuildSchedule, offsetHours: number): PrepTarget {
   const openMinute = schedule.openMinute ?? 0;
   const closedOn = schedule.closedOn ?? null;
@@ -90,13 +173,14 @@ export function nextGuildAlertTarget(now: VanaNowLite, schedule: GuildSchedule, 
  * - closed on Darksday
  */
 export function nextCookingGuildPrepTarget(now: VanaNowLite): PrepTarget {
+  const cookingGuild = GUILD_PRESETS.find((guild) => guild.id === "COOKING");
+  if (!cookingGuild) {
+    throw new Error("Cooking guild preset is missing.");
+  }
+
   return nextGuildAlertTarget(
     now,
-    {
-      openHour: 5,
-      openMinute: 0,
-      closedOn: "Darksday",
-    },
+    cookingGuild.schedule,
     1
   );
 }
@@ -107,13 +191,14 @@ export function nextCookingGuildPrepTarget(now: VanaNowLite): PrepTarget {
  * - closed on Iceday
  */
 export function nextLeathercraftGuildPrepTarget(now: VanaNowLite): PrepTarget {
+  const leathercraftGuild = GUILD_PRESETS.find((guild) => guild.id === "LEATHERCRAFT");
+  if (!leathercraftGuild) {
+    throw new Error("Leathercraft guild preset is missing.");
+  }
+
   return nextGuildAlertTarget(
     now,
-    {
-      openHour: 3,
-      openMinute: 0,
-      closedOn: "Iceday",
-    },
+    leathercraftGuild.schedule,
     2
   );
 }
@@ -124,14 +209,15 @@ export function nextLeathercraftGuildPrepTarget(now: VanaNowLite): PrepTarget {
  * - closed on Firesday
  */
 export function nextClothcraftGuildPrepTarget(now: VanaNowLite): PrepTarget {
+  const clothcraftGuild = GUILD_PRESETS.find((guild) => guild.id === "CLOTHCRAFT");
+  if (!clothcraftGuild) {
+    throw new Error("Clothcraft guild preset is missing.");
+  }
+
   // Back-compat default: 1 hour before open
   return nextGuildAlertTarget(
     now,
-    {
-      openHour: 6,
-      openMinute: 0,
-      closedOn: "Firesday",
-    },
+    clothcraftGuild.schedule,
     1
   );
 }
