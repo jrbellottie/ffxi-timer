@@ -175,11 +175,17 @@ Use **Reset to defaults** under Moon calibration to restore the shipped moon anc
 
 ---
 
+## Deleting the App
+
+- Deleting the app can be done through the uninstall file in the ffxi-timer folder
+- This does not delete the calibration which is stored at %APPDATA%/Roaming/ffxi-timer
+- To clear the cache as well, delete that folder
+
 ## Data & privacy
 
 - All settings and timers are stored **locally** on your machine (inside the app's data folder). Nothing is uploaded anywhere.
 - To start completely fresh, close the app and delete its data folder at
-  `%APPDATA%\ffxi-clock`, then relaunch.
+  `%APPDATA%\Roaming\ffxi-timer`, then relaunch.
 
 ---
 

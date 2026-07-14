@@ -78,7 +78,7 @@ app.on("activate", () => {
 });
 
 app.whenReady().then(() => {
-  app.setAppUserModelId("ffxi-clock");
+  app.setAppUserModelId("ffxi-timer");
 
   createWindow();
 });
