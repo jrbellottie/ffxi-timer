@@ -159,7 +159,7 @@ function isValidTod(raw: string): boolean {
   );
 }
 
-type TabId = "home" | "timers" | "nm" | "presets" | "counters" | "calibration";
+type TabId = "home" | "timers" | "nm" | "presets" | "counters" | "luShang" | "calibration";
 
 type TabDef = {
   id: TabId;
@@ -173,6 +173,7 @@ const TABS: TabDef[] = [
   { id: "nm", label: "NM Timers", icon: "👹" },
   { id: "presets", label: "Presets", icon: "⭐" },
   { id: "counters", label: "Counters", icon: "🔢" },
+  { id: "luShang", label: "Lu Shang", icon: "🐟" },
   { id: "calibration", label: "Calibration", icon: "🛠️" },
 ];
 
@@ -205,6 +206,26 @@ const DEFAULT_COUNTERS: CounterWidgetState = {
   nq: 0,
   break: 0,
 };
+
+type LuShangState = {
+  moatCarp: number;
+};
+
+const LU_SHANG_GOAL = 10000;
+const LU_SHANG_STACK_SIZE = 12;
+const LU_SHANG_MIN = 0;
+const LU_SHANG_MAX = Number.MAX_SAFE_INTEGER;
+
+const DEFAULT_LU_SHANG: LuShangState = {
+  moatCarp: 0,
+};
+
+function normalizeLuShangState(raw: unknown): LuShangState {
+  const obj = raw && typeof raw === "object" ? (raw as Record<string, unknown>) : {};
+  return {
+    moatCarp: clampInt(Number(obj.moatCarp) || 0, LU_SHANG_MIN, LU_SHANG_MAX),
+  };
+}
 
 function normalizeCounterWidgetState(raw: unknown): CounterWidgetState {
   const obj = raw && typeof raw === "object" ? (raw as Record<string, unknown>) : {};
@@ -269,6 +290,14 @@ export default function AppShell() {
   const [counters, setCounters] = useState<CounterWidgetState>(() =>
     normalizeCounterWidgetState(loadJson<unknown>("ffxi_counters_v1", DEFAULT_COUNTERS))
   );
+
+  const [luShang, setLuShang] = useState<LuShangState>(() =>
+    normalizeLuShangState(loadJson<unknown>("ffxi_lu_shang_v1", DEFAULT_LU_SHANG))
+  );
+
+  const [luSinglesInput, setLuSinglesInput] = useState("100");
+  const [luStacksInput, setLuStacksInput] = useState("10");
+  const [luSetTotalInput, setLuSetTotalInput] = useState("");
 
   const [activeTab, setActiveTab] = useState<TabId>(() => {
     const stored = loadJson<TabId>("ffxi_active_tab_v1", "home");
@@ -337,6 +366,7 @@ export default function AppShell() {
   useEffect(() => saveJson("ffxi_show_presets_v1", showPresets), [showPresets]);
   useEffect(() => saveJson("ffxi_preset_offset_hours_v1", presetOffsetHours), [presetOffsetHours]);
   useEffect(() => saveJson("ffxi_counters_v1", counters), [counters]);
+  useEffect(() => saveJson("ffxi_lu_shang_v1", luShang), [luShang]);
   useEffect(() => saveJson("ffxi_active_tab_v1", activeTab), [activeTab]);
 
   // Flash the "Clock & Timers" tab when a new timer is added, so the user can
@@ -979,6 +1009,52 @@ export default function AppShell() {
     }));
   }
 
+  function adjustLuShangCarp(delta: number) {
+    setLuShang((prev) => ({
+      moatCarp: clampInt(prev.moatCarp + Math.floor(delta), LU_SHANG_MIN, LU_SHANG_MAX),
+    }));
+  }
+
+  function parsePositiveWholeInput(raw: string): number | null {
+    if (!raw.trim()) return null;
+    const parsed = Number(raw);
+    if (!Number.isFinite(parsed)) return null;
+    if (!Number.isInteger(parsed)) return null;
+    if (parsed <= 0) return null;
+    return parsed;
+  }
+
+  function applyLuSingles(sign: 1 | -1) {
+    const amount = parsePositiveWholeInput(luSinglesInput);
+    if (amount === null) {
+      alert("Enter a positive whole number for singles.");
+      return;
+    }
+    adjustLuShangCarp(sign * amount);
+  }
+
+  function applyLuStacks(sign: 1 | -1) {
+    const stacks = parsePositiveWholeInput(luStacksInput);
+    if (stacks === null) {
+      alert("Enter a positive whole number for stacks.");
+      return;
+    }
+    adjustLuShangCarp(sign * stacks * LU_SHANG_STACK_SIZE);
+  }
+
+  function setLuShangTotal() {
+    const total = parsePositiveWholeInput(luSetTotalInput);
+    if (total === null) {
+      alert("Enter a positive whole number for total moat carp.");
+      return;
+    }
+    setLuShang({ moatCarp: clampInt(total, LU_SHANG_MIN, LU_SHANG_MAX) });
+  }
+
+  function resetLuShang() {
+    setLuShang(DEFAULT_LU_SHANG);
+  }
+
   const clockCard = (
         <section style={styles.card}>
           <div style={styles.titleRow}>
@@ -1369,6 +1445,158 @@ export default function AppShell() {
                 <button style={styles.buttonCompact} onClick={resetCounters}>
                   Reset counters
                 </button>
+              </div>
+            </div>
+          </div>
+        </section>
+  );
+
+  const luShangRemaining = Math.max(0, LU_SHANG_GOAL - luShang.moatCarp);
+  const luShangProgress = Math.min(100, (luShang.moatCarp / LU_SHANG_GOAL) * 100);
+  const luShangRemainingStacks = Math.ceil(luShangRemaining / LU_SHANG_STACK_SIZE);
+  const luShangSinglesValid = parsePositiveWholeInput(luSinglesInput) !== null;
+  const luShangStacksValid = parsePositiveWholeInput(luStacksInput) !== null;
+  const luShangSetTotalValid = parsePositiveWholeInput(luSetTotalInput) !== null;
+
+  const luShangCard = (
+        <section style={styles.card}>
+          <div style={styles.titleRow}>
+            <h3 style={styles.h3}>Lu Shang Moat Carp Tracker</h3>
+            <div style={styles.sub}>Goal: {LU_SHANG_GOAL.toLocaleString()} moat carp</div>
+          </div>
+
+          <div style={styles.cardBody}>
+            <div style={{ marginTop: 8, display: "grid", gap: 12 }}>
+              <div style={styles.subCard}>
+                <div style={{ display: "grid", gap: 8 }}>
+                  <div style={{ fontSize: 30, fontWeight: 900 }}>{luShang.moatCarp.toLocaleString()}</div>
+                  <div style={styles.sub}>
+                    Remaining: {luShangRemaining.toLocaleString()} carp ({luShangRemainingStacks.toLocaleString()} stacks)
+                  </div>
+                  <div style={styles.sub}>Progress: {luShangProgress.toFixed(2)}%</div>
+                  <div
+                    style={{
+                      height: 12,
+                      borderRadius: 999,
+                      border: "1px solid rgba(255,255,255,0.2)",
+                      background: "rgba(255,255,255,0.08)",
+                      overflow: "hidden",
+                    }}
+                  >
+                    <div
+                      style={{
+                        width: `${luShangProgress}%`,
+                        height: "100%",
+                        background: "linear-gradient(90deg, #4ca4ff 0%, #8af6b0 100%)",
+                        transition: "width 200ms ease",
+                      }}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div style={styles.subCard}>
+                <div style={{ fontWeight: 900 }}>Quick add/subtract</div>
+                <div style={styles.buttonRow}>
+                  <button style={styles.buttonPrimaryCompact} onClick={() => adjustLuShangCarp(1)}>
+                    +1
+                  </button>
+                  <button style={styles.buttonCompact} onClick={() => adjustLuShangCarp(-1)}>
+                    -1
+                  </button>
+                  <button style={styles.buttonPrimaryCompact} onClick={() => adjustLuShangCarp(LU_SHANG_STACK_SIZE)}>
+                    +12 (stack)
+                  </button>
+                  <button style={styles.buttonCompact} onClick={() => adjustLuShangCarp(-LU_SHANG_STACK_SIZE)}>
+                    -12 (stack)
+                  </button>
+                </div>
+              </div>
+
+              <div style={styles.subCard}>
+                <div style={{ fontWeight: 900 }}>Text adjust by singles</div>
+                <div style={{ marginTop: 8, display: "flex", gap: 10, flexWrap: "wrap", alignItems: "center" }}>
+                  <input
+                    style={{ ...styles.inputCompact, width: 180, ...(luShangSinglesValid ? {} : styles.inputError) }}
+                    type="number"
+                    inputMode="numeric"
+                    min={1}
+                    step={1}
+                    value={luSinglesInput}
+                    onChange={(e) => setLuSinglesInput(e.target.value)}
+                    placeholder="e.g. 240"
+                  />
+                  <button
+                    style={{ ...styles.buttonPrimaryCompact, ...(luShangSinglesValid ? {} : styles.buttonDisabled) }}
+                    onClick={() => applyLuSingles(1)}
+                    disabled={!luShangSinglesValid}
+                  >
+                    Add singles
+                  </button>
+                  <button
+                    style={{ ...styles.buttonCompact, ...(luShangSinglesValid ? {} : styles.buttonDisabled) }}
+                    onClick={() => applyLuSingles(-1)}
+                    disabled={!luShangSinglesValid}
+                  >
+                    Subtract singles
+                  </button>
+                </div>
+              </div>
+
+              <div style={styles.subCard}>
+                <div style={{ fontWeight: 900 }}>Text adjust by stacks (x{LU_SHANG_STACK_SIZE})</div>
+                <div style={{ marginTop: 8, display: "flex", gap: 10, flexWrap: "wrap", alignItems: "center" }}>
+                  <input
+                    style={{ ...styles.inputCompact, width: 180, ...(luShangStacksValid ? {} : styles.inputError) }}
+                    type="number"
+                    inputMode="numeric"
+                    min={1}
+                    step={1}
+                    value={luStacksInput}
+                    onChange={(e) => setLuStacksInput(e.target.value)}
+                    placeholder="e.g. 20 stacks"
+                  />
+                  <button
+                    style={{ ...styles.buttonPrimaryCompact, ...(luShangStacksValid ? {} : styles.buttonDisabled) }}
+                    onClick={() => applyLuStacks(1)}
+                    disabled={!luShangStacksValid}
+                  >
+                    Add stacks
+                  </button>
+                  <button
+                    style={{ ...styles.buttonCompact, ...(luShangStacksValid ? {} : styles.buttonDisabled) }}
+                    onClick={() => applyLuStacks(-1)}
+                    disabled={!luShangStacksValid}
+                  >
+                    Subtract stacks
+                  </button>
+                </div>
+              </div>
+
+              <div style={styles.subCard}>
+                <div style={{ fontWeight: 900 }}>Set total directly</div>
+                <div style={{ marginTop: 8, display: "flex", gap: 10, flexWrap: "wrap", alignItems: "center" }}>
+                  <input
+                    style={{ ...styles.inputCompact, width: 180, ...(luShangSetTotalValid ? {} : styles.inputError) }}
+                    type="number"
+                    inputMode="numeric"
+                    min={1}
+                    step={1}
+                    value={luSetTotalInput}
+                    onChange={(e) => setLuSetTotalInput(e.target.value)}
+                    placeholder="e.g. 3520"
+                  />
+                  <button
+                    style={{ ...styles.buttonPrimaryCompact, ...(luShangSetTotalValid ? {} : styles.buttonDisabled) }}
+                    onClick={setLuShangTotal}
+                    disabled={!luShangSetTotalValid}
+                  >
+                    Set total
+                  </button>
+                  <button style={styles.buttonCompact} onClick={resetLuShang}>
+                    Reset to 0
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -2020,6 +2248,15 @@ export default function AppShell() {
         <div style={styles.tabContent}>
           <div>
             <div style={{ ...styles.tabGrid, alignItems: "start", gridAutoRows: "max-content" }}>{countersCard}</div>
+          </div>
+          <div style={{ display: "flex", justifyContent: "flex-end" }}>{backBar}</div>
+        </div>
+      )}
+
+      {activeTab === "luShang" && (
+        <div style={styles.tabContent}>
+          <div>
+            <div style={{ ...styles.tabGrid, alignItems: "start", gridAutoRows: "max-content" }}>{luShangCard}</div>
           </div>
           <div style={{ display: "flex", justifyContent: "flex-end" }}>{backBar}</div>
         </div>
