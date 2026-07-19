@@ -21,6 +21,8 @@ import { WEEKDAYS, WEEKDAY_COLORS, weekdayStyle } from "./utils/weekday";
 import { moonDirGlyph, moonGlyphStyle, moonPhaseStyle } from "./utils/moon";
 import { buildTenshodoPresets, GUILD_PRESETS, nextGuildAlertTarget } from "./utils/guilds";
 import { getNextNmLotteryEvent, getNextNmTimedWindowEvent } from "./utils/nm";
+import FishTab from "./FishTab";
+import BaitTab from "./BaitTab";
 
 function clampInt(n: number, min: number, max: number) {
   return Math.max(min, Math.min(max, Math.floor(n)));
@@ -159,7 +161,7 @@ function isValidTod(raw: string): boolean {
   );
 }
 
-type TabId = "home" | "timers" | "nm" | "presets" | "counters" | "luShang" | "calibration";
+type TabId = "home" | "timers" | "nm" | "presets" | "counters" | "luShang" | "fish" | "bait" | "calibration";
 
 type TabDef = {
   id: TabId;
@@ -173,7 +175,9 @@ const TABS: TabDef[] = [
   { id: "nm", label: "NM Timers", icon: "👹" },
   { id: "presets", label: "Presets", icon: "⭐" },
   { id: "counters", label: "Counters", icon: "🔢" },
-  { id: "luShang", label: "Lu Shang", icon: "🐟" },
+  { id: "luShang", label: "Lu Shang", icon: "🎣" },
+  { id: "fish", label: "Fish", icon: "🐟" },
+  { id: "bait", label: "Bait", icon: "🪱" },
   { id: "calibration", label: "Calibration", icon: "🛠️" },
 ];
 
@@ -2258,6 +2262,20 @@ export default function AppShell() {
           <div>
             <div style={{ ...styles.tabGrid, alignItems: "start", gridAutoRows: "max-content" }}>{luShangCard}</div>
           </div>
+          <div style={{ display: "flex", justifyContent: "flex-end" }}>{backBar}</div>
+        </div>
+      )}
+
+      {activeTab === "fish" && (
+        <div style={styles.tabContent}>
+          <FishTab />
+          <div style={{ display: "flex", justifyContent: "flex-end" }}>{backBar}</div>
+        </div>
+      )}
+
+      {activeTab === "bait" && (
+        <div style={styles.tabContent}>
+          <BaitTab />
           <div style={{ display: "flex", justifyContent: "flex-end" }}>{backBar}</div>
         </div>
       )}

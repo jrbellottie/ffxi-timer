@@ -1,0 +1,7839 @@
+[
+ {
+  "zone": "Aht Urhgan Whitegate",
+  "area": "Whole Zone",
+  "fish": "Hamsi",
+  "lvl": 9,
+  "bait": "Lugworm",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Aht Urhgan Whitegate",
+  "area": "Whole Zone",
+  "fish": "Kalamar",
+  "lvl": 48,
+  "bait": "Slice of Bluetail",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Al Zahbi",
+  "area": "Whole Zone",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Al Zahbi",
+  "area": "Whole Zone",
+  "fish": "Kayabaligi",
+  "lvl": 75,
+  "bait": "Minnow",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Al Zahbi",
+  "area": "Whole Zone",
+  "fish": "Moat Carp",
+  "lvl": 11,
+  "bait": "Robber Rig",
+  "bite": "Rare",
+  "sharePct": 50,
+  "competing": [
+   "Crayfish"
+  ]
+ },
+ {
+  "zone": "Al Zahbi",
+  "area": "Whole Zone",
+  "fish": "Sazanbaligi",
+  "lvl": 56,
+  "bait": "Shrimp Lure",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Al Zahbi",
+  "area": "Whole Zone",
+  "fish": "Tiny Goldfish",
+  "lvl": 20,
+  "bait": "Worm Lure",
+  "bite": "Uncommon",
+  "sharePct": 41,
+  "competing": [
+   "Yilanbaligi",
+   "Kayabaligi"
+  ]
+ },
+ {
+  "zone": "Al Zahbi",
+  "area": "Whole Zone",
+  "fish": "Yilanbaligi",
+  "lvl": 47,
+  "bait": "Ball of Trout Paste",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Arrapago Reef",
+  "area": "Whole Zone",
+  "fish": "Ahtapot",
+  "lvl": 90,
+  "bait": "Peeled Lobster",
+  "bite": "Uncommon",
+  "sharePct": 56,
+  "competing": [
+   "Mercanbaligi"
+  ]
+ },
+ {
+  "zone": "Arrapago Reef",
+  "area": "Whole Zone",
+  "fish": "Istakoz",
+  "lvl": 46,
+  "bait": "Minnow",
+  "bite": "Uncommon",
+  "sharePct": 71,
+  "competing": [
+   "Mercanbaligi"
+  ]
+ },
+ {
+  "zone": "Arrapago Reef",
+  "area": "Whole Zone",
+  "fish": "Istiridye",
+  "lvl": 53,
+  "bait": "Robber Rig",
+  "bite": "Rare",
+  "sharePct": 54,
+  "competing": [
+   "Istakoz",
+   "Mercanbaligi"
+  ]
+ },
+ {
+  "zone": "Arrapago Reef",
+  "area": "Whole Zone",
+  "fish": "Mercanbaligi",
+  "lvl": 86,
+  "bait": "Shrimp Lure",
+  "bite": "Common",
+  "sharePct": 49,
+  "competing": [
+   "Ahtapot"
+  ]
+ },
+ {
+  "zone": "Arrapago Reef",
+  "area": "Whole Zone",
+  "fish": "Rhinochimera",
+  "lvl": 72,
+  "bait": "Worm Lure",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Aydeewa Subterrane",
+  "area": "Whole Zone",
+  "fish": "Blindfish",
+  "lvl": 28,
+  "bait": "Ball of Insect Paste",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Aydeewa Subterrane",
+  "area": "Whole Zone",
+  "fish": "Cave Cherax",
+  "lvl": 130,
+  "bait": "Rotten Meat",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Aydeewa Subterrane",
+  "area": "Whole Zone",
+  "fish": "Lamp Marimo",
+  "lvl": 3,
+  "bait": "Sabiki Rig",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Bastok Markets",
+  "area": "North Side",
+  "fish": "Black Eel",
+  "lvl": 47,
+  "bait": "Ball of Crayfish Paste",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Bastok Markets",
+  "area": "North Side",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Bastok Markets",
+  "area": "North Side",
+  "fish": "Gold Carp",
+  "lvl": 56,
+  "bait": "Shrimp Lure",
+  "bite": "Common",
+  "sharePct": 43,
+  "competing": [
+   "Tricolored Carp"
+  ]
+ },
+ {
+  "zone": "Bastok Markets",
+  "area": "North Side",
+  "fish": "Moat Carp",
+  "lvl": 11,
+  "bait": "Ball of Insect Paste",
+  "bite": "Common",
+  "sharePct": 40,
+  "competing": [
+   "Tricolored Carp",
+   "Gold Carp"
+  ]
+ },
+ {
+  "zone": "Bastok Markets",
+  "area": "North Side",
+  "fish": "Tricolored Carp",
+  "lvl": 27,
+  "bait": "Shrimp Lure",
+  "bite": "Common",
+  "sharePct": 57,
+  "competing": [
+   "Gold Carp"
+  ]
+ },
+ {
+  "zone": "Bastok Markets",
+  "area": "South Side",
+  "fish": "Black Eel",
+  "lvl": 47,
+  "bait": "Ball of Crayfish Paste",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Bastok Markets",
+  "area": "South Side",
+  "fish": "Dark Bass",
+  "lvl": 33,
+  "bait": "Slice of Moat Carp",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Bastok Markets",
+  "area": "South Side",
+  "fish": "Giant Catfish",
+  "lvl": 31,
+  "bait": "Slice of Sardine",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Bastok Markets",
+  "area": "South Side",
+  "fish": "Moat Carp",
+  "lvl": 11,
+  "bait": "Ball of Insect Paste",
+  "bite": "Common",
+  "sharePct": 54,
+  "competing": [
+   "Dark Bass"
+  ]
+ },
+ {
+  "zone": "Bastok Mines",
+  "area": "Whole Zone",
+  "fish": "Copper Frog",
+  "lvl": 16,
+  "bait": "Fly Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Bastok Mines",
+  "area": "Whole Zone",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Batallia Downs",
+  "area": "North Seaside",
+  "fish": "Bastore Sardine",
+  "lvl": 9,
+  "bait": "Sabiki Rig",
+  "bite": "Common",
+  "sharePct": 23,
+  "competing": [
+   "Yellow Globe",
+   "Cone Calamary"
+  ]
+ },
+ {
+  "zone": "Batallia Downs",
+  "area": "North Seaside",
+  "fish": "Black Sole",
+  "lvl": 96,
+  "bait": "Sinking Minnow",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Batallia Downs",
+  "area": "North Seaside",
+  "fish": "Bluetail",
+  "lvl": 55,
+  "bait": "Peeled Lobster",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Batallia Downs",
+  "area": "North Seaside",
+  "fish": "Cone Calamary",
+  "lvl": 48,
+  "bait": "Slice of Cod",
+  "bite": "Uncommon",
+  "sharePct": 79,
+  "competing": [
+   "Black Sole"
+  ]
+ },
+ {
+  "zone": "Batallia Downs",
+  "area": "North Seaside",
+  "fish": "Nosteau Herring",
+  "lvl": 39,
+  "bait": "Ball of Sardine Paste",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Batallia Downs",
+  "area": "North Seaside",
+  "fish": "Silver Shark",
+  "lvl": 76,
+  "bait": "Meatball",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Batallia Downs",
+  "area": "North Seaside",
+  "fish": "Tiger Cod",
+  "lvl": 29,
+  "bait": "Shrimp Lure",
+  "bite": "Uncommon",
+  "sharePct": 46,
+  "competing": [
+   "Black Sole",
+   "Nosteau Herring"
+  ]
+ },
+ {
+  "zone": "Batallia Downs",
+  "area": "North Seaside",
+  "fish": "Yellow Globe",
+  "lvl": 17,
+  "bait": "Worm Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Batallia Downs",
+  "area": "South Seaside",
+  "fish": "Bastore Sardine",
+  "lvl": 9,
+  "bait": "Sabiki Rig",
+  "bite": "Common",
+  "sharePct": 23,
+  "competing": [
+   "Yellow Globe",
+   "Cone Calamary"
+  ]
+ },
+ {
+  "zone": "Batallia Downs",
+  "area": "South Seaside",
+  "fish": "Black Sole",
+  "lvl": 96,
+  "bait": "Sinking Minnow",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Batallia Downs",
+  "area": "South Seaside",
+  "fish": "Bluetail",
+  "lvl": 55,
+  "bait": "Peeled Lobster",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Batallia Downs",
+  "area": "South Seaside",
+  "fish": "Cone Calamary",
+  "lvl": 48,
+  "bait": "Slice of Cod",
+  "bite": "Uncommon",
+  "sharePct": 79,
+  "competing": [
+   "Black Sole"
+  ]
+ },
+ {
+  "zone": "Batallia Downs",
+  "area": "South Seaside",
+  "fish": "Nosteau Herring",
+  "lvl": 39,
+  "bait": "Ball of Sardine Paste",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Batallia Downs",
+  "area": "South Seaside",
+  "fish": "Silver Shark",
+  "lvl": 76,
+  "bait": "Meatball",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Batallia Downs",
+  "area": "South Seaside",
+  "fish": "Tiger Cod",
+  "lvl": 29,
+  "bait": "Shrimp Lure",
+  "bite": "Uncommon",
+  "sharePct": 46,
+  "competing": [
+   "Black Sole",
+   "Nosteau Herring"
+  ]
+ },
+ {
+  "zone": "Batallia Downs",
+  "area": "South Seaside",
+  "fish": "Yellow Globe",
+  "lvl": 17,
+  "bait": "Worm Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Beaucedine Glacier",
+  "area": "Seaside",
+  "fish": "Black Sole",
+  "lvl": 96,
+  "bait": "Sinking Minnow",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Beaucedine Glacier",
+  "area": "Seaside",
+  "fish": "Bluetail",
+  "lvl": 55,
+  "bait": "Peeled Lobster",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Beaucedine Glacier",
+  "area": "Seaside",
+  "fish": "Cone Calamary",
+  "lvl": 48,
+  "bait": "Slice of Bluetail",
+  "bite": "Uncommon",
+  "sharePct": 79,
+  "competing": [
+   "Gigant Squid"
+  ]
+ },
+ {
+  "zone": "Beaucedine Glacier",
+  "area": "Seaside",
+  "fish": "Gigant Squid",
+  "lvl": 91,
+  "bait": "Slice of Bluetail",
+  "bite": "Uncommon",
+  "sharePct": 21,
+  "competing": [
+   "Cone Calamary"
+  ]
+ },
+ {
+  "zone": "Beaucedine Glacier",
+  "area": "Seaside",
+  "fish": "Nosteau Herring",
+  "lvl": 39,
+  "bait": "Ball of Sardine Paste",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Beaucedine Glacier",
+  "area": "Seaside",
+  "fish": "Tiger Cod",
+  "lvl": 29,
+  "bait": "Shrimp Lure",
+  "bite": "Uncommon",
+  "sharePct": 46,
+  "competing": [
+   "Black Sole",
+   "Nosteau Herring"
+  ]
+ },
+ {
+  "zone": "Beaucedine Glacier",
+  "area": "Seaside",
+  "fish": "Yellow Globe",
+  "lvl": 17,
+  "bait": "Worm Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Beaucedine Glacier",
+  "area": "Ponds",
+  "fish": "Emperor Fish",
+  "lvl": 91,
+  "bait": "Ball of Trout Paste",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Beaucedine Glacier",
+  "area": "Ponds",
+  "fish": "Icefish",
+  "lvl": 49,
+  "bait": "Sabiki Rig",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Bhaflau Thickets",
+  "area": "Whole Zone",
+  "fish": "Alabaligi",
+  "lvl": 37,
+  "bait": "Fly Lure",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Bhaflau Thickets",
+  "area": "Whole Zone",
+  "fish": "Dark Bass",
+  "lvl": 33,
+  "bait": "Slice of Moat Carp",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Bhaflau Thickets",
+  "area": "Whole Zone",
+  "fish": "Kayabaligi",
+  "lvl": 75,
+  "bait": "Little Worm",
+  "bite": "Uncommon",
+  "sharePct": 31,
+  "competing": [
+   "Yilanbaligi",
+   "Sazanbaligi"
+  ]
+ },
+ {
+  "zone": "Bhaflau Thickets",
+  "area": "Whole Zone",
+  "fish": "Morinabaligi",
+  "lvl": 94,
+  "bait": "Peeled Crayfish",
+  "bite": "Uncommon",
+  "sharePct": 20,
+  "competing": [
+   "Dark Bass",
+   "Yilanbaligi"
+  ]
+ },
+ {
+  "zone": "Bhaflau Thickets",
+  "area": "Whole Zone",
+  "fish": "Sazanbaligi",
+  "lvl": 56,
+  "bait": "Shrimp Lure",
+  "bite": "Uncommon",
+  "sharePct": 55,
+  "competing": [
+   "Turnabaligi"
+  ]
+ },
+ {
+  "zone": "Bhaflau Thickets",
+  "area": "Whole Zone",
+  "fish": "Turnabaligi",
+  "lvl": 104,
+  "bait": "Shrimp Lure",
+  "bite": "Common",
+  "sharePct": 45,
+  "competing": [
+   "Sazanbaligi"
+  ]
+ },
+ {
+  "zone": "Bhaflau Thickets",
+  "area": "Whole Zone",
+  "fish": "Yilanbaligi",
+  "lvl": 47,
+  "bait": "Little Worm",
+  "bite": "Uncommon",
+  "sharePct": 38,
+  "competing": [
+   "Sazanbaligi",
+   "Kayabaligi"
+  ]
+ },
+ {
+  "zone": "Bibiki Bay",
+  "area": "PI - South Beach",
+  "fish": "Bibikibo",
+  "lvl": 8,
+  "bait": "Fly Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Bibiki Bay",
+  "area": "PI - South Beach",
+  "fish": "Moorish Idol",
+  "lvl": 26,
+  "bait": "Peeled Lobster",
+  "bite": "Uncommon",
+  "sharePct": 76,
+  "competing": [
+   "Bibikibo"
+  ]
+ },
+ {
+  "zone": "Bibiki Bay",
+  "area": "PI - South Beach",
+  "fish": "Quus",
+  "lvl": 19,
+  "bait": "Sabiki Rig",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Bibiki Bay",
+  "area": "PI - South Beach",
+  "fish": "Shall Shell",
+  "lvl": 53,
+  "bait": "Rogue Rig",
+  "bite": "Uncommon",
+  "sharePct": 45,
+  "competing": [
+   "Quus",
+   "Vongola Clam"
+  ]
+ },
+ {
+  "zone": "Bibiki Bay",
+  "area": "PI - South Beach",
+  "fish": "Trilobite",
+  "lvl": 59,
+  "bait": "Worm Lure",
+  "bite": "Common",
+  "sharePct": 53,
+  "competing": [
+   "Bibikibo",
+   "Moorish Idol"
+  ]
+ },
+ {
+  "zone": "Bibiki Bay",
+  "area": "PI - South Beach",
+  "fish": "Vongola Clam",
+  "lvl": 53,
+  "bait": "Ball of Crayfish Paste",
+  "bite": "Uncommon",
+  "sharePct": 35,
+  "competing": [
+   "Shall Shell",
+   "Moorish Idol"
+  ]
+ },
+ {
+  "zone": "Bibiki Bay",
+  "area": "PI - North Beach",
+  "fish": "Bastore Sardine",
+  "lvl": 9,
+  "bait": "Sabiki Rig",
+  "bite": "Common",
+  "sharePct": 37,
+  "competing": [
+   "Quus"
+  ]
+ },
+ {
+  "zone": "Bibiki Bay",
+  "area": "PI - North Beach",
+  "fish": "Bluetail",
+  "lvl": 55,
+  "bait": "Minnow",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Bibiki Bay",
+  "area": "PI - North Beach",
+  "fish": "Moorish Idol",
+  "lvl": 26,
+  "bait": "Peeled Lobster",
+  "bite": "Uncommon",
+  "sharePct": 52,
+  "competing": [
+   "Bluetail"
+  ]
+ },
+ {
+  "zone": "Bibiki Bay",
+  "area": "PI - North Beach",
+  "fish": "Quus",
+  "lvl": 19,
+  "bait": "Sabiki Rig",
+  "bite": "Uncommon",
+  "sharePct": 63,
+  "competing": [
+   "Bastore Sardine"
+  ]
+ },
+ {
+  "zone": "Bibiki Bay",
+  "area": "PI - North Beach",
+  "fish": "Shall Shell",
+  "lvl": 53,
+  "bait": "Ball of Crayfish Paste",
+  "bite": "Uncommon",
+  "sharePct": 39,
+  "competing": [
+   "Moorish Idol",
+   "Vongola Clam"
+  ]
+ },
+ {
+  "zone": "Bibiki Bay",
+  "area": "PI - North Beach",
+  "fish": "Trilobite",
+  "lvl": 59,
+  "bait": "Worm Lure",
+  "bite": "Common",
+  "sharePct": 59,
+  "competing": [
+   "Moorish Idol"
+  ]
+ },
+ {
+  "zone": "Bibiki Bay",
+  "area": "PI - North Beach",
+  "fish": "Vongola Clam",
+  "lvl": 53,
+  "bait": "Peeled Crayfish",
+  "bite": "Uncommon",
+  "sharePct": 35,
+  "competing": [
+   "Trilobite",
+   "Moorish Idol"
+  ]
+ },
+ {
+  "zone": "Bibiki Bay",
+  "area": "PI - West Beach",
+  "fish": "Bastore Sardine",
+  "lvl": 9,
+  "bait": "Sabiki Rig",
+  "bite": "Common",
+  "sharePct": 37,
+  "competing": [
+   "Quus"
+  ]
+ },
+ {
+  "zone": "Bibiki Bay",
+  "area": "PI - West Beach",
+  "fish": "Bluetail",
+  "lvl": 55,
+  "bait": "Minnow",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Bibiki Bay",
+  "area": "PI - West Beach",
+  "fish": "Moorish Idol",
+  "lvl": 26,
+  "bait": "Worm Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Bibiki Bay",
+  "area": "PI - West Beach",
+  "fish": "Quus",
+  "lvl": 19,
+  "bait": "Sabiki Rig",
+  "bite": "Uncommon",
+  "sharePct": 63,
+  "competing": [
+   "Bastore Sardine"
+  ]
+ },
+ {
+  "zone": "Bibiki Bay",
+  "area": "PI - West Beach",
+  "fish": "Shall Shell",
+  "lvl": 53,
+  "bait": "Ball of Crayfish Paste",
+  "bite": "Uncommon",
+  "sharePct": 39,
+  "competing": [
+   "Moorish Idol",
+   "Vongola Clam"
+  ]
+ },
+ {
+  "zone": "Bibiki Bay",
+  "area": "PI - West Beach",
+  "fish": "Vongola Clam",
+  "lvl": 53,
+  "bait": "Peeled Crayfish",
+  "bite": "Uncommon",
+  "sharePct": 57,
+  "competing": [
+   "Moorish Idol"
+  ]
+ },
+ {
+  "zone": "Bibiki Bay",
+  "area": "PI - East Beach",
+  "fish": "Bastore Sardine",
+  "lvl": 9,
+  "bait": "Sabiki Rig",
+  "bite": "Common",
+  "sharePct": 37,
+  "competing": [
+   "Quus"
+  ]
+ },
+ {
+  "zone": "Bibiki Bay",
+  "area": "PI - East Beach",
+  "fish": "Bluetail",
+  "lvl": 55,
+  "bait": "Minnow",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Bibiki Bay",
+  "area": "PI - East Beach",
+  "fish": "Moorish Idol",
+  "lvl": 26,
+  "bait": "Worm Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Bibiki Bay",
+  "area": "PI - East Beach",
+  "fish": "Quus",
+  "lvl": 19,
+  "bait": "Sabiki Rig",
+  "bite": "Uncommon",
+  "sharePct": 63,
+  "competing": [
+   "Bastore Sardine"
+  ]
+ },
+ {
+  "zone": "Bibiki Bay",
+  "area": "PI - East Beach",
+  "fish": "Shall Shell",
+  "lvl": 53,
+  "bait": "Ball of Crayfish Paste",
+  "bite": "Uncommon",
+  "sharePct": 39,
+  "competing": [
+   "Moorish Idol",
+   "Vongola Clam"
+  ]
+ },
+ {
+  "zone": "Bibiki Bay",
+  "area": "PI - East Beach",
+  "fish": "Vongola Clam",
+  "lvl": 53,
+  "bait": "Peeled Crayfish",
+  "bite": "Uncommon",
+  "sharePct": 57,
+  "competing": [
+   "Moorish Idol"
+  ]
+ },
+ {
+  "zone": "Bibiki Bay",
+  "area": "BB - South Seaside",
+  "fish": "Bastore Sardine",
+  "lvl": 9,
+  "bait": "Sabiki Rig",
+  "bite": "Common",
+  "sharePct": 41,
+  "competing": [
+   "Cone Calamary"
+  ]
+ },
+ {
+  "zone": "Bibiki Bay",
+  "area": "BB - South Seaside",
+  "fish": "Bladefish",
+  "lvl": 71,
+  "bait": "Meatball",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Bibiki Bay",
+  "area": "BB - South Seaside",
+  "fish": "Cone Calamary",
+  "lvl": 48,
+  "bait": "Slice of Cod",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Bibiki Bay",
+  "area": "BB - South Seaside",
+  "fish": "Zafmlug Bass",
+  "lvl": 43,
+  "bait": "Worm Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Bibiki Bay",
+  "area": "BB - Other Seaside",
+  "fish": "Bastore Sardine",
+  "lvl": 9,
+  "bait": "Robber Rig",
+  "bite": "Rare",
+  "sharePct": 49,
+  "competing": [
+   "Zafmlug Bass"
+  ]
+ },
+ {
+  "zone": "Bibiki Bay",
+  "area": "BB - Other Seaside",
+  "fish": "Cone Calamary",
+  "lvl": 48,
+  "bait": "Slice of Bluetail",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Bibiki Bay",
+  "area": "BB - Other Seaside",
+  "fish": "Zafmlug Bass",
+  "lvl": 43,
+  "bait": "Worm Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Bostaunieux Oubliette",
+  "area": "Whole Zone",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Buburimu Peninsula",
+  "area": "Whole Zone",
+  "fish": "Bluetail",
+  "lvl": 55,
+  "bait": "Minnow",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Buburimu Peninsula",
+  "area": "Whole Zone",
+  "fish": "Shall Shell",
+  "lvl": 53,
+  "bait": "Robber Rig",
+  "bite": "Common",
+  "sharePct": 57,
+  "competing": [
+   "Bluetail",
+   "Yellow Globe"
+  ]
+ },
+ {
+  "zone": "Buburimu Peninsula",
+  "area": "Whole Zone",
+  "fish": "Yellow Globe",
+  "lvl": 17,
+  "bait": "Worm Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Caedarva Mire",
+  "area": "Whole Zone",
+  "fish": "Black Ghost",
+  "lvl": 88,
+  "bait": "Little Worm",
+  "bite": "Uncommon",
+  "sharePct": 31,
+  "competing": [
+   "Crayfish"
+  ]
+ },
+ {
+  "zone": "Caedarva Mire",
+  "area": "Whole Zone",
+  "fish": "Caedarva Frog",
+  "lvl": 30,
+  "bait": "Fly Lure",
+  "bite": "Uncommon",
+  "sharePct": 56,
+  "competing": [
+   "Kaplumbaga"
+  ]
+ },
+ {
+  "zone": "Caedarva Mire",
+  "area": "Whole Zone",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Little Worm",
+  "bite": "Uncommon",
+  "sharePct": 69,
+  "competing": [
+   "Black Ghost"
+  ]
+ },
+ {
+  "zone": "Caedarva Mire",
+  "area": "Whole Zone",
+  "fish": "Dark Bass",
+  "lvl": 33,
+  "bait": "Ball of Sardine Paste",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Caedarva Mire",
+  "area": "Whole Zone",
+  "fish": "Kaplumbaga",
+  "lvl": 53,
+  "bait": "Fly Lure",
+  "bite": "Uncommon",
+  "sharePct": 44,
+  "competing": [
+   "Caedarva Frog"
+  ]
+ },
+ {
+  "zone": "Caedarva Mire",
+  "area": "Whole Zone",
+  "fish": "Yayinbaligi",
+  "lvl": 31,
+  "bait": "Sinking Minnow",
+  "bite": "Uncommon",
+  "sharePct": 38,
+  "competing": [
+   "Dark Bass",
+   "Black Ghost"
+  ]
+ },
+ {
+  "zone": "Cape Teriggan",
+  "area": "Whole Zone",
+  "fish": "Bastore Sardine",
+  "lvl": 9,
+  "bait": "Sabiki Rig",
+  "bite": "Common",
+  "sharePct": 37,
+  "competing": [
+   "Quus"
+  ]
+ },
+ {
+  "zone": "Cape Teriggan",
+  "area": "Whole Zone",
+  "fish": "Greedie",
+  "lvl": 14,
+  "bait": "Minnow",
+  "bite": "Common",
+  "sharePct": 54,
+  "competing": [
+   "Zafmlug Bass"
+  ]
+ },
+ {
+  "zone": "Cape Teriggan",
+  "area": "Whole Zone",
+  "fish": "Quus",
+  "lvl": 19,
+  "bait": "Sabiki Rig",
+  "bite": "Uncommon",
+  "sharePct": 63,
+  "competing": [
+   "Bastore Sardine"
+  ]
+ },
+ {
+  "zone": "Cape Teriggan",
+  "area": "Whole Zone",
+  "fish": "Shall Shell",
+  "lvl": 53,
+  "bait": "Robber Rig",
+  "bite": "Common",
+  "sharePct": 36,
+  "competing": [
+   "Bastore Sardine",
+   "Zafmlug Bass",
+   "Greedie",
+   "Quus"
+  ]
+ },
+ {
+  "zone": "Cape Teriggan",
+  "area": "Whole Zone",
+  "fish": "Zafmlug Bass",
+  "lvl": 43,
+  "bait": "Worm Lure",
+  "bite": "Common",
+  "sharePct": 54,
+  "competing": [
+   "Greedie"
+  ]
+ },
+ {
+  "zone": "Carpenters Landing",
+  "area": "South Landing",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 54,
+  "competing": [
+   "Dark Bass"
+  ]
+ },
+ {
+  "zone": "Carpenters Landing",
+  "area": "South Landing",
+  "fish": "Dark Bass",
+  "lvl": 33,
+  "bait": "Giant Shell Bug",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Carpenters Landing",
+  "area": "South Landing",
+  "fish": "Muddy Siredon",
+  "lvl": 18,
+  "bait": "Frog Lure",
+  "bite": "Common",
+  "sharePct": 54,
+  "competing": [
+   "Dark Bass"
+  ]
+ },
+ {
+  "zone": "Carpenters Landing",
+  "area": "South Landing",
+  "fish": "Shining Trout",
+  "lvl": 37,
+  "bait": "Fly Lure",
+  "bite": "Common",
+  "sharePct": 54,
+  "competing": [
+   "Muddy Siredon"
+  ]
+ },
+ {
+  "zone": "Carpenters Landing",
+  "area": "Other Waterside South",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 54,
+  "competing": [
+   "Dark Bass"
+  ]
+ },
+ {
+  "zone": "Carpenters Landing",
+  "area": "Other Waterside South",
+  "fish": "Dark Bass",
+  "lvl": 33,
+  "bait": "Giant Shell Bug",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Carpenters Landing",
+  "area": "Other Waterside South",
+  "fish": "Giant Catfish",
+  "lvl": 31,
+  "bait": "Slice of Sardine",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Carpenters Landing",
+  "area": "Other Waterside South",
+  "fish": "Muddy Siredon",
+  "lvl": 18,
+  "bait": "Lufaise Fly",
+  "bite": "Uncommon",
+  "sharePct": 50,
+  "competing": [
+   "Phanauet Newt"
+  ]
+ },
+ {
+  "zone": "Carpenters Landing",
+  "area": "Other Waterside South",
+  "fish": "Phanauet Newt",
+  "lvl": 4,
+  "bait": "Fly Lure",
+  "bite": "Common",
+  "sharePct": 54,
+  "competing": [
+   "Muddy Siredon"
+  ]
+ },
+ {
+  "zone": "Carpenters Landing",
+  "area": "Other Waterside Center",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 54,
+  "competing": [
+   "Dark Bass"
+  ]
+ },
+ {
+  "zone": "Carpenters Landing",
+  "area": "Other Waterside Center",
+  "fish": "Dark Bass",
+  "lvl": 33,
+  "bait": "Giant Shell Bug",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Carpenters Landing",
+  "area": "Other Waterside Center",
+  "fish": "Giant Catfish",
+  "lvl": 31,
+  "bait": "Slice of Sardine",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Carpenters Landing",
+  "area": "Other Waterside Center",
+  "fish": "Muddy Siredon",
+  "lvl": 18,
+  "bait": "Lufaise Fly",
+  "bite": "Uncommon",
+  "sharePct": 50,
+  "competing": [
+   "Phanauet Newt"
+  ]
+ },
+ {
+  "zone": "Carpenters Landing",
+  "area": "Other Waterside Center",
+  "fish": "Phanauet Newt",
+  "lvl": 4,
+  "bait": "Fly Lure",
+  "bite": "Common",
+  "sharePct": 54,
+  "competing": [
+   "Muddy Siredon"
+  ]
+ },
+ {
+  "zone": "Carpenters Landing",
+  "area": "Other Waterside North",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 54,
+  "competing": [
+   "Dark Bass"
+  ]
+ },
+ {
+  "zone": "Carpenters Landing",
+  "area": "Other Waterside North",
+  "fish": "Dark Bass",
+  "lvl": 33,
+  "bait": "Giant Shell Bug",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Carpenters Landing",
+  "area": "Other Waterside North",
+  "fish": "Giant Catfish",
+  "lvl": 31,
+  "bait": "Slice of Sardine",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Carpenters Landing",
+  "area": "Other Waterside North",
+  "fish": "Muddy Siredon",
+  "lvl": 18,
+  "bait": "Lufaise Fly",
+  "bite": "Uncommon",
+  "sharePct": 50,
+  "competing": [
+   "Phanauet Newt"
+  ]
+ },
+ {
+  "zone": "Carpenters Landing",
+  "area": "Other Waterside North",
+  "fish": "Phanauet Newt",
+  "lvl": 4,
+  "bait": "Fly Lure",
+  "bite": "Common",
+  "sharePct": 54,
+  "competing": [
+   "Muddy Siredon"
+  ]
+ },
+ {
+  "zone": "Carpenters Landing",
+  "area": "Central Landing",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Little Worm",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Carpenters Landing",
+  "area": "Central Landing",
+  "fish": "Dark Bass",
+  "lvl": 33,
+  "bait": "Minnow",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Carpenters Landing",
+  "area": "Central Landing",
+  "fish": "Muddy Siredon",
+  "lvl": 18,
+  "bait": "Fly Lure",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Carpenters Landing",
+  "area": "North Landing",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 54,
+  "competing": [
+   "Dark Bass"
+  ]
+ },
+ {
+  "zone": "Carpenters Landing",
+  "area": "North Landing",
+  "fish": "Dark Bass",
+  "lvl": 33,
+  "bait": "Giant Shell Bug",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Carpenters Landing",
+  "area": "North Landing",
+  "fish": "Muddy Siredon",
+  "lvl": 18,
+  "bait": "Frog Lure",
+  "bite": "Common",
+  "sharePct": 54,
+  "competing": [
+   "Dark Bass"
+  ]
+ },
+ {
+  "zone": "Carpenters Landing",
+  "area": "North Landing",
+  "fish": "Shining Trout",
+  "lvl": 37,
+  "bait": "Fly Lure",
+  "bite": "Common",
+  "sharePct": 54,
+  "competing": [
+   "Muddy Siredon"
+  ]
+ },
+ {
+  "zone": "Castle Oztroja",
+  "area": "Whole Zone",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Dangruf Wadi",
+  "area": "Whole Zone",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Davoi",
+  "area": "Basin of a Waterfall",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Davoi",
+  "area": "Basin of a Waterfall",
+  "fish": "Gold Carp",
+  "lvl": 56,
+  "bait": "Shrimp Lure",
+  "bite": "Common",
+  "sharePct": 43,
+  "competing": [
+   "Tricolored Carp"
+  ]
+ },
+ {
+  "zone": "Davoi",
+  "area": "Basin of a Waterfall",
+  "fish": "Red Terrapin",
+  "lvl": 53,
+  "bait": "Frog Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Davoi",
+  "area": "Basin of a Waterfall",
+  "fish": "Takitaro",
+  "lvl": 101,
+  "bait": "Fly Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Davoi",
+  "area": "Basin of a Waterfall",
+  "fish": "Tricolored Carp",
+  "lvl": 27,
+  "bait": "Shrimp Lure",
+  "bite": "Common",
+  "sharePct": 57,
+  "competing": [
+   "Gold Carp"
+  ]
+ },
+ {
+  "zone": "Davoi",
+  "area": "Pond",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 54,
+  "competing": [
+   "Dark Bass"
+  ]
+ },
+ {
+  "zone": "Davoi",
+  "area": "Pond",
+  "fish": "Dark Bass",
+  "lvl": 33,
+  "bait": "Meatball",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Davoi",
+  "area": "Pond",
+  "fish": "Giant Catfish",
+  "lvl": 31,
+  "bait": "Slice of Sardine",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Davoi",
+  "area": "Pond",
+  "fish": "Moat Carp",
+  "lvl": 11,
+  "bait": "Ball of Insect Paste",
+  "bite": "Common",
+  "sharePct": 54,
+  "competing": [
+   "Dark Bass"
+  ]
+ },
+ {
+  "zone": "Davoi",
+  "area": "Pond",
+  "fish": "Red Terrapin",
+  "lvl": 53,
+  "bait": "Giant Shell Bug",
+  "bite": "Uncommon",
+  "sharePct": 43,
+  "competing": [
+   "Dark Bass"
+  ]
+ },
+ {
+  "zone": "Davoi",
+  "area": "Other Waterside",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Davoi",
+  "area": "Other Waterside",
+  "fish": "Red Terrapin",
+  "lvl": 53,
+  "bait": "Frog Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Den of Rancor",
+  "area": "Pool E-8",
+  "fish": "Bluetail",
+  "lvl": 55,
+  "bait": "Minnow",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Den of Rancor",
+  "area": "Pool E-8",
+  "fish": "Coral Butterfly",
+  "lvl": 40,
+  "bait": "Worm Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Den of Rancor",
+  "area": "Pool E-8",
+  "fish": "Gold Lobster",
+  "lvl": 46,
+  "bait": "Sinking Minnow",
+  "bite": "Common",
+  "sharePct": 54,
+  "competing": [
+   "Zebra Eel"
+  ]
+ },
+ {
+  "zone": "Den of Rancor",
+  "area": "Pool E-8",
+  "fish": "Quus",
+  "lvl": 19,
+  "bait": "Sabiki Rig",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Den of Rancor",
+  "area": "Pool E-8",
+  "fish": "Zebra Eel",
+  "lvl": 71,
+  "bait": "Shrimp Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Den of Rancor",
+  "area": "Pool F-11",
+  "fish": "Bluetail",
+  "lvl": 55,
+  "bait": "Minnow",
+  "bite": "Common",
+  "sharePct": 52,
+  "competing": [
+   "Ryugu Titan"
+  ]
+ },
+ {
+  "zone": "Den of Rancor",
+  "area": "Pool F-11",
+  "fish": "Coral Butterfly",
+  "lvl": 40,
+  "bait": "Worm Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Den of Rancor",
+  "area": "Pool F-11",
+  "fish": "Quus",
+  "lvl": 19,
+  "bait": "Sabiki Rig",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Den of Rancor",
+  "area": "Pool F-11",
+  "fish": "Ryugu Titan",
+  "lvl": 150,
+  "bait": "Slice of Cod",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Dragons Aery",
+  "area": "Whole Zone",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Dragons Aery",
+  "area": "Whole Zone",
+  "fish": "Crescent Fish",
+  "lvl": 69,
+  "bait": "Fly Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Dragons Aery",
+  "area": "Whole Zone",
+  "fish": "Moat Carp",
+  "lvl": 11,
+  "bait": "Ball of Insect Paste",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "East Ronfaure",
+  "area": "Whole Zone",
+  "fish": "Cheval Salmon",
+  "lvl": 21,
+  "bait": "Fly Lure",
+  "bite": "Common",
+  "sharePct": 50,
+  "competing": [
+   "Shining Trout"
+  ]
+ },
+ {
+  "zone": "East Ronfaure",
+  "area": "Whole Zone",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "East Ronfaure",
+  "area": "Whole Zone",
+  "fish": "Gold Carp",
+  "lvl": 56,
+  "bait": "Shrimp Lure",
+  "bite": "Common",
+  "sharePct": 43,
+  "competing": [
+   "Tricolored Carp"
+  ]
+ },
+ {
+  "zone": "East Ronfaure",
+  "area": "Whole Zone",
+  "fish": "Shining Trout",
+  "lvl": 37,
+  "bait": "Minnow",
+  "bite": "Common",
+  "sharePct": 54,
+  "competing": [
+   "Cheval Salmon"
+  ]
+ },
+ {
+  "zone": "East Ronfaure",
+  "area": "Whole Zone",
+  "fish": "Tricolored Carp",
+  "lvl": 27,
+  "bait": "Shrimp Lure",
+  "bite": "Common",
+  "sharePct": 57,
+  "competing": [
+   "Gold Carp"
+  ]
+ },
+ {
+  "zone": "East Sarutabaruta",
+  "area": "Seaside",
+  "fish": "Bastore Bream",
+  "lvl": 86,
+  "bait": "Ball of Crayfish Paste",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "East Sarutabaruta",
+  "area": "Seaside",
+  "fish": "Bastore Sardine",
+  "lvl": 9,
+  "bait": "Sabiki Rig",
+  "bite": "Common",
+  "sharePct": 37,
+  "competing": [
+   "Quus"
+  ]
+ },
+ {
+  "zone": "East Sarutabaruta",
+  "area": "Seaside",
+  "fish": "Bladefish",
+  "lvl": 71,
+  "bait": "Slice of Bluetail",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "East Sarutabaruta",
+  "area": "Seaside",
+  "fish": "Bluetail",
+  "lvl": 55,
+  "bait": "Minnow",
+  "bite": "Common",
+  "sharePct": 76,
+  "competing": [
+   "Bastore Bream"
+  ]
+ },
+ {
+  "zone": "East Sarutabaruta",
+  "area": "Seaside",
+  "fish": "Gold Lobster",
+  "lvl": 46,
+  "bait": "Sinking Minnow",
+  "bite": "Common",
+  "sharePct": 43,
+  "competing": [
+   "Bastore Bream",
+   "Ogre Eel"
+  ]
+ },
+ {
+  "zone": "East Sarutabaruta",
+  "area": "Seaside",
+  "fish": "Ogre Eel",
+  "lvl": 35,
+  "bait": "Shrimp Lure",
+  "bite": "Common",
+  "sharePct": 80,
+  "competing": [
+   "Bastore Bream"
+  ]
+ },
+ {
+  "zone": "East Sarutabaruta",
+  "area": "Seaside",
+  "fish": "Quus",
+  "lvl": 19,
+  "bait": "Lugworm",
+  "bite": "Common",
+  "sharePct": 70,
+  "competing": [
+   "Bastore Sardine"
+  ]
+ },
+ {
+  "zone": "East Sarutabaruta",
+  "area": "Other Waterside (south)",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "East Sarutabaruta",
+  "area": "Other Waterside (west)",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "East Sarutabaruta",
+  "area": "Other Waterside (rivers)",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "East Sarutabaruta",
+  "area": "Lake Tepokalipuka",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Peeled Crayfish",
+  "bite": "Uncommon",
+  "sharePct": 65,
+  "competing": [
+   "Monke-Onke"
+  ]
+ },
+ {
+  "zone": "East Sarutabaruta",
+  "area": "Lake Tepokalipuka",
+  "fish": "Crescent Fish",
+  "lvl": 69,
+  "bait": "Fly Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "East Sarutabaruta",
+  "area": "Lake Tepokalipuka",
+  "fish": "Moat Carp",
+  "lvl": 11,
+  "bait": "Ball of Insect Paste",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "East Sarutabaruta",
+  "area": "Lake Tepokalipuka",
+  "fish": "Monke-Onke",
+  "lvl": 51,
+  "bait": "Shrimp Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "East Sarutabaruta",
+  "area": "Lake Tepokalipuka",
+  "fish": "Pipira",
+  "lvl": 29,
+  "bait": "Minnow",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Eastern Altepa Desert",
+  "area": "Whole Zone",
+  "fish": "Copper Frog",
+  "lvl": 16,
+  "bait": "Fly Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Eastern Altepa Desert",
+  "area": "Whole Zone",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 56,
+  "competing": [
+   "Giant Donko"
+  ]
+ },
+ {
+  "zone": "Eastern Altepa Desert",
+  "area": "Whole Zone",
+  "fish": "Giant Donko",
+  "lvl": 50,
+  "bait": "Ball of Trout Paste",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Eastern Altepa Desert",
+  "area": "Whole Zone",
+  "fish": "Moat Carp",
+  "lvl": 11,
+  "bait": "Ball of Insect Paste",
+  "bite": "Common",
+  "sharePct": 54,
+  "competing": [
+   "Sandfish"
+  ]
+ },
+ {
+  "zone": "Eastern Altepa Desert",
+  "area": "Whole Zone",
+  "fish": "Sandfish",
+  "lvl": 50,
+  "bait": "Sabiki Rig",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Ghelsba Outpost",
+  "area": "Pond North",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Ghelsba Outpost",
+  "area": "Pond North",
+  "fish": "Giant Catfish",
+  "lvl": 31,
+  "bait": "Minnow",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Ghelsba Outpost",
+  "area": "Pond North",
+  "fish": "Red Terrapin",
+  "lvl": 53,
+  "bait": "Giant Shell Bug",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Ghelsba Outpost",
+  "area": "Pond South",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Ghelsba Outpost",
+  "area": "Pond South",
+  "fish": "Giant Catfish",
+  "lvl": 31,
+  "bait": "Minnow",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Ghelsba Outpost",
+  "area": "Pond South",
+  "fish": "Red Terrapin",
+  "lvl": 53,
+  "bait": "Giant Shell Bug",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Ghelsba Outpost",
+  "area": "River",
+  "fish": "Cheval Salmon",
+  "lvl": 21,
+  "bait": "Fly Lure",
+  "bite": "Common",
+  "sharePct": 50,
+  "competing": [
+   "Shining Trout"
+  ]
+ },
+ {
+  "zone": "Ghelsba Outpost",
+  "area": "River",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Ghelsba Outpost",
+  "area": "River",
+  "fish": "Gold Carp",
+  "lvl": 56,
+  "bait": "Shrimp Lure",
+  "bite": "Common",
+  "sharePct": 43,
+  "competing": [
+   "Tricolored Carp"
+  ]
+ },
+ {
+  "zone": "Ghelsba Outpost",
+  "area": "River",
+  "fish": "Shining Trout",
+  "lvl": 37,
+  "bait": "Minnow",
+  "bite": "Common",
+  "sharePct": 54,
+  "competing": [
+   "Cheval Salmon"
+  ]
+ },
+ {
+  "zone": "Ghelsba Outpost",
+  "area": "River",
+  "fish": "Tricolored Carp",
+  "lvl": 27,
+  "bait": "Shrimp Lure",
+  "bite": "Common",
+  "sharePct": 57,
+  "competing": [
+   "Gold Carp"
+  ]
+ },
+ {
+  "zone": "Giddeus",
+  "area": "Giddeus Spring",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 54,
+  "competing": [
+   "Dark Bass"
+  ]
+ },
+ {
+  "zone": "Giddeus",
+  "area": "Giddeus Spring",
+  "fish": "Dark Bass",
+  "lvl": 33,
+  "bait": "Minnow",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Giddeus",
+  "area": "Giddeus Spring",
+  "fish": "Monke-Onke",
+  "lvl": 51,
+  "bait": "Shrimp Lure",
+  "bite": "Common",
+  "sharePct": 35,
+  "competing": [
+   "Tricolored Carp"
+  ]
+ },
+ {
+  "zone": "Giddeus",
+  "area": "Giddeus Spring",
+  "fish": "Tricolored Carp",
+  "lvl": 27,
+  "bait": "Shrimp Lure",
+  "bite": "Common",
+  "sharePct": 65,
+  "competing": [
+   "Monke-Onke"
+  ]
+ },
+ {
+  "zone": "Giddeus",
+  "area": "Pond - West",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 54,
+  "competing": [
+   "Dark Bass"
+  ]
+ },
+ {
+  "zone": "Giddeus",
+  "area": "Pond - West",
+  "fish": "Dark Bass",
+  "lvl": 33,
+  "bait": "Minnow",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Giddeus",
+  "area": "Pond - West",
+  "fish": "Tricolored Carp",
+  "lvl": 27,
+  "bait": "Shrimp Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Giddeus",
+  "area": "Pond - North",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 54,
+  "competing": [
+   "Dark Bass"
+  ]
+ },
+ {
+  "zone": "Giddeus",
+  "area": "Pond - North",
+  "fish": "Dark Bass",
+  "lvl": 33,
+  "bait": "Meatball",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Giddeus",
+  "area": "Pond - North",
+  "fish": "Giant Catfish",
+  "lvl": 31,
+  "bait": "Slice of Sardine",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Giddeus",
+  "area": "Pond - North",
+  "fish": "Red Terrapin",
+  "lvl": 53,
+  "bait": "Giant Shell Bug",
+  "bite": "Uncommon",
+  "sharePct": 43,
+  "competing": [
+   "Dark Bass"
+  ]
+ },
+ {
+  "zone": "Giddeus",
+  "area": "Pond - North",
+  "fish": "Tricolored Carp",
+  "lvl": 27,
+  "bait": "Shrimp Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Giddeus",
+  "area": "Misc Puddles",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Gusgen Mines",
+  "area": "Pool Upper West",
+  "fish": "Black Eel",
+  "lvl": 47,
+  "bait": "Ball of Crayfish Paste",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Gusgen Mines",
+  "area": "Pool Upper West",
+  "fish": "Copper Frog",
+  "lvl": 16,
+  "bait": "Fly Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Gusgen Mines",
+  "area": "Pool Upper West",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Gusgen Mines",
+  "area": "Pool Upper West",
+  "fish": "Tricolored Carp",
+  "lvl": 27,
+  "bait": "Shrimp Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Gusgen Mines",
+  "area": "Pool Upper East",
+  "fish": "Black Eel",
+  "lvl": 47,
+  "bait": "Ball of Crayfish Paste",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Gusgen Mines",
+  "area": "Pool Upper East",
+  "fish": "Copper Frog",
+  "lvl": 16,
+  "bait": "Fly Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Gusgen Mines",
+  "area": "Pool Upper East",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Gusgen Mines",
+  "area": "Pool Upper East",
+  "fish": "Tricolored Carp",
+  "lvl": 27,
+  "bait": "Shrimp Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Gusgen Mines",
+  "area": "Pool Lower East",
+  "fish": "Black Eel",
+  "lvl": 47,
+  "bait": "Ball of Crayfish Paste",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Gusgen Mines",
+  "area": "Pool Lower East",
+  "fish": "Copper Frog",
+  "lvl": 16,
+  "bait": "Fly Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Gusgen Mines",
+  "area": "Pool Lower East",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Gusgen Mines",
+  "area": "Pool Lower East",
+  "fish": "Tricolored Carp",
+  "lvl": 27,
+  "bait": "Shrimp Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Gusgen Mines",
+  "area": "Interior Pool West",
+  "fish": "Black Eel",
+  "lvl": 47,
+  "bait": "Ball of Crayfish Paste",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Gusgen Mines",
+  "area": "Interior Pool West",
+  "fish": "Copper Frog",
+  "lvl": 16,
+  "bait": "Fly Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Gusgen Mines",
+  "area": "Interior Pool West",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 74,
+  "competing": [
+   "Gavial Fish"
+  ]
+ },
+ {
+  "zone": "Gusgen Mines",
+  "area": "Interior Pool West",
+  "fish": "Gavial Fish",
+  "lvl": 81,
+  "bait": "Lizard Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Gusgen Mines",
+  "area": "Interior Pool West",
+  "fish": "Gold Carp",
+  "lvl": 56,
+  "bait": "Shrimp Lure",
+  "bite": "Common",
+  "sharePct": 43,
+  "competing": [
+   "Tricolored Carp"
+  ]
+ },
+ {
+  "zone": "Gusgen Mines",
+  "area": "Interior Pool West",
+  "fish": "Tricolored Carp",
+  "lvl": 27,
+  "bait": "Shrimp Lure",
+  "bite": "Common",
+  "sharePct": 57,
+  "competing": [
+   "Gold Carp"
+  ]
+ },
+ {
+  "zone": "Gusgen Mines",
+  "area": "Interior Pool Center",
+  "fish": "Black Eel",
+  "lvl": 47,
+  "bait": "Ball of Crayfish Paste",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Gusgen Mines",
+  "area": "Interior Pool Center",
+  "fish": "Copper Frog",
+  "lvl": 16,
+  "bait": "Fly Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Gusgen Mines",
+  "area": "Interior Pool Center",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 74,
+  "competing": [
+   "Gavial Fish"
+  ]
+ },
+ {
+  "zone": "Gusgen Mines",
+  "area": "Interior Pool Center",
+  "fish": "Gavial Fish",
+  "lvl": 81,
+  "bait": "Lizard Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Gusgen Mines",
+  "area": "Interior Pool Center",
+  "fish": "Gold Carp",
+  "lvl": 56,
+  "bait": "Shrimp Lure",
+  "bite": "Common",
+  "sharePct": 43,
+  "competing": [
+   "Tricolored Carp"
+  ]
+ },
+ {
+  "zone": "Gusgen Mines",
+  "area": "Interior Pool Center",
+  "fish": "Tricolored Carp",
+  "lvl": 27,
+  "bait": "Shrimp Lure",
+  "bite": "Common",
+  "sharePct": 57,
+  "competing": [
+   "Gold Carp"
+  ]
+ },
+ {
+  "zone": "Gusgen Mines",
+  "area": "Interior Pool East",
+  "fish": "Black Eel",
+  "lvl": 47,
+  "bait": "Ball of Crayfish Paste",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Gusgen Mines",
+  "area": "Interior Pool East",
+  "fish": "Copper Frog",
+  "lvl": 16,
+  "bait": "Fly Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Gusgen Mines",
+  "area": "Interior Pool East",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 74,
+  "competing": [
+   "Gavial Fish"
+  ]
+ },
+ {
+  "zone": "Gusgen Mines",
+  "area": "Interior Pool East",
+  "fish": "Gavial Fish",
+  "lvl": 81,
+  "bait": "Lizard Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Gusgen Mines",
+  "area": "Interior Pool East",
+  "fish": "Gold Carp",
+  "lvl": 56,
+  "bait": "Shrimp Lure",
+  "bite": "Common",
+  "sharePct": 43,
+  "competing": [
+   "Tricolored Carp"
+  ]
+ },
+ {
+  "zone": "Gusgen Mines",
+  "area": "Interior Pool East",
+  "fish": "Tricolored Carp",
+  "lvl": 27,
+  "bait": "Shrimp Lure",
+  "bite": "Common",
+  "sharePct": 57,
+  "competing": [
+   "Gold Carp"
+  ]
+ },
+ {
+  "zone": "Jugner Forest",
+  "area": "Crystalwater Spring",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Robber Rig",
+  "bite": "Rare",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Jugner Forest",
+  "area": "Crystalwater Spring",
+  "fish": "Crystal Bass",
+  "lvl": 35,
+  "bait": "Sinking Minnow",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Jugner Forest",
+  "area": "Crystalwater Spring",
+  "fish": "Red Terrapin",
+  "lvl": 53,
+  "bait": "Shell Bug",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Jugner Forest",
+  "area": "Lake Mechieume - Mouth",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 49,
+  "competing": [
+   "Dark Bass",
+   "Emperor Fish"
+  ]
+ },
+ {
+  "zone": "Jugner Forest",
+  "area": "Lake Mechieume - Mouth",
+  "fish": "Dark Bass",
+  "lvl": 33,
+  "bait": "Minnow",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Jugner Forest",
+  "area": "Lake Mechieume - Mouth",
+  "fish": "Emperor Fish",
+  "lvl": 91,
+  "bait": "Giant Shell Bug",
+  "bite": "Uncommon",
+  "sharePct": 18,
+  "competing": [
+   "Dark Bass"
+  ]
+ },
+ {
+  "zone": "Jugner Forest",
+  "area": "Lake Mechieume - Mouth",
+  "fish": "Gold Carp",
+  "lvl": 56,
+  "bait": "Shrimp Lure",
+  "bite": "Common",
+  "sharePct": 43,
+  "competing": [
+   "Tricolored Carp"
+  ]
+ },
+ {
+  "zone": "Jugner Forest",
+  "area": "Lake Mechieume - Mouth",
+  "fish": "Moat Carp",
+  "lvl": 11,
+  "bait": "Ball of Insect Paste",
+  "bite": "Common",
+  "sharePct": 30,
+  "competing": [
+   "Tricolored Carp",
+   "Gold Carp",
+   "Dark Bass"
+  ]
+ },
+ {
+  "zone": "Jugner Forest",
+  "area": "Lake Mechieume - Mouth",
+  "fish": "Tricolored Carp",
+  "lvl": 27,
+  "bait": "Shrimp Lure",
+  "bite": "Common",
+  "sharePct": 57,
+  "competing": [
+   "Gold Carp"
+  ]
+ },
+ {
+  "zone": "Jugner Forest",
+  "area": "Lake Mechieume - Main",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 54,
+  "competing": [
+   "Dark Bass"
+  ]
+ },
+ {
+  "zone": "Jugner Forest",
+  "area": "Lake Mechieume - Main",
+  "fish": "Dark Bass",
+  "lvl": 33,
+  "bait": "Meatball",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Jugner Forest",
+  "area": "Lake Mechieume - Main",
+  "fish": "Giant Catfish",
+  "lvl": 31,
+  "bait": "Slice of Sardine",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Jugner Forest",
+  "area": "Lake Mechieume - Main",
+  "fish": "Gold Carp",
+  "lvl": 56,
+  "bait": "Shrimp Lure",
+  "bite": "Common",
+  "sharePct": 43,
+  "competing": [
+   "Tricolored Carp"
+  ]
+ },
+ {
+  "zone": "Jugner Forest",
+  "area": "Lake Mechieume - Main",
+  "fish": "Moat Carp",
+  "lvl": 11,
+  "bait": "Ball of Insect Paste",
+  "bite": "Common",
+  "sharePct": 30,
+  "competing": [
+   "Tricolored Carp",
+   "Gold Carp",
+   "Dark Bass"
+  ]
+ },
+ {
+  "zone": "Jugner Forest",
+  "area": "Lake Mechieume - Main",
+  "fish": "Red Terrapin",
+  "lvl": 53,
+  "bait": "Giant Shell Bug",
+  "bite": "Uncommon",
+  "sharePct": 43,
+  "competing": [
+   "Dark Bass"
+  ]
+ },
+ {
+  "zone": "Jugner Forest",
+  "area": "Lake Mechieume - Main",
+  "fish": "Tricolored Carp",
+  "lvl": 27,
+  "bait": "Shrimp Lure",
+  "bite": "Common",
+  "sharePct": 57,
+  "competing": [
+   "Gold Carp"
+  ]
+ },
+ {
+  "zone": "Jugner Forest",
+  "area": "Maidens Spring",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Jugner Forest",
+  "area": "Maidens Spring",
+  "fish": "Red Terrapin",
+  "lvl": 53,
+  "bait": "Frog Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Jugner Forest",
+  "area": "River",
+  "fish": "Cheval Salmon",
+  "lvl": 21,
+  "bait": "Fly Lure",
+  "bite": "Common",
+  "sharePct": 50,
+  "competing": [
+   "Shining Trout"
+  ]
+ },
+ {
+  "zone": "Jugner Forest",
+  "area": "River",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Jugner Forest",
+  "area": "River",
+  "fish": "Gold Carp",
+  "lvl": 56,
+  "bait": "Shrimp Lure",
+  "bite": "Common",
+  "sharePct": 43,
+  "competing": [
+   "Tricolored Carp"
+  ]
+ },
+ {
+  "zone": "Jugner Forest",
+  "area": "River",
+  "fish": "Moat Carp",
+  "lvl": 11,
+  "bait": "Ball of Insect Paste",
+  "bite": "Common",
+  "sharePct": 40,
+  "competing": [
+   "Tricolored Carp",
+   "Gold Carp"
+  ]
+ },
+ {
+  "zone": "Jugner Forest",
+  "area": "River",
+  "fish": "Shining Trout",
+  "lvl": 37,
+  "bait": "Minnow",
+  "bite": "Common",
+  "sharePct": 54,
+  "competing": [
+   "Cheval Salmon"
+  ]
+ },
+ {
+  "zone": "Jugner Forest",
+  "area": "River",
+  "fish": "Tricolored Carp",
+  "lvl": 27,
+  "bait": "Shrimp Lure",
+  "bite": "Common",
+  "sharePct": 57,
+  "competing": [
+   "Gold Carp"
+  ]
+ },
+ {
+  "zone": "Kazham",
+  "area": "Whole Zone",
+  "fish": "Bastore Sardine",
+  "lvl": 9,
+  "bait": "Robber Rig",
+  "bite": "Rare",
+  "sharePct": 49,
+  "competing": [
+   "Quus"
+  ]
+ },
+ {
+  "zone": "Kazham",
+  "area": "Whole Zone",
+  "fish": "Coral Butterfly",
+  "lvl": 40,
+  "bait": "Worm Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Kazham",
+  "area": "Whole Zone",
+  "fish": "Quus",
+  "lvl": 19,
+  "bait": "Sabiki Rig",
+  "bite": "Uncommon",
+  "sharePct": 63,
+  "competing": [
+   "Bastore Sardine"
+  ]
+ },
+ {
+  "zone": "Korroloka Tunnel",
+  "area": "Salt Water",
+  "fish": "Black Eel",
+  "lvl": 47,
+  "bait": "Ball of Crayfish Paste",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Korroloka Tunnel",
+  "area": "Salt Water",
+  "fish": "Copper Frog",
+  "lvl": 16,
+  "bait": "Fly Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Korroloka Tunnel",
+  "area": "Salt Water",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Korroloka Tunnel",
+  "area": "Salt Water",
+  "fish": "Moat Carp",
+  "lvl": 11,
+  "bait": "Ball of Insect Paste",
+  "bite": "Common",
+  "sharePct": 54,
+  "competing": [
+   "Sandfish"
+  ]
+ },
+ {
+  "zone": "Korroloka Tunnel",
+  "area": "Salt Water",
+  "fish": "Sandfish",
+  "lvl": 50,
+  "bait": "Sabiki Rig",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Korroloka Tunnel",
+  "area": "Fresh Water",
+  "fish": "Quus",
+  "lvl": 19,
+  "bait": "Lugworm",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Kuftal Tunnel",
+  "area": "Whole Zone",
+  "fish": "Cave Cherax",
+  "lvl": 130,
+  "bait": "Rotten Meat",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Kuftal Tunnel",
+  "area": "Whole Zone",
+  "fish": "Giant Donko",
+  "lvl": 50,
+  "bait": "Ball of Trout Paste",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Kuftal Tunnel",
+  "area": "Whole Zone",
+  "fish": "Sandfish",
+  "lvl": 50,
+  "bait": "Ball of Insect Paste",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "La Theine Plateau",
+  "area": "Whole Zone",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 54,
+  "competing": [
+   "Dark Bass"
+  ]
+ },
+ {
+  "zone": "La Theine Plateau",
+  "area": "Whole Zone",
+  "fish": "Dark Bass",
+  "lvl": 33,
+  "bait": "Meatball",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "La Theine Plateau",
+  "area": "Whole Zone",
+  "fish": "Giant Catfish",
+  "lvl": 31,
+  "bait": "Slice of Sardine",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "La Theine Plateau",
+  "area": "Whole Zone",
+  "fish": "Moat Carp",
+  "lvl": 11,
+  "bait": "Ball of Insect Paste",
+  "bite": "Common",
+  "sharePct": 54,
+  "competing": [
+   "Dark Bass"
+  ]
+ },
+ {
+  "zone": "La Theine Plateau",
+  "area": "Whole Zone",
+  "fish": "Red Terrapin",
+  "lvl": 53,
+  "bait": "Giant Shell Bug",
+  "bite": "Uncommon",
+  "sharePct": 43,
+  "competing": [
+   "Dark Bass"
+  ]
+ },
+ {
+  "zone": "Lower Jeuno",
+  "area": "Whole Zone",
+  "fish": "Bastore Sardine",
+  "lvl": 9,
+  "bait": "Sabiki Rig",
+  "bite": "Common",
+  "sharePct": 33,
+  "competing": [
+   "Yellow Globe"
+  ]
+ },
+ {
+  "zone": "Lower Jeuno",
+  "area": "Whole Zone",
+  "fish": "Black Sole",
+  "lvl": 96,
+  "bait": "Sinking Minnow",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Lower Jeuno",
+  "area": "Whole Zone",
+  "fish": "Nosteau Herring",
+  "lvl": 39,
+  "bait": "Ball of Sardine Paste",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Lower Jeuno",
+  "area": "Whole Zone",
+  "fish": "Tiger Cod",
+  "lvl": 29,
+  "bait": "Shrimp Lure",
+  "bite": "Uncommon",
+  "sharePct": 46,
+  "competing": [
+   "Black Sole",
+   "Nosteau Herring"
+  ]
+ },
+ {
+  "zone": "Lower Jeuno",
+  "area": "Whole Zone",
+  "fish": "Yellow Globe",
+  "lvl": 17,
+  "bait": "Worm Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Lufaise Meadows",
+  "area": "Leremieu Lagoon",
+  "fish": "Dark Bass",
+  "lvl": 33,
+  "bait": "Meatball",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Lufaise Meadows",
+  "area": "Leremieu Lagoon",
+  "fish": "Emperor Fish",
+  "lvl": 91,
+  "bait": "Rogue Rig",
+  "bite": "Rare",
+  "sharePct": 27,
+  "competing": [
+   "Dark Bass"
+  ]
+ },
+ {
+  "zone": "Lufaise Meadows",
+  "area": "Leremieu Lagoon",
+  "fish": "Lik",
+  "lvl": 140,
+  "bait": "Dwarf Pugil",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Lufaise Meadows",
+  "area": "Leremieu Lagoon",
+  "fish": "Tavnazian Goby",
+  "lvl": 75,
+  "bait": "Little Worm",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Lufaise Meadows",
+  "area": "Seaside",
+  "fish": "Greedie",
+  "lvl": 14,
+  "bait": "Minnow",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Lufaise Meadows",
+  "area": "Seaside",
+  "fish": "Quus",
+  "lvl": 19,
+  "bait": "Sabiki Rig",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Lufaise Meadows",
+  "area": "Rafeloux River",
+  "fish": "Gold Carp",
+  "lvl": 56,
+  "bait": "Shrimp Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Lufaise Meadows",
+  "area": "Rafeloux River",
+  "fish": "Tavnazian Goby",
+  "lvl": 75,
+  "bait": "Minnow",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Mamook",
+  "area": "Pond",
+  "fish": "Alabaligi",
+  "lvl": 37,
+  "bait": "Minnow",
+  "bite": "Uncommon",
+  "sharePct": 61,
+  "competing": [
+   "Kayabaligi"
+  ]
+ },
+ {
+  "zone": "Mamook",
+  "area": "Pond",
+  "fish": "Betta",
+  "lvl": 68,
+  "bait": "Fly Lure",
+  "bite": "Common",
+  "sharePct": 41,
+  "competing": [
+   "Alabaligi"
+  ]
+ },
+ {
+  "zone": "Mamook",
+  "area": "Pond",
+  "fish": "Kayabaligi",
+  "lvl": 75,
+  "bait": "Worm Lure",
+  "bite": "Uncommon",
+  "sharePct": 45,
+  "competing": [
+   "Yilanbaligi"
+  ]
+ },
+ {
+  "zone": "Mamook",
+  "area": "Pond",
+  "fish": "Sazanbaligi",
+  "lvl": 56,
+  "bait": "Ball of Insect Paste",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Mamook",
+  "area": "Pond",
+  "fish": "Yilanbaligi",
+  "lvl": 47,
+  "bait": "Peeled Crayfish",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Mamook",
+  "area": "Other Waterside",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Manaclipper",
+  "area": "Dhalmel Rock",
+  "fish": "Bastore Sardine",
+  "lvl": 9,
+  "bait": "Sabiki Rig",
+  "bite": "Common",
+  "sharePct": 24,
+  "competing": [
+   "Quus",
+   "Cone Calamary"
+  ]
+ },
+ {
+  "zone": "Manaclipper",
+  "area": "Dhalmel Rock",
+  "fish": "Bibikibo",
+  "lvl": 8,
+  "bait": "Fly Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Manaclipper",
+  "area": "Dhalmel Rock",
+  "fish": "Bladefish",
+  "lvl": 71,
+  "bait": "Slice of Bluetail",
+  "bite": "Common",
+  "sharePct": 29,
+  "competing": [
+   "Ryugu Titan",
+   "Bibikibo",
+   "Gugrusaurus",
+   "Cone Calamary"
+  ]
+ },
+ {
+  "zone": "Manaclipper",
+  "area": "Dhalmel Rock",
+  "fish": "Bluetail",
+  "lvl": 55,
+  "bait": "Minnow",
+  "bite": "Common",
+  "sharePct": 18,
+  "competing": [
+   "Ryugu Titan",
+   "Zafmlug Bass",
+   "Gugru Tuna",
+   "Cone Calamary"
+  ]
+ },
+ {
+  "zone": "Manaclipper",
+  "area": "Dhalmel Rock",
+  "fish": "Cone Calamary",
+  "lvl": 48,
+  "bait": "Slice of Cod",
+  "bite": "Uncommon",
+  "sharePct": 41,
+  "competing": [
+   "Ryugu Titan",
+   "Titanic Sawfish"
+  ]
+ },
+ {
+  "zone": "Manaclipper",
+  "area": "Dhalmel Rock",
+  "fish": "Gugru Tuna",
+  "lvl": 41,
+  "bait": "Sinking Minnow",
+  "bite": "Common",
+  "sharePct": 27,
+  "competing": [
+   "Ryugu Titan",
+   "Bibikibo",
+   "Zafmlug Bass",
+   "Noble Lady"
+  ]
+ },
+ {
+  "zone": "Manaclipper",
+  "area": "Dhalmel Rock",
+  "fish": "Gugrusaurus",
+  "lvl": 140,
+  "bait": "Drill Calamary",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Manaclipper",
+  "area": "Dhalmel Rock",
+  "fish": "Moorish Idol",
+  "lvl": 26,
+  "bait": "Ball of Crayfish Paste",
+  "bite": "Uncommon",
+  "sharePct": 27,
+  "competing": [
+   "Zafmlug Bass",
+   "Vongola Clam"
+  ]
+ },
+ {
+  "zone": "Manaclipper",
+  "area": "Dhalmel Rock",
+  "fish": "Noble Lady",
+  "lvl": 66,
+  "bait": "Sinking Minnow",
+  "bite": "Common",
+  "sharePct": 22,
+  "competing": [
+   "Ryugu Titan",
+   "Bibikibo",
+   "Zafmlug Bass",
+   "Gugru Tuna"
+  ]
+ },
+ {
+  "zone": "Manaclipper",
+  "area": "Dhalmel Rock",
+  "fish": "Quus",
+  "lvl": 19,
+  "bait": "Sabiki Rig",
+  "bite": "Uncommon",
+  "sharePct": 41,
+  "competing": [
+   "Bastore Sardine",
+   "Cone Calamary"
+  ]
+ },
+ {
+  "zone": "Manaclipper",
+  "area": "Dhalmel Rock",
+  "fish": "Ryugu Titan",
+  "lvl": 150,
+  "bait": "Frog Lure",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Manaclipper",
+  "area": "Dhalmel Rock",
+  "fish": "Titanic Sawfish",
+  "lvl": 125,
+  "bait": "Slice of Cod",
+  "bite": "Uncommon",
+  "sharePct": 19,
+  "competing": [
+   "Ryugu Titan",
+   "Cone Calamary"
+  ]
+ },
+ {
+  "zone": "Manaclipper",
+  "area": "Dhalmel Rock",
+  "fish": "Titanictus",
+  "lvl": 101,
+  "bait": "Meatball",
+  "bite": "Common",
+  "sharePct": 13,
+  "competing": [
+   "Ryugu Titan",
+   "Bibikibo",
+   "Bladefish",
+   "Titanic Sawfish",
+   "Gugrusaurus"
+  ]
+ },
+ {
+  "zone": "Manaclipper",
+  "area": "Dhalmel Rock",
+  "fish": "Trilobite",
+  "lvl": 59,
+  "bait": "Peeled Crayfish",
+  "bite": "Uncommon",
+  "sharePct": 36,
+  "competing": [
+   "Bibikibo",
+   "Moorish Idol",
+   "Vongola Clam"
+  ]
+ },
+ {
+  "zone": "Manaclipper",
+  "area": "Dhalmel Rock",
+  "fish": "Vongola Clam",
+  "lvl": 53,
+  "bait": "Ball of Crayfish Paste",
+  "bite": "Uncommon",
+  "sharePct": 35,
+  "competing": [
+   "Zafmlug Bass",
+   "Moorish Idol"
+  ]
+ },
+ {
+  "zone": "Manaclipper",
+  "area": "Dhalmel Rock",
+  "fish": "Zafmlug Bass",
+  "lvl": 43,
+  "bait": "Ball of Crayfish Paste",
+  "bite": "Uncommon",
+  "sharePct": 39,
+  "competing": [
+   "Moorish Idol",
+   "Vongola Clam"
+  ]
+ },
+ {
+  "zone": "Mhaura",
+  "area": "Whole Zone",
+  "fish": "Bastore Sardine",
+  "lvl": 9,
+  "bait": "Robber Rig",
+  "bite": "Rare",
+  "sharePct": 49,
+  "competing": [
+   "Yellow Globe"
+  ]
+ },
+ {
+  "zone": "Mhaura",
+  "area": "Whole Zone",
+  "fish": "Yellow Globe",
+  "lvl": 17,
+  "bait": "Ball of Crayfish Paste",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Misareaux Coast",
+  "area": "Cascade Edellaine",
+  "fish": "Dark Bass",
+  "lvl": 33,
+  "bait": "Ball of Sardine Paste",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Misareaux Coast",
+  "area": "Cascade Edellaine",
+  "fish": "Gold Carp",
+  "lvl": 56,
+  "bait": "Shrimp Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Misareaux Coast",
+  "area": "Cascade Edellaine",
+  "fish": "Moat Carp",
+  "lvl": 11,
+  "bait": "Ball of Insect Paste",
+  "bite": "Common",
+  "sharePct": 40,
+  "competing": [
+   "Gold Carp",
+   "Dark Bass"
+  ]
+ },
+ {
+  "zone": "Misareaux Coast",
+  "area": "Cascade Edellaine",
+  "fish": "Takitaro",
+  "lvl": 101,
+  "bait": "Fly Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Misareaux Coast",
+  "area": "Cascade Edellaine",
+  "fish": "Tavnazian Goby",
+  "lvl": 75,
+  "bait": "Worm Lure",
+  "bite": "Uncommon",
+  "sharePct": 46,
+  "competing": [
+   "Dark Bass"
+  ]
+ },
+ {
+  "zone": "Misareaux Coast",
+  "area": "Seaside",
+  "fish": "Greedie",
+  "lvl": 14,
+  "bait": "Minnow",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Misareaux Coast",
+  "area": "Seaside",
+  "fish": "Quus",
+  "lvl": 19,
+  "bait": "Sabiki Rig",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Misareaux Coast",
+  "area": "Rafeloux River",
+  "fish": "Gold Carp",
+  "lvl": 56,
+  "bait": "Shrimp Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Misareaux Coast",
+  "area": "Rafeloux River",
+  "fish": "Tavnazian Goby",
+  "lvl": 75,
+  "bait": "Minnow",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Mount Zhayolm",
+  "area": "Whole Zone",
+  "fish": "Hamsi",
+  "lvl": 9,
+  "bait": "Lugworm",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Mount Zhayolm",
+  "area": "Whole Zone",
+  "fish": "Kalamar",
+  "lvl": 48,
+  "bait": "Slice of Bluetail",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Nashmau",
+  "area": "Whole Zone",
+  "fish": "Ahtapot",
+  "lvl": 90,
+  "bait": "Peeled Lobster",
+  "bite": "Uncommon",
+  "sharePct": 56,
+  "competing": [
+   "Mercanbaligi"
+  ]
+ },
+ {
+  "zone": "Nashmau",
+  "area": "Whole Zone",
+  "fish": "Istakoz",
+  "lvl": 46,
+  "bait": "Minnow",
+  "bite": "Uncommon",
+  "sharePct": 71,
+  "competing": [
+   "Mercanbaligi"
+  ]
+ },
+ {
+  "zone": "Nashmau",
+  "area": "Whole Zone",
+  "fish": "Istiridye",
+  "lvl": 53,
+  "bait": "Robber Rig",
+  "bite": "Rare",
+  "sharePct": 54,
+  "competing": [
+   "Istakoz",
+   "Mercanbaligi"
+  ]
+ },
+ {
+  "zone": "Nashmau",
+  "area": "Whole Zone",
+  "fish": "Mercanbaligi",
+  "lvl": 86,
+  "bait": "Shrimp Lure",
+  "bite": "Common",
+  "sharePct": 49,
+  "competing": [
+   "Ahtapot"
+  ]
+ },
+ {
+  "zone": "Nashmau",
+  "area": "Whole Zone",
+  "fish": "Pterygotus",
+  "lvl": 99,
+  "bait": "Lugworm",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Norg",
+  "area": "Whole Zone",
+  "fish": "Bastore Sardine",
+  "lvl": 9,
+  "bait": "Robber Rig",
+  "bite": "Rare",
+  "sharePct": 32,
+  "competing": [
+   "Yellow Globe",
+   "Quus"
+  ]
+ },
+ {
+  "zone": "Norg",
+  "area": "Whole Zone",
+  "fish": "Coral Butterfly",
+  "lvl": 40,
+  "bait": "Worm Lure",
+  "bite": "Common",
+  "sharePct": 47,
+  "competing": [
+   "Yellow Globe"
+  ]
+ },
+ {
+  "zone": "Norg",
+  "area": "Whole Zone",
+  "fish": "Quus",
+  "lvl": 19,
+  "bait": "Sabiki Rig",
+  "bite": "Uncommon",
+  "sharePct": 36,
+  "competing": [
+   "Bastore Sardine",
+   "Yellow Globe"
+  ]
+ },
+ {
+  "zone": "Norg",
+  "area": "Whole Zone",
+  "fish": "Yellow Globe",
+  "lvl": 17,
+  "bait": "Ball of Crayfish Paste",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "North Gustaberg",
+  "area": "Basin of Waterfall",
+  "fish": "Black Eel",
+  "lvl": 47,
+  "bait": "Ball of Crayfish Paste",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "North Gustaberg",
+  "area": "Basin of Waterfall",
+  "fish": "Copper Frog",
+  "lvl": 16,
+  "bait": "Fly Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "North Gustaberg",
+  "area": "Basin of Waterfall",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 74,
+  "competing": [
+   "Gavial Fish"
+  ]
+ },
+ {
+  "zone": "North Gustaberg",
+  "area": "Basin of Waterfall",
+  "fish": "Gavial Fish",
+  "lvl": 81,
+  "bait": "Lizard Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "North Gustaberg",
+  "area": "Basin of Waterfall",
+  "fish": "Gold Carp",
+  "lvl": 56,
+  "bait": "Shrimp Lure",
+  "bite": "Common",
+  "sharePct": 43,
+  "competing": [
+   "Tricolored Carp"
+  ]
+ },
+ {
+  "zone": "North Gustaberg",
+  "area": "Basin of Waterfall",
+  "fish": "Tricolored Carp",
+  "lvl": 27,
+  "bait": "Shrimp Lure",
+  "bite": "Common",
+  "sharePct": 57,
+  "competing": [
+   "Gold Carp"
+  ]
+ },
+ {
+  "zone": "North Gustaberg",
+  "area": "River",
+  "fish": "Black Eel",
+  "lvl": 47,
+  "bait": "Ball of Crayfish Paste",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "North Gustaberg",
+  "area": "River",
+  "fish": "Copper Frog",
+  "lvl": 16,
+  "bait": "Fly Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "North Gustaberg",
+  "area": "River",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "North Gustaberg",
+  "area": "River",
+  "fish": "Gold Carp",
+  "lvl": 56,
+  "bait": "Shrimp Lure",
+  "bite": "Common",
+  "sharePct": 43,
+  "competing": [
+   "Tricolored Carp"
+  ]
+ },
+ {
+  "zone": "North Gustaberg",
+  "area": "River",
+  "fish": "Tricolored Carp",
+  "lvl": 27,
+  "bait": "Shrimp Lure",
+  "bite": "Common",
+  "sharePct": 57,
+  "competing": [
+   "Gold Carp"
+  ]
+ },
+ {
+  "zone": "Northern San dOria",
+  "area": "Whole Zone",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Northern San dOria",
+  "area": "Whole Zone",
+  "fish": "Gold Carp",
+  "lvl": 56,
+  "bait": "Shrimp Lure",
+  "bite": "Common",
+  "sharePct": 43,
+  "competing": [
+   "Tricolored Carp"
+  ]
+ },
+ {
+  "zone": "Northern San dOria",
+  "area": "Whole Zone",
+  "fish": "Moat Carp",
+  "lvl": 11,
+  "bait": "Ball of Insect Paste",
+  "bite": "Common",
+  "sharePct": 40,
+  "competing": [
+   "Tricolored Carp",
+   "Gold Carp"
+  ]
+ },
+ {
+  "zone": "Northern San dOria",
+  "area": "Whole Zone",
+  "fish": "Tricolored Carp",
+  "lvl": 27,
+  "bait": "Shrimp Lure",
+  "bite": "Common",
+  "sharePct": 57,
+  "competing": [
+   "Gold Carp"
+  ]
+ },
+ {
+  "zone": "Oldton Movalpolos",
+  "area": "Whole Zone",
+  "fish": "Armored Pisces",
+  "lvl": 108,
+  "bait": "Frog Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Oldton Movalpolos",
+  "area": "Whole Zone",
+  "fish": "Black Eel",
+  "lvl": 47,
+  "bait": "Ball of Crayfish Paste",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Oldton Movalpolos",
+  "area": "Whole Zone",
+  "fish": "Blindfish",
+  "lvl": 28,
+  "bait": "Ball of Insect Paste",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Oldton Movalpolos",
+  "area": "Whole Zone",
+  "fish": "Copper Frog",
+  "lvl": 16,
+  "bait": "Fly Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Oldton Movalpolos",
+  "area": "Whole Zone",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Open sea route to Al Zahbi",
+  "area": "Whole Zone",
+  "fish": "Gugru Tuna",
+  "lvl": 41,
+  "bait": "Sinking Minnow",
+  "bite": "Common",
+  "sharePct": 55,
+  "competing": [
+   "Noble Lady"
+  ]
+ },
+ {
+  "zone": "Open sea route to Al Zahbi",
+  "area": "Whole Zone",
+  "fish": "Gugrusaurus",
+  "lvl": 140,
+  "bait": "Meatball",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Open sea route to Al Zahbi",
+  "area": "Whole Zone",
+  "fish": "Gurnard",
+  "lvl": 26,
+  "bait": "Ball of Crayfish Paste",
+  "bite": "Uncommon",
+  "sharePct": 32,
+  "competing": [
+   "Yellow Globe"
+  ]
+ },
+ {
+  "zone": "Open sea route to Al Zahbi",
+  "area": "Whole Zone",
+  "fish": "Mola Mola",
+  "lvl": 135,
+  "bait": "Slice of Cod",
+  "bite": "Uncommon",
+  "sharePct": 56,
+  "competing": [
+   "Veydal Wrasse"
+  ]
+ },
+ {
+  "zone": "Open sea route to Al Zahbi",
+  "area": "Whole Zone",
+  "fish": "Noble Lady",
+  "lvl": 66,
+  "bait": "Sinking Minnow",
+  "bite": "Common",
+  "sharePct": 45,
+  "competing": [
+   "Gugru Tuna"
+  ]
+ },
+ {
+  "zone": "Open sea route to Al Zahbi",
+  "area": "Whole Zone",
+  "fish": "Veydal Wrasse",
+  "lvl": 35,
+  "bait": "Slice of Cod",
+  "bite": "Uncommon",
+  "sharePct": 44,
+  "competing": [
+   "Mola Mola"
+  ]
+ },
+ {
+  "zone": "Open sea route to Al Zahbi",
+  "area": "Whole Zone",
+  "fish": "Yellow Globe",
+  "lvl": 17,
+  "bait": "Worm Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Open sea route to Mhaura",
+  "area": "Whole Zone",
+  "fish": "Gugru Tuna",
+  "lvl": 41,
+  "bait": "Sinking Minnow",
+  "bite": "Common",
+  "sharePct": 55,
+  "competing": [
+   "Noble Lady"
+  ]
+ },
+ {
+  "zone": "Open sea route to Mhaura",
+  "area": "Whole Zone",
+  "fish": "Gugrusaurus",
+  "lvl": 140,
+  "bait": "Meatball",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Open sea route to Mhaura",
+  "area": "Whole Zone",
+  "fish": "Gurnard",
+  "lvl": 26,
+  "bait": "Ball of Crayfish Paste",
+  "bite": "Uncommon",
+  "sharePct": 32,
+  "competing": [
+   "Yellow Globe"
+  ]
+ },
+ {
+  "zone": "Open sea route to Mhaura",
+  "area": "Whole Zone",
+  "fish": "Mola Mola",
+  "lvl": 135,
+  "bait": "Slice of Cod",
+  "bite": "Uncommon",
+  "sharePct": 56,
+  "competing": [
+   "Veydal Wrasse"
+  ]
+ },
+ {
+  "zone": "Open sea route to Mhaura",
+  "area": "Whole Zone",
+  "fish": "Noble Lady",
+  "lvl": 66,
+  "bait": "Sinking Minnow",
+  "bite": "Common",
+  "sharePct": 45,
+  "competing": [
+   "Gugru Tuna"
+  ]
+ },
+ {
+  "zone": "Open sea route to Mhaura",
+  "area": "Whole Zone",
+  "fish": "Veydal Wrasse",
+  "lvl": 35,
+  "bait": "Slice of Cod",
+  "bite": "Uncommon",
+  "sharePct": 44,
+  "competing": [
+   "Mola Mola"
+  ]
+ },
+ {
+  "zone": "Open sea route to Mhaura",
+  "area": "Whole Zone",
+  "fish": "Yellow Globe",
+  "lvl": 17,
+  "bait": "Worm Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Ordelles Caves",
+  "area": "Whole Zone",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Palborough Mines",
+  "area": "Whole Zone",
+  "fish": "Black Eel",
+  "lvl": 47,
+  "bait": "Ball of Crayfish Paste",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Palborough Mines",
+  "area": "Whole Zone",
+  "fish": "Copper Frog",
+  "lvl": 16,
+  "bait": "Fly Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Palborough Mines",
+  "area": "Whole Zone",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Palborough Mines",
+  "area": "Whole Zone",
+  "fish": "Tricolored Carp",
+  "lvl": 27,
+  "bait": "Shrimp Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Pashhow Marshlands",
+  "area": "Whole Zone",
+  "fish": "Copper Frog",
+  "lvl": 16,
+  "bait": "Fly Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Pashhow Marshlands",
+  "area": "Whole Zone",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Pashhow Marshlands",
+  "area": "Whole Zone",
+  "fish": "Giant Catfish",
+  "lvl": 31,
+  "bait": "Minnow",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Pashhow Marshlands",
+  "area": "Whole Zone",
+  "fish": "Red Terrapin",
+  "lvl": 53,
+  "bait": "Shell Bug",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Phanauet Channel",
+  "area": "Whole Zone",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 54,
+  "competing": [
+   "Dark Bass"
+  ]
+ },
+ {
+  "zone": "Phanauet Channel",
+  "area": "Whole Zone",
+  "fish": "Dark Bass",
+  "lvl": 33,
+  "bait": "Meatball",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Phanauet Channel",
+  "area": "Whole Zone",
+  "fish": "Giant Catfish",
+  "lvl": 31,
+  "bait": "Slice of Sardine",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Phanauet Channel",
+  "area": "Whole Zone",
+  "fish": "Gold Carp",
+  "lvl": 56,
+  "bait": "Shrimp Lure",
+  "bite": "Common",
+  "sharePct": 27,
+  "competing": [
+   "Lungfish",
+   "Tricolored Carp"
+  ]
+ },
+ {
+  "zone": "Phanauet Channel",
+  "area": "Whole Zone",
+  "fish": "Lungfish",
+  "lvl": 32,
+  "bait": "Shrimp Lure",
+  "bite": "Common",
+  "sharePct": 36,
+  "competing": [
+   "Tricolored Carp",
+   "Gold Carp"
+  ]
+ },
+ {
+  "zone": "Phanauet Channel",
+  "area": "Whole Zone",
+  "fish": "Muddy Siredon",
+  "lvl": 18,
+  "bait": "Fly Lure",
+  "bite": "Uncommon",
+  "sharePct": 26,
+  "competing": [
+   "Tricorn",
+   "Shining Trout",
+   "Phanauet Newt"
+  ]
+ },
+ {
+  "zone": "Phanauet Channel",
+  "area": "Whole Zone",
+  "fish": "Phanauet Newt",
+  "lvl": 4,
+  "bait": "Fly Lure",
+  "bite": "Common",
+  "sharePct": 31,
+  "competing": [
+   "Tricorn",
+   "Shining Trout",
+   "Muddy Siredon"
+  ]
+ },
+ {
+  "zone": "Phanauet Channel",
+  "area": "Whole Zone",
+  "fish": "Red Terrapin",
+  "lvl": 53,
+  "bait": "Giant Shell Bug",
+  "bite": "Uncommon",
+  "sharePct": 43,
+  "competing": [
+   "Dark Bass"
+  ]
+ },
+ {
+  "zone": "Phanauet Channel",
+  "area": "Whole Zone",
+  "fish": "Shining Trout",
+  "lvl": 37,
+  "bait": "Ball of Trout Paste",
+  "bite": "Uncommon",
+  "sharePct": 33,
+  "competing": [
+   "Dark Bass",
+   "Giant Catfish"
+  ]
+ },
+ {
+  "zone": "Phanauet Channel",
+  "area": "Whole Zone",
+  "fish": "Tricolored Carp",
+  "lvl": 27,
+  "bait": "Shrimp Lure",
+  "bite": "Common",
+  "sharePct": 36,
+  "competing": [
+   "Lungfish",
+   "Gold Carp"
+  ]
+ },
+ {
+  "zone": "Phanauet Channel",
+  "area": "Whole Zone",
+  "fish": "Tricorn",
+  "lvl": 128,
+  "bait": "Fly Lure",
+  "bite": "Uncommon",
+  "sharePct": 13,
+  "competing": [
+   "Shining Trout",
+   "Phanauet Newt",
+   "Muddy Siredon"
+  ]
+ },
+ {
+  "zone": "Phomiuna Aqueducts",
+  "area": "Whole Zone",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Port Bastok",
+  "area": "Whole Zone",
+  "fish": "Bastore Bream",
+  "lvl": 86,
+  "bait": "Shrimp Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Port Bastok",
+  "area": "Whole Zone",
+  "fish": "Bastore Sardine",
+  "lvl": 9,
+  "bait": "Sabiki Rig",
+  "bite": "Common",
+  "sharePct": 37,
+  "competing": [
+   "Quus"
+  ]
+ },
+ {
+  "zone": "Port Bastok",
+  "area": "Whole Zone",
+  "fish": "Quus",
+  "lvl": 19,
+  "bait": "Sabiki Rig",
+  "bite": "Uncommon",
+  "sharePct": 63,
+  "competing": [
+   "Bastore Sardine"
+  ]
+ },
+ {
+  "zone": "Port Bastok",
+  "area": "Whole Zone",
+  "fish": "Zafmlug Bass",
+  "lvl": 43,
+  "bait": "Worm Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Port Jeuno",
+  "area": "Whole Zone",
+  "fish": "Bastore Sardine",
+  "lvl": 9,
+  "bait": "Sabiki Rig",
+  "bite": "Common",
+  "sharePct": 33,
+  "competing": [
+   "Yellow Globe"
+  ]
+ },
+ {
+  "zone": "Port Jeuno",
+  "area": "Whole Zone",
+  "fish": "Black Sole",
+  "lvl": 96,
+  "bait": "Sinking Minnow",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Port Jeuno",
+  "area": "Whole Zone",
+  "fish": "Nosteau Herring",
+  "lvl": 39,
+  "bait": "Ball of Sardine Paste",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Port Jeuno",
+  "area": "Whole Zone",
+  "fish": "Tiger Cod",
+  "lvl": 29,
+  "bait": "Shrimp Lure",
+  "bite": "Uncommon",
+  "sharePct": 46,
+  "competing": [
+   "Black Sole",
+   "Nosteau Herring"
+  ]
+ },
+ {
+  "zone": "Port Jeuno",
+  "area": "Whole Zone",
+  "fish": "Yellow Globe",
+  "lvl": 17,
+  "bait": "Worm Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Port San dOria",
+  "area": "Whole Zone",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Port San dOria",
+  "area": "Whole Zone",
+  "fish": "Giant Catfish",
+  "lvl": 31,
+  "bait": "Minnow",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Port San dOria",
+  "area": "Whole Zone",
+  "fish": "Gold Carp",
+  "lvl": 56,
+  "bait": "Shrimp Lure",
+  "bite": "Common",
+  "sharePct": 43,
+  "competing": [
+   "Tricolored Carp"
+  ]
+ },
+ {
+  "zone": "Port San dOria",
+  "area": "Whole Zone",
+  "fish": "Moat Carp",
+  "lvl": 11,
+  "bait": "Ball of Insect Paste",
+  "bite": "Common",
+  "sharePct": 40,
+  "competing": [
+   "Tricolored Carp",
+   "Gold Carp"
+  ]
+ },
+ {
+  "zone": "Port San dOria",
+  "area": "Whole Zone",
+  "fish": "Tricolored Carp",
+  "lvl": 27,
+  "bait": "Shrimp Lure",
+  "bite": "Common",
+  "sharePct": 57,
+  "competing": [
+   "Gold Carp"
+  ]
+ },
+ {
+  "zone": "Port Windurst",
+  "area": "Whole Zone",
+  "fish": "Bastore Bream",
+  "lvl": 86,
+  "bait": "Shrimp Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Port Windurst",
+  "area": "Whole Zone",
+  "fish": "Bastore Sardine",
+  "lvl": 9,
+  "bait": "Robber Rig",
+  "bite": "Rare",
+  "sharePct": 41,
+  "competing": [
+   "Bastore Bream",
+   "Quus"
+  ]
+ },
+ {
+  "zone": "Port Windurst",
+  "area": "Whole Zone",
+  "fish": "Quus",
+  "lvl": 19,
+  "bait": "Lugworm",
+  "bite": "Common",
+  "sharePct": 70,
+  "competing": [
+   "Bastore Sardine"
+  ]
+ },
+ {
+  "zone": "Qufim Island",
+  "area": "Northwest Seaside",
+  "fish": "Black Sole",
+  "lvl": 96,
+  "bait": "Sinking Minnow",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Qufim Island",
+  "area": "Northwest Seaside",
+  "fish": "Bluetail",
+  "lvl": 55,
+  "bait": "Peeled Lobster",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Qufim Island",
+  "area": "Northwest Seaside",
+  "fish": "Cone Calamary",
+  "lvl": 48,
+  "bait": "Slice of Bluetail",
+  "bite": "Uncommon",
+  "sharePct": 79,
+  "competing": [
+   "Gigant Squid"
+  ]
+ },
+ {
+  "zone": "Qufim Island",
+  "area": "Northwest Seaside",
+  "fish": "Gigant Squid",
+  "lvl": 91,
+  "bait": "Slice of Bluetail",
+  "bite": "Uncommon",
+  "sharePct": 21,
+  "competing": [
+   "Cone Calamary"
+  ]
+ },
+ {
+  "zone": "Qufim Island",
+  "area": "Northwest Seaside",
+  "fish": "Nosteau Herring",
+  "lvl": 39,
+  "bait": "Ball of Sardine Paste",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Qufim Island",
+  "area": "Northwest Seaside",
+  "fish": "Tiger Cod",
+  "lvl": 29,
+  "bait": "Shrimp Lure",
+  "bite": "Uncommon",
+  "sharePct": 46,
+  "competing": [
+   "Black Sole",
+   "Nosteau Herring"
+  ]
+ },
+ {
+  "zone": "Qufim Island",
+  "area": "Northwest Seaside",
+  "fish": "Yellow Globe",
+  "lvl": 17,
+  "bait": "Worm Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Qufim Island",
+  "area": "Southwest Seaside",
+  "fish": "Black Sole",
+  "lvl": 96,
+  "bait": "Sinking Minnow",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Qufim Island",
+  "area": "Southwest Seaside",
+  "fish": "Bluetail",
+  "lvl": 55,
+  "bait": "Peeled Lobster",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Qufim Island",
+  "area": "Southwest Seaside",
+  "fish": "Nosteau Herring",
+  "lvl": 39,
+  "bait": "Ball of Sardine Paste",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Qufim Island",
+  "area": "Southwest Seaside",
+  "fish": "Three-Eyed Fish",
+  "lvl": 79,
+  "bait": "Slice of Cod",
+  "bite": "Common",
+  "sharePct": 72,
+  "competing": [
+   "Black Sole"
+  ]
+ },
+ {
+  "zone": "Qufim Island",
+  "area": "Southwest Seaside",
+  "fish": "Tiger Cod",
+  "lvl": 29,
+  "bait": "Shrimp Lure",
+  "bite": "Uncommon",
+  "sharePct": 46,
+  "competing": [
+   "Black Sole",
+   "Nosteau Herring"
+  ]
+ },
+ {
+  "zone": "Qufim Island",
+  "area": "Southwest Seaside",
+  "fish": "Yellow Globe",
+  "lvl": 17,
+  "bait": "Worm Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Qufim Island",
+  "area": "Other Seaside",
+  "fish": "Black Sole",
+  "lvl": 96,
+  "bait": "Sinking Minnow",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Qufim Island",
+  "area": "Other Seaside",
+  "fish": "Bluetail",
+  "lvl": 55,
+  "bait": "Minnow",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Qufim Island",
+  "area": "Other Seaside",
+  "fish": "Nosteau Herring",
+  "lvl": 39,
+  "bait": "Ball of Sardine Paste",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Qufim Island",
+  "area": "Other Seaside",
+  "fish": "Tiger Cod",
+  "lvl": 29,
+  "bait": "Shrimp Lure",
+  "bite": "Uncommon",
+  "sharePct": 46,
+  "competing": [
+   "Black Sole",
+   "Nosteau Herring"
+  ]
+ },
+ {
+  "zone": "Qufim Island",
+  "area": "Other Seaside",
+  "fish": "Yellow Globe",
+  "lvl": 17,
+  "bait": "Worm Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Quicksand Caves",
+  "area": "Whole Zone",
+  "fish": "Cave Cherax",
+  "lvl": 130,
+  "bait": "Rotten Meat",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Quicksand Caves",
+  "area": "Whole Zone",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Rabao",
+  "area": "Whole Zone",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 56,
+  "competing": [
+   "Giant Donko"
+  ]
+ },
+ {
+  "zone": "Rabao",
+  "area": "Whole Zone",
+  "fish": "Giant Donko",
+  "lvl": 50,
+  "bait": "Ball of Trout Paste",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Rabao",
+  "area": "Whole Zone",
+  "fish": "Moat Carp",
+  "lvl": 11,
+  "bait": "Ball of Insect Paste",
+  "bite": "Common",
+  "sharePct": 54,
+  "competing": [
+   "Sandfish"
+  ]
+ },
+ {
+  "zone": "Rabao",
+  "area": "Whole Zone",
+  "fish": "Sandfish",
+  "lvl": 50,
+  "bait": "Sabiki Rig",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Ranguemont Pass",
+  "area": "Whole Zone",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Rolanberry Fields",
+  "area": "Small Fountain 1",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Rolanberry Fields",
+  "area": "Small Fountain 1",
+  "fish": "Moat Carp",
+  "lvl": 11,
+  "bait": "Ball of Insect Paste",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Rolanberry Fields",
+  "area": "Small Fountain 1",
+  "fish": "Red Terrapin",
+  "lvl": 53,
+  "bait": "Frog Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Rolanberry Fields",
+  "area": "Fountain of Promises",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 54,
+  "competing": [
+   "Dark Bass"
+  ]
+ },
+ {
+  "zone": "Rolanberry Fields",
+  "area": "Fountain of Promises",
+  "fish": "Dark Bass",
+  "lvl": 33,
+  "bait": "Meatball",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Rolanberry Fields",
+  "area": "Fountain of Promises",
+  "fish": "Giant Catfish",
+  "lvl": 31,
+  "bait": "Slice of Sardine",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Rolanberry Fields",
+  "area": "Fountain of Promises",
+  "fish": "Moat Carp",
+  "lvl": 11,
+  "bait": "Ball of Insect Paste",
+  "bite": "Common",
+  "sharePct": 54,
+  "competing": [
+   "Dark Bass"
+  ]
+ },
+ {
+  "zone": "Rolanberry Fields",
+  "area": "Fountain of Promises",
+  "fish": "Red Terrapin",
+  "lvl": 53,
+  "bait": "Giant Shell Bug",
+  "bite": "Uncommon",
+  "sharePct": 43,
+  "competing": [
+   "Dark Bass"
+  ]
+ },
+ {
+  "zone": "Rolanberry Fields",
+  "area": "Fountain of Partings",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 54,
+  "competing": [
+   "Dark Bass"
+  ]
+ },
+ {
+  "zone": "Rolanberry Fields",
+  "area": "Fountain of Partings",
+  "fish": "Dark Bass",
+  "lvl": 33,
+  "bait": "Meatball",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Rolanberry Fields",
+  "area": "Fountain of Partings",
+  "fish": "Giant Catfish",
+  "lvl": 31,
+  "bait": "Slice of Sardine",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Rolanberry Fields",
+  "area": "Fountain of Partings",
+  "fish": "Moat Carp",
+  "lvl": 11,
+  "bait": "Ball of Insect Paste",
+  "bite": "Common",
+  "sharePct": 54,
+  "competing": [
+   "Dark Bass"
+  ]
+ },
+ {
+  "zone": "Rolanberry Fields",
+  "area": "Fountain of Partings",
+  "fish": "Red Terrapin",
+  "lvl": 53,
+  "bait": "Giant Shell Bug",
+  "bite": "Uncommon",
+  "sharePct": 43,
+  "competing": [
+   "Dark Bass"
+  ]
+ },
+ {
+  "zone": "Rolanberry Fields",
+  "area": "Small Fountain 2",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Rolanberry Fields",
+  "area": "Small Fountain 2",
+  "fish": "Moat Carp",
+  "lvl": 11,
+  "bait": "Ball of Insect Paste",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Rolanberry Fields",
+  "area": "Small Fountain 2",
+  "fish": "Red Terrapin",
+  "lvl": 53,
+  "bait": "Frog Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "RuAun Gardens",
+  "area": "Whole Zone",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Sauromugue Champaign",
+  "area": "Whole Zone",
+  "fish": "Black Sole",
+  "lvl": 96,
+  "bait": "Sinking Minnow",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Sauromugue Champaign",
+  "area": "Whole Zone",
+  "fish": "Bluetail",
+  "lvl": 55,
+  "bait": "Peeled Lobster",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Sauromugue Champaign",
+  "area": "Whole Zone",
+  "fish": "Cone Calamary",
+  "lvl": 48,
+  "bait": "Slice of Cod",
+  "bite": "Uncommon",
+  "sharePct": 79,
+  "competing": [
+   "Black Sole"
+  ]
+ },
+ {
+  "zone": "Sauromugue Champaign",
+  "area": "Whole Zone",
+  "fish": "Silver Shark",
+  "lvl": 76,
+  "bait": "Meatball",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Sauromugue Champaign",
+  "area": "Whole Zone",
+  "fish": "Tiger Cod",
+  "lvl": 29,
+  "bait": "Shrimp Lure",
+  "bite": "Uncommon",
+  "sharePct": 81,
+  "competing": [
+   "Black Sole"
+  ]
+ },
+ {
+  "zone": "Sauromugue Champaign",
+  "area": "Whole Zone",
+  "fish": "Yellow Globe",
+  "lvl": 17,
+  "bait": "Worm Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Sea Serpent Grotto",
+  "area": "Other Seaside",
+  "fish": "Bastore Sardine",
+  "lvl": 9,
+  "bait": "Robber Rig",
+  "bite": "Rare",
+  "sharePct": 49,
+  "competing": [
+   "Quus"
+  ]
+ },
+ {
+  "zone": "Sea Serpent Grotto",
+  "area": "Other Seaside",
+  "fish": "Coral Butterfly",
+  "lvl": 40,
+  "bait": "Worm Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Sea Serpent Grotto",
+  "area": "Other Seaside",
+  "fish": "Quus",
+  "lvl": 19,
+  "bait": "Sabiki Rig",
+  "bite": "Uncommon",
+  "sharePct": 63,
+  "competing": [
+   "Bastore Sardine"
+  ]
+ },
+ {
+  "zone": "Sea Serpent Grotto",
+  "area": "Pond Under a Bridge",
+  "fish": "Bastore Bream",
+  "lvl": 86,
+  "bait": "Sinking Minnow",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Sea Serpent Grotto",
+  "area": "Pond Under a Bridge",
+  "fish": "Bastore Sardine",
+  "lvl": 9,
+  "bait": "Sabiki Rig",
+  "bite": "Common",
+  "sharePct": 37,
+  "competing": [
+   "Quus"
+  ]
+ },
+ {
+  "zone": "Sea Serpent Grotto",
+  "area": "Pond Under a Bridge",
+  "fish": "Bluetail",
+  "lvl": 55,
+  "bait": "Minnow",
+  "bite": "Common",
+  "sharePct": 76,
+  "competing": [
+   "Bastore Bream"
+  ]
+ },
+ {
+  "zone": "Sea Serpent Grotto",
+  "area": "Pond Under a Bridge",
+  "fish": "Coral Butterfly",
+  "lvl": 40,
+  "bait": "Worm Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Sea Serpent Grotto",
+  "area": "Pond Under a Bridge",
+  "fish": "Grimmonite",
+  "lvl": 90,
+  "bait": "Shrimp Lure",
+  "bite": "Common",
+  "sharePct": 29,
+  "competing": [
+   "Nebimonite",
+   "Bastore Bream"
+  ]
+ },
+ {
+  "zone": "Sea Serpent Grotto",
+  "area": "Pond Under a Bridge",
+  "fish": "Nebimonite",
+  "lvl": 27,
+  "bait": "Ball of Crayfish Paste",
+  "bite": "Common",
+  "sharePct": 63,
+  "competing": [
+   "Grimmonite",
+   "Bastore Bream"
+  ]
+ },
+ {
+  "zone": "Sea Serpent Grotto",
+  "area": "Pond Under a Bridge",
+  "fish": "Quus",
+  "lvl": 19,
+  "bait": "Sabiki Rig",
+  "bite": "Uncommon",
+  "sharePct": 63,
+  "competing": [
+   "Bastore Sardine"
+  ]
+ },
+ {
+  "zone": "Sea Serpent Grotto",
+  "area": "Interior of Hidden Door - Mythril",
+  "fish": "Bastore Bream",
+  "lvl": 86,
+  "bait": "Sinking Minnow",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Sea Serpent Grotto",
+  "area": "Interior of Hidden Door - Mythril",
+  "fish": "Bastore Sardine",
+  "lvl": 9,
+  "bait": "Sabiki Rig",
+  "bite": "Common",
+  "sharePct": 37,
+  "competing": [
+   "Quus"
+  ]
+ },
+ {
+  "zone": "Sea Serpent Grotto",
+  "area": "Interior of Hidden Door - Mythril",
+  "fish": "Bluetail",
+  "lvl": 55,
+  "bait": "Minnow",
+  "bite": "Common",
+  "sharePct": 76,
+  "competing": [
+   "Bastore Bream"
+  ]
+ },
+ {
+  "zone": "Sea Serpent Grotto",
+  "area": "Interior of Hidden Door - Mythril",
+  "fish": "Coral Butterfly",
+  "lvl": 40,
+  "bait": "Worm Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Sea Serpent Grotto",
+  "area": "Interior of Hidden Door - Mythril",
+  "fish": "Grimmonite",
+  "lvl": 90,
+  "bait": "Shrimp Lure",
+  "bite": "Common",
+  "sharePct": 29,
+  "competing": [
+   "Nebimonite",
+   "Bastore Bream"
+  ]
+ },
+ {
+  "zone": "Sea Serpent Grotto",
+  "area": "Interior of Hidden Door - Mythril",
+  "fish": "Nebimonite",
+  "lvl": 27,
+  "bait": "Ball of Crayfish Paste",
+  "bite": "Common",
+  "sharePct": 63,
+  "competing": [
+   "Grimmonite",
+   "Bastore Bream"
+  ]
+ },
+ {
+  "zone": "Sea Serpent Grotto",
+  "area": "Interior of Hidden Door - Mythril",
+  "fish": "Quus",
+  "lvl": 19,
+  "bait": "Sabiki Rig",
+  "bite": "Uncommon",
+  "sharePct": 63,
+  "competing": [
+   "Bastore Sardine"
+  ]
+ },
+ {
+  "zone": "Sea Serpent Grotto",
+  "area": "Interior of Hidden Door - Mythril",
+  "fish": "Silver Shark",
+  "lvl": 76,
+  "bait": "Meatball",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Sea Serpent Grotto",
+  "area": "Interior of Hidden Door - Gold",
+  "fish": "Bastore Sardine",
+  "lvl": 9,
+  "bait": "Robber Rig",
+  "bite": "Rare",
+  "sharePct": 49,
+  "competing": [
+   "Quus"
+  ]
+ },
+ {
+  "zone": "Sea Serpent Grotto",
+  "area": "Interior of Hidden Door - Gold",
+  "fish": "Coral Butterfly",
+  "lvl": 40,
+  "bait": "Worm Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Sea Serpent Grotto",
+  "area": "Interior of Hidden Door - Gold",
+  "fish": "Quus",
+  "lvl": 19,
+  "bait": "Sabiki Rig",
+  "bite": "Uncommon",
+  "sharePct": 63,
+  "competing": [
+   "Bastore Sardine"
+  ]
+ },
+ {
+  "zone": "Sea Serpent Grotto",
+  "area": "Misc Puddles",
+  "fish": "Bastore Sardine",
+  "lvl": 9,
+  "bait": "Robber Rig",
+  "bite": "Rare",
+  "sharePct": 49,
+  "competing": [
+   "Quus"
+  ]
+ },
+ {
+  "zone": "Sea Serpent Grotto",
+  "area": "Misc Puddles",
+  "fish": "Quus",
+  "lvl": 19,
+  "bait": "Lugworm",
+  "bite": "Common",
+  "sharePct": 70,
+  "competing": [
+   "Bastore Sardine"
+  ]
+ },
+ {
+  "zone": "Selbina",
+  "area": "Whole Zone",
+  "fish": "Bastore Sardine",
+  "lvl": 9,
+  "bait": "Sabiki Rig",
+  "bite": "Common",
+  "sharePct": 37,
+  "competing": [
+   "Quus"
+  ]
+ },
+ {
+  "zone": "Selbina",
+  "area": "Whole Zone",
+  "fish": "Fat Greedie",
+  "lvl": 24,
+  "bait": "Ball of Crayfish Paste",
+  "bite": "Uncommon",
+  "sharePct": 33,
+  "competing": [
+   "Zafmlug Bass",
+   "Greedie"
+  ]
+ },
+ {
+  "zone": "Selbina",
+  "area": "Whole Zone",
+  "fish": "Greedie",
+  "lvl": 14,
+  "bait": "Minnow",
+  "bite": "Common",
+  "sharePct": 37,
+  "competing": [
+   "Zafmlug Bass",
+   "Fat Greedie"
+  ]
+ },
+ {
+  "zone": "Selbina",
+  "area": "Whole Zone",
+  "fish": "Quus",
+  "lvl": 19,
+  "bait": "Sabiki Rig",
+  "bite": "Uncommon",
+  "sharePct": 63,
+  "competing": [
+   "Bastore Sardine"
+  ]
+ },
+ {
+  "zone": "Selbina",
+  "area": "Whole Zone",
+  "fish": "Zafmlug Bass",
+  "lvl": 43,
+  "bait": "Worm Lure",
+  "bite": "Common",
+  "sharePct": 37,
+  "competing": [
+   "Greedie",
+   "Fat Greedie"
+  ]
+ },
+ {
+  "zone": "Ship bound for Mhaura",
+  "area": "Whole Zone",
+  "fish": "Bastore Sardine",
+  "lvl": 9,
+  "bait": "Lugworm",
+  "bite": "Uncommon",
+  "sharePct": 30,
+  "competing": [
+   "Quus"
+  ]
+ },
+ {
+  "zone": "Ship bound for Mhaura",
+  "area": "Whole Zone",
+  "fish": "Bhefhel Marlin",
+  "lvl": 61,
+  "bait": "Slice of Bluetail",
+  "bite": "Common",
+  "sharePct": 29,
+  "competing": [
+   "Ryugu Titan",
+   "Silver Shark",
+   "Cone Calamary"
+  ]
+ },
+ {
+  "zone": "Ship bound for Mhaura",
+  "area": "Whole Zone",
+  "fish": "Bluetail",
+  "lvl": 55,
+  "bait": "Minnow",
+  "bite": "Common",
+  "sharePct": 23,
+  "competing": [
+   "Ryugu Titan",
+   "Gugru Tuna",
+   "Cone Calamary"
+  ]
+ },
+ {
+  "zone": "Ship bound for Mhaura",
+  "area": "Whole Zone",
+  "fish": "Cone Calamary",
+  "lvl": 48,
+  "bait": "Slice of Cod",
+  "bite": "Uncommon",
+  "sharePct": 51,
+  "competing": [
+   "Ryugu Titan"
+  ]
+ },
+ {
+  "zone": "Ship bound for Mhaura",
+  "area": "Whole Zone",
+  "fish": "Gugru Tuna",
+  "lvl": 41,
+  "bait": "Sinking Minnow",
+  "bite": "Common",
+  "sharePct": 40,
+  "competing": [
+   "Ryugu Titan",
+   "Noble Lady"
+  ]
+ },
+ {
+  "zone": "Ship bound for Mhaura",
+  "area": "Whole Zone",
+  "fish": "Nebimonite",
+  "lvl": 27,
+  "bait": "Ball of Crayfish Paste",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Ship bound for Mhaura",
+  "area": "Whole Zone",
+  "fish": "Noble Lady",
+  "lvl": 66,
+  "bait": "Sinking Minnow",
+  "bite": "Common",
+  "sharePct": 33,
+  "competing": [
+   "Ryugu Titan",
+   "Gugru Tuna"
+  ]
+ },
+ {
+  "zone": "Ship bound for Mhaura",
+  "area": "Whole Zone",
+  "fish": "Quus",
+  "lvl": 19,
+  "bait": "Lugworm",
+  "bite": "Common",
+  "sharePct": 70,
+  "competing": [
+   "Bastore Sardine"
+  ]
+ },
+ {
+  "zone": "Ship bound for Mhaura",
+  "area": "Whole Zone",
+  "fish": "Ryugu Titan",
+  "lvl": 150,
+  "bait": "Frog Lure",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Ship bound for Mhaura",
+  "area": "Whole Zone",
+  "fish": "Silver Shark",
+  "lvl": 76,
+  "bait": "Meatball",
+  "bite": "Common",
+  "sharePct": 35,
+  "competing": [
+   "Ryugu Titan",
+   "Titanictus"
+  ]
+ },
+ {
+  "zone": "Ship bound for Mhaura",
+  "area": "Whole Zone",
+  "fish": "Titanictus",
+  "lvl": 101,
+  "bait": "Meatball",
+  "bite": "Common",
+  "sharePct": 24,
+  "competing": [
+   "Ryugu Titan",
+   "Silver Shark"
+  ]
+ },
+ {
+  "zone": "Ship bound for Mhaura Pirates",
+  "area": "Whole Zone",
+  "fish": "Bastore Sardine",
+  "lvl": 9,
+  "bait": "Lugworm",
+  "bite": "Uncommon",
+  "sharePct": 30,
+  "competing": [
+   "Quus"
+  ]
+ },
+ {
+  "zone": "Ship bound for Mhaura Pirates",
+  "area": "Whole Zone",
+  "fish": "Bhefhel Marlin",
+  "lvl": 61,
+  "bait": "Slice of Bluetail",
+  "bite": "Common",
+  "sharePct": 23,
+  "competing": [
+   "Ryugu Titan",
+   "Silver Shark",
+   "Sea Zombie",
+   "Gugrusaurus",
+   "Cone Calamary"
+  ]
+ },
+ {
+  "zone": "Ship bound for Mhaura Pirates",
+  "area": "Whole Zone",
+  "fish": "Bluetail",
+  "lvl": 55,
+  "bait": "Minnow",
+  "bite": "Common",
+  "sharePct": 23,
+  "competing": [
+   "Ryugu Titan",
+   "Gugru Tuna",
+   "Cone Calamary"
+  ]
+ },
+ {
+  "zone": "Ship bound for Mhaura Pirates",
+  "area": "Whole Zone",
+  "fish": "Cone Calamary",
+  "lvl": 48,
+  "bait": "Slice of Cod",
+  "bite": "Uncommon",
+  "sharePct": 51,
+  "competing": [
+   "Ryugu Titan"
+  ]
+ },
+ {
+  "zone": "Ship bound for Mhaura Pirates",
+  "area": "Whole Zone",
+  "fish": "Gugru Tuna",
+  "lvl": 41,
+  "bait": "Sinking Minnow",
+  "bite": "Common",
+  "sharePct": 40,
+  "competing": [
+   "Ryugu Titan",
+   "Noble Lady"
+  ]
+ },
+ {
+  "zone": "Ship bound for Mhaura Pirates",
+  "area": "Whole Zone",
+  "fish": "Gugrusaurus",
+  "lvl": 140,
+  "bait": "Drill Calamary",
+  "bite": "Uncommon",
+  "sharePct": 50,
+  "competing": [
+   "Sea Zombie"
+  ]
+ },
+ {
+  "zone": "Ship bound for Mhaura Pirates",
+  "area": "Whole Zone",
+  "fish": "Nebimonite",
+  "lvl": 27,
+  "bait": "Ball of Crayfish Paste",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Ship bound for Mhaura Pirates",
+  "area": "Whole Zone",
+  "fish": "Noble Lady",
+  "lvl": 66,
+  "bait": "Sinking Minnow",
+  "bite": "Common",
+  "sharePct": 33,
+  "competing": [
+   "Ryugu Titan",
+   "Gugru Tuna"
+  ]
+ },
+ {
+  "zone": "Ship bound for Mhaura Pirates",
+  "area": "Whole Zone",
+  "fish": "Quus",
+  "lvl": 19,
+  "bait": "Lugworm",
+  "bite": "Common",
+  "sharePct": 70,
+  "competing": [
+   "Bastore Sardine"
+  ]
+ },
+ {
+  "zone": "Ship bound for Mhaura Pirates",
+  "area": "Whole Zone",
+  "fish": "Ryugu Titan",
+  "lvl": 150,
+  "bait": "Frog Lure",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Ship bound for Mhaura Pirates",
+  "area": "Whole Zone",
+  "fish": "Sea Zombie",
+  "lvl": 100,
+  "bait": "Rotten Meat",
+  "bite": "Rare",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Ship bound for Mhaura Pirates",
+  "area": "Whole Zone",
+  "fish": "Silver Shark",
+  "lvl": 76,
+  "bait": "Meatball",
+  "bite": "Common",
+  "sharePct": 24,
+  "competing": [
+   "Ryugu Titan",
+   "Sea Zombie",
+   "Titanictus",
+   "Gugrusaurus"
+  ]
+ },
+ {
+  "zone": "Ship bound for Mhaura Pirates",
+  "area": "Whole Zone",
+  "fish": "Titanictus",
+  "lvl": 101,
+  "bait": "Meatball",
+  "bite": "Common",
+  "sharePct": 17,
+  "competing": [
+   "Ryugu Titan",
+   "Silver Shark",
+   "Sea Zombie",
+   "Gugrusaurus"
+  ]
+ },
+ {
+  "zone": "Ship bound for Selbina",
+  "area": "Whole Zone",
+  "fish": "Bastore Sardine",
+  "lvl": 9,
+  "bait": "Lugworm",
+  "bite": "Uncommon",
+  "sharePct": 30,
+  "competing": [
+   "Quus"
+  ]
+ },
+ {
+  "zone": "Ship bound for Selbina",
+  "area": "Whole Zone",
+  "fish": "Bhefhel Marlin",
+  "lvl": 61,
+  "bait": "Slice of Bluetail",
+  "bite": "Common",
+  "sharePct": 29,
+  "competing": [
+   "Ryugu Titan",
+   "Silver Shark",
+   "Cone Calamary"
+  ]
+ },
+ {
+  "zone": "Ship bound for Selbina",
+  "area": "Whole Zone",
+  "fish": "Bluetail",
+  "lvl": 55,
+  "bait": "Minnow",
+  "bite": "Common",
+  "sharePct": 23,
+  "competing": [
+   "Ryugu Titan",
+   "Gugru Tuna",
+   "Cone Calamary"
+  ]
+ },
+ {
+  "zone": "Ship bound for Selbina",
+  "area": "Whole Zone",
+  "fish": "Cone Calamary",
+  "lvl": 48,
+  "bait": "Slice of Cod",
+  "bite": "Uncommon",
+  "sharePct": 51,
+  "competing": [
+   "Ryugu Titan"
+  ]
+ },
+ {
+  "zone": "Ship bound for Selbina",
+  "area": "Whole Zone",
+  "fish": "Gugru Tuna",
+  "lvl": 41,
+  "bait": "Sinking Minnow",
+  "bite": "Common",
+  "sharePct": 40,
+  "competing": [
+   "Ryugu Titan",
+   "Noble Lady"
+  ]
+ },
+ {
+  "zone": "Ship bound for Selbina",
+  "area": "Whole Zone",
+  "fish": "Nebimonite",
+  "lvl": 27,
+  "bait": "Ball of Crayfish Paste",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Ship bound for Selbina",
+  "area": "Whole Zone",
+  "fish": "Noble Lady",
+  "lvl": 66,
+  "bait": "Sinking Minnow",
+  "bite": "Common",
+  "sharePct": 33,
+  "competing": [
+   "Ryugu Titan",
+   "Gugru Tuna"
+  ]
+ },
+ {
+  "zone": "Ship bound for Selbina",
+  "area": "Whole Zone",
+  "fish": "Quus",
+  "lvl": 19,
+  "bait": "Lugworm",
+  "bite": "Common",
+  "sharePct": 70,
+  "competing": [
+   "Bastore Sardine"
+  ]
+ },
+ {
+  "zone": "Ship bound for Selbina",
+  "area": "Whole Zone",
+  "fish": "Ryugu Titan",
+  "lvl": 150,
+  "bait": "Frog Lure",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Ship bound for Selbina",
+  "area": "Whole Zone",
+  "fish": "Silver Shark",
+  "lvl": 76,
+  "bait": "Meatball",
+  "bite": "Common",
+  "sharePct": 35,
+  "competing": [
+   "Ryugu Titan",
+   "Titanictus"
+  ]
+ },
+ {
+  "zone": "Ship bound for Selbina",
+  "area": "Whole Zone",
+  "fish": "Titanictus",
+  "lvl": 101,
+  "bait": "Meatball",
+  "bite": "Common",
+  "sharePct": 24,
+  "competing": [
+   "Ryugu Titan",
+   "Silver Shark"
+  ]
+ },
+ {
+  "zone": "Ship bound for Selbina Pirates",
+  "area": "Whole Zone",
+  "fish": "Bastore Sardine",
+  "lvl": 9,
+  "bait": "Lugworm",
+  "bite": "Uncommon",
+  "sharePct": 30,
+  "competing": [
+   "Quus"
+  ]
+ },
+ {
+  "zone": "Ship bound for Selbina Pirates",
+  "area": "Whole Zone",
+  "fish": "Bhefhel Marlin",
+  "lvl": 61,
+  "bait": "Slice of Bluetail",
+  "bite": "Common",
+  "sharePct": 23,
+  "competing": [
+   "Ryugu Titan",
+   "Silver Shark",
+   "Sea Zombie",
+   "Gugrusaurus",
+   "Cone Calamary"
+  ]
+ },
+ {
+  "zone": "Ship bound for Selbina Pirates",
+  "area": "Whole Zone",
+  "fish": "Bluetail",
+  "lvl": 55,
+  "bait": "Minnow",
+  "bite": "Common",
+  "sharePct": 23,
+  "competing": [
+   "Ryugu Titan",
+   "Gugru Tuna",
+   "Cone Calamary"
+  ]
+ },
+ {
+  "zone": "Ship bound for Selbina Pirates",
+  "area": "Whole Zone",
+  "fish": "Cone Calamary",
+  "lvl": 48,
+  "bait": "Slice of Cod",
+  "bite": "Uncommon",
+  "sharePct": 51,
+  "competing": [
+   "Ryugu Titan"
+  ]
+ },
+ {
+  "zone": "Ship bound for Selbina Pirates",
+  "area": "Whole Zone",
+  "fish": "Gugru Tuna",
+  "lvl": 41,
+  "bait": "Sinking Minnow",
+  "bite": "Common",
+  "sharePct": 40,
+  "competing": [
+   "Ryugu Titan",
+   "Noble Lady"
+  ]
+ },
+ {
+  "zone": "Ship bound for Selbina Pirates",
+  "area": "Whole Zone",
+  "fish": "Gugrusaurus",
+  "lvl": 140,
+  "bait": "Drill Calamary",
+  "bite": "Uncommon",
+  "sharePct": 50,
+  "competing": [
+   "Sea Zombie"
+  ]
+ },
+ {
+  "zone": "Ship bound for Selbina Pirates",
+  "area": "Whole Zone",
+  "fish": "Nebimonite",
+  "lvl": 27,
+  "bait": "Ball of Crayfish Paste",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Ship bound for Selbina Pirates",
+  "area": "Whole Zone",
+  "fish": "Noble Lady",
+  "lvl": 66,
+  "bait": "Sinking Minnow",
+  "bite": "Common",
+  "sharePct": 33,
+  "competing": [
+   "Ryugu Titan",
+   "Gugru Tuna"
+  ]
+ },
+ {
+  "zone": "Ship bound for Selbina Pirates",
+  "area": "Whole Zone",
+  "fish": "Quus",
+  "lvl": 19,
+  "bait": "Lugworm",
+  "bite": "Common",
+  "sharePct": 70,
+  "competing": [
+   "Bastore Sardine"
+  ]
+ },
+ {
+  "zone": "Ship bound for Selbina Pirates",
+  "area": "Whole Zone",
+  "fish": "Ryugu Titan",
+  "lvl": 150,
+  "bait": "Frog Lure",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Ship bound for Selbina Pirates",
+  "area": "Whole Zone",
+  "fish": "Sea Zombie",
+  "lvl": 100,
+  "bait": "Rotten Meat",
+  "bite": "Rare",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Ship bound for Selbina Pirates",
+  "area": "Whole Zone",
+  "fish": "Silver Shark",
+  "lvl": 76,
+  "bait": "Meatball",
+  "bite": "Common",
+  "sharePct": 24,
+  "competing": [
+   "Ryugu Titan",
+   "Sea Zombie",
+   "Titanictus",
+   "Gugrusaurus"
+  ]
+ },
+ {
+  "zone": "Ship bound for Selbina Pirates",
+  "area": "Whole Zone",
+  "fish": "Titanictus",
+  "lvl": 101,
+  "bait": "Meatball",
+  "bite": "Common",
+  "sharePct": 17,
+  "competing": [
+   "Ryugu Titan",
+   "Silver Shark",
+   "Sea Zombie",
+   "Gugrusaurus"
+  ]
+ },
+ {
+  "zone": "Silver Sea route to Al Zahbi",
+  "area": "Whole Zone",
+  "fish": "Hamsi",
+  "lvl": 9,
+  "bait": "Lugworm",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Silver Sea route to Al Zahbi",
+  "area": "Whole Zone",
+  "fish": "Kalamar",
+  "lvl": 48,
+  "bait": "Slice of Bluetail",
+  "bite": "Common",
+  "sharePct": 51,
+  "competing": [
+   "Kilicbaligi"
+  ]
+ },
+ {
+  "zone": "Silver Sea route to Al Zahbi",
+  "area": "Whole Zone",
+  "fish": "Kalkanbaligi",
+  "lvl": 105,
+  "bait": "Ball of Crayfish Paste",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Silver Sea route to Al Zahbi",
+  "area": "Whole Zone",
+  "fish": "Kilicbaligi",
+  "lvl": 62,
+  "bait": "Peeled Lobster",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Silver Sea route to Al Zahbi",
+  "area": "Whole Zone",
+  "fish": "Lakerda",
+  "lvl": 41,
+  "bait": "Sinking Minnow",
+  "bite": "Common",
+  "sharePct": 68,
+  "competing": [
+   "Kalkanbaligi"
+  ]
+ },
+ {
+  "zone": "Silver Sea route to Al Zahbi",
+  "area": "Whole Zone",
+  "fish": "Uskumru",
+  "lvl": 55,
+  "bait": "Shrimp Lure",
+  "bite": "Uncommon",
+  "sharePct": 27,
+  "competing": [
+   "Kalkanbaligi",
+   "Lakerda"
+  ]
+ },
+ {
+  "zone": "Silver Sea route to Nashmau",
+  "area": "Whole Zone",
+  "fish": "Hamsi",
+  "lvl": 9,
+  "bait": "Lugworm",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Silver Sea route to Nashmau",
+  "area": "Whole Zone",
+  "fish": "Kalamar",
+  "lvl": 48,
+  "bait": "Slice of Bluetail",
+  "bite": "Common",
+  "sharePct": 51,
+  "competing": [
+   "Kilicbaligi"
+  ]
+ },
+ {
+  "zone": "Silver Sea route to Nashmau",
+  "area": "Whole Zone",
+  "fish": "Kalkanbaligi",
+  "lvl": 105,
+  "bait": "Ball of Crayfish Paste",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Silver Sea route to Nashmau",
+  "area": "Whole Zone",
+  "fish": "Kilicbaligi",
+  "lvl": 62,
+  "bait": "Peeled Lobster",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Silver Sea route to Nashmau",
+  "area": "Whole Zone",
+  "fish": "Lakerda",
+  "lvl": 41,
+  "bait": "Sinking Minnow",
+  "bite": "Common",
+  "sharePct": 68,
+  "competing": [
+   "Kalkanbaligi"
+  ]
+ },
+ {
+  "zone": "Silver Sea route to Nashmau",
+  "area": "Whole Zone",
+  "fish": "Uskumru",
+  "lvl": 55,
+  "bait": "Shrimp Lure",
+  "bite": "Uncommon",
+  "sharePct": 27,
+  "competing": [
+   "Kalkanbaligi",
+   "Lakerda"
+  ]
+ },
+ {
+  "zone": "South Gustaberg",
+  "area": "Seaside",
+  "fish": "Bastore Bream",
+  "lvl": 86,
+  "bait": "Shrimp Lure",
+  "bite": "Common",
+  "sharePct": 20,
+  "competing": [
+   "Ogre Eel"
+  ]
+ },
+ {
+  "zone": "South Gustaberg",
+  "area": "Seaside",
+  "fish": "Bastore Sardine",
+  "lvl": 9,
+  "bait": "Sabiki Rig",
+  "bite": "Common",
+  "sharePct": 37,
+  "competing": [
+   "Quus"
+  ]
+ },
+ {
+  "zone": "South Gustaberg",
+  "area": "Seaside",
+  "fish": "Bladefish",
+  "lvl": 71,
+  "bait": "Slice of Bluetail",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "South Gustaberg",
+  "area": "Seaside",
+  "fish": "Gold Lobster",
+  "lvl": 46,
+  "bait": "Sinking Minnow",
+  "bite": "Common",
+  "sharePct": 30,
+  "competing": [
+   "Zafmlug Bass",
+   "Bastore Bream",
+   "Ogre Eel"
+  ]
+ },
+ {
+  "zone": "South Gustaberg",
+  "area": "Seaside",
+  "fish": "Ogre Eel",
+  "lvl": 35,
+  "bait": "Shrimp Lure",
+  "bite": "Common",
+  "sharePct": 80,
+  "competing": [
+   "Bastore Bream"
+  ]
+ },
+ {
+  "zone": "South Gustaberg",
+  "area": "Seaside",
+  "fish": "Quus",
+  "lvl": 19,
+  "bait": "Sabiki Rig",
+  "bite": "Uncommon",
+  "sharePct": 63,
+  "competing": [
+   "Bastore Sardine"
+  ]
+ },
+ {
+  "zone": "South Gustaberg",
+  "area": "Seaside",
+  "fish": "Zafmlug Bass",
+  "lvl": 43,
+  "bait": "Worm Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Talacca Cove",
+  "area": "Whole Zone",
+  "fish": "Ahtapot",
+  "lvl": 90,
+  "bait": "Peeled Lobster",
+  "bite": "Uncommon",
+  "sharePct": 45,
+  "competing": [
+   "Mercanbaligi",
+   "Dil"
+  ]
+ },
+ {
+  "zone": "Talacca Cove",
+  "area": "Whole Zone",
+  "fish": "Dil",
+  "lvl": 96,
+  "bait": "Slice of Cod",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Talacca Cove",
+  "area": "Whole Zone",
+  "fish": "Istakoz",
+  "lvl": 46,
+  "bait": "Minnow",
+  "bite": "Uncommon",
+  "sharePct": 71,
+  "competing": [
+   "Mercanbaligi"
+  ]
+ },
+ {
+  "zone": "Talacca Cove",
+  "area": "Whole Zone",
+  "fish": "Istavrit",
+  "lvl": 37,
+  "bait": "Lugworm",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Talacca Cove",
+  "area": "Whole Zone",
+  "fish": "Mercanbaligi",
+  "lvl": 86,
+  "bait": "Shrimp Lure",
+  "bite": "Common",
+  "sharePct": 39,
+  "competing": [
+   "Ahtapot",
+   "Dil"
+  ]
+ },
+ {
+  "zone": "Tavnazian Safehold",
+  "area": "Whole Zone",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Temple of Uggalepih",
+  "area": "Whole Zone",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Temple of Uggalepih",
+  "area": "Whole Zone",
+  "fish": "Moat Carp",
+  "lvl": 11,
+  "bait": "Ball of Insect Paste",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "The Boyahda Tree",
+  "area": "Waterfall Basin",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 54,
+  "competing": [
+   "Dark Bass"
+  ]
+ },
+ {
+  "zone": "The Boyahda Tree",
+  "area": "Waterfall Basin",
+  "fish": "Dark Bass",
+  "lvl": 33,
+  "bait": "Sinking Minnow",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "The Boyahda Tree",
+  "area": "Waterfall Basin",
+  "fish": "Giant Chirai",
+  "lvl": 110,
+  "bait": "Lufaise Fly",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "The Boyahda Tree",
+  "area": "Waterfall Basin",
+  "fish": "Moat Carp",
+  "lvl": 11,
+  "bait": "Ball of Insect Paste",
+  "bite": "Common",
+  "sharePct": 37,
+  "competing": [
+   "Tricolored Carp",
+   "Dark Bass"
+  ]
+ },
+ {
+  "zone": "The Boyahda Tree",
+  "area": "Waterfall Basin",
+  "fish": "Tricolored Carp",
+  "lvl": 27,
+  "bait": "Shrimp Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "The Boyahda Tree",
+  "area": "Waterfall Basin - Hidden",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 49,
+  "competing": [
+   "Dark Bass",
+   "Emperor Fish"
+  ]
+ },
+ {
+  "zone": "The Boyahda Tree",
+  "area": "Waterfall Basin - Hidden",
+  "fish": "Dark Bass",
+  "lvl": 33,
+  "bait": "Minnow",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "The Boyahda Tree",
+  "area": "Waterfall Basin - Hidden",
+  "fish": "Emperor Fish",
+  "lvl": 91,
+  "bait": "Giant Shell Bug",
+  "bite": "Uncommon",
+  "sharePct": 18,
+  "competing": [
+   "Dark Bass"
+  ]
+ },
+ {
+  "zone": "The Boyahda Tree",
+  "area": "Waterfall Basin - Hidden",
+  "fish": "Moat Carp",
+  "lvl": 11,
+  "bait": "Ball of Insect Paste",
+  "bite": "Common",
+  "sharePct": 37,
+  "competing": [
+   "Tricolored Carp",
+   "Dark Bass"
+  ]
+ },
+ {
+  "zone": "The Boyahda Tree",
+  "area": "Waterfall Basin - Hidden",
+  "fish": "Tricolored Carp",
+  "lvl": 27,
+  "bait": "Shrimp Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "The Boyahda Tree",
+  "area": "Other Waterside",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 54,
+  "competing": [
+   "Dark Bass"
+  ]
+ },
+ {
+  "zone": "The Boyahda Tree",
+  "area": "Other Waterside",
+  "fish": "Dark Bass",
+  "lvl": 33,
+  "bait": "Minnow",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "The Boyahda Tree",
+  "area": "Other Waterside",
+  "fish": "Moat Carp",
+  "lvl": 11,
+  "bait": "Ball of Insect Paste",
+  "bite": "Common",
+  "sharePct": 54,
+  "competing": [
+   "Dark Bass"
+  ]
+ },
+ {
+  "zone": "The Sanctuary of ZiTah",
+  "area": "Whole Zone",
+  "fish": "Crystal Bass",
+  "lvl": 35,
+  "bait": "Little Worm",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "The Sanctuary of ZiTah",
+  "area": "Whole Zone",
+  "fish": "Dark Bass",
+  "lvl": 33,
+  "bait": "Robber Rig",
+  "bite": "Rare",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "The Sanctuary of ZiTah",
+  "area": "Whole Zone",
+  "fish": "Red Terrapin",
+  "lvl": 53,
+  "bait": "Shell Bug",
+  "bite": "Uncommon",
+  "sharePct": 43,
+  "competing": [
+   "Dark Bass"
+  ]
+ },
+ {
+  "zone": "The Shrine of RuAvitau",
+  "area": "Whole Zone",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Valkurm Dunes",
+  "area": "Whole Zone",
+  "fish": "Bastore Sardine",
+  "lvl": 9,
+  "bait": "Sabiki Rig",
+  "bite": "Common",
+  "sharePct": 37,
+  "competing": [
+   "Quus"
+  ]
+ },
+ {
+  "zone": "Valkurm Dunes",
+  "area": "Whole Zone",
+  "fish": "Greedie",
+  "lvl": 14,
+  "bait": "Minnow",
+  "bite": "Common",
+  "sharePct": 54,
+  "competing": [
+   "Zafmlug Bass"
+  ]
+ },
+ {
+  "zone": "Valkurm Dunes",
+  "area": "Whole Zone",
+  "fish": "Quus",
+  "lvl": 19,
+  "bait": "Sabiki Rig",
+  "bite": "Uncommon",
+  "sharePct": 63,
+  "competing": [
+   "Bastore Sardine"
+  ]
+ },
+ {
+  "zone": "Valkurm Dunes",
+  "area": "Whole Zone",
+  "fish": "Shall Shell",
+  "lvl": 53,
+  "bait": "Robber Rig",
+  "bite": "Common",
+  "sharePct": 36,
+  "competing": [
+   "Bastore Sardine",
+   "Zafmlug Bass",
+   "Greedie",
+   "Quus"
+  ]
+ },
+ {
+  "zone": "Valkurm Dunes",
+  "area": "Whole Zone",
+  "fish": "Zafmlug Bass",
+  "lvl": 43,
+  "bait": "Worm Lure",
+  "bite": "Common",
+  "sharePct": 54,
+  "competing": [
+   "Greedie"
+  ]
+ },
+ {
+  "zone": "Wajaom Woodlands",
+  "area": "Whole Zone",
+  "fish": "Alabaligi",
+  "lvl": 37,
+  "bait": "Fly Lure",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Wajaom Woodlands",
+  "area": "Whole Zone",
+  "fish": "Dark Bass",
+  "lvl": 33,
+  "bait": "Slice of Moat Carp",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Wajaom Woodlands",
+  "area": "Whole Zone",
+  "fish": "Kayabaligi",
+  "lvl": 75,
+  "bait": "Little Worm",
+  "bite": "Uncommon",
+  "sharePct": 31,
+  "competing": [
+   "Yilanbaligi",
+   "Sazanbaligi"
+  ]
+ },
+ {
+  "zone": "Wajaom Woodlands",
+  "area": "Whole Zone",
+  "fish": "Morinabaligi",
+  "lvl": 94,
+  "bait": "Peeled Crayfish",
+  "bite": "Uncommon",
+  "sharePct": 20,
+  "competing": [
+   "Dark Bass",
+   "Yilanbaligi"
+  ]
+ },
+ {
+  "zone": "Wajaom Woodlands",
+  "area": "Whole Zone",
+  "fish": "Sazanbaligi",
+  "lvl": 56,
+  "bait": "Shrimp Lure",
+  "bite": "Uncommon",
+  "sharePct": 55,
+  "competing": [
+   "Turnabaligi"
+  ]
+ },
+ {
+  "zone": "Wajaom Woodlands",
+  "area": "Whole Zone",
+  "fish": "Turnabaligi",
+  "lvl": 104,
+  "bait": "Shrimp Lure",
+  "bite": "Common",
+  "sharePct": 45,
+  "competing": [
+   "Sazanbaligi"
+  ]
+ },
+ {
+  "zone": "Wajaom Woodlands",
+  "area": "Whole Zone",
+  "fish": "Yilanbaligi",
+  "lvl": 47,
+  "bait": "Little Worm",
+  "bite": "Uncommon",
+  "sharePct": 38,
+  "competing": [
+   "Sazanbaligi",
+   "Kayabaligi"
+  ]
+ },
+ {
+  "zone": "West Ronfaure",
+  "area": "Knightwell",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "West Ronfaure",
+  "area": "Knightwell",
+  "fish": "Giant Catfish",
+  "lvl": 31,
+  "bait": "Minnow",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "West Ronfaure",
+  "area": "Knightwell",
+  "fish": "Moat Carp",
+  "lvl": 11,
+  "bait": "Ball of Insect Paste",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "West Ronfaure",
+  "area": "Knightwell",
+  "fish": "Red Terrapin",
+  "lvl": 53,
+  "bait": "Giant Shell Bug",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "West Sarutabaruta",
+  "area": "Pond",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 54,
+  "competing": [
+   "Dark Bass"
+  ]
+ },
+ {
+  "zone": "West Sarutabaruta",
+  "area": "Pond",
+  "fish": "Dark Bass",
+  "lvl": 33,
+  "bait": "Giant Shell Bug",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "West Sarutabaruta",
+  "area": "Pond",
+  "fish": "Giant Catfish",
+  "lvl": 31,
+  "bait": "Slice of Sardine",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "West Sarutabaruta",
+  "area": "Pond",
+  "fish": "Moat Carp",
+  "lvl": 11,
+  "bait": "Ball of Insect Paste",
+  "bite": "Common",
+  "sharePct": 54,
+  "competing": [
+   "Dark Bass"
+  ]
+ },
+ {
+  "zone": "West Sarutabaruta",
+  "area": "Seaside",
+  "fish": "Bastore Bream",
+  "lvl": 86,
+  "bait": "Ball of Crayfish Paste",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "West Sarutabaruta",
+  "area": "Seaside",
+  "fish": "Bastore Sardine",
+  "lvl": 9,
+  "bait": "Sabiki Rig",
+  "bite": "Common",
+  "sharePct": 37,
+  "competing": [
+   "Quus"
+  ]
+ },
+ {
+  "zone": "West Sarutabaruta",
+  "area": "Seaside",
+  "fish": "Bladefish",
+  "lvl": 71,
+  "bait": "Slice of Bluetail",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "West Sarutabaruta",
+  "area": "Seaside",
+  "fish": "Bluetail",
+  "lvl": 55,
+  "bait": "Minnow",
+  "bite": "Common",
+  "sharePct": 76,
+  "competing": [
+   "Bastore Bream"
+  ]
+ },
+ {
+  "zone": "West Sarutabaruta",
+  "area": "Seaside",
+  "fish": "Gold Lobster",
+  "lvl": 46,
+  "bait": "Sinking Minnow",
+  "bite": "Common",
+  "sharePct": 43,
+  "competing": [
+   "Bastore Bream",
+   "Ogre Eel"
+  ]
+ },
+ {
+  "zone": "West Sarutabaruta",
+  "area": "Seaside",
+  "fish": "Ogre Eel",
+  "lvl": 35,
+  "bait": "Shrimp Lure",
+  "bite": "Common",
+  "sharePct": 80,
+  "competing": [
+   "Bastore Bream"
+  ]
+ },
+ {
+  "zone": "West Sarutabaruta",
+  "area": "Seaside",
+  "fish": "Quus",
+  "lvl": 19,
+  "bait": "Lugworm",
+  "bite": "Common",
+  "sharePct": 70,
+  "competing": [
+   "Bastore Sardine"
+  ]
+ },
+ {
+  "zone": "Western Altepa Desert",
+  "area": "Oasis of Hubol",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 47,
+  "competing": [
+   "Giant Donko",
+   "Gavial Fish"
+  ]
+ },
+ {
+  "zone": "Western Altepa Desert",
+  "area": "Oasis of Hubol",
+  "fish": "Gavial Fish",
+  "lvl": 81,
+  "bait": "Meatball",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Western Altepa Desert",
+  "area": "Oasis of Hubol",
+  "fish": "Giant Catfish",
+  "lvl": 31,
+  "bait": "Sinking Minnow",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Western Altepa Desert",
+  "area": "Oasis of Hubol",
+  "fish": "Giant Donko",
+  "lvl": 50,
+  "bait": "Ball of Trout Paste",
+  "bite": "Uncommon",
+  "sharePct": 50,
+  "competing": [
+   "Giant Catfish"
+  ]
+ },
+ {
+  "zone": "Western Altepa Desert",
+  "area": "Oasis of Hubol",
+  "fish": "Moat Carp",
+  "lvl": 11,
+  "bait": "Ball of Insect Paste",
+  "bite": "Common",
+  "sharePct": 54,
+  "competing": [
+   "Sandfish"
+  ]
+ },
+ {
+  "zone": "Western Altepa Desert",
+  "area": "Oasis of Hubol",
+  "fish": "Sandfish",
+  "lvl": 50,
+  "bait": "Sabiki Rig",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Western Altepa Desert",
+  "area": "Central Spring",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 56,
+  "competing": [
+   "Giant Donko"
+  ]
+ },
+ {
+  "zone": "Western Altepa Desert",
+  "area": "Central Spring",
+  "fish": "Giant Catfish",
+  "lvl": 31,
+  "bait": "Minnow",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Western Altepa Desert",
+  "area": "Central Spring",
+  "fish": "Giant Donko",
+  "lvl": 50,
+  "bait": "Peeled Crayfish",
+  "bite": "Common",
+  "sharePct": 51,
+  "competing": [
+   "Crayfish"
+  ]
+ },
+ {
+  "zone": "Western Altepa Desert",
+  "area": "Central Spring",
+  "fish": "Moat Carp",
+  "lvl": 11,
+  "bait": "Ball of Insect Paste",
+  "bite": "Common",
+  "sharePct": 54,
+  "competing": [
+   "Sandfish"
+  ]
+ },
+ {
+  "zone": "Western Altepa Desert",
+  "area": "Central Spring",
+  "fish": "Sandfish",
+  "lvl": 50,
+  "bait": "Sabiki Rig",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Windurst Walls",
+  "area": "Whole Zone",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Peeled Crayfish",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Windurst Walls",
+  "area": "Whole Zone",
+  "fish": "Gold Carp",
+  "lvl": 56,
+  "bait": "Shrimp Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Windurst Walls",
+  "area": "Whole Zone",
+  "fish": "Moat Carp",
+  "lvl": 11,
+  "bait": "Ball of Insect Paste",
+  "bite": "Common",
+  "sharePct": 61,
+  "competing": [
+   "Gold Carp"
+  ]
+ },
+ {
+  "zone": "Windurst Walls",
+  "area": "Whole Zone",
+  "fish": "Pipira",
+  "lvl": 29,
+  "bait": "Minnow",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Windurst Waters",
+  "area": "Whole Zone",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Peeled Crayfish",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Windurst Waters",
+  "area": "Whole Zone",
+  "fish": "Gold Carp",
+  "lvl": 56,
+  "bait": "Shrimp Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Windurst Waters",
+  "area": "Whole Zone",
+  "fish": "Moat Carp",
+  "lvl": 11,
+  "bait": "Ball of Insect Paste",
+  "bite": "Common",
+  "sharePct": 61,
+  "competing": [
+   "Gold Carp"
+  ]
+ },
+ {
+  "zone": "Windurst Waters",
+  "area": "Whole Zone",
+  "fish": "Pipira",
+  "lvl": 29,
+  "bait": "Minnow",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Windurst Woods",
+  "area": "Whole Zone",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Peeled Crayfish",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Windurst Woods",
+  "area": "Whole Zone",
+  "fish": "Gold Carp",
+  "lvl": 56,
+  "bait": "Shrimp Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Windurst Woods",
+  "area": "Whole Zone",
+  "fish": "Moat Carp",
+  "lvl": 11,
+  "bait": "Ball of Insect Paste",
+  "bite": "Common",
+  "sharePct": 61,
+  "competing": [
+   "Gold Carp"
+  ]
+ },
+ {
+  "zone": "Windurst Woods",
+  "area": "Whole Zone",
+  "fish": "Pipira",
+  "lvl": 29,
+  "bait": "Minnow",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Yhoator Jungle",
+  "area": "Front of Temple - East Side",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Peeled Crayfish",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Yhoator Jungle",
+  "area": "Front of Temple - East Side",
+  "fish": "Elshimo Frog",
+  "lvl": 30,
+  "bait": "Fly Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Yhoator Jungle",
+  "area": "Front of Temple - East Side",
+  "fish": "Forest Carp",
+  "lvl": 20,
+  "bait": "Ball of Insect Paste",
+  "bite": "Common",
+  "sharePct": 50,
+  "competing": [
+   "Moat Carp"
+  ]
+ },
+ {
+  "zone": "Yhoator Jungle",
+  "area": "Front of Temple - East Side",
+  "fish": "Jungle Catfish",
+  "lvl": 80,
+  "bait": "Ball of Trout Paste",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Yhoator Jungle",
+  "area": "Front of Temple - East Side",
+  "fish": "Moat Carp",
+  "lvl": 11,
+  "bait": "Ball of Insect Paste",
+  "bite": "Common",
+  "sharePct": 50,
+  "competing": [
+   "Forest Carp"
+  ]
+ },
+ {
+  "zone": "Yhoator Jungle",
+  "area": "Front of Temple - East Side",
+  "fish": "Pipira",
+  "lvl": 29,
+  "bait": "Minnow",
+  "bite": "Common",
+  "sharePct": 67,
+  "competing": [
+   "Jungle Catfish"
+  ]
+ },
+ {
+  "zone": "Yhoator Jungle",
+  "area": "Front of Temple - West Side",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Yhoator Jungle",
+  "area": "Front of Temple - West Side",
+  "fish": "Elshimo Frog",
+  "lvl": 30,
+  "bait": "Fly Lure",
+  "bite": "Common",
+  "sharePct": 57,
+  "competing": [
+   "Elshimo Newt"
+  ]
+ },
+ {
+  "zone": "Yhoator Jungle",
+  "area": "Front of Temple - West Side",
+  "fish": "Elshimo Newt",
+  "lvl": 60,
+  "bait": "Frog Lure",
+  "bite": "Common",
+  "sharePct": 68,
+  "competing": [
+   "Jungle Catfish"
+  ]
+ },
+ {
+  "zone": "Yhoator Jungle",
+  "area": "Front of Temple - West Side",
+  "fish": "Forest Carp",
+  "lvl": 20,
+  "bait": "Ball of Insect Paste",
+  "bite": "Common",
+  "sharePct": 50,
+  "competing": [
+   "Moat Carp"
+  ]
+ },
+ {
+  "zone": "Yhoator Jungle",
+  "area": "Front of Temple - West Side",
+  "fish": "Jungle Catfish",
+  "lvl": 80,
+  "bait": "Ball of Trout Paste",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Yhoator Jungle",
+  "area": "Front of Temple - West Side",
+  "fish": "Moat Carp",
+  "lvl": 11,
+  "bait": "Ball of Insect Paste",
+  "bite": "Common",
+  "sharePct": 50,
+  "competing": [
+   "Forest Carp"
+  ]
+ },
+ {
+  "zone": "Yhoator Jungle",
+  "area": "Teardrop Spring",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Yhoator Jungle",
+  "area": "Teardrop Spring",
+  "fish": "Forest Carp",
+  "lvl": 20,
+  "bait": "Ball of Insect Paste",
+  "bite": "Common",
+  "sharePct": 50,
+  "competing": [
+   "Moat Carp"
+  ]
+ },
+ {
+  "zone": "Yhoator Jungle",
+  "area": "Teardrop Spring",
+  "fish": "Moat Carp",
+  "lvl": 11,
+  "bait": "Ball of Insect Paste",
+  "bite": "Common",
+  "sharePct": 50,
+  "competing": [
+   "Forest Carp"
+  ]
+ },
+ {
+  "zone": "Yhoator Jungle",
+  "area": "Underground Pool 1",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Yhoator Jungle",
+  "area": "Underground Pool 1",
+  "fish": "Forest Carp",
+  "lvl": 20,
+  "bait": "Ball of Insect Paste",
+  "bite": "Common",
+  "sharePct": 50,
+  "competing": [
+   "Moat Carp"
+  ]
+ },
+ {
+  "zone": "Yhoator Jungle",
+  "area": "Underground Pool 1",
+  "fish": "Jungle Catfish",
+  "lvl": 80,
+  "bait": "Ball of Trout Paste",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Yhoator Jungle",
+  "area": "Underground Pool 1",
+  "fish": "Moat Carp",
+  "lvl": 11,
+  "bait": "Ball of Insect Paste",
+  "bite": "Common",
+  "sharePct": 50,
+  "competing": [
+   "Forest Carp"
+  ]
+ },
+ {
+  "zone": "Yhoator Jungle",
+  "area": "Underground Pool 1",
+  "fish": "Monke-Onke",
+  "lvl": 51,
+  "bait": "Shrimp Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Yhoator Jungle",
+  "area": "Bloodlet Spring",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Yhoator Jungle",
+  "area": "Bloodlet Spring",
+  "fish": "Forest Carp",
+  "lvl": 20,
+  "bait": "Ball of Insect Paste",
+  "bite": "Common",
+  "sharePct": 50,
+  "competing": [
+   "Moat Carp"
+  ]
+ },
+ {
+  "zone": "Yhoator Jungle",
+  "area": "Bloodlet Spring",
+  "fish": "Moat Carp",
+  "lvl": 11,
+  "bait": "Ball of Insect Paste",
+  "bite": "Common",
+  "sharePct": 50,
+  "competing": [
+   "Forest Carp"
+  ]
+ },
+ {
+  "zone": "Yhoator Jungle",
+  "area": "Underground Pool 3",
+  "fish": "Elshimo Frog",
+  "lvl": 30,
+  "bait": "Fly Lure",
+  "bite": "Common",
+  "sharePct": 57,
+  "competing": [
+   "Elshimo Newt"
+  ]
+ },
+ {
+  "zone": "Yhoator Jungle",
+  "area": "Underground Pool 3",
+  "fish": "Elshimo Newt",
+  "lvl": 60,
+  "bait": "Frog Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Yhoator Jungle",
+  "area": "Underground Pool 2",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Yhoator Jungle",
+  "area": "Underground Pool 2",
+  "fish": "Elshimo Frog",
+  "lvl": 30,
+  "bait": "Fly Lure",
+  "bite": "Common",
+  "sharePct": 57,
+  "competing": [
+   "Elshimo Newt"
+  ]
+ },
+ {
+  "zone": "Yhoator Jungle",
+  "area": "Underground Pool 2",
+  "fish": "Elshimo Newt",
+  "lvl": 60,
+  "bait": "Frog Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Yhoator Jungle",
+  "area": "Underground Pool 2",
+  "fish": "Forest Carp",
+  "lvl": 20,
+  "bait": "Ball of Insect Paste",
+  "bite": "Common",
+  "sharePct": 50,
+  "competing": [
+   "Moat Carp"
+  ]
+ },
+ {
+  "zone": "Yhoator Jungle",
+  "area": "Underground Pool 2",
+  "fish": "Moat Carp",
+  "lvl": 11,
+  "bait": "Ball of Insect Paste",
+  "bite": "Common",
+  "sharePct": 50,
+  "competing": [
+   "Forest Carp"
+  ]
+ },
+ {
+  "zone": "Yughott Grotto",
+  "area": "Whole Zone",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Yuhtunga Jungle",
+  "area": "Northeast Pond",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Yuhtunga Jungle",
+  "area": "Northeast Pond",
+  "fish": "Crescent Fish",
+  "lvl": 69,
+  "bait": "Giant Shell Bug",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Yuhtunga Jungle",
+  "area": "Northeast Pond",
+  "fish": "Elshimo Frog",
+  "lvl": 30,
+  "bait": "Fly Lure",
+  "bite": "Common",
+  "sharePct": 69,
+  "competing": [
+   "Crescent Fish"
+  ]
+ },
+ {
+  "zone": "Yuhtunga Jungle",
+  "area": "Northeast Pond",
+  "fish": "Forest Carp",
+  "lvl": 20,
+  "bait": "Ball of Insect Paste",
+  "bite": "Common",
+  "sharePct": 50,
+  "competing": [
+   "Moat Carp"
+  ]
+ },
+ {
+  "zone": "Yuhtunga Jungle",
+  "area": "Northeast Pond",
+  "fish": "Jungle Catfish",
+  "lvl": 80,
+  "bait": "Ball of Trout Paste",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Yuhtunga Jungle",
+  "area": "Northeast Pond",
+  "fish": "Moat Carp",
+  "lvl": 11,
+  "bait": "Ball of Insect Paste",
+  "bite": "Common",
+  "sharePct": 50,
+  "competing": [
+   "Forest Carp"
+  ]
+ },
+ {
+  "zone": "Yuhtunga Jungle",
+  "area": "Northeast Pond",
+  "fish": "Monke-Onke",
+  "lvl": 51,
+  "bait": "Shrimp Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Yuhtunga Jungle",
+  "area": "Gremini Falls",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Yuhtunga Jungle",
+  "area": "Gremini Falls",
+  "fish": "Crescent Fish",
+  "lvl": 69,
+  "bait": "Giant Shell Bug",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Yuhtunga Jungle",
+  "area": "Gremini Falls",
+  "fish": "Elshimo Frog",
+  "lvl": 30,
+  "bait": "Shell Bug",
+  "bite": "Uncommon",
+  "sharePct": 53,
+  "competing": [
+   "Elshimo Newt"
+  ]
+ },
+ {
+  "zone": "Yuhtunga Jungle",
+  "area": "Gremini Falls",
+  "fish": "Elshimo Newt",
+  "lvl": 60,
+  "bait": "Frog Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Yuhtunga Jungle",
+  "area": "Gremini Falls",
+  "fish": "Forest Carp",
+  "lvl": 20,
+  "bait": "Ball of Insect Paste",
+  "bite": "Common",
+  "sharePct": 50,
+  "competing": [
+   "Moat Carp"
+  ]
+ },
+ {
+  "zone": "Yuhtunga Jungle",
+  "area": "Gremini Falls",
+  "fish": "Moat Carp",
+  "lvl": 11,
+  "bait": "Ball of Insect Paste",
+  "bite": "Common",
+  "sharePct": 50,
+  "competing": [
+   "Forest Carp"
+  ]
+ },
+ {
+  "zone": "Yuhtunga Jungle",
+  "area": "Southwest Pond",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Peeled Crayfish",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Yuhtunga Jungle",
+  "area": "Southwest Pond",
+  "fish": "Elshimo Newt",
+  "lvl": 60,
+  "bait": "Fly Lure",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Yuhtunga Jungle",
+  "area": "Southwest Pond",
+  "fish": "Forest Carp",
+  "lvl": 20,
+  "bait": "Ball of Insect Paste",
+  "bite": "Common",
+  "sharePct": 50,
+  "competing": [
+   "Moat Carp"
+  ]
+ },
+ {
+  "zone": "Yuhtunga Jungle",
+  "area": "Southwest Pond",
+  "fish": "Jungle Catfish",
+  "lvl": 80,
+  "bait": "Ball of Trout Paste",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Yuhtunga Jungle",
+  "area": "Southwest Pond",
+  "fish": "Moat Carp",
+  "lvl": 11,
+  "bait": "Ball of Insect Paste",
+  "bite": "Common",
+  "sharePct": 50,
+  "competing": [
+   "Forest Carp"
+  ]
+ },
+ {
+  "zone": "Yuhtunga Jungle",
+  "area": "Southwest Pond",
+  "fish": "Pipira",
+  "lvl": 29,
+  "bait": "Minnow",
+  "bite": "Common",
+  "sharePct": 67,
+  "competing": [
+   "Jungle Catfish"
+  ]
+ },
+ {
+  "zone": "Yuhtunga Jungle",
+  "area": "Southwest Waterfall - South",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Peeled Crayfish",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Yuhtunga Jungle",
+  "area": "Southwest Waterfall - South",
+  "fish": "Elshimo Newt",
+  "lvl": 60,
+  "bait": "Fly Lure",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Yuhtunga Jungle",
+  "area": "Southwest Waterfall - South",
+  "fish": "Forest Carp",
+  "lvl": 20,
+  "bait": "Ball of Insect Paste",
+  "bite": "Common",
+  "sharePct": 50,
+  "competing": [
+   "Moat Carp"
+  ]
+ },
+ {
+  "zone": "Yuhtunga Jungle",
+  "area": "Southwest Waterfall - South",
+  "fish": "Moat Carp",
+  "lvl": 11,
+  "bait": "Ball of Insect Paste",
+  "bite": "Common",
+  "sharePct": 50,
+  "competing": [
+   "Forest Carp"
+  ]
+ },
+ {
+  "zone": "Yuhtunga Jungle",
+  "area": "Southwest Waterfall - South",
+  "fish": "Pipira",
+  "lvl": 29,
+  "bait": "Minnow",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Yuhtunga Jungle",
+  "area": "Southwest Waterfall - North",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Peeled Crayfish",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Yuhtunga Jungle",
+  "area": "Southwest Waterfall - North",
+  "fish": "Elshimo Newt",
+  "lvl": 60,
+  "bait": "Fly Lure",
+  "bite": "Uncommon",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Yuhtunga Jungle",
+  "area": "Southwest Waterfall - North",
+  "fish": "Forest Carp",
+  "lvl": 20,
+  "bait": "Ball of Insect Paste",
+  "bite": "Common",
+  "sharePct": 50,
+  "competing": [
+   "Moat Carp"
+  ]
+ },
+ {
+  "zone": "Yuhtunga Jungle",
+  "area": "Southwest Waterfall - North",
+  "fish": "Moat Carp",
+  "lvl": 11,
+  "bait": "Ball of Insect Paste",
+  "bite": "Common",
+  "sharePct": 50,
+  "competing": [
+   "Forest Carp"
+  ]
+ },
+ {
+  "zone": "Yuhtunga Jungle",
+  "area": "Southwest Waterfall - North",
+  "fish": "Pipira",
+  "lvl": 29,
+  "bait": "Minnow",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Yuhtunga Jungle",
+  "area": "Other Waterside",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Yuhtunga Jungle",
+  "area": "Other Waterside",
+  "fish": "Elshimo Frog",
+  "lvl": 30,
+  "bait": "Fly Lure",
+  "bite": "Common",
+  "sharePct": 57,
+  "competing": [
+   "Elshimo Newt"
+  ]
+ },
+ {
+  "zone": "Yuhtunga Jungle",
+  "area": "Other Waterside",
+  "fish": "Elshimo Newt",
+  "lvl": 60,
+  "bait": "Frog Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Yuhtunga Jungle",
+  "area": "Other Waterside",
+  "fish": "Forest Carp",
+  "lvl": 20,
+  "bait": "Ball of Insect Paste",
+  "bite": "Common",
+  "sharePct": 50,
+  "competing": [
+   "Moat Carp"
+  ]
+ },
+ {
+  "zone": "Yuhtunga Jungle",
+  "area": "Other Waterside",
+  "fish": "Moat Carp",
+  "lvl": 11,
+  "bait": "Ball of Insect Paste",
+  "bite": "Common",
+  "sharePct": 50,
+  "competing": [
+   "Forest Carp"
+  ]
+ },
+ {
+  "zone": "Zeruhn Mines",
+  "area": "River",
+  "fish": "Black Eel",
+  "lvl": 47,
+  "bait": "Ball of Crayfish Paste",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Zeruhn Mines",
+  "area": "River",
+  "fish": "Copper Frog",
+  "lvl": 16,
+  "bait": "Fly Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Zeruhn Mines",
+  "area": "River",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Zeruhn Mines",
+  "area": "River",
+  "fish": "Giant Catfish",
+  "lvl": 31,
+  "bait": "Minnow",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Zeruhn Mines",
+  "area": "River",
+  "fish": "Moat Carp",
+  "lvl": 11,
+  "bait": "Ball of Insect Paste",
+  "bite": "Common",
+  "sharePct": 54,
+  "competing": [
+   "Tricolored Carp"
+  ]
+ },
+ {
+  "zone": "Zeruhn Mines",
+  "area": "River",
+  "fish": "Tricolored Carp",
+  "lvl": 27,
+  "bait": "Shrimp Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Zeruhn Mines",
+  "area": "Pool",
+  "fish": "Black Eel",
+  "lvl": 47,
+  "bait": "Ball of Crayfish Paste",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Zeruhn Mines",
+  "area": "Pool",
+  "fish": "Copper Frog",
+  "lvl": 16,
+  "bait": "Fly Lure",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ },
+ {
+  "zone": "Zeruhn Mines",
+  "area": "Pool",
+  "fish": "Crayfish",
+  "lvl": 7,
+  "bait": "Slice of Moat Carp",
+  "bite": "Common",
+  "sharePct": 100,
+  "competing": []
+ }
+]
