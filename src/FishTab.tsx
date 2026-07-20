@@ -1,7 +1,8 @@
 // src/FishTab.tsx
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { styles } from "./styles";
 import fishData from "./data/fish.json";
+import { loadJson, saveJson } from "./utils/storage";
 
 type FishEntry = {
   zone: string;
@@ -52,6 +53,42 @@ const COLUMNS: { key: SortKey; label: string; numeric?: boolean }[] = [
 ];
 
 const MAX_VISIBLE_ROWS = 300;
+const FISH_UI_KEY = "ffxi_fish_ui_v1";
+
+const CYCLE_TIME_TEXT: Record<string, { peaks: string; lows: string }> = {
+  "Cycle A": {
+    peaks: "~23:00-01:00, ~07:00-08:00, ~15:00",
+    lows: "~03:00-04:00, ~11:00, ~19:00",
+  },
+  "Cycle B": {
+    peaks: "~04:00-06:00, ~14:00-16:00",
+    lows: "~09:00-10:00, ~20:00-00:00",
+  },
+  "Cycle C": {
+    peaks: "~11:00-13:00, ~23:00-01:00",
+    lows: "~06:00, ~18:00",
+  },
+  "Cycle D": {
+    peaks: "~10:00-14:00",
+    lows: "~22:00-02:00",
+  },
+};
+
+function bestTimeLabel(bestTime: string): string {
+  const t = CYCLE_TIME_TEXT[bestTime];
+  return t ? `Peaks: ${t.peaks} | Lows: ${t.lows}` : bestTime;
+}
+
+function bestTimeMultiline(bestTime: string): React.ReactNode {
+  const t = CYCLE_TIME_TEXT[bestTime];
+  if (!t) return bestTime;
+  return (
+    <>
+      <div>Peaks: {t.peaks}</div>
+      <div>Lows: {t.lows}</div>
+    </>
+  );
+}
 
 function uniqueSorted(values: (string | null)[]): string[] {
   return [...new Set(values.filter((v): v is string => v !== null && v !== ""))].sort((a, b) =>
@@ -85,6 +122,8 @@ function compareEntries(a: FishEntry, b: FishEntry, key: SortKey, dir: SortDir):
     else cmp = av - bv;
   } else if (key === "rarity") {
     cmp = rarityValue(a.rarity) - rarityValue(b.rarity);
+  } else if (key === "bestTime") {
+    cmp = bestTimeLabel(a.bestTime).localeCompare(bestTimeLabel(b.bestTime));
   } else {
     const av = (a[key] ?? "") as string;
     const bv = (b[key] ?? "") as string;
@@ -122,26 +161,87 @@ const tdStyle: React.CSSProperties = {
 };
 
 export default function FishTab() {
+  type FishUiState = {
+    qGlobal: string;
+    qCatch: string;
+    qArea: string;
+    fZone: string;
+    fType: string;
+    fSize: string;
+    fMoon: string;
+    fTime: string;
+    fSeason: string;
+    fLegendaryOnly: boolean;
+    lvlMin: string;
+    lvlMax: string;
+    sortKey: SortKey;
+    sortDir: SortDir;
+  };
+
+  const defaultUi: FishUiState = {
+    qGlobal: "",
+    qCatch: "",
+    qArea: "",
+    fZone: "",
+    fType: "",
+    fSize: "",
+    fMoon: "",
+    fTime: "",
+    fSeason: "",
+    fLegendaryOnly: false,
+    lvlMin: "",
+    lvlMax: "",
+    sortKey: "catch",
+    sortDir: "asc",
+  };
+
+  const loaded = loadJson<Partial<FishUiState>>(FISH_UI_KEY, {});
+  const initialUi: FishUiState = {
+    ...defaultUi,
+    ...loaded,
+    sortKey: COLUMNS.some((c) => c.key === loaded.sortKey) ? (loaded.sortKey as SortKey) : defaultUi.sortKey,
+    sortDir: loaded.sortDir === "desc" ? "desc" : "asc",
+  };
+
   // Text filters (substring, case-insensitive)
-  const [qGlobal, setQGlobal] = useState("");
-  const [qCatch, setQCatch] = useState("");
-  const [qArea, setQArea] = useState("");
+  const [qGlobal, setQGlobal] = useState(initialUi.qGlobal);
+  const [qCatch, setQCatch] = useState(initialUi.qCatch);
+  const [qArea, setQArea] = useState(initialUi.qArea);
 
   // Dropdown filters ("" = any)
-  const [fZone, setFZone] = useState("");
-  const [fType, setFType] = useState("");
-  const [fSize, setFSize] = useState("");
-  const [fMoon, setFMoon] = useState("");
-  const [fTime, setFTime] = useState("");
-  const [fSeason, setFSeason] = useState("");
-  const [fLegendaryOnly, setFLegendaryOnly] = useState(false);
+  const [fZone, setFZone] = useState(initialUi.fZone);
+  const [fType, setFType] = useState(initialUi.fType);
+  const [fSize, setFSize] = useState(initialUi.fSize);
+  const [fMoon, setFMoon] = useState(initialUi.fMoon);
+  const [fTime, setFTime] = useState(initialUi.fTime);
+  const [fSeason, setFSeason] = useState(initialUi.fSeason);
+  const [fLegendaryOnly, setFLegendaryOnly] = useState(initialUi.fLegendaryOnly);
 
   // Level range (useful for "what can I catch at my skill?")
-  const [lvlMin, setLvlMin] = useState("");
-  const [lvlMax, setLvlMax] = useState("");
+  const [lvlMin, setLvlMin] = useState(initialUi.lvlMin);
+  const [lvlMax, setLvlMax] = useState(initialUi.lvlMax);
 
-  const [sortKey, setSortKey] = useState<SortKey>("catch");
-  const [sortDir, setSortDir] = useState<SortDir>("asc");
+  const [sortKey, setSortKey] = useState<SortKey>(initialUi.sortKey);
+  const [sortDir, setSortDir] = useState<SortDir>(initialUi.sortDir);
+
+  useEffect(() => {
+    saveJson(FISH_UI_KEY, {
+      qGlobal,
+      qCatch,
+      qArea,
+      fZone,
+      fType,
+      fSize,
+      fMoon,
+      fTime,
+      fSeason,
+      fLegendaryOnly,
+      lvlMin,
+      lvlMax,
+      sortKey,
+      sortDir,
+    } satisfies FishUiState);
+  }, [qGlobal, qCatch, qArea, fZone, fType, fSize, fMoon, fTime, fSeason, fLegendaryOnly, lvlMin, lvlMax, sortKey, sortDir]);
 
   function onHeaderClick(key: SortKey) {
     if (key === sortKey) {
@@ -217,6 +317,7 @@ export default function FishTab() {
           f.legendary ?? "",
           f.bestMoon,
           f.bestTime,
+          bestTimeLabel(f.bestTime),
           f.bestSeason,
           f.rarity,
         ]
@@ -237,7 +338,8 @@ export default function FishTab() {
     label: string,
     value: string,
     setter: (v: string) => void,
-    options: string[]
+    options: string[],
+    optionLabel?: (v: string) => string
   ) => (
     <div style={{ ...styles.field, width: 170 }}>
       <div style={styles.label}>{label}</div>
@@ -247,7 +349,7 @@ export default function FishTab() {
         </option>
         {options.map((o) => (
           <option key={o} value={o} style={optionBaseStyle}>
-            {o}
+            {optionLabel ? optionLabel(o) : o}
           </option>
         ))}
       </select>
@@ -304,7 +406,7 @@ export default function FishTab() {
             {selectFilter("Type", fType, setFType, TYPES)}
             {selectFilter("Size", fSize, setFSize, SIZES)}
             {selectFilter("Best Moon", fMoon, setFMoon, MOONS)}
-            {selectFilter("Best Time", fTime, setFTime, TIMES)}
+            {selectFilter("Best Time", fTime, setFTime, TIMES, bestTimeLabel)}
             {selectFilter("Best Season", fSeason, setFSeason, SEASONS)}
 
             <div style={{ ...styles.field, width: 90 }}>
@@ -413,7 +515,7 @@ export default function FishTab() {
                       {f.legendary ?? "-"}
                     </td>
                     <td style={tdStyle}>{f.bestMoon}</td>
-                    <td style={tdStyle}>{f.bestTime}</td>
+                    <td style={{ ...tdStyle, whiteSpace: "normal", minWidth: 280 }}>{bestTimeMultiline(f.bestTime)}</td>
                     <td style={tdStyle}>{f.bestSeason}</td>
                     <td style={tdStyle}>{f.rarity}</td>
                   </tr>

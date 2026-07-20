@@ -1,0 +1,779 @@
+[
+ {
+  "fish": "Ahtapot",
+  "skillCap": 90,
+  "ranking": 25,
+  "size": "L",
+  "legendary": false
+ },
+ {
+  "fish": "Alabaligi",
+  "skillCap": 37,
+  "ranking": 15,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Armored Pisces",
+  "skillCap": 108,
+  "ranking": 19,
+  "size": "L",
+  "legendary": false
+ },
+ {
+  "fish": "Bastore Bream",
+  "skillCap": 86,
+  "ranking": 22,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Bastore Sardine",
+  "skillCap": 9,
+  "ranking": 10,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Bastore Sweeper",
+  "skillCap": 12,
+  "ranking": 99,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Betta",
+  "skillCap": 68,
+  "ranking": 10,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Bhefhel Marlin",
+  "skillCap": 61,
+  "ranking": 23,
+  "size": "L",
+  "legendary": false
+ },
+ {
+  "fish": "Bibiki Urchin",
+  "skillCap": 3,
+  "ranking": 1,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Bibikibo",
+  "skillCap": 8,
+  "ranking": 1,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Black Eel",
+  "skillCap": 47,
+  "ranking": 15,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Black Ghost",
+  "skillCap": 88,
+  "ranking": 18,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Black Sole",
+  "skillCap": 96,
+  "ranking": 23,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Bladefish",
+  "skillCap": 71,
+  "ranking": 23,
+  "size": "L",
+  "legendary": false
+ },
+ {
+  "fish": "Blindfish",
+  "skillCap": 28,
+  "ranking": 18,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Bluetail",
+  "skillCap": 55,
+  "ranking": 14,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Brass Loach",
+  "skillCap": 42,
+  "ranking": 99,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Ca Cuong",
+  "skillCap": 78,
+  "ranking": 99,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Caedarva Frog",
+  "skillCap": 30,
+  "ranking": 5,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Cave Cherax",
+  "skillCap": 130,
+  "ranking": 32,
+  "size": "L",
+  "legendary": true
+ },
+ {
+  "fish": "Cheval Salmon",
+  "skillCap": 21,
+  "ranking": 17,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Cone Calamary",
+  "skillCap": 48,
+  "ranking": 10,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Copper Frog",
+  "skillCap": 16,
+  "ranking": 9,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Coral Butterfly",
+  "skillCap": 40,
+  "ranking": 19,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Crayfish",
+  "skillCap": 7,
+  "ranking": 8,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Crescent Fish",
+  "skillCap": 69,
+  "ranking": 13,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Crystal Bass",
+  "skillCap": 35,
+  "ranking": 17,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Dark Bass",
+  "skillCap": 33,
+  "ranking": 13,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Dil",
+  "skillCap": 96,
+  "ranking": 23,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Elshimo Frog",
+  "skillCap": 30,
+  "ranking": 5,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Elshimo Newt",
+  "skillCap": 60,
+  "ranking": 19,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Emperor Fish",
+  "skillCap": 91,
+  "ranking": 23,
+  "size": "L",
+  "legendary": false
+ },
+ {
+  "fish": "Fat Greedie",
+  "skillCap": 24,
+  "ranking": 11,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Forest Carp",
+  "skillCap": 20,
+  "ranking": 14,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Garpike",
+  "skillCap": 83,
+  "ranking": 99,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Gavial Fish",
+  "skillCap": 81,
+  "ranking": 23,
+  "size": "L",
+  "legendary": false
+ },
+ {
+  "fish": "Gerrothorax",
+  "skillCap": 134,
+  "ranking": 30,
+  "size": "L",
+  "legendary": true
+ },
+ {
+  "fish": "Giant Catfish",
+  "skillCap": 31,
+  "ranking": 19,
+  "size": "L",
+  "legendary": false
+ },
+ {
+  "fish": "Giant Chirai",
+  "skillCap": 110,
+  "ranking": 27,
+  "size": "L",
+  "legendary": true
+ },
+ {
+  "fish": "Giant Donko",
+  "skillCap": 50,
+  "ranking": 23,
+  "size": "L",
+  "legendary": false
+ },
+ {
+  "fish": "Gigant Octopus",
+  "skillCap": 80,
+  "ranking": 99,
+  "size": "L",
+  "legendary": false
+ },
+ {
+  "fish": "Gigant Squid",
+  "skillCap": 91,
+  "ranking": 23,
+  "size": "L",
+  "legendary": false
+ },
+ {
+  "fish": "Gold Carp",
+  "skillCap": 56,
+  "ranking": 14,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Gold Lobster",
+  "skillCap": 46,
+  "ranking": 14,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Greedie",
+  "skillCap": 14,
+  "ranking": 10,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Grimmonite",
+  "skillCap": 90,
+  "ranking": 25,
+  "size": "L",
+  "legendary": false
+ },
+ {
+  "fish": "Gugru Tuna",
+  "skillCap": 41,
+  "ranking": 22,
+  "size": "L",
+  "legendary": false
+ },
+ {
+  "fish": "Gugrusaurus",
+  "skillCap": 140,
+  "ranking": 33,
+  "size": "L",
+  "legendary": true
+ },
+ {
+  "fish": "Gurnard",
+  "skillCap": 26,
+  "ranking": 5,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Hamsi",
+  "skillCap": 9,
+  "ranking": 10,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Icefish",
+  "skillCap": 49,
+  "ranking": 14,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Istakoz",
+  "skillCap": 46,
+  "ranking": 14,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Istavrit",
+  "skillCap": 37,
+  "ranking": 16,
+  "size": "L",
+  "legendary": false
+ },
+ {
+  "fish": "Istiridye",
+  "skillCap": 53,
+  "ranking": 14,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Jungle Catfish",
+  "skillCap": 80,
+  "ranking": 23,
+  "size": "L",
+  "legendary": false
+ },
+ {
+  "fish": "Kalamar",
+  "skillCap": 48,
+  "ranking": 10,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Kalkanbaligi",
+  "skillCap": 105,
+  "ranking": 27,
+  "size": "L",
+  "legendary": true
+ },
+ {
+  "fish": "Kaplumbaga",
+  "skillCap": 53,
+  "ranking": 11,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Kayabaligi",
+  "skillCap": 75,
+  "ranking": 10,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Kilicbaligi",
+  "skillCap": 62,
+  "ranking": 23,
+  "size": "L",
+  "legendary": false
+ },
+ {
+  "fish": "Lakerda",
+  "skillCap": 41,
+  "ranking": 22,
+  "size": "L",
+  "legendary": false
+ },
+ {
+  "fish": "Lamp Marimo",
+  "skillCap": 3,
+  "ranking": 1,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Lik",
+  "skillCap": 140,
+  "ranking": 33,
+  "size": "L",
+  "legendary": true
+ },
+ {
+  "fish": "Lungfish",
+  "skillCap": 32,
+  "ranking": 10,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Matsya",
+  "skillCap": 150,
+  "ranking": 99,
+  "size": "L",
+  "legendary": true
+ },
+ {
+  "fish": "Megalodon",
+  "skillCap": 87,
+  "ranking": 99,
+  "size": "L",
+  "legendary": false
+ },
+ {
+  "fish": "Mercanbaligi",
+  "skillCap": 86,
+  "ranking": 22,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Moat Carp",
+  "skillCap": 11,
+  "ranking": 7,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Mola Mola",
+  "skillCap": 135,
+  "ranking": 30,
+  "size": "L",
+  "legendary": true
+ },
+ {
+  "fish": "Monke-Onke",
+  "skillCap": 51,
+  "ranking": 18,
+  "size": "L",
+  "legendary": false
+ },
+ {
+  "fish": "Moorish Idol",
+  "skillCap": 26,
+  "ranking": 9,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Morinabaligi",
+  "skillCap": 94,
+  "ranking": 23,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Muddy Siredon",
+  "skillCap": 18,
+  "ranking": 1,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Nebimonite",
+  "skillCap": 27,
+  "ranking": 10,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Noble Lady",
+  "skillCap": 66,
+  "ranking": 13,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Nosteau Herring",
+  "skillCap": 39,
+  "ranking": 10,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Ogre Eel",
+  "skillCap": 35,
+  "ranking": 14,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Phanauet Newt",
+  "skillCap": 4,
+  "ranking": 1,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Pipira",
+  "skillCap": 29,
+  "ranking": 10,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Pirarucu",
+  "skillCap": 89,
+  "ranking": 99,
+  "size": "L",
+  "legendary": false
+ },
+ {
+  "fish": "Pterygotus",
+  "skillCap": 99,
+  "ranking": 24,
+  "size": "L",
+  "legendary": false
+ },
+ {
+  "fish": "Quus",
+  "skillCap": 19,
+  "ranking": 5,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Red Terrapin",
+  "skillCap": 53,
+  "ranking": 11,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Rhinochimera",
+  "skillCap": 72,
+  "ranking": 23,
+  "size": "L",
+  "legendary": false
+ },
+ {
+  "fish": "Ryugu Titan",
+  "skillCap": 150,
+  "ranking": 34,
+  "size": "L",
+  "legendary": true
+ },
+ {
+  "fish": "Sandfish",
+  "skillCap": 50,
+  "ranking": 13,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Sazanbaligi",
+  "skillCap": 56,
+  "ranking": 14,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Sea Zombie",
+  "skillCap": 100,
+  "ranking": 28,
+  "size": "L",
+  "legendary": true
+ },
+ {
+  "fish": "Shall Shell",
+  "skillCap": 53,
+  "ranking": 14,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Shining Trout",
+  "skillCap": 37,
+  "ranking": 15,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Silver Shark",
+  "skillCap": 76,
+  "ranking": 14,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Takitaro",
+  "skillCap": 101,
+  "ranking": 28,
+  "size": "L",
+  "legendary": true
+ },
+ {
+  "fish": "Tavnazian Goby",
+  "skillCap": 75,
+  "ranking": 10,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Three-Eyed Fish",
+  "skillCap": 79,
+  "ranking": 25,
+  "size": "L",
+  "legendary": false
+ },
+ {
+  "fish": "Tiger Cod",
+  "skillCap": 29,
+  "ranking": 10,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Tiny Goldfish",
+  "skillCap": 20,
+  "ranking": 5,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Titanic Sawfish",
+  "skillCap": 125,
+  "ranking": 29,
+  "size": "L",
+  "legendary": true
+ },
+ {
+  "fish": "Titanictus",
+  "skillCap": 101,
+  "ranking": 28,
+  "size": "L",
+  "legendary": true
+ },
+ {
+  "fish": "Tricolored Carp",
+  "skillCap": 27,
+  "ranking": 13,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Tricorn",
+  "skillCap": 128,
+  "ranking": 31,
+  "size": "L",
+  "legendary": true
+ },
+ {
+  "fish": "Trilobite",
+  "skillCap": 59,
+  "ranking": 14,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Trumpet Shell",
+  "skillCap": 63,
+  "ranking": 99,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Turnabaligi",
+  "skillCap": 104,
+  "ranking": 24,
+  "size": "L",
+  "legendary": false
+ },
+ {
+  "fish": "Uskumru",
+  "skillCap": 55,
+  "ranking": 14,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Veydal Wrasse",
+  "skillCap": 35,
+  "ranking": 25,
+  "size": "L",
+  "legendary": false
+ },
+ {
+  "fish": "Vongola Clam",
+  "skillCap": 53,
+  "ranking": 13,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Yayinbaligi",
+  "skillCap": 31,
+  "ranking": 19,
+  "size": "L",
+  "legendary": false
+ },
+ {
+  "fish": "Yellow Globe",
+  "skillCap": 17,
+  "ranking": 10,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Yilanbaligi",
+  "skillCap": 47,
+  "ranking": 15,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Zafmlug Bass",
+  "skillCap": 43,
+  "ranking": 15,
+  "size": "S",
+  "legendary": false
+ },
+ {
+  "fish": "Zebra Eel",
+  "skillCap": 71,
+  "ranking": 23,
+  "size": "S",
+  "legendary": false
+ }
+]

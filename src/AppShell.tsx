@@ -23,6 +23,7 @@ import { buildTenshodoPresets, GUILD_PRESETS, nextGuildAlertTarget } from "./uti
 import { getNextNmLotteryEvent, getNextNmTimedWindowEvent } from "./utils/nm";
 import FishTab from "./FishTab";
 import BaitTab from "./BaitTab";
+import RodsTab from "./RodsTab";
 
 function clampInt(n: number, min: number, max: number) {
   return Math.max(min, Math.min(max, Math.floor(n)));
@@ -161,7 +162,7 @@ function isValidTod(raw: string): boolean {
   );
 }
 
-type TabId = "home" | "timers" | "nm" | "presets" | "counters" | "luShang" | "fish" | "bait" | "calibration";
+type TabId = "home" | "timers" | "nm" | "presets" | "counters" | "luShang" | "fish" | "bait" | "rods" | "calibration";
 
 type TabDef = {
   id: TabId;
@@ -175,9 +176,10 @@ const TABS: TabDef[] = [
   { id: "nm", label: "NM Timers", icon: "👹" },
   { id: "presets", label: "Presets", icon: "⭐" },
   { id: "counters", label: "Counters", icon: "🔢" },
-  { id: "luShang", label: "Lu Shang", icon: "🎣" },
+  { id: "luShang", label: "Lu Shang", icon: "🪝" },
   { id: "fish", label: "Fish", icon: "🐟" },
   { id: "bait", label: "Bait", icon: "🪱" },
+  { id: "rods", label: "Rods", icon: "🎣" },
   { id: "calibration", label: "Calibration", icon: "🛠️" },
 ];
 
@@ -2276,6 +2278,13 @@ export default function AppShell() {
       {activeTab === "bait" && (
         <div style={styles.tabContent}>
           <BaitTab />
+          <div style={{ display: "flex", justifyContent: "flex-end" }}>{backBar}</div>
+        </div>
+      )}
+
+      {activeTab === "rods" && (
+        <div style={styles.tabContent}>
+          <RodsTab />
           <div style={{ display: "flex", justifyContent: "flex-end" }}>{backBar}</div>
         </div>
       )}

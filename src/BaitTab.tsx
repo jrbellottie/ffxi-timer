@@ -1,8 +1,9 @@
 // src/BaitTab.tsx
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { styles } from "./styles";
 import baitData from "./data/bait.json";
 import fishData from "./data/fish.json";
+import { loadJson, saveJson } from "./utils/storage";
 
 type BaitEntry = {
   fish: string;
@@ -145,6 +146,7 @@ const SPOT_COLUMNS: { key: SpotKey; label: string }[] = [
 ];
 
 const MAX_VISIBLE_ROWS = 300;
+const BAIT_UI_KEY = "ffxi_bait_ui_v1";
 
 function uniqueSorted(values: (string | null)[]): string[] {
   return [...new Set(values.filter((v): v is string => v !== null && v !== ""))].sort((a, b) =>
@@ -192,32 +194,147 @@ function shareColor(pct: number | null): React.CSSProperties {
 }
 
 export default function BaitTab() {
-  const [mode, setMode] = useState<Mode>("affinity");
+  type BaitUiState = {
+    mode: Mode;
+    aGlobal: string;
+    aFish: string;
+    aBait: string;
+    aKind: string;
+    aBite: string;
+    aBestOnly: boolean;
+    aLvlMin: string;
+    aLvlMax: string;
+    aSortKey: AffinityKey;
+    aSortDir: SortDir;
+    sGlobal: string;
+    sFish: string;
+    sZone: string;
+    sArea: string;
+    sBait: string;
+    sKind: string;
+    sBite: string;
+    sMinShare: string;
+    sSoloOnly: boolean;
+    sSortKey: SpotKey;
+    sSortDir: SortDir;
+  };
+
+  const defaultUi: BaitUiState = {
+    mode: "affinity",
+    aGlobal: "",
+    aFish: "",
+    aBait: "",
+    aKind: "",
+    aBite: "",
+    aBestOnly: false,
+    aLvlMin: "",
+    aLvlMax: "",
+    aSortKey: "fish",
+    aSortDir: "asc",
+    sGlobal: "",
+    sFish: "",
+    sZone: "",
+    sArea: "",
+    sBait: "",
+    sKind: "",
+    sBite: "",
+    sMinShare: "",
+    sSoloOnly: false,
+    sSortKey: "sharePct",
+    sSortDir: "desc",
+  };
+
+  const loaded = loadJson<Partial<BaitUiState>>(BAIT_UI_KEY, {});
+  const initialUi: BaitUiState = {
+    ...defaultUi,
+    ...loaded,
+    mode: loaded.mode === "spots" ? "spots" : "affinity",
+    aSortKey: AFFINITY_COLUMNS.some((c) => c.key === loaded.aSortKey)
+      ? (loaded.aSortKey as AffinityKey)
+      : defaultUi.aSortKey,
+    aSortDir: loaded.aSortDir === "desc" ? "desc" : "asc",
+    sSortKey: SPOT_COLUMNS.some((c) => c.key === loaded.sSortKey)
+      ? (loaded.sSortKey as SpotKey)
+      : defaultUi.sSortKey,
+    sSortDir: loaded.sSortDir === "asc" ? "asc" : "desc",
+  };
+
+  const [mode, setMode] = useState<Mode>(initialUi.mode);
 
   // ---- Affinity (Fish x Bait) filters ----
-  const [aGlobal, setAGlobal] = useState("");
-  const [aFish, setAFish] = useState("");
-  const [aBait, setABait] = useState("");
-  const [aKind, setAKind] = useState("");
-  const [aBite, setABite] = useState("");
-  const [aBestOnly, setABestOnly] = useState(false);
-  const [aLvlMin, setALvlMin] = useState("");
-  const [aLvlMax, setALvlMax] = useState("");
-  const [aSortKey, setASortKey] = useState<AffinityKey>("fish");
-  const [aSortDir, setASortDir] = useState<SortDir>("asc");
+  const [aGlobal, setAGlobal] = useState(initialUi.aGlobal);
+  const [aFish, setAFish] = useState(initialUi.aFish);
+  const [aBait, setABait] = useState(initialUi.aBait);
+  const [aKind, setAKind] = useState(initialUi.aKind);
+  const [aBite, setABite] = useState(initialUi.aBite);
+  const [aBestOnly, setABestOnly] = useState(initialUi.aBestOnly);
+  const [aLvlMin, setALvlMin] = useState(initialUi.aLvlMin);
+  const [aLvlMax, setALvlMax] = useState(initialUi.aLvlMax);
+  const [aSortKey, setASortKey] = useState<AffinityKey>(initialUi.aSortKey);
+  const [aSortDir, setASortDir] = useState<SortDir>(initialUi.aSortDir);
 
   // ---- Best-spot (pool) filters ----
-  const [sGlobal, setSGlobal] = useState("");
-  const [sFish, setSFish] = useState("");
-  const [sZone, setSZone] = useState("");
-  const [sArea, setSArea] = useState("");
-  const [sBait, setSBait] = useState("");
-  const [sKind, setSKind] = useState("");
-  const [sBite, setSBite] = useState("");
-  const [sMinShare, setSMinShare] = useState("");
-  const [sSoloOnly, setSSoloOnly] = useState(false);
-  const [sSortKey, setSSortKey] = useState<SpotKey>("sharePct");
-  const [sSortDir, setSSortDir] = useState<SortDir>("desc");
+  const [sGlobal, setSGlobal] = useState(initialUi.sGlobal);
+  const [sFish, setSFish] = useState(initialUi.sFish);
+  const [sZone, setSZone] = useState(initialUi.sZone);
+  const [sArea, setSArea] = useState(initialUi.sArea);
+  const [sBait, setSBait] = useState(initialUi.sBait);
+  const [sKind, setSKind] = useState(initialUi.sKind);
+  const [sBite, setSBite] = useState(initialUi.sBite);
+  const [sMinShare, setSMinShare] = useState(initialUi.sMinShare);
+  const [sSoloOnly, setSSoloOnly] = useState(initialUi.sSoloOnly);
+  const [sSortKey, setSSortKey] = useState<SpotKey>(initialUi.sSortKey);
+  const [sSortDir, setSSortDir] = useState<SortDir>(initialUi.sSortDir);
+
+  useEffect(() => {
+    saveJson(BAIT_UI_KEY, {
+      mode,
+      aGlobal,
+      aFish,
+      aBait,
+      aKind,
+      aBite,
+      aBestOnly,
+      aLvlMin,
+      aLvlMax,
+      aSortKey,
+      aSortDir,
+      sGlobal,
+      sFish,
+      sZone,
+      sArea,
+      sBait,
+      sKind,
+      sBite,
+      sMinShare,
+      sSoloOnly,
+      sSortKey,
+      sSortDir,
+    } satisfies BaitUiState);
+  }, [
+    mode,
+    aGlobal,
+    aFish,
+    aBait,
+    aKind,
+    aBite,
+    aBestOnly,
+    aLvlMin,
+    aLvlMax,
+    aSortKey,
+    aSortDir,
+    sGlobal,
+    sFish,
+    sZone,
+    sArea,
+    sBait,
+    sKind,
+    sBite,
+    sMinShare,
+    sSoloOnly,
+    sSortKey,
+    sSortDir,
+  ]);
 
   function onAffinityHeader(key: AffinityKey) {
     if (key === aSortKey) setASortDir((d) => (d === "asc" ? "desc" : "asc"));
