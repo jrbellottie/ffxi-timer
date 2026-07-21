@@ -1462,7 +1462,6 @@ export default function AppShell() {
   const luShangRemainingStacks = Math.ceil(luShangRemaining / LU_SHANG_STACK_SIZE);
   const luShangSinglesValid = parsePositiveWholeInput(luSinglesInput) !== null;
   const luShangStacksValid = parsePositiveWholeInput(luStacksInput) !== null;
-  const luShangSetTotalValid = parsePositiveWholeInput(luSetTotalInput) !== null;
 
   const luShangCard = (
         <section style={styles.card}>
@@ -1583,7 +1582,7 @@ export default function AppShell() {
                 <div style={{ fontWeight: 900 }}>Set total directly</div>
                 <div style={{ marginTop: 8, display: "flex", gap: 10, flexWrap: "wrap", alignItems: "center" }}>
                   <input
-                    style={{ ...styles.inputCompact, width: 180, ...(luShangSetTotalValid ? {} : styles.inputError) }}
+                    style={{ ...styles.inputCompact, width: 180 }}
                     type="number"
                     inputMode="numeric"
                     min={1}
@@ -1593,9 +1592,8 @@ export default function AppShell() {
                     placeholder="e.g. 3520"
                   />
                   <button
-                    style={{ ...styles.buttonPrimaryCompact, ...(luShangSetTotalValid ? {} : styles.buttonDisabled) }}
+                    style={styles.buttonPrimaryCompact}
                     onClick={setLuShangTotal}
-                    disabled={!luShangSetTotalValid}
                   >
                     Set total
                   </button>
