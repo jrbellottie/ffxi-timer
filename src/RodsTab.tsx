@@ -229,6 +229,16 @@ const tdStyle: React.CSSProperties = {
   whiteSpace: "nowrap",
 };
 
+const selectedRowStyle: React.CSSProperties = {
+  background: "rgba(138, 246, 176, 0.12)",
+  outline: "1px solid #8af6b0",
+  outlineOffset: "-1px",
+};
+
+const clickableRowStyle: React.CSSProperties = {
+  cursor: "pointer",
+};
+
 /** Fish Sense thresholds: <30 minor, 30-44 bad, 45+ terrible. */
 function riskColor(pct: number): React.CSSProperties {
   if (pct <= 0) return { color: "#8af6b0", fontWeight: 800 };
@@ -315,6 +325,7 @@ export default function RodsTab() {
   const [rGlobal, setRGlobal] = useState(initialUi.rGlobal);
   const [rSortKey, setRSortKey] = useState<RodKey>(initialUi.rSortKey);
   const [rSortDir, setRSortDir] = useState<SortDir>(initialUi.rSortDir);
+  const [selectedRowKey, setSelectedRowKey] = useState<string | null>(null);
 
   useEffect(() => {
     saveJson(RODS_UI_KEY, {
@@ -646,8 +657,16 @@ export default function RodsTab() {
                     </td>
                   </tr>
                 ) : (
-                  matrixResults.slice(0, MAX_VISIBLE_ROWS).map((row) => (
-                    <tr key={`${row.rod}|${row.fish}`}>
+                  matrixResults.slice(0, MAX_VISIBLE_ROWS).map((row, i) => {
+                    const rowKey = `matrix|${row.rod}|${row.fish}|${i}`;
+                    const selected = selectedRowKey === rowKey;
+                    return (
+                    <tr
+                      key={rowKey}
+                      onClick={() => setSelectedRowKey(rowKey)}
+                      style={{ ...clickableRowStyle, ...(selected ? selectedRowStyle : {}) }}
+                      title="Click to highlight this row"
+                    >
                       <td style={{ ...tdStyle, fontWeight: 700 }}>{row.rod}</td>
                       <td style={tdStyle}>{row.rodMaxRank}</td>
                       <td style={{ ...tdStyle, fontWeight: 700 }}>{row.fish}</td>
@@ -662,7 +681,8 @@ export default function RodsTab() {
                       <td style={{ ...tdStyle, ...riskColor(row.escapePct) }}>{row.escapePct}%</td>
                       <td style={{ ...tdStyle, ...okColor(row.okPct) }}>{row.okPct}%</td>
                     </tr>
-                  ))
+                    );
+                  })
                 )}
               </tbody>
             </table>
@@ -694,8 +714,16 @@ export default function RodsTab() {
                     </td>
                   </tr>
                 ) : (
-                  rodResults.map((r) => (
-                    <tr key={r.rodId}>
+                  rodResults.map((r) => {
+                    const rowKey = `rods|${r.rodId}`;
+                    const selected = selectedRowKey === rowKey;
+                    return (
+                    <tr
+                      key={rowKey}
+                      onClick={() => setSelectedRowKey(rowKey)}
+                      style={{ ...clickableRowStyle, ...(selected ? selectedRowStyle : {}) }}
+                      title="Click to highlight this row"
+                    >
                       <td style={{ ...tdStyle, fontWeight: 700 }}>{r.rod}</td>
                       <td style={tdStyle}>{r.era}</td>
                       <td style={tdStyle}>{r.size}</td>
@@ -717,7 +745,8 @@ export default function RodsTab() {
                       <td style={tdStyle}>{r.multiplier}</td>
                       <td style={{ ...tdStyle, opacity: 0.85 }}>{r.specialFlags ?? ""}</td>
                     </tr>
-                  ))
+                    );
+                  })
                 )}
               </tbody>
             </table>

@@ -1,0 +1,709 @@
+﻿[
+    {
+        "fish":  "Ahtapot",
+        "itemId":  5455,
+        "stackSize":  1,
+        "vendorPriceEach":  700,
+        "vendorPriceStack":  700
+    },
+    {
+        "fish":  "Alabaligi",
+        "itemId":  5461,
+        "stackSize":  12,
+        "vendorPriceEach":  26,
+        "vendorPriceStack":  312
+    },
+    {
+        "fish":  "Armored Pisces",
+        "itemId":  4316,
+        "stackSize":  1,
+        "vendorPriceEach":  950,
+        "vendorPriceStack":  950
+    },
+    {
+        "fish":  "Bastore Bream",
+        "itemId":  4461,
+        "stackSize":  12,
+        "vendorPriceEach":  600,
+        "vendorPriceStack":  7200
+    },
+    {
+        "fish":  "Bastore Sardine",
+        "itemId":  4360,
+        "stackSize":  12,
+        "vendorPriceEach":  8,
+        "vendorPriceStack":  96
+    },
+    {
+        "fish":  "Betta",
+        "itemId":  5139,
+        "stackSize":  12,
+        "vendorPriceEach":  400,
+        "vendorPriceStack":  4800
+    },
+    {
+        "fish":  "Bhefhel Marlin",
+        "itemId":  4479,
+        "stackSize":  1,
+        "vendorPriceEach":  300,
+        "vendorPriceStack":  300
+    },
+    {
+        "fish":  "Bibiki Urchin",
+        "itemId":  4318,
+        "stackSize":  12,
+        "vendorPriceEach":  750,
+        "vendorPriceStack":  9000
+    },
+    {
+        "fish":  "Bibikibo",
+        "itemId":  4314,
+        "stackSize":  12,
+        "vendorPriceEach":  100,
+        "vendorPriceStack":  1200
+    },
+    {
+        "fish":  "Black Eel",
+        "itemId":  4429,
+        "stackSize":  12,
+        "vendorPriceEach":  192,
+        "vendorPriceStack":  2304
+    },
+    {
+        "fish":  "Black Ghost",
+        "itemId":  5138,
+        "stackSize":  12,
+        "vendorPriceEach":  600,
+        "vendorPriceStack":  7200
+    },
+    {
+        "fish":  "Black Sole",
+        "itemId":  4384,
+        "stackSize":  12,
+        "vendorPriceEach":  700,
+        "vendorPriceStack":  8400
+    },
+    {
+        "fish":  "Bladefish",
+        "itemId":  4471,
+        "stackSize":  1,
+        "vendorPriceEach":  400,
+        "vendorPriceStack":  400
+    },
+    {
+        "fish":  "Blindfish",
+        "itemId":  4313,
+        "stackSize":  12,
+        "vendorPriceEach":  225,
+        "vendorPriceStack":  2700
+    },
+    {
+        "fish":  "Bluetail",
+        "itemId":  4399,
+        "stackSize":  12,
+        "vendorPriceEach":  300,
+        "vendorPriceStack":  3600
+    },
+    {
+        "fish":  "Caedarva Frog",
+        "itemId":  5465,
+        "stackSize":  12,
+        "vendorPriceEach":  20,
+        "vendorPriceStack":  240
+    },
+    {
+        "fish":  "Cave Cherax",
+        "itemId":  4309,
+        "stackSize":  1,
+        "vendorPriceEach":  1600,
+        "vendorPriceStack":  1600
+    },
+    {
+        "fish":  "Cheval Salmon",
+        "itemId":  4379,
+        "stackSize":  12,
+        "vendorPriceEach":  20,
+        "vendorPriceStack":  240
+    },
+    {
+        "fish":  "Cone Calamary",
+        "itemId":  5128,
+        "stackSize":  12,
+        "vendorPriceEach":  165,
+        "vendorPriceStack":  1980
+    },
+    {
+        "fish":  "Copper Frog",
+        "itemId":  4515,
+        "stackSize":  12,
+        "vendorPriceEach":  20,
+        "vendorPriceStack":  240
+    },
+    {
+        "fish":  "Coral Butterfly",
+        "itemId":  4580,
+        "stackSize":  1,
+        "vendorPriceEach":  125,
+        "vendorPriceStack":  125
+    },
+    {
+        "fish":  "Crayfish",
+        "itemId":  4472,
+        "stackSize":  12,
+        "vendorPriceEach":  10,
+        "vendorPriceStack":  120
+    },
+    {
+        "fish":  "Crescent Fish",
+        "itemId":  4473,
+        "stackSize":  12,
+        "vendorPriceEach":  440,
+        "vendorPriceStack":  5280
+    },
+    {
+        "fish":  "Crystal Bass",
+        "itemId":  4528,
+        "stackSize":  12,
+        "vendorPriceEach":  0,
+        "vendorPriceStack":  0
+    },
+    {
+        "fish":  "Dark Bass",
+        "itemId":  4428,
+        "stackSize":  12,
+        "vendorPriceEach":  20,
+        "vendorPriceStack":  240
+    },
+    {
+        "fish":  "Dil",
+        "itemId":  5457,
+        "stackSize":  12,
+        "vendorPriceEach":  700,
+        "vendorPriceStack":  8400
+    },
+    {
+        "fish":  "Elshimo Frog",
+        "itemId":  4290,
+        "stackSize":  12,
+        "vendorPriceEach":  52,
+        "vendorPriceStack":  624
+    },
+    {
+        "fish":  "Elshimo Newt",
+        "itemId":  4579,
+        "stackSize":  1,
+        "vendorPriceEach":  175,
+        "vendorPriceStack":  175
+    },
+    {
+        "fish":  "Emperor Fish",
+        "itemId":  4454,
+        "stackSize":  1,
+        "vendorPriceEach":  600,
+        "vendorPriceStack":  600
+    },
+    {
+        "fish":  "Fat Greedie",
+        "itemId":  4501,
+        "stackSize":  1,
+        "vendorPriceEach":  0,
+        "vendorPriceStack":  0
+    },
+    {
+        "fish":  "Forest Carp",
+        "itemId":  4289,
+        "stackSize":  12,
+        "vendorPriceEach":  15,
+        "vendorPriceStack":  180
+    },
+    {
+        "fish":  "Gavial Fish",
+        "itemId":  4477,
+        "stackSize":  1,
+        "vendorPriceEach":  500,
+        "vendorPriceStack":  500
+    },
+    {
+        "fish":  "Giant Catfish",
+        "itemId":  4469,
+        "stackSize":  1,
+        "vendorPriceEach":  100,
+        "vendorPriceStack":  100
+    },
+    {
+        "fish":  "Giant Chirai",
+        "itemId":  4308,
+        "stackSize":  1,
+        "vendorPriceEach":  1100,
+        "vendorPriceStack":  1100
+    },
+    {
+        "fish":  "Giant Donko",
+        "itemId":  4306,
+        "stackSize":  1,
+        "vendorPriceEach":  192,
+        "vendorPriceStack":  192
+    },
+    {
+        "fish":  "Gigant Squid",
+        "itemId":  4474,
+        "stackSize":  1,
+        "vendorPriceEach":  600,
+        "vendorPriceStack":  600
+    },
+    {
+        "fish":  "Gold Carp",
+        "itemId":  4427,
+        "stackSize":  12,
+        "vendorPriceEach":  300,
+        "vendorPriceStack":  3600
+    },
+    {
+        "fish":  "Gold Lobster",
+        "itemId":  4383,
+        "stackSize":  12,
+        "vendorPriceEach":  192,
+        "vendorPriceStack":  2304
+    },
+    {
+        "fish":  "Greedie",
+        "itemId":  4500,
+        "stackSize":  12,
+        "vendorPriceEach":  8,
+        "vendorPriceStack":  96
+    },
+    {
+        "fish":  "Grimmonite",
+        "itemId":  4304,
+        "stackSize":  1,
+        "vendorPriceEach":  700,
+        "vendorPriceStack":  700
+    },
+    {
+        "fish":  "Gugru Tuna",
+        "itemId":  4480,
+        "stackSize":  1,
+        "vendorPriceEach":  100,
+        "vendorPriceStack":  100
+    },
+    {
+        "fish":  "Gugrusaurus",
+        "itemId":  5127,
+        "stackSize":  1,
+        "vendorPriceEach":  1760,
+        "vendorPriceStack":  1760
+    },
+    {
+        "fish":  "Gurnard",
+        "itemId":  5132,
+        "stackSize":  12,
+        "vendorPriceEach":  475,
+        "vendorPriceStack":  5700
+    },
+    {
+        "fish":  "Hamsi",
+        "itemId":  5449,
+        "stackSize":  12,
+        "vendorPriceEach":  7,
+        "vendorPriceStack":  84
+    },
+    {
+        "fish":  "Icefish",
+        "itemId":  4470,
+        "stackSize":  12,
+        "vendorPriceEach":  153,
+        "vendorPriceStack":  1836
+    },
+    {
+        "fish":  "Istakoz",
+        "itemId":  5453,
+        "stackSize":  12,
+        "vendorPriceEach":  200,
+        "vendorPriceStack":  2400
+    },
+    {
+        "fish":  "Istavrit",
+        "itemId":  5136,
+        "stackSize":  1,
+        "vendorPriceEach":  100,
+        "vendorPriceStack":  100
+    },
+    {
+        "fish":  "Istiridye",
+        "itemId":  5456,
+        "stackSize":  12,
+        "vendorPriceEach":  300,
+        "vendorPriceStack":  3600
+    },
+    {
+        "fish":  "Jungle Catfish",
+        "itemId":  4307,
+        "stackSize":  1,
+        "vendorPriceEach":  600,
+        "vendorPriceStack":  600
+    },
+    {
+        "fish":  "Kalamar",
+        "itemId":  5448,
+        "stackSize":  12,
+        "vendorPriceEach":  170,
+        "vendorPriceStack":  2040
+    },
+    {
+        "fish":  "Kalkanbaligi",
+        "itemId":  5140,
+        "stackSize":  1,
+        "vendorPriceEach":  780,
+        "vendorPriceStack":  780
+    },
+    {
+        "fish":  "Kaplumbaga",
+        "itemId":  5464,
+        "stackSize":  12,
+        "vendorPriceEach":  300,
+        "vendorPriceStack":  3600
+    },
+    {
+        "fish":  "Kayabaligi",
+        "itemId":  5460,
+        "stackSize":  12,
+        "vendorPriceEach":  310,
+        "vendorPriceStack":  3720
+    },
+    {
+        "fish":  "Kilicbaligi",
+        "itemId":  5451,
+        "stackSize":  1,
+        "vendorPriceEach":  300,
+        "vendorPriceStack":  300
+    },
+    {
+        "fish":  "Lakerda",
+        "itemId":  5450,
+        "stackSize":  1,
+        "vendorPriceEach":  103,
+        "vendorPriceStack":  103
+    },
+    {
+        "fish":  "Lamp Marimo",
+        "itemId":  2216,
+        "stackSize":  12,
+        "vendorPriceEach":  31,
+        "vendorPriceStack":  372
+    },
+    {
+        "fish":  "Lik",
+        "itemId":  5129,
+        "stackSize":  1,
+        "vendorPriceEach":  1760,
+        "vendorPriceStack":  1760
+    },
+    {
+        "fish":  "Lungfish",
+        "itemId":  4315,
+        "stackSize":  12,
+        "vendorPriceEach":  240,
+        "vendorPriceStack":  2880
+    },
+    {
+        "fish":  "Mercanbaligi",
+        "itemId":  5454,
+        "stackSize":  12,
+        "vendorPriceEach":  600,
+        "vendorPriceStack":  7200
+    },
+    {
+        "fish":  "Moat Carp",
+        "itemId":  4401,
+        "stackSize":  12,
+        "vendorPriceEach":  10,
+        "vendorPriceStack":  120
+    },
+    {
+        "fish":  "Mola Mola",
+        "itemId":  5134,
+        "stackSize":  1,
+        "vendorPriceEach":  975,
+        "vendorPriceStack":  975
+    },
+    {
+        "fish":  "Monke-Onke",
+        "itemId":  4462,
+        "stackSize":  1,
+        "vendorPriceEach":  300,
+        "vendorPriceStack":  300
+    },
+    {
+        "fish":  "Moorish Idol",
+        "itemId":  5121,
+        "stackSize":  12,
+        "vendorPriceEach":  238,
+        "vendorPriceStack":  2856
+    },
+    {
+        "fish":  "Morinabaligi",
+        "itemId":  5462,
+        "stackSize":  1,
+        "vendorPriceEach":  600,
+        "vendorPriceStack":  600
+    },
+    {
+        "fish":  "Muddy Siredon",
+        "itemId":  5126,
+        "stackSize":  1,
+        "vendorPriceEach":  0,
+        "vendorPriceStack":  0
+    },
+    {
+        "fish":  "Nebimonite",
+        "itemId":  4361,
+        "stackSize":  12,
+        "vendorPriceEach":  52,
+        "vendorPriceStack":  624
+    },
+    {
+        "fish":  "Noble Lady",
+        "itemId":  4485,
+        "stackSize":  12,
+        "vendorPriceEach":  400,
+        "vendorPriceStack":  4800
+    },
+    {
+        "fish":  "Nosteau Herring",
+        "itemId":  4482,
+        "stackSize":  12,
+        "vendorPriceEach":  80,
+        "vendorPriceStack":  960
+    },
+    {
+        "fish":  "Ogre Eel",
+        "itemId":  4481,
+        "stackSize":  12,
+        "vendorPriceEach":  32,
+        "vendorPriceStack":  384
+    },
+    {
+        "fish":  "Phanauet Newt",
+        "itemId":  5125,
+        "stackSize":  1,
+        "vendorPriceEach":  4,
+        "vendorPriceStack":  4
+    },
+    {
+        "fish":  "Pipira",
+        "itemId":  4464,
+        "stackSize":  12,
+        "vendorPriceEach":  46,
+        "vendorPriceStack":  552
+    },
+    {
+        "fish":  "Pterygotus",
+        "itemId":  5133,
+        "stackSize":  1,
+        "vendorPriceEach":  780,
+        "vendorPriceStack":  780
+    },
+    {
+        "fish":  "Quus",
+        "itemId":  4514,
+        "stackSize":  12,
+        "vendorPriceEach":  20,
+        "vendorPriceStack":  240
+    },
+    {
+        "fish":  "Red Terrapin",
+        "itemId":  4402,
+        "stackSize":  12,
+        "vendorPriceEach":  300,
+        "vendorPriceStack":  3600
+    },
+    {
+        "fish":  "Rhinochimera",
+        "itemId":  5135,
+        "stackSize":  1,
+        "vendorPriceEach":  600,
+        "vendorPriceStack":  600
+    },
+    {
+        "fish":  "Ryugu Titan",
+        "itemId":  4305,
+        "stackSize":  1,
+        "vendorPriceEach":  1600,
+        "vendorPriceStack":  1600
+    },
+    {
+        "fish":  "Sandfish",
+        "itemId":  4291,
+        "stackSize":  12,
+        "vendorPriceEach":  26,
+        "vendorPriceStack":  312
+    },
+    {
+        "fish":  "Sazanbaligi",
+        "itemId":  5459,
+        "stackSize":  12,
+        "vendorPriceEach":  300,
+        "vendorPriceStack":  3600
+    },
+    {
+        "fish":  "Sea Zombie",
+        "itemId":  4475,
+        "stackSize":  1,
+        "vendorPriceEach":  700,
+        "vendorPriceStack":  700
+    },
+    {
+        "fish":  "Shall Shell",
+        "itemId":  4484,
+        "stackSize":  12,
+        "vendorPriceEach":  300,
+        "vendorPriceStack":  3600
+    },
+    {
+        "fish":  "Shining Trout",
+        "itemId":  4354,
+        "stackSize":  12,
+        "vendorPriceEach":  26,
+        "vendorPriceStack":  312
+    },
+    {
+        "fish":  "Silver Shark",
+        "itemId":  4451,
+        "stackSize":  12,
+        "vendorPriceEach":  500,
+        "vendorPriceStack":  6000
+    },
+    {
+        "fish":  "Takitaro",
+        "itemId":  4463,
+        "stackSize":  1,
+        "vendorPriceEach":  700,
+        "vendorPriceStack":  700
+    },
+    {
+        "fish":  "Tavnazian Goby",
+        "itemId":  5130,
+        "stackSize":  12,
+        "vendorPriceEach":  331,
+        "vendorPriceStack":  3972
+    },
+    {
+        "fish":  "Three-Eyed Fish",
+        "itemId":  4478,
+        "stackSize":  1,
+        "vendorPriceEach":  500,
+        "vendorPriceStack":  500
+    },
+    {
+        "fish":  "Tiger Cod",
+        "itemId":  4483,
+        "stackSize":  12,
+        "vendorPriceEach":  52,
+        "vendorPriceStack":  624
+    },
+    {
+        "fish":  "Tiny Goldfish",
+        "itemId":  4310,
+        "stackSize":  12,
+        "vendorPriceEach":  6,
+        "vendorPriceStack":  72
+    },
+    {
+        "fish":  "Titanic Sawfish",
+        "itemId":  5120,
+        "stackSize":  1,
+        "vendorPriceEach":  1620,
+        "vendorPriceStack":  1620
+    },
+    {
+        "fish":  "Titanictus",
+        "itemId":  4476,
+        "stackSize":  1,
+        "vendorPriceEach":  700,
+        "vendorPriceStack":  700
+    },
+    {
+        "fish":  "Tricolored Carp",
+        "itemId":  4426,
+        "stackSize":  12,
+        "vendorPriceEach":  52,
+        "vendorPriceStack":  624
+    },
+    {
+        "fish":  "Tricorn",
+        "itemId":  4319,
+        "stackSize":  1,
+        "vendorPriceEach":  616,
+        "vendorPriceStack":  616
+    },
+    {
+        "fish":  "Trilobite",
+        "itemId":  4317,
+        "stackSize":  12,
+        "vendorPriceEach":  40,
+        "vendorPriceStack":  480
+    },
+    {
+        "fish":  "Turnabaligi",
+        "itemId":  5137,
+        "stackSize":  1,
+        "vendorPriceEach":  680,
+        "vendorPriceStack":  680
+    },
+    {
+        "fish":  "Uskumru",
+        "itemId":  5452,
+        "stackSize":  12,
+        "vendorPriceEach":  300,
+        "vendorPriceStack":  3600
+    },
+    {
+        "fish":  "Veydal Wrasse",
+        "itemId":  5141,
+        "stackSize":  1,
+        "vendorPriceEach":  450,
+        "vendorPriceStack":  450
+    },
+    {
+        "fish":  "Vongola Clam",
+        "itemId":  5131,
+        "stackSize":  12,
+        "vendorPriceEach":  194,
+        "vendorPriceStack":  2328
+    },
+    {
+        "fish":  "Yayinbaligi",
+        "itemId":  5463,
+        "stackSize":  1,
+        "vendorPriceEach":  100,
+        "vendorPriceStack":  100
+    },
+    {
+        "fish":  "Yellow Globe",
+        "itemId":  4403,
+        "stackSize":  12,
+        "vendorPriceEach":  20,
+        "vendorPriceStack":  240
+    },
+    {
+        "fish":  "Yilanbaligi",
+        "itemId":  5458,
+        "stackSize":  12,
+        "vendorPriceEach":  200,
+        "vendorPriceStack":  2400
+    },
+    {
+        "fish":  "Zafmlug Bass",
+        "itemId":  4385,
+        "stackSize":  12,
+        "vendorPriceEach":  31,
+        "vendorPriceStack":  372
+    },
+    {
+        "fish":  "Zebra Eel",
+        "itemId":  4288,
+        "stackSize":  12,
+        "vendorPriceEach":  400,
+        "vendorPriceStack":  4800
+    }
+]

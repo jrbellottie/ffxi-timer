@@ -3,6 +3,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { styles } from "./styles";
 import fishData from "./data/fish.json";
 import { loadJson, saveJson } from "./utils/storage";
+import { formatVendorPrice, getVendorPriceEach } from "./utils/vendorPrice";
 
 type FishEntry = {
   zone: string;
@@ -29,6 +30,7 @@ type SortKey =
   | "size"
   | "str"
   | "type"
+  | "vendorPriceEach"
   | "legendary"
   | "bestMoon"
   | "bestTime"
@@ -45,6 +47,7 @@ const COLUMNS: { key: SortKey; label: string; numeric?: boolean }[] = [
   { key: "size", label: "Size" },
   { key: "str", label: "Str", numeric: true },
   { key: "type", label: "Type" },
+  { key: "vendorPriceEach", label: "Vendor Price", numeric: true },
   { key: "legendary", label: "Legendary" },
   { key: "bestMoon", label: "Best Moon" },
   { key: "bestTime", label: "Best Time" },
@@ -120,6 +123,13 @@ function compareEntries(a: FishEntry, b: FishEntry, key: SortKey, dir: SortDir):
     else if (av === null) return 1;
     else if (bv === null) return -1;
     else cmp = av - bv;
+  } else if (key === "vendorPriceEach") {
+    const av = getVendorPriceEach(a.catch);
+    const bv = getVendorPriceEach(b.catch);
+    if (av === null && bv === null) cmp = 0;
+    else if (av === null) return 1;
+    else if (bv === null) return -1;
+    else cmp = av - bv;
   } else if (key === "rarity") {
     cmp = rarityValue(a.rarity) - rarityValue(b.rarity);
   } else if (key === "bestTime") {
@@ -158,6 +168,16 @@ const tdStyle: React.CSSProperties = {
   fontSize: 13,
   borderBottom: "1px solid rgba(255,255,255,0.06)",
   whiteSpace: "nowrap",
+};
+
+const selectedRowStyle: React.CSSProperties = {
+  background: "rgba(138, 246, 176, 0.12)",
+  outline: "1px solid #8af6b0",
+  outlineOffset: "-1px",
+};
+
+const clickableRowStyle: React.CSSProperties = {
+  cursor: "pointer",
 };
 
 export default function FishTab() {
@@ -223,6 +243,7 @@ export default function FishTab() {
 
   const [sortKey, setSortKey] = useState<SortKey>(initialUi.sortKey);
   const [sortDir, setSortDir] = useState<SortDir>(initialUi.sortDir);
+  const [selectedRowKey, setSelectedRowKey] = useState<string | null>(null);
 
   useEffect(() => {
     saveJson(FISH_UI_KEY, {
@@ -314,6 +335,7 @@ export default function FishTab() {
           f.size,
           f.str === null ? "" : String(f.str),
           f.type,
+          formatVendorPrice(getVendorPriceEach(f.catch)),
           f.legendary ?? "",
           f.bestMoon,
           f.bestTime,
@@ -502,8 +524,16 @@ export default function FishTab() {
                   </td>
                 </tr>
               ) : (
-                visible.map((f, i) => (
-                  <tr key={`${f.zone}|${f.area}|${f.catch}|${i}`}>
+                visible.map((f, i) => {
+                  const rowKey = `${f.zone}|${f.area}|${f.catch}|${i}`;
+                  const selected = selectedRowKey === rowKey;
+                  return (
+                  <tr
+                    key={rowKey}
+                    onClick={() => setSelectedRowKey(rowKey)}
+                    style={{ ...clickableRowStyle, ...(selected ? selectedRowStyle : {}) }}
+                    title="Click to highlight this row"
+                  >
                     <td style={tdStyle}>{f.zone}</td>
                     <td style={tdStyle}>{f.area}</td>
                     <td style={{ ...tdStyle, fontWeight: 700 }}>{f.catch}</td>
@@ -511,6 +541,7 @@ export default function FishTab() {
                     <td style={tdStyle}>{f.size}</td>
                     <td style={tdStyle}>{f.str ?? "-"}</td>
                     <td style={tdStyle}>{f.type}</td>
+                    <td style={tdStyle}>{formatVendorPrice(getVendorPriceEach(f.catch))}</td>
                     <td style={{ ...tdStyle, ...(f.legendary ? { color: "#D8B04B", fontWeight: 800 } : {}) }}>
                       {f.legendary ?? "-"}
                     </td>
@@ -519,7 +550,8 @@ export default function FishTab() {
                     <td style={tdStyle}>{f.bestSeason}</td>
                     <td style={tdStyle}>{f.rarity}</td>
                   </tr>
-                ))
+                );
+                })
               )}
             </tbody>
           </table>
