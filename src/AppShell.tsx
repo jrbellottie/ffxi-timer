@@ -26,6 +26,7 @@ import BaitTab from "./BaitTab";
 import RodsTab from "./RodsTab";
 import ClamTab from "./ClamTab";
 import ChocoboTab from "./ChocoboTab";
+import WeatherTab from "./WeatherTab";
 
 function clampInt(n: number, min: number, max: number) {
   return Math.max(min, Math.min(max, Math.floor(n)));
@@ -164,7 +165,7 @@ function isValidTod(raw: string): boolean {
   );
 }
 
-type TabId = "home" | "timers" | "nm" | "presets" | "counters" | "luShang" | "fish" | "bait" | "rods" | "clam" | "chocobo" | "calibration";
+type TabId = "home" | "timers" | "nm" | "presets" | "counters" | "luShang" | "fish" | "bait" | "rods" | "clam" | "chocobo" | "weather" | "calibration";
 
 type TabDef = {
   id: TabId;
@@ -184,6 +185,7 @@ const TABS: TabDef[] = [
   { id: "rods", label: "Rods", icon: "🎣" },
   { id: "clam", label: "Clam", icon: "🪣" },
   { id: "chocobo", label: "Chocobo", icon: "🐤" },
+  { id: "weather", label: "Weather", icon: "🌦️" },
   { id: "calibration", label: "Calibration", icon: "🛠️" },
 ];
 
@@ -2308,6 +2310,13 @@ export default function AppShell() {
       {activeTab === "chocobo" && (
         <div style={styles.tabContent}>
           <ChocoboTab />
+          <div style={{ display: "flex", justifyContent: "flex-end" }}>{backBar}</div>
+        </div>
+      )}
+
+      {activeTab === "weather" && (
+        <div style={styles.tabContent}>
+          <WeatherTab cal={cal} />
           <div style={{ display: "flex", justifyContent: "flex-end" }}>{backBar}</div>
         </div>
       )}
