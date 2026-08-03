@@ -44,7 +44,7 @@ export type NmTimedWindowTimer = BaseTimer & {
   baseEarthMs: number;
   windowStartOffsetMs: number;
   windowEndOffsetMs: number;
-  intervalMs: number;
+  intervalMs: number | null;
   warnLeadMs: number;
 };
 

@@ -49,38 +49,63 @@ export function getNextNmTimedWindowEvent(timer: NmTimedWindowTimer, nowMs: numb
   const baseMs = clampNonNegInt(timer.baseEarthMs);
   const startOffsetMs = clampNonNegInt(timer.windowStartOffsetMs);
   const endOffsetMs = clampNonNegInt(timer.windowEndOffsetMs);
-  const intervalMs = clampNonNegInt(timer.intervalMs);
+  const intervalMs = timer.intervalMs == null ? 0 : clampNonNegInt(timer.intervalMs);
   const warnLeadMs = clampNonNegInt(timer.warnLeadMs);
 
   if (endOffsetMs < startOffsetMs) return null;
-  if (intervalMs <= 0) return null;
 
+  const startAt = baseMs + startOffsetMs;
   const endAt = baseMs + endOffsetMs;
 
   // Hard stop: after window ends, no more events
   if (nowMs > endAt + 60_000) return null;
 
-  const popAt = nextTimedWindowPopAt(nowMs, { baseMs, startOffsetMs, endOffsetMs, intervalMs });
-  if (!Number.isFinite(popAt)) return null;
+  // No interval means one check at the window start only.
+  const popAt =
+    intervalMs > 0
+      ? nextTimedWindowPopAt(nowMs, { baseMs, startOffsetMs, endOffsetMs, intervalMs })
+      : nowMs <= startAt + 60_000
+        ? startAt
+        : Number.POSITIVE_INFINITY;
 
-  const warnAt = Math.max(baseMs, popAt - warnLeadMs);
+  const candidates: TimerEvent[] = [];
 
-  // If the warning time is still ahead, schedule warning; otherwise schedule the pop.
-  if (warnLeadMs > 0 && warnAt > nowMs) {
-    return {
-      atMs: warnAt,
-      title: "FFXI Timer",
-      body: `${timer.label} — pop check in ${Math.round(warnLeadMs / 1000)}s. (click to stop)`,
-      fireKey: `pop:warn:${popAt}`,
-    };
+  if (Number.isFinite(popAt)) {
+    const warnAt = Math.max(baseMs, popAt - warnLeadMs);
+
+    // If the warning time is still ahead, schedule warning; otherwise schedule the pop.
+    if (warnLeadMs > 0 && warnAt > nowMs) {
+      candidates.push({
+        atMs: warnAt,
+        title: "FFXI Timer",
+        body: `${timer.label} — pop check in ${Math.round(warnLeadMs / 1000)}s. (click to stop)`,
+        fireKey: `pop:warn:${popAt}`,
+      });
+    }
+
+    if (popAt >= nowMs) {
+      candidates.push({
+        atMs: popAt,
+        title: "FFXI Timer",
+        body: `${timer.label} — pop check NOW. (click to stop)`,
+        fireKey: `pop:now:${popAt}`,
+      });
+    }
   }
 
-  return {
-    atMs: popAt,
-    title: "FFXI Timer",
-    body: `${timer.label} — pop check NOW. (click to stop)`,
-    fireKey: `pop:now:${popAt}`,
-  };
+  const closeAlreadyCovered = Number.isFinite(popAt) && popAt === endAt;
+  if (!closeAlreadyCovered && nowMs <= endAt + 60_000) {
+    candidates.push({
+      atMs: endAt,
+      title: "FFXI Timer",
+      body: `${timer.label} — spawn window is closing NOW. (click to stop)`,
+      fireKey: `window:close:${endAt}`,
+    });
+  }
+
+  if (candidates.length === 0) return null;
+  candidates.sort((a, b) => a.atMs - b.atMs);
+  return candidates[0];
 }
 
 export function getNextNmLotteryEvent(timer: NmLotteryTimer, nowMs: number): TimerEvent | null {

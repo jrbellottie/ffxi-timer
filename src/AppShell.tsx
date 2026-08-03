@@ -24,6 +24,8 @@ import { getNextNmLotteryEvent, getNextNmTimedWindowEvent } from "./utils/nm";
 import FishTab from "./FishTab";
 import BaitTab from "./BaitTab";
 import RodsTab from "./RodsTab";
+import ClamTab from "./ClamTab";
+import ChocoboTab from "./ChocoboTab";
 
 function clampInt(n: number, min: number, max: number) {
   return Math.max(min, Math.min(max, Math.floor(n)));
@@ -162,7 +164,7 @@ function isValidTod(raw: string): boolean {
   );
 }
 
-type TabId = "home" | "timers" | "nm" | "presets" | "counters" | "luShang" | "fish" | "bait" | "rods" | "calibration";
+type TabId = "home" | "timers" | "nm" | "presets" | "counters" | "luShang" | "fish" | "bait" | "rods" | "clam" | "chocobo" | "calibration";
 
 type TabDef = {
   id: TabId;
@@ -180,6 +182,8 @@ const TABS: TabDef[] = [
   { id: "fish", label: "Fish", icon: "🐟" },
   { id: "bait", label: "Bait", icon: "🪱" },
   { id: "rods", label: "Rods", icon: "🎣" },
+  { id: "clam", label: "Clam", icon: "🪣" },
+  { id: "chocobo", label: "Chocobo", icon: "🐤" },
   { id: "calibration", label: "Calibration", icon: "🛠️" },
 ];
 
@@ -816,10 +820,15 @@ export default function AppShell() {
     const warnLeadMs = parseDurationToMs(nmWarnLead) ?? 10_000;
     const startMs = parseDurationToMs(nmWindowStart);
     const endMs = parseDurationToMs(nmWindowEnd);
-    const intervalMs = parseDurationToMs(nmWindowInterval);
+    const hasInterval = nmWindowInterval.trim() !== "";
+    const intervalMs = hasInterval ? parseDurationToMs(nmWindowInterval) : null;
 
-    if (!Number.isFinite(startMs as number) || !Number.isFinite(endMs as number) || !Number.isFinite(intervalMs as number)) {
-      alert("Invalid NM window values. Try: 2h, 2.5h, 5m, or 1:45:55");
+    if (
+      !Number.isFinite(startMs as number) ||
+      !Number.isFinite(endMs as number) ||
+      (hasInterval && !Number.isFinite(intervalMs as number))
+    ) {
+      alert("Invalid NM window values. Try: 2h, 2.5h, 5m, or 1:45:55. Leave interval blank if NM has no interval.");
       return;
     }
 
@@ -846,7 +855,7 @@ export default function AppShell() {
         baseEarthMs,
         windowStartOffsetMs: Math.floor(startMs as number),
         windowEndOffsetMs: Math.floor(endMs as number),
-        intervalMs: Math.max(1_000, Math.floor(intervalMs as number)),
+        intervalMs: intervalMs == null ? null : Math.max(1_000, Math.floor(intervalMs as number)),
         warnLeadMs: Math.max(0, Math.floor(warnLeadMs)),
       },
       ...prev,
@@ -939,7 +948,7 @@ export default function AppShell() {
   const nmWarnLeadValid = isValidDuration(nmWarnLead);
   const nmWindowStartValid = isValidDuration(nmWindowStart);
   const nmWindowEndValid = isValidDuration(nmWindowEnd);
-  const nmWindowIntervalValid = isValidDuration(nmWindowInterval);
+  const nmWindowIntervalValid = nmWindowInterval.trim() === "" || isValidDuration(nmWindowInterval);
   const nmWindowOrderValid =
     !nmWindowStartValid || !nmWindowEndValid
       ? true
@@ -1611,7 +1620,7 @@ export default function AppShell() {
         <section style={styles.card}>
           <div style={styles.titleRow}>
             <h3 style={styles.h3}>Notorious Monster timers</h3>
-            <div style={styles.sub}>Timed window intervals, or lottery PH respawn loop</div>
+            <div style={styles.sub}>Timed windows (optional interval), or lottery PH respawn loop</div>
           </div>
 
           <div style={{ marginTop: 10, display: "grid", gap: 12, maxWidth: 640 }}>
@@ -1623,7 +1632,7 @@ export default function AppShell() {
                 onChange={(e) => setNmMode(e.target.value as "TIMED_WINDOW" | "LOTTERY")}
               >
                 <option value="TIMED_WINDOW" style={optionBaseStyle}>
-                  Timed spawn (window + interval)
+                  Timed spawn (window + optional interval)
                 </option>
                 <option value="LOTTERY" style={optionBaseStyle}>
                   Lottery (PH respawn loop)
@@ -1721,15 +1730,17 @@ export default function AppShell() {
                   </div>
 
                   <div style={{ ...styles.field, width: 160 }}>
-                    <div style={styles.label}>Interval</div>
+                    <div style={styles.label}>Interval (optional)</div>
                     <input
                       style={{ ...styles.input, ...(nmWindowIntervalValid ? {} : styles.inputError) }}
                       value={nmWindowInterval}
                       onChange={(e) => setNmWindowInterval(e.target.value)}
-                      placeholder="5m"
+                      placeholder="5m (blank = single check at window start)"
                       title="Examples: 5m, 90s, 1m30s"
                     />
-                    {nmWindowIntervalValid ? (
+                    {nmWindowInterval.trim() === "" ? (
+                      <div style={styles.sub}>Blank = one check at window start.</div>
+                    ) : nmWindowIntervalValid ? (
                       <div style={styles.sub}>Examples: 5m, 90s, 1m30s</div>
                     ) : (
                       <div style={styles.errorText}>Invalid duration. Try 5m, 90s, or 1m30s.</div>
@@ -1748,7 +1759,7 @@ export default function AppShell() {
                 </div>
 
                 <div style={styles.sub}>
-                  Example: start 2h, end 2.5h, interval 5m → warns at 1:59:50 then pops at 2:00:00, 2:05:00, … 2:30:00.
+                  Example: start 2h, end 2.5h, interval 5m → warns at 1:59:50 then pops at 2:00:00, 2:05:00, … 2:30:00. Leave interval blank for one check at window start. Timed spawns also alert when the window closes (unless an interval pop already lands exactly at close).
                 </div>
               </>
             ) : (
@@ -1985,8 +1996,8 @@ export default function AppShell() {
                 } else if (t.kind === "NM_TIMED_WINDOW") {
                   detailLine = (
                     <div style={{ marginTop: 6, opacity: 0.9 }}>
-                      NM (timed): window {formatCountdown(t.windowStartOffsetMs)} → {formatCountdown(t.windowEndOffsetMs)} every{" "}
-                      {formatCountdown(t.intervalMs)}
+                      NM (timed): window {formatCountdown(t.windowStartOffsetMs)} → {formatCountdown(t.windowEndOffsetMs)}{" "}
+                      {t.intervalMs == null ? "(single check at window start)" : `every ${formatCountdown(t.intervalMs)}`}
                       <br />
                       ToD: {new Date(t.baseEarthMs).toLocaleString()}
                     </div>
@@ -2283,6 +2294,20 @@ export default function AppShell() {
       {activeTab === "rods" && (
         <div style={styles.tabContent}>
           <RodsTab />
+          <div style={{ display: "flex", justifyContent: "flex-end" }}>{backBar}</div>
+        </div>
+      )}
+
+      {activeTab === "clam" && (
+        <div style={styles.tabContent}>
+          <ClamTab />
+          <div style={{ display: "flex", justifyContent: "flex-end" }}>{backBar}</div>
+        </div>
+      )}
+
+      {activeTab === "chocobo" && (
+        <div style={styles.tabContent}>
+          <ChocoboTab />
           <div style={{ display: "flex", justifyContent: "flex-end" }}>{backBar}</div>
         </div>
       )}

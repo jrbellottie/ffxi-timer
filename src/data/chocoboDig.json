@@ -1,0 +1,5020 @@
+{
+ "entries": [
+  {
+   "zone": "Carpenters Landing",
+   "item": "Arrowwood Log",
+   "rate": 10,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Bibiki Bay",
+   "item": "Seashell",
+   "rate": 10,
+   "rank": "Recruit",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Wajaom Woodlands",
+   "item": "Clump Of Moko Grass",
+   "rate": 10,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Bhaflau Thickets",
+   "item": "Flint Stone",
+   "rate": 10,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "West Ronfaure",
+   "item": "Acorn",
+   "rate": 5,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "East Ronfaure",
+   "item": "Acorn",
+   "rate": 5,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "La Theine Plateau",
+   "item": "Arrowwood Log",
+   "rate": 5,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Carpenters Landing",
+   "item": "Little Worm",
+   "rate": 10,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Bibiki Bay",
+   "item": "Bird Feather",
+   "rate": 5,
+   "rank": "Initiate",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Wajaom Woodlands",
+   "item": "Pebble",
+   "rate": 10,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Bhaflau Thickets",
+   "item": "Pebble",
+   "rate": 10,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "West Ronfaure",
+   "item": "Arrowwood Log",
+   "rate": 5,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "East Ronfaure",
+   "item": "Arrowwood Log",
+   "rate": 5,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "La Theine Plateau",
+   "item": "Chocobo Feather",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Carpenters Landing",
+   "item": "Acorn",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Bibiki Bay",
+   "item": "Chunk Of Tin Ore",
+   "rate": 5,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Wajaom Woodlands",
+   "item": "Black Chocobo Feather",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Bhaflau Thickets",
+   "item": "Colibri Feather",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "West Ronfaure",
+   "item": "Ash Log",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "East Ronfaure",
+   "item": "Ash Log",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "La Theine Plateau",
+   "item": "Chunk Of Tin Ore",
+   "rate": 5,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Carpenters Landing",
+   "item": "Holly Log",
+   "rate": 5,
+   "rank": "Initiate",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Bibiki Bay",
+   "item": "Giant Femur",
+   "rate": 5,
+   "rank": "Initiate",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Wajaom Woodlands",
+   "item": "Ebony Log",
+   "rate": 5,
+   "rank": "Initiate",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Bhaflau Thickets",
+   "item": "Handful Of Pine Nuts",
+   "rate": 5,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "West Ronfaure",
+   "item": "Chocobo Feather",
+   "rate": 5,
+   "rank": "Initiate",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "East Ronfaure",
+   "item": "Chocobo Feather",
+   "rate": 5,
+   "rank": "Novice",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "La Theine Plateau",
+   "item": "Chunk Of Zinc Ore",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Carpenters Landing",
+   "item": "Maple Log",
+   "rate": 5,
+   "rank": "Initiate",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Bibiki Bay",
+   "item": "Lugworm",
+   "rate": 5,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Wajaom Woodlands",
+   "item": "Handful Of Pine Nuts",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Bhaflau Thickets",
+   "item": "Petrified Log",
+   "rate": 5,
+   "rank": "Novice",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "West Ronfaure",
+   "item": "Clump Of Moko Grass",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "East Ronfaure",
+   "item": "Little Worm",
+   "rate": 5,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "La Theine Plateau",
+   "item": "Little Worm",
+   "rate": 5,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Carpenters Landing",
+   "item": "Willow Log",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Bibiki Bay",
+   "item": "Shall Shell",
+   "rate": 5,
+   "rank": "Initiate",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Wajaom Woodlands",
+   "item": "Chunk Of Adaman Ore",
+   "rate": 1,
+   "rank": "Craftsman",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Bhaflau Thickets",
+   "item": "Pinch Of Dried Marjoram",
+   "rate": 5,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "West Ronfaure",
+   "item": "Little Worm",
+   "rate": 5,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "East Ronfaure",
+   "item": "Maple Log",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "La Theine Plateau",
+   "item": "Pebble",
+   "rate": 5,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Carpenters Landing",
+   "item": "Scream Fungus",
+   "rate": 1,
+   "rank": "Craftsman",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Bibiki Bay",
+   "item": "Shell Bug",
+   "rate": 1,
+   "rank": "Recruit",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Wajaom Woodlands",
+   "item": "Pephredo Hive Chip",
+   "rate": 1,
+   "rank": "Apprentice",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Bhaflau Thickets",
+   "item": "Lesser Chigoe",
+   "rate": 1,
+   "rank": "Initiate",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "West Ronfaure",
+   "item": "Maple Log",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "East Ronfaure",
+   "item": "Bag Of Fruit Seeds",
+   "rate": 1,
+   "rank": "Initiate",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "La Theine Plateau",
+   "item": "Yew Log",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Carpenters Landing",
+   "item": "Sprig Of Mistletoe",
+   "rate": 1,
+   "rank": "Journeyman",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Bibiki Bay",
+   "item": "Chunk Of Platinum Ore",
+   "rate": 0.5,
+   "rank": "Artisan",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Wajaom Woodlands",
+   "item": "Spider Web",
+   "rate": 1,
+   "rank": "Novice",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Bhaflau Thickets",
+   "item": "Spider Web",
+   "rate": 1,
+   "rank": "Apprentice",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "West Ronfaure",
+   "item": "Bag Of Vegetable Seeds",
+   "rate": 1,
+   "rank": "Novice",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "East Ronfaure",
+   "item": "Chestnut Log",
+   "rate": 1,
+   "rank": "Initiate",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "La Theine Plateau",
+   "item": "Chestnut Log",
+   "rate": 1,
+   "rank": "Initiate",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Carpenters Landing",
+   "item": "King Truffle",
+   "rate": 0.5,
+   "rank": "Adept",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Bibiki Bay",
+   "item": "Coin Of Birth",
+   "rate": 0.5,
+   "rank": "Adept",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Wajaom Woodlands",
+   "item": "Alexandrite",
+   "rate": 0.5,
+   "rank": "Adept",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Bhaflau Thickets",
+   "item": "Alexandrite",
+   "rate": 0.5,
+   "rank": "Adept",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "West Ronfaure",
+   "item": "Chestnut Log",
+   "rate": 1,
+   "rank": "Initiate",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "East Ronfaure",
+   "item": "King Truffle",
+   "rate": 1,
+   "rank": "Artisan",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "La Theine Plateau",
+   "item": "Mahogany Log",
+   "rate": 1,
+   "rank": "Novice",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Carpenters Landing",
+   "item": "Dark Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Bibiki Bay",
+   "item": "Coral Fragment",
+   "rate": 0.5,
+   "rank": "Artisan",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Wajaom Woodlands",
+   "item": "Arrowwood Log",
+   "rate": 24,
+   "rank": null,
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Bhaflau Thickets",
+   "item": "Chunk Of Orichalcum Ore",
+   "rate": 0.5,
+   "rank": "Artisan",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "West Ronfaure",
+   "item": "Ronfaure Chestnut",
+   "rate": 1,
+   "rank": "Novice",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "East Ronfaure",
+   "item": "Ronfaure Chestnut",
+   "rate": 1,
+   "rank": "Novice",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "La Theine Plateau",
+   "item": "Pinch Of Dried Marjoram",
+   "rate": 1,
+   "rank": "Apprentice",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Carpenters Landing",
+   "item": "Earth Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Bibiki Bay",
+   "item": "Plate Of Heavy Metal",
+   "rate": 0.5,
+   "rank": "Adept",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Wajaom Woodlands",
+   "item": "Yew Log",
+   "rate": 15,
+   "rank": null,
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Bhaflau Thickets",
+   "item": "Arrowwood Log",
+   "rate": 24,
+   "rank": null,
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "West Ronfaure",
+   "item": "Sprig Of Mistletoe",
+   "rate": 1,
+   "rank": "Novice",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "East Ronfaure",
+   "item": "Sprig Of Mistletoe",
+   "rate": 1,
+   "rank": "Apprentice",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "La Theine Plateau",
+   "item": "Coin Of Glory",
+   "rate": 0.5,
+   "rank": "Adept",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Carpenters Landing",
+   "item": "Fire Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Bibiki Bay",
+   "item": "Clump Of Red Moko Grass",
+   "rate": 10,
+   "rank": null,
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Wajaom Woodlands",
+   "item": "Elm Log",
+   "rate": 10,
+   "rank": "Recruit",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Bhaflau Thickets",
+   "item": "Clump Of Moko Grass",
+   "rate": 24,
+   "rank": null,
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "West Ronfaure",
+   "item": "Plate Of Heavy Metal",
+   "rate": 0.5,
+   "rank": "Adept",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "East Ronfaure",
+   "item": "Plate Of Heavy Metal",
+   "rate": 0.5,
+   "rank": "Adept",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "La Theine Plateau",
+   "item": "Plate Of Heavy Metal",
+   "rate": 0.5,
+   "rank": "Adept",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Carpenters Landing",
+   "item": "Ice Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Bibiki Bay",
+   "item": "Black Chocobo Feather",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Wajaom Woodlands",
+   "item": "Oak Log",
+   "rate": 5,
+   "rank": "Initiate",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Bhaflau Thickets",
+   "item": "Pephredo Hive Chip",
+   "rate": 15,
+   "rank": null,
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "West Ronfaure",
+   "item": "Bunch Of Gysahl Greens",
+   "rate": 15,
+   "rank": null,
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "East Ronfaure",
+   "item": "Bunch Of Gysahl Greens",
+   "rate": 15,
+   "rank": null,
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "La Theine Plateau",
+   "item": "Bunch Of Gysahl Greens",
+   "rate": 15,
+   "rank": null,
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Carpenters Landing",
+   "item": "Light Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Bibiki Bay",
+   "item": "Giant Bird Plume",
+   "rate": 1,
+   "rank": "Initiate",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Wajaom Woodlands",
+   "item": "Rosewood Log",
+   "rate": 1,
+   "rank": "Novice",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Bhaflau Thickets",
+   "item": "Yew Log",
+   "rate": 15,
+   "rank": null,
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "West Ronfaure",
+   "item": "Chamomile",
+   "rate": 5,
+   "rank": null,
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "East Ronfaure",
+   "item": "Chamomile",
+   "rate": 5,
+   "rank": null,
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "La Theine Plateau",
+   "item": "Chamomile",
+   "rate": 5,
+   "rank": null,
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Carpenters Landing",
+   "item": "Lightning Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Bibiki Bay",
+   "item": "Spider Web",
+   "rate": 0.5,
+   "rank": "Novice",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Wajaom Woodlands",
+   "item": "Mahogany Log",
+   "rate": 0.5,
+   "rank": "Apprentice",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Bhaflau Thickets",
+   "item": "Black Chocobo Feather",
+   "rate": 10,
+   "rank": "Recruit",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "West Ronfaure",
+   "item": "Ginger Root",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "East Ronfaure",
+   "item": "Ginger Root",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "La Theine Plateau",
+   "item": "Ginger Root",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Carpenters Landing",
+   "item": "Water Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Bibiki Bay",
+   "item": "Phoenix Feather",
+   "rate": 0.1,
+   "rank": "Craftsman",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Wajaom Woodlands",
+   "item": "Lacquer Tree Log",
+   "rate": 0.1,
+   "rank": "Artisan",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Bhaflau Thickets",
+   "item": "Elm Log",
+   "rate": 10,
+   "rank": "Recruit",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "West Ronfaure",
+   "item": "Head Of Napa",
+   "rate": 5,
+   "rank": "Initiate",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "East Ronfaure",
+   "item": "Head Of Napa",
+   "rate": 5,
+   "rank": "Initiate",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "La Theine Plateau",
+   "item": "Head Of Napa",
+   "rate": 5,
+   "rank": "Initiate",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Carpenters Landing",
+   "item": "Wind Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Bibiki Bay",
+   "item": "Bone Chip",
+   "rate": 15,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Wajaom Woodlands",
+   "item": "Piece Of Ancient Lumber",
+   "rate": 0.1,
+   "rank": "Craftsman",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Bhaflau Thickets",
+   "item": "Oak Log",
+   "rate": 5,
+   "rank": "Initiate",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "West Ronfaure",
+   "item": "Dark Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "East Ronfaure",
+   "item": "Dark Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "La Theine Plateau",
+   "item": "Piece Of Yellow Ginseng",
+   "rate": 15,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Carpenters Landing",
+   "item": "Yew Log",
+   "rate": 15,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Bibiki Bay",
+   "item": "Handful Of Fish Scales",
+   "rate": 15,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Wajaom Woodlands",
+   "item": "Flint Stone",
+   "rate": 24,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Bhaflau Thickets",
+   "item": "Rosewood Log",
+   "rate": 1,
+   "rank": "Novice",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "West Ronfaure",
+   "item": "Earth Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "East Ronfaure",
+   "item": "Earth Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "La Theine Plateau",
+   "item": "Bag Of Wildgrass Seeds",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Carpenters Landing",
+   "item": "Elm Log",
+   "rate": 10,
+   "rank": "Recruit",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Bibiki Bay",
+   "item": "High Quality Pugil Scales",
+   "rate": 5,
+   "rank": "Initiate",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Wajaom Woodlands",
+   "item": "Chunk Of Aluminum Ore",
+   "rate": 10,
+   "rank": "Recruit",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Bhaflau Thickets",
+   "item": "Ebony Log",
+   "rate": 0.5,
+   "rank": "Journeyman",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "West Ronfaure",
+   "item": "Fire Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "East Ronfaure",
+   "item": "Fire Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "La Theine Plateau",
+   "item": "Bag Of Tree Cuttings",
+   "rate": 1,
+   "rank": "Initiate",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Carpenters Landing",
+   "item": "Oak Log",
+   "rate": 5,
+   "rank": "Initiate",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Bibiki Bay",
+   "item": "Titanictus Shell",
+   "rate": 5,
+   "rank": "Apprentice",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Wajaom Woodlands",
+   "item": "Chunk Of Gold Ore",
+   "rate": 5,
+   "rank": "Initiate",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Bhaflau Thickets",
+   "item": "Mahogany Log",
+   "rate": 0.5,
+   "rank": "Apprentice",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "West Ronfaure",
+   "item": "Ice Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "East Ronfaure",
+   "item": "Ice Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "La Theine Plateau",
+   "item": "Bag Of Cactus Stems",
+   "rate": 0.5,
+   "rank": "Novice",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Carpenters Landing",
+   "item": "Rosewood Log",
+   "rate": 1,
+   "rank": "Novice",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Bibiki Bay",
+   "item": "Demon Horn",
+   "rate": 1,
+   "rank": "Journeyman",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Wajaom Woodlands",
+   "item": "Chunk Of Darksteel Ore",
+   "rate": 1,
+   "rank": "Novice",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Bhaflau Thickets",
+   "item": "Lacquer Tree Log",
+   "rate": 0.1,
+   "rank": "Artisan",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "West Ronfaure",
+   "item": "Light Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "East Ronfaure",
+   "item": "Light Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Carpenters Landing",
+   "item": "Ebony Log",
+   "rate": 0.5,
+   "rank": "Journeyman",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Bibiki Bay",
+   "item": "Handful Of Wyvern Scales",
+   "rate": 0.5,
+   "rank": "Craftsman",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Wajaom Woodlands",
+   "item": "Chunk Of Kaolin",
+   "rate": 1,
+   "rank": "Novice",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Bhaflau Thickets",
+   "item": "Piece Of Ancient Lumber",
+   "rate": 0.1,
+   "rank": "Craftsman",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "West Ronfaure",
+   "item": "Lightning Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "East Ronfaure",
+   "item": "Lightning Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Carpenters Landing",
+   "item": "Mahogany Log",
+   "rate": 0.5,
+   "rank": "Apprentice",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Bibiki Bay",
+   "item": "Turtle Shell",
+   "rate": 0.5,
+   "rank": "Craftsman",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Wajaom Woodlands",
+   "item": "Chunk Of Platinum Ore",
+   "rate": 0.5,
+   "rank": "Journeyman",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Bhaflau Thickets",
+   "item": "Chunk Of Aluminum Ore",
+   "rate": 10,
+   "rank": "Recruit",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "West Ronfaure",
+   "item": "Water Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "East Ronfaure",
+   "item": "Water Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Carpenters Landing",
+   "item": "Lacquer Tree Log",
+   "rate": 0.1,
+   "rank": "Artisan",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Bibiki Bay",
+   "item": "Demon Skull",
+   "rate": 0.1,
+   "rank": "Artisan",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Wajaom Woodlands",
+   "item": "Chunk Of Orichalcum Ore",
+   "rate": 0.1,
+   "rank": "Craftsman",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Bhaflau Thickets",
+   "item": "Chunk Of Gold Ore",
+   "rate": 5,
+   "rank": "Initiate",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "West Ronfaure",
+   "item": "Wind Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "East Ronfaure",
+   "item": "Wind Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Carpenters Landing",
+   "item": "Piece Of Ancient Lumber",
+   "rate": 0.1,
+   "rank": "Craftsman",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Bibiki Bay",
+   "item": "Handful Of Dragon Scales",
+   "rate": 0.1,
+   "rank": "Artisan",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Bhaflau Thickets",
+   "item": "Chunk Of Darksteel Ore",
+   "rate": 1,
+   "rank": "Novice",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Bhaflau Thickets",
+   "item": "Chunk Of Kaolin",
+   "rate": 1,
+   "rank": "Novice",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Bhaflau Thickets",
+   "item": "Chunk Of Platinum Ore",
+   "rate": 0.5,
+   "rank": "Journeyman",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Valkurm Dunes",
+   "item": "Seashell",
+   "rate": 15,
+   "rank": "Recruit",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Jugner Forest",
+   "item": "Acorn",
+   "rate": 5,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Batallia Downs",
+   "item": "Bird Feather",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "North Gustaberg",
+   "item": "Bird Feather",
+   "rate": 5,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "South Gustaberg",
+   "item": "Bag Of Grain Seeds",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Konschtat Highlands",
+   "item": "Bone Chip",
+   "rate": 5,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Pashhow Marshlands",
+   "item": "Chunk Of Silver Ore",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Valkurm Dunes",
+   "item": "Bone Chip",
+   "rate": 10,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Jugner Forest",
+   "item": "Holly Log",
+   "rate": 5,
+   "rank": "Novice",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Batallia Downs",
+   "item": "Bone Chip",
+   "rate": 5,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "North Gustaberg",
+   "item": "Bone Chip",
+   "rate": 5,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "South Gustaberg",
+   "item": "Bird Feather",
+   "rate": 5,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Konschtat Highlands",
+   "item": "Chunk Of Zinc Ore",
+   "rate": 5,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Pashhow Marshlands",
+   "item": "Insect Wing",
+   "rate": 5,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Valkurm Dunes",
+   "item": "Giant Femur",
+   "rate": 5,
+   "rank": "Novice",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Jugner Forest",
+   "item": "Little Worm",
+   "rate": 5,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Batallia Downs",
+   "item": "Chunk Of Copper Ore",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "North Gustaberg",
+   "item": "Handful Of Fish Scales",
+   "rate": 5,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "South Gustaberg",
+   "item": "Bone Chip",
+   "rate": 5,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Konschtat Highlands",
+   "item": "Flint Stone",
+   "rate": 5,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Pashhow Marshlands",
+   "item": "Lizard Molt",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Valkurm Dunes",
+   "item": "Handful Of Fish Scales",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Jugner Forest",
+   "item": "Maple Log",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Batallia Downs",
+   "item": "Chunk Of Iron Ore",
+   "rate": 5,
+   "rank": "Initiate",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "North Gustaberg",
+   "item": "Insect Wing",
+   "rate": 5,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "South Gustaberg",
+   "item": "Chunk Of Rock Salt",
+   "rate": 5,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Konschtat Highlands",
+   "item": "Handful Of Fish Scales",
+   "rate": 5,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Pashhow Marshlands",
+   "item": "Pebble",
+   "rate": 5,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Valkurm Dunes",
+   "item": "Lizard Molt",
+   "rate": 5,
+   "rank": "Novice",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Jugner Forest",
+   "item": "Oak Log",
+   "rate": 5,
+   "rank": "Initiate",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Batallia Downs",
+   "item": "Flint Stone",
+   "rate": 5,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "North Gustaberg",
+   "item": "Little Worm",
+   "rate": 5,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "South Gustaberg",
+   "item": "Insect Wing",
+   "rate": 5,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Konschtat Highlands",
+   "item": "Lizard Molt",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Pashhow Marshlands",
+   "item": "Mythril Beastcoin",
+   "rate": 1,
+   "rank": "Initiate",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Valkurm Dunes",
+   "item": "Lugworm",
+   "rate": 5,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Jugner Forest",
+   "item": "Willow Log",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Batallia Downs",
+   "item": "Pebble",
+   "rate": 5,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "North Gustaberg",
+   "item": "Lizard Molt",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "South Gustaberg",
+   "item": "Little Worm",
+   "rate": 5,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Konschtat Highlands",
+   "item": "Pebble",
+   "rate": 5,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Pashhow Marshlands",
+   "item": "Turtle Shell",
+   "rate": 1,
+   "rank": "Initiate",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Valkurm Dunes",
+   "item": "Shall Shell",
+   "rate": 5,
+   "rank": "Craftsman",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Jugner Forest",
+   "item": "Sprig Of Mistletoe",
+   "rate": 1,
+   "rank": "Novice",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Batallia Downs",
+   "item": "Red Jar",
+   "rate": 5,
+   "rank": "Novice",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "North Gustaberg",
+   "item": "Pebble",
+   "rate": 5,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "South Gustaberg",
+   "item": "Lizard Molt",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Konschtat Highlands",
+   "item": "Bird Feather",
+   "rate": 1,
+   "rank": "Recruit",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Pashhow Marshlands",
+   "item": "Willow Log",
+   "rate": 1,
+   "rank": "Initiate",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Valkurm Dunes",
+   "item": "Shell Bug",
+   "rate": 5,
+   "rank": "Initiate",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Jugner Forest",
+   "item": "Coin Of Birth",
+   "rate": 0.5,
+   "rank": "Adept",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Batallia Downs",
+   "item": "Black Chocobo Feather",
+   "rate": 0.5,
+   "rank": "Apprentice",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "North Gustaberg",
+   "item": "Bag Of Cactus Stems",
+   "rate": 1,
+   "rank": "Recruit",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "South Gustaberg",
+   "item": "Mythril Beastcoin",
+   "rate": 5,
+   "rank": "Apprentice",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Konschtat Highlands",
+   "item": "Coin Of Birth",
+   "rate": 0.5,
+   "rank": "Adept",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Pashhow Marshlands",
+   "item": "Coin Of Advancement",
+   "rate": 0.5,
+   "rank": "Adept",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Valkurm Dunes",
+   "item": "Turtle Shell",
+   "rate": 5,
+   "rank": "Artisan",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Jugner Forest",
+   "item": "King Truffle",
+   "rate": 0.5,
+   "rank": "Adept",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Batallia Downs",
+   "item": "Coin Of Advancement",
+   "rate": 0.5,
+   "rank": "Adept",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "North Gustaberg",
+   "item": "Chunk Of Darksteel Ore",
+   "rate": 1,
+   "rank": "Artisan",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "South Gustaberg",
+   "item": "Pebble",
+   "rate": 5,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Konschtat Highlands",
+   "item": "Elm Log",
+   "rate": 0.5,
+   "rank": "Apprentice",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Pashhow Marshlands",
+   "item": "Petrified Log",
+   "rate": 0.5,
+   "rank": "Novice",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Valkurm Dunes",
+   "item": "Coin Of Decay",
+   "rate": 0.5,
+   "rank": "Adept",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Jugner Forest",
+   "item": "Plate Of Heavy Metal",
+   "rate": 0.5,
+   "rank": "Adept",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Batallia Downs",
+   "item": "Plate Of Heavy Metal",
+   "rate": 0.5,
+   "rank": "Adept",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "North Gustaberg",
+   "item": "Chunk Of Mythril Ore",
+   "rate": 1,
+   "rank": "Apprentice",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "South Gustaberg",
+   "item": "Chunk Of Mythril Ore",
+   "rate": 1,
+   "rank": "Apprentice",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Konschtat Highlands",
+   "item": "Mythril Beastcoin",
+   "rate": 0.5,
+   "rank": "Apprentice",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Pashhow Marshlands",
+   "item": "Plate Of Heavy Metal",
+   "rate": 0.5,
+   "rank": "Adept",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Valkurm Dunes",
+   "item": "One Byne Bill",
+   "rate": 0.5,
+   "rank": "Adept",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Jugner Forest",
+   "item": "Scream Fungus",
+   "rate": 0.5,
+   "rank": "Craftsman",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Batallia Downs",
+   "item": "Reishi Mushroom",
+   "rate": 0.5,
+   "rank": "Journeyman",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "North Gustaberg",
+   "item": "Mythril Beastcoin",
+   "rate": 1,
+   "rank": "Apprentice",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "South Gustaberg",
+   "item": "Coin Of Decay",
+   "rate": 0.5,
+   "rank": "Adept",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Konschtat Highlands",
+   "item": "Plate Of Heavy Metal",
+   "rate": 0.5,
+   "rank": "Adept",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Pashhow Marshlands",
+   "item": "Puffball",
+   "rate": 0.5,
+   "rank": "Apprentice",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Valkurm Dunes",
+   "item": "Ordelle Bronzepiece",
+   "rate": 0.5,
+   "rank": "Adept",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Jugner Forest",
+   "item": "Dark Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Batallia Downs",
+   "item": "Beastcoin",
+   "rate": 10,
+   "rank": null,
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "North Gustaberg",
+   "item": "Coin Of Glory",
+   "rate": 0.5,
+   "rank": "Adept",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "South Gustaberg",
+   "item": "Plate Of Heavy Metal",
+   "rate": 0.5,
+   "rank": "Adept",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Konschtat Highlands",
+   "item": "Dark Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Pashhow Marshlands",
+   "item": "Piece Of Yellow Ginseng",
+   "rate": 15,
+   "rank": null,
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Valkurm Dunes",
+   "item": "Tukuku Whiteshell",
+   "rate": 0.5,
+   "rank": "Adept",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Jugner Forest",
+   "item": "Earth Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Batallia Downs",
+   "item": "Silver Beastcoin",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "North Gustaberg",
+   "item": "Plate Of Heavy Metal",
+   "rate": 0.5,
+   "rank": "Adept",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "South Gustaberg",
+   "item": "Bunch Of Gysahl Greens",
+   "rate": 15,
+   "rank": null,
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Konschtat Highlands",
+   "item": "Earth Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Pashhow Marshlands",
+   "item": "Bag Of Wildgrass Seeds",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Valkurm Dunes",
+   "item": "Clump Of Red Moko Grass",
+   "rate": 10,
+   "rank": null,
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Jugner Forest",
+   "item": "Fire Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Batallia Downs",
+   "item": "Gold Beastcoin",
+   "rate": 1,
+   "rank": "Initiate",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "North Gustaberg",
+   "item": "Bunch Of Gysahl Greens",
+   "rate": 15,
+   "rank": null,
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "South Gustaberg",
+   "item": "Chamomile",
+   "rate": 5,
+   "rank": null,
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Konschtat Highlands",
+   "item": "Fire Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Pashhow Marshlands",
+   "item": "Bag Of Tree Cuttings",
+   "rate": 1,
+   "rank": "Initiate",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Valkurm Dunes",
+   "item": "Black Chocobo Feather",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Jugner Forest",
+   "item": "Ice Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Batallia Downs",
+   "item": "Mythril Beastcoin",
+   "rate": 0.5,
+   "rank": "Novice",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "North Gustaberg",
+   "item": "Chamomile",
+   "rate": 5,
+   "rank": null,
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "South Gustaberg",
+   "item": "Ginger Root",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Konschtat Highlands",
+   "item": "Ice Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Pashhow Marshlands",
+   "item": "Bag Of Cactus Stems",
+   "rate": 0.5,
+   "rank": "Novice",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Valkurm Dunes",
+   "item": "Giant Bird Plume",
+   "rate": 1,
+   "rank": "Initiate",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Jugner Forest",
+   "item": "Light Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Batallia Downs",
+   "item": "Platinum Beastcoin",
+   "rate": 0.1,
+   "rank": "Apprentice",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "North Gustaberg",
+   "item": "Ginger Root",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "South Gustaberg",
+   "item": "Head Of Napa",
+   "rate": 5,
+   "rank": "Initiate",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Konschtat Highlands",
+   "item": "Light Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Pashhow Marshlands",
+   "item": "Dark Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Valkurm Dunes",
+   "item": "Spider Web",
+   "rate": 0.5,
+   "rank": "Novice",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Jugner Forest",
+   "item": "Lightning Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Batallia Downs",
+   "item": "Piece Of Yellow Ginseng",
+   "rate": 15,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "North Gustaberg",
+   "item": "Head Of Napa",
+   "rate": 5,
+   "rank": "Initiate",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "South Gustaberg",
+   "item": "Dark Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Konschtat Highlands",
+   "item": "Lightning Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Pashhow Marshlands",
+   "item": "Earth Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Valkurm Dunes",
+   "item": "Phoenix Feather",
+   "rate": 0.1,
+   "rank": "Craftsman",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Jugner Forest",
+   "item": "Water Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Batallia Downs",
+   "item": "Bag Of Wildgrass Seeds",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "North Gustaberg",
+   "item": "Dark Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "South Gustaberg",
+   "item": "Earth Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Konschtat Highlands",
+   "item": "Water Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Pashhow Marshlands",
+   "item": "Fire Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Valkurm Dunes",
+   "item": "High Quality Pugil Scales",
+   "rate": 5,
+   "rank": "Initiate",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Jugner Forest",
+   "item": "Wind Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Batallia Downs",
+   "item": "Bag Of Tree Cuttings",
+   "rate": 1,
+   "rank": "Initiate",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "North Gustaberg",
+   "item": "Earth Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "South Gustaberg",
+   "item": "Fire Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Konschtat Highlands",
+   "item": "Wind Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Pashhow Marshlands",
+   "item": "Ice Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Valkurm Dunes",
+   "item": "Titanictus Shell",
+   "rate": 5,
+   "rank": "Apprentice",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Jugner Forest",
+   "item": "Arrowwood Log",
+   "rate": 24,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Batallia Downs",
+   "item": "Bag Of Cactus Stems",
+   "rate": 0.5,
+   "rank": "Novice",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "North Gustaberg",
+   "item": "Fire Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "South Gustaberg",
+   "item": "Ice Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Konschtat Highlands",
+   "item": "Clump Of Red Moko Grass",
+   "rate": 10,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Pashhow Marshlands",
+   "item": "Light Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Valkurm Dunes",
+   "item": "Demon Horn",
+   "rate": 1,
+   "rank": "Journeyman",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Jugner Forest",
+   "item": "Yew Log",
+   "rate": 15,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "North Gustaberg",
+   "item": "Ice Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "South Gustaberg",
+   "item": "Light Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Konschtat Highlands",
+   "item": "Black Chocobo Feather",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Pashhow Marshlands",
+   "item": "Lightning Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Valkurm Dunes",
+   "item": "Handful Of Wyvern Scales",
+   "rate": 0.5,
+   "rank": "Craftsman",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Jugner Forest",
+   "item": "Elm Log",
+   "rate": 10,
+   "rank": "Recruit",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "North Gustaberg",
+   "item": "Light Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "South Gustaberg",
+   "item": "Lightning Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Konschtat Highlands",
+   "item": "Giant Bird Plume",
+   "rate": 1,
+   "rank": "Initiate",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Pashhow Marshlands",
+   "item": "Water Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Valkurm Dunes",
+   "item": "Demon Skull",
+   "rate": 0.1,
+   "rank": "Artisan",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Jugner Forest",
+   "item": "Rosewood Log",
+   "rate": 1,
+   "rank": "Novice",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "North Gustaberg",
+   "item": "Lightning Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "South Gustaberg",
+   "item": "Water Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Konschtat Highlands",
+   "item": "Spider Web",
+   "rate": 0.5,
+   "rank": "Novice",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Pashhow Marshlands",
+   "item": "Wind Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Valkurm Dunes",
+   "item": "Handful Of Dragon Scales",
+   "rate": 0.1,
+   "rank": "Artisan",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Jugner Forest",
+   "item": "Ebony Log",
+   "rate": 0.5,
+   "rank": "Journeyman",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "North Gustaberg",
+   "item": "Water Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "South Gustaberg",
+   "item": "Wind Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Konschtat Highlands",
+   "item": "Phoenix Feather",
+   "rate": 0.1,
+   "rank": "Craftsman",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Jugner Forest",
+   "item": "Mahogany Log",
+   "rate": 0.5,
+   "rank": "Apprentice",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "North Gustaberg",
+   "item": "Wind Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Jugner Forest",
+   "item": "Lacquer Tree Log",
+   "rate": 0.1,
+   "rank": "Artisan",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Jugner Forest",
+   "item": "Piece Of Ancient Lumber",
+   "rate": 0.1,
+   "rank": "Craftsman",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Rolanberry Fields",
+   "item": "Flint Stone",
+   "rate": 10,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Eastern Altepa Desert",
+   "item": "Flint Stone",
+   "rate": 24,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "West Sarutabaruta",
+   "item": "Clump Of Moko Grass",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "East Sarutabaruta",
+   "item": "Bag Of Herb Seeds",
+   "rate": 5,
+   "rank": "Initiate",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Tahrongi Canyon",
+   "item": "Bone Chip",
+   "rate": 5,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Buburimu Peninsula",
+   "item": "Lugworm",
+   "rate": 10,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Meriphataud Mountains",
+   "item": "Flint Stone",
+   "rate": 24,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Rolanberry Fields",
+   "item": "Little Worm",
+   "rate": 10,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Eastern Altepa Desert",
+   "item": "Bone Chip",
+   "rate": 10,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "West Sarutabaruta",
+   "item": "Insect Wing",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "East Sarutabaruta",
+   "item": "Ball Of Saruta Cotton",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Tahrongi Canyon",
+   "item": "Chunk Of Tin Ore",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Buburimu Peninsula",
+   "item": "Seashell",
+   "rate": 10,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Meriphataud Mountains",
+   "item": "Pebble",
+   "rate": 10,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Rolanberry Fields",
+   "item": "Pebble",
+   "rate": 10,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Eastern Altepa Desert",
+   "item": "Chunk Of Silver Ore",
+   "rate": 5,
+   "rank": "Initiate",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "West Sarutabaruta",
+   "item": "Lauan Log",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "East Sarutabaruta",
+   "item": "Insect Wing",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Tahrongi Canyon",
+   "item": "Giant Femur",
+   "rate": 5,
+   "rank": "Initiate",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Buburimu Peninsula",
+   "item": "Shell Bug",
+   "rate": 10,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Meriphataud Mountains",
+   "item": "Chunk Of Copper Ore",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Rolanberry Fields",
+   "item": "Insect Wing",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Eastern Altepa Desert",
+   "item": "Chunk Of Zinc Ore",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "West Sarutabaruta",
+   "item": "Little Worm",
+   "rate": 5,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "East Sarutabaruta",
+   "item": "Lauan Log",
+   "rate": 5,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Tahrongi Canyon",
+   "item": "Insect Wing",
+   "rate": 5,
+   "rank": "Initiate",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Buburimu Peninsula",
+   "item": "Bird Feather",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Meriphataud Mountains",
+   "item": "Giant Femur",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Rolanberry Fields",
+   "item": "Mythril Beastcoin",
+   "rate": 1,
+   "rank": "Initiate",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Eastern Altepa Desert",
+   "item": "Giant Femur",
+   "rate": 5,
+   "rank": "Novice",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "West Sarutabaruta",
+   "item": "Pebble",
+   "rate": 5,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "East Sarutabaruta",
+   "item": "Papaka Grass",
+   "rate": 5,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Tahrongi Canyon",
+   "item": "Pebble",
+   "rate": 5,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Buburimu Peninsula",
+   "item": "Shall Shell",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Meriphataud Mountains",
+   "item": "Lizard Molt",
+   "rate": 5,
+   "rank": "Initiate",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Rolanberry Fields",
+   "item": "Red Jar",
+   "rate": 1,
+   "rank": "Novice",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Eastern Altepa Desert",
+   "item": "Handful Of Wyvern Scales",
+   "rate": 5,
+   "rank": "Apprentice",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "West Sarutabaruta",
+   "item": "Yagudo Feather",
+   "rate": 5,
+   "rank": "Initiate",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "East Sarutabaruta",
+   "item": "Pebble",
+   "rate": 5,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Tahrongi Canyon",
+   "item": "Seashell",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Buburimu Peninsula",
+   "item": "Chunk Of Tin Ore",
+   "rate": 1,
+   "rank": "Initiate",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Meriphataud Mountains",
+   "item": "Black Chocobo Feather",
+   "rate": 1,
+   "rank": "Novice",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Rolanberry Fields",
+   "item": "Sprig Of Sage",
+   "rate": 1,
+   "rank": "Initiate",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Eastern Altepa Desert",
+   "item": "Pebble",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "West Sarutabaruta",
+   "item": "Ball Of Saruta Cotton",
+   "rate": 1,
+   "rank": "Initiate",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "East Sarutabaruta",
+   "item": "Yagudo Feather",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Tahrongi Canyon",
+   "item": "Yagudo Feather",
+   "rate": 5,
+   "rank": "Novice",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Buburimu Peninsula",
+   "item": "Giant Femur",
+   "rate": 1,
+   "rank": "Initiate",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Meriphataud Mountains",
+   "item": "Gold Beastcoin",
+   "rate": 1,
+   "rank": "Apprentice",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Rolanberry Fields",
+   "item": "Chunk Of Orichalcum Ore",
+   "rate": 0.5,
+   "rank": "Craftsman",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Eastern Altepa Desert",
+   "item": "Chunk Of Mythril Ore",
+   "rate": 1,
+   "rank": "Journeyman",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "West Sarutabaruta",
+   "item": "Bird Feather",
+   "rate": 1,
+   "rank": "Initiate",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "East Sarutabaruta",
+   "item": "Bird Feather",
+   "rate": 1,
+   "rank": "Initiate",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Tahrongi Canyon",
+   "item": "Chunk Of Gold Ore",
+   "rate": 1,
+   "rank": "Apprentice",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Buburimu Peninsula",
+   "item": "Chunk Of Platinum Ore",
+   "rate": 0.5,
+   "rank": "Apprentice",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Meriphataud Mountains",
+   "item": "Chunk Of Adaman Ore",
+   "rate": 0.5,
+   "rank": "Journeyman",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Rolanberry Fields",
+   "item": "Coin Of Glory",
+   "rate": 0.5,
+   "rank": "Adept",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Eastern Altepa Desert",
+   "item": "Chunk Of Platinum Ore",
+   "rate": 1,
+   "rank": "Journeyman",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "West Sarutabaruta",
+   "item": "Coin Of Decay",
+   "rate": 0.5,
+   "rank": "Adept",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "East Sarutabaruta",
+   "item": "Ebony Log",
+   "rate": 1,
+   "rank": "Initiate",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Tahrongi Canyon",
+   "item": "Gold Beastcoin",
+   "rate": 1,
+   "rank": "Apprentice",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Buburimu Peninsula",
+   "item": "Coin Of Birth",
+   "rate": 0.5,
+   "rank": "Adept",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Meriphataud Mountains",
+   "item": "Coin Of Advancement",
+   "rate": 0.5,
+   "rank": "Adept",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Rolanberry Fields",
+   "item": "Gold Beastcoin",
+   "rate": 0.5,
+   "rank": "Craftsman",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Eastern Altepa Desert",
+   "item": "Philosophers Stone",
+   "rate": 0.5,
+   "rank": "Craftsman",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "West Sarutabaruta",
+   "item": "Plate Of Heavy Metal",
+   "rate": 0.5,
+   "rank": "Adept",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "East Sarutabaruta",
+   "item": "Plate Of Heavy Metal",
+   "rate": 0.5,
+   "rank": "Adept",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Tahrongi Canyon",
+   "item": "Coin Of Advancement",
+   "rate": 0.5,
+   "rank": "Adept",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Buburimu Peninsula",
+   "item": "Coral Fragment",
+   "rate": 0.5,
+   "rank": "Craftsman",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Meriphataud Mountains",
+   "item": "Plate Of Heavy Metal",
+   "rate": 0.5,
+   "rank": "Adept",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Rolanberry Fields",
+   "item": "Plate Of Heavy Metal",
+   "rate": 0.5,
+   "rank": "Adept",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Eastern Altepa Desert",
+   "item": "Plate Of Heavy Metal",
+   "rate": 0.5,
+   "rank": "Adept",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "West Sarutabaruta",
+   "item": "Rosewood Log",
+   "rate": 0.5,
+   "rank": "Novice",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "East Sarutabaruta",
+   "item": "Rosewood Log",
+   "rate": 0.5,
+   "rank": "Novice",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Tahrongi Canyon",
+   "item": "Plate Of Heavy Metal",
+   "rate": 0.5,
+   "rank": "Adept",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Buburimu Peninsula",
+   "item": "One Byne Bill",
+   "rate": 0.5,
+   "rank": "Adept",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Meriphataud Mountains",
+   "item": "Chunk Of Iron Ore",
+   "rate": 10,
+   "rank": "Recruit",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Rolanberry Fields",
+   "item": "Clump Of Red Moko Grass",
+   "rate": 10,
+   "rank": null,
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Eastern Altepa Desert",
+   "item": "Bag Of Fruit Seeds",
+   "rate": 5,
+   "rank": "Apprentice",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "West Sarutabaruta",
+   "item": "Bunch Of Gysahl Greens",
+   "rate": 15,
+   "rank": null,
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "East Sarutabaruta",
+   "item": "Bunch Of Gysahl Greens",
+   "rate": 15,
+   "rank": null,
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Tahrongi Canyon",
+   "item": "Beastcoin",
+   "rate": 10,
+   "rank": null,
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Buburimu Peninsula",
+   "item": "Ordelle Bronzepiece",
+   "rate": 0.5,
+   "rank": "Adept",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Meriphataud Mountains",
+   "item": "Chunk Of Kopparnickel Ore",
+   "rate": 10,
+   "rank": "Recruit",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Rolanberry Fields",
+   "item": "Black Chocobo Feather",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Eastern Altepa Desert",
+   "item": "Bag Of Grain Seeds",
+   "rate": 5,
+   "rank": null,
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "West Sarutabaruta",
+   "item": "Chamomile",
+   "rate": 5,
+   "rank": null,
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "East Sarutabaruta",
+   "item": "Chamomile",
+   "rate": 5,
+   "rank": null,
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Tahrongi Canyon",
+   "item": "Silver Beastcoin",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Buburimu Peninsula",
+   "item": "Plate Of Heavy Metal",
+   "rate": 0.5,
+   "rank": "Adept",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Meriphataud Mountains",
+   "item": "Chunk Of Mythril Ore",
+   "rate": 10,
+   "rank": "Recruit",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Rolanberry Fields",
+   "item": "Giant Bird Plume",
+   "rate": 1,
+   "rank": "Initiate",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Eastern Altepa Desert",
+   "item": "Bag Of Herb Seeds",
+   "rate": 5,
+   "rank": "Initiate",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "West Sarutabaruta",
+   "item": "Ginger Root",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "East Sarutabaruta",
+   "item": "Ginger Root",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Tahrongi Canyon",
+   "item": "Mythril Beastcoin",
+   "rate": 0.5,
+   "rank": "Novice",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Buburimu Peninsula",
+   "item": "Tukuku Whiteshell",
+   "rate": 0.5,
+   "rank": "Adept",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Meriphataud Mountains",
+   "item": "Chunk Of Silver Ore",
+   "rate": 10,
+   "rank": null,
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Rolanberry Fields",
+   "item": "Spider Web",
+   "rate": 0.5,
+   "rank": "Novice",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Eastern Altepa Desert",
+   "item": "Bag Of Vegetable Seeds",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "West Sarutabaruta",
+   "item": "Head Of Napa",
+   "rate": 5,
+   "rank": "Initiate",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "East Sarutabaruta",
+   "item": "Head Of Napa",
+   "rate": 5,
+   "rank": "Initiate",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Tahrongi Canyon",
+   "item": "Platinum Beastcoin",
+   "rate": 0.1,
+   "rank": "Apprentice",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Buburimu Peninsula",
+   "item": "Clump Of Red Moko Grass",
+   "rate": 10,
+   "rank": null,
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Meriphataud Mountains",
+   "item": "Chunk Of Aluminum Ore",
+   "rate": 10,
+   "rank": "Recruit",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Rolanberry Fields",
+   "item": "Phoenix Feather",
+   "rate": 0.1,
+   "rank": "Craftsman",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Eastern Altepa Desert",
+   "item": "Bag Of Wildgrass Seeds",
+   "rate": 5,
+   "rank": "Novice",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "West Sarutabaruta",
+   "item": "Dark Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "East Sarutabaruta",
+   "item": "Dark Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Tahrongi Canyon",
+   "item": "Handful Of Fish Scales",
+   "rate": 15,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Buburimu Peninsula",
+   "item": "Black Chocobo Feather",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Meriphataud Mountains",
+   "item": "Chunk Of Gold Ore",
+   "rate": 5,
+   "rank": "Initiate",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Rolanberry Fields",
+   "item": "Deathball",
+   "rate": 10,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Eastern Altepa Desert",
+   "item": "Bag Of Cactus Stems",
+   "rate": 1,
+   "rank": "Craftsman",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "West Sarutabaruta",
+   "item": "Earth Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "East Sarutabaruta",
+   "item": "Earth Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Tahrongi Canyon",
+   "item": "High Quality Pugil Scales",
+   "rate": 5,
+   "rank": "Initiate",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Buburimu Peninsula",
+   "item": "Giant Bird Plume",
+   "rate": 1,
+   "rank": "Initiate",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Meriphataud Mountains",
+   "item": "Chunk Of Platinum Ore",
+   "rate": 0.5,
+   "rank": "Journeyman",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Rolanberry Fields",
+   "item": "Sleepshroom",
+   "rate": 10,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Eastern Altepa Desert",
+   "item": "Bag Of Tree Cuttings",
+   "rate": 1,
+   "rank": "Journeyman",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "West Sarutabaruta",
+   "item": "Fire Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "East Sarutabaruta",
+   "item": "Fire Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Tahrongi Canyon",
+   "item": "Titanictus Shell",
+   "rate": 5,
+   "rank": "Apprentice",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Buburimu Peninsula",
+   "item": "Spider Web",
+   "rate": 0.5,
+   "rank": "Novice",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Meriphataud Mountains",
+   "item": "Chunk Of Orichalcum Ore",
+   "rate": 0.1,
+   "rank": "Craftsman",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Rolanberry Fields",
+   "item": "Coral Fungus",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Eastern Altepa Desert",
+   "item": "Chunk Of Aluminum Ore",
+   "rate": 10,
+   "rank": "Recruit",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "West Sarutabaruta",
+   "item": "Ice Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "East Sarutabaruta",
+   "item": "Ice Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Tahrongi Canyon",
+   "item": "Demon Horn",
+   "rate": 1,
+   "rank": "Journeyman",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Buburimu Peninsula",
+   "item": "Phoenix Feather",
+   "rate": 0.1,
+   "rank": "Craftsman",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Meriphataud Mountains",
+   "item": "Chunk Of Darksteel Ore",
+   "rate": 1,
+   "rank": "Novice",
+   "mode": "both",
+   "night": false
+  },
+  {
+   "zone": "Rolanberry Fields",
+   "item": "Puffball",
+   "rate": 1,
+   "rank": "Novice",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Eastern Altepa Desert",
+   "item": "Chunk Of Gold Ore",
+   "rate": 5,
+   "rank": "Initiate",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "West Sarutabaruta",
+   "item": "Light Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "East Sarutabaruta",
+   "item": "Light Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Tahrongi Canyon",
+   "item": "Handful Of Wyvern Scales",
+   "rate": 0.5,
+   "rank": "Craftsman",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Buburimu Peninsula",
+   "item": "Bone Chip",
+   "rate": 15,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Rolanberry Fields",
+   "item": "Woozyshroom",
+   "rate": 1,
+   "rank": "Initiate",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Eastern Altepa Desert",
+   "item": "Chunk Of Darksteel Ore",
+   "rate": 1,
+   "rank": "Novice",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "West Sarutabaruta",
+   "item": "Lightning Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "East Sarutabaruta",
+   "item": "Lightning Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Tahrongi Canyon",
+   "item": "Turtle Shell",
+   "rate": 0.5,
+   "rank": "Craftsman",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Buburimu Peninsula",
+   "item": "Handful Of Fish Scales",
+   "rate": 15,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Rolanberry Fields",
+   "item": "Danceshroom",
+   "rate": 0.5,
+   "rank": "Apprentice",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Eastern Altepa Desert",
+   "item": "Chunk Of Adaman Ore",
+   "rate": 0.5,
+   "rank": "Journeyman",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "West Sarutabaruta",
+   "item": "Water Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "East Sarutabaruta",
+   "item": "Water Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Tahrongi Canyon",
+   "item": "Demon Skull",
+   "rate": 0.1,
+   "rank": "Artisan",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Buburimu Peninsula",
+   "item": "High Quality Pugil Scales",
+   "rate": 5,
+   "rank": "Initiate",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Rolanberry Fields",
+   "item": "King Truffle",
+   "rate": 0.1,
+   "rank": "Craftsman",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Eastern Altepa Desert",
+   "item": "Chunk Of Orichalcum Ore",
+   "rate": 0.1,
+   "rank": "Craftsman",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "West Sarutabaruta",
+   "item": "Wind Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "East Sarutabaruta",
+   "item": "Wind Crystal",
+   "rate": 5,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Tahrongi Canyon",
+   "item": "Handful Of Dragon Scales",
+   "rate": 0.1,
+   "rank": "Artisan",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Buburimu Peninsula",
+   "item": "Titanictus Shell",
+   "rate": 5,
+   "rank": "Apprentice",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Rolanberry Fields",
+   "item": "Reishi Mushroom",
+   "rate": 0.1,
+   "rank": "Journeyman",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Buburimu Peninsula",
+   "item": "Demon Horn",
+   "rate": 1,
+   "rank": "Journeyman",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Buburimu Peninsula",
+   "item": "Handful Of Wyvern Scales",
+   "rate": 0.5,
+   "rank": "Craftsman",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Buburimu Peninsula",
+   "item": "Turtle Shell",
+   "rate": 0.5,
+   "rank": "Craftsman",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Buburimu Peninsula",
+   "item": "Demon Skull",
+   "rate": 0.1,
+   "rank": "Artisan",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Buburimu Peninsula",
+   "item": "Handful Of Dragon Scales",
+   "rate": 0.1,
+   "rank": "Artisan",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Sauromugue Champaign",
+   "item": "Flint Stone",
+   "rate": 24,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "The Sanctuary Of Zitah",
+   "item": "Bone Chip",
+   "rate": 10,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Yuhtunga Jungle",
+   "item": "Bone Chip",
+   "rate": 10,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Yhoator Jungle",
+   "item": "Bone Chip",
+   "rate": 10,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Western Altepa Desert",
+   "item": "Bone Chip",
+   "rate": 24,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Caedarva Mire (disabled)",
+   "item": "Arrowwood Log",
+   "rate": 24,
+   "rank": null,
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Sauromugue Champaign",
+   "item": "Bone Chip",
+   "rate": 10,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "The Sanctuary Of Zitah",
+   "item": "Clump Of Moko Grass",
+   "rate": 10,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Yuhtunga Jungle",
+   "item": "Danceshroom",
+   "rate": 10,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Yhoator Jungle",
+   "item": "Dryad Root",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Western Altepa Desert",
+   "item": "Pebble",
+   "rate": 15,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Caedarva Mire (disabled)",
+   "item": "Dogwood Log",
+   "rate": 24,
+   "rank": null,
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Sauromugue Champaign",
+   "item": "Pebble",
+   "rate": 10,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "The Sanctuary Of Zitah",
+   "item": "Pebble",
+   "rate": 10,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Yuhtunga Jungle",
+   "item": "Piece Of Rattan Lumber",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Yhoator Jungle",
+   "item": "Kazham Pineapple",
+   "rate": 5,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Western Altepa Desert",
+   "item": "Chunk Of Zinc Ore",
+   "rate": 10,
+   "rank": "Recruit",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Caedarva Mire (disabled)",
+   "item": "Yew Log",
+   "rate": 15,
+   "rank": null,
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Sauromugue Champaign",
+   "item": "Chunk Of Iron Ore",
+   "rate": 5,
+   "rank": "Initiate",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "The Sanctuary Of Zitah",
+   "item": "Arrowwood Log",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Yuhtunga Jungle",
+   "item": "Puffball",
+   "rate": 5,
+   "rank": "Initiate",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Yhoator Jungle",
+   "item": "Lauan Log",
+   "rate": 5,
+   "rank": null,
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Western Altepa Desert",
+   "item": "Giant Femur",
+   "rate": 10,
+   "rank": "Recruit",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Caedarva Mire (disabled)",
+   "item": "Lancewood Log",
+   "rate": 10,
+   "rank": "Recruit",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Sauromugue Champaign",
+   "item": "Insect Wing",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "The Sanctuary Of Zitah",
+   "item": "Elm Log",
+   "rate": 5,
+   "rank": "Initiate",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Yuhtunga Jungle",
+   "item": "Rosewood Log",
+   "rate": 5,
+   "rank": "Initiate",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Yhoator Jungle",
+   "item": "Mahogany Log",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Western Altepa Desert",
+   "item": "Chunk Of Iron Ore",
+   "rate": 5,
+   "rank": "Initiate",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Caedarva Mire (disabled)",
+   "item": "Sprig Of Mistletoe",
+   "rate": 5,
+   "rank": "Initiate",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Sauromugue Champaign",
+   "item": "Lizard Molt",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "The Sanctuary Of Zitah",
+   "item": "Yew Log",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Yuhtunga Jungle",
+   "item": "Stick Of Cinnamon",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Yhoator Jungle",
+   "item": "Coral Fungus",
+   "rate": 1,
+   "rank": "Novice",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Western Altepa Desert",
+   "item": "Chunk Of Darksteel Ore",
+   "rate": 1,
+   "rank": "Novice",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Caedarva Mire (disabled)",
+   "item": "Rosewood Log",
+   "rate": 1,
+   "rank": "Novice",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Sauromugue Champaign",
+   "item": "Black Chocobo Feather",
+   "rate": 1,
+   "rank": "Novice",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "The Sanctuary Of Zitah",
+   "item": "Coin Of Decay",
+   "rate": 0.5,
+   "rank": "Adept",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Yuhtunga Jungle",
+   "item": "King Truffle",
+   "rate": 1,
+   "rank": "Novice",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Yhoator Jungle",
+   "item": "Reishi Mushroom",
+   "rate": 1,
+   "rank": "Recruit",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Western Altepa Desert",
+   "item": "Chunk Of Gold Ore",
+   "rate": 1,
+   "rank": "Novice",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Caedarva Mire (disabled)",
+   "item": "Ebony Log",
+   "rate": 0.5,
+   "rank": "Journeyman",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Sauromugue Champaign",
+   "item": "Red Jar",
+   "rate": 1,
+   "rank": "Novice",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "The Sanctuary Of Zitah",
+   "item": "King Truffle",
+   "rate": 0.5,
+   "rank": "Novice",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Yuhtunga Jungle",
+   "item": "Petrified Log",
+   "rate": 1,
+   "rank": "Novice",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Yhoator Jungle",
+   "item": "Ebony Log",
+   "rate": 0.5,
+   "rank": "Journeyman",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Western Altepa Desert",
+   "item": "Coral Fragment",
+   "rate": 0.5,
+   "rank": "Apprentice",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Caedarva Mire (disabled)",
+   "item": "Piece Of Ancient Lumber",
+   "rate": 0.1,
+   "rank": "Craftsman",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Sauromugue Champaign",
+   "item": "Coin Of Glory",
+   "rate": 0.5,
+   "rank": "Adept",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "The Sanctuary Of Zitah",
+   "item": "Petrified Log",
+   "rate": 0.5,
+   "rank": "Apprentice",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Yuhtunga Jungle",
+   "item": "Ebony Log",
+   "rate": 0.5,
+   "rank": "Journeyman",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Yhoator Jungle",
+   "item": "Plate Of Heavy Metal",
+   "rate": 0.5,
+   "rank": "Adept",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Western Altepa Desert",
+   "item": "Philosophers Stone",
+   "rate": 0.5,
+   "rank": "Apprentice",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Caedarva Mire (disabled)",
+   "item": "Flint Stone",
+   "rate": 24,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Sauromugue Champaign",
+   "item": "Gold Beastcoin",
+   "rate": 0.5,
+   "rank": "Apprentice",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "The Sanctuary Of Zitah",
+   "item": "Plate Of Heavy Metal",
+   "rate": 0.5,
+   "rank": "Adept",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Yuhtunga Jungle",
+   "item": "Plate Of Heavy Metal",
+   "rate": 0.5,
+   "rank": "Adept",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Yhoator Jungle",
+   "item": "Deathball",
+   "rate": 10,
+   "rank": null,
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Western Altepa Desert",
+   "item": "Plate Of Heavy Metal",
+   "rate": 0.5,
+   "rank": "Adept",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "Caedarva Mire (disabled)",
+   "item": "Chunk Of Aluminum Ore",
+   "rate": 10,
+   "rank": "Recruit",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Sauromugue Champaign",
+   "item": "Plate Of Heavy Metal",
+   "rate": 0.5,
+   "rank": "Adept",
+   "mode": null,
+   "night": false
+  },
+  {
+   "zone": "The Sanctuary Of Zitah",
+   "item": "Beastcoin",
+   "rate": 10,
+   "rank": null,
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Yuhtunga Jungle",
+   "item": "Deathball",
+   "rate": 10,
+   "rank": null,
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Yhoator Jungle",
+   "item": "Sleepshroom",
+   "rate": 10,
+   "rank": null,
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Western Altepa Desert",
+   "item": "Clump Of Red Moko Grass",
+   "rate": 10,
+   "rank": null,
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Caedarva Mire (disabled)",
+   "item": "Chunk Of Gold Ore",
+   "rate": 5,
+   "rank": "Initiate",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Sauromugue Champaign",
+   "item": "Beastcoin",
+   "rate": 10,
+   "rank": null,
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "The Sanctuary Of Zitah",
+   "item": "Silver Beastcoin",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Yuhtunga Jungle",
+   "item": "Sleepshroom",
+   "rate": 10,
+   "rank": null,
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Yhoator Jungle",
+   "item": "Puffball",
+   "rate": 1,
+   "rank": "Novice",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Western Altepa Desert",
+   "item": "Black Chocobo Feather",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Caedarva Mire (disabled)",
+   "item": "Chunk Of Darksteel Ore",
+   "rate": 1,
+   "rank": "Novice",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Sauromugue Champaign",
+   "item": "Silver Beastcoin",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "The Sanctuary Of Zitah",
+   "item": "Gold Beastcoin",
+   "rate": 1,
+   "rank": "Initiate",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Yuhtunga Jungle",
+   "item": "Coral Fungus",
+   "rate": 5,
+   "rank": "Recruit",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Yhoator Jungle",
+   "item": "Woozyshroom",
+   "rate": 1,
+   "rank": "Initiate",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Western Altepa Desert",
+   "item": "Giant Bird Plume",
+   "rate": 1,
+   "rank": "Initiate",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Caedarva Mire (disabled)",
+   "item": "Chunk Of Kaolin",
+   "rate": 1,
+   "rank": "Novice",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Sauromugue Champaign",
+   "item": "Mythril Beastcoin",
+   "rate": 0.5,
+   "rank": "Novice",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "The Sanctuary Of Zitah",
+   "item": "Mythril Beastcoin",
+   "rate": 0.5,
+   "rank": "Novice",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Yuhtunga Jungle",
+   "item": "Woozyshroom",
+   "rate": 1,
+   "rank": "Initiate",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Yhoator Jungle",
+   "item": "Danceshroom",
+   "rate": 0.5,
+   "rank": "Apprentice",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Western Altepa Desert",
+   "item": "Spider Web",
+   "rate": 0.5,
+   "rank": "Novice",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Caedarva Mire (disabled)",
+   "item": "Chunk Of Platinum Ore",
+   "rate": 0.5,
+   "rank": "Journeyman",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Sauromugue Champaign",
+   "item": "Platinum Beastcoin",
+   "rate": 0.1,
+   "rank": "Apprentice",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "The Sanctuary Of Zitah",
+   "item": "Platinum Beastcoin",
+   "rate": 0.1,
+   "rank": "Apprentice",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Yuhtunga Jungle",
+   "item": "Reishi Mushroom",
+   "rate": 0.1,
+   "rank": "Journeyman",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Yhoator Jungle",
+   "item": "King Truffle",
+   "rate": 0.1,
+   "rank": "Craftsman",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Western Altepa Desert",
+   "item": "Phoenix Feather",
+   "rate": 0.1,
+   "rank": "Craftsman",
+   "mode": "burrow",
+   "night": false
+  },
+  {
+   "zone": "Caedarva Mire (disabled)",
+   "item": "Chunk Of Orichalcum Ore",
+   "rate": 0.1,
+   "rank": "Craftsman",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Sauromugue Champaign",
+   "item": "Handful Of Fish Scales",
+   "rate": 15,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "The Sanctuary Of Zitah",
+   "item": "Oak Log",
+   "rate": 5,
+   "rank": "Initiate",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Yuhtunga Jungle",
+   "item": "Arrowwood Log",
+   "rate": 24,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Yhoator Jungle",
+   "item": "Arrowwood Log",
+   "rate": 24,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Western Altepa Desert",
+   "item": "Handful Of Fish Scales",
+   "rate": 15,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Sauromugue Champaign",
+   "item": "Seashell",
+   "rate": 15,
+   "rank": "Recruit",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "The Sanctuary Of Zitah",
+   "item": "Rosewood Log",
+   "rate": 1,
+   "rank": "Novice",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Yuhtunga Jungle",
+   "item": "Yew Log",
+   "rate": 15,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Yhoator Jungle",
+   "item": "Yew Log",
+   "rate": 15,
+   "rank": null,
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Western Altepa Desert",
+   "item": "Seashell",
+   "rate": 15,
+   "rank": "Recruit",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Sauromugue Champaign",
+   "item": "High Quality Pugil Scales",
+   "rate": 5,
+   "rank": "Initiate",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "The Sanctuary Of Zitah",
+   "item": "Ebony Log",
+   "rate": 0.5,
+   "rank": "Journeyman",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Yuhtunga Jungle",
+   "item": "Elm Log",
+   "rate": 10,
+   "rank": "Recruit",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Yhoator Jungle",
+   "item": "Elm Log",
+   "rate": 10,
+   "rank": "Recruit",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Western Altepa Desert",
+   "item": "High Quality Pugil Scales",
+   "rate": 5,
+   "rank": "Initiate",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Sauromugue Champaign",
+   "item": "Titanictus Shell",
+   "rate": 5,
+   "rank": "Apprentice",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "The Sanctuary Of Zitah",
+   "item": "Mahogany Log",
+   "rate": 0.5,
+   "rank": "Apprentice",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Yuhtunga Jungle",
+   "item": "Oak Log",
+   "rate": 5,
+   "rank": "Initiate",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Yhoator Jungle",
+   "item": "Oak Log",
+   "rate": 5,
+   "rank": "Initiate",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Western Altepa Desert",
+   "item": "Titanictus Shell",
+   "rate": 5,
+   "rank": "Apprentice",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Sauromugue Champaign",
+   "item": "Demon Horn",
+   "rate": 1,
+   "rank": "Journeyman",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "The Sanctuary Of Zitah",
+   "item": "Lacquer Tree Log",
+   "rate": 0.1,
+   "rank": "Artisan",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Yuhtunga Jungle",
+   "item": "Mahogany Log",
+   "rate": 0.5,
+   "rank": "Apprentice",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Yhoator Jungle",
+   "item": "Rosewood Log",
+   "rate": 1,
+   "rank": "Novice",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Western Altepa Desert",
+   "item": "Demon Horn",
+   "rate": 1,
+   "rank": "Journeyman",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Sauromugue Champaign",
+   "item": "Handful Of Wyvern Scales",
+   "rate": 0.5,
+   "rank": "Craftsman",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "The Sanctuary Of Zitah",
+   "item": "Piece Of Ancient Lumber",
+   "rate": 0.1,
+   "rank": "Craftsman",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Yuhtunga Jungle",
+   "item": "Lacquer Tree Log",
+   "rate": 0.1,
+   "rank": "Artisan",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Yhoator Jungle",
+   "item": "Lacquer Tree Log",
+   "rate": 0.1,
+   "rank": "Artisan",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Western Altepa Desert",
+   "item": "Handful Of Wyvern Scales",
+   "rate": 0.5,
+   "rank": "Craftsman",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Sauromugue Champaign",
+   "item": "Turtle Shell",
+   "rate": 0.5,
+   "rank": "Craftsman",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Yuhtunga Jungle",
+   "item": "Piece Of Ancient Lumber",
+   "rate": 0.1,
+   "rank": "Craftsman",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Yhoator Jungle",
+   "item": "Piece Of Ancient Lumber",
+   "rate": 0.1,
+   "rank": "Craftsman",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Western Altepa Desert",
+   "item": "Turtle Shell",
+   "rate": 0.5,
+   "rank": "Craftsman",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Sauromugue Champaign",
+   "item": "Demon Skull",
+   "rate": 0.1,
+   "rank": "Artisan",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Western Altepa Desert",
+   "item": "Demon Skull",
+   "rate": 0.1,
+   "rank": "Artisan",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Sauromugue Champaign",
+   "item": "Handful Of Dragon Scales",
+   "rate": 0.1,
+   "rank": "Artisan",
+   "mode": "bore",
+   "night": false
+  },
+  {
+   "zone": "Western Altepa Desert",
+   "item": "Handful Of Dragon Scales",
+   "rate": 0.1,
+   "rank": "Artisan",
+   "mode": "bore",
+   "night": false
+  }
+ ]
+}
