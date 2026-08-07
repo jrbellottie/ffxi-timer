@@ -3,6 +3,7 @@ import { styles } from "./styles";
 import digData from "./data/chocoboDig.json";
 import digPrices from "./data/digPrices.json";
 import { loadJson, saveJson } from "./utils/storage";
+import { Calibration, getVanaNow } from "./vanadiel";
 
 type DigMode = "burrow" | "bore" | "both" | null;
 
@@ -39,7 +40,10 @@ const MODE_TOGGLES = [
 
 type ModeId = (typeof MODE_TOGGLES)[number]["id"];
 
-type SortKey = "zone" | "item" | "rate" | "vendor" | "ah" | "rank" | "type" | "zoneGil" | "zoneGilAh";
+/** Basis for the gil columns: 100 dig attempts, or 100 items (the daily cap). */
+type GilBasis = "digs" | "items";
+
+type SortKey = "zone" | "item" | "rate" | "vendor" | "ah" | "rank" | "type" | "success" | "greens" | "zoneGil" | "zoneGilAh" | "zoneGilMoon" | "zoneGilAhMoon";
 type SortDir = "asc" | "desc";
 
 const COLUMNS: { key: SortKey; label: string }[] = [
@@ -50,8 +54,12 @@ const COLUMNS: { key: SortKey; label: string }[] = [
   { key: "ah", label: "AH price" },
   { key: "rank", label: "Min Rank" },
   { key: "type", label: "Type" },
+  { key: "success", label: "Dig success (moon / base)" },
+  { key: "greens", label: "Greens" },
   { key: "zoneGil", label: "Gil / 100 digs (vendor)" },
   { key: "zoneGilAh", label: "Gil / 100 digs (AH)" },
+  { key: "zoneGilMoon", label: "Moon gil / 100 digs (vendor)" },
+  { key: "zoneGilAhMoon", label: "Moon gil / 100 digs (AH)" },
 ];
 
 const ENTRIES: DigEntry[] = (digData as { entries: DigEntry[] }).entries;
@@ -85,10 +93,11 @@ const WEATHER_RATE = 10;
 const ZONES = [...new Set(ENTRIES.map((e) => e.zone))];
 
 /**
- * Cost of Gysahl Greens per successful dig. Greens cost 61g each, but dig
- * accuracy is well below 100%, so roughly 2 greens are spent per item dug.
+ * Cost of Gysahl Greens per dig attempt (61g each). Every dig consumes one
+ * green whether or not an item is found; failed digs are modeled by the item
+ * rates themselves (a filtered pool summing to 20% means 80% of digs fail).
  */
-const GYSAHL_COST = 61 * 2;
+const GYSAHL_COST = 61;
 
 /** localStorage key for user-set AH prices (item name -> gil). */
 const AH_PRICES_KEY = "ffxi_dig_ah_prices_v1";
@@ -114,6 +123,10 @@ function compareEntries(
   ctx: {
     zoneGil: Record<string, number>;
     zoneGilAh: Record<string, number>;
+    zoneGilMoon: Record<string, number>;
+    zoneGilAhMoon: Record<string, number>;
+    zoneSuccess: Record<string, number>;
+    zoneGreensMoon: Record<string, number>;
     eff: (item: string) => number;
     ah: Record<string, number>;
   }
@@ -130,11 +143,23 @@ function compareEntries(
     cmp = rankIndex(a.rank) - rankIndex(b.rank);
   } else if (key === "type") {
     cmp = modeValue(a.mode) - modeValue(b.mode);
+  } else if (key === "success") {
+    cmp = (ctx.zoneSuccess[a.zone] ?? 0) - (ctx.zoneSuccess[b.zone] ?? 0);
+    if (cmp === 0) cmp = a.zone.localeCompare(b.zone);
+  } else if (key === "greens") {
+    cmp = (ctx.zoneGreensMoon[a.zone] ?? Infinity) - (ctx.zoneGreensMoon[b.zone] ?? Infinity);
+    if (cmp === 0) cmp = a.zone.localeCompare(b.zone);
   } else if (key === "zoneGil") {
     cmp = (ctx.zoneGil[a.zone] ?? 0) - (ctx.zoneGil[b.zone] ?? 0);
     if (cmp === 0) cmp = a.zone.localeCompare(b.zone);
   } else if (key === "zoneGilAh") {
     cmp = (ctx.zoneGilAh[a.zone] ?? 0) - (ctx.zoneGilAh[b.zone] ?? 0);
+    if (cmp === 0) cmp = a.zone.localeCompare(b.zone);
+  } else if (key === "zoneGilMoon") {
+    cmp = (ctx.zoneGilMoon[a.zone] ?? 0) - (ctx.zoneGilMoon[b.zone] ?? 0);
+    if (cmp === 0) cmp = a.zone.localeCompare(b.zone);
+  } else if (key === "zoneGilAhMoon") {
+    cmp = (ctx.zoneGilAhMoon[a.zone] ?? 0) - (ctx.zoneGilAhMoon[b.zone] ?? 0);
     if (cmp === 0) cmp = a.zone.localeCompare(b.zone);
   } else {
     cmp = a[key].localeCompare(b[key]);
@@ -150,39 +175,71 @@ const thStyle: React.CSSProperties = {
   background: "#161616",
   color: "#eaeaea",
   textAlign: "left",
-  padding: "8px 10px",
-  fontSize: 12,
+  padding: "6px 8px",
+  fontSize: 11,
   fontWeight: 800,
   borderBottom: "1px solid #444",
   cursor: "pointer",
   userSelect: "none",
-  whiteSpace: "nowrap",
+  lineHeight: 1.25,
 };
 
 const tdStyle: React.CSSProperties = {
-  padding: "7px 10px",
-  fontSize: 13,
+  padding: "6px 8px",
+  fontSize: 12,
   borderBottom: "1px solid rgba(255,255,255,0.06)",
   whiteSpace: "nowrap",
 };
 
-export default function ChocoboTab() {
+// Small segmented-switch styles for the gil basis toggle.
+const segBtnStyle: React.CSSProperties = {
+  background: "transparent",
+  border: "none",
+  color: "#999",
+  padding: "2px 10px",
+  fontSize: 11,
+  cursor: "pointer",
+};
+
+const segActiveStyle: React.CSSProperties = {
+  background: "rgba(138,246,176,0.15)",
+  color: "#8af6b0",
+  fontWeight: 700,
+};
+
+export default function ChocoboTab({ cal }: { cal: Calibration }) {
   // Empty selection = all zones.
   const [zoneFilter, setZoneFilter] = useState<string[]>([]);
   const [rankFilter, setRankFilter] = useState<Rank>("Adept");
   const [itemQuery, setItemQuery] = useState<string>("");
-  // Empty selection = "All" (no dig type filtering).
-  const [activeModes, setActiveModes] = useState<ModeId[]>([]);
-  const [sortKey, setSortKey] = useState<SortKey>("zone");
-  const [sortDir, setSortDir] = useState<SortDir>("asc");
+  // Empty selection = "All" (no dig type filtering). Default to Normal dig:
+  // burrow/bore are WotG additions and not in the game yet on this era.
+  const [activeModes, setActiveModes] = useState<ModeId[]>(["normal"]);
+  const [sortKey, setSortKey] = useState<SortKey>("zoneGilAh");
+  const [sortDir, setSortDir] = useState<SortDir>("desc");
   // Weather item ("" = no weather): crystal for single weather, cluster for double.
   const [weatherItem, setWeatherItem] = useState<string>("");
+  // Gil columns basis: per 100 digs (greens spent) or per 100 items (daily cap).
+  const [gilBasis, setGilBasis] = useState<GilBasis>("items");
   // User-set AH prices (item -> gil), persisted across reloads.
   const [ahPrices, setAhPrices] = useState<Record<string, number>>(() => loadJson(AH_PRICES_KEY, {}));
 
   useEffect(() => {
     saveJson(AH_PRICES_KEY, ahPrices);
   }, [ahPrices]);
+
+  // Refresh each minute so the moon multiplier tracks the current phase.
+  const [nowMs, setNowMs] = useState<number>(() => Date.now());
+  useEffect(() => {
+    const t = setInterval(() => setNowMs(Date.now()), 60_000);
+    return () => clearInterval(t);
+  }, []);
+
+  // LSB logic.lua: every dig roll is rand(1,1000) * (1.5 - |moon - 50| / 50),
+  // so effective item rates scale by 1/multiplier:
+  // new/full moon x2, quarter x1 (the listed rates), half moon x0.67.
+  const moonPercent = getVanaNow(nowMs, cal).moonPercent;
+  const moonFactor = 1 / (1.5 - Math.abs(moonPercent - 50) / 50);
 
   function setAhPrice(item: string, raw: string) {
     setAhPrices((prev) => {
@@ -255,29 +312,62 @@ export default function ChocoboTab() {
 
   // Expected gil per 100 digs (roughly one day of digging) for each zone,
   // given the current rank and dig type filters, minus the cost of greens.
-  // Each item's dig rate acts as its weight in the zone pool:
-  // share = rate / total zone rate, EV per dig = sum(share * price) - green cost.
+  // Item rates are absolute per-dig chances, so a filtered pool summing to
+  // 20% means 80% of digs find nothing but still consume a green:
+  // EV per dig = sum(rate/100 * price) - green cost.
   // Computed twice: once with vendor prices only, once with user AH prices
-  // falling back to vendor prices.
-  const { zoneGil, zoneGilAh } = useMemo(() => {
+  // falling back to vendor prices. zoneSuccess = chance a dig finds anything
+  // at the listed (quarter moon) rates; zoneSuccessMoon = at the current moon.
+  // The "Moon" gil variants apply the moon factor to every item rate
+  // (capped at 100% each) before pricing.
+  // Gil basis: "digs" = EV/dig x 100 greens; "items" = EV/dig x the digs
+  // needed to hit 100 items (10000 / success rate), i.e. the daily cap.
+  const { zoneGil, zoneGilAh, zoneGilMoon, zoneGilAhMoon, zoneSuccess, zoneSuccessMoon, zoneGreensMoon } = useMemo(() => {
     const vendor: Record<string, number> = {};
     const withAh: Record<string, number> = {};
+    const vendorMoon: Record<string, number> = {};
+    const withAhMoon: Record<string, number> = {};
+    const success: Record<string, number> = {};
+    const successMoon: Record<string, number> = {};
+    const greensMoon: Record<string, number> = {};
     for (const zone of ZONES) {
       const pool = allEntries.filter((e) => e.zone === zone && matchesRankAndMode(e));
       const totalRate = pool.reduce((sum, e) => sum + e.rate, 0);
+      const totalRateMoon = pool.reduce((sum, e) => sum + Math.min(100, e.rate * moonFactor), 0);
+      success[zone] = Math.min(100, Math.round(totalRate));
+      successMoon[zone] = Math.min(100, Math.round(totalRateMoon));
+      // Expected greens (dig attempts) to reach the 100-item daily cap.
+      greensMoon[zone] = totalRateMoon > 0 ? Math.ceil(10000 / Math.min(100, totalRateMoon)) : Infinity;
       if (totalRate <= 0) {
-        vendor[zone] = 0;
-        withAh[zone] = 0;
+        vendor[zone] = -GYSAHL_COST * 100;
+        withAh[zone] = -GYSAHL_COST * 100;
+        vendorMoon[zone] = -GYSAHL_COST * 100;
+        withAhMoon[zone] = -GYSAHL_COST * 100;
         continue;
       }
-      const evVendor = pool.reduce((sum, e) => sum + (e.rate / totalRate) * vendorPrice(e.item), 0);
-      const evAh = pool.reduce((sum, e) => sum + (e.rate / totalRate) * eff(e.item), 0);
-      vendor[zone] = Math.round((evVendor - GYSAHL_COST) * 100);
-      withAh[zone] = Math.round((evAh - GYSAHL_COST) * 100);
+      const digsBase = gilBasis === "digs" ? 100 : 10000 / Math.min(100, totalRate);
+      const digsMoon = gilBasis === "digs" ? 100 : 10000 / Math.min(100, totalRateMoon);
+      const moonRate = (e: DigEntry) => Math.min(100, e.rate * moonFactor);
+      const evVendor = pool.reduce((sum, e) => sum + (e.rate / 100) * vendorPrice(e.item), 0);
+      const evAh = pool.reduce((sum, e) => sum + (e.rate / 100) * eff(e.item), 0);
+      const evVendorMoon = pool.reduce((sum, e) => sum + (moonRate(e) / 100) * vendorPrice(e.item), 0);
+      const evAhMoon = pool.reduce((sum, e) => sum + (moonRate(e) / 100) * eff(e.item), 0);
+      vendor[zone] = Math.round((evVendor - GYSAHL_COST) * digsBase);
+      withAh[zone] = Math.round((evAh - GYSAHL_COST) * digsBase);
+      vendorMoon[zone] = Math.round((evVendorMoon - GYSAHL_COST) * digsMoon);
+      withAhMoon[zone] = Math.round((evAhMoon - GYSAHL_COST) * digsMoon);
     }
-    return { zoneGil: vendor, zoneGilAh: withAh };
+    return {
+      zoneGil: vendor,
+      zoneGilAh: withAh,
+      zoneGilMoon: vendorMoon,
+      zoneGilAhMoon: withAhMoon,
+      zoneSuccess: success,
+      zoneSuccessMoon: successMoon,
+      zoneGreensMoon: greensMoon,
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [rankFilter, activeModes, ahPrices, allEntries]);
+  }, [rankFilter, activeModes, ahPrices, allEntries, moonFactor, gilBasis]);
 
   const filtered = useMemo(() => {
     const q = itemQuery.trim().toLowerCase();
@@ -285,7 +375,7 @@ export default function ChocoboTab() {
       if (zoneFilter.length > 0 && !zoneFilter.includes(entry.zone)) return false;
       if (q !== "" && !entry.item.toLowerCase().includes(q)) return false;
       return matchesRankAndMode(entry);
-    }).sort((a, b) => compareEntries(a, b, sortKey, sortDir, { zoneGil, zoneGilAh, eff, ah: ahPrices }));
+    }).sort((a, b) => compareEntries(a, b, sortKey, sortDir, { zoneGil, zoneGilAh, zoneGilMoon, zoneGilAhMoon, zoneSuccess: zoneSuccessMoon, zoneGreensMoon, eff, ah: ahPrices }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [zoneFilter, rankFilter, itemQuery, activeModes, sortKey, sortDir, zoneGil, zoneGilAh, ahPrices, allEntries]);
 
@@ -399,8 +489,29 @@ export default function ChocoboTab() {
             </div>
           </div>
 
-          <div style={{ marginTop: 8, ...styles.sub }}>
-            {filtered.length} result{filtered.length === 1 ? "" : "s"}
+          <div style={{ marginTop: 8, display: "flex", alignItems: "center", gap: 14, flexWrap: "wrap" }}>
+            <div style={styles.sub}>
+              {filtered.length} result{filtered.length === 1 ? "" : "s"} &middot; Moon {moonPercent}% (dig rates ×{moonFactor.toFixed(2)})
+            </div>
+            <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+              <span style={styles.sub}>Gil per</span>
+              <div style={{ display: "inline-flex", border: "1px solid #444", borderRadius: 999, overflow: "hidden" }}>
+                <button
+                  style={{ ...segBtnStyle, ...(gilBasis === "digs" ? segActiveStyle : {}) }}
+                  onClick={() => setGilBasis("digs")}
+                  title="Expected profit from 100 dig attempts (100 greens)"
+                >
+                  100 digs
+                </button>
+                <button
+                  style={{ ...segBtnStyle, ...(gilBasis === "items" ? segActiveStyle : {}) }}
+                  onClick={() => setGilBasis("items")}
+                  title="Expected profit from digging until 100 items (the daily cap)"
+                >
+                  100 items
+                </button>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -422,14 +533,15 @@ export default function ChocoboTab() {
                   <tr>
                     {COLUMNS.map((col) => {
                       const active = col.key === sortKey;
+                      const label = col.label.replace("100 digs", gilBasis === "digs" ? "100 digs" : "100 items");
                       return (
                         <th
                           key={col.key}
                           style={{ ...thStyle, ...(active ? { color: "#8af6b0" } : {}) }}
                           onClick={() => onHeaderClick(col.key)}
-                          title={`Sort by ${col.label}`}
+                          title={`Sort by ${label}`}
                         >
-                          {col.label}
+                          {label}
                           {active ? (sortDir === "asc" ? " \u25b2" : " \u25bc") : ""}
                         </th>
                       );
@@ -463,8 +575,8 @@ export default function ChocoboTab() {
                           onChange={(e) => setAhPrice(entry.item, e.target.value)}
                           style={{
                             ...styles.inputCompact,
-                            width: 90,
-                            height: 26,
+                            width: 70,
+                            height: 24,
                             fontSize: 12,
                             ...(ahPrices[entry.item] !== undefined ? { borderColor: "#8af6b0", color: "#8af6b0" } : {}),
                           }}
@@ -474,11 +586,37 @@ export default function ChocoboTab() {
                       <td style={tdStyle}>
                         {entry.mode === null ? "Normal" : entry.mode === "both" ? "Burrow/Bore" : entry.mode === "burrow" ? "Burrow" : "Bore"}
                       </td>
+                      <td
+                        style={{
+                          ...tdStyle,
+                          color:
+                            (zoneSuccessMoon[entry.zone] ?? 0) > (zoneSuccess[entry.zone] ?? 0)
+                              ? "#8af6b0"
+                              : (zoneSuccessMoon[entry.zone] ?? 0) === (zoneSuccess[entry.zone] ?? 0)
+                                ? "#f6e58a"
+                                : "#ff8a8a",
+                        }}
+                        title="Chance a dig finds anything: at the current moon phase / at the listed (quarter moon) rates"
+                      >
+                        {zoneSuccessMoon[entry.zone] ?? 0}% / {zoneSuccess[entry.zone] ?? 0}%
+                      </td>
+                      <td
+                        style={tdStyle}
+                        title="Expected Gysahl Greens (dig attempts) to reach the 100-item daily cap at the current moon phase"
+                      >
+                        {Number.isFinite(zoneGreensMoon[entry.zone]) ? zoneGreensMoon[entry.zone] : "\u2014"}
+                      </td>
                       <td style={{ ...tdStyle, ...((zoneGil[entry.zone] ?? 0) < 0 ? { color: "#ff8a8a" } : {}) }}>
                         {(zoneGil[entry.zone] ?? 0).toLocaleString()}g
                       </td>
                       <td style={{ ...tdStyle, ...((zoneGilAh[entry.zone] ?? 0) < 0 ? { color: "#ff8a8a" } : {}) }}>
                         {(zoneGilAh[entry.zone] ?? 0).toLocaleString()}g
+                      </td>
+                      <td style={{ ...tdStyle, ...((zoneGilMoon[entry.zone] ?? 0) < 0 ? { color: "#ff8a8a" } : {}) }}>
+                        {(zoneGilMoon[entry.zone] ?? 0).toLocaleString()}g
+                      </td>
+                      <td style={{ ...tdStyle, ...((zoneGilAhMoon[entry.zone] ?? 0) < 0 ? { color: "#ff8a8a" } : {}) }}>
+                        {(zoneGilAhMoon[entry.zone] ?? 0).toLocaleString()}g
                       </td>
                     </tr>
                   ))}

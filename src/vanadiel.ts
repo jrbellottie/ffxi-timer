@@ -152,10 +152,15 @@ function currentMoonStepStartEarthMs(nowEarthMs: number, cal?: Calibration): num
   return nextBoundary - EARTH_MS_PER_MOON_STEP;
 }
 
+/** Moon percent (0..100, display-offset applied) at an arbitrary earth instant. */
+export function moonPercentAtEarthMs(earthMs: number, cal?: Calibration): number {
+  const step = applyMoonDisplayOffset(earthMsToMoonStepRaw(earthMs, cal));
+  return moonStepToPercent(step);
+}
+
 export function getVanaNow(earthMsRaw: number, cal?: Calibration): VanaNow {
   const earthMsForVanaTime = applyCalibrationToEarthMs(earthMsRaw, cal);
   const vanaAbs = earthMsToVanaAbsSeconds(earthMsForVanaTime);
-
   const weekOffsetSeconds =
     ((vanaAbs % VANA_SECONDS_PER_WEEK) + VANA_SECONDS_PER_WEEK) % VANA_SECONDS_PER_WEEK;
 

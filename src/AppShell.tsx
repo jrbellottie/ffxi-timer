@@ -27,6 +27,9 @@ import RodsTab from "./RodsTab";
 import ClamTab from "./ClamTab";
 import ChocoboTab from "./ChocoboTab";
 import WeatherTab from "./WeatherTab";
+import StopwatchTab from "./StopwatchTab";
+import BcnmTab from "./BcnmTab";
+import DropsTab from "./DropsTab";
 
 function clampInt(n: number, min: number, max: number) {
   return Math.max(min, Math.min(max, Math.floor(n)));
@@ -165,7 +168,7 @@ function isValidTod(raw: string): boolean {
   );
 }
 
-type TabId = "home" | "timers" | "nm" | "presets" | "counters" | "luShang" | "fish" | "bait" | "rods" | "clam" | "chocobo" | "weather" | "calibration";
+type TabId = "home" | "timers" | "nm" | "presets" | "counters" | "stopwatch" | "luShang" | "fish" | "bait" | "rods" | "clam" | "chocobo" | "weather" | "bcnm" | "drops" | "calibration";
 
 type TabDef = {
   id: TabId;
@@ -179,13 +182,16 @@ const TABS: TabDef[] = [
   { id: "nm", label: "NM Timers", icon: "👹" },
   { id: "presets", label: "Presets", icon: "⭐" },
   { id: "counters", label: "Counters", icon: "🔢" },
+  { id: "stopwatch", label: "Stopwatch", icon: "⏲️" },
   { id: "luShang", label: "Lu Shang", icon: "🪝" },
   { id: "fish", label: "Fish", icon: "🐟" },
   { id: "bait", label: "Bait", icon: "🪱" },
   { id: "rods", label: "Rods", icon: "🎣" },
   { id: "clam", label: "Clam", icon: "🪣" },
-  { id: "chocobo", label: "Chocobo", icon: "🐤" },
+  { id: "chocobo", label: "Digging", icon: "🐤" },
   { id: "weather", label: "Weather", icon: "🌦️" },
+  { id: "bcnm", label: "BCNM", icon: "⚔️" },
+  { id: "drops", label: "Drops", icon: "💰" },
   { id: "calibration", label: "Calibration", icon: "🛠️" },
 ];
 
@@ -328,6 +334,8 @@ export default function AppShell() {
   const [tMin, setTMin] = useState("0");
 
   const [rLabel, setRLabel] = useState("Real Life Timer");
+  const [rMode, setRMode] = useState<"IN" | "AT">("IN");
+  const [rDuration, setRDuration] = useState("5m");
   const [rWhen, setRWhen] = useState(() => {
     const d = new Date(Date.now() + 2 * 60 * 60 * 1000);
     const yyyy = d.getFullYear();
@@ -524,6 +532,9 @@ export default function AppShell() {
 
       for (const t of timers) {
         if (!t.enabled) continue;
+
+        // Paused countdowns don't fire.
+        if (t.kind === "EARTH_TIME" && t.pausedRemainingMs != null) continue;
 
         // NM timers have multiple internal events (warn + pop), so they use a different scheduler.
         let event:
@@ -723,6 +734,61 @@ export default function AppShell() {
       },
       ...prev,
     ]);
+  }
+
+  function addCountdownTimer() {
+    const durMs = parseDurationToMs(rDuration);
+    if (!Number.isFinite(durMs as number) || (durMs as number) <= 0) {
+      alert("Invalid countdown duration.");
+      return;
+    }
+    const nowT = Date.now();
+
+    setTimers((prev) => [
+      {
+        id: uid(),
+        kind: "EARTH_TIME",
+        label: rLabel.trim() || `Countdown (${rDuration.trim()})`,
+        enabled: true,
+        createdAtMs: nowT,
+        targetEarthMs: nowT + (durMs as number),
+        rawInput: rDuration,
+      },
+      ...prev,
+    ]);
+  }
+
+  /** Restart a countdown timer (EARTH_TIME whose rawInput is a duration) from now. */
+  function resetCountdownTimer(id: string) {
+    const nowT = Date.now();
+    setTimers((prev) =>
+      prev.map((x) => {
+        if (x.id !== id || x.kind !== "EARTH_TIME") return x;
+        const durMs = parseDurationToMs(x.rawInput);
+        if (!Number.isFinite(durMs as number) || (durMs as number) <= 0) return x;
+        return { ...x, targetEarthMs: nowT + (durMs as number), enabled: true, pausedRemainingMs: null };
+      })
+    );
+  }
+
+  function pauseCountdownTimer(id: string) {
+    const nowT = Date.now();
+    setTimers((prev) =>
+      prev.map((x) => {
+        if (x.id !== id || x.kind !== "EARTH_TIME" || x.pausedRemainingMs != null) return x;
+        return { ...x, pausedRemainingMs: Math.max(0, x.targetEarthMs - nowT) };
+      })
+    );
+  }
+
+  function resumeCountdownTimer(id: string) {
+    const nowT = Date.now();
+    setTimers((prev) =>
+      prev.map((x) => {
+        if (x.id !== id || x.kind !== "EARTH_TIME" || x.pausedRemainingMs == null) return x;
+        return { ...x, targetEarthMs: nowT + x.pausedRemainingMs, pausedRemainingMs: null };
+      })
+    );
   }
 
   function addGuildTimer(guild: GuildPreview) {
@@ -944,6 +1010,7 @@ export default function AppShell() {
   // ---- Inline input validation ----
   // Real life "When" is required and must be a valid date/time.
   const rWhenValid = isValidTod(rWhen);
+  const rDurationValid = isValidDuration(rDuration);
 
   // NM: ToD is optional (blank = now), but if provided must be valid.
   const nmTodValid = nmTodInput.trim() === "" || isValidTod(nmTodInput);
@@ -1185,37 +1252,88 @@ export default function AppShell() {
               </div>
 
               <div style={styles.field}>
-                <div style={styles.label}>When (local)</div>
-                <input
-                  style={{ ...styles.inputCompact, ...(rWhenValid ? {} : styles.inputError) }}
-                  value={rWhen}
-                  onChange={(e) => setRWhen(e.target.value)}
-                  placeholder="2026-07-14T14:06:40"
-                />
-                <div style={styles.sub}>
-                  Accepted formats:
-                  <br />
-                  • ISO 24-hour: <code>YYYY-MM-DDTHH:MM:SS</code> (e.g. 2026-07-14T14:06:40)
-                  <br />
-                  • US 12-hour: <code>MM/DD/YYYY HH:MM:SS AM/PM</code> (e.g. 07/14/2026 02:06:40 PM)
-                </div>
-                {!rWhenValid && (
-                  <div style={styles.errorText}>
-                    Invalid date/time. Match one of the formats above.
-                  </div>
-                )}
+                <div style={styles.label}>Mode</div>
+                <select
+                  style={styles.selectCompact}
+                  value={rMode}
+                  onChange={(e) => setRMode(e.target.value as "IN" | "AT")}
+                >
+                  <option style={optionBaseStyle} value="IN">
+                    Countdown (in…)
+                  </option>
+                  <option style={optionBaseStyle} value="AT">
+                    At a specific time
+                  </option>
+                </select>
               </div>
+
+              {rMode === "IN" ? (
+                <div style={styles.field}>
+                  <div style={styles.label}>Duration</div>
+                  <input
+                    style={{ ...styles.inputCompact, ...(rDurationValid ? {} : styles.inputError) }}
+                    value={rDuration}
+                    onChange={(e) => setRDuration(e.target.value)}
+                    placeholder="5m"
+                  />
+                  <div style={{ ...styles.buttonRowCompact, marginTop: 6 }}>
+                    {["1m", "5m", "10m", "30m", "1h"].map((d) => (
+                      <button key={d} style={styles.buttonCompact} onClick={() => setRDuration(d)}>
+                        {d}
+                      </button>
+                    ))}
+                  </div>
+                  <div style={styles.sub}>
+                    e.g. <code>90s</code>, <code>5m</code>, <code>2.5h</code>, <code>1:45:55</code>
+                  </div>
+                  {!rDurationValid && (
+                    <div style={styles.errorText}>Invalid duration.</div>
+                  )}
+                </div>
+              ) : (
+                <div style={styles.field}>
+                  <div style={styles.label}>When (local)</div>
+                  <input
+                    style={{ ...styles.inputCompact, ...(rWhenValid ? {} : styles.inputError) }}
+                    value={rWhen}
+                    onChange={(e) => setRWhen(e.target.value)}
+                    placeholder="2026-07-14T14:06:40"
+                  />
+                  <div style={styles.sub}>
+                    Accepted formats:
+                    <br />
+                    • ISO 24-hour: <code>YYYY-MM-DDTHH:MM:SS</code> (e.g. 2026-07-14T14:06:40)
+                    <br />
+                    • US 12-hour: <code>MM/DD/YYYY HH:MM:SS AM/PM</code> (e.g. 07/14/2026 02:06:40 PM)
+                  </div>
+                  {!rWhenValid && (
+                    <div style={styles.errorText}>
+                      Invalid date/time. Match one of the formats above.
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
 
             <div style={styles.topCardFooter}>
               <div style={{ ...styles.buttonRowCompact, marginTop: 0 }}>
-                <button
-                  style={{ ...styles.buttonPrimaryCompact, ...(rWhenValid ? {} : styles.buttonDisabled) }}
-                  onClick={addRealLifeTimer}
-                  disabled={!rWhenValid}
-                >
-                  Add real life timer
-                </button>
+                {rMode === "IN" ? (
+                  <button
+                    style={{ ...styles.buttonPrimaryCompact, ...(rDurationValid ? {} : styles.buttonDisabled) }}
+                    onClick={addCountdownTimer}
+                    disabled={!rDurationValid}
+                  >
+                    Start countdown
+                  </button>
+                ) : (
+                  <button
+                    style={{ ...styles.buttonPrimaryCompact, ...(rWhenValid ? {} : styles.buttonDisabled) }}
+                    onClick={addRealLifeTimer}
+                    disabled={!rWhenValid}
+                  >
+                    Add real life timer
+                  </button>
+                )}
               </div>
             </div>
           </div>
@@ -1965,6 +2083,10 @@ export default function AppShell() {
                           : t.targetEarthMs;
                 }
 
+                const pausedMs =
+                  t.kind === "EARTH_TIME" && t.pausedRemainingMs != null ? t.pausedRemainingMs : null;
+                if (pausedMs !== null) nextAt = nowMs + pausedMs;
+
                 const inMs = nextAt === null ? Number.POSITIVE_INFINITY : nextAt - nowMs;
 
                 const vanaAt = nextAt === null ? now : getVanaNow(nextAt, cal ?? undefined);
@@ -2028,7 +2150,9 @@ export default function AppShell() {
                   <div key={t.id} style={styles.timerItem}>
                     <div style={styles.timerTop}>
                       <div style={styles.timerLabel}>{t.label}</div>
-                      <div style={styles.muted}>{t.enabled ? "Enabled" : "Disabled"}</div>
+                      <div style={styles.muted}>
+                        {pausedMs !== null ? "Paused" : t.enabled ? "Enabled" : "Disabled"}
+                      </div>
                     </div>
 
                     {detailLine}
@@ -2048,6 +2172,27 @@ export default function AppShell() {
                     </div>
 
                     <div style={styles.buttonRow}>
+                      {t.kind === "EARTH_TIME" && isValidDuration(t.rawInput) && (
+                        <>
+                          <button
+                            style={styles.button}
+                            onClick={() =>
+                              pausedMs !== null ? resumeCountdownTimer(t.id) : pauseCountdownTimer(t.id)
+                            }
+                            title={pausedMs !== null ? "Resume the countdown" : "Pause the countdown"}
+                          >
+                            {pausedMs !== null ? "Resume" : "Pause"}
+                          </button>
+                          <button
+                            style={styles.button}
+                            onClick={() => resetCountdownTimer(t.id)}
+                            title={`Restart the ${t.rawInput.trim()} countdown from now`}
+                          >
+                            Reset
+                          </button>
+                        </>
+                      )}
+
                       {(t.kind === "NM_TIMED_WINDOW" || t.kind === "NM_LOTTERY") && (
                         <button style={styles.button} onClick={() => resetNmBaseNow(t.id)}>
                           Set ToD now
@@ -2309,7 +2454,14 @@ export default function AppShell() {
 
       {activeTab === "chocobo" && (
         <div style={styles.tabContent}>
-          <ChocoboTab />
+          <ChocoboTab cal={cal} />
+          <div style={{ display: "flex", justifyContent: "flex-end" }}>{backBar}</div>
+        </div>
+      )}
+
+      {activeTab === "stopwatch" && (
+        <div style={styles.tabContent}>
+          <StopwatchTab />
           <div style={{ display: "flex", justifyContent: "flex-end" }}>{backBar}</div>
         </div>
       )}
@@ -2317,6 +2469,20 @@ export default function AppShell() {
       {activeTab === "weather" && (
         <div style={styles.tabContent}>
           <WeatherTab cal={cal} />
+          <div style={{ display: "flex", justifyContent: "flex-end" }}>{backBar}</div>
+        </div>
+      )}
+
+      {activeTab === "bcnm" && (
+        <div style={styles.tabContent}>
+          <BcnmTab />
+          <div style={{ display: "flex", justifyContent: "flex-end" }}>{backBar}</div>
+        </div>
+      )}
+
+      {activeTab === "drops" && (
+        <div style={styles.tabContent}>
+          <DropsTab />
           <div style={{ display: "flex", justifyContent: "flex-end" }}>{backBar}</div>
         </div>
       )}

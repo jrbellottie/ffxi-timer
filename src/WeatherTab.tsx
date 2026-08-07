@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { styles } from "./styles";
-import { Calibration } from "./vanadiel";
+import { Calibration, moonPercentAtEarthMs } from "./vanadiel";
 import { loadJson, saveJson } from "./utils/storage";
 import { WEEKDAYS, weekdayStyle } from "./utils/weekday";
 import weatherData from "./data/zoneWeather.json";
@@ -28,6 +28,7 @@ type WeatherData = {
 const DATA = weatherData as WeatherData;
 const CYCLE = DATA.cycle;
 const ZONE_NAMES = Object.keys(DATA.zones);
+const ALL_ZONES = "All zones";
 
 // Vana'diel time constants (matching src/vanadiel.ts).
 const VANA_MS_PER_VANA_SECOND = 40;
@@ -45,6 +46,30 @@ const ELEMENT_WEATHERS: { element: string; ids: [number, number] }[] = [
   { element: "Lightning", ids: [14, 15] },
   { element: "Light", ids: [16, 17] },
   { element: "Dark", ids: [18, 19] },
+];
+
+// Text color per weather id (doubles are more saturated than singles).
+const WEATHER_COLORS: string[] = [
+  "#9aa3ad", // 0 Clear
+  "#ffd75e", // 1 Sunshine
+  "#b9c2cb", // 2 Clouds (non-elemental per LSB zoneutils.cpp)
+  "#9fb4c7", // 3 Fog
+  "#ff9c54", // 4 Hot Spell
+  "#ff6b4a", // 5 Heat Wave
+  "#6db3f2", // 6 Rain
+  "#3f8fe8", // 7 Squall
+  "#d8b46a", // 8 Dust Storm
+  "#c99a3d", // 9 Sand Storm
+  "#98e6a8", // 10 Wind
+  "#57d977", // 11 Gales
+  "#b3e8f2", // 12 Snow
+  "#6fd8ec", // 13 Blizzards
+  "#c9a2ff", // 14 Thunder
+  "#a875ff", // 15 Thunderstorms
+  "#f5f0d0", // 16 Auroras
+  "#fff8ae", // 17 Stellar Glare
+  "#9089a8", // 18 Gloom
+  "#7d739c", // 19 Darkness
 ];
 
 const patternCache = new Map<number, Uint16Array>();
@@ -67,12 +92,25 @@ function mod(n: number, m: number): number {
   return r < 0 ? r + m : r;
 }
 
-/** Last non-zero pattern value at or before cycleDay (LSB weather_container). */
-function entryForDay(pattern: Uint16Array, cycleDay: number): number {
-  for (let d = cycleDay; d >= 0; d--) {
-    if (pattern[d]) return pattern[d];
+/**
+ * Per-day resolved pattern values (LSB weather_container semantics: last
+ * non-zero entry at or before the day, 0 if none). Cached per pattern index.
+ */
+const resolvedCache = new Map<number, Uint16Array>();
+
+function getResolvedPattern(index: number): Uint16Array {
+  let arr = resolvedCache.get(index);
+  if (!arr) {
+    const pattern = getPattern(index);
+    arr = new Uint16Array(CYCLE);
+    let last = 0;
+    for (let d = 0; d < CYCLE; d++) {
+      if (pattern[d]) last = pattern[d];
+      arr[d] = last;
+    }
+    resolvedCache.set(index, arr);
   }
-  return 0;
+  return arr;
 }
 
 /** Weather id -> chance % for one day's triple (slots sharing an id sum). */
@@ -86,15 +124,38 @@ function chancesForValue(v: number): Map<number, number> {
 }
 
 type ForecastRow = {
+  zone: string;
   absDay: number; // calibrated Vana'diel day index (1970-based)
   startEarthMs: number;
   chances: [number, number][]; // [weatherId, pct] sorted by pct desc
   matchPct: number; // chance of the filtered weather (0 when unfiltered)
+  moonMin: number; // moon % range over the Vana'diel day
+  moonMax: number;
 };
+
+// Elemental-ore digging zones (LSB chocobo_digging/logic.lua elementalOreZoneTable).
+const ORE_ZONES = [
+  "La Theine Plateau",
+  "Jugner Forest",
+  "Batallia Downs",
+  "Konschtat Highlands",
+  "Pashhow Marshlands",
+  "Rolanberry Fields",
+  "Tahrongi Canyon",
+  "Meriphataud Mountains",
+  "Sauromugue Champaign",
+];
+
+// Elemental weathers (ids 4..19); weathers 0-3 map to element NONE in LSB.
+const ELEMENTAL_WEATHER_IDS = ELEMENT_WEATHERS.flatMap((e) => e.ids);
+
+// LSB ore roll: moon phase must be between 7% and 21% (either direction).
+const ORE_MOON_MIN = 7;
+const ORE_MOON_MAX = 21;
 
 const STORE_KEY = "ffxi_weather_v1";
 
-type Stored = { zone: string; filter: string; dayOffset: number };
+type Stored = { zone: string; filter: string; dayOffset?: number; digMode?: boolean };
 
 const thStyle: React.CSSProperties = {
   position: "sticky",
@@ -121,17 +182,23 @@ const MAX_ROWS = 40;
 export default function WeatherTab({ cal }: { cal: Calibration }) {
   const stored = loadJson<Stored | null>(STORE_KEY, null);
   const [zone, setZone] = useState<string>(() =>
-    stored && DATA.zones[stored.zone] !== undefined ? stored.zone : ZONE_NAMES[0] ?? ""
+    stored && (stored.zone === ALL_ZONES || DATA.zones[stored.zone] !== undefined)
+      ? stored.zone
+      : ZONE_NAMES[0] ?? ""
   );
+  // Filters which zones appear in the results (only used with "All zones").
+  const [zoneSearch, setZoneSearch] = useState<string>("");
   // "" = any, "w:<id>" = specific weather, "e:<element>" = either weather of element.
   const [filter, setFilter] = useState<string>(stored?.filter ?? "");
-  // Manual cycle shift in Vana'diel days, in case the server's cycle is offset.
-  const [dayOffset, setDayOffset] = useState<number>(stored?.dayOffset ?? 0);
+  // Chocobo digging mode: elemental-ore zones + elemental weather + moon 7-21%.
+  const [digMode, setDigMode] = useState<boolean>(stored?.digMode ?? false);
+  // Cycle shift retained from earlier calibration (UI removed; value persists).
+  const dayOffset = stored?.dayOffset ?? 0;
   const [nowMs, setNowMs] = useState<number>(() => Date.now());
 
   useEffect(() => {
-    saveJson(STORE_KEY, { zone, filter, dayOffset } satisfies Stored);
-  }, [zone, filter, dayOffset]);
+    saveJson(STORE_KEY, { zone, filter, dayOffset, digMode } satisfies Stored);
+  }, [zone, filter, dayOffset, digMode]);
 
   // Refresh once a minute so "Today" and times stay current.
   useEffect(() => {
@@ -146,7 +213,7 @@ export default function WeatherTab({ cal }: { cal: Calibration }) {
     return el ? [...el.ids] : null;
   }, [filter]);
 
-  const { rows, todayAbsDay, scannedWholeCycle } = useMemo(() => {
+  const { rows, todayAbsDay, scannedWholeCycle, matchIds } = useMemo(() => {
     // Calibrated Vana'diel absolute seconds (same scale as vanadiel.ts).
     const vanaAbsNow = Math.floor((nowMs + cal.timeOffsetMs) / VANA_MS_PER_VANA_SECOND);
     const todayAbs = Math.floor(vanaAbsNow / VANA_SECONDS_PER_DAY);
@@ -155,33 +222,70 @@ export default function WeatherTab({ cal }: { cal: Calibration }) {
       (LSB_EPOCH_EARTH_MS + cal.timeOffsetMs) / VANA_MS_PER_VANA_SECOND / VANA_SECONDS_PER_DAY
     );
 
-    const patternIdx = DATA.zones[zone];
-    const pattern = patternIdx !== undefined ? getPattern(patternIdx) : null;
+    const needle = zoneSearch.trim().toLowerCase();
+    const baseZones = digMode ? ORE_ZONES : ZONE_NAMES;
+    const zoneNames =
+      zone === ALL_ZONES
+        ? needle
+          ? baseZones.filter((z) => z.toLowerCase().includes(needle))
+          : baseZones
+        : DATA.zones[zone] !== undefined
+          ? [zone]
+          : [];
+    const patterns = zoneNames.map((z) => ({ z, values: getResolvedPattern(DATA.zones[z]) }));
+
+    // In dig mode, only elemental weathers count (optionally narrowed by the filter).
+    const matchIds = digMode
+      ? filterIds
+        ? filterIds.filter((id) => id >= 4)
+        : ELEMENTAL_WEATHER_IDS
+      : filterIds;
+    const scanWholeCycle = !!matchIds;
 
     const out: ForecastRow[] = [];
-    if (pattern) {
-      for (let i = 0; i < CYCLE && out.length < MAX_ROWS; i++) {
-        const absDay = todayAbs + i;
-        const cycleDay = mod(absDay - epochDay + dayOffset, CYCLE);
-        const v = entryForDay(pattern, cycleDay);
-        const chances = chancesForValue(v);
+    for (let i = 0; i < CYCLE && out.length < MAX_ROWS; i++) {
+      const absDay = todayAbs + i;
+      const cycleDay = mod(absDay - epochDay + dayOffset, CYCLE);
+      const startEarthMs = absDay * EARTH_MS_PER_VANA_DAY - cal.timeOffsetMs;
+
+      // Moon % range over this Vana'diel day (moon steps last ~24 earth min,
+      // so a day spans 2-3 steps; sample often enough to hit each one).
+      let moonMin = 100;
+      let moonMax = 0;
+      for (let k = 0; k <= 3; k++) {
+        const pct = moonPercentAtEarthMs(
+          startEarthMs + Math.min((k * EARTH_MS_PER_VANA_DAY) / 3, EARTH_MS_PER_VANA_DAY - 1),
+          cal
+        );
+        moonMin = Math.min(moonMin, pct);
+        moonMax = Math.max(moonMax, pct);
+      }
+      // LSB ore roll requires moon 7-21%.
+      if (digMode && (moonMax < ORE_MOON_MIN || moonMin > ORE_MOON_MAX)) continue;
+
+      for (const { z, values } of patterns) {
+        if (out.length >= MAX_ROWS) break;
+        const chances = chancesForValue(values[cycleDay]);
         let matchPct = 0;
-        if (filterIds) {
-          for (const id of filterIds) matchPct += chances.get(id) ?? 0;
+        if (matchIds) {
+          for (const id of matchIds) matchPct += chances.get(id) ?? 0;
           if (matchPct === 0) continue;
         }
         out.push({
+          zone: z,
           absDay,
-          startEarthMs: absDay * EARTH_MS_PER_VANA_DAY - cal.timeOffsetMs,
+          startEarthMs,
           chances: [...chances.entries()].sort((a, b) => b[1] - a[1]),
           matchPct,
+          moonMin,
+          moonMax,
         });
-        // Without a filter, only show the next MAX_ROWS consecutive days.
-        if (!filterIds && i >= MAX_ROWS - 1) break;
       }
+      // Without a filter, only show the next MAX_ROWS consecutive days.
+      if (!scanWholeCycle && i >= MAX_ROWS - 1) break;
     }
-    return { rows: out, todayAbsDay: todayAbs, scannedWholeCycle: !!filterIds };
-  }, [zone, filterIds, dayOffset, nowMs, cal.timeOffsetMs]);
+    return { rows: out, todayAbsDay: todayAbs, scannedWholeCycle: scanWholeCycle, matchIds };
+  }, [zone, zoneSearch, filterIds, digMode, dayOffset, nowMs, cal]);
 
   function formatEarth(ms: number): string {
     return new Date(ms).toLocaleString([], {
@@ -208,12 +312,29 @@ export default function WeatherTab({ cal }: { cal: Calibration }) {
           <div style={styles.field}>
             <label style={styles.label}>Zone</label>
             <select style={styles.select} value={zone} onChange={(e) => setZone(e.target.value)}>
-              {ZONE_NAMES.map((z) => (
+              <option value={ALL_ZONES}>{ALL_ZONES}</option>
+              {(digMode ? ORE_ZONES : ZONE_NAMES).map((z) => (
                 <option key={z} value={z}>
                   {z}
                 </option>
               ))}
             </select>
+          </div>
+
+          <div style={styles.field}>
+            <label style={styles.label}>Zone search</label>
+            <input
+              style={{ ...styles.input, width: 170 }}
+              value={zoneSearch}
+              placeholder="Filter results…"
+              disabled={zone !== ALL_ZONES}
+              title={
+                zone === ALL_ZONES
+                  ? "Only show zones whose name contains this text."
+                  : "Select \"All zones\" to search across zones."
+              }
+              onChange={(e) => setZoneSearch(e.target.value)}
+            />
           </div>
 
           <div style={styles.field}>
@@ -236,19 +357,39 @@ export default function WeatherTab({ cal }: { cal: Calibration }) {
           </div>
 
           <div style={styles.field}>
-            <label style={styles.label}>Day offset</label>
-            <input
-              type="number"
-              style={{ ...styles.inputCompact, width: 70 }}
-              value={dayOffset}
-              onChange={(e) => setDayOffset(Math.trunc(Number(e.target.value) || 0))}
-              title="Shift the forecast by whole Vana'diel days if it doesn't match in-game."
-            />
+            <label style={styles.label}>Chocobo digging</label>
+            <label
+              style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 13, cursor: "pointer", height: 32 }}
+              title="Only elemental-ore zones, on days with elemental weather and moon 7-21%."
+            >
+              <input
+                type="checkbox"
+                checked={digMode}
+                onChange={(e) => {
+                  const on = e.target.checked;
+                  setDigMode(on);
+                  if (on) {
+                    setZone(ALL_ZONES);
+                    setFilter("");
+                  }
+                }}
+              />
+              Elemental ore
+            </label>
           </div>
         </div>
         <div style={{ ...styles.sub, marginTop: 8 }}>
-          If the forecast doesn't match in-game weather, the server's cycle may be shifted &mdash;
-          adjust Day offset until today's pattern matches (topaz-based servers are typically 1440).
+          {digMode ? (
+            <>
+              Elemental ore (LSB): dig skill 60+, an elemental-ore zone, <b>elemental weather</b> at
+              the moment of the dig, and <b>moon 7&ndash;21%</b>; the ore matches the Vana'diel day
+              (e.g. Chunk of Fire Ore on Firesday). Rows below are the next qualifying days.
+            </>
+          ) : (
+            <>
+              Pick a zone (or All zones + search) and optionally a weather to find upcoming days.
+            </>
+          )}
         </div>
       </div>
 
@@ -256,8 +397,10 @@ export default function WeatherTab({ cal }: { cal: Calibration }) {
         <table style={{ width: "100%", borderCollapse: "collapse" }}>
           <thead>
             <tr>
+              {zone === ALL_ZONES && <th style={thStyle}>Zone</th>}
               <th style={thStyle}>Earth time (local)</th>
               <th style={thStyle}>Vana'diel day</th>
+              {digMode && <th style={thStyle}>Moon</th>}
               <th style={thStyle}>Forecast (chance per roll)</th>
             </tr>
           </thead>
@@ -266,7 +409,11 @@ export default function WeatherTab({ cal }: { cal: Calibration }) {
               const weekday = WEEKDAYS[mod(row.absDay, 8)];
               const isToday = row.absDay === todayAbsDay;
               return (
-                <tr key={row.absDay} style={isToday ? { background: "rgba(138,246,176,0.08)" } : undefined}>
+                <tr
+                  key={`${row.absDay}:${row.zone}`}
+                  style={isToday ? { background: "rgba(138,246,176,0.08)" } : undefined}
+                >
+                  {zone === ALL_ZONES && <td style={tdStyle}>{row.zone}</td>}
                   <td style={tdStyle}>
                     {formatEarth(row.startEarthMs)}
                     {isToday && <span style={{ color: "#8af6b0", fontWeight: 800 }}> &middot; Today</span>}
@@ -274,13 +421,27 @@ export default function WeatherTab({ cal }: { cal: Calibration }) {
                   <td style={tdStyle}>
                     <span style={weekdayStyle(weekday)}>{weekday}</span>
                   </td>
+                  {digMode && (
+                    <td style={tdStyle}>
+                      {row.moonMin === row.moonMax
+                        ? `${row.moonMin}%`
+                        : `${row.moonMin}\u2013${row.moonMax}%`}
+                    </td>
+                  )}
                   <td style={tdStyle}>
                     {row.chances.map(([id, pct], i) => {
-                      const matched = filterIds?.includes(id) ?? false;
+                      const matched = matchIds?.includes(id) ?? false;
                       return (
                         <span key={id}>
                           {i > 0 && <span style={{ opacity: 0.4 }}> &middot; </span>}
-                          <span style={matched ? { color: "#8af6b0", fontWeight: 800 } : undefined}>
+                          <span
+                            style={{
+                              color: WEATHER_COLORS[id] ?? "#eaeaea",
+                              ...(matched
+                                ? { fontWeight: 800, textDecoration: "underline" }
+                                : undefined),
+                            }}
+                          >
                             {id === 0 ? "Clear" : DATA.weathers[id]} {pct}%
                           </span>
                         </span>
@@ -292,8 +453,9 @@ export default function WeatherTab({ cal }: { cal: Calibration }) {
             })}
             {rows.length === 0 && (
               <tr>
-                <td style={tdStyle} colSpan={3}>
-                  No days with that weather in this zone
+                <td style={tdStyle} colSpan={3 + (zone === ALL_ZONES ? 1 : 0) + (digMode ? 1 : 0)}>
+                  No {digMode ? "days matching the ore criteria" : "days with that weather"} in{" "}
+                  {zone === ALL_ZONES ? "any zone" : "this zone"}
                   {scannedWholeCycle ? " (searched the full 2160-day cycle)." : "."}
                 </td>
               </tr>

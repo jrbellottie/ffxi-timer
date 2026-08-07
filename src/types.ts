@@ -37,6 +37,8 @@ export type EarthTimer = BaseTimer & {
   kind: "EARTH_TIME";
   targetEarthMs: number;
   rawInput: string;
+  /** When set, the countdown is paused with this much time remaining (ms). */
+  pausedRemainingMs?: number | null;
 };
 
 export type NmTimedWindowTimer = BaseTimer & {
