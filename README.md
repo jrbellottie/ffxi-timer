@@ -45,6 +45,7 @@ The app is organized into tabs across the top:
 | **NM Timers** | Create notorious monster timers (timed window or lottery) |
 | **Presets** | One‑click timers for crafting‑guild openings, Next Dig, and Tenshodo |
 | **Counters** | Manual tally counters (success/failure and synthesis HQ tracking) |
+| **Bestiary** | Search LSB monsters by zone, family, level, aggro, linking, detection, stats, resistances, and modifiers |
 | **Calibration** | Optional manual override for day/time and moon (not needed by default) |
 
 > **Tip:** When you add a timer from any tab, the **Clock & Timers** tab briefly **flashes** so you can tell the timer was created and where to find it.
@@ -145,6 +146,16 @@ Simple manual tally tools for tracking sessions:
 
 ---
 
+## Bestiary tab
+
+The offline bestiary is generated from a pinned [LandSandBoat](https://github.com/LandSandBoat/server) source revision. It includes zone-specific monster groups, level-specific baseline HP/MP and combat totals, jobs, family/species, aggro and linking behavior, detection senses, damage taken, resistance ranks, skill/spell/drop references, and all species/pool modifiers.
+
+Use **ToAU cap** for content available through Treasures of Aht Urhgan, or **WotG cap** for the cumulative ruleset through Wings of the Goddess. Abyssea, Seekers of Adoulin, RoV, TVR, Apex/Locus, and other post-WotG records are removed from the generated data.
+
+Calculated totals use default LSB settings. Lua initialization, battle state, server multipliers, and custom server changes can alter live GM-command values; the app labels this distinction in the detail view.
+
+---
+
 ## Manual Calibration (optional)
 
 > **You do not need this.** The app ships pre‑calibrated for both Vana'diel time and moon phase, and it is timezone‑independent — it will be correct on any machine, in any time zone, with no setup.
@@ -215,6 +226,12 @@ npm install          # install dependencies
 npm run dev          # run in development (Vite + Electron)
 npm run build        # type-check + build renderer/main
 npm run dist:win     # build the Windows installer into release/
+```
+
+To refresh the bestiary from an LSB checkout:
+
+```powershell
+npm run bestiary:generate -- C:\path\to\LandSandBoat\server
 ```
 
 The Windows setup installer is produced at `release\FFXI Timer Setup <version>.exe`.

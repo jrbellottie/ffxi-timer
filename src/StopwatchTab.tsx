@@ -144,7 +144,7 @@ export default function StopwatchTab() {
   };
 
   return (
-    <div>
+    <div style={{ marginTop: 24 }}>
       <div style={styles.titleRow}>
         <h2 style={styles.h2}>Stopwatches</h2>
         <button style={styles.buttonPrimary} onClick={addWatch}>

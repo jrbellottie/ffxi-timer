@@ -30,6 +30,9 @@ import WeatherTab from "./WeatherTab";
 import StopwatchTab from "./StopwatchTab";
 import BcnmTab from "./BcnmTab";
 import DropsTab from "./DropsTab";
+import SkillchainTab from "./SkillchainTab";
+
+const BestiaryTab = React.lazy(() => import("./BestiaryTab"));
 
 function clampInt(n: number, min: number, max: number) {
   return Math.max(min, Math.min(max, Math.floor(n)));
@@ -168,7 +171,7 @@ function isValidTod(raw: string): boolean {
   );
 }
 
-type TabId = "home" | "timers" | "nm" | "presets" | "counters" | "stopwatch" | "luShang" | "fish" | "bait" | "rods" | "clam" | "chocobo" | "weather" | "bcnm" | "drops" | "calibration";
+type TabId = "home" | "timers" | "nm" | "presets" | "counters" | "luShang" | "fish" | "bait" | "rods" | "clam" | "chocobo" | "weather" | "bcnm" | "drops" | "bestiary" | "skillchains" | "calibration";
 
 type TabDef = {
   id: TabId;
@@ -176,13 +179,14 @@ type TabDef = {
   icon: string;
 };
 
+const ENABLE_CALIBRATION_DEV_TAB = false;
+
 const TABS: TabDef[] = [
   { id: "home", label: "Clock & Timers", icon: "🕐" },
-  { id: "timers", label: "Vana / Real / Moon", icon: "⏱️" },
+  { id: "timers", label: "Time Tools", icon: "⏱️" },
   { id: "nm", label: "NM Timers", icon: "👹" },
   { id: "presets", label: "Presets", icon: "⭐" },
   { id: "counters", label: "Counters", icon: "🔢" },
-  { id: "stopwatch", label: "Stopwatch", icon: "⏲️" },
   { id: "luShang", label: "Lu Shang", icon: "🪝" },
   { id: "fish", label: "Fish", icon: "🐟" },
   { id: "bait", label: "Bait", icon: "🪱" },
@@ -192,7 +196,11 @@ const TABS: TabDef[] = [
   { id: "weather", label: "Weather", icon: "🌦️" },
   { id: "bcnm", label: "BCNM", icon: "⚔️" },
   { id: "drops", label: "Drops", icon: "💰" },
-  { id: "calibration", label: "Calibration", icon: "🛠️" },
+  { id: "bestiary", label: "Bestiary", icon: "📖" },
+  { id: "skillchains", label: "Skillchains", icon: "🔗" },
+  ...(import.meta.env.DEV && ENABLE_CALIBRATION_DEV_TAB
+    ? [{ id: "calibration", label: "Calibration", icon: "🛠️" } as TabDef]
+    : []),
 ];
 
 const TAB_IDS: TabId[] = TABS.map((t) => t.id);
@@ -318,8 +326,9 @@ export default function AppShell() {
   const [luSetTotalInput, setLuSetTotalInput] = useState("");
 
   const [activeTab, setActiveTab] = useState<TabId>(() => {
-    const stored = loadJson<TabId>("ffxi_active_tab_v1", "home");
-    return TAB_IDS.includes(stored) ? stored : "home";
+    const stored = loadJson<string>("ffxi_active_tab_v1", "home");
+    if (stored === "stopwatch") return "timers";
+    return TAB_IDS.includes(stored as TabId) ? stored as TabId : "home";
   });
 
   const [cWeekday, setCWeekday] = useState<VanaWeekday>("Firesday");
@@ -2388,6 +2397,7 @@ export default function AppShell() {
             {realLifeCard}
             {moonCard}
           </div>
+          <StopwatchTab />
           <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 28 }}>{backBar}</div>
         </div>
       )}
@@ -2459,13 +2469,6 @@ export default function AppShell() {
         </div>
       )}
 
-      {activeTab === "stopwatch" && (
-        <div style={styles.tabContent}>
-          <StopwatchTab />
-          <div style={{ display: "flex", justifyContent: "flex-end" }}>{backBar}</div>
-        </div>
-      )}
-
       {activeTab === "weather" && (
         <div style={styles.tabContent}>
           <WeatherTab cal={cal} />
@@ -2483,6 +2486,22 @@ export default function AppShell() {
       {activeTab === "drops" && (
         <div style={styles.tabContent}>
           <DropsTab />
+          <div style={{ display: "flex", justifyContent: "flex-end" }}>{backBar}</div>
+        </div>
+      )}
+
+      {activeTab === "bestiary" && (
+        <div style={styles.tabContent}>
+          <React.Suspense fallback={<div style={styles.card}>Loading bestiary...</div>}>
+            <BestiaryTab />
+          </React.Suspense>
+          <div style={{ display: "flex", justifyContent: "flex-end" }}>{backBar}</div>
+        </div>
+      )}
+
+      {activeTab === "skillchains" && (
+        <div style={styles.tabContent}>
+          <SkillchainTab />
           <div style={{ display: "flex", justifyContent: "flex-end" }}>{backBar}</div>
         </div>
       )}

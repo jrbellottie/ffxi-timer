@@ -63,6 +63,10 @@ function kindOf(dropType: number): DropKind {
   return "Drop";
 }
 
+function isValidMobName(name: string): boolean {
+  return !name.includes("INSERT INTO") && !name.includes("mob_spawn_points") && !name.includes("NULL,NULL");
+}
+
 // Flatten mobs x droplist into searchable rows once at module load.
 // Grouped entries (dropType 1): groupRate/1000 chance the group drops at all,
 // then itemRate acts as a weight within the group.
@@ -79,6 +83,7 @@ function buildRows(): Row[] {
   }
 
   for (const mob of DATA.mobs) {
+    if (!isValidMobName(mob.name)) continue;
     const tuples = DATA.drops[String(mob.drop)];
     if (!tuples) continue;
     for (const [type, groupId, groupRate, itemId, itemRate] of tuples) {
