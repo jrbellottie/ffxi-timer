@@ -77,7 +77,7 @@ export function getNextNmTimedWindowEvent(timer: NmTimedWindowTimer, nowMs: numb
     if (warnLeadMs > 0 && warnAt > nowMs) {
       candidates.push({
         atMs: warnAt,
-        title: "FFXI Timer",
+        title: "Kupo",
         body: `${timer.label} — pop check in ${Math.round(warnLeadMs / 1000)}s. (click to stop)`,
         fireKey: `pop:warn:${popAt}`,
       });
@@ -86,7 +86,7 @@ export function getNextNmTimedWindowEvent(timer: NmTimedWindowTimer, nowMs: numb
     if (popAt >= nowMs) {
       candidates.push({
         atMs: popAt,
-        title: "FFXI Timer",
+        title: "Kupo",
         body: `${timer.label} — pop check NOW. (click to stop)`,
         fireKey: `pop:now:${popAt}`,
       });
@@ -97,7 +97,7 @@ export function getNextNmTimedWindowEvent(timer: NmTimedWindowTimer, nowMs: numb
   if (!closeAlreadyCovered && nowMs <= endAt + 60_000) {
     candidates.push({
       atMs: endAt,
-      title: "FFXI Timer",
+      title: "Kupo",
       body: `${timer.label} — spawn window is closing NOW. (click to stop)`,
       fireKey: `window:close:${endAt}`,
     });
@@ -124,7 +124,7 @@ export function getNextNmLotteryEvent(timer: NmLotteryTimer, nowMs: number): Tim
       if (warnLeadMs > 0 && phWarnAt > nowMs) {
         candidates.push({
           atMs: phWarnAt,
-          title: "FFXI Timer",
+          title: "Kupo",
           body: `${timer.label} — PH pops in ${Math.round(warnLeadMs / 1000)}s. (click to stop)`,
           fireKey: `ph:warn:${phPopAt}`,
         });
@@ -133,7 +133,7 @@ export function getNextNmLotteryEvent(timer: NmLotteryTimer, nowMs: number): Tim
       if (phPopAt >= nowMs) {
         candidates.push({
           atMs: phPopAt,
-          title: "FFXI Timer",
+          title: "Kupo",
           body: `${timer.label} — PH POP NOW. (click to stop)`,
           fireKey: `ph:pop:${phPopAt}`,
           action: { type: "NM_LOTTERY_CLEAR_PH" },

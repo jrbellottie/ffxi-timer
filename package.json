@@ -1,5 +1,5 @@
 {
-  "name": "ffxi-timer",
+  "name": "kupo",
   "private": true,
   "version": "v1.0.1",
   "type": "module",
@@ -36,8 +36,8 @@
     "yaml": "^2.9.0"
   },
   "build": {
-    "appId": "com.jrbellottie.ffxi-timer",
-    "productName": "FFXI Timer",
+    "appId": "com.jrbellottie.kupo",
+    "productName": "Kupo",
     "directories": {
       "output": "release"
     },

@@ -613,7 +613,7 @@ export default function AppShell() {
 
           event = {
             atMs: dueAt,
-            title: "FFXI Timer",
+            title: "Kupo",
             body: `${t.label} is due now! (click to stop)`,
             fireKey: "due",
             repeat: true,
