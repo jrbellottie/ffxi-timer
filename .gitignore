@@ -29,6 +29,9 @@ release/
 .eslintcache
 *.tsbuildinfo
 
+# downloaded LSB source data (regenerate via scripts/convert-recipes.cjs)
+scripts/lsb-data/
+
 # local configs
 *.local
 

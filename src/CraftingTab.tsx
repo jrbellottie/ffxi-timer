@@ -1,0 +1,972 @@
+// src/CraftingTab.tsx
+import React, { useEffect, useMemo, useState } from "react";
+import { styles } from "./styles";
+import recipesData from "./data/recipes.json";
+import { loadJson, saveJson } from "./utils/storage";
+import { craftSkillupStats } from "./utils/craftingSkillup";
+
+type RecipeItem = { n: string; q: number };
+type RecipeSub = { c: string; l: number };
+type Recipe = {
+  id: number;
+  craft: string;
+  lvl: number;
+  crystal: string;
+  era: string;
+  ing: RecipeItem[];
+  res: RecipeItem;
+  hq: RecipeItem[];
+  subs?: RecipeSub[];
+  /** 1 = desynthesis, 2 = no material loss on break */
+  d?: number;
+  ki?: boolean;
+};
+
+const RECIPES: Recipe[] = recipesData as Recipe[];
+
+const CRAFTS = [
+  "Alchemy",
+  "Bonecraft",
+  "Clothcraft",
+  "Cooking",
+  "Goldsmithing",
+  "Leathercraft",
+  "Smithing",
+  "Woodworking",
+];
+
+const CRYSTAL_OPTIONS = ["Fire", "Ice", "Wind", "Earth", "Lightning", "Water", "Light", "Dark"];
+const ERA_OPTIONS = ["Base", "RotZ", "CoP", "ToAU", "WotG"];
+
+type Mode = "recipes" | "planner";
+type SortDir = "asc" | "desc";
+type RecipeKey = "res" | "craft" | "lvl" | "crystal" | "era";
+type PlannerKey =
+  | "expectedPerSynth"
+  | "res"
+  | "lvl"
+  | "gap"
+  | "successPct"
+  | "chanceOnSuccessPct"
+  | "avgGain"
+  | "synthsPerLevel"
+  | "crystal"
+  | "era";
+
+type PlannerRow = {
+  recipe: Recipe;
+  gap: number;
+  successPct: number;
+  chanceOnSuccessPct: number;
+  chanceOnFailPct: number;
+  avgGain: number;
+  expectedPerSynth: number;
+  synthsPerLevel: number;
+};
+
+const RECIPE_COLUMNS: { key: RecipeKey; label: string }[] = [
+  { key: "res", label: "Result" },
+  { key: "craft", label: "Craft" },
+  { key: "lvl", label: "Lvl" },
+  { key: "crystal", label: "Crystal" },
+  { key: "era", label: "Era" },
+];
+
+const PLANNER_COLUMNS: { key: PlannerKey; label: string }[] = [
+  { key: "expectedPerSynth", label: "Expected Skill / Synth" },
+  { key: "res", label: "Recipe" },
+  { key: "lvl", label: "Cap" },
+  { key: "gap", label: "+Lvl" },
+  { key: "successPct", label: "Success" },
+  { key: "chanceOnSuccessPct", label: "Skill-up Chance" },
+  { key: "avgGain", label: "Avg Gain" },
+  { key: "synthsPerLevel", label: "Synths / Level" },
+  { key: "crystal", label: "Crystal" },
+  { key: "era", label: "Era" },
+];
+
+const MAX_VISIBLE_ROWS = 300;
+const CRAFTING_UI_KEY = "ffxi_crafting_ui_v1";
+
+const RANK_UP_COLOR = "#7fd4ff";
+
+// Guild rank-up test items per craft, from LSB guild_master.lua testItemTable
+// (tests at skill 8/18/28/38/48/58/68/78/88; the rank-10 Expert items are post-era recipes).
+const RANK_UP_ITEMS: Record<string, Set<string>> = {
+  Woodworking: new Set([
+    "workbench", "maple table", "harp", "traversiere", "rose wand",
+    "kaman", "ebony wand", "commode", "mythic pole",
+  ]),
+  Smithing: new Set([
+    "xiphos", "aspis", "bilbo", "war pick", "mythril pick",
+    "darksteel falchion", "bascinet", "bastard sword", "celata",
+  ]),
+  Goldsmithing: new Set([
+    "copper hairpin", "brass hairpin", "silver hairpin", "chain gorget", "mythril ring",
+    "mythril gorget", "mythril breastplate", "torque", "colichemarde",
+  ]),
+  Clothcraft: new Set([
+    "cape", "cotton cape", "heko obi", "feather collar", "wool bracers",
+    "red cape", "wool doublet", "silk cloak", "arhat's hakama",
+  ]),
+  Leathercraft: new Set([
+    "rabbit mantle", "lizard cesti", "dhalmel mantle", "magic belt", "cuir bouilli",
+    "raptor jerkin", "battle boots", "tiger gloves", "coeurl mask",
+  ]),
+  Bonecraft: new Set([
+    "shell ring", "bone ring", "beetle earring", "horn ring", "carapace gorget",
+    "astragalos", "bone patas", "coral hairpin", "coral bangles",
+  ]),
+  Alchemy: new Set([
+    "animal glue", "poison potion", "blinding potion", "firesand", "fire sword",
+    "hi-potion", "acid kukri", "x-potion", "bloody sword",
+  ]),
+  Cooking: new Set([
+    "salmon sub", "pea soup", "vegetable gruel", "meat mithkabob", "apple pie",
+    "yagudo drink", "raisin bread", "whitefish stew", "seafood stew",
+  ]),
+};
+
+const isRankUpItem = (craft: string, resultName: string) =>
+  RANK_UP_ITEMS[craft]?.has(resultName.toLowerCase()) ?? false;
+
+const optionBaseStyle: React.CSSProperties = {
+  backgroundColor: "#0c0c0c",
+  color: "#eaeaea",
+};
+
+const plannerToggleStyle: React.CSSProperties = {
+  display: "inline-flex",
+  alignItems: "center",
+  gap: 8,
+  height: 32,
+  fontSize: 13,
+  cursor: "pointer",
+  whiteSpace: "nowrap",
+};
+
+const thStyle: React.CSSProperties = {
+  position: "sticky",
+  top: 0,
+  background: "#161616",
+  color: "#eaeaea",
+  textAlign: "left",
+  padding: "8px 10px",
+  fontSize: 12,
+  fontWeight: 800,
+  borderBottom: "1px solid #444",
+  cursor: "pointer",
+  userSelect: "none",
+  whiteSpace: "nowrap",
+};
+
+const tdStyle: React.CSSProperties = {
+  padding: "6px 10px",
+  fontSize: 13,
+  borderBottom: "1px solid rgba(255,255,255,0.06)",
+  whiteSpace: "nowrap",
+};
+
+const selectedRowStyle: React.CSSProperties = {
+  background: "rgba(138, 246, 176, 0.12)",
+  outline: "1px solid #8af6b0",
+  outlineOffset: "-1px",
+};
+
+const clickableRowStyle: React.CSSProperties = {
+  cursor: "pointer",
+};
+
+function successColor(pct: number): React.CSSProperties {
+  if (pct >= 90) return { color: "#8af6b0", fontWeight: 700 };
+  if (pct >= 70) return { color: "#D8B04B", fontWeight: 700 };
+  return { color: "#ff9c7a", fontWeight: 700 };
+}
+
+function eraLabel(era: string): string {
+  return era === "" ? "Base" : era;
+}
+
+function ingredientText(recipe: Recipe): string {
+  return recipe.ing.map((i) => (i.q > 1 ? `${i.n} x${i.q}` : i.n)).join(", ");
+}
+
+function hqText(recipe: Recipe): string {
+  const allSame = recipe.hq.every((h) => h.n === recipe.res.n);
+  if (allSame) return recipe.hq.map((h, i) => `HQ${i + 1}: x${h.q}`).join(" / ");
+  return recipe.hq.map((h, i) => `HQ${i + 1}: ${h.n}${h.q > 1 ? ` x${h.q}` : ""}`).join(" / ");
+}
+
+function subsText(recipe: Recipe): string {
+  if (!recipe.subs || recipe.subs.length === 0) return "—";
+  return recipe.subs.map((s) => `${s.c} ${s.l}`).join(", ");
+}
+
+function badges(recipe: Recipe): string {
+  const parts: string[] = [];
+  if (recipe.d === 1) parts.push("Desynth");
+  if (recipe.d === 2) parts.push("No-loss");
+  if (recipe.ki) parts.push("Key Item");
+  return parts.join(" · ");
+}
+
+function recipeMatchesText(recipe: Recipe, needle: string): boolean {
+  const q = needle.trim().toLowerCase();
+  if (!q) return true;
+  if (recipe.res.n.toLowerCase().includes(q)) return true;
+  if (recipe.craft.toLowerCase().includes(q)) return true;
+  if (recipe.crystal.toLowerCase().includes(q)) return true;
+  if (eraLabel(recipe.era).toLowerCase().includes(q)) return true;
+  if (recipe.ing.some((i) => i.n.toLowerCase().includes(q))) return true;
+  if (recipe.hq.some((h) => h.n.toLowerCase().includes(q))) return true;
+  return false;
+}
+
+/** Parse "45.3" style skill input into server tenths; empty/invalid → null. */
+function parseSkillTenths(raw: string): number | null {
+  const value = Number(raw);
+  if (!Number.isFinite(value) || value < 0 || value > 110) return null;
+  return Math.round(value * 10);
+}
+
+type CraftingUiState = {
+  mode: Mode;
+  includeWotg: boolean;
+  rGlobal: string;
+  rResult: string;
+  rIngredient: string;
+  rCraft: string;
+  rCrystal: string;
+  rEra: string;
+  rLvlMin: string;
+  rLvlMax: string;
+  rIncludeDesynth: boolean;
+  rSortKey: RecipeKey;
+  rSortDir: SortDir;
+  pCraft: string;
+  pSkill: string;
+  pSupport: string;
+  pGearMain: boolean;
+  pGearSub: boolean;
+  pMogh: boolean;
+  pGlobal: string;
+  pIngredient: string;
+  pMinSuccess: string;
+  pLvlMin: string;
+  pLvlMax: string;
+  pIncludeDesynth: boolean;
+  pHideKeyItem: boolean;
+  pSortKey: PlannerKey;
+  pSortDir: SortDir;
+};
+
+const defaultUi: CraftingUiState = {
+  mode: "planner",
+  includeWotg: false,
+  rGlobal: "",
+  rResult: "",
+  rIngredient: "",
+  rCraft: "",
+  rCrystal: "",
+  rEra: "",
+  rLvlMin: "",
+  rLvlMax: "",
+  rIncludeDesynth: false,
+  rSortKey: "lvl",
+  rSortDir: "asc",
+  pCraft: "Cooking",
+  pSkill: "0",
+  pSupport: "0",
+  pGearMain: false,
+  pGearSub: false,
+  pMogh: false,
+  pGlobal: "",
+  pIngredient: "",
+  pMinSuccess: "",
+  pLvlMin: "",
+  pLvlMax: "",
+  pIncludeDesynth: false,
+  pHideKeyItem: false,
+  pSortKey: "expectedPerSynth",
+  pSortDir: "desc",
+};
+
+export default function CraftingTab() {
+  const initialUi = useMemo(() => {
+    const loaded = loadJson<Partial<CraftingUiState>>(CRAFTING_UI_KEY, {});
+    return { ...defaultUi, ...loaded };
+  }, []);
+
+  const [mode, setMode] = useState<Mode>(initialUi.mode === "recipes" ? "recipes" : "planner");
+  const [includeWotg, setIncludeWotg] = useState(initialUi.includeWotg);
+
+  const [rGlobal, setRGlobal] = useState(initialUi.rGlobal);
+  const [rResult, setRResult] = useState(initialUi.rResult);
+  const [rIngredient, setRIngredient] = useState(initialUi.rIngredient);
+  const [rCraft, setRCraft] = useState(initialUi.rCraft);
+  const [rCrystal, setRCrystal] = useState(initialUi.rCrystal);
+  const [rEra, setREra] = useState(initialUi.rEra);
+  const [rLvlMin, setRLvlMin] = useState(initialUi.rLvlMin);
+  const [rLvlMax, setRLvlMax] = useState(initialUi.rLvlMax);
+  const [rIncludeDesynth, setRIncludeDesynth] = useState(initialUi.rIncludeDesynth);
+  const [rSortKey, setRSortKey] = useState<RecipeKey>(initialUi.rSortKey);
+  const [rSortDir, setRSortDir] = useState<SortDir>(initialUi.rSortDir);
+
+  const [pCraft, setPCraft] = useState(CRAFTS.includes(initialUi.pCraft) ? initialUi.pCraft : "Cooking");
+  const [pSkill, setPSkill] = useState(initialUi.pSkill);
+  const [pSupport, setPSupport] = useState(["0", "1", "3"].includes(initialUi.pSupport) ? initialUi.pSupport : "0");
+  const [pGearMain, setPGearMain] = useState(initialUi.pGearMain);
+  const [pGearSub, setPGearSub] = useState(initialUi.pGearSub);
+  const [pMogh, setPMogh] = useState(initialUi.pMogh);
+  const [pGlobal, setPGlobal] = useState(initialUi.pGlobal);
+  const [pIngredient, setPIngredient] = useState(initialUi.pIngredient);
+  const [pMinSuccess, setPMinSuccess] = useState(initialUi.pMinSuccess);
+  const [pLvlMin, setPLvlMin] = useState(initialUi.pLvlMin);
+  const [pLvlMax, setPLvlMax] = useState(initialUi.pLvlMax);
+  const [pIncludeDesynth, setPIncludeDesynth] = useState(initialUi.pIncludeDesynth);
+  const [pHideKeyItem, setPHideKeyItem] = useState(initialUi.pHideKeyItem);
+  const [pSortKey, setPSortKey] = useState<PlannerKey>(initialUi.pSortKey);
+  const [pSortDir, setPSortDir] = useState<SortDir>(initialUi.pSortDir);
+
+  const [selectedRowKey, setSelectedRowKey] = useState<string | null>(null);
+
+  useEffect(() => {
+    saveJson(CRAFTING_UI_KEY, {
+      mode,
+      includeWotg,
+      rGlobal,
+      rResult,
+      rIngredient,
+      rCraft,
+      rCrystal,
+      rEra,
+      rLvlMin,
+      rLvlMax,
+      rIncludeDesynth,
+      rSortKey,
+      rSortDir,
+      pCraft,
+      pSkill,
+      pSupport,
+      pGearMain,
+      pGearSub,
+      pMogh,
+      pGlobal,
+      pIngredient,
+      pMinSuccess,
+      pLvlMin,
+      pLvlMax,
+      pIncludeDesynth,
+      pHideKeyItem,
+      pSortKey,
+      pSortDir,
+    } satisfies CraftingUiState);
+  }, [
+    mode, includeWotg,
+    rGlobal, rResult, rIngredient, rCraft, rCrystal, rEra, rLvlMin, rLvlMax, rIncludeDesynth, rSortKey, rSortDir,
+    pCraft, pSkill, pSupport, pGearMain, pGearSub, pMogh, pGlobal, pIngredient, pMinSuccess, pLvlMin, pLvlMax, pIncludeDesynth, pHideKeyItem, pSortKey, pSortDir,
+  ]);
+
+  const eraFiltered = useMemo(
+    () => RECIPES.filter((r) => includeWotg || r.era !== "WotG"),
+    [includeWotg]
+  );
+
+  function onRecipeHeader(key: RecipeKey) {
+    if (key === rSortKey) {
+      setRSortDir(rSortDir === "asc" ? "desc" : "asc");
+    } else {
+      setRSortKey(key);
+      setRSortDir(key === "lvl" ? "asc" : "asc");
+    }
+  }
+
+  function onPlannerHeader(key: PlannerKey) {
+    if (key === pSortKey) {
+      setPSortDir(pSortDir === "asc" ? "desc" : "asc");
+    } else {
+      setPSortKey(key);
+      setPSortDir(
+        key === "expectedPerSynth" || key === "successPct" || key === "chanceOnSuccessPct" || key === "avgGain"
+          ? "desc"
+          : "asc"
+      );
+    }
+  }
+
+  const recipeFilterActive =
+    rGlobal !== "" || rResult !== "" || rIngredient !== "" || rCraft !== "" || rCrystal !== "" ||
+    rEra !== "" || rLvlMin !== "" || rLvlMax !== "" || rIncludeDesynth;
+
+  function clearRecipeFilters() {
+    setRGlobal("");
+    setRResult("");
+    setRIngredient("");
+    setRCraft("");
+    setRCrystal("");
+    setREra("");
+    setRLvlMin("");
+    setRLvlMax("");
+    setRIncludeDesynth(false);
+  }
+
+  const plannerFilterActive =
+    pGlobal !== "" || pIngredient !== "" || pMinSuccess !== "" || pLvlMin !== "" || pLvlMax !== "" ||
+    pIncludeDesynth || pHideKeyItem;
+
+  function clearPlannerFilters() {
+    setPGlobal("");
+    setPIngredient("");
+    setPMinSuccess("");
+    setPLvlMin("");
+    setPLvlMax("");
+    setPIncludeDesynth(false);
+    setPHideKeyItem(false);
+  }
+
+  const recipeResults = useMemo(() => {
+    const lvlMin = rLvlMin === "" ? null : Number(rLvlMin);
+    const lvlMax = rLvlMax === "" ? null : Number(rLvlMax);
+
+    const rows = eraFiltered.filter((r) => {
+      if (!rIncludeDesynth && r.d === 1) return false;
+      if (rCraft && r.craft !== rCraft) return false;
+      if (rCrystal && r.crystal !== rCrystal) return false;
+      if (rEra && eraLabel(r.era) !== rEra) return false;
+      if (lvlMin !== null && Number.isFinite(lvlMin) && r.lvl < lvlMin) return false;
+      if (lvlMax !== null && Number.isFinite(lvlMax) && r.lvl > lvlMax) return false;
+      if (rResult && !r.res.n.toLowerCase().includes(rResult.trim().toLowerCase())) return false;
+      if (rIngredient && !r.ing.some((i) => i.n.toLowerCase().includes(rIngredient.trim().toLowerCase()))) return false;
+      if (rGlobal && !recipeMatchesText(r, rGlobal)) return false;
+      return true;
+    });
+
+    const dir = rSortDir === "asc" ? 1 : -1;
+    rows.sort((a, b) => {
+      let cmp = 0;
+      if (rSortKey === "lvl") cmp = a.lvl - b.lvl;
+      else if (rSortKey === "res") cmp = a.res.n.localeCompare(b.res.n);
+      else if (rSortKey === "craft") cmp = a.craft.localeCompare(b.craft);
+      else if (rSortKey === "crystal") cmp = a.crystal.localeCompare(b.crystal);
+      else cmp = eraLabel(a.era).localeCompare(eraLabel(b.era));
+      if (cmp === 0) cmp = a.lvl - b.lvl;
+      if (cmp === 0) cmp = a.res.n.localeCompare(b.res.n);
+      return cmp * dir;
+    });
+
+    return rows;
+  }, [eraFiltered, rGlobal, rResult, rIngredient, rCraft, rCrystal, rEra, rLvlMin, rLvlMax, rIncludeDesynth, rSortKey, rSortDir]);
+
+  const skillTenths = parseSkillTenths(pSkill);
+  const supportBonus = Number(pSupport) + (pGearMain ? 1 : 0) + (pGearSub ? 1 : 0) + (pMogh ? 1 : 0);
+
+  const plannerResults = useMemo(() => {
+    if (skillTenths === null) return [] as PlannerRow[];
+
+    const minSuccess = pMinSuccess === "" ? null : Number(pMinSuccess);
+    const lvlMin = pLvlMin === "" ? null : Number(pLvlMin);
+    const lvlMax = pLvlMax === "" ? null : Number(pLvlMax);
+
+    const rows: PlannerRow[] = [];
+    for (const recipe of eraFiltered) {
+      if (recipe.craft !== pCraft) continue;
+      if (!pIncludeDesynth && recipe.d === 1) continue;
+      if (pHideKeyItem && recipe.ki) continue;
+      if (lvlMin !== null && Number.isFinite(lvlMin) && recipe.lvl < lvlMin) continue;
+      if (lvlMax !== null && Number.isFinite(lvlMax) && recipe.lvl > lvlMax) continue;
+      if (pIngredient && !recipe.ing.some((i) => i.n.toLowerCase().includes(pIngredient.trim().toLowerCase()))) continue;
+      if (pGlobal && !recipeMatchesText(recipe, pGlobal)) continue;
+
+      const stats = craftSkillupStats(skillTenths, recipe.lvl, recipe.d === 1, supportBonus);
+      if (!stats.eligible) continue;
+      if (minSuccess !== null && Number.isFinite(minSuccess) && stats.successPct < minSuccess) continue;
+
+      rows.push({
+        recipe,
+        gap: stats.gap,
+        successPct: stats.successPct,
+        chanceOnSuccessPct: stats.chanceOnSuccessPct,
+        chanceOnFailPct: stats.chanceOnFailPct,
+        avgGain: stats.avgGain,
+        expectedPerSynth: stats.expectedPerSynth,
+        synthsPerLevel: stats.synthsPerLevel,
+      });
+    }
+
+    const dir = pSortDir === "asc" ? 1 : -1;
+    rows.sort((a, b) => {
+      let cmp = 0;
+      if (pSortKey === "expectedPerSynth") cmp = a.expectedPerSynth - b.expectedPerSynth;
+      else if (pSortKey === "res") cmp = a.recipe.res.n.localeCompare(b.recipe.res.n);
+      else if (pSortKey === "lvl") cmp = a.recipe.lvl - b.recipe.lvl;
+      else if (pSortKey === "gap") cmp = a.gap - b.gap;
+      else if (pSortKey === "successPct") cmp = a.successPct - b.successPct;
+      else if (pSortKey === "chanceOnSuccessPct") cmp = a.chanceOnSuccessPct - b.chanceOnSuccessPct;
+      else if (pSortKey === "avgGain") cmp = a.avgGain - b.avgGain;
+      else if (pSortKey === "synthsPerLevel") cmp = a.synthsPerLevel - b.synthsPerLevel;
+      else if (pSortKey === "crystal") cmp = a.recipe.crystal.localeCompare(b.recipe.crystal);
+      else cmp = eraLabel(a.recipe.era).localeCompare(eraLabel(b.recipe.era));
+      if (cmp === 0) cmp = b.expectedPerSynth - a.expectedPerSynth;
+      if (cmp === 0) cmp = a.recipe.res.n.localeCompare(b.recipe.res.n);
+      return cmp * dir;
+    });
+
+    return rows;
+  }, [eraFiltered, skillTenths, pCraft, supportBonus, pGlobal, pIngredient, pMinSuccess, pLvlMin, pLvlMax, pIncludeDesynth, pHideKeyItem, pSortKey, pSortDir]);
+
+  const plannerTop = plannerResults.length > 0
+    ? plannerResults.reduce((best, row) => (row.expectedPerSynth > best.expectedPerSynth ? row : best))
+    : null;
+
+  const results = mode === "recipes" ? recipeResults : plannerResults;
+  const visibleCount = results.length;
+
+  const selectFilter = (
+    label: string,
+    value: string,
+    setter: (v: string) => void,
+    options: string[],
+    width = 160,
+    anyLabel = "Any"
+  ) => (
+    <div style={{ ...styles.field, width }}>
+      <div style={styles.label}>{label}</div>
+      <select style={styles.selectCompact} value={value} onChange={(e) => setter(e.target.value)}>
+        <option style={optionBaseStyle} value="">
+          {anyLabel}
+        </option>
+        {options.map((opt) => (
+          <option key={opt} style={optionBaseStyle} value={opt}>
+            {opt}
+          </option>
+        ))}
+      </select>
+    </div>
+  );
+
+  const textFilter = (
+    label: string,
+    value: string,
+    setter: (v: string) => void,
+    placeholder: string,
+    width = 200
+  ) => (
+    <div style={{ ...styles.field, width }}>
+      <div style={styles.label}>{label}</div>
+      <input
+        style={styles.inputCompact}
+        value={value}
+        onChange={(e) => setter(e.target.value)}
+        placeholder={placeholder}
+      />
+    </div>
+  );
+
+  const numberFilter = (
+    label: string,
+    value: string,
+    setter: (v: string) => void,
+    placeholder: string,
+    width = 100
+  ) => (
+    <div style={{ ...styles.field, width }}>
+      <div style={styles.label}>{label}</div>
+      <input
+        style={styles.inputCompact}
+        type="number"
+        inputMode="decimal"
+        value={value}
+        onChange={(e) => setter(e.target.value)}
+        placeholder={placeholder}
+      />
+    </div>
+  );
+
+  const wotgCheckbox = (
+    <label
+      style={{
+        display: "inline-flex",
+        alignItems: "center",
+        gap: 8,
+        height: 32,
+        fontSize: 13,
+        cursor: "pointer",
+        whiteSpace: "nowrap",
+      }}
+      title="Wings of the Goddess recipes — coming soon to Phoenix"
+    >
+      <input type="checkbox" checked={includeWotg} onChange={(e) => setIncludeWotg(e.target.checked)} />
+      Include WotG
+    </label>
+  );
+
+  return (
+    <section style={styles.card}>
+      <div style={styles.titleRow}>
+        <h3 style={styles.h3}>
+          {mode === "recipes" ? "Crafting Recipes (ToAU Era)" : "Crafting Skill-up Planner"}
+        </h3>
+        <div style={styles.sub}>
+          {`${visibleCount.toLocaleString()} of ${eraFiltered.length.toLocaleString()} recipes${
+            visibleCount > MAX_VISIBLE_ROWS ? ` (showing first ${MAX_VISIBLE_ROWS} — refine filters)` : ""
+          }`}
+        </div>
+      </div>
+
+      <div style={{ marginTop: 10, display: "grid", gap: 12 }}>
+        <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+          <button
+            style={mode === "recipes" ? styles.buttonPrimaryCompact : styles.buttonCompact}
+            onClick={() => setMode("recipes")}
+          >
+            Recipe browser
+          </button>
+          <button
+            style={mode === "planner" ? styles.buttonPrimaryCompact : styles.buttonCompact}
+            onClick={() => setMode("planner")}
+          >
+            Skill-up planner
+          </button>
+        </div>
+
+        {mode === "recipes" ? (
+          <div style={styles.subCard}>
+            <div style={{ display: "flex", gap: 12, flexWrap: "wrap", alignItems: "flex-end" }}>
+              {textFilter("Search everything", rGlobal, setRGlobal, "item, ingredient, craft...", 240)}
+              {textFilter("Result item", rResult, setRResult, "e.g. sole sushi", 180)}
+              {textFilter("Ingredient", rIngredient, setRIngredient, "e.g. iron ingot", 180)}
+              {selectFilter("Craft", rCraft, setRCraft, CRAFTS, 150)}
+              {selectFilter("Crystal", rCrystal, setRCrystal, CRYSTAL_OPTIONS, 130)}
+              {selectFilter("Era", rEra, setREra, ERA_OPTIONS, 110)}
+            </div>
+
+            <div style={{ marginTop: 10, display: "flex", gap: 12, flexWrap: "wrap", alignItems: "flex-end" }}>
+              {numberFilter("Lvl min", rLvlMin, setRLvlMin, "0", 90)}
+              {numberFilter("Lvl max", rLvlMax, setRLvlMax, "100", 90)}
+
+              <label
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 8,
+                  height: 32,
+                  fontSize: 13,
+                  cursor: "pointer",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                <input
+                  type="checkbox"
+                  checked={rIncludeDesynth}
+                  onChange={(e) => setRIncludeDesynth(e.target.checked)}
+                />
+                Include desynths
+              </label>
+
+              {wotgCheckbox}
+
+              <button
+                style={{ ...styles.buttonCompact, ...(recipeFilterActive ? {} : styles.buttonDisabled) }}
+                onClick={clearRecipeFilters}
+                disabled={!recipeFilterActive}
+              >
+                Clear filters
+              </button>
+            </div>
+
+            <div style={{ marginTop: 8, ...styles.sub }}>
+              All LandSandBoat recipes through Treasures of Aht Urhgan (base, RotZ, CoP, ToAU). Lvl = the recipe cap
+              for its main craft; Subs = other crafts (and levels) the recipe also requires. Recipes flagged Key Item
+              need the matching craft key item (e.g. Trituration, Sheeting). Recipes in{" "}
+              <span style={{ color: RANK_UP_COLOR, fontWeight: 700 }}>blue</span> craft a guild rank-up test item.
+            </div>
+          </div>
+        ) : (
+          <div style={styles.subCard}>
+            <div style={{ display: "flex", gap: 12, flexWrap: "wrap", alignItems: "flex-end" }}>
+              <div style={{ ...styles.field, width: 160 }}>
+                <div style={styles.label}>Craft</div>
+                <select style={styles.selectCompact} value={pCraft} onChange={(e) => setPCraft(e.target.value)}>
+                  {CRAFTS.map((craft) => (
+                    <option key={craft} style={optionBaseStyle} value={craft}>
+                      {craft}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div style={{ ...styles.field, width: 130 }}>
+                <div style={styles.label}>Current skill</div>
+                <input
+                  style={styles.inputCompact}
+                  type="number"
+                  inputMode="decimal"
+                  min={0}
+                  max={100}
+                  step={1}
+                  value={pSkill}
+                  onChange={(e) => setPSkill(e.target.value)}
+                  placeholder="e.g. 45"
+                />
+              </div>
+              <div style={{ ...styles.field, width: 160 }}>
+                <div style={styles.label}>Image support</div>
+                <select style={styles.selectCompact} value={pSupport} onChange={(e) => setPSupport(e.target.value)}>
+                  <option style={optionBaseStyle} value="0">None</option>
+                  <option style={optionBaseStyle} value="1">Basic (+1 skill)</option>
+                  <option style={optionBaseStyle} value="3">Advanced (+3 skill)</option>
+                </select>
+              </div>
+              <label style={plannerToggleStyle}>
+                <input type="checkbox" checked={pGearMain} onChange={(e) => setPGearMain(e.target.checked)} />
+                Gp +1
+              </label>
+              <label style={plannerToggleStyle}>
+                <input type="checkbox" checked={pGearSub} onChange={(e) => setPGearSub(e.target.checked)} />
+                Gp +1
+              </label>
+              <label style={plannerToggleStyle}>
+                <input type="checkbox" checked={pMogh} onChange={(e) => setPMogh(e.target.checked)} />
+                Gp +1
+              </label>
+              {wotgCheckbox}
+              <label
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 8,
+                  height: 32,
+                  fontSize: 13,
+                  cursor: "pointer",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                <input
+                  type="checkbox"
+                  checked={pIncludeDesynth}
+                  onChange={(e) => setPIncludeDesynth(e.target.checked)}
+                />
+                Include desynths
+              </label>
+              <label
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 8,
+                  height: 32,
+                  fontSize: 13,
+                  cursor: "pointer",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                <input type="checkbox" checked={pHideKeyItem} onChange={(e) => setPHideKeyItem(e.target.checked)} />
+                Hide key-item recipes
+              </label>
+            </div>
+
+            <div style={{ marginTop: 10, display: "flex", gap: 12, flexWrap: "wrap", alignItems: "flex-end" }}>
+              {textFilter("Search everything", pGlobal, setPGlobal, "item, ingredient, crystal...", 240)}
+              {textFilter("Ingredient", pIngredient, setPIngredient, "e.g. crayfish", 180)}
+              {numberFilter("Min success %", pMinSuccess, setPMinSuccess, "e.g. 50", 120)}
+              {numberFilter("Cap min", pLvlMin, setPLvlMin, "0", 90)}
+              {numberFilter("Cap max", pLvlMax, setPLvlMax, "100", 90)}
+              <button
+                style={{ ...styles.buttonCompact, ...(plannerFilterActive ? {} : styles.buttonDisabled) }}
+                onClick={clearPlannerFilters}
+                disabled={!plannerFilterActive}
+              >
+                Clear filters
+              </button>
+            </div>
+
+            <div style={{ marginTop: 8, ...styles.sub }}>
+              Era (Phoenix/LSB) rates: skill-up chance is a flat <strong>60%</strong> below skill 50.0 and{" "}
+              <strong>25%</strong> at 50.0+, on any synth where your skill is below the recipe cap. Broken synths can
+              still skill up at half rate, but only within 1–5 levels of the cap. Skill-up size scales with the level
+              gap (up to +0.5 at 14+ over), and is baked into the calculation. Only +0.1 happens above skill 60. 
+              Guild image support, gear and Moghancement boost success rate only — skill-up rolls always use your real skill.
+              Sub-craft requirements are assumed met. Recipes in{" "}
+              <span style={{ color: RANK_UP_COLOR, fontWeight: 700 }}>blue</span> craft a guild rank-up test item
+            </div>
+
+            {skillTenths === null ? (
+              <div style={{ marginTop: 10, ...styles.sub, color: "#ff9c7a" }}>
+                Enter a valid current skill (0–100) to see recommendations.
+              </div>
+            ) : plannerTop ? (
+              <div style={{ marginTop: 10, ...styles.sub }}>
+                Best pick at {(skillTenths / 10).toFixed(1)} {pCraft}:{" "}
+                <span style={{ color: "#8af6b0", fontWeight: 800 }}>{plannerTop.recipe.res.n}</span> (cap{" "}
+                {plannerTop.recipe.lvl}, {plannerTop.recipe.crystal} crystal) —{" "}
+                {plannerTop.expectedPerSynth.toFixed(3)} expected skill per synth, ~
+                {Math.ceil(plannerTop.synthsPerLevel)} synths per level.
+              </div>
+            ) : null}
+          </div>
+        )}
+
+        <div
+          style={{
+            border: "1px solid rgba(255,255,255,0.10)",
+            borderRadius: 12,
+            overflow: "auto",
+            maxHeight: "62vh",
+            background: "rgba(255,255,255,0.015)",
+          }}
+        >
+          {mode === "recipes" ? (
+            <table style={{ borderCollapse: "collapse", width: "100%" }}>
+              <thead>
+                <tr>
+                  {RECIPE_COLUMNS.map((col) => {
+                    const active = col.key === rSortKey;
+                    return (
+                      <th
+                        key={col.key}
+                        style={{ ...thStyle, ...(active ? { color: "#8af6b0" } : {}) }}
+                        onClick={() => onRecipeHeader(col.key)}
+                        title={`Sort by ${col.label}`}
+                      >
+                        {col.label}
+                        {active ? (rSortDir === "asc" ? " ▲" : " ▼") : ""}
+                      </th>
+                    );
+                  })}
+                  <th style={{ ...thStyle, cursor: "default" }}>Subs</th>
+                  <th style={{ ...thStyle, cursor: "default" }}>Ingredients</th>
+                  <th style={{ ...thStyle, cursor: "default" }}>HQ Results</th>
+                  <th style={{ ...thStyle, cursor: "default" }}>Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                {visibleCount === 0 ? (
+                  <tr>
+                    <td style={{ ...tdStyle, opacity: 0.7 }} colSpan={RECIPE_COLUMNS.length + 4}>
+                      No matches. Try clearing some filters.
+                    </td>
+                  </tr>
+                ) : (
+                  recipeResults.slice(0, MAX_VISIBLE_ROWS).map((r) => {
+                    const rowKey = `recipes|${r.id}`;
+                    const selected = selectedRowKey === rowKey;
+                    const rankUp = isRankUpItem(r.craft, r.res.n);
+                    return (
+                      <tr
+                        key={rowKey}
+                        onClick={() => setSelectedRowKey(rowKey)}
+                        style={{ ...clickableRowStyle, ...(selected ? selectedRowStyle : {}) }}
+                        title="Click to highlight this row"
+                      >
+                        <td
+                          style={{ ...tdStyle, fontWeight: 700, ...(rankUp ? { color: RANK_UP_COLOR } : {}) }}
+                          title={rankUp ? "Guild rank-up test item" : undefined}
+                        >
+                          {r.res.n}
+                          {r.res.q > 1 ? ` x${r.res.q}` : ""}
+                        </td>
+                        <td style={tdStyle}>{r.craft}</td>
+                        <td style={tdStyle}>{r.lvl}</td>
+                        <td style={tdStyle}>{r.crystal}</td>
+                        <td style={{ ...tdStyle, ...(r.era === "WotG" ? { color: "#D8B04B" } : {}) }}>
+                          {eraLabel(r.era)}
+                        </td>
+                        <td style={tdStyle}>{subsText(r)}</td>
+                        <td style={{ ...tdStyle, whiteSpace: "normal", minWidth: 260, opacity: 0.9 }}>
+                          {ingredientText(r)}
+                        </td>
+                        <td style={{ ...tdStyle, whiteSpace: "normal", minWidth: 180, opacity: 0.85 }}>{hqText(r)}</td>
+                        <td style={{ ...tdStyle, opacity: 0.85 }}>{badges(r) || "—"}</td>
+                      </tr>
+                    );
+                  })
+                )}
+              </tbody>
+            </table>
+          ) : (
+            <table style={{ borderCollapse: "collapse", width: "100%" }}>
+              <thead>
+                <tr>
+                  {PLANNER_COLUMNS.map((col) => {
+                    const active = col.key === pSortKey;
+                    return (
+                      <th
+                        key={col.key}
+                        style={{ ...thStyle, ...(active ? { color: "#8af6b0" } : {}) }}
+                        onClick={() => onPlannerHeader(col.key)}
+                        title={`Sort by ${col.label}`}
+                      >
+                        {col.label}
+                        {active ? (pSortDir === "asc" ? " ▲" : " ▼") : ""}
+                      </th>
+                    );
+                  })}
+                  <th style={{ ...thStyle, cursor: "default" }}>Subs</th>
+                  <th style={{ ...thStyle, cursor: "default" }}>Ingredients</th>
+                  <th style={{ ...thStyle, cursor: "default" }}>Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                {skillTenths === null ? (
+                  <tr>
+                    <td style={{ ...tdStyle, opacity: 0.7 }} colSpan={PLANNER_COLUMNS.length + 3}>
+                      Enter your current skill above.
+                    </td>
+                  </tr>
+                ) : visibleCount === 0 ? (
+                  <tr>
+                    <td style={{ ...tdStyle, opacity: 0.7 }} colSpan={PLANNER_COLUMNS.length + 3}>
+                      No eligible recipes. Your skill may be at or above every reachable cap — raise the level range,
+                      include desynths, or check the craft.
+                    </td>
+                  </tr>
+                ) : (
+                  plannerResults.slice(0, MAX_VISIBLE_ROWS).map((row) => {
+                    const rowKey = `planner|${row.recipe.id}`;
+                    const selected = selectedRowKey === rowKey;
+                    const rankUp = isRankUpItem(row.recipe.craft, row.recipe.res.n);
+                    return (
+                      <tr
+                        key={rowKey}
+                        onClick={() => setSelectedRowKey(rowKey)}
+                        style={{ ...clickableRowStyle, ...(selected ? selectedRowStyle : {}) }}
+                        title="Click to highlight this row"
+                      >
+                        <td style={{ ...tdStyle, color: "#8af6b0", fontWeight: 800 }}>
+                          {row.expectedPerSynth.toFixed(3)}
+                        </td>
+                        <td
+                          style={{ ...tdStyle, fontWeight: 700, ...(rankUp ? { color: RANK_UP_COLOR } : {}) }}
+                          title={rankUp ? "Guild rank-up test item" : undefined}
+                        >
+                          {row.recipe.res.n}
+                          {row.recipe.res.q > 1 ? ` x${row.recipe.res.q}` : ""}
+                        </td>
+                        <td style={tdStyle}>{row.recipe.lvl}</td>
+                        <td style={tdStyle}>+{row.gap}</td>
+                        <td style={{ ...tdStyle, ...successColor(row.successPct) }}>{row.successPct.toFixed(0)}%</td>
+                        <td style={tdStyle}>
+                          {row.chanceOnSuccessPct.toFixed(0)}%
+                          {row.chanceOnFailPct > 0 ? ` (${row.chanceOnFailPct.toFixed(0)}% on break)` : ""}
+                        </td>
+                        <td style={tdStyle}>{row.avgGain.toFixed(2)}</td>
+                        <td style={tdStyle}>{Number.isFinite(row.synthsPerLevel) ? Math.ceil(row.synthsPerLevel) : "—"}</td>
+                        <td style={tdStyle}>{row.recipe.crystal}</td>
+                        <td style={{ ...tdStyle, ...(row.recipe.era === "WotG" ? { color: "#D8B04B" } : {}) }}>
+                          {eraLabel(row.recipe.era)}
+                        </td>
+                        <td style={tdStyle}>{subsText(row.recipe)}</td>
+                        <td style={{ ...tdStyle, whiteSpace: "normal", minWidth: 260, opacity: 0.9 }}>
+                          {ingredientText(row.recipe)}
+                        </td>
+                        <td style={{ ...tdStyle, opacity: 0.85 }}>{badges(row.recipe) || "—"}</td>
+                      </tr>
+                    );
+                  })
+                )}
+              </tbody>
+            </table>
+          )}
+        </div>
+      </div>
+    </section>
+  );
+}
