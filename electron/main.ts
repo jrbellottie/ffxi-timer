@@ -102,7 +102,7 @@ ipcMain.on("ffxi:keepAwake", (_event, payload: { enabled: boolean }) => {
 });
 
 // Renderer -> Main: show a notification.
-// - Default behavior repeats every 20s until user clicks the toast.
+// - Default behavior repeats every 20s until clicked, capped at 10 repeats.
 // - For one-shot notifications (e.g. NM intervals), pass repeat: false.
 ipcMain.on(
   "ffxi:notify",
@@ -144,8 +144,13 @@ ipcMain.on(
     // Show once immediately
     showToast(true);
 
-    // Repeat until dismissed
-    const interval = setInterval(() => showToast(true), repeatEveryMs);
+    // Repeat until dismissed, capped so it never repeats forever
+    const MAX_REPEATS = 10;
+    let repeatCount = 0;
+    const interval = setInterval(() => {
+      showToast(true);
+      if (++repeatCount >= MAX_REPEATS) stopRepeater(id);
+    }, repeatEveryMs);
     repeaters.set(id, interval);
   }
 );

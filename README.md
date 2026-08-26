@@ -1,8 +1,10 @@
 # Kupo
 
-A desktop companion app for **Final Fantasy XI** (era-focused / [LandSandBoat](https://github.com/LandSandBoat/server)-based servers). What began as a Vana'diel clock and timer tool has grown into a full toolkit: timers and notifications, fishing and clamming references, chocobo digging, weather forecasting, a bestiary, drop and BCNM databases, a skillchain calculator, and a crafting planner.
+A desktop companion app for **Final Fantasy XI** (era-focused / [LandSandBoat](https://github.com/LandSandBoat/server)-based servers). Hosting a full toolkit of timers and notifications, fishing and clamming references, chocobo digging, weather forecasting, a bestiary, drop and BCNM databases, a skillchain calculator, and a crafting planner.
 
-Vana'diel time is **global** (the same instant for every player on Earth), so the app works out of the box in any time zone — **no setup or calibration required**. Just install and go.
+Vana'diel time is **global** (the same instant for every player on Earth), so the app works out of the box in any time zone. Just install and go.
+
+Kupo is a **fully standalone app**. It never reads, writes, or modifies game files, memory, or network traffic, and it doesn't hook into or interact with the FFXI client in any way. Everything you see is driven by the app's own simulation of Vana'diel time and its bundled database information — it's a reference and timer tool for informational purposes only.
 
 ---
 
@@ -10,7 +12,7 @@ Vana'diel time is **global** (the same instant for every player on Earth), so th
 
 1. Install using the setup file from the latest [release](https://github.com/jrbellottie/kupo/releases).
 2. Launch **Kupo**.
-3. Confirm the **Vana'diel Clock** on the first tab matches the in-game `/clock` (it should already be correct).
+3. Confirm the **Vana'diel Clock** on the first tab matches the in-game `/clock`.
 4. **Turn on Windows notifications** for the app (see below) so timers can alert you.
 
 ---
@@ -26,6 +28,7 @@ The app fires **Windows system notifications** when a timer is due. If Windows i
 **How alerts behave:**
 
 - Repeating timers (Vana'diel, real life, moon, presets) show a toast and **repeat about every 20 seconds until you click the notification** to dismiss it. Clicking the toast stops the repeats and disables that timer.
+- If you never click, repeats **stop automatically after 10 alerts**.
 - NM interval pops are **one-shot** notifications (they don't repeat).
 
 **Background note:** Windows may throttle background apps to save power. If a timer is delayed while the app is minimized, the app **catches up immediately** when it regains focus and fires anything that was due.
@@ -41,7 +44,7 @@ The home screen. Shows the live **Vana'diel clock** (weekday + time, color-coded
 Create timers of every kind:
 - **Vana'diel timers** — fire at a specific Vana'diel weekday + time (e.g. Firesday 06:00).
 - **Real life timers** — fire at a local date/time (daily reminders roll forward automatically) or as a simple countdown.
-- **Moon timers** — fire at a specific moon phase (waxing/waning + target %), drift-free.
+- **Moon timers** — fire at a specific moon phase (waxing/waning + target %).
 - **Stopwatch** — a stopwatch with lap tracking.
 
 ### 👹 NM Timers
