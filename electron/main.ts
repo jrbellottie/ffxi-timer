@@ -56,7 +56,8 @@ function stopRepeater(id: string) {
 
 function createWindow() {
   win = new BrowserWindow({
-    icon: path.join(process.env.VITE_PUBLIC!, "electron-vite.svg"),
+    // Dev-only: packaged builds get the icon from the exe (build/icon.ico via electron-builder)
+    ...(VITE_DEV_SERVER_URL ? { icon: path.join(process.env.APP_ROOT, "build", "icon.ico") } : {}),
     webPreferences: {
       // Renderer timers won't be throttled when minimized/hidden
       backgroundThrottling: false,
