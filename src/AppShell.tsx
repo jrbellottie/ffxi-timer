@@ -34,6 +34,7 @@ import SkillchainTab from "./SkillchainTab";
 
 const BestiaryTab = React.lazy(() => import("./BestiaryTab"));
 const CraftingTab = React.lazy(() => import("./CraftingTab"));
+const QuestsTab = React.lazy(() => import("./QuestsTab"));
 
 function clampInt(n: number, min: number, max: number) {
   return Math.max(min, Math.min(max, Math.floor(n)));
@@ -172,7 +173,7 @@ function isValidTod(raw: string): boolean {
   );
 }
 
-type TabId = "home" | "timers" | "nm" | "presets" | "counters" | "luShang" | "fish" | "bait" | "rods" | "clam" | "chocobo" | "weather" | "bcnm" | "drops" | "bestiary" | "skillchains" | "crafting" | "calibration";
+type TabId = "home" | "timers" | "nm" | "presets" | "counters" | "luShang" | "fish" | "bait" | "rods" | "clam" | "chocobo" | "weather" | "bcnm" | "drops" | "bestiary" | "skillchains" | "crafting" | "quests" | "calibration";
 
 type TabDef = {
   id: TabId;
@@ -200,6 +201,7 @@ const TABS: TabDef[] = [
   { id: "bestiary", label: "Bestiary", icon: "📖" },
   { id: "skillchains", label: "Skillchains", icon: "🔗" },
   { id: "crafting", label: "Crafting", icon: "🔨" },
+  { id: "quests", label: "Quests", icon: "📜" },
   ...(import.meta.env.DEV && ENABLE_CALIBRATION_DEV_TAB
     ? [{ id: "calibration", label: "Calibration", icon: "🛠️" } as TabDef]
     : []),
@@ -2481,6 +2483,15 @@ export default function AppShell() {
       {activeTab === "bcnm" && (
         <div style={styles.tabContent}>
           <BcnmTab />
+          <div style={{ display: "flex", justifyContent: "flex-end" }}>{backBar}</div>
+        </div>
+      )}
+
+      {activeTab === "quests" && (
+        <div style={styles.tabContent}>
+          <React.Suspense fallback={<div style={styles.card}>Loading quests...</div>}>
+            <QuestsTab />
+          </React.Suspense>
           <div style={{ display: "flex", justifyContent: "flex-end" }}>{backBar}</div>
         </div>
       )}

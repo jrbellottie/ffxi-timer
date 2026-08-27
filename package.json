@@ -8,6 +8,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "bestiary:generate": "node scripts/generate-bestiary.mjs",
+    "quests:fetch": "node scripts/fetch-quests.mjs",
     "icons": "node scripts/make-icons.mjs",
     "dist": "npm run build && electron-builder",
     "dist:win": "npm run build && electron-builder --win",

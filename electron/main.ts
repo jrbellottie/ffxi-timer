@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain, Notification, powerSaveBlocker } from "electron";
+import { app, BrowserWindow, ipcMain, Notification, powerSaveBlocker, screen, shell } from "electron";
 import path from "node:path";
 import fs from "node:fs";
 import { fileURLToPath } from "node:url";
@@ -55,7 +55,11 @@ function stopRepeater(id: string) {
 }
 
 function createWindow() {
+  // Near-fullscreen on a 1080p display, clamped to smaller screens
+  const { workArea } = screen.getPrimaryDisplay();
   win = new BrowserWindow({
+    width: Math.min(1860, workArea.width),
+    height: Math.min(960, workArea.height),
     // Dev-only: packaged builds get the icon from the exe (build/icon.ico via electron-builder)
     ...(VITE_DEV_SERVER_URL ? { icon: path.join(process.env.APP_ROOT, "build", "icon.ico") } : {}),
     webPreferences: {
@@ -69,6 +73,12 @@ function createWindow() {
 
   win.webContents.on("did-finish-load", () => {
     win?.webContents.send("main-process-message", new Date().toLocaleString());
+  });
+
+  // External links (e.g. wiki pages) open in the user's default browser
+  win.webContents.setWindowOpenHandler(({ url }) => {
+    if (/^https?:/i.test(url)) shell.openExternal(url);
+    return { action: "deny" };
   });
 
   if (VITE_DEV_SERVER_URL) {

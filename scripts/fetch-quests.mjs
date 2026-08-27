@@ -1,0 +1,704 @@
+// Scrapes FFXI quests & missions (up to Treasures of Aht Urhgan) into src/data/quests.json.
+//
+// Sources:
+//   - Eden wiki (classicffxi.fandom.com): ToAU-era snapshot. Used ONLY to enumerate which
+//     quest/mission titles are era-valid (the era gate). No content is taken from it.
+//   - FFXIclopedia (ffxiclopedia.fandom.com): all content, coordinates and links. Titles are
+//     resolved to canonical ffxiclopedia pages (handles Eden's stale casing/naming), and start-NPC
+//     coordinates missing from quest pages are backfilled from the NPC's own page.
+//
+// Usage: node scripts/fetch-quests.mjs            (full run)
+//        LIMIT=10 node scripts/fetch-quests.mjs   (parse only first N pages per category - testing)
+import { mkdir, writeFile } from "node:fs/promises";
+import path from "node:path";
+
+const EDEN = "https://classicffxi.fandom.com/api.php";
+const FFXI = "https://ffxiclopedia.fandom.com/api.php";
+const UA = "kupo-app quest importer (personal offline FFXI tool)";
+const LIMIT = process.env.LIMIT ? parseInt(process.env.LIMIT, 10) : Infinity;
+
+const QUEST_CATS = [
+  ["Bastok Quests", "Bastok"],
+  ["San d'Oria Quests", "San d'Oria"],
+  ["Windurst Quests", "Windurst"],
+  ["Jeuno Quests", "Jeuno"],
+  ["Outlands Quests", "Outlands"],
+  ["Aht Urhgan Quests", "Aht Urhgan"],
+  ["Other Quests", "Other"],
+  ["Mog House Exit Quests", "Mog House Exit"],
+];
+
+const MISSION_CATS = [
+  ["Bastok Missions", "Bastok"],
+  ["San d'Oria Missions", "San d'Oria"],
+  ["Windurst Missions", "Windurst"],
+  ["Rise of the Zilart Missions", "Rise of the Zilart"],
+  ["Chains of Promathia Missions", "Chains of Promathia"],
+  ["Treasures of Aht Urhgan Missions", "Treasures of Aht Urhgan"],
+  ["Assault", "Assault"],
+];
+
+// ffxiclopedia category names, where they differ from Eden's
+const FFXI_MISSION_CATS = new Map([["Assault", "Assault Missions"]]);
+
+// ffxiclopedia-only quests verified era-correct by hand; everything else ffxiclopedia-only is
+// reported to the console for review instead of being included (Eden's quest list is the era gate).
+const QUEST_WHITELIST = new Set([]);
+
+// Index/landing pages that live inside the categories but aren't quests/missions
+const SKIP_TITLES = new Set([
+  "Quests", "Missions", "Assault",
+  "Bastok Missions", "San d'Oria Missions", "Windurst Missions", "TOAU Missions",
+  "Bastok Quests", "San d'Oria Quests", "Windurst Quests", "Jeuno Quests",
+  "Rise of the Zilart Missions", "Chains of Promathia Missions",
+  "Treasures of Aht Urhgan Missions", "Aht Urhgan Missions",
+  "Mission", "Quest", "Reputation", "Fame",
+  "Assault Mission Giver", "Ancient Lockbox", "Assault Order", "Nyzul Isle Investigation",
+]);
+const SKIP_RE = /^\?\?\? |Gate Guard$|^Armor Sets\//;
+
+/** Eden titles assaults "Apkallu Breeding", ffxiclopedia "Assault Mission - Apkallu Breeding". */
+const normTitle = (t) => t.replace(/^Assault Mission - /, "");
+
+// Post-ToAU marker in the TITLE only (content mentions are unreliable either way)
+const POST_TOAU_TITLE_RE = /Wings of the Goddess|Abyssea|Adoulin|Voidwatch|VW Op|Records of Eminence|Trust:|Coalition|Monstrosity|Dancer|Scholar|Synergistic|Moogle Magic/i;
+
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+async function api(base, params) {
+  const url = `${base}?${new URLSearchParams({ format: "json", formatversion: "2", ...params })}`;
+  for (let attempt = 1; ; attempt++) {
+    try {
+      const res = await fetch(url, { headers: { "User-Agent": UA } });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      return await res.json();
+    } catch (e) {
+      if (attempt >= 4) throw new Error(`${url}\n  -> ${e.message}`);
+      await sleep(1000 * attempt);
+    }
+  }
+}
+
+/** All page titles in a category (paginated), optionally recursing one level into subcats. */
+async function categoryPages(base, cat, depth = 0) {
+  const titles = [];
+  let cmcontinue;
+  do {
+    const q = await api(base, {
+      action: "query", list: "categorymembers", cmtitle: `Category:${cat}`,
+      cmnamespace: "0", cmlimit: "500", ...(cmcontinue ? { cmcontinue } : {}),
+    });
+    for (const m of q.query?.categorymembers ?? []) {
+      if (m.title.startsWith("Category:")) {
+        if (depth > 0) titles.push(...(await categoryPages(base, m.title.replace(/^Category:/, ""), depth - 1)));
+      } else if (!SKIP_TITLES.has(m.title) && !SKIP_RE.test(m.title) && !m.title.includes("/")) {
+        titles.push(m.title);
+      }
+    }
+    cmcontinue = q.continue?.cmcontinue;
+    await sleep(120);
+  } while (cmcontinue);
+  return [...new Set(titles)];
+}
+
+/** Fetch raw wikitext for many titles. Returns Map(title -> wikitext), following redirects. */
+async function fetchPages(base, titles) {
+  const out = new Map();
+  const redirects = new Map();
+  for (let i = 0; i < titles.length; i += 50) {
+    const batch = titles.slice(i, i + 50);
+    const q = await api(base, {
+      action: "query", prop: "revisions", rvprop: "content", rvslots: "main",
+      redirects: "1", titles: batch.join("|"),
+    });
+    for (const r of q.query?.redirects ?? []) redirects.set(r.from, r.to);
+    for (const p of q.query?.pages ?? []) {
+      if (!p.missing && p.revisions?.[0]) out.set(p.title, p.revisions[0].slots.main.content);
+    }
+    process.stdout.write(`\r  ${Math.min(i + 50, titles.length)}/${titles.length} pages fetched from ${new URL(base).hostname}   `);
+    await sleep(150);
+  }
+  process.stdout.write("\n");
+  // Map original (redirecting) titles to their target content too
+  for (const [from, to] of redirects) if (out.has(to)) out.set(from, out.get(to));
+  return { pages: out, redirects };
+}
+
+// ---------------------------------------------------------------------------
+// Wikitext parsing
+// ---------------------------------------------------------------------------
+
+/** Split template params into { positional: [...], named: {...} }. */
+function templateParams(body) {
+  const positional = [];
+  const named = {};
+  for (const part of body.split("|")) {
+    const eq = part.indexOf("=");
+    if (eq >= 0) named[part.slice(0, eq).trim().toLowerCase()] = part.slice(eq + 1).trim();
+    else if (part.trim()) positional.push(part.trim());
+  }
+  return { positional, named };
+}
+
+/** Strip wiki markup down to plain text (keeps "(H-9)" style coords intact). */
+function plain(wt) {
+  if (!wt) return "";
+  let s = wt;
+  s = s.replace(/<!--[\s\S]*?-->/g, "");
+  s = s.replace(/<ref[^>]*>[\s\S]*?<\/ref>/gi, "").replace(/<ref[^>]*\/>/gi, "");
+  s = s.replace(/<br\s*\/?>/gi, "\n");
+  s = s.replace(/\[\[(?:File|Image|Category|de|fr|ja|es):[^\]]*\]\]/gi, "");
+  // Hover-map templates -> readable coords: {{Location Tooltip|area=Norg|pos=K-8}} -> (K-8)
+  // (text= params may contain lone braces: text={Port Bastok J-5 house})
+  const tmplBody = "((?:[^{}]|\\{(?!\\{)|\\}(?!\\}))*)";
+  s = s.replace(new RegExp(`\\{\\{\\s*Location Tooltip\\s*\\|${tmplBody}\\}\\}`, "gi"), (_, body) => {
+    const { positional, named } = templateParams(body);
+    if (named.text) return named.text.replace(/[{}]/g, "");
+    const pos = named.pos ?? positional[1];
+    const area = named.area ?? positional[0];
+    return pos ? `(${pos})` : area ?? "";
+  });
+  // {{Location|Norg|L-8}} -> Norg (L-8)
+  s = s.replace(new RegExp(`\\{\\{\\s*Location\\s*\\|${tmplBody}\\}\\}`, "gi"), (_, body) => {
+    const { positional, named } = templateParams(body);
+    const area = named.area ?? positional[0] ?? "";
+    const pos = named.pos ?? positional[1];
+    return pos ? `${area} (${pos})` : area;
+  });
+  // [[target|label]] -> label, [[target]] -> target (repeat for nesting)
+  for (let i = 0; i < 3; i++) s = s.replace(/\[\[([^[\]|]*)\|([^[\]]*)\]\]/g, "$2").replace(/\[\[([^[\]]*)\]\]/g, "$1");
+  s = s.replace(/\{\{sic[^}]*\}\}/gi, "");
+  for (let i = 0; i < 3; i++) s = s.replace(/\{\{[^{}]*\}\}/g, ""); // drop remaining templates
+  s = s.replace(/'''''|'''|''/g, "");
+  s = s.replace(/<[^>]+>/g, "");
+  s = s.replace(/&nbsp;/g, " ").replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&#39;|&apos;/g, "'");
+  s = s.replace(/\(\s*\(([^()]*)\)\s*\)/g, "($1)"); // collapse ((K-8)) from pre-parenthesized templates
+  return s.replace(/[ \t]+/g, " ").replace(/ ?\n ?/g, "\n").trim();
+}
+
+/** Extract [[link]] targets+labels from a wikitext fragment. */
+function links(wt) {
+  const out = [];
+  const re = /\[\[([^[\]|]+)(?:\|([^[\]]*))?\]\]/g;
+  let m;
+  while ((m = re.exec(wt ?? ""))) {
+    const target = m[1].trim();
+    if (/^(?:File|Image|Category|de|fr|ja|es):/i.test(target)) continue;
+    out.push({ target, label: (m[2] ?? m[1]).trim() });
+  }
+  return out;
+}
+
+const FIELD_ALIASES = {
+  "start npc": "startNpc", "starting npc": "startNpc", "client": "client",
+  "requirements": "requirements", "prerequisites": "requirements", "level restriction": "level",
+  "suggested level": "level", "level": "level",
+  "items needed": "items", "items": "items", "key items": "keyItems", "key item": "keyItems",
+  "title": "titles", "titles": "titles", "title obtained": "titles",
+  "repeatable": "repeatable", "reward": "reward", "rewards": "reward",
+  "previous quest": "previous", "previous mission": "previous", "previous": "previous",
+  "next quest": "next", "next mission": "next", "next": "next",
+  "mission name": "missionName", "mission": "missionName", "name": "missionName",
+  "recruitment": "level", "assault rank": "assaultRank", "rank": "assaultRank",
+  "objective": "objective", "mercenary rank": "assaultRank",
+  "starting point": "startNpc", "staging point": "stagingPoint",
+};
+
+/** Parse the classic colored info-table: cells of '''Field:''' followed by a value cell. */
+function parseInfoTable(wt) {
+  const fields = {};
+  const lines = wt.split("\n");
+  for (let i = 0; i < lines.length; i++) {
+    const cell = lines[i];
+    if (!cell.startsWith("|")) continue;
+    const m = cell.match(/'''\s*([^':]+?)\s*:?\s*'''/);
+    if (!m) continue;
+    const key = FIELD_ALIASES[m[1].trim().toLowerCase()];
+    if (!key) continue;
+    // Value: same line after ||, or the next |-cell line
+    let value = null;
+    const dbl = cell.split("||");
+    if (dbl.length > 1) value = dbl.slice(1).join("||");
+    else {
+      for (let j = i + 1; j < Math.min(i + 4, lines.length); j++) {
+        const l = lines[j];
+        if (l.startsWith("|-") || l.startsWith("|}") || l.startsWith("{|")) break;
+        if (l.startsWith("|")) { value = l; break; }
+      }
+    }
+    if (value == null) continue;
+    // Strip cell attributes ("| valign=... |&nbsp;&nbsp;VALUE")
+    let v = value.replace(/^\|/, "");
+    const attr = v.match(/^[^[\]{}|]*(?:valign|bgcolor|width|align|style)\s*=[^|]*\|/i);
+    if (attr) v = v.slice(attr[0].length);
+    if (!(key in fields)) fields[key] = v.trim();
+  }
+  return fields;
+}
+
+/** Parse {{Quest|param=...}} / {{Mission|...}} style templates. */
+function parseTemplate(wt) {
+  const m = wt.match(/\{\{\s*(?:Quest|Mission|Infobox[^|}]*)\s*\|/i);
+  if (!m) return null;
+  // Brace-match the template body
+  let depth = 0, start = m.index, end = -1;
+  for (let i = start; i < wt.length - 1; i++) {
+    if (wt[i] === "{" && wt[i + 1] === "{") { depth++; i++; }
+    else if (wt[i] === "}" && wt[i + 1] === "}") { depth--; i++; if (depth === 0) { end = i + 1; break; } }
+  }
+  if (end < 0) return null;
+  const body = wt.slice(start + 2, end - 2);
+  // Split on top-level pipes
+  const parts = [];
+  let level = 0, cur = "";
+  for (let i = 0; i < body.length; i++) {
+    const two = body.slice(i, i + 2);
+    if (two === "{{" || two === "[[") { level++; cur += two; i++; }
+    else if (two === "}}" || two === "]]") { level--; cur += two; i++; }
+    else if (body[i] === "|" && level === 0) { parts.push(cur); cur = ""; }
+    else cur += body[i];
+  }
+  parts.push(cur);
+  const fields = {};
+  const TMPL_ALIASES = {
+    startnpc: "startNpc", npc: "startNpc", requirements: "requirements", items: "items", keyitems: "keyItems",
+    title: "titles", titles: "titles", repeatable: "repeatable", reward: "reward", rewards: "reward",
+    previous: "previous", next: "next", level: "level", name: "missionName", number: "missionNumber",
+  };
+  for (const p of parts.slice(1)) {
+    const eq = p.indexOf("=");
+    if (eq < 0) continue;
+    const key = TMPL_ALIASES[p.slice(0, eq).trim().toLowerCase()];
+    const val = p.slice(eq + 1).trim();
+    if (key && val && !(key in fields)) fields[key] = val;
+  }
+  return Object.keys(fields).length ? fields : null;
+}
+
+/** Walkthrough section -> array of step strings ("## " prefix = sub-heading). */
+function parseWalkthrough(wt) {
+  const m = wt.match(/^=+\s*Walkthrough\s*=+\s*$/im);
+  if (!m) return [];
+  const rest = wt.slice(m.index + m[0].length);
+  const endM = rest.match(/^=+\s*(?:Game Description|Game description|Description|Trivia|See Also|Notes)\s*=+\s*$|\{\{(?:Quest|Mission)\/Description/im);
+  const body = endM ? rest.slice(0, endM.index) : rest;
+  const steps = [];
+  for (const raw of body.split("\n")) {
+    const line = raw.trim();
+    if (!line || line.startsWith("__") || /^\[\[(?:Category|de|fr|ja|es):/i.test(line)) continue;
+    if (/^(\{\||\|)/.test(line)) continue; // table syntax (dialogue transcripts etc.)
+    const h = line.match(/^=+\s*(.+?)\s*=+$/);
+    if (h) { steps.push("## " + plain(h[1])); continue; }
+    const b = line.match(/^([*#:]+)\s*(.*)$/);
+    const depth = b ? Math.max(0, b[1].length - 1) : 0;
+    const text = plain(b ? b[2] : line);
+    if (!text || text.includes("{{") || text.includes("}}")) continue; // unparsed multi-line template
+    steps.push("  ".repeat(depth) + text);
+  }
+  return steps;
+}
+
+/** Game description (client + summary), from section or template. */
+function parseDescription(wt) {
+  const t = wt.match(/\{\{(?:Quest|Mission)\/Description\s*\|([\s\S]*?)\}\}/i);
+  if (t) {
+    const client = t[1].match(/client\s*=\s*([^|\n]*)/i);
+    const summary = t[1].match(/(?:summary|orders)\s*=\s*([\s\S]*?)(?:\n\s*\||$)/i);
+    return { client: client ? plain(client[1]) : null, summary: summary ? plain(summary[1]) : null };
+  }
+  const m = wt.match(/^=+\s*Game Description\s*=+\s*$/im);
+  if (!m) return { client: null, summary: null };
+  const body = wt.slice(m.index + m[0].length).split(/^=+[^=]+=+$/m)[0];
+  const client = body.match(/'''Client:?'''\s*(.*)/i);
+  const sum = body.match(/'''(?:Summary|Mission Orders):?'''\s*([\s\S]*)/i);
+  return {
+    client: client ? plain(client[1]) : null,
+    summary: sum ? plain(sum[1]).replace(/^:?\s*/, "").split("\n").join(" ").trim() || null : null,
+  };
+}
+
+const COORD_RE = /\(([A-P]-\d{1,2})\)/g;
+
+function parseStartNpc(raw) {
+  if (!raw) return { npc: null, zone: null, coord: null };
+  const ls = links(raw);
+  const text = plain(raw);
+  const coord = text.match(/\(([A-P]-\d{1,2})\)/)?.[1] ?? null;
+  // Convention: first link = NPC, second = zone; {{Location}} zones aren't links, so fall back to text
+  const npc = ls[0]?.label ?? (text.split(/[-–]/)[0].trim() || null);
+  const zone = ls[1]?.label ?? text.match(/[-–]\s*([^(\n,]+?)\s*(?:\(|,|\n|$)/)?.[1]?.trim() ?? null;
+  return { npc, zone: zone || null, coord };
+}
+
+function parseFame(raw) {
+  if (!raw) return { fame: null, fameArea: null };
+  const m = raw.match(/(?:\[\[)?([A-Za-z' .]+?)(?:\]\])?\s*(?:\[\[)?(?:Fame|Reputation)(?:\]\])?\s*(?:level\s*)?(\d+)/i);
+  if (!m) return { fame: null, fameArea: null };
+  const area = m[1]?.trim();
+  return { fame: parseInt(m[2], 10), fameArea: area && area.length > 2 ? area : null };
+}
+
+function parseItems(raw) {
+  if (!raw) return [];
+  const out = [];
+  for (const chunk of raw.split(/<br\s*\/?>|\n/i)) {
+    const ls = links(chunk);
+    if (ls.length) {
+      const qty = plain(chunk).match(/x\s*(\d+)/i)?.[1];
+      for (const l of ls) out.push(qty && ls.length === 1 ? `${l.label} x${qty}` : l.label);
+    } else {
+      const t = plain(chunk);
+      if (t && !/^(?:none|n\/a|-)\.?$/i.test(t)) out.push(t);
+    }
+  }
+  return out;
+}
+
+function parseChain(raw) {
+  if (!raw) return [];
+  const t = plain(raw);
+  if (!t || /^(?:none|n\/a|-)\.?$/i.test(t)) return [];
+  const ls = links(raw);
+  if (ls.length) return ls.map((l) => ({ name: l.label, target: l.target }));
+  return t.split(/\n|,/).map((s) => s.trim()).filter((s) => s && !/^(?:none|and)$/i.test(s)).map((name) => ({ name, target: name }));
+}
+
+function slug(title) {
+  return title.toLowerCase().replace(/[''’]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+}
+
+/** Mission number from a page/redirect title, e.g. "Bastok Mission 2-3" -> "2-3". */
+function numberFromTitle(t) {
+  let m = t.match(/^(?:Bastok|San d'Oria|Windurst) Mission (\d+-\d+)/i);
+  if (m) return m[1];
+  m = t.match(/^(?:Rise of the )?Zilart Mission (\d+)/i) ?? t.match(/^ZM(\d+)$/i);
+  if (m) return m[1];
+  m = t.match(/^(?:Chains of )?Promathia Mission (\d+-\d+)/i) ?? t.match(/^(?:CoP|PM) ?(\d+-\d+)$/i);
+  if (m) return m[1];
+  m = t.match(/^(?:Treasures of )?Aht Urhgan Mission (\d+)/i) ?? t.match(/^ToAU (\d+)$/i);
+  if (m) return m[1];
+  return null;
+}
+
+function parsePage(title, wt, type, group) {
+  const fields = parseTemplate(wt) ?? parseInfoTable(wt);
+  const { npc, zone, coord } = parseStartNpc(fields.startNpc);
+  const { fame, fameArea } = parseFame(fields.requirements);
+  const walkthrough = parseWalkthrough(wt);
+  const desc = parseDescription(wt);
+  const repRaw = plain(fields.repeatable ?? "");
+  const allCoords = [...new Set([...plain(wt).matchAll(COORD_RE)].map((m) => m[1]))];
+  if (coord && !allCoords.includes(coord)) allCoords.unshift(coord);
+
+  // ToAU mission titles embed number + name: "Aht Urhgan Mission 12: Royal Puppeteer"
+  let name = normTitle(title).replace(/ \((?:Quest|Mission)\)$/, "");
+  let number = numberFromTitle(title);
+  const toau = title.match(/^Aht Urhgan Mission (\d+): (.+)$/);
+  if (toau) { number = toau[1]; name = toau[2]; }
+  else if (number && fields.missionName) name = plain(fields.missionName).split("\n")[0].replace(/\s*\((?:ZM|PM|BM|SM|WM)[^)]*\)\s*$/i, "").trim() || name;
+  if (!number && fields.missionNumber) number = plain(fields.missionNumber).match(/(\d+-\d+|\d+)/)?.[1] ?? null;
+
+  return {
+    id: slug(title),
+    name,
+    pageTitle: title,
+    type,
+    group,
+    number,
+    startNpc: npc,
+    startZone: zone,
+    startCoord: coord,
+    requirements: fields.requirements ? plain(fields.requirements).split("\n").join("; ") : null,
+    fame,
+    fameArea,
+    level: fields.level ? plain(fields.level).split("\n").join("; ") || null : null,
+    items: parseItems(fields.items),
+    keyItems: parseItems(fields.keyItems),
+    titles: fields.titles ? plain(fields.titles).split("\n").map((s) => s.trim()).filter((s) => s && !/^none$/i.test(s)) : [],
+    repeatable: /yes/i.test(repRaw) ? true : /no/i.test(repRaw) ? false : null,
+    reward: fields.reward ? plain(fields.reward).split("\n").join("; ") || null : null,
+    previous: parseChain(fields.previous),
+    next: parseChain(fields.next),
+    walkthrough,
+    client: desc.client,
+    summary: desc.summary,
+    coords: allCoords,
+  };
+}
+
+/** Resolve titles to canonical ffxiclopedia titles via redirects, with a search fallback. */
+async function resolveTitles(titles) {
+  const resolved = new Map(); // input title -> canonical title | null
+  for (let i = 0; i < titles.length; i += 50) {
+    const batch = titles.slice(i, i + 50);
+    const q = await api(FFXI, { action: "query", redirects: "1", titles: batch.join("|") });
+    const redirect = new Map((q.query?.redirects ?? []).map((r) => [r.from, r.to]));
+    const normalized = new Map((q.query?.normalized ?? []).map((n) => [n.from, n.to]));
+    const missing = new Set((q.query?.pages ?? []).filter((p) => p.missing).map((p) => p.title));
+    for (const t of batch) {
+      let cur = normalized.get(t) ?? t;
+      const seen = new Set();
+      while (redirect.has(cur) && !seen.has(cur)) { seen.add(cur); cur = redirect.get(cur); }
+      resolved.set(t, missing.has(cur) ? null : cur);
+    }
+    await sleep(120);
+  }
+  // Search fallback for stale Eden titles ("Fear Of Flying" -> "Fear of Flying")
+  const alnum = (s) => s.toLowerCase().replace(/\([^)]*\)/g, "").replace(/[^a-z0-9]/g, "");
+  for (const [t, r] of resolved) {
+    if (r) continue;
+    const q = await api(FFXI, { action: "query", list: "search", srsearch: t.replace(/["()]/g, " "), srlimit: "5" });
+    const hits = q.query?.search ?? [];
+    // Containment only counts when lengths are close ("wading beast(s)"), not "moogle" in "give moogle a break"
+    const close = (a, b) => a.includes(b) && b.length >= a.length * 0.7;
+    const hit =
+      hits.find((s) => alnum(s.title) === alnum(t)) ??
+      hits.find((s) => close(alnum(s.title), alnum(t)) || close(alnum(t), alnum(s.title)));
+    if (hit) {
+      console.log(`  ~ resolved by search: "${t}" -> "${hit.title}"`);
+      resolved.set(t, hit.title);
+    } else {
+      console.log(`  ! not found on ffxiclopedia, dropped: ${t}`);
+    }
+    await sleep(150);
+  }
+  return resolved;
+}
+
+/** True disambiguation page: disambig template (not Disambig3 hatnotes) or bare "may refer to". */
+function isDisambig(wt, title, type, group) {
+  if (/\{\{\s*disambig(?:uation)?\s*[|}]/i.test(wt)) return true;
+  if (!/may refer to/i.test(wt)) return false;
+  const p = parsePage(title, wt, type, group);
+  return !p.startNpc && !p.walkthrough.length && !p.reward && !p.items.length;
+}
+
+// ---------------------------------------------------------------------------
+// Main
+// ---------------------------------------------------------------------------
+
+console.log("Enumerating Eden categories...");
+const questTitles = new Map(); // title -> group
+for (const [cat, group] of QUEST_CATS) {
+  const pages = (await categoryPages(EDEN, cat)).slice(0, LIMIT);
+  let added = 0;
+  for (const t of pages) if (!questTitles.has(t)) { questTitles.set(t, group); added++; }
+  console.log(`  ${cat}: ${pages.length} pages (${added} new)`);
+}
+const missionTitles = new Map();
+for (const [cat, group] of MISSION_CATS) {
+  const pages = (await categoryPages(EDEN, cat, cat === "Assault" ? 1 : 0)).slice(0, LIMIT);
+  let added = 0;
+  for (const t of pages) if (!missionTitles.has(t) && !questTitles.has(t)) { missionTitles.set(t, group); added++; }
+  console.log(`  ${cat}: ${pages.length} pages (${added} new)`);
+}
+
+// Missions are closed, era-bound sets, so backfill Eden's gaps from ffxiclopedia
+console.log("Backfilling missions from ffxiclopedia...");
+const missionNorm = new Set([...missionTitles.keys()].map((t) => normTitle(t).toLowerCase()));
+for (const [cat, group] of MISSION_CATS) {
+  const fcat = FFXI_MISSION_CATS.get(cat) ?? cat;
+  const pages = (await categoryPages(FFXI, fcat).catch(() => [])).slice(0, LIMIT);
+  let added = 0;
+  for (const t of pages) {
+    if (POST_TOAU_TITLE_RE.test(t)) continue;
+    const norm = normTitle(t).toLowerCase();
+    if (!missionNorm.has(norm) && !questTitles.has(t)) { missionTitles.set(t, group); missionNorm.add(norm); added++; }
+  }
+  if (added) console.log(`  ${fcat}: +${added} missions missing from Eden`);
+}
+
+// ffxiclopedia-only quests: NOT included (era can't be verified automatically) - just reported.
+console.log("Checking ffxiclopedia for quests missing from Eden (report only)...");
+const extraTitles = new Map();
+for (const [cat, group] of QUEST_CATS) {
+  const pages = await categoryPages(FFXI, cat).catch(() => []);
+  for (const t of pages) {
+    if (!questTitles.has(t) && !missionTitles.has(t) && !POST_TOAU_TITLE_RE.test(t)) extraTitles.set(t, group);
+  }
+}
+console.log(`  ${extraTitles.size} candidate extra quests (will era-filter after fetch)`);
+
+console.log("Resolving titles on ffxiclopedia...");
+const whitelisted = [...extraTitles.keys()].filter((t) => QUEST_WHITELIST.has(t));
+const inputQuests = new Map([...questTitles, ...whitelisted.map((t) => [t, extraTitles.get(t)])]);
+const canonical = await resolveTitles([...new Set([...inputQuests.keys(), ...missionTitles.keys()])]);
+
+// canonical title -> group; titles resolving to the same page collapse into one entry
+function canonicalize(map) {
+  const out = new Map();
+  for (const [t, group] of map) {
+    const c = canonical.get(t);
+    if (!c) { console.log(`  ! not found on ffxiclopedia, dropped: ${t}`); continue; }
+    if (!out.has(c)) out.set(c, group);
+  }
+  return out;
+}
+const questCanon = canonicalize(inputQuests);
+const missionCanon = canonicalize(missionTitles);
+for (const c of questCanon.keys()) missionCanon.delete(c);
+
+console.log("Fetching page content...");
+const ffxi = await fetchPages(FFXI, [...questCanon.keys(), ...missionCanon.keys()]);
+
+// Disambiguation pages: swap for their "(Quest)" / "(Mission)" variant page when one exists
+async function swapDisambigs(canonMap, type, suffix) {
+  const disambigs = [...canonMap.keys()].filter((t) => {
+    const wt = ffxi.pages.get(t);
+    return wt && isDisambig(wt, t, type, canonMap.get(t));
+  });
+  if (!disambigs.length) return;
+  const variants = disambigs.map((t) => `${t.replace(/ \((?:Quest|Mission)\)$/, "")} (${suffix})`);
+  const fetched = await fetchPages(FFXI, variants);
+  for (const [f, to] of fetched.redirects) ffxi.redirects.set(f, to);
+  for (let i = 0; i < disambigs.length; i++) {
+    const wt = fetched.pages.get(variants[i]);
+    if (wt && !isDisambig(wt, variants[i], type, canonMap.get(disambigs[i]))) {
+      console.log(`  ~ disambig swap: "${disambigs[i]}" -> "${variants[i]}"`);
+      canonMap.set(variants[i], canonMap.get(disambigs[i]));
+      ffxi.pages.set(variants[i], wt);
+    } else {
+      console.log(`  ! disambig with no ${suffix} variant, dropped: ${disambigs[i]}`);
+    }
+    canonMap.delete(disambigs[i]);
+  }
+}
+await swapDisambigs(questCanon, "quest", "Quest");
+await swapDisambigs(missionCanon, "mission", "Mission");
+
+// Mission numbers via redirect resolution ("Bastok Mission 2-3" -> "The Emissary")
+console.log("Resolving mission-number redirects...");
+const numberCandidates = [];
+for (const nation of ["Bastok", "San d'Oria", "Windurst"])
+  for (let r = 1; r <= 9; r++) for (let p = 1; p <= 3; p++) numberCandidates.push(`${nation} Mission ${r}-${p}`);
+for (let n = 1; n <= 17; n++) numberCandidates.push(`Zilart Mission ${n}`, `ZM${n}`);
+for (let c = 1; c <= 8; c++) for (let p = 1; p <= 7; p++) numberCandidates.push(`Promathia Mission ${c}-${p}`, `Chains of Promathia Mission ${c}-${p}`);
+const numByPage = new Map(); // pageTitle -> number
+for (let i = 0; i < numberCandidates.length; i += 50) {
+  const q = await api(FFXI, { action: "query", redirects: "1", titles: numberCandidates.slice(i, i + 50).join("|") });
+  for (const r of q.query?.redirects ?? []) {
+    const num = numberFromTitle(r.from);
+    if (num && !numByPage.has(r.to)) numByPage.set(r.to, num);
+  }
+  await sleep(120);
+}
+console.log(`  resolved ${numByPage.size} mission numbers`);
+
+// Parse everything -------------------------------------------------------------------------------
+function buildEntry(title, type, group) {
+  const wt = ffxi.pages.get(title);
+  if (!wt) return null;
+  const entry = parsePage(title, wt, type, group);
+  entry.url = "https://ffxiclopedia.fandom.com/wiki/" + encodeURIComponent(title.replace(/ /g, "_"));
+  if (!entry.number) entry.number = numByPage.get(title) ?? null;
+  return entry;
+}
+
+console.log("Parsing...");
+const quests = [];
+for (const [title, group] of questCanon) {
+  const e = buildEntry(title, "quest", group);
+  if (e) quests.push(e);
+}
+const missions = [];
+for (const [title, group] of missionCanon) {
+  const e = buildEntry(title, "mission", group);
+  if (e) missions.push(e);
+}
+
+// Dedupe same-name entries (e.g. "Lamia No.13" monster stub vs "Lamia No.13 (Mission)")
+function dedupe(arr) {
+  const richness = (x) => x.walkthrough.length * 2 + (x.startNpc ? 1 : 0) + x.items.length + (x.reward ? 1 : 0);
+  const best = new Map();
+  for (const e of arr) {
+    const k = `${e.group}|${e.name.toLowerCase()}`;
+    if (!best.has(k) || richness(e) > richness(best.get(k))) best.set(k, e);
+  }
+  return arr.filter((e) => {
+    const keep = best.get(`${e.group}|${e.name.toLowerCase()}`) === e;
+    if (!keep) console.log(`  dropping duplicate: ${e.pageTitle}`);
+    return keep;
+  });
+}
+const dedupedQuests = dedupe(quests);
+const dedupedMissions = dedupe(missions);
+quests.length = 0; quests.push(...dedupedQuests);
+missions.length = 0; missions.push(...dedupedMissions);
+
+console.log(`\nffxiclopedia-only quests NOT included (add to QUEST_WHITELIST if era-correct):`);
+for (const t of [...extraTitles.keys()].filter((t) => !QUEST_WHITELIST.has(t)).sort()) console.log(`  ? [${extraTitles.get(t)}] ${t}`);
+
+// Backfill missing start-NPC coordinates from the NPCs' own pages ---------------------------------
+function npcLocation(wt) {
+  // Only trust the NPC infobox's location param; avoid scraping coords from unrelated page text
+  const line = wt.match(/\|\s*location\s*=\s*(.*)/i);
+  if (!line) return null;
+  const tmpl = line[1].match(/\{\{Location\|([^|}]+)\|([A-P]-\d{1,2})/i);
+  if (tmpl) return { zone: plain(tmpl[1]), coord: tmpl[2] };
+  const coord = line[1].match(/\(?([A-P]-\d{1,2})\)?/)?.[1] ?? null;
+  const zone = links(line[1])[0]?.label ?? null;
+  return zone || coord ? { zone, coord } : null;
+}
+
+console.log("\nBackfilling start-NPC coordinates from NPC pages...");
+const everything = [...quests, ...missions];
+const needLoc = everything.filter((e) => e.startNpc && (!e.startCoord || !e.startZone));
+const npcNames = [...new Set(needLoc.map((e) => e.startNpc))].filter((n) => !/gate guard|^any\b/i.test(n));
+const npcPages = await fetchPages(FFXI, npcNames);
+let filled = 0;
+for (const e of needLoc) {
+  const wt = npcPages.pages.get(e.startNpc);
+  if (!wt) continue;
+  const loc = npcLocation(wt);
+  if (!loc) continue;
+  // Don't apply a coord from a different zone than the quest states
+  if (e.startZone && loc.zone && e.startZone.toLowerCase() !== loc.zone.toLowerCase()) continue;
+  if (!e.startZone && loc.zone) e.startZone = loc.zone;
+  if (!e.startCoord && loc.coord) { e.startCoord = loc.coord; filled++; }
+  if (e.startCoord && !e.coords.includes(e.startCoord)) e.coords.unshift(e.startCoord);
+}
+console.log(`  filled ${filled} missing start coordinates (of ${needLoc.length} candidates)`);
+
+// Resolve chain links to ids ---------------------------------------------------------------------
+const byName = new Map();
+const all = [...quests, ...missions];
+for (const e of all) {
+  byName.set(e.pageTitle.toLowerCase(), e.id);
+  byName.set(e.name.toLowerCase(), e.id);
+}
+// Also map redirect titles (e.g. "Bastok Mission 2-2") to target page ids
+for (const [from, to] of ffxi.redirects) {
+  const id = byName.get(to.toLowerCase());
+  if (id && !byName.has(from.toLowerCase())) byName.set(from.toLowerCase(), id);
+}
+let linked = 0, dangling = 0;
+for (const e of all) {
+  for (const arr of [e.previous, e.next]) {
+    for (const c of arr) {
+      c.id = byName.get(c.target?.toLowerCase() ?? "") ?? byName.get(c.name.toLowerCase()) ?? null;
+      delete c.target;
+      c.id ? linked++ : dangling++;
+    }
+  }
+}
+console.log(`\nChain links: ${linked} resolved, ${dangling} unresolved (kept as names)`);
+
+// Write -------------------------------------------------------------------------------------------
+quests.sort((a, b) => a.group.localeCompare(b.group) || a.name.localeCompare(b.name));
+const numKey = (n) => (n ? n.split("-").map((x) => x.padStart(3, "0")).join(".") : "999");
+missions.sort((a, b) => a.group.localeCompare(b.group) || numKey(a.number).localeCompare(numKey(b.number)) || a.name.localeCompare(b.name));
+
+const outPath = path.join(import.meta.dirname, "..", "src", "data", "quests.json");
+await mkdir(path.dirname(outPath), { recursive: true });
+await writeFile(outPath, JSON.stringify({
+  generatedAt: new Date().toISOString().slice(0, 10),
+  quests,
+  missions,
+}, null, 1));
+
+const stats = (arr) => `${arr.length} total | npc:${arr.filter((e) => e.startNpc).length} | coords:${arr.filter((e) => e.startCoord).length} | walkthrough:${arr.filter((e) => e.walkthrough.length).length} | fame:${arr.filter((e) => e.fame != null).length}`;
+console.log(`\nWrote ${outPath}`);
+console.log(`Quests:   ${stats(quests)}`);
+console.log(`Missions: ${stats(missions)}`);
+for (const [g, arr] of Object.entries(Object.groupBy(missions, (m) => m.group)))
+  console.log(`  ${g}: ${arr.length} missions, ${arr.filter((m) => m.number).length} numbered`);
