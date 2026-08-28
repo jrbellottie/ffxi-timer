@@ -1,0 +1,4399 @@
+{
+ "maps": [
+  {
+   "id": "aht-urhgan-whitegate-1",
+   "zone": "Aht Urhgan Whitegate",
+   "mapNo": 1,
+   "name": "Aht Urhgan Whitegate",
+   "file": "maps/aht-urhgan-whitegate-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "al-zahbi-1",
+   "zone": "Al Zahbi",
+   "mapNo": 1,
+   "name": "Al Zahbi",
+   "file": "maps/al-zahbi-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "altar-room-1",
+   "zone": "Altar Room",
+   "mapNo": 1,
+   "name": "Altar Room",
+   "file": "maps/altar-room-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "alzadaal-undersea-ruins-1",
+   "zone": "Alzadaal Undersea Ruins",
+   "mapNo": 1,
+   "name": "Alzadaal Undersea Ruins - Map 1",
+   "file": "maps/alzadaal-undersea-ruins-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "alzadaal-undersea-ruins-2",
+   "zone": "Alzadaal Undersea Ruins",
+   "mapNo": 2,
+   "name": "Alzadaal Undersea Ruins - Map 2",
+   "file": "maps/alzadaal-undersea-ruins-2.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "alzadaal-undersea-ruins-3",
+   "zone": "Alzadaal Undersea Ruins",
+   "mapNo": 3,
+   "name": "Alzadaal Undersea Ruins - Map 3",
+   "file": "maps/alzadaal-undersea-ruins-3.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "alzadaal-undersea-ruins-4",
+   "zone": "Alzadaal Undersea Ruins",
+   "mapNo": 4,
+   "name": "Alzadaal Undersea Ruins - Map 4",
+   "file": "maps/alzadaal-undersea-ruins-4.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "alzadaal-undersea-ruins-5",
+   "zone": "Alzadaal Undersea Ruins",
+   "mapNo": 5,
+   "name": "Alzadaal Undersea Ruins - Map 5",
+   "file": "maps/alzadaal-undersea-ruins-5.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "alzadaal-undersea-ruins-6",
+   "zone": "Alzadaal Undersea Ruins",
+   "mapNo": 6,
+   "name": "Alzadaal Undersea Ruins - Map 6",
+   "file": "maps/alzadaal-undersea-ruins-6.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "alzadaal-undersea-ruins-7",
+   "zone": "Alzadaal Undersea Ruins",
+   "mapNo": 7,
+   "name": "Alzadaal Undersea Ruins - Map 7",
+   "file": "maps/alzadaal-undersea-ruins-7.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "arrapago-reef-1",
+   "zone": "Arrapago Reef",
+   "mapNo": 1,
+   "name": "Arrapago Reef - Map 1",
+   "file": "maps/arrapago-reef-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "arrapago-reef-2",
+   "zone": "Arrapago Reef",
+   "mapNo": 2,
+   "name": "Arrapago Reef - Map 2",
+   "file": "maps/arrapago-reef-2.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "arrapago-reef-3",
+   "zone": "Arrapago Reef",
+   "mapNo": 3,
+   "name": "Arrapago Reef - Map 3",
+   "file": "maps/arrapago-reef-3.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "arrapago-reef-4",
+   "zone": "Arrapago Reef",
+   "mapNo": 4,
+   "name": "Arrapago Reef - Map 4",
+   "file": "maps/arrapago-reef-4.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "arrapago-reef-6",
+   "zone": "Arrapago Reef",
+   "mapNo": 6,
+   "name": "Arrapago Reef - Map 6",
+   "file": "maps/arrapago-reef-6.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "arrapago-reef-7",
+   "zone": "Arrapago Reef",
+   "mapNo": 7,
+   "name": "Arrapago Reef - Map 7",
+   "file": "maps/arrapago-reef-7.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "arrapago-reef-8",
+   "zone": "Arrapago Reef",
+   "mapNo": 8,
+   "name": "Arrapago Reef - Map 8",
+   "file": "maps/arrapago-reef-8.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "arrapago-reef-9",
+   "zone": "Arrapago Reef",
+   "mapNo": 9,
+   "name": "Arrapago Reef - Map 9",
+   "file": "maps/arrapago-reef-9.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "arrapago-reef-10",
+   "zone": "Arrapago Reef",
+   "mapNo": 10,
+   "name": "Arrapago Reef - Map 10",
+   "file": "maps/arrapago-reef-10.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "arrapago-reef-11",
+   "zone": "Arrapago Reef",
+   "mapNo": 11,
+   "name": "Arrapago Reef - Map 11",
+   "file": "maps/arrapago-reef-11.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "attohwa-chasm-1",
+   "zone": "Attohwa Chasm",
+   "mapNo": 1,
+   "name": "Attohwa Chasm",
+   "file": "maps/attohwa-chasm-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "aydeewa-subterrane-1",
+   "zone": "Aydeewa Subterrane",
+   "mapNo": 1,
+   "name": "Aydeewa Subterrane - Map 1",
+   "file": "maps/aydeewa-subterrane-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "aydeewa-subterrane-2",
+   "zone": "Aydeewa Subterrane",
+   "mapNo": 2,
+   "name": "Aydeewa Subterrane - Map 2",
+   "file": "maps/aydeewa-subterrane-2.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "aydeewa-subterrane-3",
+   "zone": "Aydeewa Subterrane",
+   "mapNo": 3,
+   "name": "Aydeewa Subterrane - Map 3",
+   "file": "maps/aydeewa-subterrane-3.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "aydeewa-subterrane-4",
+   "zone": "Aydeewa Subterrane",
+   "mapNo": 4,
+   "name": "Aydeewa Subterrane - Map 4",
+   "file": "maps/aydeewa-subterrane-4.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "aydeewa-subterrane-5",
+   "zone": "Aydeewa Subterrane",
+   "mapNo": 5,
+   "name": "Aydeewa Subterrane - Map 5",
+   "file": "maps/aydeewa-subterrane-5.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "aydeewa-subterrane-6",
+   "zone": "Aydeewa Subterrane",
+   "mapNo": 6,
+   "name": "Aydeewa Subterrane - Map 6",
+   "file": "maps/aydeewa-subterrane-6.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "aydeewa-subterrane-7",
+   "zone": "Aydeewa Subterrane",
+   "mapNo": 7,
+   "name": "Aydeewa Subterrane - Map 7",
+   "file": "maps/aydeewa-subterrane-7.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "bastok-markets-1",
+   "zone": "Bastok Markets",
+   "mapNo": 1,
+   "name": "Bastok Markets",
+   "file": "maps/bastok-markets-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "bastok-mines-1",
+   "zone": "Bastok Mines",
+   "mapNo": 1,
+   "name": "Bastok Mines",
+   "file": "maps/bastok-mines-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "batallia-downs-1",
+   "zone": "Batallia Downs",
+   "mapNo": 1,
+   "name": "Batallia Downs",
+   "file": "maps/batallia-downs-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "beadeaux-1",
+   "zone": "Beadeaux",
+   "mapNo": 1,
+   "name": "Beadeaux - Map 1",
+   "file": "maps/beadeaux-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "beadeaux-2",
+   "zone": "Beadeaux",
+   "mapNo": 2,
+   "name": "Beadeaux - Map 2",
+   "file": "maps/beadeaux-2.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "beaucedine-glacier-1",
+   "zone": "Beaucedine Glacier",
+   "mapNo": 1,
+   "name": "Beaucedine Glacier",
+   "file": "maps/beaucedine-glacier-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03242
+   ]
+  },
+  {
+   "id": "behemoths-dominion-1",
+   "zone": "Behemoth's Dominion",
+   "mapNo": 1,
+   "name": "Behemoth's Dominion",
+   "file": "maps/behemoths-dominion-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "bhaflau-thickets-1",
+   "zone": "Bhaflau Thickets",
+   "mapNo": 1,
+   "name": "Bhaflau Thickets - Map 1",
+   "file": "maps/bhaflau-thickets-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "bhaflau-thickets-2",
+   "zone": "Bhaflau Thickets",
+   "mapNo": 2,
+   "name": "Bhaflau Thickets - Map 2",
+   "file": "maps/bhaflau-thickets-2.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "bibiki-bay-1",
+   "zone": "Bibiki Bay",
+   "mapNo": 1,
+   "name": "Bibiki Bay",
+   "file": "maps/bibiki-bay-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "bostaunieux-oubliette-1",
+   "zone": "Bostaunieux Oubliette",
+   "mapNo": 1,
+   "name": "Bostaunieux Oubliette - Map 1",
+   "file": "maps/bostaunieux-oubliette-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "bostaunieux-oubliette-2",
+   "zone": "Bostaunieux Oubliette",
+   "mapNo": 2,
+   "name": "Bostaunieux Oubliette - Map 2",
+   "file": "maps/bostaunieux-oubliette-2.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "bostaunieux-oubliette-3",
+   "zone": "Bostaunieux Oubliette",
+   "mapNo": 3,
+   "name": "Bostaunieux Oubliette - Map 3",
+   "file": "maps/bostaunieux-oubliette-3.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "buburimu-peninsula-1",
+   "zone": "Buburimu Peninsula",
+   "mapNo": 1,
+   "name": "Buburimu Peninsula",
+   "file": "maps/buburimu-peninsula-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "caedarva-mire-1",
+   "zone": "Caedarva Mire",
+   "mapNo": 1,
+   "name": "Caedarva Mire - Map 1",
+   "file": "maps/caedarva-mire-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "caedarva-mire-2",
+   "zone": "Caedarva Mire",
+   "mapNo": 2,
+   "name": "Caedarva Mire - Map 2",
+   "file": "maps/caedarva-mire-2.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "caedarva-mire-3",
+   "zone": "Caedarva Mire",
+   "mapNo": 3,
+   "name": "Caedarva Mire - Map 3",
+   "file": "maps/caedarva-mire-3.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "caedarva-mire-4",
+   "zone": "Caedarva Mire",
+   "mapNo": 4,
+   "name": "Caedarva Mire - Map 4",
+   "file": "maps/caedarva-mire-4.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "cape-teriggan-1",
+   "zone": "Cape Teriggan",
+   "mapNo": 1,
+   "name": "Cape Teriggan",
+   "file": "maps/cape-teriggan-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "carpenters-landing-1",
+   "zone": "Carpenters' Landing",
+   "mapNo": 1,
+   "name": "Carpenters' Landing - Map 1",
+   "file": "maps/carpenters-landing-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "carpenters-landing-2",
+   "zone": "Carpenters' Landing",
+   "mapNo": 2,
+   "name": "Carpenters' Landing - Map 2",
+   "file": "maps/carpenters-landing-2.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "castle-oztroja-1",
+   "zone": "Castle Oztroja",
+   "mapNo": 1,
+   "name": "Castle Oztroja - Map 1",
+   "file": "maps/castle-oztroja-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "castle-oztroja-2",
+   "zone": "Castle Oztroja",
+   "mapNo": 2,
+   "name": "Castle Oztroja - Map 2",
+   "file": "maps/castle-oztroja-2.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "castle-oztroja-3",
+   "zone": "Castle Oztroja",
+   "mapNo": 3,
+   "name": "Castle Oztroja - Map 3",
+   "file": "maps/castle-oztroja-3.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "castle-oztroja-4",
+   "zone": "Castle Oztroja",
+   "mapNo": 4,
+   "name": "Castle Oztroja - Map 4",
+   "file": "maps/castle-oztroja-4.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "castle-oztroja-5",
+   "zone": "Castle Oztroja",
+   "mapNo": 5,
+   "name": "Castle Oztroja - Map 5",
+   "file": "maps/castle-oztroja-5.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "castle-oztroja-6",
+   "zone": "Castle Oztroja",
+   "mapNo": 6,
+   "name": "Castle Oztroja - Map 6",
+   "file": "maps/castle-oztroja-6.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "castle-oztroja-7",
+   "zone": "Castle Oztroja",
+   "mapNo": 7,
+   "name": "Castle Oztroja - Map 7",
+   "file": "maps/castle-oztroja-7.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "castle-zvahl-baileys-1",
+   "zone": "Castle Zvahl Baileys",
+   "mapNo": 1,
+   "name": "Castle Zvahl Baileys - Map 1",
+   "file": "maps/castle-zvahl-baileys-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "castle-zvahl-baileys-2",
+   "zone": "Castle Zvahl Baileys",
+   "mapNo": 2,
+   "name": "Castle Zvahl Baileys - Map 2",
+   "file": "maps/castle-zvahl-baileys-2.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "castle-zvahl-baileys-3",
+   "zone": "Castle Zvahl Baileys",
+   "mapNo": 3,
+   "name": "Castle Zvahl Baileys - Map 3",
+   "file": "maps/castle-zvahl-baileys-3.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "castle-zvahl-baileys-4",
+   "zone": "Castle Zvahl Baileys",
+   "mapNo": 4,
+   "name": "Castle Zvahl Baileys - Map 4",
+   "file": "maps/castle-zvahl-baileys-4.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "castle-zvahl-keep-1",
+   "zone": "Castle Zvahl Keep",
+   "mapNo": 1,
+   "name": "Castle Zvahl Keep - Map 1",
+   "file": "maps/castle-zvahl-keep-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "castle-zvahl-keep-2",
+   "zone": "Castle Zvahl Keep",
+   "mapNo": 2,
+   "name": "Castle Zvahl Keep - Map 2",
+   "file": "maps/castle-zvahl-keep-2.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "castle-zvahl-keep-3",
+   "zone": "Castle Zvahl Keep",
+   "mapNo": 3,
+   "name": "Castle Zvahl Keep - Map 3",
+   "file": "maps/castle-zvahl-keep-3.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "castle-zvahl-keep-4",
+   "zone": "Castle Zvahl Keep",
+   "mapNo": 4,
+   "name": "Castle Zvahl Keep - Map 4",
+   "file": "maps/castle-zvahl-keep-4.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "chateau-doraguille-1",
+   "zone": "Chateau d'Oraguille",
+   "mapNo": 1,
+   "name": "Chateau d'Oraguille",
+   "file": "maps/chateau-doraguille-1.png",
+   "cell": [
+    0.06294,
+    0.06284
+   ],
+   "origin": [
+    0.03266,
+    0.02688
+   ]
+  },
+  {
+   "id": "crawlers-nest-1",
+   "zone": "Crawlers' Nest",
+   "mapNo": 1,
+   "name": "Crawlers' Nest - Map 1",
+   "file": "maps/crawlers-nest-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "crawlers-nest-2",
+   "zone": "Crawlers' Nest",
+   "mapNo": 2,
+   "name": "Crawlers' Nest - Map 2",
+   "file": "maps/crawlers-nest-2.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "crawlers-nest-3",
+   "zone": "Crawlers' Nest",
+   "mapNo": 3,
+   "name": "Crawlers' Nest - Map 3",
+   "file": "maps/crawlers-nest-3.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "dangruf-wadi-1",
+   "zone": "Dangruf Wadi",
+   "mapNo": 1,
+   "name": "Dangruf Wadi",
+   "file": "maps/dangruf-wadi-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "davoi-1",
+   "zone": "Davoi",
+   "mapNo": 1,
+   "name": "Davoi",
+   "file": "maps/davoi-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "den-of-rancor-1",
+   "zone": "Den of Rancor",
+   "mapNo": 1,
+   "name": "Den of Rancor - Map 1",
+   "file": "maps/den-of-rancor-1.png",
+   "cell": [
+    0.06261,
+    0.06238
+   ],
+   "origin": [
+    0.03131,
+    0.03223
+   ]
+  },
+  {
+   "id": "den-of-rancor-2",
+   "zone": "Den of Rancor",
+   "mapNo": 2,
+   "name": "Den of Rancor - Map 2",
+   "file": "maps/den-of-rancor-2.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "den-of-rancor-3",
+   "zone": "Den of Rancor",
+   "mapNo": 3,
+   "name": "Den of Rancor - Map 3",
+   "file": "maps/den-of-rancor-3.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "den-of-rancor-4",
+   "zone": "Den of Rancor",
+   "mapNo": 4,
+   "name": "Den of Rancor - Map 4",
+   "file": "maps/den-of-rancor-4.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "den-of-rancor-5",
+   "zone": "Den of Rancor",
+   "mapNo": 5,
+   "name": "Den of Rancor - Map 5",
+   "file": "maps/den-of-rancor-5.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "den-of-rancor-6",
+   "zone": "Den of Rancor",
+   "mapNo": 6,
+   "name": "Den of Rancor - Map 6",
+   "file": "maps/den-of-rancor-6.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "den-of-rancor-7",
+   "zone": "Den of Rancor",
+   "mapNo": 7,
+   "name": "Den of Rancor - Map 7",
+   "file": "maps/den-of-rancor-7.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "den-of-rancor-8",
+   "zone": "Den of Rancor",
+   "mapNo": 8,
+   "name": "Den of Rancor - Map 8",
+   "file": "maps/den-of-rancor-8.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "den-of-rancor-9",
+   "zone": "Den of Rancor",
+   "mapNo": 9,
+   "name": "Den of Rancor - Map 9",
+   "file": "maps/den-of-rancor-9.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "east-ronfaure-1",
+   "zone": "East Ronfaure",
+   "mapNo": 1,
+   "name": "East Ronfaure",
+   "file": "maps/east-ronfaure-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "east-sarutabaruta-1",
+   "zone": "East Sarutabaruta",
+   "mapNo": 1,
+   "name": "East Sarutabaruta",
+   "file": "maps/east-sarutabaruta-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "eastern-altepa-desert-1",
+   "zone": "Eastern Altepa Desert",
+   "mapNo": 1,
+   "name": "Eastern Altepa Desert",
+   "file": "maps/eastern-altepa-desert-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "feiyin-1",
+   "zone": "Fei'Yin",
+   "mapNo": 1,
+   "name": "Fei'Yin - Map 1",
+   "file": "maps/feiyin-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "feiyin-2",
+   "zone": "Fei'Yin",
+   "mapNo": 2,
+   "name": "Fei'Yin - Map 2",
+   "file": "maps/feiyin-2.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "fort-ghelsba-1",
+   "zone": "Fort Ghelsba",
+   "mapNo": 1,
+   "name": "Fort Ghelsba",
+   "file": "maps/fort-ghelsba-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "garlaige-citadel-1",
+   "zone": "Garlaige Citadel",
+   "mapNo": 1,
+   "name": "Garlaige Citadel - Map 1",
+   "file": "maps/garlaige-citadel-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "garlaige-citadel-2",
+   "zone": "Garlaige Citadel",
+   "mapNo": 2,
+   "name": "Garlaige Citadel - Map 2",
+   "file": "maps/garlaige-citadel-2.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "ghelsba-outpost-1",
+   "zone": "Ghelsba Outpost",
+   "mapNo": 1,
+   "name": "Ghelsba Outpost - Map 1",
+   "file": "maps/ghelsba-outpost-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "ghelsba-outpost-2",
+   "zone": "Ghelsba Outpost",
+   "mapNo": 2,
+   "name": "Ghelsba Outpost - Map 2",
+   "file": "maps/ghelsba-outpost-2.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "giddeus-1",
+   "zone": "Giddeus",
+   "mapNo": 1,
+   "name": "Giddeus - Map 1",
+   "file": "maps/giddeus-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "giddeus-2",
+   "zone": "Giddeus",
+   "mapNo": 2,
+   "name": "Giddeus - Map 2",
+   "file": "maps/giddeus-2.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "grand-palace-of-huxzoi-1",
+   "zone": "Grand Palace of Hu'Xzoi",
+   "mapNo": 1,
+   "name": "Grand Palace of Hu'Xzoi - Map 1",
+   "file": "maps/grand-palace-of-huxzoi-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "grand-palace-of-huxzoi-2",
+   "zone": "Grand Palace of Hu'Xzoi",
+   "mapNo": 2,
+   "name": "Grand Palace of Hu'Xzoi - Map 2",
+   "file": "maps/grand-palace-of-huxzoi-2.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "grand-palace-of-huxzoi-3",
+   "zone": "Grand Palace of Hu'Xzoi",
+   "mapNo": 3,
+   "name": "Grand Palace of Hu'Xzoi - Map 3",
+   "file": "maps/grand-palace-of-huxzoi-3.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "gusgen-mines-1",
+   "zone": "Gusgen Mines",
+   "mapNo": 1,
+   "name": "Gusgen Mines - Map 1",
+   "file": "maps/gusgen-mines-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "gusgen-mines-2",
+   "zone": "Gusgen Mines",
+   "mapNo": 2,
+   "name": "Gusgen Mines - Map 2",
+   "file": "maps/gusgen-mines-2.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "gusgen-mines-3",
+   "zone": "Gusgen Mines",
+   "mapNo": 3,
+   "name": "Gusgen Mines - Map 3",
+   "file": "maps/gusgen-mines-3.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "gusgen-mines-4",
+   "zone": "Gusgen Mines",
+   "mapNo": 4,
+   "name": "Gusgen Mines - Map 4",
+   "file": "maps/gusgen-mines-4.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "gustav-tunnel-1",
+   "zone": "Gustav Tunnel",
+   "mapNo": 1,
+   "name": "Gustav Tunnel - Map 1",
+   "file": "maps/gustav-tunnel-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "gustav-tunnel-2",
+   "zone": "Gustav Tunnel",
+   "mapNo": 2,
+   "name": "Gustav Tunnel - Map 2",
+   "file": "maps/gustav-tunnel-2.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "halvung-3",
+   "zone": "Halvung",
+   "mapNo": 3,
+   "name": "Halvung - Map 3",
+   "file": "maps/halvung-3.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "halvung-4",
+   "zone": "Halvung",
+   "mapNo": 4,
+   "name": "Halvung - Map 4",
+   "file": "maps/halvung-4.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "halvung-12",
+   "zone": "Halvung",
+   "mapNo": 12,
+   "name": "Halvung - Map 12",
+   "file": "maps/halvung-12.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "halvung-23",
+   "zone": "Halvung",
+   "mapNo": 23,
+   "name": "Halvung - Map 23",
+   "file": "maps/halvung-23.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "heavens-tower-1",
+   "zone": "Heavens Tower",
+   "mapNo": 1,
+   "name": "Heavens Tower - Map 1",
+   "file": "maps/heavens-tower-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "heavens-tower-2",
+   "zone": "Heavens Tower",
+   "mapNo": 2,
+   "name": "Heavens Tower - Map 2",
+   "file": "maps/heavens-tower-2.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "heavens-tower-3",
+   "zone": "Heavens Tower",
+   "mapNo": 3,
+   "name": "Heavens Tower - Map 3",
+   "file": "maps/heavens-tower-3.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "heavens-tower-4",
+   "zone": "Heavens Tower",
+   "mapNo": 4,
+   "name": "Heavens Tower - Map 4",
+   "file": "maps/heavens-tower-4.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "ifrits-cauldron-1",
+   "zone": "Ifrit's Cauldron",
+   "mapNo": 1,
+   "name": "Ifrit's Cauldron - Map 1",
+   "file": "maps/ifrits-cauldron-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "ifrits-cauldron-2",
+   "zone": "Ifrit's Cauldron",
+   "mapNo": 2,
+   "name": "Ifrit's Cauldron - Map 2",
+   "file": "maps/ifrits-cauldron-2.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "ifrits-cauldron-3",
+   "zone": "Ifrit's Cauldron",
+   "mapNo": 3,
+   "name": "Ifrit's Cauldron - Map 3",
+   "file": "maps/ifrits-cauldron-3.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "ifrits-cauldron-4",
+   "zone": "Ifrit's Cauldron",
+   "mapNo": 4,
+   "name": "Ifrit's Cauldron - Map 4",
+   "file": "maps/ifrits-cauldron-4.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "ifrits-cauldron-5",
+   "zone": "Ifrit's Cauldron",
+   "mapNo": 5,
+   "name": "Ifrit's Cauldron - Map 5",
+   "file": "maps/ifrits-cauldron-5.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "ifrits-cauldron-6",
+   "zone": "Ifrit's Cauldron",
+   "mapNo": 6,
+   "name": "Ifrit's Cauldron - Map 6",
+   "file": "maps/ifrits-cauldron-6.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "ifrits-cauldron-7",
+   "zone": "Ifrit's Cauldron",
+   "mapNo": 7,
+   "name": "Ifrit's Cauldron - Map 7",
+   "file": "maps/ifrits-cauldron-7.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "ifrits-cauldron-8",
+   "zone": "Ifrit's Cauldron",
+   "mapNo": 8,
+   "name": "Ifrit's Cauldron - Map 8",
+   "file": "maps/ifrits-cauldron-8.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "inner-horutoto-ruins-1",
+   "zone": "Inner Horutoto Ruins",
+   "mapNo": 1,
+   "name": "Inner Horutoto Ruins - Map 1",
+   "file": "maps/inner-horutoto-ruins-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "inner-horutoto-ruins-2",
+   "zone": "Inner Horutoto Ruins",
+   "mapNo": 2,
+   "name": "Inner Horutoto Ruins - Map 2",
+   "file": "maps/inner-horutoto-ruins-2.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "inner-horutoto-ruins-3",
+   "zone": "Inner Horutoto Ruins",
+   "mapNo": 3,
+   "name": "Inner Horutoto Ruins - Map 3",
+   "file": "maps/inner-horutoto-ruins-3.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "inner-horutoto-ruins-4",
+   "zone": "Inner Horutoto Ruins",
+   "mapNo": 4,
+   "name": "Inner Horutoto Ruins - Map 4",
+   "file": "maps/inner-horutoto-ruins-4.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "jugner-forest-1",
+   "zone": "Jugner Forest",
+   "mapNo": 1,
+   "name": "Jugner Forest",
+   "file": "maps/jugner-forest-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "kazham-1",
+   "zone": "Kazham",
+   "mapNo": 1,
+   "name": "Kazham",
+   "file": "maps/kazham-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "king-ranperres-tomb-1",
+   "zone": "King Ranperre's Tomb",
+   "mapNo": 1,
+   "name": "King Ranperre's Tomb - Map 1",
+   "file": "maps/king-ranperres-tomb-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "king-ranperres-tomb-2",
+   "zone": "King Ranperre's Tomb",
+   "mapNo": 2,
+   "name": "King Ranperre's Tomb - Map 2",
+   "file": "maps/king-ranperres-tomb-2.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "konschtat-highlands-1",
+   "zone": "Konschtat Highlands",
+   "mapNo": 1,
+   "name": "Konschtat Highlands",
+   "file": "maps/konschtat-highlands-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "korroloka-tunnel-1",
+   "zone": "Korroloka Tunnel",
+   "mapNo": 1,
+   "name": "Korroloka Tunnel - Map 1",
+   "file": "maps/korroloka-tunnel-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "korroloka-tunnel-2",
+   "zone": "Korroloka Tunnel",
+   "mapNo": 2,
+   "name": "Korroloka Tunnel - Map 2",
+   "file": "maps/korroloka-tunnel-2.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "korroloka-tunnel-3",
+   "zone": "Korroloka Tunnel",
+   "mapNo": 3,
+   "name": "Korroloka Tunnel - Map 3",
+   "file": "maps/korroloka-tunnel-3.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "korroloka-tunnel-4",
+   "zone": "Korroloka Tunnel",
+   "mapNo": 4,
+   "name": "Korroloka Tunnel - Map 4",
+   "file": "maps/korroloka-tunnel-4.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "korroloka-tunnel-5",
+   "zone": "Korroloka Tunnel",
+   "mapNo": 5,
+   "name": "Korroloka Tunnel - Map 5",
+   "file": "maps/korroloka-tunnel-5.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "kuftal-tunnel-1",
+   "zone": "Kuftal Tunnel",
+   "mapNo": 1,
+   "name": "Kuftal Tunnel - Map 1",
+   "file": "maps/kuftal-tunnel-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "kuftal-tunnel-2",
+   "zone": "Kuftal Tunnel",
+   "mapNo": 2,
+   "name": "Kuftal Tunnel - Map 2",
+   "file": "maps/kuftal-tunnel-2.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "kuftal-tunnel-3",
+   "zone": "Kuftal Tunnel",
+   "mapNo": 3,
+   "name": "Kuftal Tunnel - Map 3",
+   "file": "maps/kuftal-tunnel-3.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "kuftal-tunnel-4",
+   "zone": "Kuftal Tunnel",
+   "mapNo": 4,
+   "name": "Kuftal Tunnel - Map 4",
+   "file": "maps/kuftal-tunnel-4.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "la-theine-plateau-1",
+   "zone": "La Theine Plateau",
+   "mapNo": 1,
+   "name": "La Theine Plateau",
+   "file": "maps/la-theine-plateau-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "lower-delkfutts-tower-0",
+   "zone": "Lower Delkfutt's Tower",
+   "mapNo": 0,
+   "name": "Lower Delkfutt's Tower - Map 0",
+   "file": "maps/lower-delkfutts-tower-0.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "lower-delkfutts-tower-1",
+   "zone": "Lower Delkfutt's Tower",
+   "mapNo": 1,
+   "name": "Lower Delkfutt's Tower - Map 1",
+   "file": "maps/lower-delkfutts-tower-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "lower-delkfutts-tower-2",
+   "zone": "Lower Delkfutt's Tower",
+   "mapNo": 2,
+   "name": "Lower Delkfutt's Tower - Map 2",
+   "file": "maps/lower-delkfutts-tower-2.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "lower-delkfutts-tower-3",
+   "zone": "Lower Delkfutt's Tower",
+   "mapNo": 3,
+   "name": "Lower Delkfutt's Tower - Map 3",
+   "file": "maps/lower-delkfutts-tower-3.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "lower-jeuno-1",
+   "zone": "Lower Jeuno",
+   "mapNo": 1,
+   "name": "Lower Jeuno",
+   "file": "maps/lower-jeuno-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "lufaise-meadows-1",
+   "zone": "Lufaise Meadows",
+   "mapNo": 1,
+   "name": "Lufaise Meadows",
+   "file": "maps/lufaise-meadows-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "mamook-2",
+   "zone": "Mamook",
+   "mapNo": 2,
+   "name": "Mamook - Map 2",
+   "file": "maps/mamook-2.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "mamook-3",
+   "zone": "Mamook",
+   "mapNo": 3,
+   "name": "Mamook - Map 3",
+   "file": "maps/mamook-3.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "mamook-12",
+   "zone": "Mamook",
+   "mapNo": 12,
+   "name": "Mamook - Map 12",
+   "file": "maps/mamook-12.png",
+   "cell": [
+    0.0625,
+    0.0625
+   ],
+   "origin": [
+    0.03021,
+    0.03021
+   ]
+  },
+  {
+   "id": "mamook-32",
+   "zone": "Mamook",
+   "mapNo": 32,
+   "name": "Mamook - Map 32",
+   "file": "maps/mamook-32.png",
+   "cell": [
+    0.0625,
+    0.0625
+   ],
+   "origin": [
+    0.03021,
+    0.03021
+   ]
+  },
+  {
+   "id": "maze-of-shakhrami-1",
+   "zone": "Maze of Shakhrami",
+   "mapNo": 1,
+   "name": "Maze of Shakhrami - Map 1",
+   "file": "maps/maze-of-shakhrami-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "maze-of-shakhrami-2",
+   "zone": "Maze of Shakhrami",
+   "mapNo": 2,
+   "name": "Maze of Shakhrami - Map 2",
+   "file": "maps/maze-of-shakhrami-2.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "meriphataud-mountains-1",
+   "zone": "Meriphataud Mountains",
+   "mapNo": 1,
+   "name": "Meriphataud Mountains",
+   "file": "maps/meriphataud-mountains-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "metalworks-1",
+   "zone": "Metalworks",
+   "mapNo": 1,
+   "name": "Metalworks",
+   "file": "maps/metalworks-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "mhaura-1",
+   "zone": "Mhaura",
+   "mapNo": 1,
+   "name": "Mhaura",
+   "file": "maps/mhaura-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "middle-delkfutts-tower-4",
+   "zone": "Middle Delkfutt's Tower",
+   "mapNo": 4,
+   "name": "Middle Delkfutt's Tower - Map 4",
+   "file": "maps/middle-delkfutts-tower-4.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "middle-delkfutts-tower-5",
+   "zone": "Middle Delkfutt's Tower",
+   "mapNo": 5,
+   "name": "Middle Delkfutt's Tower - Map 5",
+   "file": "maps/middle-delkfutts-tower-5.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "middle-delkfutts-tower-6",
+   "zone": "Middle Delkfutt's Tower",
+   "mapNo": 6,
+   "name": "Middle Delkfutt's Tower - Map 6",
+   "file": "maps/middle-delkfutts-tower-6.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "middle-delkfutts-tower-7",
+   "zone": "Middle Delkfutt's Tower",
+   "mapNo": 7,
+   "name": "Middle Delkfutt's Tower - Map 7",
+   "file": "maps/middle-delkfutts-tower-7.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "middle-delkfutts-tower-8",
+   "zone": "Middle Delkfutt's Tower",
+   "mapNo": 8,
+   "name": "Middle Delkfutt's Tower - Map 8",
+   "file": "maps/middle-delkfutts-tower-8.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "middle-delkfutts-tower-9",
+   "zone": "Middle Delkfutt's Tower",
+   "mapNo": 9,
+   "name": "Middle Delkfutt's Tower - Map 9",
+   "file": "maps/middle-delkfutts-tower-9.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "misareaux-coast-1",
+   "zone": "Misareaux Coast",
+   "mapNo": 1,
+   "name": "Misareaux Coast",
+   "file": "maps/misareaux-coast-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "monastic-cavern-1",
+   "zone": "Monastic Cavern",
+   "mapNo": 1,
+   "name": "Monastic Cavern",
+   "file": "maps/monastic-cavern-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "mount-zhayolm-1",
+   "zone": "Mount Zhayolm",
+   "mapNo": 1,
+   "name": "Mount Zhayolm",
+   "file": "maps/mount-zhayolm-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "nashmau-1",
+   "zone": "Nashmau",
+   "mapNo": 1,
+   "name": "Nashmau",
+   "file": "maps/nashmau-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "newton-movalpolos-1",
+   "zone": "Newton Movalpolos",
+   "mapNo": 1,
+   "name": "Newton Movalpolos",
+   "file": "maps/newton-movalpolos-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "norg-1",
+   "zone": "Norg",
+   "mapNo": 1,
+   "name": "Norg",
+   "file": "maps/norg-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "north-gustaberg-1",
+   "zone": "North Gustaberg",
+   "mapNo": 1,
+   "name": "North Gustaberg",
+   "file": "maps/north-gustaberg-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "northern-san-doria-1",
+   "zone": "Northern San d'Oria",
+   "mapNo": 1,
+   "name": "Northern San d'Oria",
+   "file": "maps/northern-san-doria-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "nyzul-isle-1",
+   "zone": "Nyzul Isle",
+   "mapNo": 1,
+   "name": "Nyzul Isle - Map 1",
+   "file": "maps/nyzul-isle-1.png",
+   "cell": [
+    0.06315,
+    0.06315
+   ],
+   "origin": [
+    0.02465,
+    0.02663
+   ]
+  },
+  {
+   "id": "nyzul-isle-2",
+   "zone": "Nyzul Isle",
+   "mapNo": 2,
+   "name": "Nyzul Isle - Map 2",
+   "file": "maps/nyzul-isle-2.png",
+   "cell": [
+    0.06261,
+    0.06261
+   ],
+   "origin": [
+    0.02935,
+    0.02935
+   ]
+  },
+  {
+   "id": "nyzul-isle-3",
+   "zone": "Nyzul Isle",
+   "mapNo": 3,
+   "name": "Nyzul Isle - Map 3",
+   "file": "maps/nyzul-isle-3.png",
+   "cell": [
+    0.06261,
+    0.06261
+   ],
+   "origin": [
+    0.02935,
+    0.03131
+   ]
+  },
+  {
+   "id": "nyzul-isle-4",
+   "zone": "Nyzul Isle",
+   "mapNo": 4,
+   "name": "Nyzul Isle - Map 4",
+   "file": "maps/nyzul-isle-4.png",
+   "cell": [
+    0.06261,
+    0.06261
+   ],
+   "origin": [
+    0.0274,
+    0.0274
+   ]
+  },
+  {
+   "id": "nyzul-isle-5",
+   "zone": "Nyzul Isle",
+   "mapNo": 5,
+   "name": "Nyzul Isle - Map 5",
+   "file": "maps/nyzul-isle-5.png",
+   "cell": [
+    0.06261,
+    0.06261
+   ],
+   "origin": [
+    0.03131,
+    0.0274
+   ]
+  },
+  {
+   "id": "nyzul-isle-6",
+   "zone": "Nyzul Isle",
+   "mapNo": 6,
+   "name": "Nyzul Isle - Map 6",
+   "file": "maps/nyzul-isle-6.png",
+   "cell": [
+    0.06261,
+    0.06261
+   ],
+   "origin": [
+    0.03131,
+    0.03131
+   ]
+  },
+  {
+   "id": "nyzul-isle-7",
+   "zone": "Nyzul Isle",
+   "mapNo": 7,
+   "name": "Nyzul Isle - Map 7",
+   "file": "maps/nyzul-isle-7.png",
+   "cell": [
+    0.06261,
+    0.06261
+   ],
+   "origin": [
+    0.03131,
+    0.02935
+   ]
+  },
+  {
+   "id": "nyzul-isle-8",
+   "zone": "Nyzul Isle",
+   "mapNo": 8,
+   "name": "Nyzul Isle - Map 8",
+   "file": "maps/nyzul-isle-8.png",
+   "cell": [
+    0.06261,
+    0.06261
+   ],
+   "origin": [
+    0.03131,
+    0.02935
+   ]
+  },
+  {
+   "id": "oldton-movalpolos-1",
+   "zone": "Oldton Movalpolos",
+   "mapNo": 1,
+   "name": "Oldton Movalpolos",
+   "file": "maps/oldton-movalpolos-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "ordelles-caves-1",
+   "zone": "Ordelle's Caves",
+   "mapNo": 1,
+   "name": "Ordelle's Caves - Map 1",
+   "file": "maps/ordelles-caves-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "ordelles-caves-2",
+   "zone": "Ordelle's Caves",
+   "mapNo": 2,
+   "name": "Ordelle's Caves - Map 2",
+   "file": "maps/ordelles-caves-2.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "ordelles-caves-3",
+   "zone": "Ordelle's Caves",
+   "mapNo": 3,
+   "name": "Ordelle's Caves - Map 3",
+   "file": "maps/ordelles-caves-3.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "outer-horutoto-ruins-1",
+   "zone": "Outer Horutoto Ruins",
+   "mapNo": 1,
+   "name": "Outer Horutoto Ruins - Map 1",
+   "file": "maps/outer-horutoto-ruins-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "outer-horutoto-ruins-2",
+   "zone": "Outer Horutoto Ruins",
+   "mapNo": 2,
+   "name": "Outer Horutoto Ruins - Map 2",
+   "file": "maps/outer-horutoto-ruins-2.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "outer-horutoto-ruins-3",
+   "zone": "Outer Horutoto Ruins",
+   "mapNo": 3,
+   "name": "Outer Horutoto Ruins - Map 3",
+   "file": "maps/outer-horutoto-ruins-3.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "outer-horutoto-ruins-4",
+   "zone": "Outer Horutoto Ruins",
+   "mapNo": 4,
+   "name": "Outer Horutoto Ruins - Map 4",
+   "file": "maps/outer-horutoto-ruins-4.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "outer-horutoto-ruins-5",
+   "zone": "Outer Horutoto Ruins",
+   "mapNo": 5,
+   "name": "Outer Horutoto Ruins - Map 5",
+   "file": "maps/outer-horutoto-ruins-5.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "palborough-mines-1",
+   "zone": "Palborough Mines",
+   "mapNo": 1,
+   "name": "Palborough Mines - Map 1",
+   "file": "maps/palborough-mines-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "palborough-mines-2",
+   "zone": "Palborough Mines",
+   "mapNo": 2,
+   "name": "Palborough Mines - Map 2",
+   "file": "maps/palborough-mines-2.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "palborough-mines-3",
+   "zone": "Palborough Mines",
+   "mapNo": 3,
+   "name": "Palborough Mines - Map 3",
+   "file": "maps/palborough-mines-3.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "pashhow-marshlands-1",
+   "zone": "Pashhow Marshlands",
+   "mapNo": 1,
+   "name": "Pashhow Marshlands",
+   "file": "maps/pashhow-marshlands-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "periqia-1",
+   "zone": "Periqia",
+   "mapNo": 1,
+   "name": "Periqia - Map 1",
+   "file": "maps/periqia-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "periqia-2",
+   "zone": "Periqia",
+   "mapNo": 2,
+   "name": "Periqia - Map 2",
+   "file": "maps/periqia-2.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "periqia-3",
+   "zone": "Periqia",
+   "mapNo": 3,
+   "name": "Periqia - Map 3",
+   "file": "maps/periqia-3.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "periqia-4",
+   "zone": "Periqia",
+   "mapNo": 4,
+   "name": "Periqia - Map 4",
+   "file": "maps/periqia-4.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "periqia-5",
+   "zone": "Periqia",
+   "mapNo": 5,
+   "name": "Periqia - Map 5",
+   "file": "maps/periqia-5.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "periqia-6",
+   "zone": "Periqia",
+   "mapNo": 6,
+   "name": "Periqia - Map 6",
+   "file": "maps/periqia-6.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "periqia-7",
+   "zone": "Periqia",
+   "mapNo": 7,
+   "name": "Periqia - Map 7",
+   "file": "maps/periqia-7.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "periqia-8",
+   "zone": "Periqia",
+   "mapNo": 8,
+   "name": "Periqia - Map 8",
+   "file": "maps/periqia-8.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "periqia-9",
+   "zone": "Periqia",
+   "mapNo": 9,
+   "name": "Periqia - Map 9",
+   "file": "maps/periqia-9.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "periqia-10",
+   "zone": "Periqia",
+   "mapNo": 10,
+   "name": "Periqia - Map 10",
+   "file": "maps/periqia-10.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "phomiuna-aqueducts-1",
+   "zone": "Phomiuna Aqueducts",
+   "mapNo": 1,
+   "name": "Phomiuna Aqueducts - Map 1",
+   "file": "maps/phomiuna-aqueducts-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "phomiuna-aqueducts-2",
+   "zone": "Phomiuna Aqueducts",
+   "mapNo": 2,
+   "name": "Phomiuna Aqueducts - Map 2",
+   "file": "maps/phomiuna-aqueducts-2.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "phomiuna-aqueducts-3",
+   "zone": "Phomiuna Aqueducts",
+   "mapNo": 3,
+   "name": "Phomiuna Aqueducts - Map 3",
+   "file": "maps/phomiuna-aqueducts-3.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "port-bastok-1",
+   "zone": "Port Bastok",
+   "mapNo": 1,
+   "name": "Port Bastok",
+   "file": "maps/port-bastok-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "port-jeuno-1",
+   "zone": "Port Jeuno",
+   "mapNo": 1,
+   "name": "Port Jeuno",
+   "file": "maps/port-jeuno-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "port-san-doria-1",
+   "zone": "Port San d'Oria",
+   "mapNo": 1,
+   "name": "Port San d'Oria",
+   "file": "maps/port-san-doria-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "port-windurst-1",
+   "zone": "Port Windurst",
+   "mapNo": 1,
+   "name": "Port Windurst",
+   "file": "maps/port-windurst-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "promyvion-dem-1",
+   "zone": "Promyvion - Dem",
+   "mapNo": 1,
+   "name": "Promyvion - Dem",
+   "file": "maps/promyvion-dem-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "promyvion-holla-1",
+   "zone": "Promyvion - Holla",
+   "mapNo": 1,
+   "name": "Promyvion - Holla",
+   "file": "maps/promyvion-holla-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "promyvion-mea-1",
+   "zone": "Promyvion - Mea",
+   "mapNo": 1,
+   "name": "Promyvion - Mea",
+   "file": "maps/promyvion-mea-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "promyvion-vahzl-1",
+   "zone": "Promyvion - Vahzl",
+   "mapNo": 1,
+   "name": "Promyvion - Vahzl",
+   "file": "maps/promyvion-vahzl-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "psoxja-1",
+   "zone": "Pso'Xja",
+   "mapNo": 1,
+   "name": "Pso'Xja - Map 1",
+   "file": "maps/psoxja-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "psoxja-2",
+   "zone": "Pso'Xja",
+   "mapNo": 2,
+   "name": "Pso'Xja - Map 2",
+   "file": "maps/psoxja-2.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "psoxja-3",
+   "zone": "Pso'Xja",
+   "mapNo": 3,
+   "name": "Pso'Xja - Map 3",
+   "file": "maps/psoxja-3.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "psoxja-4",
+   "zone": "Pso'Xja",
+   "mapNo": 4,
+   "name": "Pso'Xja - Map 4",
+   "file": "maps/psoxja-4.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "psoxja-5",
+   "zone": "Pso'Xja",
+   "mapNo": 5,
+   "name": "Pso'Xja - Map 5",
+   "file": "maps/psoxja-5.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "psoxja-6",
+   "zone": "Pso'Xja",
+   "mapNo": 6,
+   "name": "Pso'Xja - Map 6",
+   "file": "maps/psoxja-6.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "psoxja-7",
+   "zone": "Pso'Xja",
+   "mapNo": 7,
+   "name": "Pso'Xja - Map 7",
+   "file": "maps/psoxja-7.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "psoxja-8",
+   "zone": "Pso'Xja",
+   "mapNo": 8,
+   "name": "Pso'Xja - Map 8",
+   "file": "maps/psoxja-8.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "psoxja-9",
+   "zone": "Pso'Xja",
+   "mapNo": 9,
+   "name": "Pso'Xja - Map 9",
+   "file": "maps/psoxja-9.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "psoxja-10",
+   "zone": "Pso'Xja",
+   "mapNo": 10,
+   "name": "Pso'Xja - Map 10",
+   "file": "maps/psoxja-10.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "psoxja-11",
+   "zone": "Pso'Xja",
+   "mapNo": 11,
+   "name": "Pso'Xja - Map 11",
+   "file": "maps/psoxja-11.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "psoxja-12",
+   "zone": "Pso'Xja",
+   "mapNo": 12,
+   "name": "Pso'Xja - Map 12",
+   "file": "maps/psoxja-12.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "qufim-island-1",
+   "zone": "Qufim Island",
+   "mapNo": 1,
+   "name": "Qufim Island",
+   "file": "maps/qufim-island-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "quicksand-caves-1",
+   "zone": "Quicksand Caves",
+   "mapNo": 1,
+   "name": "Quicksand Caves - Map 1",
+   "file": "maps/quicksand-caves-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "quicksand-caves-2",
+   "zone": "Quicksand Caves",
+   "mapNo": 2,
+   "name": "Quicksand Caves - Map 2",
+   "file": "maps/quicksand-caves-2.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "quicksand-caves-3",
+   "zone": "Quicksand Caves",
+   "mapNo": 3,
+   "name": "Quicksand Caves - Map 3",
+   "file": "maps/quicksand-caves-3.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "quicksand-caves-4",
+   "zone": "Quicksand Caves",
+   "mapNo": 4,
+   "name": "Quicksand Caves - Map 4",
+   "file": "maps/quicksand-caves-4.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "quicksand-caves-5",
+   "zone": "Quicksand Caves",
+   "mapNo": 5,
+   "name": "Quicksand Caves - Map 5",
+   "file": "maps/quicksand-caves-5.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "quicksand-caves-6",
+   "zone": "Quicksand Caves",
+   "mapNo": 6,
+   "name": "Quicksand Caves - Map 6",
+   "file": "maps/quicksand-caves-6.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "quicksand-caves-7",
+   "zone": "Quicksand Caves",
+   "mapNo": 7,
+   "name": "Quicksand Caves - Map 7",
+   "file": "maps/quicksand-caves-7.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "quicksand-caves-8",
+   "zone": "Quicksand Caves",
+   "mapNo": 8,
+   "name": "Quicksand Caves - Map 8",
+   "file": "maps/quicksand-caves-8.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "qulun-dome-1",
+   "zone": "Qulun Dome",
+   "mapNo": 1,
+   "name": "Qulun Dome",
+   "file": "maps/qulun-dome-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "rabao-1",
+   "zone": "Rabao",
+   "mapNo": 1,
+   "name": "Rabao",
+   "file": "maps/rabao-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "ranguemont-pass-1",
+   "zone": "Ranguemont Pass",
+   "mapNo": 1,
+   "name": "Ranguemont Pass",
+   "file": "maps/ranguemont-pass-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "riverne-site-a01-1",
+   "zone": "Riverne - Site #A01",
+   "mapNo": 1,
+   "name": "Riverne - Site #A01",
+   "file": "maps/riverne-site-a01-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03418,
+    0.03223
+   ]
+  },
+  {
+   "id": "riverne-site-b01-1",
+   "zone": "Riverne - Site B01",
+   "mapNo": 1,
+   "name": "Riverne - Site B01",
+   "file": "maps/riverne-site-b01-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "romaeve-1",
+   "zone": "Ro'Maeve",
+   "mapNo": 1,
+   "name": "Ro'Maeve",
+   "file": "maps/romaeve-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "ruaun-gardens-1",
+   "zone": "Ru'Aun Gardens",
+   "mapNo": 1,
+   "name": "Ru'Aun Gardens",
+   "file": "maps/ruaun-gardens-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "rulude-gardens-1",
+   "zone": "Ru'Lude Gardens",
+   "mapNo": 1,
+   "name": "Ru'Lude Gardens",
+   "file": "maps/rulude-gardens-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "sacrarium-1",
+   "zone": "Sacrarium",
+   "mapNo": 1,
+   "name": "Sacrarium - Map 1",
+   "file": "maps/sacrarium-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "sacrarium-2",
+   "zone": "Sacrarium",
+   "mapNo": 2,
+   "name": "Sacrarium - Map 2",
+   "file": "maps/sacrarium-2.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "sanctuary-of-zitah-1",
+   "zone": "Sanctuary of Zi'Tah",
+   "mapNo": 1,
+   "name": "Sanctuary of Zi'Tah",
+   "file": "maps/sanctuary-of-zitah-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "sauromugue-champaign-1",
+   "zone": "Sauromugue Champaign",
+   "mapNo": 1,
+   "name": "Sauromugue Champaign",
+   "file": "maps/sauromugue-champaign-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "sea-serpent-grotto-1",
+   "zone": "Sea Serpent Grotto",
+   "mapNo": 1,
+   "name": "Sea Serpent Grotto - Map 1",
+   "file": "maps/sea-serpent-grotto-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "sea-serpent-grotto-2",
+   "zone": "Sea Serpent Grotto",
+   "mapNo": 2,
+   "name": "Sea Serpent Grotto - Map 2",
+   "file": "maps/sea-serpent-grotto-2.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "sea-serpent-grotto-3",
+   "zone": "Sea Serpent Grotto",
+   "mapNo": 3,
+   "name": "Sea Serpent Grotto - Map 3",
+   "file": "maps/sea-serpent-grotto-3.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "sea-serpent-grotto-4",
+   "zone": "Sea Serpent Grotto",
+   "mapNo": 4,
+   "name": "Sea Serpent Grotto - Map 4",
+   "file": "maps/sea-serpent-grotto-4.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "sea-serpent-grotto-5",
+   "zone": "Sea Serpent Grotto",
+   "mapNo": 5,
+   "name": "Sea Serpent Grotto - Map 5",
+   "file": "maps/sea-serpent-grotto-5.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "sealions-den-1",
+   "zone": "Sealion's Den",
+   "mapNo": 1,
+   "name": "Sealion's Den",
+   "file": "maps/sealions-den-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "selbina-1",
+   "zone": "Selbina",
+   "mapNo": 1,
+   "name": "Selbina",
+   "file": "maps/selbina-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "shrine-of-ruavitau-1",
+   "zone": "Shrine of Ru'Avitau",
+   "mapNo": 1,
+   "name": "Shrine of Ru'Avitau - Map 1",
+   "file": "maps/shrine-of-ruavitau-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "shrine-of-ruavitau-2",
+   "zone": "Shrine of Ru'Avitau",
+   "mapNo": 2,
+   "name": "Shrine of Ru'Avitau - Map 2",
+   "file": "maps/shrine-of-ruavitau-2.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "shrine-of-ruavitau-3",
+   "zone": "Shrine of Ru'Avitau",
+   "mapNo": 3,
+   "name": "Shrine of Ru'Avitau - Map 3",
+   "file": "maps/shrine-of-ruavitau-3.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "shrine-of-ruavitau-4",
+   "zone": "Shrine of Ru'Avitau",
+   "mapNo": 4,
+   "name": "Shrine of Ru'Avitau - Map 4",
+   "file": "maps/shrine-of-ruavitau-4.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "shrine-of-ruavitau-5",
+   "zone": "Shrine of Ru'Avitau",
+   "mapNo": 5,
+   "name": "Shrine of Ru'Avitau - Map 5",
+   "file": "maps/shrine-of-ruavitau-5.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "shrine-of-ruavitau-6",
+   "zone": "Shrine of Ru'Avitau",
+   "mapNo": 6,
+   "name": "Shrine of Ru'Avitau - Map 6",
+   "file": "maps/shrine-of-ruavitau-6.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "south-gustaberg-1",
+   "zone": "South Gustaberg",
+   "mapNo": 1,
+   "name": "South Gustaberg",
+   "file": "maps/south-gustaberg-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "southern-san-doria-1",
+   "zone": "Southern San d'Oria",
+   "mapNo": 1,
+   "name": "Southern San d'Oria",
+   "file": "maps/southern-san-doria-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "tahrongi-canyon-1",
+   "zone": "Tahrongi Canyon",
+   "mapNo": 1,
+   "name": "Tahrongi Canyon",
+   "file": "maps/tahrongi-canyon-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "talacca-cove-1",
+   "zone": "Talacca Cove",
+   "mapNo": 1,
+   "name": "Talacca Cove",
+   "file": "maps/talacca-cove-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "tavnazian-safehold-1",
+   "zone": "Tavnazian Safehold",
+   "mapNo": 1,
+   "name": "Tavnazian Safehold - Map 1",
+   "file": "maps/tavnazian-safehold-1.png",
+   "cell": [
+    0.06277,
+    0.06277
+   ],
+   "origin": [
+    0.03027,
+    0.03027
+   ]
+  },
+  {
+   "id": "tavnazian-safehold-2",
+   "zone": "Tavnazian Safehold",
+   "mapNo": 2,
+   "name": "Tavnazian Safehold - Map 2",
+   "file": "maps/tavnazian-safehold-2.png",
+   "cell": [
+    0.06277,
+    0.06262
+   ],
+   "origin": [
+    0.03027,
+    0.03145
+   ]
+  },
+  {
+   "id": "tavnazian-safehold-3",
+   "zone": "Tavnazian Safehold",
+   "mapNo": 3,
+   "name": "Tavnazian Safehold - Map 3",
+   "file": "maps/tavnazian-safehold-3.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "temple-of-uggalepih-1",
+   "zone": "Temple of Uggalepih",
+   "mapNo": 1,
+   "name": "Temple of Uggalepih - Map 1",
+   "file": "maps/temple-of-uggalepih-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "temple-of-uggalepih-2",
+   "zone": "Temple of Uggalepih",
+   "mapNo": 2,
+   "name": "Temple of Uggalepih - Map 2",
+   "file": "maps/temple-of-uggalepih-2.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "temple-of-uggalepih-3",
+   "zone": "Temple of Uggalepih",
+   "mapNo": 3,
+   "name": "Temple of Uggalepih - Map 3",
+   "file": "maps/temple-of-uggalepih-3.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "temple-of-uggalepih-4",
+   "zone": "Temple of Uggalepih",
+   "mapNo": 4,
+   "name": "Temple of Uggalepih - Map 4",
+   "file": "maps/temple-of-uggalepih-4.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "the-boyahda-tree-1",
+   "zone": "The Boyahda Tree",
+   "mapNo": 1,
+   "name": "The Boyahda Tree - Map 1",
+   "file": "maps/the-boyahda-tree-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "the-boyahda-tree-2",
+   "zone": "The Boyahda Tree",
+   "mapNo": 2,
+   "name": "The Boyahda Tree - Map 2",
+   "file": "maps/the-boyahda-tree-2.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "the-boyahda-tree-3",
+   "zone": "The Boyahda Tree",
+   "mapNo": 3,
+   "name": "The Boyahda Tree - Map 3",
+   "file": "maps/the-boyahda-tree-3.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "the-boyahda-tree-4",
+   "zone": "The Boyahda Tree",
+   "mapNo": 4,
+   "name": "The Boyahda Tree - Map 4",
+   "file": "maps/the-boyahda-tree-4.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "the-eldieme-necropolis-1",
+   "zone": "The Eldieme Necropolis",
+   "mapNo": 1,
+   "name": "The Eldieme Necropolis - Map 1",
+   "file": "maps/the-eldieme-necropolis-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "the-eldieme-necropolis-2",
+   "zone": "The Eldieme Necropolis",
+   "mapNo": 2,
+   "name": "The Eldieme Necropolis - Map 2",
+   "file": "maps/the-eldieme-necropolis-2.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "the-eldieme-necropolis-3",
+   "zone": "The Eldieme Necropolis",
+   "mapNo": 3,
+   "name": "The Eldieme Necropolis - Map 3",
+   "file": "maps/the-eldieme-necropolis-3.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "toraimarai-canal-1",
+   "zone": "Toraimarai Canal",
+   "mapNo": 1,
+   "name": "Toraimarai Canal - Map 1",
+   "file": "maps/toraimarai-canal-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "toraimarai-canal-2",
+   "zone": "Toraimarai Canal",
+   "mapNo": 2,
+   "name": "Toraimarai Canal - Map 2",
+   "file": "maps/toraimarai-canal-2.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "uleguerand-range-1",
+   "zone": "Uleguerand Range",
+   "mapNo": 1,
+   "name": "Uleguerand Range",
+   "file": "maps/uleguerand-range-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "upper-delkfutts-tower-10",
+   "zone": "Upper Delkfutt's Tower",
+   "mapNo": 10,
+   "name": "Upper Delkfutt's Tower - Map 10",
+   "file": "maps/upper-delkfutts-tower-10.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "upper-delkfutts-tower-11",
+   "zone": "Upper Delkfutt's Tower",
+   "mapNo": 11,
+   "name": "Upper Delkfutt's Tower - Map 11",
+   "file": "maps/upper-delkfutts-tower-11.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "upper-delkfutts-tower-12",
+   "zone": "Upper Delkfutt's Tower",
+   "mapNo": 12,
+   "name": "Upper Delkfutt's Tower - Map 12",
+   "file": "maps/upper-delkfutts-tower-12.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "upper-jeuno-1",
+   "zone": "Upper Jeuno",
+   "mapNo": 1,
+   "name": "Upper Jeuno",
+   "file": "maps/upper-jeuno-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "valkurm-dunes-1",
+   "zone": "Valkurm Dunes",
+   "mapNo": 1,
+   "name": "Valkurm Dunes",
+   "file": "maps/valkurm-dunes-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "valley-of-sorrows-1",
+   "zone": "Valley of Sorrows",
+   "mapNo": 1,
+   "name": "Valley of Sorrows",
+   "file": "maps/valley-of-sorrows-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "wajaom-woodlands-1",
+   "zone": "Wajaom Woodlands",
+   "mapNo": 1,
+   "name": "Wajaom Woodlands",
+   "file": "maps/wajaom-woodlands-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "west-ronfaure-1",
+   "zone": "West Ronfaure",
+   "mapNo": 1,
+   "name": "West Ronfaure",
+   "file": "maps/west-ronfaure-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "west-sarutabaruta-1",
+   "zone": "West Sarutabaruta",
+   "mapNo": 1,
+   "name": "West Sarutabaruta",
+   "file": "maps/west-sarutabaruta-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "western-altepa-desert-1",
+   "zone": "Western Altepa Desert",
+   "mapNo": 1,
+   "name": "Western Altepa Desert",
+   "file": "maps/western-altepa-desert-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "windurst-walls-1",
+   "zone": "Windurst Walls",
+   "mapNo": 1,
+   "name": "Windurst Walls",
+   "file": "maps/windurst-walls-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "windurst-waters-1",
+   "zone": "Windurst Waters",
+   "mapNo": 1,
+   "name": "Windurst Waters - Map 1 (South)",
+   "file": "maps/windurst-waters-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "windurst-waters-2",
+   "zone": "Windurst Waters",
+   "mapNo": 2,
+   "name": "Windurst Waters - Map 2 (North)",
+   "file": "maps/windurst-waters-2.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "windurst-woods-1",
+   "zone": "Windurst Woods",
+   "mapNo": 1,
+   "name": "Windurst Woods",
+   "file": "maps/windurst-woods-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "xarcabard-1",
+   "zone": "Xarcabard",
+   "mapNo": 1,
+   "name": "Xarcabard",
+   "file": "maps/xarcabard-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "yhoator-jungle-1",
+   "zone": "Yhoator Jungle",
+   "mapNo": 1,
+   "name": "Yhoator Jungle",
+   "file": "maps/yhoator-jungle-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "yughott-grotto-1",
+   "zone": "Yughott Grotto",
+   "mapNo": 1,
+   "name": "Yughott Grotto - Map 1",
+   "file": "maps/yughott-grotto-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "yughott-grotto-2",
+   "zone": "Yughott Grotto",
+   "mapNo": 2,
+   "name": "Yughott Grotto - Map 2",
+   "file": "maps/yughott-grotto-2.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "yuhtunga-jungle-1",
+   "zone": "Yuhtunga Jungle",
+   "mapNo": 1,
+   "name": "Yuhtunga Jungle",
+   "file": "maps/yuhtunga-jungle-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "zeruhn-mines-1",
+   "zone": "Zeruhn Mines",
+   "mapNo": 1,
+   "name": "Zeruhn Mines",
+   "file": "maps/zeruhn-mines-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  }
+ ]
+}

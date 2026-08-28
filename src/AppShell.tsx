@@ -35,6 +35,7 @@ import SkillchainTab from "./SkillchainTab";
 const BestiaryTab = React.lazy(() => import("./BestiaryTab"));
 const CraftingTab = React.lazy(() => import("./CraftingTab"));
 const QuestsTab = React.lazy(() => import("./QuestsTab"));
+const AtlasTab = React.lazy(() => import("./AtlasTab"));
 
 function clampInt(n: number, min: number, max: number) {
   return Math.max(min, Math.min(max, Math.floor(n)));
@@ -173,7 +174,7 @@ function isValidTod(raw: string): boolean {
   );
 }
 
-type TabId = "home" | "timers" | "nm" | "presets" | "counters" | "luShang" | "fish" | "bait" | "rods" | "clam" | "chocobo" | "weather" | "bcnm" | "drops" | "bestiary" | "skillchains" | "crafting" | "quests" | "calibration";
+type TabId = "home" | "timers" | "nm" | "presets" | "counters" | "luShang" | "fish" | "bait" | "rods" | "clam" | "chocobo" | "weather" | "bcnm" | "drops" | "bestiary" | "skillchains" | "crafting" | "quests" | "atlas" | "calibration";
 
 type TabDef = {
   id: TabId;
@@ -202,6 +203,7 @@ const TABS: TabDef[] = [
   { id: "skillchains", label: "Skillchains", icon: "🔗" },
   { id: "crafting", label: "Crafting", icon: "🔨" },
   { id: "quests", label: "Quests", icon: "📜" },
+  { id: "atlas", label: "Atlas", icon: "🗺️" },
   ...(import.meta.env.DEV && ENABLE_CALIBRATION_DEV_TAB
     ? [{ id: "calibration", label: "Calibration", icon: "🛠️" } as TabDef]
     : []),
@@ -2491,6 +2493,15 @@ export default function AppShell() {
         <div style={styles.tabContent}>
           <React.Suspense fallback={<div style={styles.card}>Loading quests...</div>}>
             <QuestsTab />
+          </React.Suspense>
+          <div style={{ display: "flex", justifyContent: "flex-end" }}>{backBar}</div>
+        </div>
+      )}
+
+      {activeTab === "atlas" && (
+        <div style={styles.tabContent}>
+          <React.Suspense fallback={<div style={styles.card}>Loading atlas...</div>}>
+            <AtlasTab />
           </React.Suspense>
           <div style={{ display: "flex", justifyContent: "flex-end" }}>{backBar}</div>
         </div>

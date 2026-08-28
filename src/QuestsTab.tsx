@@ -2,8 +2,13 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { loadJson, saveJson } from "./utils/storage";
 import questData from "./data/quests.json";
+import mapData from "./data/maps.json";
+import MapView, { MapDef } from "./MapView";
 
 type ChainLink = { name: string; id: string | null };
+
+type MapRef = { zone: string; mapNo: number | null; pos: string };
+type StepRef = MapRef & { step: number; occurrence?: number };
 
 type Entry = {
   id: string;
@@ -30,8 +35,16 @@ type Entry = {
   client: string | null;
   summary: string | null;
   coords: string[];
+  mapRefs: MapRef[];
+  stepRefs?: StepRef[];
   url: string;
 };
+
+const MAPS = (mapData as { maps: MapDef[] }).maps;
+
+/** Tolerant zone comparison: "The Sanctuary of Zi'Tah" / "Windurst Waters (North)" etc. */
+const normZone = (z: string) =>
+  z.toLowerCase().replace(/^the /, "").replace(/#/g, "").replace(/\s*\((?:north|south)\)$/, "").replace(/ (?:north|south)$/, "").trim();
 
 const DATA = questData as { quests: Entry[]; missions: Entry[] };
 const ALL: Entry[] = [...DATA.quests, ...DATA.missions];
@@ -69,6 +82,7 @@ type UiState = {
   zone: string;
   fame: string; // "" or "1".."9"
   repeatable: "" | "yes" | "no";
+  selectedId: string | null;
 };
 
 function normalizeState(raw: unknown): UiState {
@@ -81,6 +95,7 @@ function normalizeState(raw: unknown): UiState {
     zone: typeof o.zone === "string" ? o.zone : "",
     fame: typeof o.fame === "string" && /^[1-9]?$/.test(o.fame) ? o.fame : "",
     repeatable: o.repeatable === "yes" || o.repeatable === "no" ? o.repeatable : "",
+    selectedId: typeof o.selectedId === "string" && BY_ID.has(o.selectedId) ? o.selectedId : null,
   };
 }
 
@@ -141,18 +156,36 @@ const chipStyle = (active: boolean, color: string): React.CSSProperties => ({
 
 const COORD_RE = /([A-P]-\d{1,2})/g;
 
-/** Render step text with map coordinates highlighted. */
-function CoordText({ text }: { text: string }) {
+/** Render step text with map coordinates highlighted (hover/click to spotlight them on the maps). */
+function CoordText({
+  text,
+  onHover,
+  onPick,
+}: {
+  text: string;
+  onHover?: (coord: string | null, occurrence?: number) => void;
+  onPick?: (coord: string, occurrence?: number) => void;
+}) {
   const parts = text.split(COORD_RE);
+  const occurrences = new Map<string, number>();
   return (
     <>
-      {parts.map((p, i) =>
-        i % 2 === 1 ? (
-          <span key={i} style={{ color: "#ffd166", fontWeight: 700 }}>{p}</span>
-        ) : (
-          <React.Fragment key={i}>{p}</React.Fragment>
-        )
-      )}
+      {parts.map((p, i) => {
+        if (i % 2 === 0) return <React.Fragment key={i}>{p}</React.Fragment>;
+        const occurrence = occurrences.get(p) ?? 0;
+        occurrences.set(p, occurrence + 1);
+        return (
+          <span
+            key={i}
+            style={{ color: "#ffd166", fontWeight: 700, cursor: onPick ? "pointer" : undefined, textDecoration: onPick ? "underline dotted" : undefined }}
+            onMouseEnter={onHover ? () => onHover(p, occurrence) : undefined}
+            onMouseLeave={onHover ? () => onHover(null) : undefined}
+            onClick={onPick ? () => onPick(p, occurrence) : undefined}
+          >
+            {p}
+          </span>
+        );
+      })}
     </>
   );
 }
@@ -183,6 +216,103 @@ function ChainLinks({ label, links, onOpen }: { label: string; links: ChainLink[
 
 function Detail({ entry, onOpen, onBack }: { entry: Entry; onOpen: (id: string) => void; onBack: () => void }) {
   const color = GROUP_COLORS[entry.group] ?? "#9aa0b8";
+  type Spot = { coord: string; mapIds: string[] }; // mapIds empty = all shown maps
+  const [pinned, setPinned] = useState<Spot | null>(null);
+  const [hovered, setHovered] = useState<Spot | null>(null);
+  const active = hovered ?? pinned;
+
+  // Structured refs from the wiki, plus a synthesized one for the start location so quests
+  // without {{Location}} templates (plain-text coords) still get their zone map
+  const refs = useMemo(() => {
+    const out = [...(entry.mapRefs ?? []), ...(entry.stepRefs ?? [])];
+    if (entry.startZone && !out.some((r) => normZone(r.zone) === normZone(entry.startZone!))) {
+      out.unshift({ zone: entry.startZone, mapNo: null, pos: entry.startCoord ?? "" });
+    }
+    return out;
+  }, [entry]);
+
+  // Maps referenced by this quest's {{Location}} tooltips, in first-mention order
+  const shownMaps = useMemo(() => {
+    const out: MapDef[] = [];
+    for (const ref of refs) {
+      for (const m of MAPS) {
+        if (normZone(m.zone) !== normZone(ref.zone)) continue;
+        if (ref.mapNo != null && m.mapNo !== ref.mapNo) continue;
+        if (!out.includes(m)) out.push(m);
+      }
+    }
+    return out;
+  }, [refs]);
+
+  /** Should this map highlight the active coordinate? */
+  const highlightFor = (m: MapDef): string | null =>
+    active && (!active.mapIds.length || active.mapIds.includes(m.id)) ? active.coord : null;
+
+  // Resolve explicit refs from the full registry. The panel's broad page-level map list can
+  // contain unrelated zones (such as Ru'Lude Gardens) with the same coordinate.
+  const mapsForRefs = (rs: MapRef[]) =>
+    MAPS.filter((m) => rs.some((r) => normZone(r.zone) === normZone(m.zone) && (r.mapNo == null || r.mapNo === m.mapNo)));
+
+  /** Which maps does this coordinate belong to? Step-scoped refs, then nearest zone mention, then page refs. */
+  const resolveMaps = (coord: string, stepIdx?: number, occurrence?: number): MapDef[] => {
+    // Start-NPC coordinate always belongs to the start zone (other zones may reuse the same cell)
+    if (stepIdx == null && entry.startZone && coord === entry.startCoord) {
+      const startMaps = MAPS.filter((m) => normZone(m.zone) === normZone(entry.startZone!));
+      if (startMaps.length) return startMaps;
+    }
+    if (stepIdx != null) {
+      const stepRefs = (entry.stepRefs ?? []).filter((r) => r.step === stepIdx && r.pos === coord);
+      const occurrenceRefs = occurrence == null ? [] : stepRefs.filter((r) => r.occurrence === occurrence);
+      const scoped = mapsForRefs(occurrenceRefs.length ? occurrenceRefs : stepRefs);
+      if (scoped.length) return scoped;
+      // Nearest zone name mentioned in this step or an earlier one
+      for (let i = stepIdx; i >= 0; i--) {
+        const text = (entry.walkthrough[i] ?? "").toLowerCase();
+        const mentioned = shownMaps.filter((m) => text.includes(normZone(m.zone)) || text.includes(m.zone.toLowerCase()));
+        if (mentioned.length) return mentioned;
+      }
+    }
+    return mapsForRefs(refs.filter((r) => r.pos === coord));
+  };
+
+  const [activeMapId, setActiveMapId] = useState<string | null>(null);
+  const activeMap = shownMaps.find((m) => m.id === activeMapId) ?? shownMaps[0] ?? null;
+  // Chip list collapses by default when a quest references many maps
+  const [mapListOpen, setMapListOpen] = useState(shownMaps.length <= 4);
+
+  // Pin the map panel below the app's sticky nav bar (its height varies as buttons wrap)
+  const [stickyTop, setStickyTop] = useState(96);
+  useEffect(() => {
+    const nav = document.querySelector("nav");
+    const update = () => setStickyTop((nav?.getBoundingClientRect().height ?? 80) + 16);
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+
+  /** Hover/click handlers bound to a walkthrough step (or the start-NPC row when stepIdx is undefined). */
+  const spot = (c: string, stepIdx?: number, occurrence?: number): Spot => {
+    const maps = resolveMaps(c, stepIdx, occurrence);
+    return { coord: c, mapIds: maps.map((m) => m.id) };
+  };
+  const handlersFor = (stepIdx?: number) =>
+    shownMaps.length
+      ? {
+          onHover: (c: string | null, occurrence?: number) => {
+            if (!c) return setHovered(null);
+            const s = spot(c, stepIdx, occurrence);
+            setHovered(s);
+            if (s.mapIds.length) setActiveMapId(s.mapIds[0]);
+          },
+          onPick: (c: string, occurrence?: number) => {
+            const s = spot(c, stepIdx, occurrence);
+            setPinned((p) => (p?.coord === c ? null : s));
+            if (s.mapIds.length) setActiveMapId(s.mapIds[0]);
+          },
+        }
+      : {};
+  const coordHandlers = handlersFor(undefined);
+
   const info: Array<[string, React.ReactNode]> = [];
   if (entry.number) info.push(["Number", entry.number]);
   if (entry.startNpc)
@@ -191,7 +321,7 @@ function Detail({ entry, onOpen, onBack }: { entry: Entry; onOpen: (id: string) 
       <>
         {entry.startNpc}
         {entry.startZone ? ` — ${entry.startZone}` : ""}
-        {entry.startCoord ? <> (<span style={{ color: "#ffd166", fontWeight: 700 }}>{entry.startCoord}</span>)</> : ""}
+        {entry.startCoord ? <> (<CoordText text={entry.startCoord} {...coordHandlers} />)</> : ""}
       </>,
     ]);
   if (entry.requirements) info.push(["Requirements", entry.requirements]);
@@ -203,7 +333,8 @@ function Detail({ entry, onOpen, onBack }: { entry: Entry; onOpen: (id: string) 
   if (entry.reward) info.push(["Reward", entry.reward]);
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+    <div style={{ display: "grid", gridTemplateColumns: shownMaps.length ? "minmax(0, 1fr) 440px" : "1fr", gap: 16 }}>
+    <div style={{ display: "flex", flexDirection: "column", gap: 12, minWidth: 0 }}>
       <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
         <button style={{ ...inputStyle, cursor: "pointer" }} onClick={onBack}>← Back</button>
         <h3 style={{ margin: 0, fontSize: 18 }}>{entry.name}</h3>
@@ -243,11 +374,18 @@ function Detail({ entry, onOpen, onBack }: { entry: Entry; onOpen: (id: string) 
               return (
                 <div key={i} style={{ marginLeft: indent * 18, fontSize: 13, lineHeight: 1.45 }}>
                   <span style={{ color: "#9aa0b8" }}>• </span>
-                  <CoordText text={step.trim()} />
+                  <CoordText text={step.trim()} {...handlersFor(i)} />
                 </div>
               );
             })}
           </div>
+        </div>
+      )}
+
+      {shownMaps.length > 0 && (
+        <div style={{ fontSize: 12, color: "#9aa0b8" }}>
+          Hover or click a coordinate in the walkthrough to spotlight it on the map panel
+          {pinned ? ` (pinned: ${pinned.coord} — click it again to unpin)` : ""}
         </div>
       )}
 
@@ -268,6 +406,36 @@ function Detail({ entry, onOpen, onBack }: { entry: Entry; onOpen: (id: string) 
         </div>
       )}
     </div>
+
+    {activeMap && (
+      <div>
+        <div style={{ position: "sticky", top: stickyTop, display: "flex", flexDirection: "column", gap: 8 }}>
+          {shownMaps.length > 1 && (
+            <button
+              style={{ ...inputStyle, cursor: "pointer", alignSelf: "flex-start", padding: "4px 10px", fontSize: 12 }}
+              onClick={() => setMapListOpen((o) => !o)}
+            >
+              {mapListOpen ? "▾" : "▸"} Maps ({shownMaps.length})
+            </button>
+          )}
+          {mapListOpen && shownMaps.length > 1 && (
+            <div style={{ display: "flex", gap: 6, flexWrap: "wrap", maxHeight: 180, overflowY: "auto" }}>
+              {shownMaps.map((m) => (
+                <button
+                  key={m.id}
+                  style={chipStyle(m.id === activeMap.id, "#7ec4e8")}
+                  onClick={() => setActiveMapId(m.id)}
+                >
+                  {m.name}
+                </button>
+              ))}
+            </div>
+          )}
+          <MapView map={activeMap} width={420} highlight={highlightFor(activeMap)} />
+        </div>
+      </div>
+    )}
+    </div>
   );
 }
 
@@ -275,11 +443,12 @@ const numKey = (n: string | null) => (n ? n.split("-").map((x) => x.padStart(3, 
 
 export default function QuestsTab() {
   const [ui, setUi] = useState<UiState>(() => normalizeState(loadJson(UI_KEY, null)));
-  const [selectedId, setSelectedId] = useState<string | null>(null);
 
   useEffect(() => saveJson(UI_KEY, ui), [ui]);
 
   const set = (patch: Partial<UiState>) => setUi((u) => ({ ...u, ...patch }));
+  const selectedId = ui.selectedId;
+  const setSelectedId = (id: string | null) => set({ selectedId: id });
 
   const list = ui.sub === "quests" ? DATA.quests : DATA.missions;
   const groups = ui.sub === "quests" ? QUEST_GROUPS : MISSION_GROUPS;
@@ -307,6 +476,7 @@ export default function QuestsTab() {
   if (selected) {
     return (
       <Detail
+        key={selected.id}
         entry={selected}
         onOpen={(id) => setSelectedId(id)}
         onBack={() => setSelectedId(null)}

@@ -58,7 +58,7 @@ function createWindow() {
   // Near-fullscreen on a 1080p display, clamped to smaller screens
   const { workArea } = screen.getPrimaryDisplay();
   win = new BrowserWindow({
-    width: Math.min(1860, workArea.width),
+    width: Math.min(1600, workArea.width),
     height: Math.min(960, workArea.height),
     // Dev-only: packaged builds get the icon from the exe (build/icon.ico via electron-builder)
     ...(VITE_DEV_SERVER_URL ? { icon: path.join(process.env.APP_ROOT, "build", "icon.ico") } : {}),

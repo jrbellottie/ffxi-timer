@@ -63,6 +63,67 @@ const normTitle = (t) => t.replace(/^Assault Mission - /, "");
 // Post-ToAU marker in the TITLE only (content mentions are unreliable either way)
 const POST_TOAU_TITLE_RE = /Wings of the Goddess|Abyssea|Adoulin|Voidwatch|VW Op|Records of Eminence|Trust:|Coalition|Monstrosity|Dancer|Scholar|Synergistic|Moogle Magic/i;
 
+// Manual overrides for verified wiki errors / prose the parser can't disambiguate
+const COORD_FIXES = [
+  { page: "Appointment to Jeuno", snippet: "blind staircase area (H-8)", wrong: null, right: "H-8", zone: "Lower Delkfutt's Tower", mapNo: 0 },
+  { page: "Appointment to Jeuno", snippet: "top of the blind staircase", wrong: "E-10", right: "F-10", zone: "Upper Delkfutt's Tower", mapNo: 10 },
+  { page: "Leaute's Last Wishes", snippet: "Head to the garden", wrong: null, right: "F-7", zone: "Chateau d'Oraguille", mapNo: 1 },
+  { page: "Ranperre's Final Rest", snippet: "head for {Ranperre's Tomb", wrong: null, right: "H-8", zone: "King Ranperre's Tomb", mapNo: 1 },
+  { page: "Ranperre's Final Rest", snippet: "Heavy Stone Door located", wrong: null, right: "H-8", zone: "King Ranperre's Tomb", mapNo: 1 },
+  { page: "Prestige of the Papsque", snippet: "Enter Bostaunieux Oubliette", wrong: null, right: "E-7", zone: "Bostaunieux Oubliette", mapNo: 1, occurrence: 0 },
+  { page: "Prestige of the Papsque", snippet: "Enter Bostaunieux Oubliette", wrong: null, right: "E-8", zone: "Bostaunieux Oubliette", mapNo: 1, occurrence: 0 },
+  { page: "Prestige of the Papsque", snippet: "Hug the right wall", wrong: null, right: "E-8", zone: "West Ronfaure", mapNo: 1, occurrence: 1 },
+  { page: "The Secret Weapon", snippet: "Yughott Grotto Home Point", wrong: null, right: "J-6", zone: "Yughott Grotto", mapNo: 2, replace: true },
+  { page: "Coming of Age", snippet: "H-10 entrance", wrong: null, right: "H-10", zone: "Eastern Altepa Desert", mapNo: 1, replace: true },
+  { page: "Coming of Age", snippet: "Now head west to D-9", wrong: null, right: "D-9", zone: "Quicksand Caves", mapNo: 2 },
+  { page: "Lightbringer", snippet: "main entrance of the temple", wrong: null, right: "J-12", zone: "Yhoator Jungle", mapNo: 1 },
+  { page: "Lightbringer", snippet: "zone into the Temple", wrong: null, right: "F-5", zone: "Temple of Uggalepih", mapNo: 1 },
+  { page: "Lightbringer", snippet: "\"T\" intersection", wrong: null, right: "H-10", zone: "Temple of Uggalepih", mapNo: 2 },
+  { page: "Breaking Barriers", snippet: "proceed to a ???", wrong: null, right: "I-8", zone: "Valley of Sorrows", mapNo: 1 },
+  { page: "Breaking Barriers", snippet: "Key Item #1", wrong: null, right: "I-8", zone: "Valley of Sorrows", mapNo: 1 },
+  { page: "Breaking Barriers", snippet: "use the Lever", wrong: null, right: "H-8", zone: "The Eldieme Necropolis", mapNo: 1 },
+  { page: "Breaking Barriers", snippet: "use the Lever", wrong: null, right: "G-9", zone: "The Eldieme Necropolis", mapNo: 1 },
+  { page: "Breaking Barriers", snippet: "drop down the hole", wrong: null, right: "G-9", zone: "The Eldieme Necropolis", mapNo: 1 },
+  { page: "Wading Beasts", snippet: "Chomo Jinjahl", wrong: null, right: "E-8", zone: "Windurst Waters", mapNo: 2, replace: true },
+  { page: "The Emissary", snippet: "Eyy Mon the Ironbreaker", wrong: null, right: "G-7", zone: "Giddeus", mapNo: 2 },
+  { page: "The Emissary", snippet: "Enter Fort Ghelsba", wrong: "K-5", right: "J-7", zone: "Fort Ghelsba", mapNo: 1, replace: true },
+  { page: "The Emissary", snippet: "Enter Horlais Peak", wrong: null, right: "J-6", zone: "Yughott Grotto", mapNo: 2 },
+  { page: "The Emissary", snippet: "Yughott Grotto via exit 1", wrong: null, right: "H-11", zone: "Ghelsba Outpost", mapNo: 1 },
+  { page: "The Emissary", snippet: "Yughott Grotto via exit 4", wrong: null, right: "J-8", zone: "Fort Ghelsba", mapNo: 1 },
+  { page: "To the Forsaken Mines", snippet: "sells hare meat", wrong: null, right: "E-8", zone: "Windurst Waters", mapNo: 2, replace: true },
+  { page: "Appointment to Jeuno", snippet: "tractored through the Cermet Door", wrong: null, right: "E-8", zone: "Lower Delkfutt's Tower", mapNo: 1, replace: true },
+  { page: "Appointment to Jeuno", snippet: "Enter the basement through the Cermet Door", wrong: null, right: "E-8", zone: "Lower Delkfutt's Tower", mapNo: 1, replace: true },
+  { page: "Appointment to Jeuno", snippet: "Once in the basement, cross the large room", wrong: "M-8", right: "L-9", zone: "Lower Delkfutt's Tower", mapNo: 0, replace: true },
+  // Bastok 3-3 "Jeuno (Mission)": same tower route as San d'Oria 3-3 but a separate wiki page with no tooltips
+  { page: "Jeuno (Mission)", snippet: "enter the basement stairway through the Cermet Door", wrong: null, right: "E-8", zone: "Lower Delkfutt's Tower", mapNo: 1, replace: true },
+  { page: "Jeuno (Mission)", snippet: "Tractored through the door", wrong: null, right: "E-8", zone: "Lower Delkfutt's Tower", mapNo: 1, replace: true },
+  { page: "Jeuno (Mission)", snippet: "click on the Cermet Door at L-9", wrong: null, right: "L-9", zone: "Lower Delkfutt's Tower", mapNo: 0 },
+  { page: "Jeuno (Mission)", snippet: "small room at L-9 and trade", wrong: null, right: "L-9", zone: "Lower Delkfutt's Tower", mapNo: 0 },
+  { page: "Jeuno (Mission)", snippet: "1st Floor: E-6", wrong: null, right: "E-6", zone: "Lower Delkfutt's Tower", mapNo: 1 },
+  { page: "Jeuno (Mission)", snippet: "1st Floor: E-6", wrong: null, right: "F-6", zone: "Lower Delkfutt's Tower", mapNo: 1 },
+  { page: "Jeuno (Mission)", snippet: "2nd Floor: I-9", wrong: null, right: "I-9", zone: "Lower Delkfutt's Tower", mapNo: 2 },
+  { page: "Jeuno (Mission)", snippet: "2nd Floor: I-9", wrong: null, right: "J-9", zone: "Lower Delkfutt's Tower", mapNo: 2 },
+  { page: "Jeuno (Mission)", snippet: "2nd Floor: I-9", wrong: null, right: "H-9", zone: "Lower Delkfutt's Tower", mapNo: 2 },
+  { page: "Jeuno (Mission)", snippet: "3rd Floor: G-6", wrong: null, right: "G-6", zone: "Lower Delkfutt's Tower", mapNo: 3 },
+  { page: "Jeuno (Mission)", snippet: "4th Floor: I-6", wrong: null, right: "I-6", zone: "Middle Delkfutt's Tower", mapNo: 4 },
+  { page: "Jeuno (Mission)", snippet: "4th Floor: I-6", wrong: null, right: "G-7", zone: "Middle Delkfutt's Tower", mapNo: 4 },
+  { page: "Jeuno (Mission)", snippet: "4th Floor: I-6", wrong: null, right: "H-9", zone: "Middle Delkfutt's Tower", mapNo: 4 },
+  { page: "Jeuno (Mission)", snippet: "4th Floor: I-6", wrong: null, right: "J-9", zone: "Middle Delkfutt's Tower", mapNo: 4 },
+  { page: "Jeuno (Mission)", snippet: "5th Floor: H-9", wrong: null, right: "H-9", zone: "Middle Delkfutt's Tower", mapNo: 5 },
+  { page: "Jeuno (Mission)", snippet: "5th Floor: H-9", wrong: null, right: "I-10", zone: "Middle Delkfutt's Tower", mapNo: 5 },
+  { page: "Jeuno (Mission)", snippet: "6th Floor: J-10", wrong: null, right: "J-10", zone: "Middle Delkfutt's Tower", mapNo: 6 },
+  { page: "Jeuno (Mission)", snippet: "7th Floor: F-6", wrong: null, right: "F-6", zone: "Middle Delkfutt's Tower", mapNo: 7 },
+  { page: "Jeuno (Mission)", snippet: "8th Floor: (1st time)", wrong: null, right: "I-6", zone: "Middle Delkfutt's Tower", mapNo: 8 },
+  { page: "Jeuno (Mission)", snippet: "9th Floor: (1st time)", wrong: null, right: "J-10", zone: "Middle Delkfutt's Tower", mapNo: 9 },
+  { page: "Jeuno (Mission)", snippet: "9th Floor: (1st time)", wrong: null, right: "H-10", zone: "Middle Delkfutt's Tower", mapNo: 8 },
+  { page: "Jeuno (Mission)", snippet: "8th Floor: (2nd time)", wrong: null, right: "F-9", zone: "Middle Delkfutt's Tower", mapNo: 8 },
+  { page: "Jeuno (Mission)", snippet: "8th Floor: (2nd time)", wrong: null, right: "G-10", zone: "Middle Delkfutt's Tower", mapNo: 8 },
+  { page: "Jeuno (Mission)", snippet: "9th Floor: (2nd time)", wrong: null, right: "F-6", zone: "Middle Delkfutt's Tower", mapNo: 9 },
+  { page: "Jeuno (Mission)", snippet: "fight Porphyrion at H-8", wrong: null, right: "H-8", zone: "Upper Delkfutt's Tower", mapNo: 10 },
+  { page: "The Pirate's Cove", snippet: "lava puddle", wrong: null, right: "H-7", zone: "Ifrit's Cauldron", mapNo: 1 },
+  { page: "The Chains That Bind Us", snippet: "through the caves to (K-8)", wrong: null, right: "K-8", zone: "Quicksand Caves", mapNo: 4 },
+];
+
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 async function api(base, params) {
@@ -276,13 +337,56 @@ function parseTemplate(wt) {
 }
 
 /** Walkthrough section -> array of step strings ("## " prefix = sub-heading). */
+/** {{Location}}/{{Location Tooltip}} references in a wikitext fragment: zone + sub-map + position. */
+function locRefs(wt) {
+  const out = [];
+  const re = /\{\{\s*Location(?: Tooltip)?\s*\|((?:[^{}]|\{(?!\{)|\}(?!\}))*)\}\}/gi;
+  let m;
+  while ((m = re.exec(wt ?? ""))) {
+    const { positional, named } = templateParams(m[1]);
+    const zone = plain(named.area ?? positional[0] ?? "").trim();
+    const pos = (named.pos ?? positional[1] ?? "").trim().toUpperCase();
+    const mapNo = named.map ? parseInt(named.map.match(/\d+/)?.[0] ?? "", 10) || null : null;
+    if (zone && /^[A-P]-\d{1,2}$/.test(pos)) out.push({ zone, mapNo, pos });
+  }
+  return out;
+}
+
+const ORDINALS = { first: 1, second: 2, third: 3, fourth: 4, fifth: 5, sixth: 6, seventh: 7, eighth: 8 };
+
+/** Fill in missing map numbers from prose like "(H-7) on the second map" / "on Map 2 at (F-7)". */
+function inferMapNos(text, refs) {
+  const mapNo = (s, last) => {
+    const re = /\b(?:(first|second|third|fourth|fifth|sixth|seventh|eighth)\s+map|map\s*#?\s*(\d+)|(\d+)(?:st|nd|rd|th)\s+map)\b/gi;
+    const hits = [...s.matchAll(re)];
+    const m = last ? hits[hits.length - 1] : hits[0];
+    if (!m) return null;
+    return m[1] ? ORDINALS[m[1].toLowerCase()] : parseInt(m[2] ?? m[3], 10) || null;
+  };
+  let from = 0, prevEnd = 0;
+  for (const ref of refs) {
+    const at = text.indexOf(ref.pos, from);
+    if (at < 0) continue;
+    from = at + ref.pos.length;
+    if (ref.mapNo != null) { prevEnd = from; continue; }
+    // Prefer a qualifier after the coord, else one shortly before it ("on Map 2 at (G-10)")
+    const nextIdx = refs.map((r) => text.indexOf(r.pos, from)).filter((i) => i > 0);
+    const after = text.slice(from, nextIdx.length ? Math.min(...nextIdx) : from + 90);
+    const before = text.slice(Math.max(prevEnd, at - 40), at);
+    ref.mapNo = mapNo(after, false) ?? mapNo(before, true);
+    prevEnd = from;
+  }
+  return refs;
+}
+
 function parseWalkthrough(wt) {
   const m = wt.match(/^=+\s*Walkthrough\s*=+\s*$/im);
-  if (!m) return [];
+  if (!m) return { steps: [], stepRefs: [] };
   const rest = wt.slice(m.index + m[0].length);
   const endM = rest.match(/^=+\s*(?:Game Description|Game description|Description|Trivia|See Also|Notes)\s*=+\s*$|\{\{(?:Quest|Mission)\/Description/im);
   const body = endM ? rest.slice(0, endM.index) : rest;
   const steps = [];
+  const stepRefs = [];
   for (const raw of body.split("\n")) {
     const line = raw.trim();
     if (!line || line.startsWith("__") || /^\[\[(?:Category|de|fr|ja|es):/i.test(line)) continue;
@@ -293,9 +397,11 @@ function parseWalkthrough(wt) {
     const depth = b ? Math.max(0, b[1].length - 1) : 0;
     const text = plain(b ? b[2] : line);
     if (!text || text.includes("{{") || text.includes("}}")) continue; // unparsed multi-line template
+    if (/^(?:File|Image):/i.test(text)) continue; // gallery entries, not steps
+    for (const r of inferMapNos(text, locRefs(b ? b[2] : line))) stepRefs.push({ step: steps.length, ...r });
     steps.push("  ".repeat(depth) + text);
   }
-  return steps;
+  return { steps, stepRefs };
 }
 
 /** Game description (client + summary), from section or template. */
@@ -384,11 +490,19 @@ function parsePage(title, wt, type, group) {
   const fields = parseTemplate(wt) ?? parseInfoTable(wt);
   const { npc, zone, coord } = parseStartNpc(fields.startNpc);
   const { fame, fameArea } = parseFame(fields.requirements);
-  const walkthrough = parseWalkthrough(wt);
+  const { steps: walkthrough, stepRefs } = parseWalkthrough(wt);
   const desc = parseDescription(wt);
   const repRaw = plain(fields.repeatable ?? "");
   const allCoords = [...new Set([...plain(wt).matchAll(COORD_RE)].map((m) => m[1]))];
   if (coord && !allCoords.includes(coord)) allCoords.unshift(coord);
+
+  // Page-wide refs (deduped) for fallback association
+  const mapRefs = [];
+  const seenRef = new Set();
+  for (const r of locRefs(wt)) {
+    const key = `${r.zone}|${r.mapNo}|${r.pos}`;
+    if (!seenRef.has(key)) { seenRef.add(key); mapRefs.push(r); }
+  }
 
   // ToAU mission titles embed number + name: "Aht Urhgan Mission 12: Royal Puppeteer"
   let name = normTitle(title).replace(/ \((?:Quest|Mission)\)$/, "");
@@ -423,6 +537,8 @@ function parsePage(title, wt, type, group) {
     client: desc.client,
     summary: desc.summary,
     coords: allCoords,
+    mapRefs,
+    stepRefs,
   };
 }
 
@@ -625,8 +741,140 @@ const dedupedMissions = dedupe(missions);
 quests.length = 0; quests.push(...dedupedQuests);
 missions.length = 0; missions.push(...dedupedMissions);
 
+// Punctuation-only title differences can collide after slugging ("Curses, Foiled Again!" vs "Curses, Foiled...Again!?")
+const usedIds = new Map();
+for (const e of [...quests, ...missions]) {
+  const n = usedIds.get(e.id) ?? 0;
+  usedIds.set(e.id, n + 1);
+  if (n > 0) {
+    console.log(`  id collision: ${e.pageTitle} -> ${e.id}-${n + 1}`);
+    e.id = `${e.id}-${n + 1}`;
+  }
+}
+
 console.log(`\nffxiclopedia-only quests NOT included (add to QUEST_WHITELIST if era-correct):`);
 for (const t of [...extraTitles.keys()].filter((t) => !QUEST_WHITELIST.has(t)).sort()) console.log(`  ? [${extraTitles.get(t)}] ${t}`);
+
+// Infer zones for walkthrough coords the wiki wrote as plain text (no {{Location}} template) ------
+const ZONE_VOCAB = new Set();
+for (const e of [...quests, ...missions]) {
+  if (e.startZone) ZONE_VOCAB.add(e.startZone);
+  for (const r of e.mapRefs) ZONE_VOCAB.add(r.zone);
+}
+// Longest first so "Northern San d'Oria" wins over "San d'Oria"
+const zoneNames = [...ZONE_VOCAB].filter((z) => z.length > 3 && /^[A-Z]/.test(z)).sort((a, b) => b.length - a.length);
+
+/** Zone mentions in a step, non-overlapping, longest match first. */
+function zoneMentions(text) {
+  const out = [];
+  const claimed = [];
+  for (const zone of zoneNames) {
+    let i = text.indexOf(zone);
+    while (i >= 0) {
+      const end = i + zone.length;
+      if (!claimed.some(([s, e]) => i < e && end > s)) {
+        claimed.push([i, end]);
+        out.push({ zone, start: i, end });
+      }
+      i = text.indexOf(zone, i + 1);
+    }
+  }
+  return out;
+}
+
+let inferredZones = 0;
+for (const e of [...quests, ...missions]) {
+  const covered = new Set(e.stepRefs.map((r) => `${r.step}|${r.pos}`));
+  const added = [];
+  for (const [i, step] of e.walkthrough.entries()) {
+    const mentions = zoneMentions(step);
+    if (!mentions.length) continue;
+    for (const m of step.matchAll(/\b([A-P]-\d{1,2})\b/g)) {
+      const pos = m[1];
+      if (covered.has(`${i}|${pos}`)) continue;
+      const at = m.index;
+      // Nearest zone name to this coordinate, within the same sentence-ish distance
+      let best = null;
+      for (const mn of mentions) {
+        const dist = at < mn.start ? mn.start - at : at - mn.end;
+        if (dist <= 60 && (!best || dist < best.dist)) best = { zone: mn.zone, dist };
+      }
+      if (!best) continue;
+      covered.add(`${i}|${pos}`);
+      added.push({ step: i, zone: best.zone, mapNo: null, pos });
+      inferredZones++;
+    }
+    if (added.length) inferMapNos(step, added.filter((r) => r.step === i));
+  }
+  if (added.length) {
+    e.stepRefs = [...e.stepRefs, ...added].sort((a, b) => a.step - b.step);
+    for (const r of added) {
+      if (!e.mapRefs.some((x) => x.zone === r.zone && x.mapNo === r.mapNo && x.pos === r.pos))
+        e.mapRefs.push({ zone: r.zone, mapNo: r.mapNo, pos: r.pos });
+    }
+  }
+}
+console.log(`Inferred zones for ${inferredZones} plain-text walkthrough coordinates`);
+
+// Multi-floor dungeons: the wiki tags only some steps with map=, but writes "3rd Floor:" on all.
+// Learn the floor->map offset from the tagged steps, then apply it to the untagged ones.
+const FLOOR_WORDS = { first: 1, second: 2, third: 3, fourth: 4, fifth: 5, sixth: 6, seventh: 7, eighth: 8, ninth: 9, tenth: 10 };
+function floorOf(step) {
+  if (/\bbasement\b/i.test(step)) return 0;
+  const d = step.match(/\b(\d+)(?:st|nd|rd|th)\s+floor\b/i);
+  if (d) return parseInt(d[1], 10);
+  const w = step.match(/\b(first|second|third|fourth|fifth|sixth|seventh|eighth|ninth|tenth)\s+floor\b/i);
+  return w ? FLOOR_WORDS[w[1].toLowerCase()] : null;
+}
+
+let floorFilled = 0;
+for (const e of [...quests, ...missions]) {
+  const counts = new Map();
+  for (const r of e.stepRefs) {
+    if (r.mapNo == null) continue;
+    const f = floorOf(e.walkthrough[r.step] ?? "");
+    if (f != null) counts.set(r.mapNo - f, (counts.get(r.mapNo - f) ?? 0) + 1);
+  }
+  const total = [...counts.values()].reduce((a, b) => a + b, 0);
+  const [offset, n] = [...counts].sort((a, b) => b[1] - a[1])[0] ?? [];
+  // Need a clear majority; a lone outlier (wiki tagging one coord to the floor below) is ignored
+  if (n == null || n < 2 || n / total <= 0.6) continue;
+  for (const r of e.stepRefs) {
+    if (r.mapNo != null) continue;
+    const f = floorOf(e.walkthrough[r.step] ?? "");
+    if (f == null) continue;
+    r.mapNo = f + offset;
+    floorFilled++;
+  }
+}
+console.log(`Filled ${floorFilled} map numbers from floor references`);
+
+// Verified wiki typos / prose the parser can't disambiguate
+for (const fix of COORD_FIXES) {
+  const e = [...quests, ...missions].find((x) => x.pageTitle === fix.page);
+  if (!e) continue;
+  const i = e.walkthrough.findIndex((s) => s.includes(fix.snippet));
+  if (i < 0) continue;
+  const pos = fix.right ?? fix.wrong;
+  if (fix.wrong && fix.right) {
+    e.walkthrough[i] = e.walkthrough[i].replaceAll(fix.wrong, fix.right);
+    for (const r of e.stepRefs) if (r.step === i && r.pos === fix.wrong) r.pos = fix.right;
+  }
+  if (fix.zone) {
+    if (fix.replace) {
+      e.stepRefs = e.stepRefs.filter((r) => !(r.step === i && r.pos === pos && r.occurrence == null));
+    }
+    const existing = e.stepRefs.find(
+      (r) => r.step === i && r.pos === pos && r.zone === fix.zone && (fix.occurrence == null || r.occurrence === fix.occurrence)
+    );
+    const patch = { zone: fix.zone, mapNo: fix.mapNo ?? null, occurrence: fix.occurrence };
+    if (existing) Object.assign(existing, patch);
+    else e.stepRefs.push({ step: i, pos, ...patch });
+    if (!e.mapRefs.some((r) => r.zone === fix.zone && r.mapNo === (fix.mapNo ?? null) && r.pos === pos))
+      e.mapRefs.push({ zone: fix.zone, mapNo: fix.mapNo ?? null, pos });
+  }
+  console.log(`  corrected ${fix.page} step ${i}: ${fix.wrong ?? pos} -> ${pos}${fix.zone ? ` @ ${fix.zone}${fix.mapNo != null ? ` map ${fix.mapNo}` : ""}` : ""}`);
+}
 
 // Backfill missing start-NPC coordinates from the NPCs' own pages ---------------------------------
 function npcLocation(wt) {
