@@ -58,6 +58,9 @@ const CLAM_ITEMS: ClamItem[] = [
   { key: "turtleShell", name: "Turtle Shell", weight: 6, vendorGil: 1200, ratePct: 0.1, ratePlusPct: 0.3 },
 ];
 
+/** For the Items tab source index. */
+export const CLAM_ITEM_NAMES: string[] = CLAM_ITEMS.map((i) => i.name);
+
 const thStyle: React.CSSProperties = {
   position: "sticky",
   top: 0,

@@ -122,7 +122,49 @@ const COORD_FIXES = [
   { page: "Jeuno (Mission)", snippet: "fight Porphyrion at H-8", wrong: null, right: "H-8", zone: "Upper Delkfutt's Tower", mapNo: 10 },
   { page: "The Pirate's Cove", snippet: "lava puddle", wrong: null, right: "H-7", zone: "Ifrit's Cauldron", mapNo: 1 },
   { page: "The Chains That Bind Us", snippet: "through the caves to (K-8)", wrong: null, right: "K-8", zone: "Quicksand Caves", mapNo: 4 },
+  { page: "The Rites of Life", snippet: "Tales' Beginning", wrong: null, right: "H-10", zone: "Lower Delkfutt's Tower", mapNo: 1, replace: true },
+  { page: "The Road Forks", snippet: "Timbre Timbers Tavern", wrong: null, right: "F-10", zone: "Windurst Waters", mapNo: 2, replace: true },
+  { page: "The Road Forks", snippet: "Tosuka-Porika", wrong: null, right: "G-8", zone: "Windurst Waters", mapNo: 2, replace: true },
+  { page: "Slanderous Utterings", snippet: "Talk to Despachiaire", wrong: null, right: "K-9", zone: "Tavnazian Safehold", mapNo: 2, replace: true },
+  { page: "Slanderous Utterings", snippet: "Talk to Despachiaire", wrong: null, right: "K-10", zone: "Tavnazian Safehold", mapNo: 2, replace: true },
+  { page: "Slanderous Utterings", snippet: "Enter Sealion's Den", wrong: "H-9", right: "H-10", zone: "Tavnazian Safehold", mapNo: 3, replace: true },
+  { page: "The Warrior's Path", snippet: "landed at E-12", wrong: null, right: "E-12", zone: "Al'Taieu", mapNo: 1 },
+  { page: "Garden of Antiquity", snippet: "Crystalline Field door", wrong: null, right: "H-11", zone: "Al'Taieu", mapNo: 1, replace: true },
+  { page: "Garden of Antiquity", snippet: "Auroral Updraft", wrong: null, right: "H-12", zone: "Al'Taieu", mapNo: 1, replace: true },
+  { page: "Garden of Antiquity", snippet: "Southern Tower", wrong: null, right: "H-13", zone: "Al'Taieu", mapNo: 1, replace: true },
+  { page: "Garden of Antiquity", snippet: "Western Tower", wrong: null, right: "D-10", zone: "Al'Taieu", mapNo: 1, replace: true },
+  { page: "Garden of Antiquity", snippet: "Eastern Tower", wrong: null, right: "L-10", zone: "Al'Taieu", mapNo: 1, replace: true },
+  { page: "Garden of Antiquity", snippet: "forgot to get the first cutscene", wrong: null, right: "H-11", zone: "Al'Taieu", mapNo: 1, replace: true },
+  { page: "Garden of Antiquity", snippet: "all three towers", wrong: null, right: "H-11", zone: "Al'Taieu", mapNo: 1, replace: true },
+  { page: "Garden of Antiquity", snippet: "Gate of the Gods", wrong: null, right: "H-8", zone: "Grand Palace of Hu'Xzoi", mapNo: 3, replace: true },
+  { page: "A Fate Decided", snippet: "first NPC spawns at J-6", wrong: "J-6", right: "J-8", zone: "Grand Palace of Hu'Xzoi", mapNo: 1, replace: true },
+  { page: "When Angels Fall", snippet: "proceed to the elevator", wrong: null, right: "H-8", zone: "The Garden of Ru'Hmet", mapNo: 1 },
+  { page: "When Angels Fall", snippet: "Particle Gate (H-8 of Map 3)", wrong: null, right: "H-8", zone: "The Garden of Ru'Hmet", mapNo: 3 },
+  { page: "Storms of Fate", snippet: "waypoint to travel to C-10", wrong: null, right: "C-10", zone: "Riverne - Site B01", mapNo: 1 },
+  { page: "Storms of Fate", snippet: "normal\" Unstable Displacement", wrong: null, right: "G-8", zone: "Riverne - Site B01", mapNo: 1 },
+  { page: "Storms of Fate", snippet: "green Unstable Displacement", wrong: null, right: "E-7", zone: "Riverne - Site B01", mapNo: 1 },
+  { page: "Shadows of the Departed", snippet: "To get to Promyvion - Holla", wrong: null, right: "J-8", zone: "La Theine Plateau", mapNo: 1 },
+  { page: "Shadows of the Departed", snippet: "To get to Promyvion - Dem", wrong: null, right: "I-7", zone: "Konschtat Highlands", mapNo: 1 },
+  { page: "Shadows of the Departed", snippet: "To get to Promyvion - Mea", wrong: null, right: "I-6", zone: "Tahrongi Canyon", mapNo: 1 },
 ];
+
+// Section headings that refer to maps without a coordinate in their body.
+const HEADING_MAPS = {
+  "The Mothercrystals": {
+    "Promyvion - Mea": "Promyvion - Mea",
+    "Promyvion - Dem": "Promyvion - Dem",
+    "Promyvion - Holla": "Promyvion - Holla",
+  },
+  "When Angels Fall": {
+    "Part I": "The Garden of Ru'Hmet",
+    "Part II": "The Garden of Ru'Hmet",
+    "Part III": "The Garden of Ru'Hmet",
+  },
+};
+
+const SUMMARY_OVERRIDES = {
+  "The Last Verse": "This is the last chapter in both the Chains of Promathia and Rise of the Zilart storylines. It is automatically activated after finishing Apocalypse Nigh. It does not have a mission description and simply signifies that you have finished the storylines.",
+};
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
@@ -511,6 +553,9 @@ function parsePage(title, wt, type, group) {
   if (toau) { number = toau[1]; name = toau[2]; }
   else if (number && fields.missionName) name = plain(fields.missionName).split("\n")[0].replace(/\s*\((?:ZM|PM|BM|SM|WM)[^)]*\)\s*$/i, "").trim() || name;
   if (!number && fields.missionNumber) number = plain(fields.missionNumber).match(/(\d+-\d+|\d+)/)?.[1] ?? null;
+  const headingRefs = Object.entries(HEADING_MAPS[title] ?? {})
+    .map(([heading, zone]) => ({ step: walkthrough.findIndex((s) => s === `## ${heading}`), zone }))
+    .filter((ref) => ref.step >= 0);
 
   return {
     id: slug(title),
@@ -535,10 +580,11 @@ function parsePage(title, wt, type, group) {
     next: parseChain(fields.next),
     walkthrough,
     client: desc.client,
-    summary: desc.summary,
+    summary: SUMMARY_OVERRIDES[title] ?? desc.summary,
     coords: allCoords,
     mapRefs,
     stepRefs,
+    headingRefs,
   };
 }
 

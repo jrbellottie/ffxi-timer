@@ -1,0 +1,1424 @@
+[
+ {
+  "n": "Chunk of Rock Salt",
+  "guild": "Cooking",
+  "price": 16,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Flask of Distilled Water",
+  "guild": "Cooking",
+  "price": 12,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Lizard Egg",
+  "guild": "Cooking",
+  "price": 100,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Saruta Orange",
+  "guild": "Cooking",
+  "price": 32,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Bunch of San Dorian Grapes",
+  "guild": "Cooking",
+  "price": 76,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Jar of Miso",
+  "guild": "Cooking",
+  "price": 2500,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Jar of Soy Sauce",
+  "guild": "Cooking",
+  "price": 2500,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Handful of Dried Bonito",
+  "guild": "Cooking",
+  "price": 2500,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Bag of San Dorian Flour",
+  "guild": "Cooking",
+  "price": 60,
+  "rank": "Recruit"
+ },
+ {
+  "n": "Pot of Maple Sugar",
+  "guild": "Cooking",
+  "price": 40,
+  "rank": "Recruit"
+ },
+ {
+  "n": "Faerie Apple",
+  "guild": "Cooking",
+  "price": 44,
+  "rank": "Recruit"
+ },
+ {
+  "n": "Jug of Selbina Milk",
+  "guild": "Cooking",
+  "price": 60,
+  "rank": "Recruit"
+ },
+ {
+  "n": "Pot of Honey",
+  "guild": "Cooking",
+  "price": 200,
+  "rank": "Recruit"
+ },
+ {
+  "n": "Kazham Pineapple",
+  "guild": "Cooking",
+  "price": 60,
+  "rank": "Initiate"
+ },
+ {
+  "n": "La Theine Cabbage",
+  "guild": "Cooking",
+  "price": 24,
+  "rank": "Initiate"
+ },
+ {
+  "n": "Bag of Rye Flour",
+  "guild": "Cooking",
+  "price": 40,
+  "rank": "Initiate"
+ },
+ {
+  "n": "Thundermelon",
+  "guild": "Cooking",
+  "price": 325,
+  "rank": "Novice"
+ },
+ {
+  "n": "Watermelon",
+  "guild": "Cooking",
+  "price": 200,
+  "rank": "Novice"
+ },
+ {
+  "n": "Stick of Selbina Butter",
+  "guild": "Cooking",
+  "price": 60,
+  "rank": "Novice"
+ },
+ {
+  "n": "Bunch of Kazham Peppers",
+  "guild": "Cooking",
+  "price": 60,
+  "rank": "Apprentice"
+ },
+ {
+  "n": "Block of Gelatin",
+  "guild": "Cooking",
+  "price": 900,
+  "rank": "Apprentice"
+ },
+ {
+  "n": "Serving of Spaghetti",
+  "guild": "Cooking",
+  "price": 3000,
+  "rank": "Journeyman"
+ },
+ {
+  "n": "Jar of Ground Wasabi",
+  "guild": "Cooking",
+  "price": 2595,
+  "rank": "Journeyman"
+ },
+ {
+  "n": "Piece of Pie Dough",
+  "guild": "Cooking",
+  "price": 1600,
+  "rank": "Craftsman"
+ },
+ {
+  "n": "Piece of Pizza Dough",
+  "guild": "Cooking",
+  "price": 3000,
+  "rank": "Craftsman"
+ },
+ {
+  "n": "Azuki Bean",
+  "guild": "Cooking",
+  "price": 600,
+  "rank": "Craftsman"
+ },
+ {
+  "n": "Cooking Kit 5",
+  "guild": "Cooking",
+  "price": 300,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Cooking Kit 10",
+  "guild": "Cooking",
+  "price": 400,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Cooking Kit 15",
+  "guild": "Cooking",
+  "price": 650,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Cooking Kit 20",
+  "guild": "Cooking",
+  "price": 1050,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Cooking Kit 25",
+  "guild": "Cooking",
+  "price": 1600,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Cooking Kit 30",
+  "guild": "Cooking",
+  "price": 2300,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Cooking Kit 35",
+  "guild": "Cooking",
+  "price": 3150,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Cooking Kit 40",
+  "guild": "Cooking",
+  "price": 4150,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Cooking Kit 45",
+  "guild": "Cooking",
+  "price": 5300,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Cooking Kit 50",
+  "guild": "Cooking",
+  "price": 7600,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Spindle",
+  "guild": "Clothcraft",
+  "price": 75,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Spool of Zephyr Thread",
+  "guild": "Clothcraft",
+  "price": 75,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Clump of Moko Grass",
+  "guild": "Clothcraft",
+  "price": 20,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Ball of Saruta Cotton",
+  "guild": "Clothcraft",
+  "price": 500,
+  "rank": "Recruit"
+ },
+ {
+  "n": "Clump of Red Moko Grass",
+  "guild": "Clothcraft",
+  "price": 200,
+  "rank": "Recruit"
+ },
+ {
+  "n": "Spool of Linen Thread",
+  "guild": "Clothcraft",
+  "price": 150,
+  "rank": "Initiate"
+ },
+ {
+  "n": "Spool of Wool Thread",
+  "guild": "Clothcraft",
+  "price": 2800,
+  "rank": "Novice"
+ },
+ {
+  "n": "Clump of Mohbwa Grass",
+  "guild": "Clothcraft",
+  "price": 800,
+  "rank": "Apprentice"
+ },
+ {
+  "n": "Spool of Silk Thread",
+  "guild": "Clothcraft",
+  "price": 1500,
+  "rank": "Apprentice"
+ },
+ {
+  "n": "Clump of Karakul Wool",
+  "guild": "Clothcraft",
+  "price": 1400,
+  "rank": "Journeyman"
+ },
+ {
+  "n": "Spool of Gold Thread",
+  "guild": "Clothcraft",
+  "price": 14500,
+  "rank": "Craftsman"
+ },
+ {
+  "n": "Clothcraft Kit 5",
+  "guild": "Clothcraft",
+  "price": 300,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Clothcraft Kit 10",
+  "guild": "Clothcraft",
+  "price": 400,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Clothcraft Kit 15",
+  "guild": "Clothcraft",
+  "price": 650,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Clothcraft Kit 20",
+  "guild": "Clothcraft",
+  "price": 1050,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Clothcraft Kit 25",
+  "guild": "Clothcraft",
+  "price": 1600,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Clothcraft Kit 30",
+  "guild": "Clothcraft",
+  "price": 2300,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Clothcraft Kit 35",
+  "guild": "Clothcraft",
+  "price": 3150,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Clothcraft Kit 40",
+  "guild": "Clothcraft",
+  "price": 4150,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Clothcraft Kit 45",
+  "guild": "Clothcraft",
+  "price": 5300,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Clothcraft Kit 50",
+  "guild": "Clothcraft",
+  "price": 7600,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Spool of Khoma Thread",
+  "guild": "Clothcraft",
+  "price": 1126125,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Workshop Anvil",
+  "guild": "Goldsmithing",
+  "price": 75,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Mandrel",
+  "guild": "Goldsmithing",
+  "price": 75,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Chunk of Zinc Ore",
+  "guild": "Goldsmithing",
+  "price": 200,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Chunk of Copper Ore",
+  "guild": "Goldsmithing",
+  "price": 12,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Brass Nugget",
+  "guild": "Goldsmithing",
+  "price": 40,
+  "rank": "Recruit"
+ },
+ {
+  "n": "Brass Sheet",
+  "guild": "Goldsmithing",
+  "price": 300,
+  "rank": "Recruit"
+ },
+ {
+  "n": "Chunk of Silver Ore",
+  "guild": "Goldsmithing",
+  "price": 450,
+  "rank": "Recruit"
+ },
+ {
+  "n": "Silver Nugget",
+  "guild": "Goldsmithing",
+  "price": 200,
+  "rank": "Initiate"
+ },
+ {
+  "n": "Tourmaline",
+  "guild": "Goldsmithing",
+  "price": 1863,
+  "rank": "Initiate"
+ },
+ {
+  "n": "Sardonyx",
+  "guild": "Goldsmithing",
+  "price": 1863,
+  "rank": "Initiate"
+ },
+ {
+  "n": "Clear Topaz",
+  "guild": "Goldsmithing",
+  "price": 1863,
+  "rank": "Initiate"
+ },
+ {
+  "n": "Amethyst",
+  "guild": "Goldsmithing",
+  "price": 1863,
+  "rank": "Initiate"
+ },
+ {
+  "n": "Lapis Lazuli",
+  "guild": "Goldsmithing",
+  "price": 1863,
+  "rank": "Initiate"
+ },
+ {
+  "n": "Amber Stone",
+  "guild": "Goldsmithing",
+  "price": 1863,
+  "rank": "Initiate"
+ },
+ {
+  "n": "Onyx",
+  "guild": "Goldsmithing",
+  "price": 1863,
+  "rank": "Initiate"
+ },
+ {
+  "n": "Light Opal",
+  "guild": "Goldsmithing",
+  "price": 1863,
+  "rank": "Initiate"
+ },
+ {
+  "n": "Silver Chain",
+  "guild": "Goldsmithing",
+  "price": 23000,
+  "rank": "Novice"
+ },
+ {
+  "n": "Chunk of Mythril Ore",
+  "guild": "Goldsmithing",
+  "price": 2000,
+  "rank": "Novice"
+ },
+ {
+  "n": "Chunk of Gold Ore",
+  "guild": "Goldsmithing",
+  "price": 3000,
+  "rank": "Apprentice"
+ },
+ {
+  "n": "Mythril Sheet",
+  "guild": "Goldsmithing",
+  "price": 12000,
+  "rank": "Apprentice"
+ },
+ {
+  "n": "Peridot",
+  "guild": "Goldsmithing",
+  "price": 8000,
+  "rank": "Apprentice"
+ },
+ {
+  "n": "Garnet",
+  "guild": "Goldsmithing",
+  "price": 8000,
+  "rank": "Apprentice"
+ },
+ {
+  "n": "Goshenite",
+  "guild": "Goldsmithing",
+  "price": 8000,
+  "rank": "Apprentice"
+ },
+ {
+  "n": "Ametrine",
+  "guild": "Goldsmithing",
+  "price": 8000,
+  "rank": "Apprentice"
+ },
+ {
+  "n": "Turquoise",
+  "guild": "Goldsmithing",
+  "price": 8000,
+  "rank": "Apprentice"
+ },
+ {
+  "n": "Sphene",
+  "guild": "Goldsmithing",
+  "price": 8000,
+  "rank": "Apprentice"
+ },
+ {
+  "n": "Black Pearl",
+  "guild": "Goldsmithing",
+  "price": 12000,
+  "rank": "Apprentice"
+ },
+ {
+  "n": "Pearl",
+  "guild": "Goldsmithing",
+  "price": 11000,
+  "rank": "Apprentice"
+ },
+ {
+  "n": "Chunk of Aluminum Ore",
+  "guild": "Goldsmithing",
+  "price": 5000,
+  "rank": "Apprentice"
+ },
+ {
+  "n": "Gold Sheet",
+  "guild": "Goldsmithing",
+  "price": 32000,
+  "rank": "Journeyman"
+ },
+ {
+  "n": "Gold Chain",
+  "guild": "Goldsmithing",
+  "price": 58000,
+  "rank": "Journeyman"
+ },
+ {
+  "n": "Chunk of Platinum Ore",
+  "guild": "Goldsmithing",
+  "price": 6000,
+  "rank": "Craftsman"
+ },
+ {
+  "n": "Goldsmithing Kit 5",
+  "guild": "Goldsmithing",
+  "price": 300,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Goldsmithing Kit 10",
+  "guild": "Goldsmithing",
+  "price": 400,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Goldsmithing Kit 15",
+  "guild": "Goldsmithing",
+  "price": 650,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Goldsmithing Kit 20",
+  "guild": "Goldsmithing",
+  "price": 1050,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Goldsmithing Kit 25",
+  "guild": "Goldsmithing",
+  "price": 1600,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Goldsmithing Kit 30",
+  "guild": "Goldsmithing",
+  "price": 2300,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Goldsmithing Kit 35",
+  "guild": "Goldsmithing",
+  "price": 3150,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Goldsmithing Kit 40",
+  "guild": "Goldsmithing",
+  "price": 4150,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Goldsmithing Kit 45",
+  "guild": "Goldsmithing",
+  "price": 5300,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Goldsmithing Kit 50",
+  "guild": "Goldsmithing",
+  "price": 7600,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Chunk of Ruthenium Ore",
+  "guild": "Goldsmithing",
+  "price": 1126125,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Spool of Bundling Twine",
+  "guild": "Woodworking",
+  "price": 100,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Arrowwood Log",
+  "guild": "Woodworking",
+  "price": 25,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Lauan Log",
+  "guild": "Woodworking",
+  "price": 50,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Maple Log",
+  "guild": "Woodworking",
+  "price": 70,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Holly Log",
+  "guild": "Woodworking",
+  "price": 800,
+  "rank": "Recruit"
+ },
+ {
+  "n": "Willow Log",
+  "guild": "Woodworking",
+  "price": 1600,
+  "rank": "Recruit"
+ },
+ {
+  "n": "Walnut Log",
+  "guild": "Woodworking",
+  "price": 1300,
+  "rank": "Recruit"
+ },
+ {
+  "n": "Yew Log",
+  "guild": "Woodworking",
+  "price": 500,
+  "rank": "Initiate"
+ },
+ {
+  "n": "Elm Log",
+  "guild": "Woodworking",
+  "price": 3800,
+  "rank": "Initiate"
+ },
+ {
+  "n": "Chestnut Log",
+  "guild": "Woodworking",
+  "price": 3400,
+  "rank": "Initiate"
+ },
+ {
+  "n": "Dogwood Log",
+  "guild": "Woodworking",
+  "price": 2000,
+  "rank": "Novice"
+ },
+ {
+  "n": "Oak Log",
+  "guild": "Woodworking",
+  "price": 4000,
+  "rank": "Novice"
+ },
+ {
+  "n": "Rosewood Log",
+  "guild": "Woodworking",
+  "price": 4500,
+  "rank": "Apprentice"
+ },
+ {
+  "n": "Mahogany Log",
+  "guild": "Woodworking",
+  "price": 4500,
+  "rank": "Journeyman"
+ },
+ {
+  "n": "Ebony Log",
+  "guild": "Woodworking",
+  "price": 5000,
+  "rank": "Craftsman"
+ },
+ {
+  "n": "Feyweald Log",
+  "guild": "Woodworking",
+  "price": 5500,
+  "rank": "Craftsman"
+ },
+ {
+  "n": "Woodworking Kit 5",
+  "guild": "Woodworking",
+  "price": 300,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Woodworking Kit 10",
+  "guild": "Woodworking",
+  "price": 400,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Woodworking Kit 15",
+  "guild": "Woodworking",
+  "price": 650,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Woodworking Kit 20",
+  "guild": "Woodworking",
+  "price": 1050,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Woodworking Kit 25",
+  "guild": "Woodworking",
+  "price": 1600,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Woodworking Kit 30",
+  "guild": "Woodworking",
+  "price": 2300,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Woodworking Kit 35",
+  "guild": "Woodworking",
+  "price": 3150,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Woodworking Kit 40",
+  "guild": "Woodworking",
+  "price": 4150,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Woodworking Kit 45",
+  "guild": "Woodworking",
+  "price": 5300,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Woodworking Kit 50",
+  "guild": "Woodworking",
+  "price": 7600,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Cypress Log",
+  "guild": "Woodworking",
+  "price": 1126125,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Triturator",
+  "guild": "Alchemy",
+  "price": 75,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Beehive Chip",
+  "guild": "Alchemy",
+  "price": 40,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Vial of Mercury",
+  "guild": "Alchemy",
+  "price": 1700,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Block of Animal Glue",
+  "guild": "Alchemy",
+  "price": 300,
+  "rank": "Recruit"
+ },
+ {
+  "n": "Pinch of Poison Dust",
+  "guild": "Alchemy",
+  "price": 320,
+  "rank": "Recruit"
+ },
+ {
+  "n": "Vial of Slime Oil",
+  "guild": "Alchemy",
+  "price": 1500,
+  "rank": "Initiate"
+ },
+ {
+  "n": "Pinch of Bomb Ash",
+  "guild": "Alchemy",
+  "price": 515,
+  "rank": "Initiate"
+ },
+ {
+  "n": "Bottle of Ahriman Tears",
+  "guild": "Alchemy",
+  "price": 200,
+  "rank": "Initiate"
+ },
+ {
+  "n": "Loop of Glass Fiber",
+  "guild": "Alchemy",
+  "price": 1200,
+  "rank": "Novice"
+ },
+ {
+  "n": "Jar of Firesand",
+  "guild": "Alchemy",
+  "price": 5000,
+  "rank": "Novice"
+ },
+ {
+  "n": "Flask of Vitriol",
+  "guild": "Alchemy",
+  "price": 700,
+  "rank": "Apprentice"
+ },
+ {
+  "n": "Bottle of Sieglinde Putty",
+  "guild": "Alchemy",
+  "price": 4000,
+  "rank": "Apprentice"
+ },
+ {
+  "n": "Dryad Root",
+  "guild": "Alchemy",
+  "price": 1800,
+  "rank": "Apprentice"
+ },
+ {
+  "n": "Loop of Carbon Fiber",
+  "guild": "Alchemy",
+  "price": 1900,
+  "rank": "Journeyman"
+ },
+ {
+  "n": "Hecteyes Eye",
+  "guild": "Alchemy",
+  "price": 2100,
+  "rank": "Journeyman"
+ },
+ {
+  "n": "Jar of Toad Oil",
+  "guild": "Alchemy",
+  "price": 3600,
+  "rank": "Journeyman"
+ },
+ {
+  "n": "Cermet Chunk",
+  "guild": "Alchemy",
+  "price": 5000,
+  "rank": "Craftsman"
+ },
+ {
+  "n": "Pinch of Venom Dust",
+  "guild": "Alchemy",
+  "price": 1035,
+  "rank": "Craftsman"
+ },
+ {
+  "n": "Alchemy Kit 5",
+  "guild": "Alchemy",
+  "price": 300,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Alchemy Kit 10",
+  "guild": "Alchemy",
+  "price": 400,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Alchemy Kit 15",
+  "guild": "Alchemy",
+  "price": 650,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Alchemy Kit 20",
+  "guild": "Alchemy",
+  "price": 1050,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Alchemy Kit 25",
+  "guild": "Alchemy",
+  "price": 1600,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Alchemy Kit 30",
+  "guild": "Alchemy",
+  "price": 2300,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Alchemy Kit 35",
+  "guild": "Alchemy",
+  "price": 3150,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Alchemy Kit 40",
+  "guild": "Alchemy",
+  "price": 4150,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Alchemy Kit 45",
+  "guild": "Alchemy",
+  "price": 5300,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Alchemy Kit 50",
+  "guild": "Alchemy",
+  "price": 7600,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Azure Leaf",
+  "guild": "Alchemy",
+  "price": 1126125,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Shagreen File",
+  "guild": "Bonecraft",
+  "price": 75,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Bone Chip",
+  "guild": "Bonecraft",
+  "price": 150,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Handful of Fish Scales",
+  "guild": "Bonecraft",
+  "price": 96,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Chicken Bone",
+  "guild": "Bonecraft",
+  "price": 1500,
+  "rank": "Recruit"
+ },
+ {
+  "n": "Giant Femur",
+  "guild": "Bonecraft",
+  "price": 1400,
+  "rank": "Recruit"
+ },
+ {
+  "n": "Beetle Shell",
+  "guild": "Bonecraft",
+  "price": 500,
+  "rank": "Initiate"
+ },
+ {
+  "n": "Beetle Jaw",
+  "guild": "Bonecraft",
+  "price": 1000,
+  "rank": "Initiate"
+ },
+ {
+  "n": "Ram Horn",
+  "guild": "Bonecraft",
+  "price": 1800,
+  "rank": "Novice"
+ },
+ {
+  "n": "Black Tiger Fang",
+  "guild": "Bonecraft",
+  "price": 2000,
+  "rank": "Novice"
+ },
+ {
+  "n": "Crab Shell",
+  "guild": "Bonecraft",
+  "price": 2500,
+  "rank": "Apprentice"
+ },
+ {
+  "n": "Turtle Shell",
+  "guild": "Bonecraft",
+  "price": 6000,
+  "rank": "Journeyman"
+ },
+ {
+  "n": "Scorpion Claw",
+  "guild": "Bonecraft",
+  "price": 2400,
+  "rank": "Journeyman"
+ },
+ {
+  "n": "Bugard Tusk",
+  "guild": "Bonecraft",
+  "price": 4000,
+  "rank": "Journeyman"
+ },
+ {
+  "n": "Scorpion Shell",
+  "guild": "Bonecraft",
+  "price": 3000,
+  "rank": "Craftsman"
+ },
+ {
+  "n": "Marid Tusk",
+  "guild": "Bonecraft",
+  "price": 4500,
+  "rank": "Craftsman"
+ },
+ {
+  "n": "Bonecraft Kit 5",
+  "guild": "Bonecraft",
+  "price": 300,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Bonecraft Kit 10",
+  "guild": "Bonecraft",
+  "price": 400,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Bonecraft Kit 15",
+  "guild": "Bonecraft",
+  "price": 650,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Bonecraft Kit 20",
+  "guild": "Bonecraft",
+  "price": 1050,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Bonecraft Kit 25",
+  "guild": "Bonecraft",
+  "price": 1600,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Bonecraft Kit 30",
+  "guild": "Bonecraft",
+  "price": 2300,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Bonecraft Kit 35",
+  "guild": "Bonecraft",
+  "price": 3150,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Bonecraft Kit 40",
+  "guild": "Bonecraft",
+  "price": 4150,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Bonecraft Kit 45",
+  "guild": "Bonecraft",
+  "price": 5300,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Bonecraft Kit 50",
+  "guild": "Bonecraft",
+  "price": 7600,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Fragment of Cyan Coral",
+  "guild": "Bonecraft",
+  "price": 1126125,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Tanning Vat",
+  "guild": "Leathercraft",
+  "price": 75,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Sheepskin",
+  "guild": "Leathercraft",
+  "price": 100,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Rabbit Hide",
+  "guild": "Leathercraft",
+  "price": 80,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Lizard Skin",
+  "guild": "Leathercraft",
+  "price": 600,
+  "rank": "Recruit"
+ },
+ {
+  "n": "Karakul Skin",
+  "guild": "Leathercraft",
+  "price": 600,
+  "rank": "Recruit"
+ },
+ {
+  "n": "Wolf Hide",
+  "guild": "Leathercraft",
+  "price": 600,
+  "rank": "Recruit"
+ },
+ {
+  "n": "Dhalmel Hide",
+  "guild": "Leathercraft",
+  "price": 2400,
+  "rank": "Initiate"
+ },
+ {
+  "n": "Bugard Skin",
+  "guild": "Leathercraft",
+  "price": 2500,
+  "rank": "Initiate"
+ },
+ {
+  "n": "Ram Skin",
+  "guild": "Leathercraft",
+  "price": 1500,
+  "rank": "Novice"
+ },
+ {
+  "n": "Buffalo Hide",
+  "guild": "Leathercraft",
+  "price": 16000,
+  "rank": "Apprentice"
+ },
+ {
+  "n": "Raptor Skin",
+  "guild": "Leathercraft",
+  "price": 3000,
+  "rank": "Journeyman"
+ },
+ {
+  "n": "Catoblepas Hide",
+  "guild": "Leathercraft",
+  "price": 2500,
+  "rank": "Journeyman"
+ },
+ {
+  "n": "Smilodon Hide",
+  "guild": "Leathercraft",
+  "price": 3000,
+  "rank": "Craftsman"
+ },
+ {
+  "n": "Cockatrice Skin",
+  "guild": "Leathercraft",
+  "price": 3000,
+  "rank": "Craftsman"
+ },
+ {
+  "n": "Leathercraft Kit 5",
+  "guild": "Leathercraft",
+  "price": 300,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Leathercraft Kit 10",
+  "guild": "Leathercraft",
+  "price": 400,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Leathercraft Kit 15",
+  "guild": "Leathercraft",
+  "price": 650,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Leathercraft Kit 20",
+  "guild": "Leathercraft",
+  "price": 1050,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Leathercraft Kit 25",
+  "guild": "Leathercraft",
+  "price": 1600,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Leathercraft Kit 30",
+  "guild": "Leathercraft",
+  "price": 2300,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Leathercraft Kit 35",
+  "guild": "Leathercraft",
+  "price": 3150,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Leathercraft Kit 40",
+  "guild": "Leathercraft",
+  "price": 4150,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Leathercraft Kit 45",
+  "guild": "Leathercraft",
+  "price": 5300,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Leathercraft Kit 50",
+  "guild": "Leathercraft",
+  "price": 7600,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Square of Synthetic Faulpie Leather",
+  "guild": "Leathercraft",
+  "price": 1126125,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Workshop Anvil",
+  "guild": "Smithing",
+  "price": 75,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Mandrel",
+  "guild": "Smithing",
+  "price": 75,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Chunk of Copper Ore",
+  "guild": "Smithing",
+  "price": 12,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Bronze Nugget",
+  "guild": "Smithing",
+  "price": 70,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Chunk of Tin Ore",
+  "guild": "Smithing",
+  "price": 60,
+  "rank": "Recruit"
+ },
+ {
+  "n": "Bronze Sheet",
+  "guild": "Smithing",
+  "price": 120,
+  "rank": "Recruit"
+ },
+ {
+  "n": "Chunk of Iron Ore",
+  "guild": "Smithing",
+  "price": 900,
+  "rank": "Recruit"
+ },
+ {
+  "n": "Chunk of Kopparnickel Ore",
+  "guild": "Smithing",
+  "price": 800,
+  "rank": "Initiate"
+ },
+ {
+  "n": "Iron Nugget",
+  "guild": "Smithing",
+  "price": 500,
+  "rank": "Initiate"
+ },
+ {
+  "n": "Iron Sheet",
+  "guild": "Smithing",
+  "price": 6000,
+  "rank": "Initiate"
+ },
+ {
+  "n": "Steel Sheet",
+  "guild": "Smithing",
+  "price": 10000,
+  "rank": "Novice"
+ },
+ {
+  "n": "Steel Ingot",
+  "guild": "Smithing",
+  "price": 6000,
+  "rank": "Apprentice"
+ },
+ {
+  "n": "Lump of Tama Hagane",
+  "guild": "Smithing",
+  "price": 12000,
+  "rank": "Apprentice"
+ },
+ {
+  "n": "Darksteel Nugget",
+  "guild": "Smithing",
+  "price": 2700,
+  "rank": "Journeyman"
+ },
+ {
+  "n": "Chunk of Darksteel Ore",
+  "guild": "Smithing",
+  "price": 7000,
+  "rank": "Journeyman"
+ },
+ {
+  "n": "Steel Nugget",
+  "guild": "Smithing",
+  "price": 800,
+  "rank": "Journeyman"
+ },
+ {
+  "n": "Darksteel Sheet",
+  "guild": "Smithing",
+  "price": 28000,
+  "rank": "Journeyman"
+ },
+ {
+  "n": "Chunk of Swamp Ore",
+  "guild": "Smithing",
+  "price": 5000,
+  "rank": "Craftsman"
+ },
+ {
+  "n": "Smithing Kit 5",
+  "guild": "Smithing",
+  "price": 300,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Smithing Kit 10",
+  "guild": "Smithing",
+  "price": 400,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Smithing Kit 15",
+  "guild": "Smithing",
+  "price": 650,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Smithing Kit 20",
+  "guild": "Smithing",
+  "price": 1050,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Smithing Kit 25",
+  "guild": "Smithing",
+  "price": 1600,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Smithing Kit 30",
+  "guild": "Smithing",
+  "price": 2300,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Smithing Kit 35",
+  "guild": "Smithing",
+  "price": 3150,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Smithing Kit 40",
+  "guild": "Smithing",
+  "price": 4150,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Smithing Kit 45",
+  "guild": "Smithing",
+  "price": 5300,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Smithing Kit 50",
+  "guild": "Smithing",
+  "price": 7600,
+  "rank": "Amateur"
+ },
+ {
+  "n": "Niobium Ore",
+  "guild": "Smithing",
+  "price": 1126125,
+  "rank": "Amateur"
+ }
+]

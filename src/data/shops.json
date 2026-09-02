@@ -1,0 +1,6944 @@
+[
+ {
+  "n": "Iron Mask",
+  "zone": "Aht Urhgan Whitegate",
+  "npc": "Bajahb",
+  "price": 10260
+ },
+ {
+  "n": "Chainmail",
+  "zone": "Aht Urhgan Whitegate",
+  "npc": "Bajahb",
+  "price": 15840
+ },
+ {
+  "n": "Chain Mittens",
+  "zone": "Aht Urhgan Whitegate",
+  "npc": "Bajahb",
+  "price": 8460
+ },
+ {
+  "n": "Chain Hose",
+  "zone": "Aht Urhgan Whitegate",
+  "npc": "Bajahb",
+  "price": 12600
+ },
+ {
+  "n": "Greaves",
+  "zone": "Aht Urhgan Whitegate",
+  "npc": "Bajahb",
+  "price": 7740
+ },
+ {
+  "n": "Lugworm",
+  "zone": "Aht Urhgan Whitegate",
+  "npc": "Dwago",
+  "price": 9
+ },
+ {
+  "n": "Little Worm",
+  "zone": "Aht Urhgan Whitegate",
+  "npc": "Dwago",
+  "price": 3
+ },
+ {
+  "n": "Pet Food Alpha Biscuit",
+  "zone": "Aht Urhgan Whitegate",
+  "npc": "Dwago",
+  "price": 11
+ },
+ {
+  "n": "Pet Food Beta Biscuit",
+  "zone": "Aht Urhgan Whitegate",
+  "npc": "Dwago",
+  "price": 82
+ },
+ {
+  "n": "Jug of Bug Broth",
+  "zone": "Aht Urhgan Whitegate",
+  "npc": "Dwago",
+  "price": 98
+ },
+ {
+  "n": "Cup of Chai",
+  "zone": "Aht Urhgan Whitegate",
+  "npc": "Fayeewah",
+  "price": 68
+ },
+ {
+  "n": "Irmik Helvasi",
+  "zone": "Aht Urhgan Whitegate",
+  "npc": "Fayeewah",
+  "price": 2075
+ },
+ {
+  "n": "Flask of Eye Drops",
+  "zone": "Aht Urhgan Whitegate",
+  "npc": "Gavrie",
+  "price": 2595
+ },
+ {
+  "n": "Antidote",
+  "zone": "Aht Urhgan Whitegate",
+  "npc": "Gavrie",
+  "price": 316
+ },
+ {
+  "n": "Flask of Echo Drops",
+  "zone": "Aht Urhgan Whitegate",
+  "npc": "Gavrie",
+  "price": 800
+ },
+ {
+  "n": "Potion",
+  "zone": "Aht Urhgan Whitegate",
+  "npc": "Gavrie",
+  "price": 910
+ },
+ {
+  "n": "Ether",
+  "zone": "Aht Urhgan Whitegate",
+  "npc": "Gavrie",
+  "price": 4832
+ },
+ {
+  "n": "Remedy",
+  "zone": "Aht Urhgan Whitegate",
+  "npc": "Gavrie",
+  "price": 3360
+ },
+ {
+  "n": "Flask of Distilled Water",
+  "zone": "Aht Urhgan Whitegate",
+  "npc": "Gavrie",
+  "price": 12
+ },
+ {
+  "n": "Can of Automaton Oil",
+  "zone": "Aht Urhgan Whitegate",
+  "npc": "Gavrie",
+  "price": 50
+ },
+ {
+  "n": "Can of Automaton Oil P1",
+  "zone": "Aht Urhgan Whitegate",
+  "npc": "Gavrie",
+  "price": 250
+ },
+ {
+  "n": "Can of Automaton Oil P2",
+  "zone": "Aht Urhgan Whitegate",
+  "npc": "Gavrie",
+  "price": 500
+ },
+ {
+  "n": "Can of Automaton Oil P3",
+  "zone": "Aht Urhgan Whitegate",
+  "npc": "Gavrie",
+  "price": 1000
+ },
+ {
+  "n": "Scroll of Sleepga",
+  "zone": "Aht Urhgan Whitegate",
+  "npc": "Mazween",
+  "price": 11200
+ },
+ {
+  "n": "Scroll of Sleep II",
+  "zone": "Aht Urhgan Whitegate",
+  "npc": "Mazween",
+  "price": 18720
+ },
+ {
+  "n": "Scroll of Poison II",
+  "zone": "Aht Urhgan Whitegate",
+  "npc": "Mazween",
+  "price": 25200
+ },
+ {
+  "n": "Scroll of Bio II",
+  "zone": "Aht Urhgan Whitegate",
+  "npc": "Mazween",
+  "price": 14000
+ },
+ {
+  "n": "Scroll of Poisonga",
+  "zone": "Aht Urhgan Whitegate",
+  "npc": "Mazween",
+  "price": 5160
+ },
+ {
+  "n": "Scroll of Stone III",
+  "zone": "Aht Urhgan Whitegate",
+  "npc": "Mazween",
+  "price": 19932
+ },
+ {
+  "n": "Scroll of Water III",
+  "zone": "Aht Urhgan Whitegate",
+  "npc": "Mazween",
+  "price": 22682
+ },
+ {
+  "n": "Scroll of Aero III",
+  "zone": "Aht Urhgan Whitegate",
+  "npc": "Mazween",
+  "price": 27744
+ },
+ {
+  "n": "Scroll of Fire III",
+  "zone": "Aht Urhgan Whitegate",
+  "npc": "Mazween",
+  "price": 33306
+ },
+ {
+  "n": "Scroll of Blizzard III",
+  "zone": "Aht Urhgan Whitegate",
+  "npc": "Mazween",
+  "price": 39368
+ },
+ {
+  "n": "Scroll of Thunder III",
+  "zone": "Aht Urhgan Whitegate",
+  "npc": "Mazween",
+  "price": 45930
+ },
+ {
+  "n": "Scroll of Absorb Tp",
+  "zone": "Aht Urhgan Whitegate",
+  "npc": "Mazween",
+  "price": 27000
+ },
+ {
+  "n": "Scroll of Drain II",
+  "zone": "Aht Urhgan Whitegate",
+  "npc": "Mazween",
+  "price": 30780
+ },
+ {
+  "n": "Scroll of Dread Spikes",
+  "zone": "Aht Urhgan Whitegate",
+  "npc": "Mazween",
+  "price": 70560
+ },
+ {
+  "n": "Scroll of Absorb Acc",
+  "zone": "Aht Urhgan Whitegate",
+  "npc": "Mazween",
+  "price": 44000
+ },
+ {
+  "n": "Scroll of Aspir II",
+  "zone": "Aht Urhgan Whitegate",
+  "npc": "Mazween",
+  "price": 79800
+ },
+ {
+  "n": "Bowl of Sutlac",
+  "zone": "Aht Urhgan Whitegate",
+  "npc": "Yafaaf",
+  "price": 1500
+ },
+ {
+  "n": "Cup of Imperial Coffee",
+  "zone": "Aht Urhgan Whitegate",
+  "npc": "Yafaaf",
+  "price": 450
+ },
+ {
+  "n": "Red Cap",
+  "zone": "Al Zahbi",
+  "npc": "Allard",
+  "price": 20000
+ },
+ {
+  "n": "Gambison",
+  "zone": "Al Zahbi",
+  "npc": "Allard",
+  "price": 32500
+ },
+ {
+  "n": "Bracers",
+  "zone": "Al Zahbi",
+  "npc": "Allard",
+  "price": 16900
+ },
+ {
+  "n": "Hose",
+  "zone": "Al Zahbi",
+  "npc": "Allard",
+  "price": 24500
+ },
+ {
+  "n": "Socks",
+  "zone": "Al Zahbi",
+  "npc": "Allard",
+  "price": 16000
+ },
+ {
+  "n": "Dart",
+  "zone": "Al Zahbi",
+  "npc": "Chayaya",
+  "price": 10
+ },
+ {
+  "n": "Hawkeye",
+  "zone": "Al Zahbi",
+  "npc": "Chayaya",
+  "price": 60
+ },
+ {
+  "n": "Grenade",
+  "zone": "Al Zahbi",
+  "npc": "Chayaya",
+  "price": 1204
+ },
+ {
+  "n": "Iron Arrow",
+  "zone": "Al Zahbi",
+  "npc": "Chayaya",
+  "price": 8
+ },
+ {
+  "n": "Warrior Die",
+  "zone": "Al Zahbi",
+  "npc": "Chayaya",
+  "price": 68000
+ },
+ {
+  "n": "Monk Die",
+  "zone": "Al Zahbi",
+  "npc": "Chayaya",
+  "price": 22400
+ },
+ {
+  "n": "White Mage Die",
+  "zone": "Al Zahbi",
+  "npc": "Chayaya",
+  "price": 5000
+ },
+ {
+  "n": "Black Mage Die",
+  "zone": "Al Zahbi",
+  "npc": "Chayaya",
+  "price": 108000
+ },
+ {
+  "n": "Red Mage Die",
+  "zone": "Al Zahbi",
+  "npc": "Chayaya",
+  "price": 62000
+ },
+ {
+  "n": "Thief Die",
+  "zone": "Al Zahbi",
+  "npc": "Chayaya",
+  "price": 50400
+ },
+ {
+  "n": "Paladin Die",
+  "zone": "Al Zahbi",
+  "npc": "Chayaya",
+  "price": 90750
+ },
+ {
+  "n": "Dark Knight Die",
+  "zone": "Al Zahbi",
+  "npc": "Chayaya",
+  "price": 2205
+ },
+ {
+  "n": "Beastmaster Die",
+  "zone": "Al Zahbi",
+  "npc": "Chayaya",
+  "price": 26600
+ },
+ {
+  "n": "Bard Die",
+  "zone": "Al Zahbi",
+  "npc": "Chayaya",
+  "price": 12780
+ },
+ {
+  "n": "Ranger Die",
+  "zone": "Al Zahbi",
+  "npc": "Chayaya",
+  "price": 1300
+ },
+ {
+  "n": "Dancer Die",
+  "zone": "Al Zahbi",
+  "npc": "Chayaya",
+  "price": 63375
+ },
+ {
+  "n": "Scholar Die",
+  "zone": "Al Zahbi",
+  "npc": "Chayaya",
+  "price": 68250
+ },
+ {
+  "n": "Scroll of Cure IV",
+  "zone": "Al Zahbi",
+  "npc": "Zafif",
+  "price": 23400
+ },
+ {
+  "n": "Scroll of Curaga II",
+  "zone": "Al Zahbi",
+  "npc": "Zafif",
+  "price": 11200
+ },
+ {
+  "n": "Scroll of Curaga III",
+  "zone": "Al Zahbi",
+  "npc": "Zafif",
+  "price": 19932
+ },
+ {
+  "n": "Scroll of Protect III",
+  "zone": "Al Zahbi",
+  "npc": "Zafif",
+  "price": 32000
+ },
+ {
+  "n": "Scroll of Protect IV",
+  "zone": "Al Zahbi",
+  "npc": "Zafif",
+  "price": 91116
+ },
+ {
+  "n": "Scroll of Protectra IV",
+  "zone": "Al Zahbi",
+  "npc": "Zafif",
+  "price": 85500
+ },
+ {
+  "n": "Scroll of Holy",
+  "zone": "Al Zahbi",
+  "npc": "Zafif",
+  "price": 35000
+ },
+ {
+  "n": "Scroll of Banishga II",
+  "zone": "Al Zahbi",
+  "npc": "Zafif",
+  "price": 20000
+ },
+ {
+  "n": "Scroll of Silena",
+  "zone": "Al Zahbi",
+  "npc": "Zafif",
+  "price": 2330
+ },
+ {
+  "n": "Scroll of Stona",
+  "zone": "Al Zahbi",
+  "npc": "Zafif",
+  "price": 19200
+ },
+ {
+  "n": "Scroll of Viruna",
+  "zone": "Al Zahbi",
+  "npc": "Zafif",
+  "price": 13300
+ },
+ {
+  "n": "Scroll of Cursna",
+  "zone": "Al Zahbi",
+  "npc": "Zafif",
+  "price": 8586
+ },
+ {
+  "n": "Scroll of Dispel",
+  "zone": "Al Zahbi",
+  "npc": "Zafif",
+  "price": 77600
+ },
+ {
+  "n": "Scroll of Flash",
+  "zone": "Al Zahbi",
+  "npc": "Zafif",
+  "price": 27000
+ },
+ {
+  "n": "Scroll of Reraise III",
+  "zone": "Al Zahbi",
+  "npc": "Zafif",
+  "price": 99375
+ },
+ {
+  "n": "Scroll of Reprisal",
+  "zone": "Al Zahbi",
+  "npc": "Zafif",
+  "price": 28500
+ },
+ {
+  "n": "Hume Tunic",
+  "zone": "Bastok Mines",
+  "npc": "Proud Beard",
+  "price": 270
+ },
+ {
+  "n": "Hume Vest",
+  "zone": "Bastok Mines",
+  "npc": "Proud Beard",
+  "price": 270
+ },
+ {
+  "n": "Hume M Gloves",
+  "zone": "Bastok Mines",
+  "npc": "Proud Beard",
+  "price": 162
+ },
+ {
+  "n": "Hume F Gloves",
+  "zone": "Bastok Mines",
+  "npc": "Proud Beard",
+  "price": 162
+ },
+ {
+  "n": "Hume Slacks",
+  "zone": "Bastok Mines",
+  "npc": "Proud Beard",
+  "price": 234
+ },
+ {
+  "n": "Hume Pants",
+  "zone": "Bastok Mines",
+  "npc": "Proud Beard",
+  "price": 234
+ },
+ {
+  "n": "Hume M Boots",
+  "zone": "Bastok Mines",
+  "npc": "Proud Beard",
+  "price": 162
+ },
+ {
+  "n": "Hume F Boots",
+  "zone": "Bastok Mines",
+  "npc": "Proud Beard",
+  "price": 162
+ },
+ {
+  "n": "Galkan Surcoat",
+  "zone": "Bastok Mines",
+  "npc": "Proud Beard",
+  "price": 270
+ },
+ {
+  "n": "Galkan Bracers",
+  "zone": "Bastok Mines",
+  "npc": "Proud Beard",
+  "price": 162
+ },
+ {
+  "n": "Galkan Braguette",
+  "zone": "Bastok Mines",
+  "npc": "Proud Beard",
+  "price": 234
+ },
+ {
+  "n": "Galkan Sandals",
+  "zone": "Bastok Mines",
+  "npc": "Proud Beard",
+  "price": 162
+ },
+ {
+  "n": "Bunch of Pamamas",
+  "zone": "Kazham",
+  "npc": "Ghemi Sinterilo",
+  "price": 80
+ },
+ {
+  "n": "Kazham Pineapple",
+  "zone": "Kazham",
+  "npc": "Ghemi Sinterilo",
+  "price": 60
+ },
+ {
+  "n": "Mithran Tomato",
+  "zone": "Kazham",
+  "npc": "Ghemi Sinterilo",
+  "price": 40
+ },
+ {
+  "n": "Bunch of Kazham Peppers",
+  "zone": "Kazham",
+  "npc": "Ghemi Sinterilo",
+  "price": 60
+ },
+ {
+  "n": "Stick of Cinnamon",
+  "zone": "Kazham",
+  "npc": "Ghemi Sinterilo",
+  "price": 260
+ },
+ {
+  "n": "Kukuru Bean",
+  "zone": "Kazham",
+  "npc": "Ghemi Sinterilo",
+  "price": 120
+ },
+ {
+  "n": "Elshimo Coconut",
+  "zone": "Kazham",
+  "npc": "Ghemi Sinterilo",
+  "price": 172
+ },
+ {
+  "n": "Elshimo Pachira Fruit",
+  "zone": "Kazham",
+  "npc": "Ghemi Sinterilo",
+  "price": 168
+ },
+ {
+  "n": "Kazham Waystone",
+  "zone": "Kazham",
+  "npc": "Ghemi Sinterilo",
+  "price": 10000
+ },
+ {
+  "n": "Aquilaria Log",
+  "zone": "Kazham",
+  "npc": "Ghemi Sinterilo",
+  "price": 3128
+ },
+ {
+  "n": "Kukri",
+  "zone": "Kazham",
+  "npc": "Khifo Ryuhkowa",
+  "price": 6210
+ },
+ {
+  "n": "Ram Dao",
+  "zone": "Kazham",
+  "npc": "Khifo Ryuhkowa",
+  "price": 166320
+ },
+ {
+  "n": "Bronze Spear",
+  "zone": "Kazham",
+  "npc": "Khifo Ryuhkowa",
+  "price": 880
+ },
+ {
+  "n": "Spear",
+  "zone": "Kazham",
+  "npc": "Khifo Ryuhkowa",
+  "price": 17640
+ },
+ {
+  "n": "Partisan",
+  "zone": "Kazham",
+  "npc": "Khifo Ryuhkowa",
+  "price": 82110
+ },
+ {
+  "n": "Chestnut Club",
+  "zone": "Kazham",
+  "npc": "Khifo Ryuhkowa",
+  "price": 1740
+ },
+ {
+  "n": "Bone Cudgel",
+  "zone": "Kazham",
+  "npc": "Khifo Ryuhkowa",
+  "price": 5376
+ },
+ {
+  "n": "Chestnut Wand",
+  "zone": "Kazham",
+  "npc": "Khifo Ryuhkowa",
+  "price": 5712
+ },
+ {
+  "n": "Mahogany Staff",
+  "zone": "Kazham",
+  "npc": "Khifo Ryuhkowa",
+  "price": 32340
+ },
+ {
+  "n": "Mahogany Pole",
+  "zone": "Kazham",
+  "npc": "Khifo Ryuhkowa",
+  "price": 107800
+ },
+ {
+  "n": "Battle Bow",
+  "zone": "Kazham",
+  "npc": "Khifo Ryuhkowa",
+  "price": 43200
+ },
+ {
+  "n": "Hawkeye",
+  "zone": "Kazham",
+  "npc": "Khifo Ryuhkowa",
+  "price": 60
+ },
+ {
+  "n": "Boomerang",
+  "zone": "Kazham",
+  "npc": "Khifo Ryuhkowa",
+  "price": 1750
+ },
+ {
+  "n": "Wooden Arrow",
+  "zone": "Kazham",
+  "npc": "Khifo Ryuhkowa",
+  "price": 4
+ },
+ {
+  "n": "Bunch of Gysahl Greens",
+  "zone": "Kazham",
+  "npc": "Mamerie",
+  "price": 68
+ },
+ {
+  "n": "Chocobo Feather",
+  "zone": "Kazham",
+  "npc": "Mamerie",
+  "price": 8
+ },
+ {
+  "n": "Pet Food Alpha Biscuit",
+  "zone": "Kazham",
+  "npc": "Mamerie",
+  "price": 12
+ },
+ {
+  "n": "Pet Food Beta Biscuit",
+  "zone": "Kazham",
+  "npc": "Mamerie",
+  "price": 90
+ },
+ {
+  "n": "Jug of Carrot Broth",
+  "zone": "Kazham",
+  "npc": "Mamerie",
+  "price": 60
+ },
+ {
+  "n": "Jug of Bug Broth",
+  "zone": "Kazham",
+  "npc": "Mamerie",
+  "price": 98
+ },
+ {
+  "n": "Jug of Herbal Broth",
+  "zone": "Kazham",
+  "npc": "Mamerie",
+  "price": 108
+ },
+ {
+  "n": "Jug of Carrion Broth",
+  "zone": "Kazham",
+  "npc": "Mamerie",
+  "price": 301
+ },
+ {
+  "n": "Scroll of Chocobo Mazurka",
+  "zone": "Kazham",
+  "npc": "Mamerie",
+  "price": 55200
+ },
+ {
+  "n": "Fish Mithkabob",
+  "zone": "Kazham",
+  "npc": "Nuh Celodehki",
+  "price": 1080
+ },
+ {
+  "n": "Blackened Frog",
+  "zone": "Kazham",
+  "npc": "Nuh Celodehki",
+  "price": 3406
+ },
+ {
+  "n": "Roast Mushroom",
+  "zone": "Kazham",
+  "npc": "Nuh Celodehki",
+  "price": 344
+ },
+ {
+  "n": "Eel Kabob",
+  "zone": "Kazham",
+  "npc": "Nuh Celodehki",
+  "price": 3000
+ },
+ {
+  "n": "Flask of Distilled Water",
+  "zone": "Kazham",
+  "npc": "Pahya Lolohoiv",
+  "price": 12
+ },
+ {
+  "n": "Flask of Eye Drops",
+  "zone": "Kazham",
+  "npc": "Pahya Lolohoiv",
+  "price": 2595
+ },
+ {
+  "n": "Antidote",
+  "zone": "Kazham",
+  "npc": "Pahya Lolohoiv",
+  "price": 316
+ },
+ {
+  "n": "Flask of Echo Drops",
+  "zone": "Kazham",
+  "npc": "Pahya Lolohoiv",
+  "price": 800
+ },
+ {
+  "n": "Potion",
+  "zone": "Kazham",
+  "npc": "Pahya Lolohoiv",
+  "price": 910
+ },
+ {
+  "n": "Ether",
+  "zone": "Kazham",
+  "npc": "Pahya Lolohoiv",
+  "price": 4832
+ },
+ {
+  "n": "Vial of Fiend Blood",
+  "zone": "Kazham",
+  "npc": "Pahya Lolohoiv",
+  "price": 605
+ },
+ {
+  "n": "Pinch of Poison Dust",
+  "zone": "Kazham",
+  "npc": "Pahya Lolohoiv",
+  "price": 320
+ },
+ {
+  "n": "Lauan Shield",
+  "zone": "Kazham",
+  "npc": "Tahn Posbei",
+  "price": 120
+ },
+ {
+  "n": "Mahogany Shield",
+  "zone": "Kazham",
+  "npc": "Tahn Posbei",
+  "price": 4980
+ },
+ {
+  "n": "Round Shield",
+  "zone": "Kazham",
+  "npc": "Tahn Posbei",
+  "price": 64791
+ },
+ {
+  "n": "Beetle Mask",
+  "zone": "Kazham",
+  "npc": "Tahn Posbei",
+  "price": 7638
+ },
+ {
+  "n": "Beetle Harness",
+  "zone": "Kazham",
+  "npc": "Tahn Posbei",
+  "price": 11775
+ },
+ {
+  "n": "Beetle Mittens",
+  "zone": "Kazham",
+  "npc": "Tahn Posbei",
+  "price": 6204
+ },
+ {
+  "n": "Beetle Subligar",
+  "zone": "Kazham",
+  "npc": "Tahn Posbei",
+  "price": 9420
+ },
+ {
+  "n": "Beetle Leggings",
+  "zone": "Kazham",
+  "npc": "Tahn Posbei",
+  "price": 5796
+ },
+ {
+  "n": "Leather Bandana",
+  "zone": "Kazham",
+  "npc": "Tahn Posbei",
+  "price": 440
+ },
+ {
+  "n": "Leather Vest",
+  "zone": "Kazham",
+  "npc": "Tahn Posbei",
+  "price": 672
+ },
+ {
+  "n": "Leather Gloves",
+  "zone": "Kazham",
+  "npc": "Tahn Posbei",
+  "price": 360
+ },
+ {
+  "n": "Leather Highboots",
+  "zone": "Kazham",
+  "npc": "Tahn Posbei",
+  "price": 336
+ },
+ {
+  "n": "Coeurl Gorget",
+  "zone": "Kazham",
+  "npc": "Tahn Posbei",
+  "price": 31280
+ },
+ {
+  "n": "Yellow Jar",
+  "zone": "Kazham",
+  "npc": "Toji Mumosulah",
+  "price": 496
+ },
+ {
+  "n": "Blood Stone",
+  "zone": "Kazham",
+  "npc": "Toji Mumosulah",
+  "price": 104
+ },
+ {
+  "n": "Fang Necklace",
+  "zone": "Kazham",
+  "npc": "Toji Mumosulah",
+  "price": 3816
+ },
+ {
+  "n": "Bone Earring",
+  "zone": "Kazham",
+  "npc": "Toji Mumosulah",
+  "price": 1812
+ },
+ {
+  "n": "Scroll of Monomi Ichi",
+  "zone": "Kazham",
+  "npc": "Toji Mumosulah",
+  "price": 9590
+ },
+ {
+  "n": "Gemshorn",
+  "zone": "Kazham",
+  "npc": "Toji Mumosulah",
+  "price": 5160
+ },
+ {
+  "n": "Peeled Crayfish",
+  "zone": "Kazham",
+  "npc": "Toji Mumosulah",
+  "price": 71
+ },
+ {
+  "n": "Ball of Insect Paste",
+  "zone": "Kazham",
+  "npc": "Toji Mumosulah",
+  "price": 40
+ },
+ {
+  "n": "Jug of Fish Broth",
+  "zone": "Kazham",
+  "npc": "Toji Mumosulah",
+  "price": 90
+ },
+ {
+  "n": "Jug of Seedbed Soil",
+  "zone": "Kazham",
+  "npc": "Toji Mumosulah",
+  "price": 476
+ },
+ {
+  "n": "Hatchet",
+  "zone": "Kazham",
+  "npc": "Toji Mumosulah",
+  "price": 500
+ },
+ {
+  "n": "Scroll of Foe Lullaby II",
+  "zone": "Kazham",
+  "npc": "Toji Mumosulah",
+  "price": 70140
+ },
+ {
+  "n": "Scroll of Armys Paeon III",
+  "zone": "Kazham",
+  "npc": "Toji Mumosulah",
+  "price": 3600
+ },
+ {
+  "n": "Tourmaline",
+  "zone": "Lower Jeuno",
+  "npc": "Adelflete",
+  "price": 1863
+ },
+ {
+  "n": "Sardonyx",
+  "zone": "Lower Jeuno",
+  "npc": "Adelflete",
+  "price": 1863
+ },
+ {
+  "n": "Amethyst",
+  "zone": "Lower Jeuno",
+  "npc": "Adelflete",
+  "price": 1863
+ },
+ {
+  "n": "Amber Stone",
+  "zone": "Lower Jeuno",
+  "npc": "Adelflete",
+  "price": 1863
+ },
+ {
+  "n": "Lapis Lazuli",
+  "zone": "Lower Jeuno",
+  "npc": "Adelflete",
+  "price": 1863
+ },
+ {
+  "n": "Clear Topaz",
+  "zone": "Lower Jeuno",
+  "npc": "Adelflete",
+  "price": 1863
+ },
+ {
+  "n": "Onyx",
+  "zone": "Lower Jeuno",
+  "npc": "Adelflete",
+  "price": 1863
+ },
+ {
+  "n": "Light Opal",
+  "zone": "Lower Jeuno",
+  "npc": "Adelflete",
+  "price": 1863
+ },
+ {
+  "n": "Silver Earring",
+  "zone": "Lower Jeuno",
+  "npc": "Adelflete",
+  "price": 1250
+ },
+ {
+  "n": "Silver Ring",
+  "zone": "Lower Jeuno",
+  "npc": "Adelflete",
+  "price": 1250
+ },
+ {
+  "n": "Kunai",
+  "zone": "Lower Jeuno",
+  "npc": "Akamafula",
+  "price": 884
+ },
+ {
+  "n": "Wakizashi",
+  "zone": "Lower Jeuno",
+  "npc": "Akamafula",
+  "price": 2400
+ },
+ {
+  "n": "Uchigatana",
+  "zone": "Lower Jeuno",
+  "npc": "Akamafula",
+  "price": 5336
+ },
+ {
+  "n": "Kanesada",
+  "zone": "Lower Jeuno",
+  "npc": "Akamafula",
+  "price": 19800
+ },
+ {
+  "n": "Tachi",
+  "zone": "Lower Jeuno",
+  "npc": "Akamafula",
+  "price": 3141
+ },
+ {
+  "n": "Nodachi",
+  "zone": "Lower Jeuno",
+  "npc": "Akamafula",
+  "price": 8124
+ },
+ {
+  "n": "Tanegashima",
+  "zone": "Lower Jeuno",
+  "npc": "Akamafula",
+  "price": 13062
+ },
+ {
+  "n": "Shuriken",
+  "zone": "Lower Jeuno",
+  "npc": "Akamafula",
+  "price": 50
+ },
+ {
+  "n": "Hachimaki",
+  "zone": "Lower Jeuno",
+  "npc": "Akamafula",
+  "price": 825
+ },
+ {
+  "n": "Cotton Hachimaki",
+  "zone": "Lower Jeuno",
+  "npc": "Akamafula",
+  "price": 4884
+ },
+ {
+  "n": "Soil Hachimaki",
+  "zone": "Lower Jeuno",
+  "npc": "Akamafula",
+  "price": 13392
+ },
+ {
+  "n": "Kenpogi",
+  "zone": "Lower Jeuno",
+  "npc": "Akamafula",
+  "price": 1245
+ },
+ {
+  "n": "Cotton Dogi",
+  "zone": "Lower Jeuno",
+  "npc": "Akamafula",
+  "price": 7360
+ },
+ {
+  "n": "Soil Gi",
+  "zone": "Lower Jeuno",
+  "npc": "Akamafula",
+  "price": 19800
+ },
+ {
+  "n": "Tekko",
+  "zone": "Lower Jeuno",
+  "npc": "Akamafula",
+  "price": 685
+ },
+ {
+  "n": "Cotton Tekko",
+  "zone": "Lower Jeuno",
+  "npc": "Akamafula",
+  "price": 4050
+ },
+ {
+  "n": "Soil Tekko",
+  "zone": "Lower Jeuno",
+  "npc": "Akamafula",
+  "price": 11088
+ },
+ {
+  "n": "Sitabaki",
+  "zone": "Lower Jeuno",
+  "npc": "Akamafula",
+  "price": 995
+ },
+ {
+  "n": "Cotton Sitabaki",
+  "zone": "Lower Jeuno",
+  "npc": "Akamafula",
+  "price": 5898
+ },
+ {
+  "n": "Soil Sitabaki",
+  "zone": "Lower Jeuno",
+  "npc": "Akamafula",
+  "price": 16128
+ },
+ {
+  "n": "Kyahan",
+  "zone": "Lower Jeuno",
+  "npc": "Akamafula",
+  "price": 635
+ },
+ {
+  "n": "Cotton Kyahan",
+  "zone": "Lower Jeuno",
+  "npc": "Akamafula",
+  "price": 3774
+ },
+ {
+  "n": "Soil Kyahan",
+  "zone": "Lower Jeuno",
+  "npc": "Akamafula",
+  "price": 16524
+ },
+ {
+  "n": "Bamboo Stick",
+  "zone": "Lower Jeuno",
+  "npc": "Amalasanda",
+  "price": 143
+ },
+ {
+  "n": "Square of Silk Cloth",
+  "zone": "Lower Jeuno",
+  "npc": "Amalasanda",
+  "price": 21000
+ },
+ {
+  "n": "Pinch of Black Pepper",
+  "zone": "Lower Jeuno",
+  "npc": "Amalasanda",
+  "price": 255
+ },
+ {
+  "n": "Koma",
+  "zone": "Lower Jeuno",
+  "npc": "Amalasanda",
+  "price": 220
+ },
+ {
+  "n": "Lump of Tama Hagane",
+  "zone": "Lower Jeuno",
+  "npc": "Amalasanda",
+  "price": 7000
+ },
+ {
+  "n": "Pot of Urushi",
+  "zone": "Lower Jeuno",
+  "npc": "Amalasanda",
+  "price": 73530
+ },
+ {
+  "n": "Uchitake",
+  "zone": "Lower Jeuno",
+  "npc": "Amalasanda",
+  "price": 40
+ },
+ {
+  "n": "Tsurara",
+  "zone": "Lower Jeuno",
+  "npc": "Amalasanda",
+  "price": 40
+ },
+ {
+  "n": "Kawahori Ogi",
+  "zone": "Lower Jeuno",
+  "npc": "Amalasanda",
+  "price": 40
+ },
+ {
+  "n": "Makibishi",
+  "zone": "Lower Jeuno",
+  "npc": "Amalasanda",
+  "price": 40
+ },
+ {
+  "n": "Hiraishin",
+  "zone": "Lower Jeuno",
+  "npc": "Amalasanda",
+  "price": 40
+ },
+ {
+  "n": "Mizu Deppo",
+  "zone": "Lower Jeuno",
+  "npc": "Amalasanda",
+  "price": 40
+ },
+ {
+  "n": "Shihei",
+  "zone": "Lower Jeuno",
+  "npc": "Amalasanda",
+  "price": 124
+ },
+ {
+  "n": "Jusatsu",
+  "zone": "Lower Jeuno",
+  "npc": "Amalasanda",
+  "price": 124
+ },
+ {
+  "n": "Kaginawa",
+  "zone": "Lower Jeuno",
+  "npc": "Amalasanda",
+  "price": 124
+ },
+ {
+  "n": "Sairui Ran",
+  "zone": "Lower Jeuno",
+  "npc": "Amalasanda",
+  "price": 124
+ },
+ {
+  "n": "Kodoku",
+  "zone": "Lower Jeuno",
+  "npc": "Amalasanda",
+  "price": 124
+ },
+ {
+  "n": "Shinobi Tabi",
+  "zone": "Lower Jeuno",
+  "npc": "Amalasanda",
+  "price": 124
+ },
+ {
+  "n": "Box of Sticky Rice",
+  "zone": "Lower Jeuno",
+  "npc": "Amalasanda",
+  "price": 316
+ },
+ {
+  "n": "Onz of Turmeric",
+  "zone": "Lower Jeuno",
+  "npc": "Amalasanda",
+  "price": 645
+ },
+ {
+  "n": "Onz of Coriander",
+  "zone": "Lower Jeuno",
+  "npc": "Amalasanda",
+  "price": 1585
+ },
+ {
+  "n": "Sprig of Holy Basil",
+  "zone": "Lower Jeuno",
+  "npc": "Amalasanda",
+  "price": 800
+ },
+ {
+  "n": "Onz of Curry Powder",
+  "zone": "Lower Jeuno",
+  "npc": "Amalasanda",
+  "price": 990
+ },
+ {
+  "n": "Jar of Ground Wasabi",
+  "zone": "Lower Jeuno",
+  "npc": "Amalasanda",
+  "price": 2595
+ },
+ {
+  "n": "Bottle of Rice Vinegar",
+  "zone": "Lower Jeuno",
+  "npc": "Amalasanda",
+  "price": 200
+ },
+ {
+  "n": "Bundle of Shirataki",
+  "zone": "Lower Jeuno",
+  "npc": "Amalasanda",
+  "price": 492
+ },
+ {
+  "n": "Bag of Buckwheat Flour",
+  "zone": "Lower Jeuno",
+  "npc": "Amalasanda",
+  "price": 5000
+ },
+ {
+  "n": "Scroll of Katon Ichi",
+  "zone": "Lower Jeuno",
+  "npc": "Amalasanda",
+  "price": 2331
+ },
+ {
+  "n": "Scroll of Hyoton Ichi",
+  "zone": "Lower Jeuno",
+  "npc": "Amalasanda",
+  "price": 2331
+ },
+ {
+  "n": "Scroll of Huton Ichi",
+  "zone": "Lower Jeuno",
+  "npc": "Amalasanda",
+  "price": 2331
+ },
+ {
+  "n": "Scroll of Doton Ichi",
+  "zone": "Lower Jeuno",
+  "npc": "Amalasanda",
+  "price": 2331
+ },
+ {
+  "n": "Scroll of Raiton Ichi",
+  "zone": "Lower Jeuno",
+  "npc": "Amalasanda",
+  "price": 2331
+ },
+ {
+  "n": "Scroll of Suiton Ichi",
+  "zone": "Lower Jeuno",
+  "npc": "Amalasanda",
+  "price": 2331
+ },
+ {
+  "n": "Scroll of Jubaku Ichi",
+  "zone": "Lower Jeuno",
+  "npc": "Amalasanda",
+  "price": 2849
+ },
+ {
+  "n": "Scroll of Hojo Ichi",
+  "zone": "Lower Jeuno",
+  "npc": "Amalasanda",
+  "price": 2849
+ },
+ {
+  "n": "Scroll of Kurayami Ichi",
+  "zone": "Lower Jeuno",
+  "npc": "Amalasanda",
+  "price": 2849
+ },
+ {
+  "n": "Scroll of Dokumori Ichi",
+  "zone": "Lower Jeuno",
+  "npc": "Amalasanda",
+  "price": 2849
+ },
+ {
+  "n": "Scroll of Tonko Ichi",
+  "zone": "Lower Jeuno",
+  "npc": "Amalasanda",
+  "price": 2849
+ },
+ {
+  "n": "Scroll of Monomi Ichi",
+  "zone": "Lower Jeuno",
+  "npc": "Amalasanda",
+  "price": 9590
+ },
+ {
+  "n": "Scroll of Recall Jugner",
+  "zone": "Lower Jeuno",
+  "npc": "Amalasanda",
+  "price": 60750
+ },
+ {
+  "n": "Scroll of Recall Pashh",
+  "zone": "Lower Jeuno",
+  "npc": "Amalasanda",
+  "price": 60750
+ },
+ {
+  "n": "Scroll of Recall Meriph",
+  "zone": "Lower Jeuno",
+  "npc": "Amalasanda",
+  "price": 60750
+ },
+ {
+  "n": "Scroll of Teleport Vahzl",
+  "zone": "Lower Jeuno",
+  "npc": "Amalasanda",
+  "price": 34656
+ },
+ {
+  "n": "Scroll of Teleport Yhoat",
+  "zone": "Lower Jeuno",
+  "npc": "Amalasanda",
+  "price": 34656
+ },
+ {
+  "n": "Scroll of Teleport Altep",
+  "zone": "Lower Jeuno",
+  "npc": "Amalasanda",
+  "price": 34656
+ },
+ {
+  "n": "Scroll of Teleport Holla",
+  "zone": "Lower Jeuno",
+  "npc": "Amalasanda",
+  "price": 32176
+ },
+ {
+  "n": "Scroll of Teleport Dem",
+  "zone": "Lower Jeuno",
+  "npc": "Amalasanda",
+  "price": 32176
+ },
+ {
+  "n": "Scroll of Teleport Mea",
+  "zone": "Lower Jeuno",
+  "npc": "Amalasanda",
+  "price": 32176
+ },
+ {
+  "n": "Scroll of Drain",
+  "zone": "Lower Jeuno",
+  "npc": "Amalasanda",
+  "price": 10428
+ },
+ {
+  "n": "Scroll of Aspir",
+  "zone": "Lower Jeuno",
+  "npc": "Amalasanda",
+  "price": 12850
+ },
+ {
+  "n": "Scroll of Blaze Spikes",
+  "zone": "Lower Jeuno",
+  "npc": "Amalasanda",
+  "price": 10428
+ },
+ {
+  "n": "Scroll of Warp",
+  "zone": "Lower Jeuno",
+  "npc": "Amalasanda",
+  "price": 11953
+ },
+ {
+  "n": "Scroll of Warp II",
+  "zone": "Lower Jeuno",
+  "npc": "Amalasanda",
+  "price": 37200
+ },
+ {
+  "n": "Scroll of Retrace",
+  "zone": "Lower Jeuno",
+  "npc": "Amalasanda",
+  "price": 32320
+ },
+ {
+  "n": "Scroll of Sleepga II",
+  "zone": "Lower Jeuno",
+  "npc": "Amalasanda",
+  "price": 67818
+ },
+ {
+  "n": "Scroll of Utsusemi Ichi",
+  "zone": "Lower Jeuno",
+  "npc": "Amalasanda",
+  "price": 13133
+ },
+ {
+  "n": "Scroll of Mages Ballad",
+  "zone": "Lower Jeuno",
+  "npc": "Amalasanda",
+  "price": 11833
+ },
+ {
+  "n": "Hose",
+  "zone": "Lower Jeuno",
+  "npc": "Chenokih",
+  "price": 24500
+ },
+ {
+  "n": "Linen Slacks",
+  "zone": "Lower Jeuno",
+  "npc": "Chenokih",
+  "price": 22632
+ },
+ {
+  "n": "Wool Hose",
+  "zone": "Lower Jeuno",
+  "npc": "Chenokih",
+  "price": 57600
+ },
+ {
+  "n": "Wool Slops",
+  "zone": "Lower Jeuno",
+  "npc": "Chenokih",
+  "price": 14756
+ },
+ {
+  "n": "Black Slacks",
+  "zone": "Lower Jeuno",
+  "npc": "Chenokih",
+  "price": 6900
+ },
+ {
+  "n": "Socks",
+  "zone": "Lower Jeuno",
+  "npc": "Chenokih",
+  "price": 16000
+ },
+ {
+  "n": "Shoes",
+  "zone": "Lower Jeuno",
+  "npc": "Chenokih",
+  "price": 14352
+ },
+ {
+  "n": "Wool Socks",
+  "zone": "Lower Jeuno",
+  "npc": "Chenokih",
+  "price": 35200
+ },
+ {
+  "n": "Chestnut Sabots",
+  "zone": "Lower Jeuno",
+  "npc": "Chenokih",
+  "price": 9180
+ },
+ {
+  "n": "Sandals",
+  "zone": "Lower Jeuno",
+  "npc": "Chenokih",
+  "price": 4488
+ },
+ {
+  "n": "Black Cape",
+  "zone": "Lower Jeuno",
+  "npc": "Chenokih",
+  "price": 11088
+ },
+ {
+  "n": "Scarlet Ribbon",
+  "zone": "Lower Jeuno",
+  "npc": "Chenokih",
+  "price": 1250
+ },
+ {
+  "n": "Red Cap",
+  "zone": "Lower Jeuno",
+  "npc": "Chetak",
+  "price": 20000
+ },
+ {
+  "n": "Wool Cap",
+  "zone": "Lower Jeuno",
+  "npc": "Chetak",
+  "price": 39270
+ },
+ {
+  "n": "Wool Hat",
+  "zone": "Lower Jeuno",
+  "npc": "Chetak",
+  "price": 12138
+ },
+ {
+  "n": "Gambison",
+  "zone": "Lower Jeuno",
+  "npc": "Chetak",
+  "price": 32500
+ },
+ {
+  "n": "Cloak",
+  "zone": "Lower Jeuno",
+  "npc": "Chetak",
+  "price": 33212
+ },
+ {
+  "n": "Wool Gambison",
+  "zone": "Lower Jeuno",
+  "npc": "Chetak",
+  "price": 68640
+ },
+ {
+  "n": "Wool Robe",
+  "zone": "Lower Jeuno",
+  "npc": "Chetak",
+  "price": 18088
+ },
+ {
+  "n": "Black Tunic",
+  "zone": "Lower Jeuno",
+  "npc": "Chetak",
+  "price": 10356
+ },
+ {
+  "n": "Bracers",
+  "zone": "Lower Jeuno",
+  "npc": "Chetak",
+  "price": 10080
+ },
+ {
+  "n": "Linen Mitts",
+  "zone": "Lower Jeuno",
+  "npc": "Chetak",
+  "price": 15732
+ },
+ {
+  "n": "Wool Cuffs",
+  "zone": "Lower Jeuno",
+  "npc": "Chetak",
+  "price": 10234
+ },
+ {
+  "n": "White Mitts",
+  "zone": "Lower Jeuno",
+  "npc": "Chetak",
+  "price": 4830
+ },
+ {
+  "n": "Scroll of Goblin Gavotte",
+  "zone": "Lower Jeuno",
+  "npc": "Creepstix",
+  "price": 8160
+ },
+ {
+  "n": "Scroll of Protectra II",
+  "zone": "Lower Jeuno",
+  "npc": "Creepstix",
+  "price": 7074
+ },
+ {
+  "n": "Scroll of Shellra",
+  "zone": "Lower Jeuno",
+  "npc": "Creepstix",
+  "price": 1760
+ },
+ {
+  "n": "Scroll of Gain Vit",
+  "zone": "Lower Jeuno",
+  "npc": "Creepstix",
+  "price": 73740
+ },
+ {
+  "n": "Scroll of Gain Mnd",
+  "zone": "Lower Jeuno",
+  "npc": "Creepstix",
+  "price": 77500
+ },
+ {
+  "n": "Scroll of Gain Agi",
+  "zone": "Lower Jeuno",
+  "npc": "Creepstix",
+  "price": 85680
+ },
+ {
+  "n": "Scroll of Gain Chr",
+  "zone": "Lower Jeuno",
+  "npc": "Creepstix",
+  "price": 81900
+ },
+ {
+  "n": "Scroll of Boost Vit",
+  "zone": "Lower Jeuno",
+  "npc": "Creepstix",
+  "price": 73740
+ },
+ {
+  "n": "Scroll of Boost Mnd",
+  "zone": "Lower Jeuno",
+  "npc": "Creepstix",
+  "price": 77500
+ },
+ {
+  "n": "Scroll of Boost Agi",
+  "zone": "Lower Jeuno",
+  "npc": "Creepstix",
+  "price": 85680
+ },
+ {
+  "n": "Scroll of Boost Chr",
+  "zone": "Lower Jeuno",
+  "npc": "Creepstix",
+  "price": 81900
+ },
+ {
+  "n": "Scroll of Inundation",
+  "zone": "Lower Jeuno",
+  "npc": "Creepstix",
+  "price": 73500
+ },
+ {
+  "n": "Scroll of Addle",
+  "zone": "Lower Jeuno",
+  "npc": "Creepstix",
+  "price": 130378
+ },
+ {
+  "n": "Rice Ball",
+  "zone": "Lower Jeuno",
+  "npc": "Ghebi Damomohe",
+  "price": 160
+ },
+ {
+  "n": "Eel Kabob",
+  "zone": "Lower Jeuno",
+  "npc": "Ghebi Damomohe",
+  "price": 3000
+ },
+ {
+  "n": "Garlic Cracker",
+  "zone": "Lower Jeuno",
+  "npc": "Ghebi Damomohe",
+  "price": 4
+ },
+ {
+  "n": "Chunk of Bronzite",
+  "zone": "Lower Jeuno",
+  "npc": "Ghebi Damomohe",
+  "price": 26566
+ },
+ {
+  "n": "Scroll of Cure IV",
+  "zone": "Lower Jeuno",
+  "npc": "Hasim",
+  "price": 23400
+ },
+ {
+  "n": "Scroll of Curaga II",
+  "zone": "Lower Jeuno",
+  "npc": "Hasim",
+  "price": 11200
+ },
+ {
+  "n": "Scroll of Curaga III",
+  "zone": "Lower Jeuno",
+  "npc": "Hasim",
+  "price": 19932
+ },
+ {
+  "n": "Scroll of Silena",
+  "zone": "Lower Jeuno",
+  "npc": "Hasim",
+  "price": 2330
+ },
+ {
+  "n": "Scroll of Stona",
+  "zone": "Lower Jeuno",
+  "npc": "Hasim",
+  "price": 19200
+ },
+ {
+  "n": "Scroll of Viruna",
+  "zone": "Lower Jeuno",
+  "npc": "Hasim",
+  "price": 13300
+ },
+ {
+  "n": "Scroll of Cursna",
+  "zone": "Lower Jeuno",
+  "npc": "Hasim",
+  "price": 8586
+ },
+ {
+  "n": "Scroll of Protect III",
+  "zone": "Lower Jeuno",
+  "npc": "Hasim",
+  "price": 32000
+ },
+ {
+  "n": "Scroll of Protectra II",
+  "zone": "Lower Jeuno",
+  "npc": "Hasim",
+  "price": 7074
+ },
+ {
+  "n": "Scroll of Protectra III",
+  "zone": "Lower Jeuno",
+  "npc": "Hasim",
+  "price": 19200
+ },
+ {
+  "n": "Scroll of Shell III",
+  "zone": "Lower Jeuno",
+  "npc": "Hasim",
+  "price": 26244
+ },
+ {
+  "n": "Scroll of Shellra",
+  "zone": "Lower Jeuno",
+  "npc": "Hasim",
+  "price": 1760
+ },
+ {
+  "n": "Scroll of Shellra II",
+  "zone": "Lower Jeuno",
+  "npc": "Hasim",
+  "price": 14080
+ },
+ {
+  "n": "Scroll of Shellra III",
+  "zone": "Lower Jeuno",
+  "npc": "Hasim",
+  "price": 26244
+ },
+ {
+  "n": "Scroll of Barfire",
+  "zone": "Lower Jeuno",
+  "npc": "Hasim",
+  "price": 1760
+ },
+ {
+  "n": "Scroll of Barblizzard",
+  "zone": "Lower Jeuno",
+  "npc": "Hasim",
+  "price": 3624
+ },
+ {
+  "n": "Scroll of Baraero",
+  "zone": "Lower Jeuno",
+  "npc": "Hasim",
+  "price": 930
+ },
+ {
+  "n": "Scroll of Barstone",
+  "zone": "Lower Jeuno",
+  "npc": "Hasim",
+  "price": 156
+ },
+ {
+  "n": "Scroll of Barthunder",
+  "zone": "Lower Jeuno",
+  "npc": "Hasim",
+  "price": 5754
+ },
+ {
+  "n": "Scroll of Barwater",
+  "zone": "Lower Jeuno",
+  "npc": "Hasim",
+  "price": 360
+ },
+ {
+  "n": "Scroll of Barfira",
+  "zone": "Lower Jeuno",
+  "npc": "Hasim",
+  "price": 1760
+ },
+ {
+  "n": "Scroll of Barblizzara",
+  "zone": "Lower Jeuno",
+  "npc": "Hasim",
+  "price": 3624
+ },
+ {
+  "n": "Scroll of Baraera",
+  "zone": "Lower Jeuno",
+  "npc": "Hasim",
+  "price": 930
+ },
+ {
+  "n": "Scroll of Barstonra",
+  "zone": "Lower Jeuno",
+  "npc": "Hasim",
+  "price": 156
+ },
+ {
+  "n": "Scroll of Barthundra",
+  "zone": "Lower Jeuno",
+  "npc": "Hasim",
+  "price": 5754
+ },
+ {
+  "n": "Scroll of Barwatera",
+  "zone": "Lower Jeuno",
+  "npc": "Hasim",
+  "price": 360
+ },
+ {
+  "n": "Scroll of Barsleep",
+  "zone": "Lower Jeuno",
+  "npc": "Hasim",
+  "price": 244
+ },
+ {
+  "n": "Scroll of Barpoison",
+  "zone": "Lower Jeuno",
+  "npc": "Hasim",
+  "price": 400
+ },
+ {
+  "n": "Scroll of Barparalyze",
+  "zone": "Lower Jeuno",
+  "npc": "Hasim",
+  "price": 780
+ },
+ {
+  "n": "Scroll of Barblind",
+  "zone": "Lower Jeuno",
+  "npc": "Hasim",
+  "price": 2030
+ },
+ {
+  "n": "Scroll of Barsilence",
+  "zone": "Lower Jeuno",
+  "npc": "Hasim",
+  "price": 4608
+ },
+ {
+  "n": "Scroll of Barsleepra",
+  "zone": "Lower Jeuno",
+  "npc": "Hasim",
+  "price": 244
+ },
+ {
+  "n": "Scroll of Barpoisonra",
+  "zone": "Lower Jeuno",
+  "npc": "Hasim",
+  "price": 400
+ },
+ {
+  "n": "Scroll of Barpalaryzra",
+  "zone": "Lower Jeuno",
+  "npc": "Hasim",
+  "price": 780
+ },
+ {
+  "n": "Scroll of Barblindra",
+  "zone": "Lower Jeuno",
+  "npc": "Hasim",
+  "price": 2030
+ },
+ {
+  "n": "Scroll of Barsilencera",
+  "zone": "Lower Jeuno",
+  "npc": "Hasim",
+  "price": 4608
+ },
+ {
+  "n": "Scroll of Barpetrify",
+  "zone": "Lower Jeuno",
+  "npc": "Hasim",
+  "price": 15120
+ },
+ {
+  "n": "Scroll of Barvirus",
+  "zone": "Lower Jeuno",
+  "npc": "Hasim",
+  "price": 9600
+ },
+ {
+  "n": "Scroll of Barpetra",
+  "zone": "Lower Jeuno",
+  "npc": "Hasim",
+  "price": 15120
+ },
+ {
+  "n": "Scroll of Barvira",
+  "zone": "Lower Jeuno",
+  "npc": "Hasim",
+  "price": 9600
+ },
+ {
+  "n": "Scroll of Gain Vit",
+  "zone": "Lower Jeuno",
+  "npc": "Hasim",
+  "price": 73740
+ },
+ {
+  "n": "Scroll of Gain Mnd",
+  "zone": "Lower Jeuno",
+  "npc": "Hasim",
+  "price": 77500
+ },
+ {
+  "n": "Scroll of Gain Agi",
+  "zone": "Lower Jeuno",
+  "npc": "Hasim",
+  "price": 85680
+ },
+ {
+  "n": "Scroll of Gain Chr",
+  "zone": "Lower Jeuno",
+  "npc": "Hasim",
+  "price": 81900
+ },
+ {
+  "n": "Scroll of Gain Str",
+  "zone": "Lower Jeuno",
+  "npc": "Hasim",
+  "price": 89804
+ },
+ {
+  "n": "Scroll of Gain Int",
+  "zone": "Lower Jeuno",
+  "npc": "Hasim",
+  "price": 94461
+ },
+ {
+  "n": "Scroll of Gain Dex",
+  "zone": "Lower Jeuno",
+  "npc": "Hasim",
+  "price": 99613
+ },
+ {
+  "n": "Scroll of Boost Vit",
+  "zone": "Lower Jeuno",
+  "npc": "Hasim",
+  "price": 73740
+ },
+ {
+  "n": "Scroll of Boost Mnd",
+  "zone": "Lower Jeuno",
+  "npc": "Hasim",
+  "price": 77500
+ },
+ {
+  "n": "Scroll of Boost Agi",
+  "zone": "Lower Jeuno",
+  "npc": "Hasim",
+  "price": 85680
+ },
+ {
+  "n": "Scroll of Boost Chr",
+  "zone": "Lower Jeuno",
+  "npc": "Hasim",
+  "price": 81900
+ },
+ {
+  "n": "Scroll of Boost Str",
+  "zone": "Lower Jeuno",
+  "npc": "Hasim",
+  "price": 89804
+ },
+ {
+  "n": "Scroll of Boost Int",
+  "zone": "Lower Jeuno",
+  "npc": "Hasim",
+  "price": 94461
+ },
+ {
+  "n": "Scroll of Boost Dex",
+  "zone": "Lower Jeuno",
+  "npc": "Hasim",
+  "price": 99613
+ },
+ {
+  "n": "Scroll of Inundation",
+  "zone": "Lower Jeuno",
+  "npc": "Hasim",
+  "price": 73500
+ },
+ {
+  "n": "Scroll of Addle",
+  "zone": "Lower Jeuno",
+  "npc": "Hasim",
+  "price": 130378
+ },
+ {
+  "n": "Scroll of Holy",
+  "zone": "Lower Jeuno",
+  "npc": "Hasim",
+  "price": 35000
+ },
+ {
+  "n": "Scroll of Banishga II",
+  "zone": "Lower Jeuno",
+  "npc": "Hasim",
+  "price": 20000
+ },
+ {
+  "n": "Scroll of Protectra V",
+  "zone": "Lower Jeuno",
+  "npc": "Hasim",
+  "price": 119240
+ },
+ {
+  "n": "Scroll of Shellra V",
+  "zone": "Lower Jeuno",
+  "npc": "Hasim",
+  "price": 124540
+ },
+ {
+  "n": "Scroll of Dia III",
+  "zone": "Lower Jeuno",
+  "npc": "Hasim",
+  "price": 139135
+ },
+ {
+  "n": "Scroll of Slow II",
+  "zone": "Lower Jeuno",
+  "npc": "Hasim",
+  "price": 139135
+ },
+ {
+  "n": "Scroll of Paralyze II",
+  "zone": "Lower Jeuno",
+  "npc": "Hasim",
+  "price": 139135
+ },
+ {
+  "n": "Scroll of Phalanx II",
+  "zone": "Lower Jeuno",
+  "npc": "Hasim",
+  "price": 139135
+ },
+ {
+  "n": "Silver Earring",
+  "zone": "Lower Jeuno",
+  "npc": "Matoaka",
+  "price": 1250
+ },
+ {
+  "n": "Silver Ring",
+  "zone": "Lower Jeuno",
+  "npc": "Matoaka",
+  "price": 1250
+ },
+ {
+  "n": "Mythril Earring",
+  "zone": "Lower Jeuno",
+  "npc": "Matoaka",
+  "price": 4500
+ },
+ {
+  "n": "Silver Earring",
+  "zone": "Lower Jeuno",
+  "npc": "Morefie",
+  "price": 1250
+ },
+ {
+  "n": "Silver Ring",
+  "zone": "Lower Jeuno",
+  "npc": "Morefie",
+  "price": 1250
+ },
+ {
+  "n": "Mythril Earring",
+  "zone": "Lower Jeuno",
+  "npc": "Morefie",
+  "price": 4500
+ },
+ {
+  "n": "Bag of Horo Flour",
+  "zone": "Lower Jeuno",
+  "npc": "Pawkrix",
+  "price": 40
+ },
+ {
+  "n": "Loaf of Goblin Bread",
+  "zone": "Lower Jeuno",
+  "npc": "Pawkrix",
+  "price": 300
+ },
+ {
+  "n": "Goblin Pie",
+  "zone": "Lower Jeuno",
+  "npc": "Pawkrix",
+  "price": 650
+ },
+ {
+  "n": "Chunk of Goblin Chocolate",
+  "zone": "Lower Jeuno",
+  "npc": "Pawkrix",
+  "price": 35
+ },
+ {
+  "n": "Goblin Mushpot",
+  "zone": "Lower Jeuno",
+  "npc": "Pawkrix",
+  "price": 1140
+ },
+ {
+  "n": "Bag of Poison Flour",
+  "zone": "Lower Jeuno",
+  "npc": "Pawkrix",
+  "price": 515
+ },
+ {
+  "n": "Goblin Doll",
+  "zone": "Lower Jeuno",
+  "npc": "Pawkrix",
+  "price": 500
+ },
+ {
+  "n": "Bowl of Goblin Stew 880",
+  "zone": "Lower Jeuno",
+  "npc": "Pawkrix",
+  "price": 150000
+ },
+ {
+  "n": "Bunch of Gysahl Greens",
+  "zone": "Lower Jeuno",
+  "npc": "Rhimonne",
+  "price": 68
+ },
+ {
+  "n": "Chocobo Feather",
+  "zone": "Lower Jeuno",
+  "npc": "Rhimonne",
+  "price": 8
+ },
+ {
+  "n": "Dart",
+  "zone": "Lower Jeuno",
+  "npc": "Rhimonne",
+  "price": 10
+ },
+ {
+  "n": "Pinch of Poison Dust",
+  "zone": "Lower Jeuno",
+  "npc": "Stinknix",
+  "price": 320
+ },
+ {
+  "n": "Pinch of Venom Dust",
+  "zone": "Lower Jeuno",
+  "npc": "Stinknix",
+  "price": 1035
+ },
+ {
+  "n": "Pinch of Paralysis Dust",
+  "zone": "Lower Jeuno",
+  "npc": "Stinknix",
+  "price": 2000
+ },
+ {
+  "n": "Iron Arrow",
+  "zone": "Lower Jeuno",
+  "npc": "Stinknix",
+  "price": 8
+ },
+ {
+  "n": "Crossbow Bolt",
+  "zone": "Lower Jeuno",
+  "npc": "Stinknix",
+  "price": 6
+ },
+ {
+  "n": "Grenade",
+  "zone": "Lower Jeuno",
+  "npc": "Stinknix",
+  "price": 1204
+ },
+ {
+  "n": "Duchy Waystone",
+  "zone": "Lower Jeuno",
+  "npc": "Stinknix",
+  "price": 10000
+ },
+ {
+  "n": "Scroll of Sleep II",
+  "zone": "Lower Jeuno",
+  "npc": "Susu",
+  "price": 18720
+ },
+ {
+  "n": "Scroll of Sleepga",
+  "zone": "Lower Jeuno",
+  "npc": "Susu",
+  "price": 11200
+ },
+ {
+  "n": "Scroll of Stone III",
+  "zone": "Lower Jeuno",
+  "npc": "Susu",
+  "price": 19932
+ },
+ {
+  "n": "Scroll of Stone IV",
+  "zone": "Lower Jeuno",
+  "npc": "Susu",
+  "price": 108000
+ },
+ {
+  "n": "Scroll of Stonega II",
+  "zone": "Lower Jeuno",
+  "npc": "Susu",
+  "price": 12000
+ },
+ {
+  "n": "Scroll of Stonega III",
+  "zone": "Lower Jeuno",
+  "npc": "Susu",
+  "price": 69875
+ },
+ {
+  "n": "Scroll of Water III",
+  "zone": "Lower Jeuno",
+  "npc": "Susu",
+  "price": 22682
+ },
+ {
+  "n": "Scroll of Water IV",
+  "zone": "Lower Jeuno",
+  "npc": "Susu",
+  "price": 116000
+ },
+ {
+  "n": "Scroll of Waterga II",
+  "zone": "Lower Jeuno",
+  "npc": "Susu",
+  "price": 13050
+ },
+ {
+  "n": "Scroll of Waterga III",
+  "zone": "Lower Jeuno",
+  "npc": "Susu",
+  "price": 82250
+ },
+ {
+  "n": "Scroll of Aero III",
+  "zone": "Lower Jeuno",
+  "npc": "Susu",
+  "price": 27744
+ },
+ {
+  "n": "Scroll of Aero IV",
+  "zone": "Lower Jeuno",
+  "npc": "Susu",
+  "price": 131750
+ },
+ {
+  "n": "Scroll of Aeroga II",
+  "zone": "Lower Jeuno",
+  "npc": "Susu",
+  "price": 19800
+ },
+ {
+  "n": "Scroll of Aeroga III",
+  "zone": "Lower Jeuno",
+  "npc": "Susu",
+  "price": 95625
+ },
+ {
+  "n": "Scroll of Fire III",
+  "zone": "Lower Jeuno",
+  "npc": "Susu",
+  "price": 33306
+ },
+ {
+  "n": "Scroll of Fire IV",
+  "zone": "Lower Jeuno",
+  "npc": "Susu",
+  "price": 148500
+ },
+ {
+  "n": "Scroll of Firaga II",
+  "zone": "Lower Jeuno",
+  "npc": "Susu",
+  "price": 21307
+ },
+ {
+  "n": "Scroll of Firaga III",
+  "zone": "Lower Jeuno",
+  "npc": "Susu",
+  "price": 112000
+ },
+ {
+  "n": "Scroll of Blizzard III",
+  "zone": "Lower Jeuno",
+  "npc": "Susu",
+  "price": 39368
+ },
+ {
+  "n": "Scroll of Blizzard IV",
+  "zone": "Lower Jeuno",
+  "npc": "Susu",
+  "price": 166250
+ },
+ {
+  "n": "Scroll of Blizzaga II",
+  "zone": "Lower Jeuno",
+  "npc": "Susu",
+  "price": 26244
+ },
+ {
+  "n": "Scroll of Blizzaga III",
+  "zone": "Lower Jeuno",
+  "npc": "Susu",
+  "price": 127500
+ },
+ {
+  "n": "Scroll of Thunder III",
+  "zone": "Lower Jeuno",
+  "npc": "Susu",
+  "price": 45930
+ },
+ {
+  "n": "Scroll of Thunder IV",
+  "zone": "Lower Jeuno",
+  "npc": "Susu",
+  "price": 185000
+ },
+ {
+  "n": "Scroll of Thundaga II",
+  "zone": "Lower Jeuno",
+  "npc": "Susu",
+  "price": 31681
+ },
+ {
+  "n": "Scroll of Thundaga III",
+  "zone": "Lower Jeuno",
+  "npc": "Susu",
+  "price": 144000
+ },
+ {
+  "n": "Scroll of Quake",
+  "zone": "Lower Jeuno",
+  "npc": "Susu",
+  "price": 60000
+ },
+ {
+  "n": "Scroll of Flood",
+  "zone": "Lower Jeuno",
+  "npc": "Susu",
+  "price": 67500
+ },
+ {
+  "n": "Scroll of Tornado",
+  "zone": "Lower Jeuno",
+  "npc": "Susu",
+  "price": 56250
+ },
+ {
+  "n": "Scroll of Flare",
+  "zone": "Lower Jeuno",
+  "npc": "Susu",
+  "price": 71250
+ },
+ {
+  "n": "Scroll of Freeze",
+  "zone": "Lower Jeuno",
+  "npc": "Susu",
+  "price": 52500
+ },
+ {
+  "n": "Scroll of Burst",
+  "zone": "Lower Jeuno",
+  "npc": "Susu",
+  "price": 63750
+ },
+ {
+  "n": "Scroll of Quake II",
+  "zone": "Lower Jeuno",
+  "npc": "Susu",
+  "price": 119180
+ },
+ {
+  "n": "Scroll of Flood II",
+  "zone": "Lower Jeuno",
+  "npc": "Susu",
+  "price": 119180
+ },
+ {
+  "n": "Scroll of Tornado II",
+  "zone": "Lower Jeuno",
+  "npc": "Susu",
+  "price": 119180
+ },
+ {
+  "n": "Scroll of Flare II",
+  "zone": "Lower Jeuno",
+  "npc": "Susu",
+  "price": 119180
+ },
+ {
+  "n": "Scroll of Freeze II",
+  "zone": "Lower Jeuno",
+  "npc": "Susu",
+  "price": 119180
+ },
+ {
+  "n": "Scroll of Burst II",
+  "zone": "Lower Jeuno",
+  "npc": "Susu",
+  "price": 119180
+ },
+ {
+  "n": "Scroll of Bio III",
+  "zone": "Lower Jeuno",
+  "npc": "Susu",
+  "price": 139125
+ },
+ {
+  "n": "Scroll of Blind II",
+  "zone": "Lower Jeuno",
+  "npc": "Susu",
+  "price": 139125
+ },
+ {
+  "n": "Flask of Distilled Water",
+  "zone": "Lower Jeuno",
+  "npc": "Yoskolo",
+  "price": 12
+ },
+ {
+  "n": "Bottle of Orange Juice",
+  "zone": "Lower Jeuno",
+  "npc": "Yoskolo",
+  "price": 200
+ },
+ {
+  "n": "Bottle of Apple Juice",
+  "zone": "Lower Jeuno",
+  "npc": "Yoskolo",
+  "price": 300
+ },
+ {
+  "n": "Bottle of Melon Juice",
+  "zone": "Lower Jeuno",
+  "npc": "Yoskolo",
+  "price": 1100
+ },
+ {
+  "n": "Bottle of Grape Juice",
+  "zone": "Lower Jeuno",
+  "npc": "Yoskolo",
+  "price": 930
+ },
+ {
+  "n": "Bottle of Pineapple Juice",
+  "zone": "Lower Jeuno",
+  "npc": "Yoskolo",
+  "price": 400
+ },
+ {
+  "n": "Serving of Icecap Rolanberry",
+  "zone": "Lower Jeuno",
+  "npc": "Yoskolo",
+  "price": 5544
+ },
+ {
+  "n": "Scroll of Fire Carol",
+  "zone": "Lower Jeuno",
+  "npc": "Yoskolo",
+  "price": 6380
+ },
+ {
+  "n": "Scroll of Ice Carol",
+  "zone": "Lower Jeuno",
+  "npc": "Yoskolo",
+  "price": 7440
+ },
+ {
+  "n": "Scroll of Wind Carol",
+  "zone": "Lower Jeuno",
+  "npc": "Yoskolo",
+  "price": 5940
+ },
+ {
+  "n": "Scroll of Earth Carol",
+  "zone": "Lower Jeuno",
+  "npc": "Yoskolo",
+  "price": 4600
+ },
+ {
+  "n": "Scroll of Lightning Carol",
+  "zone": "Lower Jeuno",
+  "npc": "Yoskolo",
+  "price": 7920
+ },
+ {
+  "n": "Scroll of Water Carol",
+  "zone": "Lower Jeuno",
+  "npc": "Yoskolo",
+  "price": 5000
+ },
+ {
+  "n": "Scroll of Light Carol",
+  "zone": "Lower Jeuno",
+  "npc": "Yoskolo",
+  "price": 4200
+ },
+ {
+  "n": "Scroll of Dark Carol",
+  "zone": "Lower Jeuno",
+  "npc": "Yoskolo",
+  "price": 8400
+ },
+ {
+  "n": "Scroll of Sentinels Scherzo",
+  "zone": "Lower Jeuno",
+  "npc": "Yoskolo",
+  "price": 60000
+ },
+ {
+  "n": "Leather Bandana",
+  "zone": "Mhaura",
+  "npc": "Graine",
+  "price": 439
+ },
+ {
+  "n": "Bronze Cap",
+  "zone": "Mhaura",
+  "npc": "Graine",
+  "price": 168
+ },
+ {
+  "n": "Brass Cap",
+  "zone": "Mhaura",
+  "npc": "Graine",
+  "price": 1635
+ },
+ {
+  "n": "Leather Vest",
+  "zone": "Mhaura",
+  "npc": "Graine",
+  "price": 671
+ },
+ {
+  "n": "Bronze Harness",
+  "zone": "Mhaura",
+  "npc": "Graine",
+  "price": 256
+ },
+ {
+  "n": "Brass Harness",
+  "zone": "Mhaura",
+  "npc": "Graine",
+  "price": 2485
+ },
+ {
+  "n": "Leather Gloves",
+  "zone": "Mhaura",
+  "npc": "Graine",
+  "price": 360
+ },
+ {
+  "n": "Bronze Mittens",
+  "zone": "Mhaura",
+  "npc": "Graine",
+  "price": 140
+ },
+ {
+  "n": "Brass Mittens",
+  "zone": "Mhaura",
+  "npc": "Graine",
+  "price": 1365
+ },
+ {
+  "n": "Leather Trousers",
+  "zone": "Mhaura",
+  "npc": "Graine",
+  "price": 536
+ },
+ {
+  "n": "Bronze Subligar",
+  "zone": "Mhaura",
+  "npc": "Graine",
+  "price": 208
+ },
+ {
+  "n": "Brass Subligar",
+  "zone": "Mhaura",
+  "npc": "Graine",
+  "price": 2000
+ },
+ {
+  "n": "Leather Highboots",
+  "zone": "Mhaura",
+  "npc": "Graine",
+  "price": 336
+ },
+ {
+  "n": "Bronze Leggings",
+  "zone": "Mhaura",
+  "npc": "Graine",
+  "price": 128
+ },
+ {
+  "n": "Brass Leggings",
+  "zone": "Mhaura",
+  "npc": "Graine",
+  "price": 1240
+ },
+ {
+  "n": "Flask of Eye Drops",
+  "zone": "Mhaura",
+  "npc": "Pikini-Mikini",
+  "price": 2595
+ },
+ {
+  "n": "Antidote",
+  "zone": "Mhaura",
+  "npc": "Pikini-Mikini",
+  "price": 316
+ },
+ {
+  "n": "Flask of Echo Drops",
+  "zone": "Mhaura",
+  "npc": "Pikini-Mikini",
+  "price": 800
+ },
+ {
+  "n": "Potion",
+  "zone": "Mhaura",
+  "npc": "Pikini-Mikini",
+  "price": 910
+ },
+ {
+  "n": "Flask of Distilled Water",
+  "zone": "Mhaura",
+  "npc": "Pikini-Mikini",
+  "price": 12
+ },
+ {
+  "n": "Sheet of Parchment",
+  "zone": "Mhaura",
+  "npc": "Pikini-Mikini",
+  "price": 1980
+ },
+ {
+  "n": "Lugworm",
+  "zone": "Mhaura",
+  "npc": "Pikini-Mikini",
+  "price": 12
+ },
+ {
+  "n": "Hatchet",
+  "zone": "Mhaura",
+  "npc": "Pikini-Mikini",
+  "price": 500
+ },
+ {
+  "n": "Strip of Meat Jerky",
+  "zone": "Mhaura",
+  "npc": "Pikini-Mikini",
+  "price": 120
+ },
+ {
+  "n": "Dish of Salsa",
+  "zone": "Mhaura",
+  "npc": "Pikini-Mikini",
+  "price": 148
+ },
+ {
+  "n": "Mhaura Waystone",
+  "zone": "Mhaura",
+  "npc": "Pikini-Mikini",
+  "price": 10000
+ },
+ {
+  "n": "Cat Baghnakhs",
+  "zone": "Mhaura",
+  "npc": "Runito-Monito",
+  "price": 116
+ },
+ {
+  "n": "Brass Baghnakhs",
+  "zone": "Mhaura",
+  "npc": "Runito-Monito",
+  "price": 1690
+ },
+ {
+  "n": "Brass Dagger",
+  "zone": "Mhaura",
+  "npc": "Runito-Monito",
+  "price": 930
+ },
+ {
+  "n": "Bronze Rod",
+  "zone": "Mhaura",
+  "npc": "Runito-Monito",
+  "price": 100
+ },
+ {
+  "n": "Brass Rod",
+  "zone": "Mhaura",
+  "npc": "Runito-Monito",
+  "price": 690
+ },
+ {
+  "n": "Brass Xiphos",
+  "zone": "Mhaura",
+  "npc": "Runito-Monito",
+  "price": 3915
+ },
+ {
+  "n": "Claymore",
+  "zone": "Mhaura",
+  "npc": "Runito-Monito",
+  "price": 2720
+ },
+ {
+  "n": "Butterfly Axe",
+  "zone": "Mhaura",
+  "npc": "Runito-Monito",
+  "price": 672
+ },
+ {
+  "n": "Dart",
+  "zone": "Mhaura",
+  "npc": "Runito-Monito",
+  "price": 10
+ },
+ {
+  "n": "Wooden Arrow",
+  "zone": "Mhaura",
+  "npc": "Runito-Monito",
+  "price": 4
+ },
+ {
+  "n": "Bone Arrow",
+  "zone": "Mhaura",
+  "npc": "Runito-Monito",
+  "price": 5
+ },
+ {
+  "n": "Crossbow Bolt",
+  "zone": "Mhaura",
+  "npc": "Runito-Monito",
+  "price": 6
+ },
+ {
+  "n": "Scroll of Regen",
+  "zone": "Mhaura",
+  "npc": "Tya Padolih",
+  "price": 4320
+ },
+ {
+  "n": "Scroll of Regen II",
+  "zone": "Mhaura",
+  "npc": "Tya Padolih",
+  "price": 7830
+ },
+ {
+  "n": "Scroll of Sleepga",
+  "zone": "Mhaura",
+  "npc": "Tya Padolih",
+  "price": 11200
+ },
+ {
+  "n": "Scroll of Baramnesia",
+  "zone": "Mhaura",
+  "npc": "Tya Padolih",
+  "price": 30240
+ },
+ {
+  "n": "Scroll of Baramnesra",
+  "zone": "Mhaura",
+  "npc": "Tya Padolih",
+  "price": 30240
+ },
+ {
+  "n": "Scroll of Invisible",
+  "zone": "Mhaura",
+  "npc": "Tya Padolih",
+  "price": 5754
+ },
+ {
+  "n": "Scroll of Sneak",
+  "zone": "Mhaura",
+  "npc": "Tya Padolih",
+  "price": 2500
+ },
+ {
+  "n": "Scroll of Deodorize",
+  "zone": "Mhaura",
+  "npc": "Tya Padolih",
+  "price": 1295
+ },
+ {
+  "n": "Scroll of Distract",
+  "zone": "Mhaura",
+  "npc": "Tya Padolih",
+  "price": 19600
+ },
+ {
+  "n": "Scroll of Frazzle",
+  "zone": "Mhaura",
+  "npc": "Tya Padolih",
+  "price": 27216
+ },
+ {
+  "n": "Bolters Die",
+  "zone": "Nashmau",
+  "npc": "Chichiroon",
+  "price": 99224
+ },
+ {
+  "n": "Casters Die",
+  "zone": "Nashmau",
+  "npc": "Chichiroon",
+  "price": 85500
+ },
+ {
+  "n": "Coursers Die",
+  "zone": "Nashmau",
+  "npc": "Chichiroon",
+  "price": 97350
+ },
+ {
+  "n": "Blitzers Die",
+  "zone": "Nashmau",
+  "npc": "Chichiroon",
+  "price": 100650
+ },
+ {
+  "n": "Tacticians Die",
+  "zone": "Nashmau",
+  "npc": "Chichiroon",
+  "price": 109440
+ },
+ {
+  "n": "Allies Die",
+  "zone": "Nashmau",
+  "npc": "Chichiroon",
+  "price": 116568
+ },
+ {
+  "n": "Misers Die",
+  "zone": "Nashmau",
+  "npc": "Chichiroon",
+  "price": 96250
+ },
+ {
+  "n": "Companions Die",
+  "zone": "Nashmau",
+  "npc": "Chichiroon",
+  "price": 95800
+ },
+ {
+  "n": "Avengers Die",
+  "zone": "Nashmau",
+  "npc": "Chichiroon",
+  "price": 123744
+ },
+ {
+  "n": "Geomancer Die",
+  "zone": "Nashmau",
+  "npc": "Chichiroon",
+  "price": 69288
+ },
+ {
+  "n": "Rune Fencer Die",
+  "zone": "Nashmau",
+  "npc": "Chichiroon",
+  "price": 73920
+ },
+ {
+  "n": "Fire Card",
+  "zone": "Nashmau",
+  "npc": "Jajaroon",
+  "price": 48
+ },
+ {
+  "n": "Ice Card",
+  "zone": "Nashmau",
+  "npc": "Jajaroon",
+  "price": 48
+ },
+ {
+  "n": "Wind Card",
+  "zone": "Nashmau",
+  "npc": "Jajaroon",
+  "price": 48
+ },
+ {
+  "n": "Earth Card",
+  "zone": "Nashmau",
+  "npc": "Jajaroon",
+  "price": 48
+ },
+ {
+  "n": "Thunder Card",
+  "zone": "Nashmau",
+  "npc": "Jajaroon",
+  "price": 48
+ },
+ {
+  "n": "Water Card",
+  "zone": "Nashmau",
+  "npc": "Jajaroon",
+  "price": 48
+ },
+ {
+  "n": "Light Card",
+  "zone": "Nashmau",
+  "npc": "Jajaroon",
+  "price": 48
+ },
+ {
+  "n": "Dark Card",
+  "zone": "Nashmau",
+  "npc": "Jajaroon",
+  "price": 48
+ },
+ {
+  "n": "Trump Card Case",
+  "zone": "Nashmau",
+  "npc": "Jajaroon",
+  "price": 10000
+ },
+ {
+  "n": "Samurai Die",
+  "zone": "Nashmau",
+  "npc": "Jajaroon",
+  "price": 35200
+ },
+ {
+  "n": "Ninja Die",
+  "zone": "Nashmau",
+  "npc": "Jajaroon",
+  "price": 600
+ },
+ {
+  "n": "Dragoon Die",
+  "zone": "Nashmau",
+  "npc": "Jajaroon",
+  "price": 9216
+ },
+ {
+  "n": "Summoner Die",
+  "zone": "Nashmau",
+  "npc": "Jajaroon",
+  "price": 40000
+ },
+ {
+  "n": "Blue Mage Die",
+  "zone": "Nashmau",
+  "npc": "Jajaroon",
+  "price": 3525
+ },
+ {
+  "n": "Corsair Die",
+  "zone": "Nashmau",
+  "npc": "Jajaroon",
+  "price": 316
+ },
+ {
+  "n": "Puppetmaster Die",
+  "zone": "Nashmau",
+  "npc": "Jajaroon",
+  "price": 82500
+ },
+ {
+  "n": "Scroll of Stun",
+  "zone": "Nashmau",
+  "npc": "Mamaroon",
+  "price": 27000
+ },
+ {
+  "n": "Scroll of Enfire",
+  "zone": "Nashmau",
+  "npc": "Mamaroon",
+  "price": 5160
+ },
+ {
+  "n": "Scroll of Enblizzard",
+  "zone": "Nashmau",
+  "npc": "Mamaroon",
+  "price": 4098
+ },
+ {
+  "n": "Scroll of Enaero",
+  "zone": "Nashmau",
+  "npc": "Mamaroon",
+  "price": 2500
+ },
+ {
+  "n": "Scroll of Enstone",
+  "zone": "Nashmau",
+  "npc": "Mamaroon",
+  "price": 2030
+ },
+ {
+  "n": "Scroll of Enthunder",
+  "zone": "Nashmau",
+  "npc": "Mamaroon",
+  "price": 1515
+ },
+ {
+  "n": "Scroll of Enwater",
+  "zone": "Nashmau",
+  "npc": "Mamaroon",
+  "price": 7074
+ },
+ {
+  "n": "Scroll of Shock Spikes",
+  "zone": "Nashmau",
+  "npc": "Mamaroon",
+  "price": 9000
+ },
+ {
+  "n": "White Puppet Turban",
+  "zone": "Nashmau",
+  "npc": "Mamaroon",
+  "price": 29950
+ },
+ {
+  "n": "Black Puppet Turban",
+  "zone": "Nashmau",
+  "npc": "Mamaroon",
+  "price": 29950
+ },
+ {
+  "n": "Scroll of Enlight",
+  "zone": "Nashmau",
+  "npc": "Mamaroon",
+  "price": 100800
+ },
+ {
+  "n": "Scroll of Endark",
+  "zone": "Nashmau",
+  "npc": "Mamaroon",
+  "price": 100800
+ },
+ {
+  "n": "Grenade",
+  "zone": "Nashmau",
+  "npc": "Pipiroon",
+  "price": 1204
+ },
+ {
+  "n": "Riot Grenade",
+  "zone": "Nashmau",
+  "npc": "Pipiroon",
+  "price": 6000
+ },
+ {
+  "n": "Pinch of Bomb Ash",
+  "zone": "Nashmau",
+  "npc": "Pipiroon",
+  "price": 515
+ },
+ {
+  "n": "Nashmau Waystone",
+  "zone": "Nashmau",
+  "npc": "Pipiroon",
+  "price": 10000
+ },
+ {
+  "n": "Leather Highboots",
+  "zone": "Nashmau",
+  "npc": "Poporoon",
+  "price": 336
+ },
+ {
+  "n": "Lizard Ledelsens",
+  "zone": "Nashmau",
+  "npc": "Poporoon",
+  "price": 3438
+ },
+ {
+  "n": "Studded Boots",
+  "zone": "Nashmau",
+  "npc": "Poporoon",
+  "price": 11172
+ },
+ {
+  "n": "Cuir Highboots",
+  "zone": "Nashmau",
+  "npc": "Poporoon",
+  "price": 20532
+ },
+ {
+  "n": "Reactive Shield",
+  "zone": "Nashmau",
+  "npc": "Rararoon",
+  "price": 222300
+ },
+ {
+  "n": "Tension Spring IV",
+  "zone": "Nashmau",
+  "npc": "Rararoon",
+  "price": 112632
+ },
+ {
+  "n": "Heat Capacitor II",
+  "zone": "Nashmau",
+  "npc": "Rararoon",
+  "price": 112632
+ },
+ {
+  "n": "Tension Spring V",
+  "zone": "Nashmau",
+  "npc": "Rararoon",
+  "price": 118560
+ },
+ {
+  "n": "Magniplug",
+  "zone": "Nashmau",
+  "npc": "Rararoon",
+  "price": 82992
+ },
+ {
+  "n": "Magniplug II",
+  "zone": "Nashmau",
+  "npc": "Rararoon",
+  "price": 112632
+ },
+ {
+  "n": "Tranquilizer",
+  "zone": "Nashmau",
+  "npc": "Rararoon",
+  "price": 222300
+ },
+ {
+  "n": "Tranquilizer II",
+  "zone": "Nashmau",
+  "npc": "Rararoon",
+  "price": 100776
+ },
+ {
+  "n": "Loudspeaker IV",
+  "zone": "Nashmau",
+  "npc": "Rararoon",
+  "price": 112632
+ },
+ {
+  "n": "Tranquilizer III",
+  "zone": "Nashmau",
+  "npc": "Rararoon",
+  "price": 112632
+ },
+ {
+  "n": "Amplifier II",
+  "zone": "Nashmau",
+  "npc": "Rararoon",
+  "price": 112632
+ },
+ {
+  "n": "Loudspeaker V",
+  "zone": "Nashmau",
+  "npc": "Rararoon",
+  "price": 118560
+ },
+ {
+  "n": "Tranquilizer IV",
+  "zone": "Nashmau",
+  "npc": "Rararoon",
+  "price": 118560
+ },
+ {
+  "n": "Arcanoclutch",
+  "zone": "Nashmau",
+  "npc": "Rararoon",
+  "price": 82992
+ },
+ {
+  "n": "Arcanoclutch II",
+  "zone": "Nashmau",
+  "npc": "Rararoon",
+  "price": 112632
+ },
+ {
+  "n": "Turbo Charger",
+  "zone": "Nashmau",
+  "npc": "Rararoon",
+  "price": 222300
+ },
+ {
+  "n": "Turbo Charger II",
+  "zone": "Nashmau",
+  "npc": "Rararoon",
+  "price": 750880
+ },
+ {
+  "n": "Accelerator IV",
+  "zone": "Nashmau",
+  "npc": "Rararoon",
+  "price": 112632
+ },
+ {
+  "n": "Scope III",
+  "zone": "Nashmau",
+  "npc": "Rararoon",
+  "price": 112632
+ },
+ {
+  "n": "Scope IV",
+  "zone": "Nashmau",
+  "npc": "Rararoon",
+  "price": 118560
+ },
+ {
+  "n": "Truesights",
+  "zone": "Nashmau",
+  "npc": "Rararoon",
+  "price": 112632
+ },
+ {
+  "n": "Schurzen",
+  "zone": "Nashmau",
+  "npc": "Rararoon",
+  "price": 222300
+ },
+ {
+  "n": "Shock Absorber II",
+  "zone": "Nashmau",
+  "npc": "Rararoon",
+  "price": 100776
+ },
+ {
+  "n": "Armor Plate IV",
+  "zone": "Nashmau",
+  "npc": "Rararoon",
+  "price": 112632
+ },
+ {
+  "n": "Shock Absorber III",
+  "zone": "Nashmau",
+  "npc": "Rararoon",
+  "price": 112632
+ },
+ {
+  "n": "Dynamo",
+  "zone": "Nashmau",
+  "npc": "Rararoon",
+  "price": 222300
+ },
+ {
+  "n": "Coiler",
+  "zone": "Nashmau",
+  "npc": "Rararoon",
+  "price": 185250
+ },
+ {
+  "n": "Coiler II",
+  "zone": "Nashmau",
+  "npc": "Rararoon",
+  "price": 100776
+ },
+ {
+  "n": "Dynamo II",
+  "zone": "Nashmau",
+  "npc": "Rararoon",
+  "price": 100776
+ },
+ {
+  "n": "Stabilizer IV",
+  "zone": "Nashmau",
+  "npc": "Rararoon",
+  "price": 112632
+ },
+ {
+  "n": "Dynamo III",
+  "zone": "Nashmau",
+  "npc": "Rararoon",
+  "price": 112632
+ },
+ {
+  "n": "Stabilizer V",
+  "zone": "Nashmau",
+  "npc": "Rararoon",
+  "price": 118560
+ },
+ {
+  "n": "Mana Channeler II",
+  "zone": "Nashmau",
+  "npc": "Rararoon",
+  "price": 185250
+ },
+ {
+  "n": "Condenser",
+  "zone": "Nashmau",
+  "npc": "Rararoon",
+  "price": 222300
+ },
+ {
+  "n": "Steam Jacket",
+  "zone": "Nashmau",
+  "npc": "Rararoon",
+  "price": 185250
+ },
+ {
+  "n": "Resister II",
+  "zone": "Nashmau",
+  "npc": "Rararoon",
+  "price": 88920
+ },
+ {
+  "n": "Mana Jammer IV",
+  "zone": "Nashmau",
+  "npc": "Rararoon",
+  "price": 112632
+ },
+ {
+  "n": "Optic Fiber",
+  "zone": "Nashmau",
+  "npc": "Rararoon",
+  "price": 222300
+ },
+ {
+  "n": "Optic Fiber II",
+  "zone": "Nashmau",
+  "npc": "Rararoon",
+  "price": 321100
+ },
+ {
+  "n": "Vivi Valve II",
+  "zone": "Nashmau",
+  "npc": "Rararoon",
+  "price": 750880
+ },
+ {
+  "n": "Auto Repair Kit III",
+  "zone": "Nashmau",
+  "npc": "Rararoon",
+  "price": 88920
+ },
+ {
+  "n": "Auto Repair Kit IV",
+  "zone": "Nashmau",
+  "npc": "Rararoon",
+  "price": 112632
+ },
+ {
+  "n": "Arcanic Cell II",
+  "zone": "Nashmau",
+  "npc": "Rararoon",
+  "price": 88920
+ },
+ {
+  "n": "Damage Gauge II",
+  "zone": "Nashmau",
+  "npc": "Rararoon",
+  "price": 112632
+ },
+ {
+  "n": "Economizer",
+  "zone": "Nashmau",
+  "npc": "Rararoon",
+  "price": 222300
+ },
+ {
+  "n": "Mana Tank III",
+  "zone": "Nashmau",
+  "npc": "Rararoon",
+  "price": 88920
+ },
+ {
+  "n": "Regulator",
+  "zone": "Nashmau",
+  "npc": "Rararoon",
+  "price": 112632
+ },
+ {
+  "n": "Mana Tank IV",
+  "zone": "Nashmau",
+  "npc": "Rararoon",
+  "price": 112632
+ },
+ {
+  "n": "Shortbow",
+  "zone": "Nashmau",
+  "npc": "Wata Khamazom",
+  "price": 44
+ },
+ {
+  "n": "Self Bow",
+  "zone": "Nashmau",
+  "npc": "Wata Khamazom",
+  "price": 536
+ },
+ {
+  "n": "Wrapped Bow",
+  "zone": "Nashmau",
+  "npc": "Wata Khamazom",
+  "price": 7920
+ },
+ {
+  "n": "Longbow",
+  "zone": "Nashmau",
+  "npc": "Wata Khamazom",
+  "price": 492
+ },
+ {
+  "n": "Great Bow",
+  "zone": "Nashmau",
+  "npc": "Wata Khamazom",
+  "price": 21812
+ },
+ {
+  "n": "Wooden Arrow",
+  "zone": "Nashmau",
+  "npc": "Wata Khamazom",
+  "price": 4
+ },
+ {
+  "n": "Iron Arrow",
+  "zone": "Nashmau",
+  "npc": "Wata Khamazom",
+  "price": 8
+ },
+ {
+  "n": "Silver Arrow",
+  "zone": "Nashmau",
+  "npc": "Wata Khamazom",
+  "price": 18
+ },
+ {
+  "n": "Fire Arrow",
+  "zone": "Nashmau",
+  "npc": "Wata Khamazom",
+  "price": 140
+ },
+ {
+  "n": "Crossbow Bolt",
+  "zone": "Nashmau",
+  "npc": "Wata Khamazom",
+  "price": 6
+ },
+ {
+  "n": "Throwing Tomahawk",
+  "zone": "Nashmau",
+  "npc": "Wata Khamazom",
+  "price": 248
+ },
+ {
+  "n": "Tension Spring",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 4940
+ },
+ {
+  "n": "Loudspeaker",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 4940
+ },
+ {
+  "n": "Accelerator",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 4940
+ },
+ {
+  "n": "Armor Plate",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 4940
+ },
+ {
+  "n": "Stabilizer",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 4940
+ },
+ {
+  "n": "Mana Jammer",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 4940
+ },
+ {
+  "n": "Auto Repair Kit",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 4940
+ },
+ {
+  "n": "Mana Tank",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 4940
+ },
+ {
+  "n": "Inhibitor",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 9925
+ },
+ {
+  "n": "Speedloader",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 9925
+ },
+ {
+  "n": "Mana Booster",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 9925
+ },
+ {
+  "n": "Scope",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 9925
+ },
+ {
+  "n": "Shock Absorber",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 9925
+ },
+ {
+  "n": "Volt Gun",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 9925
+ },
+ {
+  "n": "Stealth Screen",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 9925
+ },
+ {
+  "n": "Damage Gauge",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 9925
+ },
+ {
+  "n": "Mana Conserver",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 9925
+ },
+ {
+  "n": "Strobe",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 19890
+ },
+ {
+  "n": "Flame Holder",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 19890
+ },
+ {
+  "n": "Ice Maker",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 19890
+ },
+ {
+  "n": "Pattern Reader",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 19890
+ },
+ {
+  "n": "Replicator",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 19890
+ },
+ {
+  "n": "Analyzer",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 19890
+ },
+ {
+  "n": "Heat Seeker",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 19890
+ },
+ {
+  "n": "Heatsink",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 19890
+ },
+ {
+  "n": "Flashbulb",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 19890
+ },
+ {
+  "n": "Mana Converter",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 19890
+ },
+ {
+  "n": "Tension Spring II",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 29640
+ },
+ {
+  "n": "Scanner",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 29640
+ },
+ {
+  "n": "Loudspeaker II",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 29640
+ },
+ {
+  "n": "Accelerator II",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 29640
+ },
+ {
+  "n": "Armor Plate II",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 29640
+ },
+ {
+  "n": "Stabilizer II",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 29640
+ },
+ {
+  "n": "Mana Jammer II",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 29640
+ },
+ {
+  "n": "Hammermill",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 41496
+ },
+ {
+  "n": "Barrier Module",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 41496
+ },
+ {
+  "n": "Resister",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 41496
+ },
+ {
+  "n": "Auto Repair Kit II",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 41496
+ },
+ {
+  "n": "Arcanic Cell",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 41496
+ },
+ {
+  "n": "Mana Tank II",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 41496
+ },
+ {
+  "n": "Strobe II",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 53352
+ },
+ {
+  "n": "Tension Spring III",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 65208
+ },
+ {
+  "n": "Loudspeaker III",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 65208
+ },
+ {
+  "n": "Amplifier",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 65208
+ },
+ {
+  "n": "Accelerator III",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 65208
+ },
+ {
+  "n": "Scope II",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 65208
+ },
+ {
+  "n": "Armor Plate III",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 65208
+ },
+ {
+  "n": "Stabilizer III",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 65208
+ },
+ {
+  "n": "Mana Jammer III",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 65208
+ },
+ {
+  "n": "Inhibitor II",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 82992
+ },
+ {
+  "n": "Speedloader II",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 82992
+ },
+ {
+  "n": "Repeater",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 82992
+ },
+ {
+  "n": "Stealth Screen II",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 82992
+ },
+ {
+  "n": "Attuner",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 118560
+ },
+ {
+  "n": "Heat Capacitor",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 118560
+ },
+ {
+  "n": "Tactical Processor",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 118560
+ },
+ {
+  "n": "Power Cooler",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 118560
+ },
+ {
+  "n": "Drum Magazine",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 118560
+ },
+ {
+  "n": "Barrage Turbine",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 118560
+ },
+ {
+  "n": "Equalizer",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 118560
+ },
+ {
+  "n": "Barrier Module II",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 118560
+ },
+ {
+  "n": "Target Marker",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 118560
+ },
+ {
+  "n": "Galvanizer",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 118560
+ },
+ {
+  "n": "Mana Channeler",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 118560
+ },
+ {
+  "n": "Percolator",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 118560
+ },
+ {
+  "n": "Eraser",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 118560
+ },
+ {
+  "n": "Vivi Valve",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 118560
+ },
+ {
+  "n": "Smoke Screen",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 118560
+ },
+ {
+  "n": "Disruptor",
+  "zone": "Nashmau",
+  "npc": "Yoyoroon",
+  "price": 118560
+ },
+ {
+  "n": "Lugworm",
+  "zone": "Norg",
+  "npc": "Solby-Maholby",
+  "price": 9
+ },
+ {
+  "n": "Earth Spirit Pact",
+  "zone": "Norg",
+  "npc": "Solby-Maholby",
+  "price": 450
+ },
+ {
+  "n": "Norg Waystone",
+  "zone": "Norg",
+  "npc": "Solby-Maholby",
+  "price": 9000
+ },
+ {
+  "n": "Scroll of Aisha Ichi",
+  "zone": "Norg",
+  "npc": "Solby-Maholby",
+  "price": 92610
+ },
+ {
+  "n": "Scroll of Myoshu Ichi",
+  "zone": "Norg",
+  "npc": "Solby-Maholby",
+  "price": 98894
+ },
+ {
+  "n": "Scroll of Yurin Ichi",
+  "zone": "Norg",
+  "npc": "Solby-Maholby",
+  "price": 95754
+ },
+ {
+  "n": "Scroll of Migawari Ichi",
+  "zone": "Norg",
+  "npc": "Solby-Maholby",
+  "price": 155232
+ },
+ {
+  "n": "Scroll of Gekka Ichi",
+  "zone": "Norg",
+  "npc": "Solby-Maholby",
+  "price": 163705
+ },
+ {
+  "n": "Scroll of Yain Ichi",
+  "zone": "Norg",
+  "npc": "Solby-Maholby",
+  "price": 163705
+ },
+ {
+  "n": "Scroll of Katon San",
+  "zone": "Norg",
+  "npc": "Solby-Maholby",
+  "price": 125212
+ },
+ {
+  "n": "Scroll of Hyoton San",
+  "zone": "Norg",
+  "npc": "Solby-Maholby",
+  "price": 125212
+ },
+ {
+  "n": "Scroll of Huton San",
+  "zone": "Norg",
+  "npc": "Solby-Maholby",
+  "price": 125212
+ },
+ {
+  "n": "Scroll of Doton San",
+  "zone": "Norg",
+  "npc": "Solby-Maholby",
+  "price": 125212
+ },
+ {
+  "n": "Scroll of Raiton San",
+  "zone": "Norg",
+  "npc": "Solby-Maholby",
+  "price": 125212
+ },
+ {
+  "n": "Scroll of Suiton San",
+  "zone": "Norg",
+  "npc": "Solby-Maholby",
+  "price": 125212
+ },
+ {
+  "n": "Elvaan Jerkin",
+  "zone": "Northern San dOria",
+  "npc": "Arachagnon",
+  "price": 300
+ },
+ {
+  "n": "Elvaan Bodice",
+  "zone": "Northern San dOria",
+  "npc": "Arachagnon",
+  "price": 300
+ },
+ {
+  "n": "Elvaan Gloves",
+  "zone": "Northern San dOria",
+  "npc": "Arachagnon",
+  "price": 180
+ },
+ {
+  "n": "Elvaan Gauntlets",
+  "zone": "Northern San dOria",
+  "npc": "Arachagnon",
+  "price": 180
+ },
+ {
+  "n": "Elvaan M Chausses",
+  "zone": "Northern San dOria",
+  "npc": "Arachagnon",
+  "price": 260
+ },
+ {
+  "n": "Elvaan F Chausses",
+  "zone": "Northern San dOria",
+  "npc": "Arachagnon",
+  "price": 260
+ },
+ {
+  "n": "Elvaan M Ledelsens",
+  "zone": "Northern San dOria",
+  "npc": "Arachagnon",
+  "price": 180
+ },
+ {
+  "n": "Elvaan F Ledelsens",
+  "zone": "Northern San dOria",
+  "npc": "Arachagnon",
+  "price": 180
+ },
+ {
+  "n": "Bottle of Movalpolos Water",
+  "zone": "Oldton Movalpolos",
+  "npc": "Bartabaq",
+  "price": 800
+ },
+ {
+  "n": "Goblin Doll",
+  "zone": "Oldton Movalpolos",
+  "npc": "Bartabaq",
+  "price": 500
+ },
+ {
+  "n": "Copper Nugget",
+  "zone": "Oldton Movalpolos",
+  "npc": "Bartabaq",
+  "price": 105
+ },
+ {
+  "n": "Coral Fungus",
+  "zone": "Oldton Movalpolos",
+  "npc": "Bartabaq",
+  "price": 755
+ },
+ {
+  "n": "Chunk of Kopparnickel Ore",
+  "zone": "Oldton Movalpolos",
+  "npc": "Bartabaq",
+  "price": 800
+ },
+ {
+  "n": "Bunch of Gysahl Greens",
+  "zone": "Port Jeuno",
+  "npc": "Challoux",
+  "price": 68
+ },
+ {
+  "n": "Chocobo Feather",
+  "zone": "Port Jeuno",
+  "npc": "Challoux",
+  "price": 8
+ },
+ {
+  "n": "Dart",
+  "zone": "Port Jeuno",
+  "npc": "Challoux",
+  "price": 10
+ },
+ {
+  "n": "Flask of Eye Drops",
+  "zone": "Port Jeuno",
+  "npc": "Gekko",
+  "price": 2595
+ },
+ {
+  "n": "Antidote",
+  "zone": "Port Jeuno",
+  "npc": "Gekko",
+  "price": 316
+ },
+ {
+  "n": "Flask of Echo Drops",
+  "zone": "Port Jeuno",
+  "npc": "Gekko",
+  "price": 800
+ },
+ {
+  "n": "Potion",
+  "zone": "Port Jeuno",
+  "npc": "Gekko",
+  "price": 910
+ },
+ {
+  "n": "Ether",
+  "zone": "Port Jeuno",
+  "npc": "Gekko",
+  "price": 4832
+ },
+ {
+  "n": "Rolanberry",
+  "zone": "Port Jeuno",
+  "npc": "Gekko",
+  "price": 120
+ },
+ {
+  "n": "Scroll of Regen IV",
+  "zone": "Port Jeuno",
+  "npc": "Gekko",
+  "price": 50400
+ },
+ {
+  "n": "Copy of Autumns End In Gustaberg",
+  "zone": "Port Jeuno",
+  "npc": "Gekko",
+  "price": 36000
+ },
+ {
+  "n": "Copy of Acolytes Grief",
+  "zone": "Port Jeuno",
+  "npc": "Gekko",
+  "price": 31224
+ },
+ {
+  "n": "Crackler",
+  "zone": "Port Jeuno",
+  "npc": "Kindlix",
+  "price": 22
+ },
+ {
+  "n": "Cracker",
+  "zone": "Port Jeuno",
+  "npc": "Kindlix",
+  "price": 25
+ },
+ {
+  "n": "Twinkle Shower",
+  "zone": "Port Jeuno",
+  "npc": "Kindlix",
+  "price": 25
+ },
+ {
+  "n": "Little Comet",
+  "zone": "Port Jeuno",
+  "npc": "Kindlix",
+  "price": 25
+ },
+ {
+  "n": "Sparkling Hand",
+  "zone": "Port Jeuno",
+  "npc": "Kindlix",
+  "price": 25
+ },
+ {
+  "n": "Popstar",
+  "zone": "Port Jeuno",
+  "npc": "Kindlix",
+  "price": 50
+ },
+ {
+  "n": "Brilliant Snow",
+  "zone": "Port Jeuno",
+  "npc": "Kindlix",
+  "price": 50
+ },
+ {
+  "n": "Popper",
+  "zone": "Port Jeuno",
+  "npc": "Kindlix",
+  "price": 50
+ },
+ {
+  "n": "Popper II",
+  "zone": "Port Jeuno",
+  "npc": "Kindlix",
+  "price": 50
+ },
+ {
+  "n": "Airborne",
+  "zone": "Port Jeuno",
+  "npc": "Kindlix",
+  "price": 100
+ },
+ {
+  "n": "Air Rider",
+  "zone": "Port Jeuno",
+  "npc": "Kindlix",
+  "price": 100
+ },
+ {
+  "n": "Bubble Breeze",
+  "zone": "Port Jeuno",
+  "npc": "Kindlix",
+  "price": 150
+ },
+ {
+  "n": "Falling Star",
+  "zone": "Port Jeuno",
+  "npc": "Kindlix",
+  "price": 200
+ },
+ {
+  "n": "Marine Bliss",
+  "zone": "Port Jeuno",
+  "npc": "Kindlix",
+  "price": 250
+ },
+ {
+  "n": "Flarelet",
+  "zone": "Port Jeuno",
+  "npc": "Kindlix",
+  "price": 250
+ },
+ {
+  "n": "Papillion",
+  "zone": "Port Jeuno",
+  "npc": "Kindlix",
+  "price": 300
+ },
+ {
+  "n": "Angelwing",
+  "zone": "Port Jeuno",
+  "npc": "Kindlix",
+  "price": 300
+ },
+ {
+  "n": "Mog Missile",
+  "zone": "Port Jeuno",
+  "npc": "Kindlix",
+  "price": 300
+ },
+ {
+  "n": "Hawkeye",
+  "zone": "Port Jeuno",
+  "npc": "Leyla",
+  "price": 60
+ },
+ {
+  "n": "Iron Arrow",
+  "zone": "Port Jeuno",
+  "npc": "Leyla",
+  "price": 8
+ },
+ {
+  "n": "Crossbow Bolt",
+  "zone": "Port Jeuno",
+  "npc": "Leyla",
+  "price": 6
+ },
+ {
+  "n": "Scroll of Sinewy Etude",
+  "zone": "Port Jeuno",
+  "npc": "Leyla",
+  "price": 3420
+ },
+ {
+  "n": "Scroll of Dextrous Etude",
+  "zone": "Port Jeuno",
+  "npc": "Leyla",
+  "price": 3060
+ },
+ {
+  "n": "Scroll of Vivacious Etude",
+  "zone": "Port Jeuno",
+  "npc": "Leyla",
+  "price": 2400
+ },
+ {
+  "n": "Scroll of Quick Etude",
+  "zone": "Port Jeuno",
+  "npc": "Leyla",
+  "price": 2080
+ },
+ {
+  "n": "Scroll of Learned Etude",
+  "zone": "Port Jeuno",
+  "npc": "Leyla",
+  "price": 1704
+ },
+ {
+  "n": "Scroll of Spirited Etude",
+  "zone": "Port Jeuno",
+  "npc": "Leyla",
+  "price": 1376
+ },
+ {
+  "n": "Scroll of Enchanting Etude",
+  "zone": "Port Jeuno",
+  "npc": "Leyla",
+  "price": 1088
+ },
+ {
+  "n": "Flask of Distilled Water",
+  "zone": "Port Jeuno",
+  "npc": "Leyla",
+  "price": 12
+ },
+ {
+  "n": "Festive Fan",
+  "zone": "Port Jeuno",
+  "npc": "Pyropox",
+  "price": 25
+ },
+ {
+  "n": "Summer Fan",
+  "zone": "Port Jeuno",
+  "npc": "Pyropox",
+  "price": 25
+ },
+ {
+  "n": "Ouka Ranman",
+  "zone": "Port Jeuno",
+  "npc": "Pyropox",
+  "price": 25
+ },
+ {
+  "n": "Kongou Inaho",
+  "zone": "Port Jeuno",
+  "npc": "Pyropox",
+  "price": 50
+ },
+ {
+  "n": "Meifu Goma",
+  "zone": "Port Jeuno",
+  "npc": "Pyropox",
+  "price": 50
+ },
+ {
+  "n": "Spirit Masque",
+  "zone": "Port Jeuno",
+  "npc": "Pyropox",
+  "price": 50
+ },
+ {
+  "n": "Shisai Kaboku",
+  "zone": "Port Jeuno",
+  "npc": "Pyropox",
+  "price": 50
+ },
+ {
+  "n": "Konron Hassen",
+  "zone": "Port Jeuno",
+  "npc": "Pyropox",
+  "price": 100
+ },
+ {
+  "n": "Muteppo",
+  "zone": "Port Jeuno",
+  "npc": "Pyropox",
+  "price": 100
+ },
+ {
+  "n": "Datechochin",
+  "zone": "Port Jeuno",
+  "npc": "Pyropox",
+  "price": 100
+ },
+ {
+  "n": "Komanezumi",
+  "zone": "Port Jeuno",
+  "npc": "Pyropox",
+  "price": 150
+ },
+ {
+  "n": "Rengedama",
+  "zone": "Port Jeuno",
+  "npc": "Pyropox",
+  "price": 250
+ },
+ {
+  "n": "Ichinintousen Koma",
+  "zone": "Port Jeuno",
+  "npc": "Pyropox",
+  "price": 250
+ },
+ {
+  "n": "Goshikitenge",
+  "zone": "Port Jeuno",
+  "npc": "Pyropox",
+  "price": 300
+ },
+ {
+  "n": "Faceguard",
+  "zone": "Port Windurst",
+  "npc": "Drozga",
+  "price": 1450
+ },
+ {
+  "n": "Scale Mail",
+  "zone": "Port Windurst",
+  "npc": "Drozga",
+  "price": 2230
+ },
+ {
+  "n": "Scale Finger Gauntlets",
+  "zone": "Port Windurst",
+  "npc": "Drozga",
+  "price": 1190
+ },
+ {
+  "n": "Scale Cuisses",
+  "zone": "Port Windurst",
+  "npc": "Drozga",
+  "price": 1790
+ },
+ {
+  "n": "Scale Greaves",
+  "zone": "Port Windurst",
+  "npc": "Drozga",
+  "price": 1085
+ },
+ {
+  "n": "Leather Belt",
+  "zone": "Port Windurst",
+  "npc": "Drozga",
+  "price": 425
+ },
+ {
+  "n": "Silver Earring",
+  "zone": "Port Windurst",
+  "npc": "Drozga",
+  "price": 1250
+ },
+ {
+  "n": "Leather Ring",
+  "zone": "Port Windurst",
+  "npc": "Drozga",
+  "price": 1250
+ },
+ {
+  "n": "Tarutaru Kaftan",
+  "zone": "Port Windurst",
+  "npc": "Kucha Malkobhi",
+  "price": 300
+ },
+ {
+  "n": "Tarutaru Mitts",
+  "zone": "Port Windurst",
+  "npc": "Kucha Malkobhi",
+  "price": 180
+ },
+ {
+  "n": "Tarutaru Braccae",
+  "zone": "Port Windurst",
+  "npc": "Kucha Malkobhi",
+  "price": 260
+ },
+ {
+  "n": "Tarutaru Clomps",
+  "zone": "Port Windurst",
+  "npc": "Kucha Malkobhi",
+  "price": 180
+ },
+ {
+  "n": "Mithran Separates",
+  "zone": "Port Windurst",
+  "npc": "Kucha Malkobhi",
+  "price": 300
+ },
+ {
+  "n": "Mithran Gauntlets",
+  "zone": "Port Windurst",
+  "npc": "Kucha Malkobhi",
+  "price": 180
+ },
+ {
+  "n": "Mithran Loincloth",
+  "zone": "Port Windurst",
+  "npc": "Kucha Malkobhi",
+  "price": 260
+ },
+ {
+  "n": "Mithran Gaiters",
+  "zone": "Port Windurst",
+  "npc": "Kucha Malkobhi",
+  "price": 180
+ },
+ {
+  "n": "Bronze Axe",
+  "zone": "Port Windurst",
+  "npc": "Ryan",
+  "price": 316
+ },
+ {
+  "n": "Bronze Sword",
+  "zone": "Port Windurst",
+  "npc": "Ryan",
+  "price": 268
+ },
+ {
+  "n": "Crossbow Bolt",
+  "zone": "Port Windurst",
+  "npc": "Ryan",
+  "price": 6
+ },
+ {
+  "n": "Bronze Harness",
+  "zone": "Port Windurst",
+  "npc": "Ryan",
+  "price": 256
+ },
+ {
+  "n": "Brass Harness",
+  "zone": "Port Windurst",
+  "npc": "Ryan",
+  "price": 2485
+ },
+ {
+  "n": "Bronze Mittens",
+  "zone": "Port Windurst",
+  "npc": "Ryan",
+  "price": 140
+ },
+ {
+  "n": "Brass Mittens",
+  "zone": "Port Windurst",
+  "npc": "Ryan",
+  "price": 1365
+ },
+ {
+  "n": "Bronze Subligar",
+  "zone": "Port Windurst",
+  "npc": "Ryan",
+  "price": 208
+ },
+ {
+  "n": "Brass Subligar",
+  "zone": "Port Windurst",
+  "npc": "Ryan",
+  "price": 2000
+ },
+ {
+  "n": "Bronze Leggings",
+  "zone": "Port Windurst",
+  "npc": "Ryan",
+  "price": 128
+ },
+ {
+  "n": "Brass Leggings",
+  "zone": "Port Windurst",
+  "npc": "Ryan",
+  "price": 1240
+ },
+ {
+  "n": "Kenpogi",
+  "zone": "Port Windurst",
+  "npc": "Ryan",
+  "price": 1245
+ },
+ {
+  "n": "Tekko",
+  "zone": "Port Windurst",
+  "npc": "Ryan",
+  "price": 685
+ },
+ {
+  "n": "Sitabaki",
+  "zone": "Port Windurst",
+  "npc": "Ryan",
+  "price": 995
+ },
+ {
+  "n": "Kyahan",
+  "zone": "Port Windurst",
+  "npc": "Ryan",
+  "price": 635
+ },
+ {
+  "n": "Scroll of Protect IV",
+  "zone": "Rabao",
+  "npc": "Brave Ox",
+  "price": 85000
+ },
+ {
+  "n": "Scroll of Protectra IV",
+  "zone": "Rabao",
+  "npc": "Brave Ox",
+  "price": 81000
+ },
+ {
+  "n": "Scroll of Dispel",
+  "zone": "Rabao",
+  "npc": "Brave Ox",
+  "price": 70000
+ },
+ {
+  "n": "Scroll of Stun",
+  "zone": "Rabao",
+  "npc": "Brave Ox",
+  "price": 35000
+ },
+ {
+  "n": "Scroll of Flash",
+  "zone": "Rabao",
+  "npc": "Brave Ox",
+  "price": 35000
+ },
+ {
+  "n": "Scroll of Reraise III",
+  "zone": "Rabao",
+  "npc": "Brave Ox",
+  "price": 600000
+ },
+ {
+  "n": "Scroll of Banish III",
+  "zone": "Rabao",
+  "npc": "Brave Ox",
+  "price": 86000
+ },
+ {
+  "n": "Scroll of Cura",
+  "zone": "Rabao",
+  "npc": "Brave Ox",
+  "price": 21840
+ },
+ {
+  "n": "Scroll of Cura II",
+  "zone": "Rabao",
+  "npc": "Brave Ox",
+  "price": 96075
+ },
+ {
+  "n": "Scroll of Sacrifice",
+  "zone": "Rabao",
+  "npc": "Brave Ox",
+  "price": 67600
+ },
+ {
+  "n": "Scroll of Esuna",
+  "zone": "Rabao",
+  "npc": "Brave Ox",
+  "price": 70200
+ },
+ {
+  "n": "Scroll of Auspice",
+  "zone": "Rabao",
+  "npc": "Brave Ox",
+  "price": 33660
+ },
+ {
+  "n": "Scroll of Cure VI",
+  "zone": "Rabao",
+  "npc": "Brave Ox",
+  "price": 153410
+ },
+ {
+  "n": "Scroll of Protect V",
+  "zone": "Rabao",
+  "npc": "Brave Ox",
+  "price": 115425
+ },
+ {
+  "n": "Scroll of Shell V",
+  "zone": "Rabao",
+  "npc": "Brave Ox",
+  "price": 135945
+ },
+ {
+  "n": "Scroll of Crusade",
+  "zone": "Rabao",
+  "npc": "Brave Ox",
+  "price": 155925
+ },
+ {
+  "n": "Buckler",
+  "zone": "Rabao",
+  "npc": "Brave Wolf",
+  "price": 34287
+ },
+ {
+  "n": "Darksteel Buckler",
+  "zone": "Rabao",
+  "npc": "Brave Wolf",
+  "price": 66220
+ },
+ {
+  "n": "Silver Bangles",
+  "zone": "Rabao",
+  "npc": "Brave Wolf",
+  "price": 26784
+ },
+ {
+  "n": "Banded Mail",
+  "zone": "Rabao",
+  "npc": "Brave Wolf",
+  "price": 72600
+ },
+ {
+  "n": "Mufflers",
+  "zone": "Rabao",
+  "npc": "Brave Wolf",
+  "price": 38775
+ },
+ {
+  "n": "Breeches",
+  "zone": "Rabao",
+  "npc": "Brave Wolf",
+  "price": 57750
+ },
+ {
+  "n": "Sollerets",
+  "zone": "Rabao",
+  "npc": "Brave Wolf",
+  "price": 35475
+ },
+ {
+  "n": "Black Tunic",
+  "zone": "Rabao",
+  "npc": "Brave Wolf",
+  "price": 10356
+ },
+ {
+  "n": "White Mitts",
+  "zone": "Rabao",
+  "npc": "Brave Wolf",
+  "price": 4830
+ },
+ {
+  "n": "Black Slacks",
+  "zone": "Rabao",
+  "npc": "Brave Wolf",
+  "price": 6900
+ },
+ {
+  "n": "Sandals",
+  "zone": "Rabao",
+  "npc": "Brave Wolf",
+  "price": 4488
+ },
+ {
+  "n": "Padded Armor",
+  "zone": "Rabao",
+  "npc": "Brave Wolf",
+  "price": 31488
+ },
+ {
+  "n": "Iron Mittens",
+  "zone": "Rabao",
+  "npc": "Brave Wolf",
+  "price": 17280
+ },
+ {
+  "n": "Iron Subligar",
+  "zone": "Rabao",
+  "npc": "Brave Wolf",
+  "price": 25344
+ },
+ {
+  "n": "Leggings",
+  "zone": "Rabao",
+  "npc": "Brave Wolf",
+  "price": 15744
+ },
+ {
+  "n": "Bunch of Gysahl Greens",
+  "zone": "Rabao",
+  "npc": "Generoit",
+  "price": 67
+ },
+ {
+  "n": "Chocobo Feather",
+  "zone": "Rabao",
+  "npc": "Generoit",
+  "price": 8
+ },
+ {
+  "n": "Pet Food Alpha Biscuit",
+  "zone": "Rabao",
+  "npc": "Generoit",
+  "price": 12
+ },
+ {
+  "n": "Pet Food Beta Biscuit",
+  "zone": "Rabao",
+  "npc": "Generoit",
+  "price": 89
+ },
+ {
+  "n": "Jug of Carrot Broth",
+  "zone": "Rabao",
+  "npc": "Generoit",
+  "price": 61
+ },
+ {
+  "n": "Jug of Bug Broth",
+  "zone": "Rabao",
+  "npc": "Generoit",
+  "price": 98
+ },
+ {
+  "n": "Jug of Herbal Broth",
+  "zone": "Rabao",
+  "npc": "Generoit",
+  "price": 108
+ },
+ {
+  "n": "Jug of Carrion Broth",
+  "zone": "Rabao",
+  "npc": "Generoit",
+  "price": 301
+ },
+ {
+  "n": "Scroll of Chocobo Mazurka",
+  "zone": "Rabao",
+  "npc": "Generoit",
+  "price": 55200
+ },
+ {
+  "n": "Flask of Distilled Water",
+  "zone": "Rabao",
+  "npc": "Scamplix",
+  "price": 12
+ },
+ {
+  "n": "Strip of Meat Jerky",
+  "zone": "Rabao",
+  "npc": "Scamplix",
+  "price": 120
+ },
+ {
+  "n": "Loaf of Goblin Bread",
+  "zone": "Rabao",
+  "npc": "Scamplix",
+  "price": 300
+ },
+ {
+  "n": "Cactus Arm",
+  "zone": "Rabao",
+  "npc": "Scamplix",
+  "price": 800
+ },
+ {
+  "n": "Rabao Waystone",
+  "zone": "Rabao",
+  "npc": "Scamplix",
+  "price": 10000
+ },
+ {
+  "n": "Ether",
+  "zone": "Rabao",
+  "npc": "Scamplix",
+  "price": 4832
+ },
+ {
+  "n": "Thundermelon",
+  "zone": "Rabao",
+  "npc": "Scamplix",
+  "price": 325
+ },
+ {
+  "n": "Watermelon",
+  "zone": "Rabao",
+  "npc": "Scamplix",
+  "price": 200
+ },
+ {
+  "n": "Potion",
+  "zone": "Rabao",
+  "npc": "Scamplix",
+  "price": 910
+ },
+ {
+  "n": "Antidote",
+  "zone": "Rabao",
+  "npc": "Scamplix",
+  "price": 316
+ },
+ {
+  "n": "Flask of Blindness Potion",
+  "zone": "Rabao",
+  "npc": "Scamplix",
+  "price": 1200
+ },
+ {
+  "n": "Mythril Earring",
+  "zone": "Rabao",
+  "npc": "Scamplix",
+  "price": 4500
+ },
+ {
+  "n": "Water Jug",
+  "zone": "Rabao",
+  "npc": "Scamplix",
+  "price": 200
+ },
+ {
+  "n": "Dagger",
+  "zone": "Rabao",
+  "npc": "Shiny Teeth",
+  "price": 2030
+ },
+ {
+  "n": "Kris",
+  "zone": "Rabao",
+  "npc": "Shiny Teeth",
+  "price": 12096
+ },
+ {
+  "n": "Knife",
+  "zone": "Rabao",
+  "npc": "Shiny Teeth",
+  "price": 2425
+ },
+ {
+  "n": "Scimitar",
+  "zone": "Rabao",
+  "npc": "Shiny Teeth",
+  "price": 4525
+ },
+ {
+  "n": "Tulwar",
+  "zone": "Rabao",
+  "npc": "Shiny Teeth",
+  "price": 38800
+ },
+ {
+  "n": "Falchion",
+  "zone": "Rabao",
+  "npc": "Shiny Teeth",
+  "price": 68000
+ },
+ {
+  "n": "Rod",
+  "zone": "Rabao",
+  "npc": "Shiny Teeth",
+  "price": 2652
+ },
+ {
+  "n": "Jamadhars",
+  "zone": "Rabao",
+  "npc": "Shiny Teeth",
+  "price": 114070
+ },
+ {
+  "n": "Composite Bow",
+  "zone": "Rabao",
+  "npc": "Shiny Teeth",
+  "price": 26250
+ },
+ {
+  "n": "Tathlum",
+  "zone": "Rabao",
+  "npc": "Shiny Teeth",
+  "price": 320
+ },
+ {
+  "n": "Iron Arrow",
+  "zone": "Rabao",
+  "npc": "Shiny Teeth",
+  "price": 8
+ },
+ {
+  "n": "Bullet",
+  "zone": "Rabao",
+  "npc": "Shiny Teeth",
+  "price": 100
+ },
+ {
+  "n": "Riot Grenade",
+  "zone": "Rabao",
+  "npc": "Shiny Teeth",
+  "price": 6000
+ },
+ {
+  "n": "Chakram",
+  "zone": "Rabao",
+  "npc": "Shiny Teeth",
+  "price": 9996
+ },
+ {
+  "n": "Chamomile",
+  "zone": "RuLude Gardens",
+  "npc": "Dabih Jajalioh",
+  "price": 130
+ },
+ {
+  "n": "Wijnruit",
+  "zone": "RuLude Gardens",
+  "npc": "Dabih Jajalioh",
+  "price": 120
+ },
+ {
+  "n": "Carnation",
+  "zone": "RuLude Gardens",
+  "npc": "Dabih Jajalioh",
+  "price": 60
+ },
+ {
+  "n": "Red Rose",
+  "zone": "RuLude Gardens",
+  "npc": "Dabih Jajalioh",
+  "price": 80
+ },
+ {
+  "n": "Rain Lily",
+  "zone": "RuLude Gardens",
+  "npc": "Dabih Jajalioh",
+  "price": 96
+ },
+ {
+  "n": "Lilac",
+  "zone": "RuLude Gardens",
+  "npc": "Dabih Jajalioh",
+  "price": 120
+ },
+ {
+  "n": "Amaryllis",
+  "zone": "RuLude Gardens",
+  "npc": "Dabih Jajalioh",
+  "price": 120
+ },
+ {
+  "n": "Marguerite",
+  "zone": "RuLude Gardens",
+  "npc": "Dabih Jajalioh",
+  "price": 120
+ },
+ {
+  "n": "Bag of Fruit Seeds",
+  "zone": "RuLude Gardens",
+  "npc": "Dabih Jajalioh",
+  "price": 900
+ },
+ {
+  "n": "Goblin Doll",
+  "zone": "RuLude Gardens",
+  "npc": "Dabih Jajalioh",
+  "price": 490
+ },
+ {
+  "n": "Koma",
+  "zone": "RuLude Gardens",
+  "npc": "Dabih Jajalioh",
+  "price": 165
+ },
+ {
+  "n": "Lacquer Tree Log",
+  "zone": "RuLude Gardens",
+  "npc": "Dabih Jajalioh",
+  "price": 50000
+ },
+ {
+  "n": "Libation Abjuration",
+  "zone": "RuLude Gardens",
+  "npc": "Dabih Jajalioh",
+  "price": 250000
+ },
+ {
+  "n": "Ogre Pumpkin",
+  "zone": "RuLude Gardens",
+  "npc": "Dabih Jajalioh",
+  "price": 88
+ },
+ {
+  "n": "Scroll of Reraise Iii",
+  "zone": "RuLude Gardens",
+  "npc": "Dabih Jajalioh",
+  "price": 500000
+ },
+ {
+  "n": "Pinch of Twinkle Powder",
+  "zone": "RuLude Gardens",
+  "npc": "Dabih Jajalioh",
+  "price": 354
+ },
+ {
+  "n": "Chocobo Egg Faintly Warm",
+  "zone": "RuLude Gardens",
+  "npc": "Dabih Jajalioh",
+  "price": 1040
+ },
+ {
+  "n": "Jug of Uleguerand Milk",
+  "zone": "RuLude Gardens",
+  "npc": "Macchi Gazlitah",
+  "price": 300
+ },
+ {
+  "n": "Wedge of Chalaimbille",
+  "zone": "RuLude Gardens",
+  "npc": "Macchi Gazlitah",
+  "price": 600
+ },
+ {
+  "n": "Jug of Wormy Broth",
+  "zone": "RuLude Gardens",
+  "npc": "Macchi Gazlitah",
+  "price": 100
+ },
+ {
+  "n": "Cheese Sandwich",
+  "zone": "RuLude Gardens",
+  "npc": "Macchi Gazlitah",
+  "price": 800
+ },
+ {
+  "n": "Cream Puff",
+  "zone": "RuLude Gardens",
+  "npc": "Macchi Gazlitah",
+  "price": 1300
+ },
+ {
+  "n": "Slice of Buffalo Meat",
+  "zone": "RuLude Gardens",
+  "npc": "Macchi Gazlitah",
+  "price": 1280
+ },
+ {
+  "n": "Scroll of Enfire Ii",
+  "zone": "RuLude Gardens",
+  "npc": "Macchi Gazlitah",
+  "price": 31878
+ },
+ {
+  "n": "Scroll of Enblizzard Ii",
+  "zone": "RuLude Gardens",
+  "npc": "Macchi Gazlitah",
+  "price": 30492
+ },
+ {
+  "n": "Scroll of Enaero Ii",
+  "zone": "RuLude Gardens",
+  "npc": "Macchi Gazlitah",
+  "price": 27968
+ },
+ {
+  "n": "Scroll of Enstone Ii",
+  "zone": "RuLude Gardens",
+  "npc": "Macchi Gazlitah",
+  "price": 26112
+ },
+ {
+  "n": "Scroll of Enthunder Ii",
+  "zone": "RuLude Gardens",
+  "npc": "Macchi Gazlitah",
+  "price": 25600
+ },
+ {
+  "n": "Scroll of Enwater Ii",
+  "zone": "RuLude Gardens",
+  "npc": "Macchi Gazlitah",
+  "price": 33000
+ },
+ {
+  "n": "Scroll of Refresh Ii",
+  "zone": "RuLude Gardens",
+  "npc": "Macchi Gazlitah",
+  "price": 150000
+ },
+ {
+  "n": "Scroll of Stone II",
+  "zone": "Selbina",
+  "npc": "Chutarmire",
+  "price": 6390
+ },
+ {
+  "n": "Scroll of Water II",
+  "zone": "Selbina",
+  "npc": "Chutarmire",
+  "price": 9000
+ },
+ {
+  "n": "Scroll of Aero II",
+  "zone": "Selbina",
+  "npc": "Chutarmire",
+  "price": 13300
+ },
+ {
+  "n": "Scroll of Fire II",
+  "zone": "Selbina",
+  "npc": "Chutarmire",
+  "price": 18400
+ },
+ {
+  "n": "Scroll of Blizzard II",
+  "zone": "Selbina",
+  "npc": "Chutarmire",
+  "price": 24300
+ },
+ {
+  "n": "Scroll of Thunder II",
+  "zone": "Selbina",
+  "npc": "Chutarmire",
+  "price": 31000
+ },
+ {
+  "n": "Scroll of Stonega",
+  "zone": "Selbina",
+  "npc": "Chutarmire",
+  "price": 1295
+ },
+ {
+  "n": "Scroll of Waterga",
+  "zone": "Selbina",
+  "npc": "Chutarmire",
+  "price": 2330
+ },
+ {
+  "n": "Scroll of Aeroga",
+  "zone": "Selbina",
+  "npc": "Chutarmire",
+  "price": 4608
+ },
+ {
+  "n": "Scroll of Firaga",
+  "zone": "Selbina",
+  "npc": "Chutarmire",
+  "price": 7806
+ },
+ {
+  "n": "Scroll of Blizzaga",
+  "zone": "Selbina",
+  "npc": "Chutarmire",
+  "price": 11900
+ },
+ {
+  "n": "Scroll of Thundaga",
+  "zone": "Selbina",
+  "npc": "Chutarmire",
+  "price": 16800
+ },
+ {
+  "n": "Scroll of Poison II",
+  "zone": "Selbina",
+  "npc": "Chutarmire",
+  "price": 25200
+ },
+ {
+  "n": "Scroll of Bio II",
+  "zone": "Selbina",
+  "npc": "Chutarmire",
+  "price": 14000
+ },
+ {
+  "n": "Scroll of Poisonga",
+  "zone": "Selbina",
+  "npc": "Chutarmire",
+  "price": 5160
+ },
+ {
+  "n": "Scroll of Shock Spikes",
+  "zone": "Selbina",
+  "npc": "Chutarmire",
+  "price": 9000
+ },
+ {
+  "n": "Bag of Rye Flour",
+  "zone": "Selbina",
+  "npc": "Dohdjuma",
+  "price": 40
+ },
+ {
+  "n": "Scroll of Sheepfoe Mambo",
+  "zone": "Selbina",
+  "npc": "Dohdjuma",
+  "price": 259
+ },
+ {
+  "n": "Flask of Eye Drops",
+  "zone": "Selbina",
+  "npc": "Dohdjuma",
+  "price": 2595
+ },
+ {
+  "n": "Antidote",
+  "zone": "Selbina",
+  "npc": "Dohdjuma",
+  "price": 316
+ },
+ {
+  "n": "Flask of Distilled Water",
+  "zone": "Selbina",
+  "npc": "Dohdjuma",
+  "price": 12
+ },
+ {
+  "n": "Potion",
+  "zone": "Selbina",
+  "npc": "Dohdjuma",
+  "price": 910
+ },
+ {
+  "n": "Lugworm",
+  "zone": "Selbina",
+  "npc": "Dohdjuma",
+  "price": 12
+ },
+ {
+  "n": "Jug of Selbina Milk",
+  "zone": "Selbina",
+  "npc": "Dohdjuma",
+  "price": 61
+ },
+ {
+  "n": "Pickled Herring",
+  "zone": "Selbina",
+  "npc": "Dohdjuma",
+  "price": 480
+ },
+ {
+  "n": "Serving of Herb Quus",
+  "zone": "Selbina",
+  "npc": "Dohdjuma",
+  "price": 4984
+ },
+ {
+  "n": "Selbina Waystone",
+  "zone": "Selbina",
+  "npc": "Dohdjuma",
+  "price": 10000
+ },
+ {
+  "n": "Scroll of Invisible",
+  "zone": "Selbina",
+  "npc": "Falgima",
+  "price": 5754
+ },
+ {
+  "n": "Scroll of Sneak",
+  "zone": "Selbina",
+  "npc": "Falgima",
+  "price": 2500
+ },
+ {
+  "n": "Scroll of Deodorize",
+  "zone": "Selbina",
+  "npc": "Falgima",
+  "price": 1295
+ },
+ {
+  "n": "Scroll of Flurry",
+  "zone": "Selbina",
+  "npc": "Falgima",
+  "price": 33000
+ },
+ {
+  "n": "Hachimaki",
+  "zone": "Selbina",
+  "npc": "Herminia",
+  "price": 825
+ },
+ {
+  "n": "Kenpogi",
+  "zone": "Selbina",
+  "npc": "Herminia",
+  "price": 1245
+ },
+ {
+  "n": "Tunic",
+  "zone": "Selbina",
+  "npc": "Herminia",
+  "price": 1400
+ },
+ {
+  "n": "Tekko",
+  "zone": "Selbina",
+  "npc": "Herminia",
+  "price": 685
+ },
+ {
+  "n": "Mitts",
+  "zone": "Selbina",
+  "npc": "Herminia",
+  "price": 655
+ },
+ {
+  "n": "Sitabaki",
+  "zone": "Selbina",
+  "npc": "Herminia",
+  "price": 995
+ },
+ {
+  "n": "Kyahan",
+  "zone": "Selbina",
+  "npc": "Herminia",
+  "price": 635
+ },
+ {
+  "n": "Solea",
+  "zone": "Selbina",
+  "npc": "Herminia",
+  "price": 605
+ },
+ {
+  "n": "Scroll of Cure II",
+  "zone": "Selbina",
+  "npc": "Quelpia",
+  "price": 650
+ },
+ {
+  "n": "Scroll of Cure III",
+  "zone": "Selbina",
+  "npc": "Quelpia",
+  "price": 3624
+ },
+ {
+  "n": "Scroll of Curaga II",
+  "zone": "Selbina",
+  "npc": "Quelpia",
+  "price": 11200
+ },
+ {
+  "n": "Scroll of Raise",
+  "zone": "Selbina",
+  "npc": "Quelpia",
+  "price": 5754
+ },
+ {
+  "n": "Scroll of Holy",
+  "zone": "Selbina",
+  "npc": "Quelpia",
+  "price": 35000
+ },
+ {
+  "n": "Scroll of Dia II",
+  "zone": "Selbina",
+  "npc": "Quelpia",
+  "price": 11200
+ },
+ {
+  "n": "Scroll of Banish II",
+  "zone": "Selbina",
+  "npc": "Quelpia",
+  "price": 9000
+ },
+ {
+  "n": "Scroll of Protect II",
+  "zone": "Selbina",
+  "npc": "Quelpia",
+  "price": 7074
+ },
+ {
+  "n": "Scroll of Shell II",
+  "zone": "Selbina",
+  "npc": "Quelpia",
+  "price": 17600
+ },
+ {
+  "n": "Scroll of Haste",
+  "zone": "Selbina",
+  "npc": "Quelpia",
+  "price": 20000
+ },
+ {
+  "n": "Scroll of Enfire",
+  "zone": "Selbina",
+  "npc": "Quelpia",
+  "price": 5160
+ },
+ {
+  "n": "Scroll of Enblizzard",
+  "zone": "Selbina",
+  "npc": "Quelpia",
+  "price": 4098
+ },
+ {
+  "n": "Scroll of Enaero",
+  "zone": "Selbina",
+  "npc": "Quelpia",
+  "price": 2500
+ },
+ {
+  "n": "Scroll of Enstone",
+  "zone": "Selbina",
+  "npc": "Quelpia",
+  "price": 2030
+ },
+ {
+  "n": "Scroll of Enthunder",
+  "zone": "Selbina",
+  "npc": "Quelpia",
+  "price": 1515
+ },
+ {
+  "n": "Scroll of Enwater",
+  "zone": "Selbina",
+  "npc": "Quelpia",
+  "price": 7074
+ },
+ {
+  "n": "Claws",
+  "zone": "Selbina",
+  "npc": "Torapiont",
+  "price": 12768
+ },
+ {
+  "n": "Mythril Dagger",
+  "zone": "Selbina",
+  "npc": "Torapiont",
+  "price": 8586
+ },
+ {
+  "n": "Tuck",
+  "zone": "Selbina",
+  "npc": "Torapiont",
+  "price": 12876
+ },
+ {
+  "n": "Mythril Claymore",
+  "zone": "Selbina",
+  "npc": "Torapiont",
+  "price": 42000
+ },
+ {
+  "n": "Battleaxe",
+  "zone": "Selbina",
+  "npc": "Torapiont",
+  "price": 12267
+ },
+ {
+  "n": "Greataxe",
+  "zone": "Selbina",
+  "npc": "Torapiont",
+  "price": 4550
+ },
+ {
+  "n": "Willow Wand",
+  "zone": "Selbina",
+  "npc": "Torapiont",
+  "price": 370
+ },
+ {
+  "n": "Yew Wand",
+  "zone": "Selbina",
+  "npc": "Torapiont",
+  "price": 1566
+ },
+ {
+  "n": "Holly Staff",
+  "zone": "Selbina",
+  "npc": "Torapiont",
+  "price": 635
+ },
+ {
+  "n": "Dart",
+  "zone": "Selbina",
+  "npc": "Torapiont",
+  "price": 10
+ },
+ {
+  "n": "Crossbow Bolt",
+  "zone": "Selbina",
+  "npc": "Torapiont",
+  "price": 6
+ },
+ {
+  "n": "Wooden Arrow",
+  "zone": "Selbina",
+  "npc": "Torapiont",
+  "price": 4
+ },
+ {
+  "n": "Iron Arrow",
+  "zone": "Selbina",
+  "npc": "Torapiont",
+  "price": 8
+ },
+ {
+  "n": "Flask of Eye Drops",
+  "zone": "Ship bound for Mhaura",
+  "npc": "Chhaya",
+  "price": 2595
+ },
+ {
+  "n": "Antidote",
+  "zone": "Ship bound for Mhaura",
+  "npc": "Chhaya",
+  "price": 316
+ },
+ {
+  "n": "Flask of Echo Drops",
+  "zone": "Ship bound for Mhaura",
+  "npc": "Chhaya",
+  "price": 800
+ },
+ {
+  "n": "Potion",
+  "zone": "Ship bound for Mhaura",
+  "npc": "Chhaya",
+  "price": 910
+ },
+ {
+  "n": "Ether",
+  "zone": "Ship bound for Mhaura",
+  "npc": "Chhaya",
+  "price": 4832
+ },
+ {
+  "n": "Flask of Eye Drops",
+  "zone": "Ship bound for Mhaura Pirates",
+  "npc": "Chhaya",
+  "price": 2595
+ },
+ {
+  "n": "Antidote",
+  "zone": "Ship bound for Mhaura Pirates",
+  "npc": "Chhaya",
+  "price": 316
+ },
+ {
+  "n": "Flask of Echo Drops",
+  "zone": "Ship bound for Mhaura Pirates",
+  "npc": "Chhaya",
+  "price": 800
+ },
+ {
+  "n": "Potion",
+  "zone": "Ship bound for Mhaura Pirates",
+  "npc": "Chhaya",
+  "price": 910
+ },
+ {
+  "n": "Ether",
+  "zone": "Ship bound for Mhaura Pirates",
+  "npc": "Chhaya",
+  "price": 4832
+ },
+ {
+  "n": "Potion",
+  "zone": "Ship bound for Selbina",
+  "npc": "Maera",
+  "price": 910
+ },
+ {
+  "n": "Ether",
+  "zone": "Ship bound for Selbina",
+  "npc": "Maera",
+  "price": 4832
+ },
+ {
+  "n": "Antidote",
+  "zone": "Ship bound for Selbina",
+  "npc": "Maera",
+  "price": 316
+ },
+ {
+  "n": "Flask of Eye Drops",
+  "zone": "Ship bound for Selbina",
+  "npc": "Maera",
+  "price": 2595
+ },
+ {
+  "n": "Flask of Echo Drops",
+  "zone": "Ship bound for Selbina",
+  "npc": "Maera",
+  "price": 800
+ },
+ {
+  "n": "Potion",
+  "zone": "Ship bound for Selbina Pirates",
+  "npc": "Maera",
+  "price": 910
+ },
+ {
+  "n": "Ether",
+  "zone": "Ship bound for Selbina Pirates",
+  "npc": "Maera",
+  "price": 4832
+ },
+ {
+  "n": "Antidote",
+  "zone": "Ship bound for Selbina Pirates",
+  "npc": "Maera",
+  "price": 316
+ },
+ {
+  "n": "Flask of Eye Drops",
+  "zone": "Ship bound for Selbina Pirates",
+  "npc": "Maera",
+  "price": 2595
+ },
+ {
+  "n": "Flask of Echo Drops",
+  "zone": "Ship bound for Selbina Pirates",
+  "npc": "Maera",
+  "price": 800
+ },
+ {
+  "n": "Poets Circlet",
+  "zone": "Southern San dOria",
+  "npc": "Capucine",
+  "price": 2070
+ },
+ {
+  "n": "Tunic",
+  "zone": "Southern San dOria",
+  "npc": "Capucine",
+  "price": 1400
+ },
+ {
+  "n": "Linen Robe",
+  "zone": "Southern San dOria",
+  "npc": "Capucine",
+  "price": 3085
+ },
+ {
+  "n": "Mitts",
+  "zone": "Southern San dOria",
+  "npc": "Capucine",
+  "price": 655
+ },
+ {
+  "n": "Linen Cuffs",
+  "zone": "Southern San dOria",
+  "npc": "Capucine",
+  "price": 1745
+ },
+ {
+  "n": "Slacks",
+  "zone": "Southern San dOria",
+  "npc": "Capucine",
+  "price": 935
+ },
+ {
+  "n": "Linen Slops",
+  "zone": "Southern San dOria",
+  "npc": "Capucine",
+  "price": 2520
+ },
+ {
+  "n": "Solea",
+  "zone": "Southern San dOria",
+  "npc": "Capucine",
+  "price": 605
+ },
+ {
+  "n": "Holly Clogs",
+  "zone": "Southern San dOria",
+  "npc": "Capucine",
+  "price": 1625
+ },
+ {
+  "n": "Faceguard",
+  "zone": "Southern San dOria",
+  "npc": "Victoire",
+  "price": 1450
+ },
+ {
+  "n": "Headgear",
+  "zone": "Southern San dOria",
+  "npc": "Victoire",
+  "price": 1936
+ },
+ {
+  "n": "Scale Mail",
+  "zone": "Southern San dOria",
+  "npc": "Victoire",
+  "price": 2230
+ },
+ {
+  "n": "Doublet",
+  "zone": "Southern San dOria",
+  "npc": "Victoire",
+  "price": 2745
+ },
+ {
+  "n": "Scale Finger Gauntlets",
+  "zone": "Southern San dOria",
+  "npc": "Victoire",
+  "price": 1190
+ },
+ {
+  "n": "Gloves",
+  "zone": "Southern San dOria",
+  "npc": "Victoire",
+  "price": 1515
+ },
+ {
+  "n": "Scale Cuisses",
+  "zone": "Southern San dOria",
+  "npc": "Victoire",
+  "price": 1790
+ },
+ {
+  "n": "Brais",
+  "zone": "Southern San dOria",
+  "npc": "Victoire",
+  "price": 2110
+ },
+ {
+  "n": "Scale Greaves",
+  "zone": "Southern San dOria",
+  "npc": "Victoire",
+  "price": 1085
+ },
+ {
+  "n": "Gaiters",
+  "zone": "Southern San dOria",
+  "npc": "Victoire",
+  "price": 1410
+ },
+ {
+  "n": "Dagger",
+  "zone": "Tavnazian Safehold",
+  "npc": "Caiphimonride",
+  "price": 2030
+ },
+ {
+  "n": "Longsword",
+  "zone": "Tavnazian Safehold",
+  "npc": "Caiphimonride",
+  "price": 9216
+ },
+ {
+  "n": "Rusty Bolt",
+  "zone": "Tavnazian Safehold",
+  "npc": "Caiphimonride",
+  "price": 4
+ },
+ {
+  "n": "Falx",
+  "zone": "Tavnazian Safehold",
+  "npc": "Caiphimonride",
+  "price": 37296
+ },
+ {
+  "n": "Voulge",
+  "zone": "Tavnazian Safehold",
+  "npc": "Caiphimonride",
+  "price": 20762
+ },
+ {
+  "n": "Bottle of Apple Vinegar",
+  "zone": "Tavnazian Safehold",
+  "npc": "Komalata",
+  "price": 88
+ },
+ {
+  "n": "Loaf of Black Bread",
+  "zone": "Tavnazian Safehold",
+  "npc": "Komalata",
+  "price": 120
+ },
+ {
+  "n": "Strip of Meat Jerky",
+  "zone": "Tavnazian Safehold",
+  "npc": "Komalata",
+  "price": 120
+ },
+ {
+  "n": "Chunk of Rock Salt",
+  "zone": "Tavnazian Safehold",
+  "npc": "Komalata",
+  "price": 16
+ },
+ {
+  "n": "Bag of Rye Flour",
+  "zone": "Tavnazian Safehold",
+  "npc": "Komalata",
+  "price": 40
+ },
+ {
+  "n": "Bag of San Dorian Flour",
+  "zone": "Tavnazian Safehold",
+  "npc": "Komalata",
+  "price": 60
+ },
+ {
+  "n": "San Dorian Carrot",
+  "zone": "Tavnazian Safehold",
+  "npc": "Komalata",
+  "price": 32
+ },
+ {
+  "n": "Ear of Millioncorn",
+  "zone": "Tavnazian Safehold",
+  "npc": "Komalata",
+  "price": 48
+ },
+ {
+  "n": "Sprig of Apple Mint",
+  "zone": "Tavnazian Safehold",
+  "npc": "Komalata",
+  "price": 316
+ },
+ {
+  "n": "Flask of Distilled Water",
+  "zone": "Tavnazian Safehold",
+  "npc": "Komalata",
+  "price": 12
+ },
+ {
+  "n": "Lufaise Fly",
+  "zone": "Tavnazian Safehold",
+  "npc": "Mazuro-Oozuro",
+  "price": 108
+ },
+ {
+  "n": "Clothespole",
+  "zone": "Tavnazian Safehold",
+  "npc": "Mazuro-Oozuro",
+  "price": 2640
+ },
+ {
+  "n": "Arrowwood Log",
+  "zone": "Tavnazian Safehold",
+  "npc": "Mazuro-Oozuro",
+  "price": 20
+ },
+ {
+  "n": "Elm Log",
+  "zone": "Tavnazian Safehold",
+  "npc": "Mazuro-Oozuro",
+  "price": 7800
+ },
+ {
+  "n": "Scroll of Banish III",
+  "zone": "Tavnazian Safehold",
+  "npc": "Mazuro-Oozuro",
+  "price": 66000
+ },
+ {
+  "n": "Safehold Waystone",
+  "zone": "Tavnazian Safehold",
+  "npc": "Mazuro-Oozuro",
+  "price": 10000
+ },
+ {
+  "n": "Scroll of Distract II",
+  "zone": "Tavnazian Safehold",
+  "npc": "Mazuro-Oozuro",
+  "price": 175827
+ },
+ {
+  "n": "Scroll of Frazzle II",
+  "zone": "Tavnazian Safehold",
+  "npc": "Mazuro-Oozuro",
+  "price": 217000
+ },
+ {
+  "n": "Dagger",
+  "zone": "Tavnazian Safehold",
+  "npc": "Melleupaux",
+  "price": 2030
+ },
+ {
+  "n": "Longsword",
+  "zone": "Tavnazian Safehold",
+  "npc": "Melleupaux",
+  "price": 9216
+ },
+ {
+  "n": "Rusty Bolt",
+  "zone": "Tavnazian Safehold",
+  "npc": "Melleupaux",
+  "price": 4
+ },
+ {
+  "n": "Falx",
+  "zone": "Tavnazian Safehold",
+  "npc": "Melleupaux",
+  "price": 37296
+ },
+ {
+  "n": "Voulge",
+  "zone": "Tavnazian Safehold",
+  "npc": "Melleupaux",
+  "price": 20762
+ },
+ {
+  "n": "Barone Cosciales",
+  "zone": "Tavnazian Safehold",
+  "npc": "Migran",
+  "price": 101055
+ },
+ {
+  "n": "Barone Gambieras",
+  "zone": "Tavnazian Safehold",
+  "npc": "Migran",
+  "price": 630255
+ },
+ {
+  "n": "Barone Manopolas",
+  "zone": "Tavnazian Safehold",
+  "npc": "Migran",
+  "price": 181905
+ },
+ {
+  "n": "Brass Harness",
+  "zone": "Tavnazian Safehold",
+  "npc": "Migran",
+  "price": 2485
+ },
+ {
+  "n": "Holly Clogs",
+  "zone": "Tavnazian Safehold",
+  "npc": "Migran",
+  "price": 1625
+ },
+ {
+  "n": "Vir Subligar",
+  "zone": "Tavnazian Safehold",
+  "npc": "Migran",
+  "price": 8000000
+ },
+ {
+  "n": "Femina Subligar",
+  "zone": "Tavnazian Safehold",
+  "npc": "Migran",
+  "price": 8000000
+ },
+ {
+  "n": "Barone Cosciales",
+  "zone": "Tavnazian Safehold",
+  "npc": "Misseulieu",
+  "price": 101055
+ },
+ {
+  "n": "Barone Gambieras",
+  "zone": "Tavnazian Safehold",
+  "npc": "Misseulieu",
+  "price": 630255
+ },
+ {
+  "n": "Barone Manopolas",
+  "zone": "Tavnazian Safehold",
+  "npc": "Misseulieu",
+  "price": 181905
+ },
+ {
+  "n": "Brass Harness",
+  "zone": "Tavnazian Safehold",
+  "npc": "Misseulieu",
+  "price": 2485
+ },
+ {
+  "n": "Holly Clogs",
+  "zone": "Tavnazian Safehold",
+  "npc": "Misseulieu",
+  "price": 1625
+ },
+ {
+  "n": "Vir Subligar",
+  "zone": "Tavnazian Safehold",
+  "npc": "Misseulieu",
+  "price": 8000000
+ },
+ {
+  "n": "Femina Subligar",
+  "zone": "Tavnazian Safehold",
+  "npc": "Misseulieu",
+  "price": 8000000
+ },
+ {
+  "n": "Lufaise Fly",
+  "zone": "Tavnazian Safehold",
+  "npc": "Nilerouche",
+  "price": 108
+ },
+ {
+  "n": "Clothespole",
+  "zone": "Tavnazian Safehold",
+  "npc": "Nilerouche",
+  "price": 2640
+ },
+ {
+  "n": "Arrowwood Log",
+  "zone": "Tavnazian Safehold",
+  "npc": "Nilerouche",
+  "price": 20
+ },
+ {
+  "n": "Elm Log",
+  "zone": "Tavnazian Safehold",
+  "npc": "Nilerouche",
+  "price": 7800
+ },
+ {
+  "n": "Scroll of Banish III",
+  "zone": "Tavnazian Safehold",
+  "npc": "Nilerouche",
+  "price": 66000
+ },
+ {
+  "n": "Safehold Waystone",
+  "zone": "Tavnazian Safehold",
+  "npc": "Nilerouche",
+  "price": 10000
+ },
+ {
+  "n": "Scroll of Distract II",
+  "zone": "Tavnazian Safehold",
+  "npc": "Nilerouche",
+  "price": 175827
+ },
+ {
+  "n": "Scroll of Frazzle II",
+  "zone": "Tavnazian Safehold",
+  "npc": "Nilerouche",
+  "price": 217000
+ },
+ {
+  "n": "Arasy Sainti",
+  "zone": "Upper Jeuno",
+  "npc": "Antonia",
+  "price": 100100
+ },
+ {
+  "n": "Arasy Knife",
+  "zone": "Upper Jeuno",
+  "npc": "Antonia",
+  "price": 100100
+ },
+ {
+  "n": "Arasy Sword",
+  "zone": "Upper Jeuno",
+  "npc": "Antonia",
+  "price": 100100
+ },
+ {
+  "n": "Arasy Claymore",
+  "zone": "Upper Jeuno",
+  "npc": "Antonia",
+  "price": 100100
+ },
+ {
+  "n": "Arasy Tabar",
+  "zone": "Upper Jeuno",
+  "npc": "Antonia",
+  "price": 100100
+ },
+ {
+  "n": "Arasy Axe",
+  "zone": "Upper Jeuno",
+  "npc": "Antonia",
+  "price": 100100
+ },
+ {
+  "n": "Arasy Scythe",
+  "zone": "Upper Jeuno",
+  "npc": "Antonia",
+  "price": 100100
+ },
+ {
+  "n": "Arasy Lance",
+  "zone": "Upper Jeuno",
+  "npc": "Antonia",
+  "price": 100100
+ },
+ {
+  "n": "Yoshikiri",
+  "zone": "Upper Jeuno",
+  "npc": "Antonia",
+  "price": 100100
+ },
+ {
+  "n": "Ashijiro no Tachi",
+  "zone": "Upper Jeuno",
+  "npc": "Antonia",
+  "price": 100100
+ },
+ {
+  "n": "Arasy Rod",
+  "zone": "Upper Jeuno",
+  "npc": "Antonia",
+  "price": 100100
+ },
+ {
+  "n": "Arasy Staff",
+  "zone": "Upper Jeuno",
+  "npc": "Antonia",
+  "price": 100100
+ },
+ {
+  "n": "Arasy Bow",
+  "zone": "Upper Jeuno",
+  "npc": "Antonia",
+  "price": 100100
+ },
+ {
+  "n": "Arasy Gun",
+  "zone": "Upper Jeuno",
+  "npc": "Antonia",
+  "price": 100100
+ },
+ {
+  "n": "Animator Z",
+  "zone": "Upper Jeuno",
+  "npc": "Antonia",
+  "price": 100100
+ },
+ {
+  "n": "Arasy Sachet",
+  "zone": "Upper Jeuno",
+  "npc": "Antonia",
+  "price": 100100
+ },
+ {
+  "n": "Chamomile",
+  "zone": "Upper Jeuno",
+  "npc": "Areebah",
+  "price": 130
+ },
+ {
+  "n": "Wijnruit",
+  "zone": "Upper Jeuno",
+  "npc": "Areebah",
+  "price": 120
+ },
+ {
+  "n": "Carnation",
+  "zone": "Upper Jeuno",
+  "npc": "Areebah",
+  "price": 60
+ },
+ {
+  "n": "Red Rose",
+  "zone": "Upper Jeuno",
+  "npc": "Areebah",
+  "price": 80
+ },
+ {
+  "n": "Rain Lily",
+  "zone": "Upper Jeuno",
+  "npc": "Areebah",
+  "price": 96
+ },
+ {
+  "n": "Lilac",
+  "zone": "Upper Jeuno",
+  "npc": "Areebah",
+  "price": 120
+ },
+ {
+  "n": "Amaryllis",
+  "zone": "Upper Jeuno",
+  "npc": "Areebah",
+  "price": 120
+ },
+ {
+  "n": "Marguerite",
+  "zone": "Upper Jeuno",
+  "npc": "Areebah",
+  "price": 120
+ },
+ {
+  "n": "Bag of Flower Seeds",
+  "zone": "Upper Jeuno",
+  "npc": "Areebah",
+  "price": 520
+ },
+ {
+  "n": "Water Lily",
+  "zone": "Upper Jeuno",
+  "npc": "Areebah",
+  "price": 630
+ },
+ {
+  "n": "Queen of the Night",
+  "zone": "Upper Jeuno",
+  "npc": "Areebah",
+  "price": 690
+ },
+ {
+  "n": "Rolanberry",
+  "zone": "Upper Jeuno",
+  "npc": "Champalpieu",
+  "price": 120
+ },
+ {
+  "n": "Iron Arrow",
+  "zone": "Upper Jeuno",
+  "npc": "Champalpieu",
+  "price": 8
+ },
+ {
+  "n": "Crossbow Bolt",
+  "zone": "Upper Jeuno",
+  "npc": "Champalpieu",
+  "price": 6
+ },
+ {
+  "n": "Scroll of Wind Threnody",
+  "zone": "Upper Jeuno",
+  "npc": "Champalpieu",
+  "price": 567
+ },
+ {
+  "n": "Scroll of Water Threnody",
+  "zone": "Upper Jeuno",
+  "npc": "Champalpieu",
+  "price": 420
+ },
+ {
+  "n": "Pickaxe",
+  "zone": "Upper Jeuno",
+  "npc": "Champalpieu",
+  "price": 200
+ },
+ {
+  "n": "Mythril Claws",
+  "zone": "Upper Jeuno",
+  "npc": "Coumuna",
+  "price": 29760
+ },
+ {
+  "n": "Katars",
+  "zone": "Upper Jeuno",
+  "npc": "Coumuna",
+  "price": 15488
+ },
+ {
+  "n": "Mythril Knife",
+  "zone": "Upper Jeuno",
+  "npc": "Coumuna",
+  "price": 14560
+ },
+ {
+  "n": "Kris",
+  "zone": "Upper Jeuno",
+  "npc": "Coumuna",
+  "price": 12096
+ },
+ {
+  "n": "Mythril Degen",
+  "zone": "Upper Jeuno",
+  "npc": "Coumuna",
+  "price": 31000
+ },
+ {
+  "n": "Knights Sword",
+  "zone": "Upper Jeuno",
+  "npc": "Coumuna",
+  "price": 85250
+ },
+ {
+  "n": "Two Handed Sword",
+  "zone": "Upper Jeuno",
+  "npc": "Coumuna",
+  "price": 13926
+ },
+ {
+  "n": "Mythril Axe",
+  "zone": "Upper Jeuno",
+  "npc": "Coumuna",
+  "price": 48600
+ },
+ {
+  "n": "Greataxe",
+  "zone": "Upper Jeuno",
+  "npc": "Coumuna",
+  "price": 4550
+ },
+ {
+  "n": "Mythril Rod",
+  "zone": "Upper Jeuno",
+  "npc": "Coumuna",
+  "price": 6256
+ },
+ {
+  "n": "Oak Cudgel",
+  "zone": "Upper Jeuno",
+  "npc": "Coumuna",
+  "price": 11232
+ },
+ {
+  "n": "Mythril Mace",
+  "zone": "Upper Jeuno",
+  "npc": "Coumuna",
+  "price": 18048
+ },
+ {
+  "n": "Warhammer",
+  "zone": "Upper Jeuno",
+  "npc": "Coumuna",
+  "price": 6558
+ },
+ {
+  "n": "Oak Pole",
+  "zone": "Upper Jeuno",
+  "npc": "Coumuna",
+  "price": 37440
+ },
+ {
+  "n": "Halberd",
+  "zone": "Upper Jeuno",
+  "npc": "Coumuna",
+  "price": 44550
+ },
+ {
+  "n": "Scythe",
+  "zone": "Upper Jeuno",
+  "npc": "Coumuna",
+  "price": 10596
+ },
+ {
+  "n": "Iron Arrow",
+  "zone": "Upper Jeuno",
+  "npc": "Coumuna",
+  "price": 8
+ },
+ {
+  "n": "Studded Bandana",
+  "zone": "Upper Jeuno",
+  "npc": "Deadly Minnow",
+  "price": 14326
+ },
+ {
+  "n": "Silver Mask",
+  "zone": "Upper Jeuno",
+  "npc": "Deadly Minnow",
+  "price": 22800
+ },
+ {
+  "n": "Banded Helm",
+  "zone": "Upper Jeuno",
+  "npc": "Deadly Minnow",
+  "price": 47025
+ },
+ {
+  "n": "Studded Vest",
+  "zone": "Upper Jeuno",
+  "npc": "Deadly Minnow",
+  "price": 22800
+ },
+ {
+  "n": "Silver Mail",
+  "zone": "Upper Jeuno",
+  "npc": "Deadly Minnow",
+  "price": 35200
+ },
+ {
+  "n": "Banded Mail",
+  "zone": "Upper Jeuno",
+  "npc": "Deadly Minnow",
+  "price": 72600
+ },
+ {
+  "n": "Studded Gloves",
+  "zone": "Upper Jeuno",
+  "npc": "Deadly Minnow",
+  "price": 11970
+ },
+ {
+  "n": "Silver Mittens",
+  "zone": "Upper Jeuno",
+  "npc": "Deadly Minnow",
+  "price": 18800
+ },
+ {
+  "n": "Gauntlets",
+  "zone": "Upper Jeuno",
+  "npc": "Deadly Minnow",
+  "price": 25920
+ },
+ {
+  "n": "Mufflers",
+  "zone": "Upper Jeuno",
+  "npc": "Deadly Minnow",
+  "price": 38775
+ },
+ {
+  "n": "Loaf of Iron Bread",
+  "zone": "Upper Jeuno",
+  "npc": "Glyke",
+  "price": 100
+ },
+ {
+  "n": "Tortilla",
+  "zone": "Upper Jeuno",
+  "npc": "Glyke",
+  "price": 140
+ },
+ {
+  "n": "Loaf of White Bread",
+  "zone": "Upper Jeuno",
+  "npc": "Glyke",
+  "price": 200
+ },
+ {
+  "n": "Bowl of Pea Soup",
+  "zone": "Upper Jeuno",
+  "npc": "Glyke",
+  "price": 1400
+ },
+ {
+  "n": "Boiled Crab",
+  "zone": "Upper Jeuno",
+  "npc": "Glyke",
+  "price": 2250
+ },
+ {
+  "n": "Slice of Roast Mutton",
+  "zone": "Upper Jeuno",
+  "npc": "Glyke",
+  "price": 720
+ },
+ {
+  "n": "Baked Apple",
+  "zone": "Upper Jeuno",
+  "npc": "Glyke",
+  "price": 440
+ },
+ {
+  "n": "Windurst Salad",
+  "zone": "Upper Jeuno",
+  "npc": "Glyke",
+  "price": 1860
+ },
+ {
+  "n": "Serving of Herb Quus",
+  "zone": "Upper Jeuno",
+  "npc": "Glyke",
+  "price": 4984
+ },
+ {
+  "n": "Bottle of Orange Juice",
+  "zone": "Upper Jeuno",
+  "npc": "Glyke",
+  "price": 200
+ },
+ {
+  "n": "Bottle of Apple Juice",
+  "zone": "Upper Jeuno",
+  "npc": "Glyke",
+  "price": 300
+ },
+ {
+  "n": "Bottle of Pineapple Juice",
+  "zone": "Upper Jeuno",
+  "npc": "Glyke",
+  "price": 400
+ },
+ {
+  "n": "Bottle of Melon Juice",
+  "zone": "Upper Jeuno",
+  "npc": "Glyke",
+  "price": 1100
+ },
+ {
+  "n": "Bottle of Grape Juice",
+  "zone": "Upper Jeuno",
+  "npc": "Glyke",
+  "price": 930
+ },
+ {
+  "n": "Sallet",
+  "zone": "Upper Jeuno",
+  "npc": "Khe Chalahko",
+  "price": 31860
+ },
+ {
+  "n": "Breastplate",
+  "zone": "Upper Jeuno",
+  "npc": "Khe Chalahko",
+  "price": 49140
+ },
+ {
+  "n": "Cuisses",
+  "zone": "Upper Jeuno",
+  "npc": "Khe Chalahko",
+  "price": 37800
+ },
+ {
+  "n": "Plate Leggings",
+  "zone": "Upper Jeuno",
+  "npc": "Khe Chalahko",
+  "price": 23760
+ },
+ {
+  "n": "Breeches",
+  "zone": "Upper Jeuno",
+  "npc": "Khe Chalahko",
+  "price": 57750
+ },
+ {
+  "n": "Sollerets",
+  "zone": "Upper Jeuno",
+  "npc": "Khe Chalahko",
+  "price": 35475
+ },
+ {
+  "n": "Flask of Distilled Water",
+  "zone": "Upper Jeuno",
+  "npc": "Leillaine",
+  "price": 12
+ },
+ {
+  "n": "Flask of Eye Drops",
+  "zone": "Upper Jeuno",
+  "npc": "Leillaine",
+  "price": 2595
+ },
+ {
+  "n": "Antidote",
+  "zone": "Upper Jeuno",
+  "npc": "Leillaine",
+  "price": 316
+ },
+ {
+  "n": "Flask of Echo Drops",
+  "zone": "Upper Jeuno",
+  "npc": "Leillaine",
+  "price": 800
+ },
+ {
+  "n": "Potion",
+  "zone": "Upper Jeuno",
+  "npc": "Leillaine",
+  "price": 910
+ },
+ {
+  "n": "Ether",
+  "zone": "Upper Jeuno",
+  "npc": "Leillaine",
+  "price": 4832
+ },
+ {
+  "n": "Remedy",
+  "zone": "Upper Jeuno",
+  "npc": "Leillaine",
+  "price": 3360
+ },
+ {
+  "n": "Bunch of Gysahl Greens",
+  "zone": "Upper Jeuno",
+  "npc": "Mejuone",
+  "price": 68
+ },
+ {
+  "n": "Chocobo Feather",
+  "zone": "Upper Jeuno",
+  "npc": "Mejuone",
+  "price": 8
+ },
+ {
+  "n": "Dart",
+  "zone": "Upper Jeuno",
+  "npc": "Mejuone",
+  "price": 10
+ },
+ {
+  "n": "Jug of Livid Broth",
+  "zone": "Upper Jeuno",
+  "npc": "Theraisie",
+  "price": 200
+ },
+ {
+  "n": "Jug of Lyrical Broth",
+  "zone": "Upper Jeuno",
+  "npc": "Theraisie",
+  "price": 344
+ },
+ {
+  "n": "Jug of Airy Broth",
+  "zone": "Upper Jeuno",
+  "npc": "Theraisie",
+  "price": 591
+ },
+ {
+  "n": "Handful of Crumbly Soil",
+  "zone": "Upper Jeuno",
+  "npc": "Theraisie",
+  "price": 1016
+ },
+ {
+  "n": "Jug of Furious Broth",
+  "zone": "Upper Jeuno",
+  "npc": "Theraisie",
+  "price": 1305
+ },
+ {
+  "n": "Jug of Blackwater Broth",
+  "zone": "Upper Jeuno",
+  "npc": "Theraisie",
+  "price": 1484
+ },
+ {
+  "n": "Jug of Pale Sap",
+  "zone": "Upper Jeuno",
+  "npc": "Theraisie",
+  "price": 1747
+ },
+ {
+  "n": "Jug of Crackling Broth",
+  "zone": "Upper Jeuno",
+  "npc": "Theraisie",
+  "price": 1747
+ },
+ {
+  "n": "Jug of Meaty Broth",
+  "zone": "Upper Jeuno",
+  "npc": "Theraisie",
+  "price": 2196
+ },
+ {
+  "n": "Jug of Rapid Broth",
+  "zone": "Upper Jeuno",
+  "npc": "Theraisie",
+  "price": 2371
+ },
+ {
+  "n": "Jug of Creepy Broth",
+  "zone": "Upper Jeuno",
+  "npc": "Theraisie",
+  "price": 2425
+ },
+ {
+  "n": "Jug of Muddy Broth",
+  "zone": "Upper Jeuno",
+  "npc": "Theraisie",
+  "price": 2853
+ },
+ {
+  "n": "Jug of Dire Broth",
+  "zone": "Upper Jeuno",
+  "npc": "Theraisie",
+  "price": 3004
+ },
+ {
+  "n": "Jug of Aged Humus",
+  "zone": "Upper Jeuno",
+  "npc": "Theraisie",
+  "price": 3154
+ },
+ {
+  "n": "Pet Food Alpha Biscuit",
+  "zone": "Upper Jeuno",
+  "npc": "Theraisie",
+  "price": 100
+ },
+ {
+  "n": "Pet Food Beta Biscuit",
+  "zone": "Upper Jeuno",
+  "npc": "Theraisie",
+  "price": 200
+ },
+ {
+  "n": "Pet Food Gamma Biscuit",
+  "zone": "Upper Jeuno",
+  "npc": "Theraisie",
+  "price": 350
+ },
+ {
+  "n": "Pet Food Delta Biscuit",
+  "zone": "Upper Jeuno",
+  "npc": "Theraisie",
+  "price": 500
+ },
+ {
+  "n": "Pet Food Epsilon Biscuit",
+  "zone": "Upper Jeuno",
+  "npc": "Theraisie",
+  "price": 750
+ },
+ {
+  "n": "Pet Food Zeta Biscuit",
+  "zone": "Upper Jeuno",
+  "npc": "Theraisie",
+  "price": 1000
+ },
+ {
+  "n": "Pet Food Eta Biscuit",
+  "zone": "Upper Jeuno",
+  "npc": "Theraisie",
+  "price": 1500
+ },
+ {
+  "n": "Pet Food Theta Biscuit",
+  "zone": "Upper Jeuno",
+  "npc": "Theraisie",
+  "price": 2000
+ },
+ {
+  "n": "Pet Roborant",
+  "zone": "Upper Jeuno",
+  "npc": "Theraisie",
+  "price": 300
+ },
+ {
+  "n": "Pet Poultice",
+  "zone": "Upper Jeuno",
+  "npc": "Theraisie",
+  "price": 250
+ },
+ {
+  "n": "Scroll of Sinewy Etude",
+  "zone": "Windurst Woods",
+  "npc": "Manyny",
+  "price": 3420
+ },
+ {
+  "n": "Scroll of Dextrous Etude",
+  "zone": "Windurst Woods",
+  "npc": "Manyny",
+  "price": 3060
+ },
+ {
+  "n": "Scroll of Vivacious Etude",
+  "zone": "Windurst Woods",
+  "npc": "Manyny",
+  "price": 2400
+ },
+ {
+  "n": "Scroll of Quick Etude",
+  "zone": "Windurst Woods",
+  "npc": "Manyny",
+  "price": 2080
+ },
+ {
+  "n": "Scroll of Learned Etude",
+  "zone": "Windurst Woods",
+  "npc": "Manyny",
+  "price": 1704
+ },
+ {
+  "n": "Scroll of Spirited Etude",
+  "zone": "Windurst Woods",
+  "npc": "Manyny",
+  "price": 1376
+ },
+ {
+  "n": "Scroll of Enchanting Etude",
+  "zone": "Windurst Woods",
+  "npc": "Manyny",
+  "price": 1088
+ },
+ {
+  "n": "Flask of Eye Drops",
+  "zone": "Windurst Woods",
+  "npc": "Wije Tiren",
+  "price": 2595
+ },
+ {
+  "n": "Antidote",
+  "zone": "Windurst Woods",
+  "npc": "Wije Tiren",
+  "price": 316
+ },
+ {
+  "n": "Flask of Echo Drops",
+  "zone": "Windurst Woods",
+  "npc": "Wije Tiren",
+  "price": 800
+ },
+ {
+  "n": "Potion",
+  "zone": "Windurst Woods",
+  "npc": "Wije Tiren",
+  "price": 910
+ },
+ {
+  "n": "Ether",
+  "zone": "Windurst Woods",
+  "npc": "Wije Tiren",
+  "price": 4832
+ },
+ {
+  "n": "Scroll of Herb Pastoral",
+  "zone": "Windurst Woods",
+  "npc": "Wije Tiren",
+  "price": 108
+ },
+ {
+  "n": "Flask of Distilled Water",
+  "zone": "Windurst Woods",
+  "npc": "Wije Tiren",
+  "price": 12
+ },
+ {
+  "n": "Federation Waystone",
+  "zone": "Windurst Woods",
+  "npc": "Wije Tiren",
+  "price": 10000
+ }
+]

@@ -1,0 +1,166 @@
+// src/utils/itemSources.ts — aggregates every in-app source for an item name
+// (mob drops live in DropsTab's own table; this covers everything else).
+import shopsData from "../data/shops.json";
+import guildShopsData from "../data/guildShops.json";
+import helmData from "../data/helm.json";
+import bcnmData from "../data/bcnm.json";
+import fishData from "../data/fish.json";
+import chocoboDigData from "../data/chocoboDig.json";
+import recipesData from "../data/recipes.json";
+import questsData from "../data/quests.json";
+import { normalizeItemName } from "./itemLinks";
+import { CLAM_ITEM_NAMES } from "../ClamTab";
+
+export type ShopSource = { npc: string; zone: string; price: number };
+export type GuildSource = { guild: string; rank: string; price: number };
+export type BcnmSource = { name: string; arena: string; type: string };
+export type HelmSource = { kind: string; zone: string; pct: number };
+export type DigSource = { zone: string; rate: number | null };
+export type CraftSource = { craft: string; lvl: number };
+export type QuestSource = { name: string; zone: string | null };
+
+export type ItemSources = {
+  shops: ShopSource[];
+  guild: GuildSource[];
+  bcnm: BcnmSource[];
+  helm: HelmSource[];
+  fishing: string[];
+  digging: DigSource[];
+  clamming: boolean;
+  craft: CraftSource[];
+};
+
+type ShopRow = { n: string; zone: string; npc: string; price: number };
+type GuildRow = { n: string; guild: string; price: number; rank: string };
+type HelmRow = { kind: string; zone: string; n: string; pct: number };
+type FishRow = { zone: string; catch: string };
+type DigRow = { zone: string; item: string; rate: number | null };
+type RecipeRow = { craft: string; lvl: number; res: { n: string }; d?: number };
+type Battlefield = {
+  name: string;
+  arena: string;
+  type: string;
+  slots: { entries: { item: string | null }[] }[];
+};
+type Quest = { name: string; startZone: string | null; reward: string | null };
+
+const empty: ItemSources = {
+  shops: [], guild: [], bcnm: [], helm: [], fishing: [], digging: [], clamming: false, craft: [],
+};
+
+const index = new Map<string, ItemSources>();
+/** Canonical display name per normalized key (first source encountered wins). */
+const displayByNorm = new Map<string, string>();
+
+function entry(name: string): ItemSources {
+  const norm = normalizeItemName(name);
+  let e = index.get(norm);
+  if (!e) {
+    e = { shops: [], guild: [], bcnm: [], helm: [], fishing: [], digging: [], clamming: false, craft: [] };
+    index.set(norm, e);
+    displayByNorm.set(norm, name);
+  }
+  return e;
+}
+
+for (const r of shopsData as ShopRow[]) entry(r.n).shops.push({ npc: r.npc, zone: r.zone, price: r.price });
+for (const r of guildShopsData as GuildRow[]) entry(r.n).guild.push({ guild: r.guild, rank: r.rank, price: r.price });
+for (const r of helmData as HelmRow[]) entry(r.n).helm.push({ kind: r.kind, zone: r.zone, pct: r.pct });
+for (const r of chocoboDigData.entries as DigRow[]) {
+  const e = entry(r.item);
+  if (!e.digging.some((d) => d.zone === r.zone)) e.digging.push({ zone: r.zone, rate: r.rate });
+}
+for (const r of fishData as FishRow[]) {
+  const e = entry(r.catch);
+  if (!e.fishing.includes(r.zone)) e.fishing.push(r.zone);
+}
+for (const name of CLAM_ITEM_NAMES) entry(name).clamming = true;
+for (const bf of (bcnmData as { battlefields: Battlefield[] }).battlefields) {
+  for (const slot of bf.slots) {
+    for (const le of slot.entries) {
+      if (!le.item || le.item === "Gil") continue;
+      const e = entry(le.item);
+      if (!e.bcnm.some((b) => b.name === bf.name)) e.bcnm.push({ name: bf.name, arena: bf.arena, type: bf.type });
+    }
+  }
+}
+for (const r of recipesData as RecipeRow[]) {
+  if (r.d === 1) continue; // desynths aren't a way to make the item
+  const e = entry(r.res.n);
+  const existing = e.craft.find((c) => c.craft === r.craft);
+  if (!existing) e.craft.push({ craft: r.craft, lvl: r.lvl });
+  else if (r.lvl < existing.lvl) existing.lvl = r.lvl;
+}
+
+export function getItemSources(name: string): ItemSources {
+  return index.get(normalizeItemName(name)) ?? empty;
+}
+
+export type SourceBadge = { label: string; color: string };
+
+const BADGE_COLORS: Record<string, string> = {
+  Craft: "#8af6b0",
+  Shop: "#D8B04B",
+  Guild: "#D8B04B",
+  BCNM: "#7ec4e8",
+  Fish: "#9ad1ff",
+  Dig: "#e8c47e",
+  Clam: "#9ad1ff",
+  Harvest: "#a8e87e",
+  Log: "#a8e87e",
+  Mine: "#a8e87e",
+  Excavate: "#a8e87e",
+  Quest: "#c9a2ff",
+};
+
+const HELM_BADGE: Record<string, string> = {
+  Harvesting: "Harvest",
+  Logging: "Log",
+  Mining: "Mine",
+  Excavation: "Excavate",
+};
+
+export function sourceBadges(name: string): SourceBadge[] {
+  const s = getItemSources(name);
+  const out: SourceBadge[] = [];
+  const add = (label: string) => out.push({ label, color: BADGE_COLORS[label] ?? "#9aa0b8" });
+  if (s.craft.length) add("Craft");
+  if (s.shops.length) add("Shop");
+  if (s.guild.length) add("Guild");
+  if (s.bcnm.length) add("BCNM");
+  for (const kind of [...new Set(s.helm.map((h) => h.kind))]) add(HELM_BADGE[kind] ?? kind);
+  if (s.fishing.length) add("Fish");
+  if (s.digging.length) add("Dig");
+  if (s.clamming) add("Clam");
+  return out;
+}
+
+/** All items with a non-drop source, for synthesizing rows in the Items table. */
+export function allSourcedItems(): { norm: string; display: string }[] {
+  return [...index.keys()].map((norm) => ({ norm, display: displayByNorm.get(norm)! }));
+}
+
+// Quest reward matches are substring scans over ~2.5MB of text — computed on
+// demand per item and memoized.
+const questCache = new Map<string, QuestSource[]>();
+
+const ALL_QUESTS: Quest[] = (() => {
+  const data = questsData as unknown as { quests?: Quest[]; missions?: Quest[] };
+  return [...(data.quests ?? []), ...(data.missions ?? [])];
+})();
+
+export function questRewardsFor(name: string): QuestSource[] {
+  const norm = normalizeItemName(name);
+  const cached = questCache.get(norm);
+  if (cached) return cached;
+  const needle = norm;
+  const out: QuestSource[] = [];
+  for (const q of ALL_QUESTS) {
+    if (q.reward && q.reward.toLowerCase().includes(needle)) {
+      out.push({ name: q.name, zone: q.startZone });
+      if (out.length >= 8) break;
+    }
+  }
+  questCache.set(norm, out);
+  return out;
+}

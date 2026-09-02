@@ -9,6 +9,7 @@ type ChainLink = { name: string; id: string | null };
 
 type MapRef = { zone: string; mapNo: number | null; pos: string };
 type StepRef = MapRef & { step: number; occurrence?: number };
+type HeadingRef = { step: number; zone: string };
 
 type Entry = {
   id: string;
@@ -37,6 +38,7 @@ type Entry = {
   coords: string[];
   mapRefs: MapRef[];
   stepRefs?: StepRef[];
+  headingRefs?: HeadingRef[];
   url: string;
 };
 
@@ -224,7 +226,7 @@ function Detail({ entry, onOpen, onBack }: { entry: Entry; onOpen: (id: string) 
   // Structured refs from the wiki, plus a synthesized one for the start location so quests
   // without {{Location}} templates (plain-text coords) still get their zone map
   const refs = useMemo(() => {
-    const out = [...(entry.mapRefs ?? []), ...(entry.stepRefs ?? [])];
+    const out = [...(entry.mapRefs ?? []), ...(entry.stepRefs ?? []), ...(entry.headingRefs ?? []).map((r) => ({ ...r, mapNo: null, pos: "" }))];
     if (entry.startZone && !out.some((r) => normZone(r.zone) === normZone(entry.startZone!))) {
       out.unshift({ zone: entry.startZone, mapNo: null, pos: entry.startCoord ?? "" });
     }
@@ -312,6 +314,8 @@ function Detail({ entry, onOpen, onBack }: { entry: Entry; onOpen: (id: string) 
         }
       : {};
   const coordHandlers = handlersFor(undefined);
+  const headingMaps = (stepIdx: number) =>
+    mapsForRefs((entry.headingRefs ?? []).filter((ref) => ref.step === stepIdx).map((ref) => ({ ...ref, mapNo: null, pos: "" })));
 
   const info: Array<[string, React.ReactNode]> = [];
   if (entry.number) info.push(["Number", entry.number]);
@@ -364,12 +368,19 @@ function Detail({ entry, onOpen, onBack }: { entry: Entry; onOpen: (id: string) 
           <h4 style={{ margin: "8px 0 6px", fontSize: 15 }}>Walkthrough</h4>
           <div style={{ display: "flex", flexDirection: "column", gap: 5, maxWidth: 860 }}>
             {entry.walkthrough.map((step, i) => {
-              if (step.startsWith("## "))
+              if (step.startsWith("## ")) {
+                const maps = headingMaps(i);
                 return (
-                  <div key={i} style={{ fontWeight: 800, fontSize: 14, color: "#e8d47e", marginTop: 8 }}>
-                    {step.slice(3)}
+                  <div
+                    key={i}
+                    style={{ fontWeight: 800, fontSize: 14, color: "#e8d47e", marginTop: 8, cursor: maps.length ? "pointer" : undefined, textDecoration: maps.length ? "underline dotted" : undefined }}
+                    onMouseEnter={maps.length ? () => setActiveMapId(maps[0].id) : undefined}
+                    onClick={maps.length ? () => setActiveMapId(maps[0].id) : undefined}
+                  >
+                    <CoordText text={step.slice(3)} {...handlersFor(i)} />
                   </div>
                 );
+              }
               const indent = (step.length - step.trimStart().length) / 2;
               return (
                 <div key={i} style={{ marginLeft: indent * 18, fontSize: 13, lineHeight: 1.45 }}>

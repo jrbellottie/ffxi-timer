@@ -2,6 +2,8 @@
 import React, { useMemo, useState } from "react";
 import { styles } from "./styles";
 import { loadJson, saveJson } from "./utils/storage";
+import { findableName } from "./utils/itemLinks";
+import { navigateToTab, peekNavQuery, hasBackTab, goBackTab } from "./utils/tabNav";
 import bcnmData from "./data/bcnm.json";
 
 type LootEntry = {
@@ -90,6 +92,14 @@ const highlightStyle: React.CSSProperties = {
   fontWeight: 700,
 };
 
+const itemLinkStyle: React.CSSProperties = {
+  color: "#7ec4e8",
+  cursor: "pointer",
+  textDecoration: "underline",
+  textDecorationColor: "rgba(126,196,232,0.35)",
+  textUnderlineOffset: 2,
+};
+
 /** Wraps every case-insensitive occurrence of q in text with a highlight span. */
 function highlightText(text: string, q: string): React.ReactNode {
   if (!q) return text;
@@ -134,8 +144,20 @@ function bfMatches(bf: Battlefield, q: string): boolean {
 }
 
 export default function BcnmTab() {
-  const [ui, setUi] = useState<BcnmUiState>(() => normalizeState(loadJson<unknown>(UI_KEY, {})));
-  const [open, setOpen] = useState<Record<string, boolean>>({});
+  const [ui, setUi] = useState<BcnmUiState>(() => {
+    const base = normalizeState(loadJson<unknown>(UI_KEY, {}));
+    const navQuery = peekNavQuery("bcnm");
+    return navQuery ? { ...base, query: navQuery, arena: "", types: [] } : base;
+  });
+  // Arriving via an item link auto-opens the matching battlefields.
+  const [open, setOpen] = useState<Record<string, boolean>>(() => {
+    const navQuery = peekNavQuery("bcnm");
+    if (!navQuery) return {};
+    const q = navQuery.trim().toLowerCase();
+    const out: Record<string, boolean> = {};
+    for (const bf of BATTLEFIELDS) if (bfMatches(bf, q)) out[bfKey(bf)] = true;
+    return out;
+  });
 
   const update = (patch: Partial<BcnmUiState>) => {
     setUi((prev) => {
@@ -175,7 +197,14 @@ export default function BcnmTab() {
     <section style={styles.card}>
       <div style={styles.titleRow}>
         <h3 style={styles.h3}>BCNM / KSNM Drops</h3>
-        <div style={styles.sub}>Loot tables from LandSandBoat; each slot rolls independently</div>
+        <div style={{ display: "flex", gap: 12, alignItems: "center", minWidth: 0 }}>
+          <div style={styles.sub}>Loot tables from LandSandBoat; each slot rolls independently</div>
+          {hasBackTab() && (
+            <button style={styles.buttonCompact} onClick={goBackTab} title="Return to your previous search">
+              ← Back
+            </button>
+          )}
+        </div>
       </div>
 
       <div style={{ marginTop: 10, display: "grid", gap: 12 }}>
@@ -301,17 +330,35 @@ export default function BcnmTab() {
                               </tr>
                             </thead>
                             <tbody>
-                              {rows.map((e, i) => (
-                                <tr key={i}>
-                                  <td style={{ ...tdStyle, ...(e.item ? {} : { opacity: 0.5, fontStyle: "italic" }) }}>
-                                    {e.item ? highlightText(e.item, query) : "Nothing"}
-                                    {e.amount != null && e.amount > 1 && (
-                                      <span style={{ color: "#ffa552" }}> {"\u00d7"}{e.amount.toLocaleString()}</span>
-                                    )}
-                                  </td>
-                                  <td style={{ ...tdStyle, textAlign: "right" }}>{formatPct(e.weight, total)}</td>
-                                </tr>
-                              ))}
+                              {rows.map((e, i) => {
+                                const target = e.item && e.item !== "Gil" ? findableName(e.item) : null;
+                                return (
+                                  <tr key={i}>
+                                    <td style={{ ...tdStyle, ...(e.item ? {} : { opacity: 0.5, fontStyle: "italic" }) }}>
+                                      {target ? (
+                                        <span
+                                          style={itemLinkStyle}
+                                          title={`Find every source of ${target}`}
+                                          onClick={(ev) => {
+                                            ev.stopPropagation();
+                                            navigateToTab("drops", target, "bcnm");
+                                          }}
+                                        >
+                                          {highlightText(e.item!, query)}
+                                        </span>
+                                      ) : e.item ? (
+                                        highlightText(e.item, query)
+                                      ) : (
+                                        "Nothing"
+                                      )}
+                                      {e.amount != null && e.amount > 1 && (
+                                        <span style={{ color: "#ffa552" }}> {"\u00d7"}{e.amount.toLocaleString()}</span>
+                                      )}
+                                    </td>
+                                    <td style={{ ...tdStyle, textAlign: "right" }}>{formatPct(e.weight, total)}</td>
+                                  </tr>
+                                );
+                              })}
                             </tbody>
                           </table>
                         </div>

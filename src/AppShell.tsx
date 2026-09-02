@@ -20,6 +20,7 @@ import { AnyTimer, MoonDirection } from "./types";
 import { WEEKDAYS, WEEKDAY_COLORS, weekdayStyle } from "./utils/weekday";
 import { moonDirGlyph, moonGlyphStyle, moonPhaseStyle } from "./utils/moon";
 import { buildTenshodoPresets, GUILD_PRESETS, nextGuildAlertTarget } from "./utils/guilds";
+import { registerTabSwitcher, clearTabNav } from "./utils/tabNav";
 import { getNextNmLotteryEvent, getNextNmTimedWindowEvent } from "./utils/nm";
 import FishTab from "./FishTab";
 import BaitTab from "./BaitTab";
@@ -29,13 +30,13 @@ import ChocoboTab from "./ChocoboTab";
 import WeatherTab from "./WeatherTab";
 import StopwatchTab from "./StopwatchTab";
 import BcnmTab from "./BcnmTab";
-import DropsTab from "./DropsTab";
 import SkillchainTab from "./SkillchainTab";
 
 const BestiaryTab = React.lazy(() => import("./BestiaryTab"));
 const CraftingTab = React.lazy(() => import("./CraftingTab"));
 const QuestsTab = React.lazy(() => import("./QuestsTab"));
 const AtlasTab = React.lazy(() => import("./AtlasTab"));
+const DropsTab = React.lazy(() => import("./DropsTab"));
 
 function clampInt(n: number, min: number, max: number) {
   return Math.max(min, Math.min(max, Math.floor(n)));
@@ -198,7 +199,7 @@ const TABS: TabDef[] = [
   { id: "chocobo", label: "Digging", icon: "🐤" },
   { id: "weather", label: "Weather", icon: "🌦️" },
   { id: "bcnm", label: "BCNM", icon: "⚔️" },
-  { id: "drops", label: "Drops", icon: "💰" },
+  { id: "drops", label: "Items", icon: "💰" },
   { id: "bestiary", label: "Bestiary", icon: "📖" },
   { id: "skillchains", label: "Skillchains", icon: "🔗" },
   { id: "crafting", label: "Crafting", icon: "🔨" },
@@ -403,6 +404,12 @@ export default function AppShell() {
   useEffect(() => saveJson("ffxi_counters_v1", counters), [counters]);
   useEffect(() => saveJson("ffxi_lu_shang_v1", luShang), [luShang]);
   useEffect(() => saveJson("ffxi_active_tab_v1", activeTab), [activeTab]);
+
+  useEffect(() => {
+    registerTabSwitcher((tab) => {
+      if (TAB_IDS.includes(tab as TabId)) setActiveTab(tab as TabId);
+    });
+  }, []);
 
   // Flash the "Clock & Timers" tab when a new timer is added, so the user can
   // see where the timer landed (especially when adding from another tab).
@@ -2356,7 +2363,7 @@ export default function AppShell() {
 
   const backBar = (
     <div style={{ ...styles.tabHeaderRow, justifyContent: "flex-end" }}>
-      <button style={styles.backButton} onClick={() => setActiveTab("home")}>
+      <button style={styles.backButton} onClick={() => { clearTabNav(); setActiveTab("home"); }}>
         ← Back to Clock &amp; Timers
       </button>
     </div>
@@ -2372,7 +2379,7 @@ export default function AppShell() {
             key={tab.id}
             className={flashing ? "tab-flash" : undefined}
             style={active ? styles.tabButtonActive : styles.tabButton}
-            onClick={() => setActiveTab(tab.id)}
+            onClick={() => { clearTabNav(); setActiveTab(tab.id); }}
           >
             <span aria-hidden>{tab.icon}</span>
             {tab.label}
@@ -2509,7 +2516,9 @@ export default function AppShell() {
 
       {activeTab === "drops" && (
         <div style={styles.tabContent}>
-          <DropsTab />
+          <React.Suspense fallback={<div style={styles.card}>Loading items...</div>}>
+            <DropsTab />
+          </React.Suspense>
           <div style={{ display: "flex", justifyContent: "flex-end" }}>{backBar}</div>
         </div>
       )}

@@ -4,6 +4,8 @@ import { styles } from "./styles";
 import recipesData from "./data/recipes.json";
 import { loadJson, saveJson } from "./utils/storage";
 import { craftSkillupStats } from "./utils/craftingSkillup";
+import { findableName } from "./utils/itemLinks";
+import { navigateToTab, peekNavQuery, hasBackTab, goBackTab, peekBackTabSeq, nextNavSeq } from "./utils/tabNav";
 
 type RecipeItem = { n: string; q: number };
 type RecipeSub = { c: string; l: number };
@@ -187,9 +189,41 @@ function eraLabel(era: string): string {
   return era === "" ? "Base" : era;
 }
 
-function ingredientText(recipe: Recipe): string {
-  return recipe.ing.map((i) => (i.q > 1 ? `${i.n} x${i.q}` : i.n)).join(", ");
-}
+/** "Piece of Bloodwood Lumber" → "Bloodwood Lumber" (ingredient names carry container prefixes, results don't). */
+const OF_PREFIX = /^[A-Za-z]+ of /;
+
+const ingredientLinkStyle: React.CSSProperties = {
+  color: "#8af6b0",
+  cursor: "pointer",
+  textDecoration: "underline",
+  textDecorationColor: "rgba(138,246,176,0.35)",
+  textUnderlineOffset: 2,
+};
+
+const dropLinkStyle: React.CSSProperties = {
+  color: "#7ec4e8",
+  cursor: "pointer",
+  textDecoration: "underline",
+  textDecorationColor: "rgba(126,196,232,0.35)",
+  textUnderlineOffset: 2,
+};
+
+type SearchSnapshot = {
+  seq: number;
+  mode: Mode;
+  rGlobal: string;
+  rResult: string;
+  rIngredient: string;
+  rCraft: string;
+  rCrystal: string;
+  rEra: string;
+  rLvlMin: string;
+  rLvlMax: string;
+  rIncludeDesynth: boolean;
+};
+
+// Survives tab switches (component unmounts); intentionally not persisted across restarts.
+let sessionSearchHistory: SearchSnapshot[] = [];
 
 function hqText(recipe: Recipe): string {
   const allSame = recipe.hq.every((h) => h.n === recipe.res.n);
@@ -294,7 +328,21 @@ const defaultUi: CraftingUiState = {
 export default function CraftingTab() {
   const initialUi = useMemo(() => {
     const loaded = loadJson<Partial<CraftingUiState>>(CRAFTING_UI_KEY, {});
-    return { ...defaultUi, ...loaded };
+    const navQuery = peekNavQuery("crafting");
+    const navOverride: Partial<CraftingUiState> = navQuery
+      ? {
+          mode: "recipes",
+          rGlobal: "",
+          rResult: navQuery,
+          rIngredient: "",
+          rCraft: "",
+          rCrystal: "",
+          rEra: "",
+          rLvlMin: "",
+          rLvlMax: "",
+        }
+      : {};
+    return { ...defaultUi, ...loaded, ...navOverride };
   }, []);
 
   const [mode, setMode] = useState<Mode>(initialUi.mode === "recipes" ? "recipes" : "planner");
@@ -423,6 +471,136 @@ export default function CraftingTab() {
     setPIncludeDesynth(false);
     setPHideKeyItem(false);
   }
+
+  const craftableNames = useMemo(() => {
+    const set = new Set<string>();
+    for (const r of eraFiltered) set.add(r.res.n.toLowerCase());
+    return set;
+  }, [eraFiltered]);
+
+  /** Name to search for if this ingredient is craftable, else null. */
+  function ingredientTarget(name: string): string | null {
+    if (craftableNames.has(name.toLowerCase())) return name;
+    const stripped = name.replace(OF_PREFIX, "");
+    if (stripped !== name && craftableNames.has(stripped.toLowerCase())) return stripped;
+    return null;
+  }
+
+  const [searchHistory, setSearchHistory] = useState<SearchSnapshot[]>(sessionSearchHistory);
+
+  function updateHistory(next: SearchSnapshot[]) {
+    sessionSearchHistory = next;
+    setSearchHistory(next);
+  }
+
+  function searchForIngredient(target: string) {
+    updateHistory([
+      ...searchHistory,
+      { seq: nextNavSeq(), mode, rGlobal, rResult, rIngredient, rCraft, rCrystal, rEra, rLvlMin, rLvlMax, rIncludeDesynth },
+    ]);
+    clearRecipeFilters();
+    setRResult(target);
+    setMode("recipes");
+  }
+
+  function searchDropsFor(target: string) {
+    navigateToTab("drops", target, "crafting");
+  }
+
+  const canGoBack = searchHistory.length > 0 || hasBackTab();
+
+  function goBack() {
+    const prev = searchHistory[searchHistory.length - 1];
+    // Pop whichever navigation happened most recently: in-tab search or cross-tab jump.
+    if (prev && prev.seq > peekBackTabSeq()) {
+      updateHistory(searchHistory.slice(0, -1));
+      setMode(prev.mode);
+      setRGlobal(prev.rGlobal);
+      setRResult(prev.rResult);
+      setRIngredient(prev.rIngredient);
+      setRCraft(prev.rCraft);
+      setRCrystal(prev.rCrystal);
+      setREra(prev.rEra);
+      setRLvlMin(prev.rLvlMin);
+      setRLvlMax(prev.rLvlMax);
+      setRIncludeDesynth(prev.rIncludeDesynth);
+      return;
+    }
+    if (hasBackTab()) goBackTab();
+  }
+
+  /** Result cell: links to the Items tab when the item has a findable source. */
+  const renderResult = (recipe: Recipe, rankUp: boolean) => {
+    const label = `${recipe.res.n}${recipe.res.q > 1 ? ` x${recipe.res.q}` : ""}`;
+    const target = findableName(recipe.res.n);
+    if (!target) return label;
+    return (
+      <span
+        style={{
+          cursor: "pointer",
+          textDecoration: "underline",
+          textDecorationColor: rankUp ? "rgba(127,212,255,0.35)" : "rgba(255,255,255,0.25)",
+          textUnderlineOffset: 2,
+        }}
+        title={`Find every source of ${target}`}
+        onClick={(e) => {
+          e.stopPropagation();
+          searchDropsFor(target);
+        }}
+      >
+        {label}
+      </span>
+    );
+  };
+
+  const renderIngredients = (recipe: Recipe) =>
+    recipe.ing.map((i, idx) => {
+      const label = i.q > 1 ? `${i.n} x${i.q}` : i.n;
+      const craftTarget = ingredientTarget(i.n);
+      const dropTarget = findableName(i.n);
+      return (
+        <React.Fragment key={idx}>
+          {idx > 0 ? ", " : ""}
+          {craftTarget ? (
+            <span
+              style={ingredientLinkStyle}
+              title={`Search recipes for ${craftTarget}`}
+              onClick={(e) => {
+                e.stopPropagation();
+                searchForIngredient(craftTarget);
+              }}
+            >
+              {label}
+            </span>
+          ) : dropTarget ? (
+            <span
+              style={dropLinkStyle}
+              title={`Find sources for ${dropTarget}`}
+              onClick={(e) => {
+                e.stopPropagation();
+                searchDropsFor(dropTarget);
+              }}
+            >
+              {label}
+            </span>
+          ) : (
+            label
+          )}
+          {craftTarget && dropTarget ? (
+            <span
+              style={{ ...dropLinkStyle, textDecoration: "none" }}
+              title={`Find sources for ${dropTarget}`}
+              onClick={(e) => {
+                e.stopPropagation();
+                searchDropsFor(dropTarget);
+              }}
+            >
+              {" ⚔"}
+            </span>
+          ) : null}
+        </React.Fragment>
+      );
+    });
 
   const recipeResults = useMemo(() => {
     const lvlMin = rLvlMin === "" ? null : Number(rLvlMin);
@@ -606,10 +784,17 @@ export default function CraftingTab() {
         <h3 style={styles.h3}>
           {mode === "recipes" ? "Crafting Recipes (ToAU Era)" : "Crafting Skill-up Planner"}
         </h3>
-        <div style={styles.sub}>
-          {`${visibleCount.toLocaleString()} of ${eraFiltered.length.toLocaleString()} recipes${
-            visibleCount > MAX_VISIBLE_ROWS ? ` (showing first ${MAX_VISIBLE_ROWS} — refine filters)` : ""
-          }`}
+        <div style={{ display: "flex", gap: 12, alignItems: "center", minWidth: 0 }}>
+          <div style={styles.sub}>
+            {`${visibleCount.toLocaleString()} of ${eraFiltered.length.toLocaleString()} recipes${
+              visibleCount > MAX_VISIBLE_ROWS ? ` (showing first ${MAX_VISIBLE_ROWS} — refine filters)` : ""
+            }`}
+          </div>
+          {canGoBack && (
+            <button style={styles.buttonCompact} onClick={goBack} title="Return to your previous search">
+              ← Back
+            </button>
+          )}
         </div>
       </div>
 
@@ -679,6 +864,9 @@ export default function CraftingTab() {
               for its main craft; Subs = other crafts (and levels) the recipe also requires. Recipes flagged Key Item
               need the matching craft key item (e.g. Trituration, Sheeting). Recipes in{" "}
               <span style={{ color: RANK_UP_COLOR, fontWeight: 700 }}>blue</span> craft a guild rank-up test item.
+              Ingredients in <span style={{ color: "#8af6b0", fontWeight: 700 }}>green</span> link to their recipe;{" "}
+              <span style={{ color: "#7ec4e8", fontWeight: 700 }}>blue</span> ingredients (and ⚔) jump to the Items
+              tab showing every way to get them.
             </div>
           </div>
         ) : (
@@ -860,8 +1048,7 @@ export default function CraftingTab() {
                           style={{ ...tdStyle, fontWeight: 700, ...(rankUp ? { color: RANK_UP_COLOR } : {}) }}
                           title={rankUp ? "Guild rank-up test item" : undefined}
                         >
-                          {r.res.n}
-                          {r.res.q > 1 ? ` x${r.res.q}` : ""}
+                          {renderResult(r, rankUp)}
                         </td>
                         <td style={tdStyle}>{r.craft}</td>
                         <td style={tdStyle}>{r.lvl}</td>
@@ -871,7 +1058,7 @@ export default function CraftingTab() {
                         </td>
                         <td style={tdStyle}>{subsText(r)}</td>
                         <td style={{ ...tdStyle, whiteSpace: "normal", minWidth: 260, opacity: 0.9 }}>
-                          {ingredientText(r)}
+                          {renderIngredients(r)}
                         </td>
                         <td style={{ ...tdStyle, whiteSpace: "normal", minWidth: 180, opacity: 0.85 }}>{hqText(r)}</td>
                         <td style={{ ...tdStyle, opacity: 0.85 }}>{badges(r) || "—"}</td>
@@ -937,8 +1124,7 @@ export default function CraftingTab() {
                           style={{ ...tdStyle, fontWeight: 700, ...(rankUp ? { color: RANK_UP_COLOR } : {}) }}
                           title={rankUp ? "Guild rank-up test item" : undefined}
                         >
-                          {row.recipe.res.n}
-                          {row.recipe.res.q > 1 ? ` x${row.recipe.res.q}` : ""}
+                          {renderResult(row.recipe, rankUp)}
                         </td>
                         <td style={tdStyle}>{row.recipe.lvl}</td>
                         <td style={tdStyle}>+{row.gap}</td>
@@ -955,7 +1141,7 @@ export default function CraftingTab() {
                         </td>
                         <td style={tdStyle}>{subsText(row.recipe)}</td>
                         <td style={{ ...tdStyle, whiteSpace: "normal", minWidth: 260, opacity: 0.9 }}>
-                          {ingredientText(row.recipe)}
+                          {renderIngredients(row.recipe)}
                         </td>
                         <td style={{ ...tdStyle, opacity: 0.85 }}>{badges(row.recipe) || "—"}</td>
                       </tr>

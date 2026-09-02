@@ -31,6 +31,21 @@
    ]
   },
   {
+   "id": "altaieu-1",
+   "zone": "Al'Taieu",
+   "mapNo": 1,
+   "name": "Al'Taieu",
+   "file": "maps/altaieu-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
    "id": "altar-room-1",
    "zone": "Altar Room",
    "mapNo": 1,
@@ -4041,6 +4056,66 @@
    "mapNo": 3,
    "name": "The Eldieme Necropolis - Map 3",
    "file": "maps/the-eldieme-necropolis-3.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "the-garden-of-ruhmet-1",
+   "zone": "The Garden of Ru'Hmet",
+   "mapNo": 1,
+   "name": "The Garden of Ru'Hmet - Map 1",
+   "file": "maps/the-garden-of-ruhmet-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "the-garden-of-ruhmet-2",
+   "zone": "The Garden of Ru'Hmet",
+   "mapNo": 2,
+   "name": "The Garden of Ru'Hmet - Map 2",
+   "file": "maps/the-garden-of-ruhmet-2.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "the-garden-of-ruhmet-3",
+   "zone": "The Garden of Ru'Hmet",
+   "mapNo": 3,
+   "name": "The Garden of Ru'Hmet - Map 3",
+   "file": "maps/the-garden-of-ruhmet-3.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "the-garden-of-ruhmet-4",
+   "zone": "The Garden of Ru'Hmet",
+   "mapNo": 4,
+   "name": "The Garden of Ru'Hmet - Map 4",
+   "file": "maps/the-garden-of-ruhmet-4.png",
    "cell": [
     0.06238,
     0.06238

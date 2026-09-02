@@ -29,6 +29,9 @@ const EXTRA_NAMES = new Map([
   ["Pashhow Marshlands", ["Pashow Marshlands"]], // wiki filename typo
 ]);
 
+// Maps useful for mission reference even when their page has no coordinate tooltip.
+const REQUIRED_ZONES = ["Al'Taieu", "The Garden of Ru'Hmet", "Grand Palace of Hu'Xzoi"];
+
 // Maps that can't be discovered from the zone page; [mapNo, wiki file] pairs
 const MAP_OVERRIDES = new Map([
   ["Palborough Mines", [[1, "File:Palborough1.png"], [2, "File:Palborough2.png"], [3, "File:Palborough3.png"]]],
@@ -38,6 +41,8 @@ const MAP_OVERRIDES = new Map([
   ["Riverne - Site B01", [[1, "File:RiverneSiteB01.png"]]],
   ["Ru'Aun Gardens", [[1, "File:RuAunGardensMain.png"]]],
   ["Shrine of Ru'Avitau", [[1, "File:RuAvitau1.png"], [2, "File:RuAvitau2.png"], [3, "File:RuAvitau3.png"], [4, "File:RuAvitau4.png"], [5, "File:RuAvitau5.png"], [6, "File:RuAvitau6.png"]]],
+  ["Al'Taieu", [[1, "File:AlTaieu.png"]]],
+  ["The Garden of Ru'Hmet", [[1, "File:Garden-of-Ru-Hmet-1.jpg"], [2, "File:Garden-of-Ru-Hmet-2.jpg"], [3, "File:Ruhmet-garden 3 edited.jpg"], [4, "File:Garden-of-Ru-Hmet-4.jpg"]]],
 ]);
 
 /** Possible squashed filename stems for a zone (handles "Bastok-port", "Jeuno-lower", "Zitah-sanctuary"). */
@@ -75,7 +80,7 @@ for (const e of [...questData.quests, ...questData.missions]) {
   if (e.startZone) zoneSet.add(e.startZone);
   for (const r of e.mapRefs ?? []) zoneSet.add(r.zone);
 }
-const zones = [...new Set([...zoneSet].map((z) => ALIASES.get(z) ?? z))].sort();
+const zones = [...new Set([...zoneSet, ...REQUIRED_ZONES].map((z) => ALIASES.get(z) ?? z))].sort();
 console.log(`${zones.length} candidate zones from quest data`);
 
 const outDir = path.join(root, "public", "maps");

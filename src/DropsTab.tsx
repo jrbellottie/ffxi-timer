@@ -1,8 +1,12 @@
-// src/DropsTab.tsx — mob drop tables generated from LandSandBoat SQL
-// (src/data/drops.json via scripts/convert-drops.cjs).
+// src/DropsTab.tsx — the Items tab: mob drop tables generated from LandSandBoat
+// SQL (src/data/drops.json) plus every other in-app source per item (shops,
+// guilds, BCNM, gathering, fishing, digging, clamming, quests).
 import React, { useMemo, useState } from "react";
 import { styles } from "./styles";
 import { loadJson, saveJson } from "./utils/storage";
+import { craftSearchName, normalizeItemName } from "./utils/itemLinks";
+import { navigateToTab, peekNavQuery, hasBackTab, goBackTab } from "./utils/tabNav";
+import { getItemSources, sourceBadges, allSourcedItems, questRewardsFor } from "./utils/itemSources";
 import dropsData from "./data/drops.json";
 
 type ItemInfo = {
@@ -37,7 +41,7 @@ type DropsData = {
 
 const DATA = dropsData as unknown as DropsData;
 
-type DropKind = "Drop" | "Steal" | "Despoil";
+type DropKind = "Drop" | "Steal" | "Despoil" | "Other";
 
 type Row = {
   item: string;
@@ -118,17 +122,32 @@ function buildRows(): Row[] {
 }
 
 const ROWS: Row[] = buildRows();
-const ZONES: string[] = [...new Set(ROWS.map((r) => r.zone))].sort((a, b) => a.localeCompare(b));
-const ERA_ZONES: string[] = [...new Set(ROWS.filter((r) => r.era).map((r) => r.zone))].sort((a, b) =>
+
+// Items with a non-drop source but no mob drop get a synthetic row so they're
+// searchable here (kind "Other"; expand the row for details).
+{
+  const droppedNorms = new Set(ROWS.map((r) => normalizeItemName(r.item)));
+  for (const { norm, display } of allSourcedItems()) {
+    if (droppedNorms.has(norm)) continue;
+    ROWS.push({
+      item: display, itemId: 0, mob: "—", zone: "—", lv: null, kind: "Other",
+      rate: 0, grouped: false, stack: 1, sell: 0, ah: false, nm: false, era: true,
+    });
+  }
+}
+
+const ZONES: string[] = [...new Set(ROWS.map((r) => r.zone))].filter((z) => z !== "—").sort((a, b) => a.localeCompare(b));
+const ERA_ZONES: string[] = [...new Set(ROWS.filter((r) => r.era).map((r) => r.zone))].filter((z) => z !== "—").sort((a, b) =>
   a.localeCompare(b)
 );
 
-const KINDS: DropKind[] = ["Drop", "Steal", "Despoil"];
+const KINDS: DropKind[] = ["Drop", "Steal", "Despoil", "Other"];
 
 const KIND_COLORS: Record<DropKind, string> = {
   Drop: "#7ec4e8",
   Steal: "#ffa552",
   Despoil: "#c9a2ff",
+  Other: "#9aa0b8",
 };
 
 const NM_MODES = [
@@ -139,7 +158,7 @@ const NM_MODES = [
 
 type NmMode = (typeof NM_MODES)[number]["id"];
 
-type SortKey = "item" | "mob" | "zone" | "lv" | "kind" | "rate" | "stack" | "sell" | "ah";
+type SortKey = "item" | "mob" | "zone" | "lv" | "kind" | "rate" | "sell" | "src";
 type SortDir = "asc" | "desc";
 
 const COLUMNS: { key: SortKey; label: string }[] = [
@@ -149,9 +168,8 @@ const COLUMNS: { key: SortKey; label: string }[] = [
   { key: "lv", label: "Lv" },
   { key: "kind", label: "Type" },
   { key: "rate", label: "Rate" },
-  { key: "stack", label: "Stack" },
   { key: "sell", label: "Vendor" },
-  { key: "ah", label: "AH" },
+  { key: "src", label: "Also From" },
 ];
 
 const UI_KEY = "ffxi_drops_ui_v1";
@@ -171,7 +189,9 @@ const DEFAULT_UI: DropsUiState = {
   itemQuery: "",
   mobQuery: "",
   zone: "",
-  kinds: [],
+  // Steal/Despoil are THF-only; keep synthetic "Other" rows visible so
+  // shop/BCNM/gathering-only items still show up.
+  kinds: ["Drop", "Other"],
   nmMode: "all",
   eraOnly: true,
   sortKey: "item",
@@ -184,7 +204,7 @@ function normalizeState(raw: unknown): DropsUiState {
     itemQuery: typeof obj.itemQuery === "string" ? obj.itemQuery : DEFAULT_UI.itemQuery,
     mobQuery: typeof obj.mobQuery === "string" ? obj.mobQuery : DEFAULT_UI.mobQuery,
     zone: typeof obj.zone === "string" && ZONES.includes(obj.zone) ? obj.zone : DEFAULT_UI.zone,
-    kinds: Array.isArray(obj.kinds)
+    kinds: Array.isArray(obj.kinds) && obj.kinds.length > 0
       ? (obj.kinds.filter((k) => KINDS.includes(k as DropKind)) as DropKind[])
       : DEFAULT_UI.kinds,
     nmMode: NM_MODES.some((m) => m.id === obj.nmMode) ? (obj.nmMode as NmMode) : DEFAULT_UI.nmMode,
@@ -226,6 +246,14 @@ const highlightStyle: React.CSSProperties = {
   fontWeight: 700,
 };
 
+const craftLinkStyle: React.CSSProperties = {
+  color: "#8af6b0",
+  cursor: "pointer",
+  textDecoration: "underline",
+  textDecorationColor: "rgba(138,246,176,0.35)",
+  textUnderlineOffset: 2,
+};
+
 /** Wraps every case-insensitive occurrence of q in text with a highlight span. */
 function highlightText(text: string, q: string): React.ReactNode {
   if (!q) return text;
@@ -261,17 +289,20 @@ function formatLv(lv: [number, number] | null): string {
 }
 
 function kindValue(k: DropKind): number {
-  return k === "Drop" ? 0 : k === "Steal" ? 1 : 2;
+  return k === "Drop" ? 0 : k === "Steal" ? 1 : k === "Despoil" ? 2 : 3;
+}
+
+function badgeSummary(item: string): string {
+  return sourceBadges(item).map((b) => b.label).join(", ");
 }
 
 function compareRows(a: Row, b: Row, key: SortKey, dir: SortDir): number {
   let cmp = 0;
   if (key === "rate") cmp = a.rate - b.rate;
-  else if (key === "stack") cmp = a.stack - b.stack;
   else if (key === "sell") cmp = a.sell - b.sell;
-  else if (key === "ah") cmp = Number(a.ah) - Number(b.ah);
   else if (key === "lv") cmp = (a.lv ? a.lv[0] : -1) - (b.lv ? b.lv[0] : -1);
   else if (key === "kind") cmp = kindValue(a.kind) - kindValue(b.kind);
+  else if (key === "src") cmp = badgeSummary(a.item).localeCompare(badgeSummary(b.item));
   else cmp = a[key].localeCompare(b[key]);
   if (cmp === 0) cmp = a.item.localeCompare(b.item);
   if (cmp === 0) cmp = a.mob.localeCompare(b.mob);
@@ -279,10 +310,207 @@ function compareRows(a: Row, b: Row, key: SortKey, dir: SortDir): number {
   return dir === "asc" ? cmp : -cmp;
 }
 
+const badgeStyle: React.CSSProperties = {
+  display: "inline-block",
+  border: "1px solid",
+  borderRadius: 999,
+  padding: "0 7px",
+  fontSize: 10,
+  fontWeight: 700,
+  marginRight: 4,
+  opacity: 0.9,
+  lineHeight: "16px",
+};
+
+const detailLabelStyle: React.CSSProperties = {
+  fontSize: 11,
+  fontWeight: 800,
+  letterSpacing: 0.4,
+  textTransform: "uppercase",
+  whiteSpace: "nowrap",
+  minWidth: 118,
+};
+
+const chipStyle: React.CSSProperties = {
+  display: "inline-block",
+  background: "rgba(255,255,255,0.05)",
+  border: "1px solid rgba(255,255,255,0.10)",
+  borderRadius: 8,
+  padding: "1px 8px",
+  fontSize: 12,
+  whiteSpace: "nowrap",
+};
+
+const chipLinkStyle: React.CSSProperties = {
+  ...chipStyle,
+  cursor: "pointer",
+  color: "#7ec4e8",
+  borderColor: "rgba(126,196,232,0.45)",
+};
+
+const MAX_DETAIL = 14;
+
+/** Expanded row: every way to obtain the item, in and out of this table. */
+function ItemDetail({ item, eraOnly }: { item: string; eraOnly: boolean }) {
+  const sources = getItemSources(item);
+  const quests = useMemo(() => questRewardsFor(item), [item]);
+
+  const dropRows = useMemo(() => {
+    const norm = normalizeItemName(item);
+    const rows = ROWS.filter((r) => r.kind !== "Other" && (!eraOnly || r.era) && normalizeItemName(r.item) === norm);
+    rows.sort((a, b) => b.rate - a.rate);
+    return rows;
+  }, [item, eraOnly]);
+
+  const section = (label: string, color: string, chips: React.ReactNode[], extra = 0) =>
+    chips.length === 0 ? null : (
+      <div key={label} style={{ display: "flex", gap: 8, alignItems: "baseline" }}>
+        <span style={{ ...detailLabelStyle, color }}>{label}</span>
+        <span style={{ display: "inline-flex", flexWrap: "wrap", gap: 5, alignItems: "center" }}>
+          {chips}
+          {extra > 0 ? <span style={{ fontSize: 11, opacity: 0.65 }}>+{extra} more</span> : null}
+        </span>
+      </div>
+    );
+
+  const sections: React.ReactNode[] = [
+    section(
+      "Dropped by",
+      KIND_COLORS.Drop,
+      dropRows.slice(0, MAX_DETAIL).map((r, i) => (
+        <span
+          key={i}
+          style={chipLinkStyle}
+          title={`Open ${r.mob} in the Bestiary`}
+          onClick={(e) => {
+            e.stopPropagation();
+            navigateToTab("bestiary", r.mob, "drops");
+          }}
+        >
+          <span style={r.nm ? { color: "#ffa552", fontWeight: 700 } : undefined}>{r.mob}</span>
+          <span style={{ opacity: 0.75 }}>
+            {" · "}{r.zone} · {formatLv(r.lv)}{r.kind !== "Drop" ? ` · ${r.kind}` : ""} · {formatRate(r.rate)}
+          </span>
+        </span>
+      )),
+      Math.max(0, dropRows.length - MAX_DETAIL)
+    ),
+    section(
+      "Sold by",
+      "#D8B04B",
+      sources.shops.slice(0, MAX_DETAIL).map((s, i) => (
+        <span key={i} style={chipStyle}>
+          {s.npc}
+          <span style={{ opacity: 0.75 }}> · {s.zone} · {s.price.toLocaleString()}g</span>
+        </span>
+      )),
+      Math.max(0, sources.shops.length - MAX_DETAIL)
+    ),
+    section(
+      "Guild shop",
+      "#D8B04B",
+      sources.guild.map((g, i) => (
+        <span key={i} style={chipStyle}>
+          {g.guild} Guild
+          <span style={{ opacity: 0.75 }}> · rank {g.rank} · {g.price.toLocaleString()}g</span>
+        </span>
+      ))
+    ),
+    section(
+      "Battlefield",
+      KIND_COLORS.Drop,
+      sources.bcnm.map((b, i) => (
+        <span
+          key={i}
+          style={chipLinkStyle}
+          title="Open in the BCNM tab"
+          onClick={(e) => {
+            e.stopPropagation();
+            navigateToTab("bcnm", item, "drops");
+          }}
+        >
+          {b.name}
+          <span style={{ opacity: 0.75 }}> · {b.arena} · {b.type}</span>
+        </span>
+      ))
+    ),
+    section(
+      "Craftable",
+      "#8af6b0",
+      sources.craft.map((c, i) => (
+        <span
+          key={i}
+          style={{ ...chipLinkStyle, color: "#8af6b0", borderColor: "rgba(138,246,176,0.45)" }}
+          title="Open in the Crafting tab"
+          onClick={(e) => {
+            e.stopPropagation();
+            navigateToTab("crafting", craftSearchName(item) ?? item, "drops");
+          }}
+        >
+          {c.craft} {c.lvl}
+        </span>
+      ))
+    ),
+    section(
+      "Gathering",
+      "#a8e87e",
+      sources.helm.map((h, i) => (
+        <span key={i} style={chipStyle}>
+          {h.kind}
+          <span style={{ opacity: 0.75 }}> · {h.zone} · {h.pct.toFixed(1)}%</span>
+        </span>
+      ))
+    ),
+    section(
+      "Fishing",
+      "#9ad1ff",
+      sources.fishing.slice(0, MAX_DETAIL).map((z, i) => (
+        <span key={i} style={chipStyle}>{z}</span>
+      )),
+      Math.max(0, sources.fishing.length - MAX_DETAIL)
+    ),
+    section(
+      "Chocobo digging",
+      "#e8c47e",
+      sources.digging.map((d, i) => (
+        <span key={i} style={chipStyle}>
+          {d.zone}
+          {d.rate != null ? <span style={{ opacity: 0.75 }}> · {d.rate}%</span> : null}
+        </span>
+      ))
+    ),
+    section("Clamming", "#9ad1ff", sources.clamming ? [<span key="c" style={chipStyle}>Bibiki Bay</span>] : []),
+    section(
+      "Quest reward",
+      "#c9a2ff",
+      quests.map((q, i) => (
+        <span key={i} style={chipStyle}>
+          {q.name}
+          {q.zone ? <span style={{ opacity: 0.75 }}> · {q.zone}</span> : null}
+        </span>
+      ))
+    ),
+  ].filter(Boolean);
+
+  return (
+    <div style={{ display: "grid", gap: 7 }}>
+      <div style={{ fontWeight: 800, fontSize: 13 }}>{item}</div>
+      {sections.length > 0 ? sections : <div style={{ opacity: 0.7, fontSize: 12 }}>No known sources.</div>}
+    </div>
+  );
+}
+
 export default function DropsTab() {
-  const [ui, setUi] = useState<DropsUiState>(() => normalizeState(loadJson<unknown>(UI_KEY, {})));
+  const [ui, setUi] = useState<DropsUiState>(() => {
+    const base = normalizeState(loadJson<unknown>(UI_KEY, {}));
+    const navQuery = peekNavQuery("drops");
+    // Item links must find the item regardless of source type.
+    return navQuery ? { ...base, itemQuery: navQuery, mobQuery: "", zone: "", kinds: [] } : base;
+  });
+  const [openRow, setOpenRow] = useState<number | null>(null);
 
   const update = (patch: Partial<DropsUiState>) => {
+    setOpenRow(null);
     setUi((prev) => {
       const next = { ...prev, ...patch };
       saveJson(UI_KEY, next);
@@ -324,12 +552,38 @@ export default function DropsTab() {
   const uniqueItems = useMemo(() => new Set(filtered.map((r) => r.itemId)).size, [filtered]);
   const uniqueMobs = useMemo(() => new Set(filtered.map((r) => `${r.zone}|${r.mob}`)).size, [filtered]);
 
+  /** Item cell: links to the recipe browser when the item is craftable. */
+  const renderItem = (r: Row) => {
+    const craft = craftSearchName(r.item);
+    const text = highlightText(r.item, itemQ);
+    if (!craft) return text;
+    return (
+      <span
+        style={craftLinkStyle}
+        title={`Search crafting recipes for ${craft}`}
+        onClick={(e) => {
+          e.stopPropagation();
+          navigateToTab("crafting", craft, "drops");
+        }}
+      >
+        {text}
+      </span>
+    );
+  };
+
   return (
     <section style={styles.card}>
       <div style={styles.titleRow}>
-        <h3 style={styles.h3}>Mob Drops</h3>
-        <div style={styles.sub}>
-          Drop, steal and despoil tables from LandSandBoat ({ROWS.length.toLocaleString()} entries)
+        <h3 style={styles.h3}>Items</h3>
+        <div style={{ display: "flex", gap: 12, alignItems: "center", minWidth: 0 }}>
+          <div style={styles.sub}>
+            Where to get anything: mob drops, NPC & guild shops, BCNM, gathering, fishing, digging and more
+          </div>
+          {hasBackTab() && (
+            <button style={styles.buttonCompact} onClick={goBackTab} title="Return to your previous search">
+              ← Back
+            </button>
+          )}
         </div>
       </div>
 
@@ -450,29 +704,62 @@ export default function DropsTab() {
               </tr>
             </thead>
             <tbody>
-              {shown.map((r, i) => (
-                <tr key={i}>
-                  <td style={tdStyle}>{highlightText(r.item, itemQ)}</td>
-                  <td style={{ ...tdStyle, ...(r.nm ? { color: "#ffa552", fontWeight: 700 } : {}) }}>
-                    {highlightText(r.mob, mobQ)}
-                    {r.nm ? " (NM)" : ""}
-                  </td>
-                  <td style={tdStyle}>{highlightText(r.zone, mobQ)}</td>
-                  <td style={tdStyle}>{formatLv(r.lv)}</td>
-                  <td style={{ ...tdStyle, color: KIND_COLORS[r.kind] }}>
-                    {r.kind}
-                    {r.grouped ? " (group)" : ""}
-                  </td>
-                  <td style={tdStyle}>{formatRate(r.rate)}</td>
-                  <td style={tdStyle}>{r.stack > 1 ? r.stack : "—"}</td>
-                  <td style={tdStyle}>{r.sell > 0 ? r.sell.toLocaleString() : "—"}</td>
-                  <td style={tdStyle}>{r.ah ? "✓" : "—"}</td>
-                </tr>
-              ))}
+              {shown.map((r, i) => {
+                const isOpen = openRow === i;
+                return (
+                  <React.Fragment key={i}>
+                    <tr
+                      onClick={() => setOpenRow(isOpen ? null : i)}
+                      style={{ cursor: "pointer", ...(isOpen ? { background: "rgba(255,255,255,0.04)" } : {}) }}
+                      title="Click for every source of this item"
+                    >
+                      <td style={tdStyle}>
+                        <span style={{ opacity: 0.55, marginRight: 5 }}>{isOpen ? "▾" : "▸"}</span>
+                        {renderItem(r)}
+                      </td>
+                      <td style={{ ...tdStyle, ...(r.nm ? { color: "#ffa552", fontWeight: 700 } : {}) }}>
+                        {highlightText(r.mob, mobQ)}
+                        {r.nm ? " (NM)" : ""}
+                      </td>
+                      <td style={tdStyle}>{highlightText(r.zone, mobQ)}</td>
+                      <td style={tdStyle}>{formatLv(r.lv)}</td>
+                      <td style={{ ...tdStyle, color: KIND_COLORS[r.kind] }}>
+                        {r.kind}
+                        {r.grouped ? " (group)" : ""}
+                      </td>
+                      <td style={tdStyle}>{r.kind === "Other" ? "—" : formatRate(r.rate)}</td>
+                      <td style={tdStyle}>{r.sell > 0 ? r.sell.toLocaleString() : "—"}</td>
+                      <td style={{ ...tdStyle, whiteSpace: "normal", minWidth: 150 }}>
+                        {sourceBadges(r.item).map((b) => (
+                          <span key={b.label} style={{ ...badgeStyle, color: b.color, borderColor: b.color }}>
+                            {b.label}
+                          </span>
+                        ))}
+                      </td>
+                    </tr>
+                    {isOpen && (
+                      <tr>
+                        <td
+                          colSpan={COLUMNS.length}
+                          style={{
+                            ...tdStyle,
+                            whiteSpace: "normal",
+                            background: "rgba(255,255,255,0.025)",
+                            padding: "10px 16px",
+                            borderBottom: "1px solid rgba(255,255,255,0.14)",
+                          }}
+                        >
+                          <ItemDetail item={r.item} eraOnly={ui.eraOnly} />
+                        </td>
+                      </tr>
+                    )}
+                  </React.Fragment>
+                );
+              })}
               {shown.length === 0 && (
                 <tr>
                   <td style={{ ...tdStyle, opacity: 0.7 }} colSpan={COLUMNS.length}>
-                    No drops match the current filters.
+                    No items match the current filters.
                   </td>
                 </tr>
               )}
@@ -481,9 +768,13 @@ export default function DropsTab() {
         </div>
 
         <div style={styles.sub}>
-          Rates are per kill (Treasure Hunter not included). Grouped drops share one roll: the group rate is the
-          chance anything in the group drops, split by item weight — the shown rate is the effective per-item
-          chance. Steal/Despoil rates are per attempt. Vendor = LSB base sell price; AH = listable at auction.
+          Click any row to see every source: mob drops, NPC and guild shops, battlefields, gathering points,
+          fishing, chocobo digging, clamming and quest rewards. Drop rates are per kill (Treasure Hunter not
+          included); grouped drops share one roll, and the shown rate is the effective per-item chance.
+          Steal/Despoil rates are per attempt. Vendor = LSB base sell price. Items with{" "}
+          <span style={{ color: "#9aa0b8", fontWeight: 700 }}>Other</span> type don't drop from mobs but can be
+          obtained elsewhere. Items in <span style={{ color: "#8af6b0", fontWeight: 700 }}>green</span> are
+          craftable — click the name to open their recipe.
         </div>
       </div>
     </section>

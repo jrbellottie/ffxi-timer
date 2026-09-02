@@ -1,4 +1,5 @@
 import { useDeferredValue, useMemo, useState } from "react";
+import { peekNavQuery, hasBackTab, goBackTab } from "./utils/tabNav";
 import bestiaryData from "./data/bestiary.json";
 import "./BestiaryTab.css";
 
@@ -112,8 +113,10 @@ function StatTile({ label, value, secondary }: { label: string; value: number | 
 }
 
 export default function BestiaryTab() {
+  // Arriving from an Items-tab mob link pre-fills the search.
+  const navQuery = peekNavQuery("bestiary");
   const [era, setEra] = useState<Era>("WOTG");
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState(navQuery ?? "");
   const deferredQuery = useDeferredValue(query.trim().toLowerCase());
   const [zone, setZone] = useState("");
   const [family, setFamily] = useState("");
@@ -180,6 +183,11 @@ export default function BestiaryTab() {
           <strong>{MONSTERS.length.toLocaleString()}</strong> zone-specific groups
           <span>LSB {DATA.source.revision.slice(0, 8)}</span>
         </div>
+        {hasBackTab() && (
+          <button className="bestiary-clear" onClick={goBackTab} title="Return to your previous search">
+            ← Back
+          </button>
+        )}
       </header>
 
       <div className="bestiary-filters">
