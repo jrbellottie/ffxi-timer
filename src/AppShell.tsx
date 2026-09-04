@@ -2361,14 +2361,6 @@ export default function AppShell() {
         </section>
   );
 
-  const backBar = (
-    <div style={{ ...styles.tabHeaderRow, justifyContent: "flex-end" }}>
-      <button style={styles.backButton} onClick={() => { clearTabNav(); setActiveTab("home"); }}>
-        ← Back to Clock &amp; Timers
-      </button>
-    </div>
-  );
-
   const tabBar = (
     <nav style={styles.tabBar}>
       {TABS.map((tab) => {
@@ -2411,21 +2403,18 @@ export default function AppShell() {
             {moonCard}
           </div>
           <StopwatchTab />
-          <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 28 }}>{backBar}</div>
         </div>
       )}
 
       {activeTab === "nm" && (
         <div style={styles.tabContent}>
           {nmContent}
-          {backBar}
         </div>
       )}
 
       {activeTab === "presets" && (
         <div style={styles.tabContent}>
           {presetContent}
-          {backBar}
         </div>
       )}
 
@@ -2434,7 +2423,6 @@ export default function AppShell() {
           <div>
             <div style={{ ...styles.tabGrid, alignItems: "start", gridAutoRows: "max-content" }}>{countersCard}</div>
           </div>
-          <div style={{ display: "flex", justifyContent: "flex-end" }}>{backBar}</div>
         </div>
       )}
 
@@ -2443,56 +2431,48 @@ export default function AppShell() {
           <div>
             <div style={{ ...styles.tabGrid, alignItems: "start", gridAutoRows: "max-content" }}>{luShangCard}</div>
           </div>
-          <div style={{ display: "flex", justifyContent: "flex-end" }}>{backBar}</div>
         </div>
       )}
 
       {activeTab === "fish" && (
         <div style={styles.tabContent}>
           <FishTab />
-          <div style={{ display: "flex", justifyContent: "flex-end" }}>{backBar}</div>
         </div>
       )}
 
       {activeTab === "bait" && (
         <div style={styles.tabContent}>
           <BaitTab />
-          <div style={{ display: "flex", justifyContent: "flex-end" }}>{backBar}</div>
         </div>
       )}
 
       {activeTab === "rods" && (
         <div style={styles.tabContent}>
           <RodsTab />
-          <div style={{ display: "flex", justifyContent: "flex-end" }}>{backBar}</div>
         </div>
       )}
 
       {activeTab === "clam" && (
         <div style={styles.tabContent}>
           <ClamTab />
-          <div style={{ display: "flex", justifyContent: "flex-end" }}>{backBar}</div>
         </div>
       )}
 
       {activeTab === "chocobo" && (
         <div style={styles.tabContent}>
           <ChocoboTab cal={cal} />
-          <div style={{ display: "flex", justifyContent: "flex-end" }}>{backBar}</div>
         </div>
       )}
 
       {activeTab === "weather" && (
         <div style={styles.tabContent}>
           <WeatherTab cal={cal} />
-          <div style={{ display: "flex", justifyContent: "flex-end" }}>{backBar}</div>
         </div>
       )}
 
       {activeTab === "bcnm" && (
         <div style={styles.tabContent}>
           <BcnmTab />
-          <div style={{ display: "flex", justifyContent: "flex-end" }}>{backBar}</div>
         </div>
       )}
 
@@ -2501,7 +2481,6 @@ export default function AppShell() {
           <React.Suspense fallback={<div style={styles.card}>Loading quests...</div>}>
             <QuestsTab />
           </React.Suspense>
-          <div style={{ display: "flex", justifyContent: "flex-end" }}>{backBar}</div>
         </div>
       )}
 
@@ -2510,7 +2489,6 @@ export default function AppShell() {
           <React.Suspense fallback={<div style={styles.card}>Loading atlas...</div>}>
             <AtlasTab />
           </React.Suspense>
-          <div style={{ display: "flex", justifyContent: "flex-end" }}>{backBar}</div>
         </div>
       )}
 
@@ -2519,7 +2497,6 @@ export default function AppShell() {
           <React.Suspense fallback={<div style={styles.card}>Loading items...</div>}>
             <DropsTab />
           </React.Suspense>
-          <div style={{ display: "flex", justifyContent: "flex-end" }}>{backBar}</div>
         </div>
       )}
 
@@ -2528,14 +2505,12 @@ export default function AppShell() {
           <React.Suspense fallback={<div style={styles.card}>Loading bestiary...</div>}>
             <BestiaryTab />
           </React.Suspense>
-          <div style={{ display: "flex", justifyContent: "flex-end" }}>{backBar}</div>
         </div>
       )}
 
       {activeTab === "skillchains" && (
         <div style={styles.tabContent}>
           <SkillchainTab />
-          <div style={{ display: "flex", justifyContent: "flex-end" }}>{backBar}</div>
         </div>
       )}
 
@@ -2544,14 +2519,12 @@ export default function AppShell() {
           <React.Suspense fallback={<div style={styles.card}>Loading recipes...</div>}>
             <CraftingTab />
           </React.Suspense>
-          <div style={{ display: "flex", justifyContent: "flex-end" }}>{backBar}</div>
         </div>
       )}
 
       {activeTab === "calibration" && (
         <div style={styles.tabContent}>
           {calibrationContent}
-          {backBar}
         </div>
       )}
     </div>

@@ -4,7 +4,7 @@ import { styles } from "./styles";
 import recipesData from "./data/recipes.json";
 import { loadJson, saveJson } from "./utils/storage";
 import { craftSkillupStats } from "./utils/craftingSkillup";
-import { findableName } from "./utils/itemLinks";
+import { findableName, normalizeItemName } from "./utils/itemLinks";
 import { navigateToTab, peekNavQuery, hasBackTab, goBackTab, peekBackTabSeq, nextNavSeq } from "./utils/tabNav";
 
 type RecipeItem = { n: string; q: number };
@@ -150,6 +150,8 @@ const plannerToggleStyle: React.CSSProperties = {
 const thStyle: React.CSSProperties = {
   position: "sticky",
   top: 0,
+  // Above row cells that form stacking contexts (opacity < 1 tds).
+  zIndex: 1,
   background: "#161616",
   color: "#eaeaea",
   textAlign: "left",
@@ -188,9 +190,6 @@ function successColor(pct: number): React.CSSProperties {
 function eraLabel(era: string): string {
   return era === "" ? "Base" : era;
 }
-
-/** "Piece of Bloodwood Lumber" → "Bloodwood Lumber" (ingredient names carry container prefixes, results don't). */
-const OF_PREFIX = /^[A-Za-z]+ of /;
 
 const ingredientLinkStyle: React.CSSProperties = {
   color: "#8af6b0",
@@ -472,18 +471,23 @@ export default function CraftingTab() {
     setPHideKeyItem(false);
   }
 
-  const craftableNames = useMemo(() => {
-    const set = new Set<string>();
-    for (const r of eraFiltered) set.add(r.res.n.toLowerCase());
-    return set;
+  const craftableTargets = useMemo(() => {
+    const map = new Map<string, string>(); // normalized name -> result name to search for
+    for (const r of eraFiltered) map.set(normalizeItemName(r.res.n), r.res.n);
+    // HQ results (e.g. "Gold Earring +1") resolve to their base recipe.
+    for (const r of eraFiltered) {
+      if (r.d === 1) continue;
+      for (const h of r.hq) {
+        const norm = normalizeItemName(h.n);
+        if (!map.has(norm)) map.set(norm, r.res.n);
+      }
+    }
+    return map;
   }, [eraFiltered]);
 
   /** Name to search for if this ingredient is craftable, else null. */
   function ingredientTarget(name: string): string | null {
-    if (craftableNames.has(name.toLowerCase())) return name;
-    const stripped = name.replace(OF_PREFIX, "");
-    if (stripped !== name && craftableNames.has(stripped.toLowerCase())) return stripped;
-    return null;
+    return craftableTargets.get(normalizeItemName(name)) ?? null;
   }
 
   const [searchHistory, setSearchHistory] = useState<SearchSnapshot[]>(sessionSearchHistory);
@@ -655,7 +659,7 @@ export default function CraftingTab() {
       if (pIngredient && !recipe.ing.some((i) => i.n.toLowerCase().includes(pIngredient.trim().toLowerCase()))) continue;
       if (pGlobal && !recipeMatchesText(recipe, pGlobal)) continue;
 
-      const stats = craftSkillupStats(skillTenths, recipe.lvl, recipe.d === 1, supportBonus);
+      const stats = craftSkillupStats(skillTenths, recipe.lvl, recipe.d === 1, supportBonus, recipe.subs?.length ?? 0);
       if (!stats.eligible) continue;
       if (minSuccess !== null && Number.isFinite(minSuccess) && stats.successPct < minSuccess) continue;
 
@@ -691,10 +695,6 @@ export default function CraftingTab() {
 
     return rows;
   }, [eraFiltered, skillTenths, pCraft, supportBonus, pGlobal, pIngredient, pMinSuccess, pLvlMin, pLvlMax, pIncludeDesynth, pHideKeyItem, pSortKey, pSortDir]);
-
-  const plannerTop = plannerResults.length > 0
-    ? plannerResults.reduce((best, row) => (row.expectedPerSynth > best.expectedPerSynth ? row : best))
-    : null;
 
   const results = mode === "recipes" ? recipeResults : plannerResults;
   const visibleCount = results.length;
@@ -966,27 +966,25 @@ export default function CraftingTab() {
               </button>
             </div>
 
-            <div style={{ marginTop: 8, ...styles.sub }}>
-              Era (Phoenix/LSB) rates: skill-up chance is a flat <strong>60%</strong> below skill 50.0 and{" "}
-              <strong>25%</strong> at 50.0+, on any synth where your skill is below the recipe cap. Broken synths can
-              still skill up at half rate, but only within 1–5 levels of the cap. Skill-up size scales with the level
-              gap (up to +0.5 at 14+ over), and is baked into the calculation. Only +0.1 happens above skill 60. 
-              Guild image support, gear and Moghancement boost success rate only — skill-up rolls always use your real skill.
-              Sub-craft requirements are assumed met. Recipes in{" "}
-              <span style={{ color: RANK_UP_COLOR, fontWeight: 700 }}>blue</span> craft a guild rank-up test item
-            </div>
+            <details style={{ marginTop: 8 }}>
+              <summary style={{ ...styles.sub, cursor: "pointer", userSelect: "none", width: "fit-content" }}>
+                ℹ️ Info — era rates &amp; assumptions
+              </summary>
+              <div style={{ marginTop: 6, ...styles.sub }}>
+                Era (Phoenix/LSB) rates: skill-up chance is a flat <strong>60%</strong> below skill 50.0 and{" "}
+                <strong>25%</strong> at 50.0+, on any synth where your skill is below the recipe cap. Broken synths can
+                still skill up at half rate, but only within 1–5 levels of the cap. Skill-up size scales with the level
+                gap (up to +0.5 at 14+ over), and is baked into the calculation. Only +0.1 happens above skill 60. 
+                Guild image support, gear and Moghancement boost success rate only — skill-up rolls always use your real skill.
+                Sub-craft requirements are assumed met; each sub-craft still rolls its own break check (~5% per sub), which
+                is factored into success and expected skill. Recipes in{" "}
+                <span style={{ color: RANK_UP_COLOR, fontWeight: 700 }}>blue</span> craft a guild rank-up test item
+              </div>
+            </details>
 
             {skillTenths === null ? (
               <div style={{ marginTop: 10, ...styles.sub, color: "#ff9c7a" }}>
                 Enter a valid current skill (0–100) to see recommendations.
-              </div>
-            ) : plannerTop ? (
-              <div style={{ marginTop: 10, ...styles.sub }}>
-                Best pick at {(skillTenths / 10).toFixed(1)} {pCraft}:{" "}
-                <span style={{ color: "#8af6b0", fontWeight: 800 }}>{plannerTop.recipe.res.n}</span> (cap{" "}
-                {plannerTop.recipe.lvl}, {plannerTop.recipe.crystal} crystal) —{" "}
-                {plannerTop.expectedPerSynth.toFixed(3)} expected skill per synth, ~
-                {Math.ceil(plannerTop.synthsPerLevel)} synths per level.
               </div>
             ) : null}
           </div>
@@ -1118,7 +1116,7 @@ export default function CraftingTab() {
                         title="Click to highlight this row"
                       >
                         <td style={{ ...tdStyle, color: "#8af6b0", fontWeight: 800 }}>
-                          {row.expectedPerSynth.toFixed(3)}
+                          {row.expectedPerSynth.toFixed(4)}
                         </td>
                         <td
                           style={{ ...tdStyle, fontWeight: 700, ...(rankUp ? { color: RANK_UP_COLOR } : {}) }}

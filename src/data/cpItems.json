@@ -1,0 +1,1283 @@
+[
+ {
+  "n": "Scroll of Instant Reraise",
+  "nation": "All nations",
+  "rank": null,
+  "cp": 7,
+  "lvl": 1
+ },
+ {
+  "n": "Scroll of Instant Warp",
+  "nation": "All nations",
+  "rank": null,
+  "cp": 10,
+  "lvl": 1
+ },
+ {
+  "n": "Return Ring",
+  "nation": "All nations",
+  "rank": null,
+  "cp": 2500,
+  "lvl": 1
+ },
+ {
+  "n": "Homing Ring",
+  "nation": "All nations",
+  "rank": null,
+  "cp": 9000,
+  "lvl": 1
+ },
+ {
+  "n": "Chariot Band",
+  "nation": "All nations",
+  "rank": null,
+  "cp": 500,
+  "lvl": 1
+ },
+ {
+  "n": "Empress Band",
+  "nation": "All nations",
+  "rank": null,
+  "cp": 1000,
+  "lvl": 1
+ },
+ {
+  "n": "Emperor Band",
+  "nation": "All nations",
+  "rank": null,
+  "cp": 2000,
+  "lvl": 1
+ },
+ {
+  "n": "Warp Ring",
+  "nation": "All nations",
+  "rank": null,
+  "cp": 5000,
+  "lvl": 1
+ },
+ {
+  "n": "Cipher of Tenzens Alter Ego",
+  "nation": "All nations",
+  "rank": null,
+  "cp": 1000,
+  "lvl": 1
+ },
+ {
+  "n": "Cipher of Rahals Alter Ego",
+  "nation": "All nations",
+  "rank": null,
+  "cp": 1000,
+  "lvl": 1
+ },
+ {
+  "n": "Cipher of Kukkis Alter Ego",
+  "nation": "All nations",
+  "rank": null,
+  "cp": 1000,
+  "lvl": 1
+ },
+ {
+  "n": "Refined Chair Set",
+  "nation": "All nations",
+  "rank": 10,
+  "cp": 20000,
+  "lvl": 1
+ },
+ {
+  "n": "Cipher of Makkis Alter Ego",
+  "nation": "All nations",
+  "rank": null,
+  "cp": 1000,
+  "lvl": 1
+ },
+ {
+  "n": "Royal Archers Longbow",
+  "nation": "San d'Oria",
+  "rank": 1,
+  "cp": 1000,
+  "lvl": 10
+ },
+ {
+  "n": "Royal Archers Sword",
+  "nation": "San d'Oria",
+  "rank": 1,
+  "cp": 1000,
+  "lvl": 10
+ },
+ {
+  "n": "Royal Footmans Bandana",
+  "nation": "San d'Oria",
+  "rank": 1,
+  "cp": 1000,
+  "lvl": 10
+ },
+ {
+  "n": "Royal Footmans Gloves",
+  "nation": "San d'Oria",
+  "rank": 1,
+  "cp": 1000,
+  "lvl": 10
+ },
+ {
+  "n": "Royal Footmans Boots",
+  "nation": "San d'Oria",
+  "rank": 1,
+  "cp": 1000,
+  "lvl": 10
+ },
+ {
+  "n": "Royal Archers Cesti",
+  "nation": "San d'Oria",
+  "rank": 1,
+  "cp": 1000,
+  "lvl": 10
+ },
+ {
+  "n": "Royal Footmans Tunic",
+  "nation": "San d'Oria",
+  "rank": 1,
+  "cp": 1000,
+  "lvl": 10
+ },
+ {
+  "n": "Royal Spearmans Spear",
+  "nation": "San d'Oria",
+  "rank": 2,
+  "cp": 2000,
+  "lvl": 18
+ },
+ {
+  "n": "Royal Footmans Vest",
+  "nation": "San d'Oria",
+  "rank": 2,
+  "cp": 2000,
+  "lvl": 10
+ },
+ {
+  "n": "Royal Footmans Trousers",
+  "nation": "San d'Oria",
+  "rank": 2,
+  "cp": 2000,
+  "lvl": 20
+ },
+ {
+  "n": "Royal Spearmans Horn",
+  "nation": "San d'Oria",
+  "rank": 2,
+  "cp": 2000,
+  "lvl": 20
+ },
+ {
+  "n": "Royal Footmans Clogs",
+  "nation": "San d'Oria",
+  "rank": 2,
+  "cp": 2000,
+  "lvl": 20
+ },
+ {
+  "n": "Royal Squires Halberd",
+  "nation": "San d'Oria",
+  "rank": 3,
+  "cp": 4000,
+  "lvl": 30
+ },
+ {
+  "n": "Royal Squires Collar",
+  "nation": "San d'Oria",
+  "rank": 3,
+  "cp": 4000,
+  "lvl": 30
+ },
+ {
+  "n": "Royal Squires Helm",
+  "nation": "San d'Oria",
+  "rank": 3,
+  "cp": 4000,
+  "lvl": 30
+ },
+ {
+  "n": "Royal Squires Mufflers",
+  "nation": "San d'Oria",
+  "rank": 3,
+  "cp": 4000,
+  "lvl": 30
+ },
+ {
+  "n": "Royal Squires Sollerets",
+  "nation": "San d'Oria",
+  "rank": 3,
+  "cp": 4000,
+  "lvl": 30
+ },
+ {
+  "n": "Royal Squires Dagger",
+  "nation": "San d'Oria",
+  "rank": 3,
+  "cp": 4000,
+  "lvl": 30
+ },
+ {
+  "n": "Royal Squires Mace",
+  "nation": "San d'Oria",
+  "rank": 3,
+  "cp": 4000,
+  "lvl": 30
+ },
+ {
+  "n": "San Dorian Ring",
+  "nation": "San d'Oria",
+  "rank": 3,
+  "cp": 4000,
+  "lvl": 1
+ },
+ {
+  "n": "Royal Swordsmans Blade",
+  "nation": "San d'Oria",
+  "rank": 4,
+  "cp": 8000,
+  "lvl": 40
+ },
+ {
+  "n": "Royal Squires Chainmail",
+  "nation": "San d'Oria",
+  "rank": 4,
+  "cp": 8000,
+  "lvl": 40
+ },
+ {
+  "n": "Royal Squires Breeches",
+  "nation": "San d'Oria",
+  "rank": 4,
+  "cp": 8000,
+  "lvl": 40
+ },
+ {
+  "n": "Royal Squires Robe",
+  "nation": "San d'Oria",
+  "rank": 4,
+  "cp": 8000,
+  "lvl": 40
+ },
+ {
+  "n": "Royal Squires Shield",
+  "nation": "San d'Oria",
+  "rank": 4,
+  "cp": 8000,
+  "lvl": 40
+ },
+ {
+  "n": "Royal Knight Army Lance",
+  "nation": "San d'Oria",
+  "rank": 5,
+  "cp": 16000,
+  "lvl": 50
+ },
+ {
+  "n": "Temple Knight Army Sword",
+  "nation": "San d'Oria",
+  "rank": 5,
+  "cp": 16000,
+  "lvl": 50
+ },
+ {
+  "n": "Royal Knight Army Shield",
+  "nation": "San d'Oria",
+  "rank": 5,
+  "cp": 16000,
+  "lvl": 50
+ },
+ {
+  "n": "Temple Knight Army Shield",
+  "nation": "San d'Oria",
+  "rank": 5,
+  "cp": 16000,
+  "lvl": 50
+ },
+ {
+  "n": "Royal Knight Army Collar",
+  "nation": "San d'Oria",
+  "rank": 5,
+  "cp": 16000,
+  "lvl": 50
+ },
+ {
+  "n": "Temple Knight Army Collar",
+  "nation": "San d'Oria",
+  "rank": 5,
+  "cp": 16000,
+  "lvl": 50
+ },
+ {
+  "n": "Royal Knights Mufflers",
+  "nation": "San d'Oria",
+  "rank": 5,
+  "cp": 16000,
+  "lvl": 50
+ },
+ {
+  "n": "Royal Knights Sollerets",
+  "nation": "San d'Oria",
+  "rank": 5,
+  "cp": 16000,
+  "lvl": 50
+ },
+ {
+  "n": "Royal Knights Belt",
+  "nation": "San d'Oria",
+  "rank": 5,
+  "cp": 16000,
+  "lvl": 50
+ },
+ {
+  "n": "Royal Knights Cloak",
+  "nation": "San d'Oria",
+  "rank": 5,
+  "cp": 16000,
+  "lvl": 50
+ },
+ {
+  "n": "Royal Army Mantle",
+  "nation": "San d'Oria",
+  "rank": 6,
+  "cp": 24000,
+  "lvl": 55
+ },
+ {
+  "n": "Royal Guards Collar",
+  "nation": "San d'Oria",
+  "rank": 6,
+  "cp": 24000,
+  "lvl": 55
+ },
+ {
+  "n": "Royal Knights Bascinet",
+  "nation": "San d'Oria",
+  "rank": 6,
+  "cp": 24000,
+  "lvl": 55
+ },
+ {
+  "n": "Royal Knights Aketon",
+  "nation": "San d'Oria",
+  "rank": 6,
+  "cp": 24000,
+  "lvl": 55
+ },
+ {
+  "n": "Royal Knights Chainmail",
+  "nation": "San d'Oria",
+  "rank": 6,
+  "cp": 24000,
+  "lvl": 55
+ },
+ {
+  "n": "Royal Knights Breeches",
+  "nation": "San d'Oria",
+  "rank": 6,
+  "cp": 24000,
+  "lvl": 55
+ },
+ {
+  "n": "Royal Guards Shield",
+  "nation": "San d'Oria",
+  "rank": 6,
+  "cp": 24000,
+  "lvl": 55
+ },
+ {
+  "n": "Royal Guards Rod",
+  "nation": "San d'Oria",
+  "rank": 6,
+  "cp": 24000,
+  "lvl": 55
+ },
+ {
+  "n": "Royal Guards Sword",
+  "nation": "San d'Oria",
+  "rank": 6,
+  "cp": 24000,
+  "lvl": 55
+ },
+ {
+  "n": "Royal Guards Fleuret",
+  "nation": "San d'Oria",
+  "rank": 6,
+  "cp": 24000,
+  "lvl": 55
+ },
+ {
+  "n": "Temple Knights Quiver",
+  "nation": "San d'Oria",
+  "rank": 7,
+  "cp": 32000,
+  "lvl": 60
+ },
+ {
+  "n": "Grand Knights Lance",
+  "nation": "San d'Oria",
+  "rank": 7,
+  "cp": 32000,
+  "lvl": 60
+ },
+ {
+  "n": "Grand Knights Ring",
+  "nation": "San d'Oria",
+  "rank": 7,
+  "cp": 32000,
+  "lvl": 60
+ },
+ {
+  "n": "Grand Temple Knights Gauntlets",
+  "nation": "San d'Oria",
+  "rank": 8,
+  "cp": 40000,
+  "lvl": 65
+ },
+ {
+  "n": "Grand Temple Knights Bangles",
+  "nation": "San d'Oria",
+  "rank": 8,
+  "cp": 40000,
+  "lvl": 65
+ },
+ {
+  "n": "Grand Temple Knights Collar",
+  "nation": "San d'Oria",
+  "rank": 8,
+  "cp": 40000,
+  "lvl": 65
+ },
+ {
+  "n": "Reserve Captains Greatsword",
+  "nation": "San d'Oria",
+  "rank": 9,
+  "cp": 48000,
+  "lvl": 71
+ },
+ {
+  "n": "Reserve Captains Pick",
+  "nation": "San d'Oria",
+  "rank": 9,
+  "cp": 48000,
+  "lvl": 71
+ },
+ {
+  "n": "Reserve Captains Mace",
+  "nation": "San d'Oria",
+  "rank": 9,
+  "cp": 48000,
+  "lvl": 71
+ },
+ {
+  "n": "Reserve Captains Lance",
+  "nation": "San d'Oria",
+  "rank": 9,
+  "cp": 48000,
+  "lvl": 71
+ },
+ {
+  "n": "Kingdom Aketon",
+  "nation": "San d'Oria",
+  "rank": 10,
+  "cp": 56000,
+  "lvl": 1
+ },
+ {
+  "n": "Kingdom Signet Staff",
+  "nation": "San d'Oria",
+  "rank": 10,
+  "cp": 5000,
+  "lvl": 1
+ },
+ {
+  "n": "Imperial Chair Set",
+  "nation": "San d'Oria",
+  "rank": 10,
+  "cp": 10000,
+  "lvl": 1
+ },
+ {
+  "n": "Legionnaires Knuckles",
+  "nation": "Bastok",
+  "rank": 1,
+  "cp": 1000,
+  "lvl": 10
+ },
+ {
+  "n": "Legionnaires Crossbow",
+  "nation": "Bastok",
+  "rank": 1,
+  "cp": 1000,
+  "lvl": 10
+ },
+ {
+  "n": "Legionnaires Axe",
+  "nation": "Bastok",
+  "rank": 1,
+  "cp": 1000,
+  "lvl": 10
+ },
+ {
+  "n": "Legionnaires Cap",
+  "nation": "Bastok",
+  "rank": 1,
+  "cp": 1000,
+  "lvl": 10
+ },
+ {
+  "n": "Legionnaires Mittens",
+  "nation": "Bastok",
+  "rank": 1,
+  "cp": 1000,
+  "lvl": 10
+ },
+ {
+  "n": "Legionnaires Leggings",
+  "nation": "Bastok",
+  "rank": 1,
+  "cp": 1000,
+  "lvl": 10
+ },
+ {
+  "n": "Legionnaires Staff",
+  "nation": "Bastok",
+  "rank": 1,
+  "cp": 1000,
+  "lvl": 10
+ },
+ {
+  "n": "Legionnaires Scythe",
+  "nation": "Bastok",
+  "rank": 1,
+  "cp": 1000,
+  "lvl": 10
+ },
+ {
+  "n": "Decurions Hammer",
+  "nation": "Bastok",
+  "rank": 2,
+  "cp": 2000,
+  "lvl": 18
+ },
+ {
+  "n": "Legionnaires Harness",
+  "nation": "Bastok",
+  "rank": 2,
+  "cp": 2000,
+  "lvl": 10
+ },
+ {
+  "n": "Legionnaires Subligar",
+  "nation": "Bastok",
+  "rank": 2,
+  "cp": 2000,
+  "lvl": 20
+ },
+ {
+  "n": "Decurions Dagger",
+  "nation": "Bastok",
+  "rank": 2,
+  "cp": 2000,
+  "lvl": 20
+ },
+ {
+  "n": "Decurions Shield",
+  "nation": "Bastok",
+  "rank": 2,
+  "cp": 2000,
+  "lvl": 20
+ },
+ {
+  "n": "Centurions Axe",
+  "nation": "Bastok",
+  "rank": 3,
+  "cp": 4000,
+  "lvl": 30
+ },
+ {
+  "n": "Republican Bronze Medal",
+  "nation": "Bastok",
+  "rank": 3,
+  "cp": 4000,
+  "lvl": 10
+ },
+ {
+  "n": "Centurions Visor",
+  "nation": "Bastok",
+  "rank": 3,
+  "cp": 4000,
+  "lvl": 30
+ },
+ {
+  "n": "Centurions Scale Mail",
+  "nation": "Bastok",
+  "rank": 3,
+  "cp": 4000,
+  "lvl": 30
+ },
+ {
+  "n": "Centurions Finger Gauntlets",
+  "nation": "Bastok",
+  "rank": 3,
+  "cp": 4000,
+  "lvl": 30
+ },
+ {
+  "n": "Centurions Cuisses",
+  "nation": "Bastok",
+  "rank": 3,
+  "cp": 4000,
+  "lvl": 30
+ },
+ {
+  "n": "Centurions Greaves",
+  "nation": "Bastok",
+  "rank": 3,
+  "cp": 4000,
+  "lvl": 30
+ },
+ {
+  "n": "Centurions Sword",
+  "nation": "Bastok",
+  "rank": 3,
+  "cp": 4000,
+  "lvl": 30
+ },
+ {
+  "n": "Legionnaires Circlet",
+  "nation": "Bastok",
+  "rank": 3,
+  "cp": 4000,
+  "lvl": 30
+ },
+ {
+  "n": "Bastokan Ring",
+  "nation": "Bastok",
+  "rank": 3,
+  "cp": 4000,
+  "lvl": 1
+ },
+ {
+  "n": "Junior Musketeers Tuck",
+  "nation": "Bastok",
+  "rank": 4,
+  "cp": 8000,
+  "lvl": 40
+ },
+ {
+  "n": "Iron Musketeers Armet",
+  "nation": "Bastok",
+  "rank": 4,
+  "cp": 8000,
+  "lvl": 40
+ },
+ {
+  "n": "Iron Musketeers Gauntlets",
+  "nation": "Bastok",
+  "rank": 4,
+  "cp": 8000,
+  "lvl": 40
+ },
+ {
+  "n": "Iron Musketeers Sabatons",
+  "nation": "Bastok",
+  "rank": 4,
+  "cp": 8000,
+  "lvl": 40
+ },
+ {
+  "n": "Iron Musketeers Gambison",
+  "nation": "Bastok",
+  "rank": 4,
+  "cp": 8000,
+  "lvl": 40
+ },
+ {
+  "n": "Junior Musketeers Chakram",
+  "nation": "Bastok",
+  "rank": 4,
+  "cp": 8000,
+  "lvl": 40
+ },
+ {
+  "n": "Musketeers Sword",
+  "nation": "Bastok",
+  "rank": 5,
+  "cp": 16000,
+  "lvl": 50
+ },
+ {
+  "n": "Republican Iron Medal",
+  "nation": "Bastok",
+  "rank": 5,
+  "cp": 16000,
+  "lvl": 30
+ },
+ {
+  "n": "Iron Musketeers Cuirass",
+  "nation": "Bastok",
+  "rank": 5,
+  "cp": 16000,
+  "lvl": 50
+ },
+ {
+  "n": "Iron Musketeers Cuisses",
+  "nation": "Bastok",
+  "rank": 5,
+  "cp": 16000,
+  "lvl": 50
+ },
+ {
+  "n": "Musketeers Pole",
+  "nation": "Bastok",
+  "rank": 5,
+  "cp": 16000,
+  "lvl": 50
+ },
+ {
+  "n": "Musketeer Gun",
+  "nation": "Bastok",
+  "rank": 5,
+  "cp": 16000,
+  "lvl": 50
+ },
+ {
+  "n": "Republican Mythril Medal",
+  "nation": "Bastok",
+  "rank": 6,
+  "cp": 24000,
+  "lvl": 55
+ },
+ {
+  "n": "Republican Army Mantle",
+  "nation": "Bastok",
+  "rank": 6,
+  "cp": 24000,
+  "lvl": 55
+ },
+ {
+  "n": "Musketeer Commanders Falchion",
+  "nation": "Bastok",
+  "rank": 6,
+  "cp": 24000,
+  "lvl": 55
+ },
+ {
+  "n": "Musketeer Commanders Shield",
+  "nation": "Bastok",
+  "rank": 6,
+  "cp": 24000,
+  "lvl": 55
+ },
+ {
+  "n": "Musketeer Commanders Rod",
+  "nation": "Bastok",
+  "rank": 6,
+  "cp": 24000,
+  "lvl": 55
+ },
+ {
+  "n": "Iron Musketeers Gorget",
+  "nation": "Bastok",
+  "rank": 6,
+  "cp": 24000,
+  "lvl": 55
+ },
+ {
+  "n": "Iron Musketeers Quiver",
+  "nation": "Bastok",
+  "rank": 7,
+  "cp": 32000,
+  "lvl": 60
+ },
+ {
+  "n": "Gold Musketeers Uchigatana",
+  "nation": "Bastok",
+  "rank": 7,
+  "cp": 32000,
+  "lvl": 60
+ },
+ {
+  "n": "Gold Musketeers Ring",
+  "nation": "Bastok",
+  "rank": 7,
+  "cp": 32000,
+  "lvl": 60
+ },
+ {
+  "n": "Praefectuss Gloves",
+  "nation": "Bastok",
+  "rank": 8,
+  "cp": 40000,
+  "lvl": 65
+ },
+ {
+  "n": "Presidential Hairpin",
+  "nation": "Bastok",
+  "rank": 8,
+  "cp": 40000,
+  "lvl": 65
+ },
+ {
+  "n": "Republican Gold Medal",
+  "nation": "Bastok",
+  "rank": 8,
+  "cp": 40000,
+  "lvl": 65
+ },
+ {
+  "n": "Senior Gold Musketeers Scythe",
+  "nation": "Bastok",
+  "rank": 9,
+  "cp": 48000,
+  "lvl": 71
+ },
+ {
+  "n": "Senior Gold Musketeers Rod",
+  "nation": "Bastok",
+  "rank": 9,
+  "cp": 48000,
+  "lvl": 71
+ },
+ {
+  "n": "Senior Gold Musketeers Axe",
+  "nation": "Bastok",
+  "rank": 9,
+  "cp": 48000,
+  "lvl": 71
+ },
+ {
+  "n": "Senior Gold Musketeers Scimitar",
+  "nation": "Bastok",
+  "rank": 9,
+  "cp": 48000,
+  "lvl": 71
+ },
+ {
+  "n": "Republic Aketon",
+  "nation": "Bastok",
+  "rank": 10,
+  "cp": 56000,
+  "lvl": 1
+ },
+ {
+  "n": "Republic Signet Staff",
+  "nation": "Bastok",
+  "rank": 10,
+  "cp": 5000,
+  "lvl": 1
+ },
+ {
+  "n": "Decorative Chair Set",
+  "nation": "Bastok",
+  "rank": 10,
+  "cp": 10000,
+  "lvl": 1
+ },
+ {
+  "n": "Freeswords Bow",
+  "nation": "Windurst",
+  "rank": 1,
+  "cp": 1000,
+  "lvl": 10
+ },
+ {
+  "n": "Freeswords Club",
+  "nation": "Windurst",
+  "rank": 1,
+  "cp": 1000,
+  "lvl": 10
+ },
+ {
+  "n": "Freeswords Baghnakhs",
+  "nation": "Windurst",
+  "rank": 1,
+  "cp": 1000,
+  "lvl": 10
+ },
+ {
+  "n": "Freeswords Slops",
+  "nation": "Windurst",
+  "rank": 1,
+  "cp": 1000,
+  "lvl": 10
+ },
+ {
+  "n": "Freeswords Staff",
+  "nation": "Windurst",
+  "rank": 1,
+  "cp": 1000,
+  "lvl": 10
+ },
+ {
+  "n": "Mercenarys Pole",
+  "nation": "Windurst",
+  "rank": 2,
+  "cp": 2000,
+  "lvl": 18
+ },
+ {
+  "n": "Mercenarys Hachimaki",
+  "nation": "Windurst",
+  "rank": 2,
+  "cp": 2000,
+  "lvl": 20
+ },
+ {
+  "n": "Mercenarys Gi",
+  "nation": "Windurst",
+  "rank": 2,
+  "cp": 2000,
+  "lvl": 20
+ },
+ {
+  "n": "Mercenarys Tekko",
+  "nation": "Windurst",
+  "rank": 2,
+  "cp": 2000,
+  "lvl": 20
+ },
+ {
+  "n": "Mercenarys Sitabaki",
+  "nation": "Windurst",
+  "rank": 2,
+  "cp": 2000,
+  "lvl": 20
+ },
+ {
+  "n": "Mercenarys Kyahan",
+  "nation": "Windurst",
+  "rank": 2,
+  "cp": 2000,
+  "lvl": 20
+ },
+ {
+  "n": "Mercenarys Knife",
+  "nation": "Windurst",
+  "rank": 2,
+  "cp": 2000,
+  "lvl": 20
+ },
+ {
+  "n": "Mercenarys Greatsword",
+  "nation": "Windurst",
+  "rank": 2,
+  "cp": 2000,
+  "lvl": 20
+ },
+ {
+  "n": "Mercenary Captains Scythe",
+  "nation": "Windurst",
+  "rank": 3,
+  "cp": 4000,
+  "lvl": 30
+ },
+ {
+  "n": "Mercenary Captains Headgear",
+  "nation": "Windurst",
+  "rank": 3,
+  "cp": 4000,
+  "lvl": 30
+ },
+ {
+  "n": "Mercenary Captains Doublet",
+  "nation": "Windurst",
+  "rank": 3,
+  "cp": 4000,
+  "lvl": 30
+ },
+ {
+  "n": "Mercenary Captains Gloves",
+  "nation": "Windurst",
+  "rank": 3,
+  "cp": 4000,
+  "lvl": 30
+ },
+ {
+  "n": "Mercenary Captains Hose",
+  "nation": "Windurst",
+  "rank": 3,
+  "cp": 4000,
+  "lvl": 30
+ },
+ {
+  "n": "Mercenary Captains Gaiters",
+  "nation": "Windurst",
+  "rank": 3,
+  "cp": 4000,
+  "lvl": 30
+ },
+ {
+  "n": "Mercenary Captains Kukri",
+  "nation": "Windurst",
+  "rank": 3,
+  "cp": 4000,
+  "lvl": 30
+ },
+ {
+  "n": "Mercenary Captains Belt",
+  "nation": "Windurst",
+  "rank": 3,
+  "cp": 4000,
+  "lvl": 30
+ },
+ {
+  "n": "Windurstian Ring",
+  "nation": "Windurst",
+  "rank": 3,
+  "cp": 4000,
+  "lvl": 1
+ },
+ {
+  "n": "Combat Casters Dagger",
+  "nation": "Windurst",
+  "rank": 4,
+  "cp": 8000,
+  "lvl": 40
+ },
+ {
+  "n": "Combat Casters Boomerang",
+  "nation": "Windurst",
+  "rank": 4,
+  "cp": 8000,
+  "lvl": 40
+ },
+ {
+  "n": "Green Scarf",
+  "nation": "Windurst",
+  "rank": 4,
+  "cp": 8000,
+  "lvl": 10
+ },
+ {
+  "n": "Combat Casters Cloak",
+  "nation": "Windurst",
+  "rank": 4,
+  "cp": 8000,
+  "lvl": 40
+ },
+ {
+  "n": "Combat Casters Mitts",
+  "nation": "Windurst",
+  "rank": 4,
+  "cp": 8000,
+  "lvl": 40
+ },
+ {
+  "n": "Combat Casters Slacks",
+  "nation": "Windurst",
+  "rank": 4,
+  "cp": 8000,
+  "lvl": 40
+ },
+ {
+  "n": "Combat Casters Shoes",
+  "nation": "Windurst",
+  "rank": 4,
+  "cp": 8000,
+  "lvl": 40
+ },
+ {
+  "n": "Combat Casters Scimitar",
+  "nation": "Windurst",
+  "rank": 4,
+  "cp": 8000,
+  "lvl": 40
+ },
+ {
+  "n": "Combat Casters Axe",
+  "nation": "Windurst",
+  "rank": 4,
+  "cp": 8000,
+  "lvl": 40
+ },
+ {
+  "n": "Tactician Magicians Wand",
+  "nation": "Windurst",
+  "rank": 5,
+  "cp": 16000,
+  "lvl": 50
+ },
+ {
+  "n": "Paisley Scarf",
+  "nation": "Windurst",
+  "rank": 5,
+  "cp": 16000,
+  "lvl": 30
+ },
+ {
+  "n": "Tactician Magicians Hat",
+  "nation": "Windurst",
+  "rank": 5,
+  "cp": 16000,
+  "lvl": 50
+ },
+ {
+  "n": "Tactician Magicians Coat",
+  "nation": "Windurst",
+  "rank": 5,
+  "cp": 16000,
+  "lvl": 50
+ },
+ {
+  "n": "Tactician Magicians Cuffs",
+  "nation": "Windurst",
+  "rank": 5,
+  "cp": 16000,
+  "lvl": 50
+ },
+ {
+  "n": "Tactician Magicians Slops",
+  "nation": "Windurst",
+  "rank": 5,
+  "cp": 16000,
+  "lvl": 50
+ },
+ {
+  "n": "Tactician Magicians Pigaches",
+  "nation": "Windurst",
+  "rank": 5,
+  "cp": 16000,
+  "lvl": 50
+ },
+ {
+  "n": "Tactician Magicians Espadon",
+  "nation": "Windurst",
+  "rank": 5,
+  "cp": 16000,
+  "lvl": 50
+ },
+ {
+  "n": "Tactician Magicians Hooks",
+  "nation": "Windurst",
+  "rank": 5,
+  "cp": 16000,
+  "lvl": 50
+ },
+ {
+  "n": "Checkered Scarf",
+  "nation": "Windurst",
+  "rank": 6,
+  "cp": 24000,
+  "lvl": 55
+ },
+ {
+  "n": "Federal Army Mantle",
+  "nation": "Windurst",
+  "rank": 6,
+  "cp": 24000,
+  "lvl": 55
+ },
+ {
+  "n": "Wise Wizards Staff",
+  "nation": "Windurst",
+  "rank": 6,
+  "cp": 24000,
+  "lvl": 55
+ },
+ {
+  "n": "Wise Wizards Bilbo",
+  "nation": "Windurst",
+  "rank": 6,
+  "cp": 24000,
+  "lvl": 55
+ },
+ {
+  "n": "Wise Wizards Anelace",
+  "nation": "Windurst",
+  "rank": 6,
+  "cp": 24000,
+  "lvl": 55
+ },
+ {
+  "n": "Combat Casters Quiver",
+  "nation": "Windurst",
+  "rank": 7,
+  "cp": 32000,
+  "lvl": 60
+ },
+ {
+  "n": "Patriarch Protectors Shield",
+  "nation": "Windurst",
+  "rank": 7,
+  "cp": 32000,
+  "lvl": 60
+ },
+ {
+  "n": "Patriarch Protectors Ring",
+  "nation": "Windurst",
+  "rank": 7,
+  "cp": 32000,
+  "lvl": 60
+ },
+ {
+  "n": "Master Casters Mitts",
+  "nation": "Windurst",
+  "rank": 8,
+  "cp": 40000,
+  "lvl": 65
+ },
+ {
+  "n": "Master Casters Bracelets",
+  "nation": "Windurst",
+  "rank": 8,
+  "cp": 40000,
+  "lvl": 65
+ },
+ {
+  "n": "Windurstian Scarf",
+  "nation": "Windurst",
+  "rank": 8,
+  "cp": 40000,
+  "lvl": 65
+ },
+ {
+  "n": "Master Casters Bow",
+  "nation": "Windurst",
+  "rank": 9,
+  "cp": 48000,
+  "lvl": 71
+ },
+ {
+  "n": "Master Casters Pole",
+  "nation": "Windurst",
+  "rank": 9,
+  "cp": 48000,
+  "lvl": 71
+ },
+ {
+  "n": "Master Casters Baghnakhs",
+  "nation": "Windurst",
+  "rank": 9,
+  "cp": 48000,
+  "lvl": 71
+ },
+ {
+  "n": "Master Casters Knife",
+  "nation": "Windurst",
+  "rank": 9,
+  "cp": 48000,
+  "lvl": 71
+ },
+ {
+  "n": "Federation Aketon",
+  "nation": "Windurst",
+  "rank": 10,
+  "cp": 56000,
+  "lvl": 1
+ },
+ {
+  "n": "Federation Signet Staff",
+  "nation": "Windurst",
+  "rank": 10,
+  "cp": 5000,
+  "lvl": 1
+ },
+ {
+  "n": "Ornate Stool Set",
+  "nation": "Windurst",
+  "rank": 10,
+  "cp": 10000,
+  "lvl": 1
+ }
+]

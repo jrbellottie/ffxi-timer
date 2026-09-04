@@ -353,20 +353,6 @@ export const styles: Record<string, React.CSSProperties> = {
     width: "100%",
   },
 
-  backButton: {
-    height: 34,
-    padding: "0 14px",
-    borderRadius: 10,
-    border: "1px solid #555",
-    background: "linear-gradient(180deg, #1a1a1a 0%, #111 100%)",
-    color: "#fff",
-    cursor: "pointer",
-    fontWeight: 700,
-    whiteSpace: "nowrap",
-    display: "inline-flex",
-    alignItems: "center",
-    gap: 8,
-  },
 
   tabHeaderRow: {
     display: "flex",

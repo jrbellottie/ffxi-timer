@@ -160,6 +160,7 @@ type Stored = { zone: string; filter: string; dayOffset?: number; digMode?: bool
 const thStyle: React.CSSProperties = {
   position: "sticky",
   top: 0,
+  zIndex: 1,
   background: "#161616",
   color: "#eaeaea",
   textAlign: "left",

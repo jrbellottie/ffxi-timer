@@ -100,7 +100,8 @@ function main() {
 
   const itemName = (id) => itemNames.get(id) || `Item #${id}`;
   const recipes = [];
-  const re = /^INSERT INTO `synth_recipes` VALUES \((.*)\);$/gm;
+  // Rows may carry a trailing "-- source note" comment after the closing );
+  const re = /^INSERT INTO `synth_recipes` VALUES \((.*)\);(?:\s*--.*)?$/gm;
   let m;
   let skippedEra = 0;
 

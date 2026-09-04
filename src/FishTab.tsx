@@ -151,6 +151,7 @@ const optionBaseStyle: React.CSSProperties = {
 const thStyle: React.CSSProperties = {
   position: "sticky",
   top: 0,
+  zIndex: 1,
   background: "#161616",
   color: "#eaeaea",
   textAlign: "left",

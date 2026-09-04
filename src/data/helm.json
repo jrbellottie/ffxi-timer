@@ -458,7 +458,7 @@
  {
   "kind": "Excavation",
   "zone": "Attohwa Chasm",
-  "n": "High Quality Scorpion Shell",
+  "n": "High-quality Scorpion Shell",
   "pct": 0.83
  },
  {
@@ -1268,13 +1268,13 @@
  {
   "kind": "Mining",
   "zone": "Oldton Movalpolos",
-  "n": "Suit of Moblin Mail",
+  "n": "Moblin Mail",
   "pct": 3.82
  },
  {
   "kind": "Mining",
   "zone": "Oldton Movalpolos",
-  "n": "Suit of Moblin Armor",
+  "n": "Moblin Armor",
   "pct": 3.61
  },
  {
@@ -1424,7 +1424,7 @@
  {
   "kind": "Mining",
   "zone": "Mount Zhayolm",
-  "n": "Suit of Moblin Mail",
+  "n": "Moblin Mail",
   "pct": 2
  },
  {
@@ -1442,7 +1442,7 @@
  {
   "kind": "Mining",
   "zone": "Mount Zhayolm",
-  "n": "Suit of Moblin Armor",
+  "n": "Moblin Armor",
   "pct": 1.93
  },
  {
@@ -1520,7 +1520,7 @@
  {
   "kind": "Mining",
   "zone": "Halvung",
-  "n": "Suit of Moblin Armor",
+  "n": "Moblin Armor",
   "pct": 2.91
  },
  {
@@ -1532,7 +1532,7 @@
  {
   "kind": "Mining",
   "zone": "Halvung",
-  "n": "Suit of Moblin Mail",
+  "n": "Moblin Mail",
   "pct": 2.84
  },
  {

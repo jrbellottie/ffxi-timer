@@ -8,6 +8,7 @@ import fishData from "../data/fish.json";
 import chocoboDigData from "../data/chocoboDig.json";
 import recipesData from "../data/recipes.json";
 import questsData from "../data/quests.json";
+import cpItemsData from "../data/cpItems.json";
 import { normalizeItemName } from "./itemLinks";
 import { CLAM_ITEM_NAMES } from "../ClamTab";
 
@@ -17,6 +18,7 @@ export type BcnmSource = { name: string; arena: string; type: string };
 export type HelmSource = { kind: string; zone: string; pct: number };
 export type DigSource = { zone: string; rate: number | null };
 export type CraftSource = { craft: string; lvl: number };
+export type CpSource = { nation: string; rank: number | null; cp: number };
 export type QuestSource = { name: string; zone: string | null };
 
 export type ItemSources = {
@@ -28,6 +30,7 @@ export type ItemSources = {
   digging: DigSource[];
   clamming: boolean;
   craft: CraftSource[];
+  cp: CpSource[];
 };
 
 type ShopRow = { n: string; zone: string; npc: string; price: number };
@@ -36,6 +39,7 @@ type HelmRow = { kind: string; zone: string; n: string; pct: number };
 type FishRow = { zone: string; catch: string };
 type DigRow = { zone: string; item: string; rate: number | null };
 type RecipeRow = { craft: string; lvl: number; res: { n: string }; d?: number };
+type CpRow = { n: string; nation: string; rank: number | null; cp: number; lvl: number | null };
 type Battlefield = {
   name: string;
   arena: string;
@@ -45,7 +49,7 @@ type Battlefield = {
 type Quest = { name: string; startZone: string | null; reward: string | null };
 
 const empty: ItemSources = {
-  shops: [], guild: [], bcnm: [], helm: [], fishing: [], digging: [], clamming: false, craft: [],
+  shops: [], guild: [], bcnm: [], helm: [], fishing: [], digging: [], clamming: false, craft: [], cp: [],
 };
 
 const index = new Map<string, ItemSources>();
@@ -56,7 +60,7 @@ function entry(name: string): ItemSources {
   const norm = normalizeItemName(name);
   let e = index.get(norm);
   if (!e) {
-    e = { shops: [], guild: [], bcnm: [], helm: [], fishing: [], digging: [], clamming: false, craft: [] };
+    e = { shops: [], guild: [], bcnm: [], helm: [], fishing: [], digging: [], clamming: false, craft: [], cp: [] };
     index.set(norm, e);
     displayByNorm.set(norm, name);
   }
@@ -65,6 +69,7 @@ function entry(name: string): ItemSources {
 
 for (const r of shopsData as ShopRow[]) entry(r.n).shops.push({ npc: r.npc, zone: r.zone, price: r.price });
 for (const r of guildShopsData as GuildRow[]) entry(r.n).guild.push({ guild: r.guild, rank: r.rank, price: r.price });
+for (const r of cpItemsData as CpRow[]) entry(r.n).cp.push({ nation: r.nation, rank: r.rank, cp: r.cp });
 for (const r of helmData as HelmRow[]) entry(r.n).helm.push({ kind: r.kind, zone: r.zone, pct: r.pct });
 for (const r of chocoboDigData.entries as DigRow[]) {
   const e = entry(r.item);
@@ -110,6 +115,7 @@ const BADGE_COLORS: Record<string, string> = {
   Log: "#a8e87e",
   Mine: "#a8e87e",
   Excavate: "#a8e87e",
+  CP: "#e8a2c0",
   Quest: "#c9a2ff",
 };
 
@@ -132,6 +138,7 @@ export function sourceBadges(name: string): SourceBadge[] {
   if (s.fishing.length) add("Fish");
   if (s.digging.length) add("Dig");
   if (s.clamming) add("Clam");
+  if (s.cp.length) add("CP");
   return out;
 }
 

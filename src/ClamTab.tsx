@@ -64,6 +64,7 @@ export const CLAM_ITEM_NAMES: string[] = CLAM_ITEMS.map((i) => i.name);
 const thStyle: React.CSSProperties = {
   position: "sticky",
   top: 0,
+  zIndex: 1,
   background: "#161616",
   color: "#eaeaea",
   textAlign: "left",

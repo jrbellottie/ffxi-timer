@@ -219,6 +219,7 @@ const MAX_ROWS = 500;
 const thStyle: React.CSSProperties = {
   position: "sticky",
   top: 0,
+  zIndex: 1,
   background: "#161616",
   color: "#eaeaea",
   textAlign: "left",
@@ -476,6 +477,18 @@ function ItemDetail({ item, eraOnly }: { item: string; eraOnly: boolean }) {
         <span key={i} style={chipStyle}>
           {d.zone}
           {d.rate != null ? <span style={{ opacity: 0.75 }}> · {d.rate}%</span> : null}
+        </span>
+      ))
+    ),
+    section(
+      "Conquest points",
+      "#e8a2c0",
+      sources.cp.map((c, i) => (
+        <span key={i} style={chipStyle}>
+          {c.nation}
+          <span style={{ opacity: 0.75 }}>
+            {c.rank != null ? ` · rank ${c.rank}` : ""} · {c.cp.toLocaleString()} CP
+          </span>
         </span>
       ))
     ),

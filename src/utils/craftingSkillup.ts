@@ -79,12 +79,16 @@ export function averageGainPerSkillup(skillTenths: number, gap: number): number 
  * @param supportSkill Extra skill levels from image support/gear (Mod::WOOD etc.). Per LSB,
  * this only lowers the difficulty used for the break check (getSynthDifficulty); skill-up
  * eligibility, chance, the fail window and gain weights all use real skill (doSynthSkillUp).
+ * @param subCrafts Number of sub-crafts on the recipe. LSB rolls the break check once per
+ * involved skill (calculateSynthResult), so each sub multiplies success by its own rate —
+ * 95% for synths / 40% for desynths, assuming the sub requirement is met (difficulty <= 0).
  */
 export function craftSkillupStats(
   skillTenths: number,
   recipeLvl: number,
   desynth: boolean,
-  supportSkill = 0
+  supportSkill = 0,
+  subCrafts = 0
 ): CraftSkillupStats {
   const skill = clamp(Math.round(skillTenths), 0, 1100);
   const gap = recipeLvl - Math.floor(skill / 10);
@@ -92,7 +96,10 @@ export function craftSkillupStats(
   const eligible = craftable && gap > 0 && skill < recipeLvl * 10;
 
   const breakGap = gap - supportSkill;
-  const successPct = desynth ? desynthSuccessPct(breakGap) : synthSuccessPct(breakGap);
+  const mainPct = desynth ? desynthSuccessPct(breakGap) : synthSuccessPct(breakGap);
+  // Independent break roll per involved sub-craft, at its at-cap rate.
+  const subPct = desynth ? 40 : 95;
+  const successPct = mainPct * Math.pow(subPct / 100, subCrafts);
 
   if (!eligible) {
     return {

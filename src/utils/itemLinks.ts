@@ -7,22 +7,47 @@ import helmData from "../data/helm.json";
 import bcnmData from "../data/bcnm.json";
 import fishData from "../data/fish.json";
 import chocoboDigData from "../data/chocoboDig.json";
+import cpItemsData from "../data/cpItems.json";
 
-type RecipeLite = { res: { n: string } };
+type RecipeLite = { res: { n: string }; hq: { n: string }[]; d?: number };
 type DropsLite = {
   items: Record<string, { n: string }>;
   drops: Record<string, [number, number, number, number, number][]>;
 };
 
-/** "Square of Coeurl Leather" -> "coeurl leather" (container prefixes differ between datasets). */
+// LSB recipe names that differ from the item's name in every other dataset.
+const NAME_ALIASES: Record<string, string> = {
+  "scarlet linen cloth": "scarlet linen",
+  "smooth velvet cloth": "smooth velvet",
+};
+
+/**
+ * "Square of Coeurl Leather" -> "coeurl leather": container prefixes,
+ * apostrophes, periods and hyphens differ between datasets (LSB vs wiki).
+ */
 export function normalizeItemName(name: string): string {
-  return name.toLowerCase().replace(/^[a-z]+ of (?!the )/, "");
+  const norm = name
+    .toLowerCase()
+    .replace(/['’.]/g, "")
+    .replace(/-/g, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .replace(/^[a-z]+ of (?!the )/, "");
+  return NAME_ALIASES[norm] ?? norm;
 }
 
 const craftableByNorm = new Map<string, string>();
 for (const r of recipesData as RecipeLite[]) {
   const norm = normalizeItemName(r.res.n);
   if (!craftableByNorm.has(norm)) craftableByNorm.set(norm, r.res.n);
+}
+// HQ results (e.g. "Gold Earring +1") map to their base recipe's result name.
+for (const r of recipesData as RecipeLite[]) {
+  if (r.d === 1) continue;
+  for (const h of r.hq) {
+    const norm = normalizeItemName(h.n);
+    if (!craftableByNorm.has(norm)) craftableByNorm.set(norm, r.res.n);
+  }
 }
 
 const droppedByNorm = new Map<string, string>();
@@ -61,6 +86,7 @@ const otherSourceByNorm = new Map<string, string>();
   for (const r of shopsData as { n: string }[]) addName(r.n);
   for (const r of guildShopsData as { n: string }[]) addName(r.n);
   for (const r of helmData as { n: string }[]) addName(r.n);
+  for (const r of cpItemsData as { n: string }[]) addName(r.n);
   for (const r of (chocoboDigData as { entries: { item: string }[] }).entries) addName(r.item);
   for (const r of fishData as { catch: string }[]) addName(r.catch);
   for (const bf of (bcnmData as { battlefields: { slots: { entries: { item: string | null }[] }[] }[] }).battlefields) {

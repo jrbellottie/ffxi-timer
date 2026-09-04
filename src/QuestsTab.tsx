@@ -127,6 +127,7 @@ const thStyle: React.CSSProperties = {
   whiteSpace: "nowrap",
   position: "sticky",
   top: 0,
+  zIndex: 1,
 };
 
 const tdStyle: React.CSSProperties = {
