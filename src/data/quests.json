@@ -42080,7 +42080,13 @@
    "client": null,
    "summary": null,
    "coords": [],
-   "mapRefs": [],
+   "mapRefs": [
+    {
+     "zone": "Lebros Cavern",
+     "mapNo": 3,
+     "pos": ""
+    }
+   ],
    "stepRefs": [],
    "headingRefs": [],
    "url": "https://ffxiclopedia.fandom.com/wiki/Apkallu_Breeding"
@@ -42147,7 +42153,13 @@
    "coords": [
     "F-10"
    ],
-   "mapRefs": [],
+   "mapRefs": [
+    {
+     "zone": "Ilrusi Atoll",
+     "mapNo": 1,
+     "pos": ""
+    }
+   ],
    "stepRefs": [],
    "headingRefs": [],
    "url": "https://ffxiclopedia.fandom.com/wiki/Apkallu_Seizure"
@@ -42306,7 +42318,13 @@
    "coords": [
     "H-8"
    ],
-   "mapRefs": [],
+   "mapRefs": [
+    {
+     "zone": "Mamool Ja Training Grounds",
+     "mapNo": 8,
+     "pos": ""
+    }
+   ],
    "stepRefs": [],
    "headingRefs": [],
    "url": "https://ffxiclopedia.fandom.com/wiki/Azure_Ailments"
@@ -42358,7 +42376,13 @@
    "client": null,
    "summary": null,
    "coords": [],
-   "mapRefs": [],
+   "mapRefs": [
+    {
+     "zone": "Leujaoam Sanctum",
+     "mapNo": 10,
+     "pos": ""
+    }
+   ],
    "stepRefs": [],
    "headingRefs": [],
    "url": "https://ffxiclopedia.fandom.com/wiki/Azure_Experiments"
@@ -42537,7 +42561,13 @@
    "client": null,
    "summary": null,
    "coords": [],
-   "mapRefs": [],
+   "mapRefs": [
+    {
+     "zone": "Mamool Ja Training Grounds",
+     "mapNo": 8,
+     "pos": ""
+    }
+   ],
    "stepRefs": [],
    "headingRefs": [],
    "url": "https://ffxiclopedia.fandom.com/wiki/Blitzkrieg"
@@ -42662,7 +42692,13 @@
     "H-9",
     "I-8"
    ],
-   "mapRefs": [],
+   "mapRefs": [
+    {
+     "zone": "Mamool Ja Training Grounds",
+     "mapNo": 4,
+     "pos": ""
+    }
+   ],
    "stepRefs": [],
    "headingRefs": [],
    "url": "https://ffxiclopedia.fandom.com/wiki/Breaking_Morale"
@@ -42719,7 +42755,13 @@
     "H-10",
     "H-8"
    ],
-   "mapRefs": [],
+   "mapRefs": [
+    {
+     "zone": "Periqia",
+     "mapNo": 7,
+     "pos": ""
+    }
+   ],
    "stepRefs": [],
    "headingRefs": [],
    "url": "https://ffxiclopedia.fandom.com/wiki/Building_Bridges"
@@ -42907,7 +42949,13 @@
     "H-9",
     "I-9"
    ],
-   "mapRefs": [],
+   "mapRefs": [
+    {
+     "zone": "Leujaoam Sanctum",
+     "mapNo": 9,
+     "pos": ""
+    }
+   ],
    "stepRefs": [],
    "headingRefs": [],
    "url": "https://ffxiclopedia.fandom.com/wiki/Counting_Sheep"
@@ -43020,7 +43068,13 @@
     "H-9",
     "G-9"
    ],
-   "mapRefs": [],
+   "mapRefs": [
+    {
+     "zone": "Periqia",
+     "mapNo": 3,
+     "pos": ""
+    }
+   ],
    "stepRefs": [],
    "headingRefs": [],
    "url": "https://ffxiclopedia.fandom.com/wiki/Defuse_the_Threat"
@@ -43096,7 +43150,13 @@
    "coords": [
     "H-10"
    ],
-   "mapRefs": [],
+   "mapRefs": [
+    {
+     "zone": "Ilrusi Atoll",
+     "mapNo": 4,
+     "pos": ""
+    }
+   ],
    "stepRefs": [],
    "headingRefs": [],
    "url": "https://ffxiclopedia.fandom.com/wiki/Demolition_Duty"
@@ -43142,7 +43202,13 @@
    "coords": [
     "H-9"
    ],
-   "mapRefs": [],
+   "mapRefs": [
+    {
+     "zone": "Ilrusi Atoll",
+     "mapNo": 3,
+     "pos": ""
+    }
+   ],
    "stepRefs": [],
    "headingRefs": [],
    "url": "https://ffxiclopedia.fandom.com/wiki/Deserter"
@@ -43215,7 +43281,13 @@
     "J-9",
     "H-9"
    ],
-   "mapRefs": [],
+   "mapRefs": [
+    {
+     "zone": "Ilrusi Atoll",
+     "mapNo": 10,
+     "pos": ""
+    }
+   ],
    "stepRefs": [],
    "headingRefs": [],
    "url": "https://ffxiclopedia.fandom.com/wiki/Desperately_Seeking_Cephalopods"
@@ -43391,7 +43463,13 @@
     "J-5",
     "G-9"
    ],
-   "mapRefs": [],
+   "mapRefs": [
+    {
+     "zone": "Leujaoam Sanctum",
+     "mapNo": 2,
+     "pos": ""
+    }
+   ],
    "stepRefs": [],
    "headingRefs": [],
    "url": "https://ffxiclopedia.fandom.com/wiki/Escort_Professor_Chanoix"
@@ -43441,7 +43519,13 @@
     "G-8",
     "H-8"
    ],
-   "mapRefs": [],
+   "mapRefs": [
+    {
+     "zone": "Lebros Cavern",
+     "mapNo": 9,
+     "pos": ""
+    }
+   ],
    "stepRefs": [],
    "headingRefs": [],
    "url": "https://ffxiclopedia.fandom.com/wiki/Evade_and_Escape"
@@ -43515,7 +43599,13 @@
     "I-7",
     "F-10"
    ],
-   "mapRefs": [],
+   "mapRefs": [
+    {
+     "zone": "Lebros Cavern",
+     "mapNo": 4,
+     "pos": ""
+    }
+   ],
    "stepRefs": [],
    "headingRefs": [],
    "url": "https://ffxiclopedia.fandom.com/wiki/Excavation_Duty"
@@ -43560,7 +43650,13 @@
    "client": null,
    "summary": null,
    "coords": [],
-   "mapRefs": [],
+   "mapRefs": [
+    {
+     "zone": "Ilrusi Atoll",
+     "mapNo": 7,
+     "pos": ""
+    }
+   ],
    "stepRefs": [],
    "headingRefs": [],
    "url": "https://ffxiclopedia.fandom.com/wiki/Extermination"
@@ -43609,7 +43705,13 @@
     "H-8",
     "H-7"
    ],
-   "mapRefs": [],
+   "mapRefs": [
+    {
+     "zone": "Ilrusi Atoll",
+     "mapNo": 8,
+     "pos": ""
+    }
+   ],
    "stepRefs": [],
    "headingRefs": [],
    "url": "https://ffxiclopedia.fandom.com/wiki/Golden_Salvage"
@@ -43674,7 +43776,13 @@
    "client": null,
    "summary": null,
    "coords": [],
-   "mapRefs": [],
+   "mapRefs": [
+    {
+     "zone": "Ilrusi Atoll",
+     "mapNo": null,
+     "pos": ""
+    }
+   ],
    "stepRefs": [],
    "headingRefs": [],
    "url": "https://ffxiclopedia.fandom.com/wiki/Ilrusi_Atoll"
@@ -43758,7 +43866,13 @@
     "G-7",
     "J-8"
    ],
-   "mapRefs": [],
+   "mapRefs": [
+    {
+     "zone": "Mamool Ja Training Grounds",
+     "mapNo": 2,
+     "pos": ""
+    }
+   ],
    "stepRefs": [],
    "headingRefs": [],
    "url": "https://ffxiclopedia.fandom.com/wiki/Imperial_Agent_Rescue"
@@ -43815,7 +43929,13 @@
     "H-8",
     "I-8"
    ],
-   "mapRefs": [],
+   "mapRefs": [
+    {
+     "zone": "Leujaoam Sanctum",
+     "mapNo": 1,
+     "pos": ""
+    }
+   ],
    "stepRefs": [],
    "headingRefs": [],
    "url": "https://ffxiclopedia.fandom.com/wiki/Imperial_Code"
@@ -43866,7 +43986,13 @@
     "H-10",
     "F-7"
    ],
-   "mapRefs": [],
+   "mapRefs": [
+    {
+     "zone": "Mamool Ja Training Grounds",
+     "mapNo": 5,
+     "pos": ""
+    }
+   ],
    "stepRefs": [],
    "headingRefs": [],
    "url": "https://ffxiclopedia.fandom.com/wiki/Imperial_Treasure_Retrieval"
@@ -44006,7 +44132,13 @@
     "I-8",
     "H-8"
    ],
-   "mapRefs": [],
+   "mapRefs": [
+    {
+     "zone": "Ilrusi Atoll",
+     "mapNo": 5,
+     "pos": ""
+    }
+   ],
    "stepRefs": [],
    "headingRefs": [],
    "url": "https://ffxiclopedia.fandom.com/wiki/Lamia_No.13_(Mission)"
@@ -44036,7 +44168,13 @@
    "client": null,
    "summary": null,
    "coords": [],
-   "mapRefs": [],
+   "mapRefs": [
+    {
+     "zone": "Lebros Cavern",
+     "mapNo": null,
+     "pos": ""
+    }
+   ],
    "stepRefs": [],
    "headingRefs": [],
    "url": "https://ffxiclopedia.fandom.com/wiki/Lebros_Cavern"
@@ -44102,7 +44240,13 @@
    "client": null,
    "summary": null,
    "coords": [],
-   "mapRefs": [],
+   "mapRefs": [
+    {
+     "zone": "Lebros Cavern",
+     "mapNo": 6,
+     "pos": ""
+    }
+   ],
    "stepRefs": [],
    "headingRefs": [],
    "url": "https://ffxiclopedia.fandom.com/wiki/Lebros_Supplies"
@@ -44148,7 +44292,13 @@
     "I-9",
     "I-8"
    ],
-   "mapRefs": [],
+   "mapRefs": [
+    {
+     "zone": "Leujaoam Sanctum",
+     "mapNo": 7,
+     "pos": ""
+    }
+   ],
    "stepRefs": [],
    "headingRefs": [],
    "url": "https://ffxiclopedia.fandom.com/wiki/Leujaoam_Cleansing"
@@ -44178,7 +44328,13 @@
    "client": null,
    "summary": null,
    "coords": [],
-   "mapRefs": [],
+   "mapRefs": [
+    {
+     "zone": "Leujaoam Sanctum",
+     "mapNo": null,
+     "pos": ""
+    }
+   ],
    "stepRefs": [],
    "headingRefs": [],
    "url": "https://ffxiclopedia.fandom.com/wiki/Leujaoam_Sanctum"
@@ -44239,7 +44395,13 @@
    "client": null,
    "summary": null,
    "coords": [],
-   "mapRefs": [],
+   "mapRefs": [
+    {
+     "zone": "Ilrusi Atoll",
+     "mapNo": 2,
+     "pos": ""
+    }
+   ],
    "stepRefs": [],
    "headingRefs": [],
    "url": "https://ffxiclopedia.fandom.com/wiki/Lost_and_Found"
@@ -44299,7 +44461,13 @@
    "client": null,
    "summary": null,
    "coords": [],
-   "mapRefs": [],
+   "mapRefs": [
+    {
+     "zone": "Mamool Ja Training Grounds",
+     "mapNo": null,
+     "pos": ""
+    }
+   ],
    "stepRefs": [],
    "headingRefs": [],
    "url": "https://ffxiclopedia.fandom.com/wiki/Mamool_Ja_Training_Grounds"
@@ -44347,7 +44515,13 @@
    "client": null,
    "summary": null,
    "coords": [],
-   "mapRefs": [],
+   "mapRefs": [
+    {
+     "zone": "Mamool Ja Training Grounds",
+     "mapNo": 10,
+     "pos": ""
+    }
+   ],
    "stepRefs": [],
    "headingRefs": [],
    "url": "https://ffxiclopedia.fandom.com/wiki/Marids_in_the_Mist"
@@ -44377,7 +44551,13 @@
    "client": null,
    "summary": null,
    "coords": [],
-   "mapRefs": [],
+   "mapRefs": [
+    {
+     "zone": "Nyzul Isle",
+     "mapNo": null,
+     "pos": ""
+    }
+   ],
    "stepRefs": [],
    "headingRefs": [],
    "url": "https://ffxiclopedia.fandom.com/wiki/Nyzul_Isle"
@@ -44559,7 +44739,13 @@
     "H-6",
     "I-5"
    ],
-   "mapRefs": [],
+   "mapRefs": [
+    {
+     "zone": "Periqia",
+     "mapNo": 8,
+     "pos": ""
+    }
+   ],
    "stepRefs": [],
    "headingRefs": [],
    "url": "https://ffxiclopedia.fandom.com/wiki/Operation%3A_Snake_Eyes"
@@ -44606,7 +44792,13 @@
    "coords": [
     "H-8"
    ],
-   "mapRefs": [],
+   "mapRefs": [
+    {
+     "zone": "Leujaoam Sanctum",
+     "mapNo": 8,
+     "pos": ""
+    }
+   ],
    "stepRefs": [],
    "headingRefs": [],
    "url": "https://ffxiclopedia.fandom.com/wiki/Orichalcum_Survey"
@@ -44636,7 +44828,13 @@
    "client": null,
    "summary": null,
    "coords": [],
-   "mapRefs": [],
+   "mapRefs": [
+    {
+     "zone": "Periqia",
+     "mapNo": null,
+     "pos": ""
+    }
+   ],
    "stepRefs": [],
    "headingRefs": [],
    "url": "https://ffxiclopedia.fandom.com/wiki/Periqia"
@@ -44693,7 +44891,13 @@
     "I-7",
     "I-8"
    ],
-   "mapRefs": [],
+   "mapRefs": [
+    {
+     "zone": "Mamool Ja Training Grounds",
+     "mapNo": 3,
+     "pos": ""
+    }
+   ],
    "stepRefs": [],
    "headingRefs": [],
    "url": "https://ffxiclopedia.fandom.com/wiki/Preemptive_Strike"
@@ -44780,7 +44984,13 @@
     "G-9",
     "I-6"
    ],
-   "mapRefs": [],
+   "mapRefs": [
+    {
+     "zone": "Leujaoam Sanctum",
+     "mapNo": 3,
+     "pos": ""
+    }
+   ],
    "stepRefs": [],
    "headingRefs": [],
    "url": "https://ffxiclopedia.fandom.com/wiki/Red_Versus_Blue"
@@ -44852,7 +45062,13 @@
    "coords": [
     "F-9"
    ],
-   "mapRefs": [],
+   "mapRefs": [
+    {
+     "zone": "Periqia",
+     "mapNo": 2,
+     "pos": ""
+    }
+   ],
    "stepRefs": [],
    "headingRefs": [],
    "url": "https://ffxiclopedia.fandom.com/wiki/Requiem_(Mission)"
@@ -44893,7 +45109,13 @@
    "client": null,
    "summary": null,
    "coords": [],
-   "mapRefs": [],
+   "mapRefs": [
+    {
+     "zone": "Mamool Ja Training Grounds",
+     "mapNo": 7,
+     "pos": ""
+    }
+   ],
    "stepRefs": [],
    "headingRefs": [],
    "url": "https://ffxiclopedia.fandom.com/wiki/Sagelord_Elimination"
@@ -45002,7 +45224,13 @@
    "coords": [
     "I-7"
    ],
-   "mapRefs": [],
+   "mapRefs": [
+    {
+     "zone": "Periqia",
+     "mapNo": 7,
+     "pos": ""
+    }
+   ],
    "stepRefs": [],
    "headingRefs": [],
    "url": "https://ffxiclopedia.fandom.com/wiki/Saving_Private_Ryaaf"
@@ -45135,7 +45363,13 @@
     "J-6",
     "F-10"
    ],
-   "mapRefs": [],
+   "mapRefs": [
+    {
+     "zone": "Ilrusi Atoll",
+     "mapNo": 9,
+     "pos": ""
+    }
+   ],
    "stepRefs": [],
    "headingRefs": [],
    "url": "https://ffxiclopedia.fandom.com/wiki/Searat_Salvation"
@@ -45181,7 +45415,13 @@
    "coords": [
     "I-9"
    ],
-   "mapRefs": [],
+   "mapRefs": [
+    {
+     "zone": "Leujaoam Sanctum",
+     "mapNo": 4,
+     "pos": ""
+    }
+   ],
    "stepRefs": [],
    "headingRefs": [],
    "url": "https://ffxiclopedia.fandom.com/wiki/Shanarha_Grass_Conservation"
@@ -45235,7 +45475,13 @@
    "coords": [
     "I-8"
    ],
-   "mapRefs": [],
+   "mapRefs": [
+    {
+     "zone": "Periqia",
+     "mapNo": 1,
+     "pos": ""
+    }
+   ],
    "stepRefs": [],
    "headingRefs": [],
    "url": "https://ffxiclopedia.fandom.com/wiki/Shooting_Down_the_Baron"
@@ -45285,7 +45531,13 @@
     "H-8",
     "G-7"
    ],
-   "mapRefs": [],
+   "mapRefs": [
+    {
+     "zone": "Lebros Cavern",
+     "mapNo": 10,
+     "pos": ""
+    }
+   ],
    "stepRefs": [],
    "headingRefs": [],
    "url": "https://ffxiclopedia.fandom.com/wiki/Siegemaster_Assassination"
@@ -45332,7 +45584,13 @@
    "coords": [
     "H-8"
    ],
-   "mapRefs": [],
+   "mapRefs": [
+    {
+     "zone": "Periqia",
+     "mapNo": 1,
+     "pos": ""
+    }
+   ],
    "stepRefs": [],
    "headingRefs": [],
    "url": "https://ffxiclopedia.fandom.com/wiki/Stop_the_Bloodshed"
@@ -45380,7 +45638,13 @@
    "coords": [
     "J-7"
    ],
-   "mapRefs": [],
+   "mapRefs": [
+    {
+     "zone": "Leujaoam Sanctum",
+     "mapNo": 6,
+     "pos": ""
+    }
+   ],
    "stepRefs": [],
    "headingRefs": [],
    "url": "https://ffxiclopedia.fandom.com/wiki/Supplies_Recovery"
@@ -45468,7 +45732,13 @@
    "coords": [
     "I-8"
    ],
-   "mapRefs": [],
+   "mapRefs": [
+    {
+     "zone": "Mamool Ja Training Grounds",
+     "mapNo": 1,
+     "pos": ""
+    }
+   ],
    "stepRefs": [],
    "headingRefs": [],
    "url": "https://ffxiclopedia.fandom.com/wiki/The_Double_Agent"
@@ -45619,7 +45889,13 @@
    "client": null,
    "summary": null,
    "coords": [],
-   "mapRefs": [],
+   "mapRefs": [
+    {
+     "zone": "Lebros Cavern",
+     "mapNo": 2,
+     "pos": ""
+    }
+   ],
    "stepRefs": [],
    "headingRefs": [],
    "url": "https://ffxiclopedia.fandom.com/wiki/Troll_Fugitives"
@@ -45717,7 +45993,13 @@
    "coords": [
     "H-8"
    ],
-   "mapRefs": [],
+   "mapRefs": [
+    {
+     "zone": "Periqia",
+     "mapNo": 7,
+     "pos": ""
+    }
+   ],
    "stepRefs": [],
    "headingRefs": [],
    "url": "https://ffxiclopedia.fandom.com/wiki/Wake_the_Puppet"
@@ -45754,7 +46036,13 @@
    "client": null,
    "summary": null,
    "coords": [],
-   "mapRefs": [],
+   "mapRefs": [
+    {
+     "zone": "Lebros Cavern",
+     "mapNo": 5,
+     "pos": ""
+    }
+   ],
    "stepRefs": [],
    "headingRefs": [],
    "url": "https://ffxiclopedia.fandom.com/wiki/Wamoura_Farm_Raid"
@@ -47191,11 +47479,94 @@
      "id": "darkness-rising"
     }
    ],
-   "walkthrough": [],
+   "walkthrough": [
+    "Unlike most missions, this mission is not offered by a Gate Guard.",
+    "This mission requires a certain level of Rank Bar. Complete 2 or 3 repeatable missions or trade 4 crystals to a Conquest Overseer.",
+    "  Morlepiche (H-10) in the upper level of Ru'Lude Gardens will accept crystals.",
+    "Talk to your embassy's receptionist in Ru'Lude Gardens to begin the mission.",
+    "Check your ambassador's office door. You will receive the Archducal audience permit.",
+    "Check the Audience Chamber (H-6). You will receive the Letter to Aldo.",
+    "Talk to Aldo (J-8) in Lower Jeuno, inside Neptune's Spire Inn. You will receive a Silver bell.",
+    "  To gain access to the Tenshodo HQ, obtain a Tenshodo Member's Card from the quest Tenshodo Membership or buy a Tenshodo Invite on the Auction House under Others > Misc and trade it to Ghebi Damomohe.",
+    "  If currently on the Chains of Promathia mission A Vessel Without a Captain, its scene will appear first when interacting with the door. Talking to Aldo twice will be required after the cut-scene to prompt this mission's cut-scene.",
+    "## Key Items",
+    "Obtain the following key items: Crest of Davoi, Yagudo Torch, Coruscant rosary, Black Matinee Necklace.",
+    "  The key items may be obtained in any order. If you already have the key items, skip to the section labeled Magicite.",
+    "  With Poison Potions and a friend who has Tractor and all of the key items, the only key item that is strictly necessary is Yagudo Torch.",
+    "If you wish to only obtain the Yagudo Torch, all you must do is speak to Paya-Sabya (I-8) in Upper Jeuno and then Muckvix (H-9) in Lower Jeuno.",
+    "Obtain a Quadav Charm , a Quadav Augury Shell , and a slice of Coeurl Meat.",
+    "  Coeurl Meat drops from all Coeurls, including Coeurl in Meriphataud Mountains. It can also be bought from the Auction House.",
+    "Talk to Baudin at the southwest corner of (G-7) in Upper Jeuno.",
+    "Trade him the Coeurl Meat to obtain the Crest of Davoi. This completes the quest Crest of Davoi.",
+    "Talk to Paya-Sabya (I-8) in Upper Jeuno.",
+    "Talk to Muckvix (H-9) in Lower Jeuno inside Muckvix's Junk Shop. You will receive the Yagudo Torch.",
+    "  Travel to Beadeaux. Quadav along the path go up to level 39 and will hearing-Aggro to players under level 55 unless they are Sneaked.",
+    "    Enter Map 2 via exit A at (H-7).",
+    "    Receive Silence by examining The Mute at (G-7). This will allow you to pass by The Afflictor without becoming Cursed.",
+    "    Enter Map 1 via exit B at (F-8).",
+    "    Use the ramp at (E-10) to climb to the upper level. There is another set of Afflictors at (F-10). Make sure you still have Silence from the first Mute, otherwise reacquire Silence at The Mute at (F-9).",
+    "    Defeat De'Vyu Headhunter (I-9). It will drop up to 4 Quadav Charms.",
+    "    Defeat Go'Bhu Gascon (F-6). It will drop up to 4 Quadav Augury Shells.",
+    "Talk to Sattal-Mansal (J-8) in Lower Jeuno outside Aldo's room in the basement of Neptune's Spire.",
+    "Trade him the Quadav Charm to obtain the Coruscant rosary. This completes the quest Mysteries of Beadeaux I.",
+    "Trade him the Quadav Augury Shell to obtain the Black Matinee Necklace. This completes the quest Mysteries of Beadeaux II.",
+    "## Magicite",
+    "The three magicite can be examined in any order.",
+    "If you are on the Windurst (S) Mission Howl from the Heavens, you will need to touch each Magicite twice: once for the shard, then once for the cutscene and magicite.",
+    "## Davoi",
+    "The fastest way is to book warp by Survival Guide to Norvallen > Davoi.",
+    "  Otherwise, Unity warp to Jugner Forest (Level 122 category) and head to (G-12).",
+    "Travel to Davoi. Orcs along the path go up to level 39 and will sight-Aggro to players under level 55 unless they are Invisible. Wolf Bats are level 25-29 and will hearing-Aggro players under level 43 unless they are Sneaked.",
+    "Disable the Wall of Dark Arts (G-7). Continue into Monastic Cavern.",
+    "  A friend with the Crest of Davoi can Tractor you through the Wall.",
+    "Check the Magicite at the end of the hall. You will receive the Magicite: Optistone.",
+    "## Beadeaux",
+    "The fastest way is to book warp by Survival Guide to Derfland > Beadeaux.",
+    "  Otherwise, Unity warp to Pashhow Marshlands (Level 122 category) and head to (L-11).",
+    "Travel to Beadeaux. Quadav along the path go up to level 28 and will hearing-Aggro to players under level 42 unless they are Sneaked.",
+    "Enter Map 2 via exit A at (H-7).",
+    "Enter Qulun Dome at (I-7).",
+    "Open the door. If you get the message \"The Silver bell, Coruscant rosary, Black Matinee Necklace, glow faintly.\" then move closer and try again.",
+    "  A friend with the Silver bell, Coruscant rosary, and Black Matinee Necklace can Tractor you through the door. As there are no mobs in Qulun Dome, you will need to use Poison Potions to kill yourself first.",
+    "Check the Magicite at the end of the hall. You will receive the Magicite: Aurastone.",
+    "## Castle Oztroja",
+    "The fastest way is to book warp by Survival Guide to Aragoneu > Castle Oztroja.",
+    "Travel to Castle Oztroja. Yagudo along the path go up to level 49 and will sight-Aggro to players under level 68 unless they are Invisible. Bats will also aggro unless players are Sneaked.",
+    "Go through the door at (I-8) to reach Map 3.",
+    "  One lever opens the door, and the other triggers the trapdoor. You will not be able to throw a lever unless you are standing on the trapdoor. The correct lever changes every Vana'diel day.",
+    "  Since there is a significant delay, an easy way to avoid the trap is to throw a lever and then immediately run off the trapdoor.",
+    "Enter Map 7 via exit F at (G-7).",
+    "Enter Map 2 via exit I at (I-7).",
+    "Light the Yagudo Torch in the southwest hallway at ((H-9)/(H-10)) to open the Brass Door.",
+    "Open the Brass Door at (G-10). Continue into Altar Room.",
+    "  If you spoke to Paya-Sabya and Muckvix, you will get a cutscene with Fickblix. If you are repeating this mission and you skipped those two, this cutscene will be skipped.",
+    "Check the Magicite at the end of the hall. You will receive the Magicite: Orastone.",
+    "## Return to Jeuno",
+    "Return to the Audience Chamber (H-6) in Ru'Lude Gardens. You will receive an Airship pass.",
+    "  If you already have an Airship pass, you will receive 20,000 gil instead.",
+    "Return to your embassy's receptionist to complete the mission. You will receive Rank 5, Message to Jeuno, and 10,000 gil.",
+    "Mission 5-1 will begin immediately. You will not be able to change allegiance until you complete 5-1 or reject the mission offer in the following cutscene."
+   ],
    "client": null,
    "summary": "Capture the three magicites in Davoi, Beadeaux, and Castle Oztroja to prevent the Shadow Lord's return.",
    "coords": [
-    "H-10"
+    "H-10",
+    "H-6",
+    "J-8",
+    "I-8",
+    "H-9",
+    "G-7",
+    "H-7",
+    "F-8",
+    "E-10",
+    "F-10",
+    "F-9",
+    "I-9",
+    "F-6",
+    "G-12",
+    "L-11",
+    "I-7",
+    "G-10"
    ],
    "mapRefs": [
     {
@@ -47222,9 +47593,299 @@
      "zone": "Altar Room",
      "mapNo": null,
      "pos": "H-10"
+    },
+    {
+     "zone": "Ru'Lude Gardens",
+     "mapNo": null,
+     "pos": "H-6"
+    },
+    {
+     "zone": "Lower Jeuno",
+     "mapNo": null,
+     "pos": "J-8"
+    },
+    {
+     "zone": "Upper Jeuno",
+     "mapNo": null,
+     "pos": "I-8"
+    },
+    {
+     "zone": "Lower Jeuno",
+     "mapNo": null,
+     "pos": "H-9"
+    },
+    {
+     "zone": "Upper Jeuno",
+     "mapNo": null,
+     "pos": "G-7"
+    },
+    {
+     "zone": "Beadeaux",
+     "mapNo": 1,
+     "pos": "H-7"
+    },
+    {
+     "zone": "Beadeaux",
+     "mapNo": 2,
+     "pos": "G-7"
+    },
+    {
+     "zone": "Beadeaux",
+     "mapNo": 2,
+     "pos": "F-8"
+    },
+    {
+     "zone": "Beadeaux",
+     "mapNo": 1,
+     "pos": "E-10"
+    },
+    {
+     "zone": "Beadeaux",
+     "mapNo": 1,
+     "pos": "F-10"
+    },
+    {
+     "zone": "Beadeaux",
+     "mapNo": 1,
+     "pos": "F-9"
+    },
+    {
+     "zone": "Beadeaux",
+     "mapNo": 1,
+     "pos": "I-9"
+    },
+    {
+     "zone": "Beadeaux",
+     "mapNo": 1,
+     "pos": "F-6"
+    },
+    {
+     "zone": "Jugner Forest",
+     "mapNo": null,
+     "pos": "G-12"
+    },
+    {
+     "zone": "Davoi",
+     "mapNo": null,
+     "pos": "G-7"
+    },
+    {
+     "zone": "Pashhow Marshlands",
+     "mapNo": null,
+     "pos": "L-11"
+    },
+    {
+     "zone": "Beadeaux",
+     "mapNo": 2,
+     "pos": "I-7"
+    },
+    {
+     "zone": "Castle Oztroja",
+     "mapNo": 1,
+     "pos": "I-8"
+    },
+    {
+     "zone": "Castle Oztroja",
+     "mapNo": 3,
+     "pos": "G-7"
+    },
+    {
+     "zone": "Castle Oztroja",
+     "mapNo": 7,
+     "pos": "I-7"
+    },
+    {
+     "zone": "Castle Oztroja",
+     "mapNo": 2,
+     "pos": "H-9"
+    },
+    {
+     "zone": "Castle Oztroja",
+     "mapNo": 2,
+     "pos": "H-10"
+    },
+    {
+     "zone": "Castle Oztroja",
+     "mapNo": 2,
+     "pos": "G-10"
     }
    ],
-   "stepRefs": [],
+   "stepRefs": [
+    {
+     "step": 2,
+     "zone": "Ru'Lude Gardens",
+     "mapNo": null,
+     "pos": "H-10"
+    },
+    {
+     "step": 5,
+     "zone": "Ru'Lude Gardens",
+     "mapNo": null,
+     "pos": "H-6"
+    },
+    {
+     "step": 6,
+     "zone": "Lower Jeuno",
+     "mapNo": null,
+     "pos": "J-8"
+    },
+    {
+     "step": 13,
+     "zone": "Upper Jeuno",
+     "mapNo": null,
+     "pos": "I-8"
+    },
+    {
+     "step": 13,
+     "zone": "Lower Jeuno",
+     "mapNo": null,
+     "pos": "H-9"
+    },
+    {
+     "step": 16,
+     "zone": "Upper Jeuno",
+     "mapNo": null,
+     "pos": "G-7"
+    },
+    {
+     "step": 18,
+     "zone": "Upper Jeuno",
+     "mapNo": null,
+     "pos": "I-8"
+    },
+    {
+     "step": 19,
+     "zone": "Lower Jeuno",
+     "mapNo": null,
+     "pos": "H-9"
+    },
+    {
+     "step": 21,
+     "zone": "Beadeaux",
+     "mapNo": 1,
+     "pos": "H-7"
+    },
+    {
+     "step": 22,
+     "zone": "Beadeaux",
+     "mapNo": 2,
+     "pos": "G-7"
+    },
+    {
+     "step": 23,
+     "zone": "Beadeaux",
+     "mapNo": 2,
+     "pos": "F-8"
+    },
+    {
+     "step": 24,
+     "zone": "Beadeaux",
+     "mapNo": 1,
+     "pos": "E-10"
+    },
+    {
+     "step": 24,
+     "zone": "Beadeaux",
+     "mapNo": 1,
+     "pos": "F-10"
+    },
+    {
+     "step": 24,
+     "zone": "Beadeaux",
+     "mapNo": 1,
+     "pos": "F-9"
+    },
+    {
+     "step": 25,
+     "zone": "Beadeaux",
+     "mapNo": 1,
+     "pos": "I-9"
+    },
+    {
+     "step": 26,
+     "zone": "Beadeaux",
+     "mapNo": 1,
+     "pos": "F-6"
+    },
+    {
+     "step": 27,
+     "zone": "Lower Jeuno",
+     "mapNo": null,
+     "pos": "J-8"
+    },
+    {
+     "step": 35,
+     "zone": "Jugner Forest",
+     "mapNo": null,
+     "pos": "G-12"
+    },
+    {
+     "step": 37,
+     "zone": "Davoi",
+     "mapNo": null,
+     "pos": "G-7"
+    },
+    {
+     "step": 42,
+     "zone": "Pashhow Marshlands",
+     "mapNo": null,
+     "pos": "L-11"
+    },
+    {
+     "step": 44,
+     "zone": "Beadeaux",
+     "mapNo": 1,
+     "pos": "H-7"
+    },
+    {
+     "step": 45,
+     "zone": "Beadeaux",
+     "mapNo": 2,
+     "pos": "I-7"
+    },
+    {
+     "step": 52,
+     "zone": "Castle Oztroja",
+     "mapNo": 1,
+     "pos": "I-8"
+    },
+    {
+     "step": 55,
+     "zone": "Castle Oztroja",
+     "mapNo": 3,
+     "pos": "G-7"
+    },
+    {
+     "step": 56,
+     "zone": "Castle Oztroja",
+     "mapNo": 7,
+     "pos": "I-7"
+    },
+    {
+     "step": 57,
+     "zone": "Castle Oztroja",
+     "mapNo": 2,
+     "pos": "H-9"
+    },
+    {
+     "step": 57,
+     "zone": "Castle Oztroja",
+     "mapNo": 2,
+     "pos": "H-10"
+    },
+    {
+     "step": 58,
+     "zone": "Castle Oztroja",
+     "mapNo": 2,
+     "pos": "G-10"
+    },
+    {
+     "step": 62,
+     "zone": "Ru'Lude Gardens",
+     "mapNo": null,
+     "pos": "H-6"
+    }
+   ],
    "headingRefs": [],
    "url": "https://ffxiclopedia.fandom.com/wiki/Magicite_(Bastok)"
   },
@@ -58089,7 +58750,74 @@
      "id": "the-ruins-of-feiyin"
     }
    ],
-   "walkthrough": [],
+   "walkthrough": [
+    "Unlike most missions, this mission is not offered by a Gate Guard.",
+    "This mission requires a certain level of Rank Bar. Complete 2 or 3 repeatable missions or trade 4 crystals to a Conquest Overseer.",
+    "  Morlepiche (H-10) in the upper level of Ru'Lude Gardens will accept crystals.",
+    "Talk to your embassy's receptionist in Ru'Lude Gardens to begin the mission.",
+    "Check your ambassador's office door. You will receive the Archducal audience permit.",
+    "Check the Audience Chamber (H-6). You will receive the Letter to Aldo.",
+    "Talk to Aldo (J-8) in Lower Jeuno, inside Neptune's Spire Inn. You will receive a Silver bell.",
+    "  To gain access to the Tenshodo HQ, obtain a Tenshodo Member's Card from the quest Tenshodo Membership or buy a Tenshodo Invite on the Auction House under Others > Misc and trade it to Ghebi Damomohe.",
+    "  If currently on the Chains of Promathia mission A Vessel Without a Captain, its scene will appear first when interacting with the door. Talking to Aldo twice will be required after the cut-scene to prompt this mission's cut-scene.",
+    "## Key Items",
+    "Obtain the following key items: Crest of Davoi, Yagudo Torch, Coruscant rosary, Black Matinee Necklace.",
+    "  The key items may be obtained in any order. If you already have the key items, skip to the section labeled Magicite.",
+    "  With Poison Potions and a friend who has Tractor and all of the key items, the only key item that is strictly necessary is Yagudo Torch.",
+    "If you wish to only obtain the Yagudo Torch, all you must do is speak to Paya-Sabya (I-8) in Upper Jeuno and then Muckvix (H-9) in Lower Jeuno.",
+    "Obtain a Quadav Charm , a Quadav Augury Shell , and a slice of Coeurl Meat.",
+    "  Coeurl Meat drops from all Coeurls, including Coeurl in Meriphataud Mountains. It can also be bought from the Auction House.",
+    "Talk to Baudin at the southwest corner of (G-7) in Upper Jeuno.",
+    "Trade him the Coeurl Meat to obtain the Crest of Davoi. This completes the quest Crest of Davoi.",
+    "Talk to Paya-Sabya (I-8) in Upper Jeuno.",
+    "Talk to Muckvix (H-9) in Lower Jeuno inside Muckvix's Junk Shop. You will receive the Yagudo Torch.",
+    "  Travel to Beadeaux. Quadav along the path go up to level 39 and will hearing-Aggro to players under level 55 unless they are Sneaked.",
+    "    Enter Map 2 via exit A at (H-7).",
+    "    Receive Silence by examining The Mute at (G-7). This will allow you to pass by The Afflictor without becoming Cursed.",
+    "    Enter Map 1 via exit B at (F-8).",
+    "    Use the ramp at (E-10) to climb to the upper level. There is another set of Afflictors at (F-10). Make sure you still have Silence from the first Mute, otherwise reacquire Silence at The Mute at (F-9).",
+    "    Defeat De'Vyu Headhunter (I-9). It will drop up to 4 Quadav Charms.",
+    "    Defeat Go'Bhu Gascon (F-6). It will drop up to 4 Quadav Augury Shells.",
+    "Talk to Sattal-Mansal (J-8) in Lower Jeuno outside Aldo's room in the basement of Neptune's Spire.",
+    "Trade him the Quadav Charm to obtain the Coruscant rosary. This completes the quest Mysteries of Beadeaux I.",
+    "Trade him the Quadav Augury Shell to obtain the Black Matinee Necklace. This completes the quest Mysteries of Beadeaux II.",
+    "## Magicite",
+    "The three magicite can be examined in any order.",
+    "If you are on the Windurst (S) Mission Howl from the Heavens, you will need to touch each Magicite twice: once for the shard, then once for the cutscene and magicite.",
+    "## Davoi",
+    "The fastest way is to book warp by Survival Guide to Norvallen > Davoi.",
+    "  Otherwise, Unity warp to Jugner Forest (Level 122 category) and head to (G-12).",
+    "Travel to Davoi. Orcs along the path go up to level 39 and will sight-Aggro to players under level 55 unless they are Invisible. Wolf Bats are level 25-29 and will hearing-Aggro players under level 43 unless they are Sneaked.",
+    "Disable the Wall of Dark Arts (G-7). Continue into Monastic Cavern.",
+    "  A friend with the Crest of Davoi can Tractor you through the Wall.",
+    "Check the Magicite at the end of the hall. You will receive the Magicite: Optistone.",
+    "## Beadeaux",
+    "The fastest way is to book warp by Survival Guide to Derfland > Beadeaux.",
+    "  Otherwise, Unity warp to Pashhow Marshlands (Level 122 category) and head to (L-11).",
+    "Travel to Beadeaux. Quadav along the path go up to level 28 and will hearing-Aggro to players under level 42 unless they are Sneaked.",
+    "Enter Map 2 via exit A at (H-7).",
+    "Enter Qulun Dome at (I-7).",
+    "Open the door. If you get the message \"The Silver bell, Coruscant rosary, Black Matinee Necklace, glow faintly.\" then move closer and try again.",
+    "  A friend with the Silver bell, Coruscant rosary, and Black Matinee Necklace can Tractor you through the door. As there are no mobs in Qulun Dome, you will need to use Poison Potions to kill yourself first.",
+    "Check the Magicite at the end of the hall. You will receive the Magicite: Aurastone.",
+    "## Castle Oztroja",
+    "The fastest way is to book warp by Survival Guide to Aragoneu > Castle Oztroja.",
+    "Travel to Castle Oztroja. Yagudo along the path go up to level 49 and will sight-Aggro to players under level 68 unless they are Invisible. Bats will also aggro unless players are Sneaked.",
+    "Go through the door at (I-8) to reach Map 3.",
+    "  One lever opens the door, and the other triggers the trapdoor. You will not be able to throw a lever unless you are standing on the trapdoor. The correct lever changes every Vana'diel day.",
+    "  Since there is a significant delay, an easy way to avoid the trap is to throw a lever and then immediately run off the trapdoor.",
+    "Enter Map 7 via exit F at (G-7).",
+    "Enter Map 2 via exit I at (I-7).",
+    "Light the Yagudo Torch in the southwest hallway at ((H-9)/(H-10)) to open the Brass Door.",
+    "Open the Brass Door at (G-10). Continue into Altar Room.",
+    "  If you spoke to Paya-Sabya and Muckvix, you will get a cutscene with Fickblix. If you are repeating this mission and you skipped those two, this cutscene will be skipped.",
+    "Check the Magicite at the end of the hall. You will receive the Magicite: Orastone.",
+    "## Return to Jeuno",
+    "Return to the Audience Chamber (H-6) in Ru'Lude Gardens. You will receive an Airship pass.",
+    "  If you already have an Airship pass, you will receive 20,000 gil instead.",
+    "Return to your embassy's receptionist to complete the mission. You will receive Rank 5, Message to Jeuno, and 10,000 gil.",
+    "Mission 5-1 will begin immediately. You will not be able to change allegiance until you complete 5-1 or reject the mission offer in the following cutscene."
+   ],
    "client": null,
    "summary": "Seize the three types of magicite from Davoi, Beadeaux, and Castle Oztroja to prevent the Shadow Lord's return.",
    "coords": [
@@ -58111,7 +58839,9 @@
     "E-7",
     "L-8",
     "G-10",
-    "G-8"
+    "G-8",
+    "F-10",
+    "F-9"
    ],
    "mapRefs": [
     {
@@ -58273,9 +59003,204 @@
      "zone": "Altar Room",
      "mapNo": null,
      "pos": "G-8"
+    },
+    {
+     "zone": "Beadeaux",
+     "mapNo": 1,
+     "pos": "F-10"
+    },
+    {
+     "zone": "Beadeaux",
+     "mapNo": 1,
+     "pos": "F-9"
+    },
+    {
+     "zone": "Castle Oztroja",
+     "mapNo": 1,
+     "pos": "I-8"
+    },
+    {
+     "zone": "Castle Oztroja",
+     "mapNo": 2,
+     "pos": "H-10"
     }
    ],
-   "stepRefs": [],
+   "stepRefs": [
+    {
+     "step": 2,
+     "zone": "Ru'Lude Gardens",
+     "mapNo": null,
+     "pos": "H-10"
+    },
+    {
+     "step": 5,
+     "zone": "Ru'Lude Gardens",
+     "mapNo": null,
+     "pos": "H-6"
+    },
+    {
+     "step": 6,
+     "zone": "Lower Jeuno",
+     "mapNo": null,
+     "pos": "J-8"
+    },
+    {
+     "step": 13,
+     "zone": "Upper Jeuno",
+     "mapNo": null,
+     "pos": "I-8"
+    },
+    {
+     "step": 13,
+     "zone": "Lower Jeuno",
+     "mapNo": null,
+     "pos": "H-9"
+    },
+    {
+     "step": 16,
+     "zone": "Upper Jeuno",
+     "mapNo": null,
+     "pos": "G-7"
+    },
+    {
+     "step": 18,
+     "zone": "Upper Jeuno",
+     "mapNo": null,
+     "pos": "I-8"
+    },
+    {
+     "step": 19,
+     "zone": "Lower Jeuno",
+     "mapNo": null,
+     "pos": "H-9"
+    },
+    {
+     "step": 21,
+     "zone": "Beadeaux",
+     "mapNo": 1,
+     "pos": "H-7"
+    },
+    {
+     "step": 22,
+     "zone": "Beadeaux",
+     "mapNo": 2,
+     "pos": "G-7"
+    },
+    {
+     "step": 23,
+     "zone": "Beadeaux",
+     "mapNo": 2,
+     "pos": "F-8"
+    },
+    {
+     "step": 24,
+     "zone": "Beadeaux",
+     "mapNo": 1,
+     "pos": "E-10"
+    },
+    {
+     "step": 24,
+     "zone": "Beadeaux",
+     "mapNo": 1,
+     "pos": "F-10"
+    },
+    {
+     "step": 24,
+     "zone": "Beadeaux",
+     "mapNo": 1,
+     "pos": "F-9"
+    },
+    {
+     "step": 25,
+     "zone": "Beadeaux",
+     "mapNo": 1,
+     "pos": "I-9"
+    },
+    {
+     "step": 26,
+     "zone": "Beadeaux",
+     "mapNo": 1,
+     "pos": "F-6"
+    },
+    {
+     "step": 27,
+     "zone": "Lower Jeuno",
+     "mapNo": null,
+     "pos": "J-8"
+    },
+    {
+     "step": 35,
+     "zone": "Jugner Forest",
+     "mapNo": null,
+     "pos": "G-12"
+    },
+    {
+     "step": 37,
+     "zone": "Davoi",
+     "mapNo": null,
+     "pos": "G-7"
+    },
+    {
+     "step": 42,
+     "zone": "Pashhow Marshlands",
+     "mapNo": null,
+     "pos": "L-11"
+    },
+    {
+     "step": 44,
+     "zone": "Beadeaux",
+     "mapNo": 1,
+     "pos": "H-7"
+    },
+    {
+     "step": 45,
+     "zone": "Beadeaux",
+     "mapNo": 2,
+     "pos": "I-7"
+    },
+    {
+     "step": 52,
+     "zone": "Castle Oztroja",
+     "mapNo": 1,
+     "pos": "I-8"
+    },
+    {
+     "step": 55,
+     "zone": "Castle Oztroja",
+     "mapNo": 3,
+     "pos": "G-7"
+    },
+    {
+     "step": 56,
+     "zone": "Castle Oztroja",
+     "mapNo": 7,
+     "pos": "I-7"
+    },
+    {
+     "step": 57,
+     "zone": "Castle Oztroja",
+     "mapNo": 2,
+     "pos": "H-9"
+    },
+    {
+     "step": 57,
+     "zone": "Castle Oztroja",
+     "mapNo": 2,
+     "pos": "H-10"
+    },
+    {
+     "step": 58,
+     "zone": "Castle Oztroja",
+     "mapNo": 2,
+     "pos": "G-10"
+    },
+    {
+     "step": 62,
+     "zone": "Ru'Lude Gardens",
+     "mapNo": null,
+     "pos": "H-6"
+    }
+   ],
    "headingRefs": [],
    "url": "https://ffxiclopedia.fandom.com/wiki/Magicite_(San_d'Oria)"
   },
@@ -59939,6 +60864,36 @@
      "zone": "Bhaflau Thickets",
      "mapNo": null,
      "pos": "F-10"
+    },
+    {
+     "zone": "Arrapago Reef",
+     "mapNo": 2,
+     "pos": "C-10"
+    },
+    {
+     "zone": "Arrapago Reef",
+     "mapNo": 3,
+     "pos": "I-11"
+    },
+    {
+     "zone": "Arrapago Reef",
+     "mapNo": 3,
+     "pos": "H-11"
+    },
+    {
+     "zone": "Wajaom Woodlands",
+     "mapNo": 1,
+     "pos": "E-12"
+    },
+    {
+     "zone": "Mamook",
+     "mapNo": 1,
+     "pos": "F-10"
+    },
+    {
+     "zone": "Bhaflau Thickets",
+     "mapNo": 2,
+     "pos": "H-11"
     }
    ],
    "stepRefs": [
@@ -60075,10 +61030,22 @@
      "pos": "E-7"
     },
     {
+     "step": 29,
+     "pos": "C-10",
+     "zone": "Arrapago Reef",
+     "mapNo": 2
+    },
+    {
+     "step": 30,
+     "pos": "I-11",
+     "zone": "Arrapago Reef",
+     "mapNo": 3
+    },
+    {
      "step": 31,
-     "zone": "Caedarva Mire",
-     "mapNo": null,
-     "pos": "H-11"
+     "pos": "H-11",
+     "zone": "Arrapago Reef",
+     "mapNo": 3
     },
     {
      "step": 35,
@@ -60094,15 +61061,21 @@
     },
     {
      "step": 44,
-     "zone": "Mamook",
-     "mapNo": null,
-     "pos": "E-12"
+     "pos": "E-12",
+     "zone": "Wajaom Woodlands",
+     "mapNo": 1
     },
     {
      "step": 45,
+     "pos": "F-10",
+     "zone": "Mamook",
+     "mapNo": 1
+    },
+    {
+     "step": 46,
+     "pos": "H-11",
      "zone": "Bhaflau Thickets",
-     "mapNo": null,
-     "pos": "F-10"
+     "mapNo": 2
     }
    ],
    "headingRefs": [],
@@ -60619,6 +61592,11 @@
      "zone": "Aht Urhgan Whitegate",
      "mapNo": null,
      "pos": "I-10"
+    },
+    {
+     "zone": "Alzadaal Undersea Ruins",
+     "mapNo": 8,
+     "pos": "I-9"
     }
    ],
    "stepRefs": [
@@ -60657,6 +61635,12 @@
      "zone": "Alzadaal Undersea Ruins",
      "mapNo": 8,
      "pos": "K-9"
+    },
+    {
+     "step": 15,
+     "pos": "I-9",
+     "zone": "Alzadaal Undersea Ruins",
+     "mapNo": 8
     },
     {
      "step": 16,
@@ -62245,8 +63229,21 @@
    "coords": [
     "H-9"
    ],
-   "mapRefs": [],
-   "stepRefs": [],
+   "mapRefs": [
+    {
+     "zone": "Periqia",
+     "mapNo": 6,
+     "pos": "H-9"
+    }
+   ],
+   "stepRefs": [
+    {
+     "step": 7,
+     "pos": "H-9",
+     "zone": "Periqia",
+     "mapNo": 6
+    }
+   ],
    "headingRefs": [],
    "url": "https://ffxiclopedia.fandom.com/wiki/Aht_Urhgan_Mission_31%3A_Shades_of_Vengeance"
   },
@@ -63425,6 +64422,11 @@
      "zone": "Inner Horutoto Ruins",
      "mapNo": null,
      "pos": "J-7"
+    },
+    {
+     "zone": "East Sarutabaruta",
+     "mapNo": 1,
+     "pos": "J-7"
     }
    ],
    "stepRefs": [
@@ -63448,9 +64450,9 @@
     },
     {
      "step": 5,
-     "zone": "Inner Horutoto Ruins",
-     "mapNo": null,
-     "pos": "J-7"
+     "pos": "J-7",
+     "zone": "East Sarutabaruta",
+     "mapNo": 1
     },
     {
      "step": 8,
@@ -63977,13 +64979,33 @@
      "zone": "Windurst Waters North",
      "mapNo": null,
      "pos": "G-8"
+    },
+    {
+     "zone": "Windurst Waters",
+     "mapNo": 2,
+     "pos": "G-8"
+    },
+    {
+     "zone": "Inner Horutoto Ruins",
+     "mapNo": 2,
+     "pos": "K-9"
+    },
+    {
+     "zone": "Inner Horutoto Ruins",
+     "mapNo": 2,
+     "pos": "G-8"
+    },
+    {
+     "zone": "Inner Horutoto Ruins",
+     "mapNo": 2,
+     "pos": "I-9"
     }
    ],
    "stepRefs": [
     {
      "step": 8,
      "zone": "Windurst Waters",
-     "mapNo": null,
+     "mapNo": 2,
      "pos": "G-8"
     },
     {
@@ -63995,7 +65017,7 @@
     {
      "step": 13,
      "zone": "Windurst Waters",
-     "mapNo": null,
+     "mapNo": 2,
      "pos": "G-8"
     },
     {
@@ -64049,31 +65071,31 @@
     {
      "step": 43,
      "zone": "Inner Horutoto Ruins",
-     "mapNo": null,
+     "mapNo": 2,
      "pos": "K-9"
     },
     {
      "step": 45,
      "zone": "Inner Horutoto Ruins",
-     "mapNo": null,
+     "mapNo": 2,
      "pos": "G-8"
     },
     {
      "step": 46,
      "zone": "Inner Horutoto Ruins",
-     "mapNo": null,
+     "mapNo": 2,
      "pos": "K-9"
     },
     {
      "step": 47,
      "zone": "Inner Horutoto Ruins",
-     "mapNo": null,
+     "mapNo": 2,
      "pos": "I-9"
     },
     {
      "step": 50,
      "zone": "Inner Horutoto Ruins",
-     "mapNo": null,
+     "mapNo": 2,
      "pos": "G-8"
     },
     {
@@ -64084,9 +65106,9 @@
     },
     {
      "step": 54,
-     "zone": "Windurst Waters North",
-     "mapNo": null,
-     "pos": "G-8"
+     "pos": "G-8",
+     "zone": "Windurst Waters",
+     "mapNo": 2
     }
    ],
    "headingRefs": [],
@@ -64158,13 +65180,18 @@
      "zone": "Windurst Waters",
      "mapNo": null,
      "pos": "L-6"
+    },
+    {
+     "zone": "Windurst Waters",
+     "mapNo": 2,
+     "pos": "L-6"
     }
    ],
    "stepRefs": [
     {
      "step": 7,
      "zone": "Windurst Waters",
-     "mapNo": null,
+     "mapNo": 2,
      "pos": "L-6"
     }
    ],
@@ -64784,13 +65811,38 @@
      "zone": "Inner Horutoto Ruins",
      "mapNo": 2,
      "pos": "H-6"
+    },
+    {
+     "zone": "Inner Horutoto Ruins",
+     "mapNo": 4,
+     "pos": "G-7"
+    },
+    {
+     "zone": "Inner Horutoto Ruins",
+     "mapNo": 2,
+     "pos": "E-10"
+    },
+    {
+     "zone": "Inner Horutoto Ruins",
+     "mapNo": 2,
+     "pos": "D-10"
+    },
+    {
+     "zone": "Inner Horutoto Ruins",
+     "mapNo": 3,
+     "pos": "H-9"
+    },
+    {
+     "zone": "Inner Horutoto Ruins",
+     "mapNo": 4,
+     "pos": "H-6"
     }
    ],
    "stepRefs": [
     {
      "step": 7,
      "zone": "Inner Horutoto Ruins",
-     "mapNo": 2,
+     "mapNo": 4,
      "pos": "G-7"
     },
     {
@@ -64814,19 +65866,19 @@
     {
      "step": 16,
      "zone": "Inner Horutoto Ruins",
-     "mapNo": null,
+     "mapNo": 2,
      "pos": "E-10"
     },
     {
      "step": 17,
      "zone": "Inner Horutoto Ruins",
-     "mapNo": null,
+     "mapNo": 2,
      "pos": "D-10"
     },
     {
      "step": 18,
      "zone": "Inner Horutoto Ruins",
-     "mapNo": 1,
+     "mapNo": 3,
      "pos": "H-9"
     },
     {
@@ -64886,13 +65938,13 @@
     {
      "step": 33,
      "zone": "Inner Horutoto Ruins",
-     "mapNo": 2,
+     "mapNo": 4,
      "pos": "G-7"
     },
     {
      "step": 35,
      "zone": "Inner Horutoto Ruins",
-     "mapNo": 2,
+     "mapNo": 4,
      "pos": "H-6"
     }
    ],
@@ -65332,11 +66384,94 @@
      "id": "the-final-seal"
     }
    ],
-   "walkthrough": [],
+   "walkthrough": [
+    "Unlike most missions, this mission is not offered by a Gate Guard.",
+    "This mission requires a certain level of Rank Bar. Complete 2 or 3 repeatable missions or trade 4 crystals to a Conquest Overseer.",
+    "  Morlepiche (H-10) in the upper level of Ru'Lude Gardens will accept crystals.",
+    "Talk to your embassy's receptionist in Ru'Lude Gardens to begin the mission.",
+    "Check your ambassador's office door. You will receive the Archducal audience permit.",
+    "Check the Audience Chamber (H-6). You will receive the Letter to Aldo.",
+    "Talk to Aldo (J-8) in Lower Jeuno, inside Neptune's Spire Inn. You will receive a Silver bell.",
+    "  To gain access to the Tenshodo HQ, obtain a Tenshodo Member's Card from the quest Tenshodo Membership or buy a Tenshodo Invite on the Auction House under Others > Misc and trade it to Ghebi Damomohe.",
+    "  If currently on the Chains of Promathia mission A Vessel Without a Captain, its scene will appear first when interacting with the door. Talking to Aldo twice will be required after the cut-scene to prompt this mission's cut-scene.",
+    "## Key Items",
+    "Obtain the following key items: Crest of Davoi, Yagudo Torch, Coruscant rosary, Black Matinee Necklace.",
+    "  The key items may be obtained in any order. If you already have the key items, skip to the section labeled Magicite.",
+    "  With Poison Potions and a friend who has Tractor and all of the key items, the only key item that is strictly necessary is Yagudo Torch.",
+    "If you wish to only obtain the Yagudo Torch, all you must do is speak to Paya-Sabya (I-8) in Upper Jeuno and then Muckvix (H-9) in Lower Jeuno.",
+    "Obtain a Quadav Charm , a Quadav Augury Shell , and a slice of Coeurl Meat.",
+    "  Coeurl Meat drops from all Coeurls, including Coeurl in Meriphataud Mountains. It can also be bought from the Auction House.",
+    "Talk to Baudin at the southwest corner of (G-7) in Upper Jeuno.",
+    "Trade him the Coeurl Meat to obtain the Crest of Davoi. This completes the quest Crest of Davoi.",
+    "Talk to Paya-Sabya (I-8) in Upper Jeuno.",
+    "Talk to Muckvix (H-9) in Lower Jeuno inside Muckvix's Junk Shop. You will receive the Yagudo Torch.",
+    "  Travel to Beadeaux. Quadav along the path go up to level 39 and will hearing-Aggro to players under level 55 unless they are Sneaked.",
+    "    Enter Map 2 via exit A at (H-7).",
+    "    Receive Silence by examining The Mute at (G-7). This will allow you to pass by The Afflictor without becoming Cursed.",
+    "    Enter Map 1 via exit B at (F-8).",
+    "    Use the ramp at (E-10) to climb to the upper level. There is another set of Afflictors at (F-10). Make sure you still have Silence from the first Mute, otherwise reacquire Silence at The Mute at (F-9).",
+    "    Defeat De'Vyu Headhunter (I-9). It will drop up to 4 Quadav Charms.",
+    "    Defeat Go'Bhu Gascon (F-6). It will drop up to 4 Quadav Augury Shells.",
+    "Talk to Sattal-Mansal (J-8) in Lower Jeuno outside Aldo's room in the basement of Neptune's Spire.",
+    "Trade him the Quadav Charm to obtain the Coruscant rosary. This completes the quest Mysteries of Beadeaux I.",
+    "Trade him the Quadav Augury Shell to obtain the Black Matinee Necklace. This completes the quest Mysteries of Beadeaux II.",
+    "## Magicite",
+    "The three magicite can be examined in any order.",
+    "If you are on the Windurst (S) Mission Howl from the Heavens, you will need to touch each Magicite twice: once for the shard, then once for the cutscene and magicite.",
+    "## Davoi",
+    "The fastest way is to book warp by Survival Guide to Norvallen > Davoi.",
+    "  Otherwise, Unity warp to Jugner Forest (Level 122 category) and head to (G-12).",
+    "Travel to Davoi. Orcs along the path go up to level 39 and will sight-Aggro to players under level 55 unless they are Invisible. Wolf Bats are level 25-29 and will hearing-Aggro players under level 43 unless they are Sneaked.",
+    "Disable the Wall of Dark Arts (G-7). Continue into Monastic Cavern.",
+    "  A friend with the Crest of Davoi can Tractor you through the Wall.",
+    "Check the Magicite at the end of the hall. You will receive the Magicite: Optistone.",
+    "## Beadeaux",
+    "The fastest way is to book warp by Survival Guide to Derfland > Beadeaux.",
+    "  Otherwise, Unity warp to Pashhow Marshlands (Level 122 category) and head to (L-11).",
+    "Travel to Beadeaux. Quadav along the path go up to level 28 and will hearing-Aggro to players under level 42 unless they are Sneaked.",
+    "Enter Map 2 via exit A at (H-7).",
+    "Enter Qulun Dome at (I-7).",
+    "Open the door. If you get the message \"The Silver bell, Coruscant rosary, Black Matinee Necklace, glow faintly.\" then move closer and try again.",
+    "  A friend with the Silver bell, Coruscant rosary, and Black Matinee Necklace can Tractor you through the door. As there are no mobs in Qulun Dome, you will need to use Poison Potions to kill yourself first.",
+    "Check the Magicite at the end of the hall. You will receive the Magicite: Aurastone.",
+    "## Castle Oztroja",
+    "The fastest way is to book warp by Survival Guide to Aragoneu > Castle Oztroja.",
+    "Travel to Castle Oztroja. Yagudo along the path go up to level 49 and will sight-Aggro to players under level 68 unless they are Invisible. Bats will also aggro unless players are Sneaked.",
+    "Go through the door at (I-8) to reach Map 3.",
+    "  One lever opens the door, and the other triggers the trapdoor. You will not be able to throw a lever unless you are standing on the trapdoor. The correct lever changes every Vana'diel day.",
+    "  Since there is a significant delay, an easy way to avoid the trap is to throw a lever and then immediately run off the trapdoor.",
+    "Enter Map 7 via exit F at (G-7).",
+    "Enter Map 2 via exit I at (I-7).",
+    "Light the Yagudo Torch in the southwest hallway at ((H-9)/(H-10)) to open the Brass Door.",
+    "Open the Brass Door at (G-10). Continue into Altar Room.",
+    "  If you spoke to Paya-Sabya and Muckvix, you will get a cutscene with Fickblix. If you are repeating this mission and you skipped those two, this cutscene will be skipped.",
+    "Check the Magicite at the end of the hall. You will receive the Magicite: Orastone.",
+    "## Return to Jeuno",
+    "Return to the Audience Chamber (H-6) in Ru'Lude Gardens. You will receive an Airship pass.",
+    "  If you already have an Airship pass, you will receive 20,000 gil instead.",
+    "Return to your embassy's receptionist to complete the mission. You will receive Rank 5, Message to Jeuno, and 10,000 gil.",
+    "Mission 5-1 will begin immediately. You will not be able to change allegiance until you complete 5-1 or reject the mission offer in the following cutscene."
+   ],
    "client": null,
    "summary": "Confiscate the three kinds of magicite in Davoi, Beadeaux, and Castle Oztroja to prevent the resurrection of the Shadow Lord.",
    "coords": [
-    "I-9"
+    "I-9",
+    "H-10",
+    "H-6",
+    "J-8",
+    "I-8",
+    "H-9",
+    "G-7",
+    "H-7",
+    "F-8",
+    "E-10",
+    "F-10",
+    "F-9",
+    "F-6",
+    "G-12",
+    "L-11",
+    "I-7",
+    "G-10"
    ],
    "mapRefs": [
     {
@@ -65368,9 +66503,304 @@
      "zone": "Qulun Dome",
      "mapNo": null,
      "pos": "F-7"
+    },
+    {
+     "zone": "Ru'Lude Gardens",
+     "mapNo": null,
+     "pos": "H-10"
+    },
+    {
+     "zone": "Ru'Lude Gardens",
+     "mapNo": null,
+     "pos": "H-6"
+    },
+    {
+     "zone": "Lower Jeuno",
+     "mapNo": null,
+     "pos": "J-8"
+    },
+    {
+     "zone": "Upper Jeuno",
+     "mapNo": null,
+     "pos": "I-8"
+    },
+    {
+     "zone": "Lower Jeuno",
+     "mapNo": null,
+     "pos": "H-9"
+    },
+    {
+     "zone": "Upper Jeuno",
+     "mapNo": null,
+     "pos": "G-7"
+    },
+    {
+     "zone": "Beadeaux",
+     "mapNo": 1,
+     "pos": "H-7"
+    },
+    {
+     "zone": "Beadeaux",
+     "mapNo": 2,
+     "pos": "G-7"
+    },
+    {
+     "zone": "Beadeaux",
+     "mapNo": 2,
+     "pos": "F-8"
+    },
+    {
+     "zone": "Beadeaux",
+     "mapNo": 1,
+     "pos": "E-10"
+    },
+    {
+     "zone": "Beadeaux",
+     "mapNo": 1,
+     "pos": "F-10"
+    },
+    {
+     "zone": "Beadeaux",
+     "mapNo": 1,
+     "pos": "F-9"
+    },
+    {
+     "zone": "Beadeaux",
+     "mapNo": 1,
+     "pos": "I-9"
+    },
+    {
+     "zone": "Beadeaux",
+     "mapNo": 1,
+     "pos": "F-6"
+    },
+    {
+     "zone": "Jugner Forest",
+     "mapNo": null,
+     "pos": "G-12"
+    },
+    {
+     "zone": "Davoi",
+     "mapNo": null,
+     "pos": "G-7"
+    },
+    {
+     "zone": "Pashhow Marshlands",
+     "mapNo": null,
+     "pos": "L-11"
+    },
+    {
+     "zone": "Beadeaux",
+     "mapNo": 2,
+     "pos": "I-7"
+    },
+    {
+     "zone": "Castle Oztroja",
+     "mapNo": 1,
+     "pos": "I-8"
+    },
+    {
+     "zone": "Castle Oztroja",
+     "mapNo": 3,
+     "pos": "G-7"
+    },
+    {
+     "zone": "Castle Oztroja",
+     "mapNo": 7,
+     "pos": "I-7"
+    },
+    {
+     "zone": "Castle Oztroja",
+     "mapNo": 2,
+     "pos": "H-9"
+    },
+    {
+     "zone": "Castle Oztroja",
+     "mapNo": 2,
+     "pos": "H-10"
+    },
+    {
+     "zone": "Castle Oztroja",
+     "mapNo": 2,
+     "pos": "G-10"
     }
    ],
-   "stepRefs": [],
+   "stepRefs": [
+    {
+     "step": 2,
+     "zone": "Ru'Lude Gardens",
+     "mapNo": null,
+     "pos": "H-10"
+    },
+    {
+     "step": 5,
+     "zone": "Ru'Lude Gardens",
+     "mapNo": null,
+     "pos": "H-6"
+    },
+    {
+     "step": 6,
+     "zone": "Lower Jeuno",
+     "mapNo": null,
+     "pos": "J-8"
+    },
+    {
+     "step": 13,
+     "zone": "Upper Jeuno",
+     "mapNo": null,
+     "pos": "I-8"
+    },
+    {
+     "step": 13,
+     "zone": "Lower Jeuno",
+     "mapNo": null,
+     "pos": "H-9"
+    },
+    {
+     "step": 16,
+     "zone": "Upper Jeuno",
+     "mapNo": null,
+     "pos": "G-7"
+    },
+    {
+     "step": 18,
+     "zone": "Upper Jeuno",
+     "mapNo": null,
+     "pos": "I-8"
+    },
+    {
+     "step": 19,
+     "zone": "Lower Jeuno",
+     "mapNo": null,
+     "pos": "H-9"
+    },
+    {
+     "step": 21,
+     "zone": "Beadeaux",
+     "mapNo": 1,
+     "pos": "H-7"
+    },
+    {
+     "step": 22,
+     "zone": "Beadeaux",
+     "mapNo": 2,
+     "pos": "G-7"
+    },
+    {
+     "step": 23,
+     "zone": "Beadeaux",
+     "mapNo": 2,
+     "pos": "F-8"
+    },
+    {
+     "step": 24,
+     "zone": "Beadeaux",
+     "mapNo": 1,
+     "pos": "E-10"
+    },
+    {
+     "step": 24,
+     "zone": "Beadeaux",
+     "mapNo": 1,
+     "pos": "F-10"
+    },
+    {
+     "step": 24,
+     "zone": "Beadeaux",
+     "mapNo": 1,
+     "pos": "F-9"
+    },
+    {
+     "step": 25,
+     "zone": "Beadeaux",
+     "mapNo": 1,
+     "pos": "I-9"
+    },
+    {
+     "step": 26,
+     "zone": "Beadeaux",
+     "mapNo": 1,
+     "pos": "F-6"
+    },
+    {
+     "step": 27,
+     "zone": "Lower Jeuno",
+     "mapNo": null,
+     "pos": "J-8"
+    },
+    {
+     "step": 35,
+     "zone": "Jugner Forest",
+     "mapNo": null,
+     "pos": "G-12"
+    },
+    {
+     "step": 37,
+     "zone": "Davoi",
+     "mapNo": null,
+     "pos": "G-7"
+    },
+    {
+     "step": 42,
+     "zone": "Pashhow Marshlands",
+     "mapNo": null,
+     "pos": "L-11"
+    },
+    {
+     "step": 44,
+     "zone": "Beadeaux",
+     "mapNo": 1,
+     "pos": "H-7"
+    },
+    {
+     "step": 45,
+     "zone": "Beadeaux",
+     "mapNo": 2,
+     "pos": "I-7"
+    },
+    {
+     "step": 52,
+     "zone": "Castle Oztroja",
+     "mapNo": 1,
+     "pos": "I-8"
+    },
+    {
+     "step": 55,
+     "zone": "Castle Oztroja",
+     "mapNo": 3,
+     "pos": "G-7"
+    },
+    {
+     "step": 56,
+     "zone": "Castle Oztroja",
+     "mapNo": 7,
+     "pos": "I-7"
+    },
+    {
+     "step": 57,
+     "zone": "Castle Oztroja",
+     "mapNo": 2,
+     "pos": "H-9"
+    },
+    {
+     "step": 57,
+     "zone": "Castle Oztroja",
+     "mapNo": 2,
+     "pos": "H-10"
+    },
+    {
+     "step": 58,
+     "zone": "Castle Oztroja",
+     "mapNo": 2,
+     "pos": "G-10"
+    },
+    {
+     "step": 62,
+     "zone": "Ru'Lude Gardens",
+     "mapNo": null,
+     "pos": "H-6"
+    }
+   ],
    "headingRefs": [],
    "url": "https://ffxiclopedia.fandom.com/wiki/Magicite_(Windurst)"
   },
@@ -65958,6 +67388,36 @@
      "zone": "Inner Horutoto Ruins",
      "mapNo": 2,
      "pos": "H-6"
+    },
+    {
+     "zone": "Outer Horutoto Ruins",
+     "mapNo": 4,
+     "pos": "J-8"
+    },
+    {
+     "zone": "Inner Horutoto Ruins",
+     "mapNo": 2,
+     "pos": "E-10"
+    },
+    {
+     "zone": "Inner Horutoto Ruins",
+     "mapNo": 2,
+     "pos": "D-10"
+    },
+    {
+     "zone": "Inner Horutoto Ruins",
+     "mapNo": 3,
+     "pos": "H-9"
+    },
+    {
+     "zone": "Inner Horutoto Ruins",
+     "mapNo": 3,
+     "pos": "H-8"
+    },
+    {
+     "zone": "Inner Horutoto Ruins",
+     "mapNo": 4,
+     "pos": "H-6"
     }
    ],
    "stepRefs": [
@@ -65970,7 +67430,7 @@
     {
      "step": 7,
      "zone": "Outer Horutoto Ruins",
-     "mapNo": null,
+     "mapNo": 4,
      "pos": "J-8"
     },
     {
@@ -66048,31 +67508,31 @@
     {
      "step": 50,
      "zone": "Inner Horutoto Ruins",
-     "mapNo": null,
+     "mapNo": 2,
      "pos": "E-10"
     },
     {
      "step": 51,
      "zone": "Inner Horutoto Ruins",
-     "mapNo": null,
+     "mapNo": 2,
      "pos": "D-10"
     },
     {
      "step": 52,
      "zone": "Inner Horutoto Ruins",
-     "mapNo": 1,
+     "mapNo": 3,
      "pos": "H-9"
     },
     {
      "step": 53,
      "zone": "Inner Horutoto Ruins",
-     "mapNo": 1,
+     "mapNo": 3,
      "pos": "H-8"
     },
     {
      "step": 54,
      "zone": "Inner Horutoto Ruins",
-     "mapNo": 2,
+     "mapNo": 4,
      "pos": "H-6"
     },
     {
@@ -66404,13 +67864,18 @@
      "zone": "Toraimarai Canal",
      "mapNo": 2,
      "pos": "H-8"
+    },
+    {
+     "zone": "Windurst Waters",
+     "mapNo": 2,
+     "pos": "G-8"
     }
    ],
    "stepRefs": [
     {
      "step": 1,
      "zone": "Windurst Waters",
-     "mapNo": null,
+     "mapNo": 2,
      "pos": "G-8"
     },
     {
@@ -66764,13 +68229,18 @@
      "zone": "Davoi",
      "mapNo": null,
      "pos": "H-8"
+    },
+    {
+     "zone": "Windurst Waters",
+     "mapNo": 2,
+     "pos": "L-6"
     }
    ],
    "stepRefs": [
     {
      "step": 1,
      "zone": "Windurst Waters",
-     "mapNo": null,
+     "mapNo": 2,
      "pos": "L-6"
     },
     {
@@ -66806,7 +68276,7 @@
     {
      "step": 19,
      "zone": "Windurst Waters",
-     "mapNo": null,
+     "mapNo": 2,
      "pos": "L-6"
     }
    ],
@@ -67009,13 +68479,28 @@
      "zone": "Monastic Cavern",
      "mapNo": null,
      "pos": "I-8"
+    },
+    {
+     "zone": "Windurst Waters",
+     "mapNo": 2,
+     "pos": "G-8"
+    },
+    {
+     "zone": "Outer Horutoto Ruins",
+     "mapNo": 5,
+     "pos": "G-8"
+    },
+    {
+     "zone": "Inner Horutoto Ruins",
+     "mapNo": 4,
+     "pos": "I-7"
     }
    ],
    "stepRefs": [
     {
      "step": 4,
      "zone": "Windurst Waters",
-     "mapNo": null,
+     "mapNo": 2,
      "pos": "G-8"
     },
     {
@@ -67051,7 +68536,7 @@
     {
      "step": 15,
      "zone": "Outer Horutoto Ruins",
-     "mapNo": 2,
+     "mapNo": 5,
      "pos": "G-8"
     },
     {
@@ -67069,7 +68554,7 @@
     {
      "step": 31,
      "zone": "Inner Horutoto Ruins",
-     "mapNo": 2,
+     "mapNo": 4,
      "pos": "I-7"
     },
     {
@@ -67093,7 +68578,7 @@
     {
      "step": 38,
      "zone": "Inner Horutoto Ruins",
-     "mapNo": 2,
+     "mapNo": 4,
      "pos": "I-7"
     }
    ],

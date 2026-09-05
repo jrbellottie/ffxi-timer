@@ -340,9 +340,13 @@ function Detail({ entry, onOpen, onBack }: { entry: Entry; onOpen: (id: string) 
   return (
     <div style={{ display: "grid", gridTemplateColumns: shownMaps.length ? "minmax(0, 1fr) 440px" : "1fr", gap: 16 }}>
     <div style={{ display: "flex", flexDirection: "column", gap: 12, minWidth: 0 }}>
-      <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
+      {/* Sticky under the app nav (zIndex 10) so the title and wiki link stay visible like the map panel */}
+      <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap", position: "sticky", top: stickyTop - 16, zIndex: 5, background: "#0c0c0c", padding: "6px 0" }}>
         <button style={{ ...inputStyle, cursor: "pointer" }} onClick={onBack}>← Back</button>
-        <h3 style={{ margin: 0, fontSize: 18 }}>{entry.name}</h3>
+        <h3 style={{ margin: 0, fontSize: 18 }}>
+          {entry.number && <span style={{ color: "#e8d47e" }}>{entry.number} · </span>}
+          {entry.name}
+        </h3>
         <span style={{ ...chipStyle(true, color), cursor: "default" }}>{entry.group}</span>
         <span style={{ color: "#9aa0b8", fontSize: 12 }}>{entry.type === "mission" ? "Mission" : "Quest"}</span>
         <a href={entry.url} target="_blank" rel="noreferrer" style={{ color: "#7ec4e8", fontSize: 12, marginLeft: "auto" }}>

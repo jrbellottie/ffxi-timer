@@ -63,6 +63,64 @@ const normTitle = (t) => t.replace(/^Assault Mission - /, "");
 // Post-ToAU marker in the TITLE only (content mentions are unreliable either way)
 const POST_TOAU_TITLE_RE = /Wings of the Goddess|Abyssea|Adoulin|Voidwatch|VW Op|Records of Eminence|Trust:|Coalition|Monstrosity|Dancer|Scholar|Synergistic|Moogle Magic/i;
 
+// Pages whose walkthrough lives in a shared transcluded template (all three nations' Magicite)
+const WALKTHROUGH_TRANSCLUSIONS = [{ marker: /\{\{\s*magicite\s*\}\}/i, template: "Template:Magicite" }];
+
+// Assault arena maps, per each zone's "/Maps" subpage gallery captions (assault name -> [zone, mapNo]).
+// Gallery says "Escort Professor Clavauert" but the page/entry is "Escort Professor Chanoix" (NPC: Clavauert B Chanoix).
+const ASSAULT_MAPS = new Map([
+  ["Imperial Code", ["Leujaoam Sanctum", 1]],
+  ["Escort Professor Chanoix", ["Leujaoam Sanctum", 2]],
+  ["Red Versus Blue", ["Leujaoam Sanctum", 3]],
+  ["Shanarha Grass Conservation", ["Leujaoam Sanctum", 4]],
+  ["Supplies Recovery", ["Leujaoam Sanctum", 6]],
+  ["Leujaoam Cleansing", ["Leujaoam Sanctum", 7]],
+  ["Orichalcum Survey", ["Leujaoam Sanctum", 8]],
+  ["Counting Sheep", ["Leujaoam Sanctum", 9]],
+  ["Azure Experiments", ["Leujaoam Sanctum", 10]],
+  ["The Double Agent", ["Mamool Ja Training Grounds", 1]],
+  ["Imperial Agent Rescue", ["Mamool Ja Training Grounds", 2]],
+  ["Preemptive Strike", ["Mamool Ja Training Grounds", 3]],
+  ["Breaking Morale", ["Mamool Ja Training Grounds", 4]],
+  ["Imperial Treasure Retrieval", ["Mamool Ja Training Grounds", 5]],
+  ["Sagelord Elimination", ["Mamool Ja Training Grounds", 7]],
+  ["Blitzkrieg", ["Mamool Ja Training Grounds", 8]],
+  ["Azure Ailments", ["Mamool Ja Training Grounds", 8]],
+  ["Marids in the Mist", ["Mamool Ja Training Grounds", 10]],
+  ["Troll Fugitives", ["Lebros Cavern", 2]],
+  ["Apkallu Breeding", ["Lebros Cavern", 3]],
+  ["Excavation Duty", ["Lebros Cavern", 4]],
+  ["Wamoura Farm Raid", ["Lebros Cavern", 5]],
+  ["Lebros Supplies", ["Lebros Cavern", 6]],
+  ["Evade and Escape", ["Lebros Cavern", 9]],
+  ["Siegemaster Assassination", ["Lebros Cavern", 10]],
+  ["Apkallu Seizure", ["Ilrusi Atoll", 1]],
+  ["Lost and Found", ["Ilrusi Atoll", 2]],
+  ["Deserter", ["Ilrusi Atoll", 3]],
+  ["Demolition Duty", ["Ilrusi Atoll", 4]],
+  ["Lamia No.13", ["Ilrusi Atoll", 5]],
+  ["Extermination", ["Ilrusi Atoll", 7]],
+  ["Golden Salvage", ["Ilrusi Atoll", 8]],
+  ["Searat Salvation", ["Ilrusi Atoll", 9]],
+  ["Desperately Seeking Cephalopods", ["Ilrusi Atoll", 10]],
+  ["Shooting Down the Baron", ["Periqia", 1]],
+  ["Stop the Bloodshed", ["Periqia", 1]],
+  ["Requiem", ["Periqia", 2]],
+  ["Defuse the Threat", ["Periqia", 3]],
+  ["Saving Private Ryaaf", ["Periqia", 7]],
+  ["Building Bridges", ["Periqia", 7]],
+  ["Wake the Puppet", ["Periqia", 7]],
+  ["Seagull Grounded", ["Periqia", 8]],
+  ["Operation: Snake Eyes", ["Periqia", 8]],
+  // Area overview entries: show the whole zone's map set
+  ["Leujaoam Sanctum", ["Leujaoam Sanctum", null]],
+  ["Mamool Ja Training Grounds", ["Mamool Ja Training Grounds", null]],
+  ["Lebros Cavern", ["Lebros Cavern", null]],
+  ["Periqia", ["Periqia", null]],
+  ["Ilrusi Atoll", ["Ilrusi Atoll", null]],
+  ["Nyzul Isle", ["Nyzul Isle", null]],
+]);
+
 // Manual overrides for verified wiki errors / prose the parser can't disambiguate
 const COORD_FIXES = [
   { page: "Appointment to Jeuno", snippet: "blind staircase area (H-8)", wrong: null, right: "H-8", zone: "Lower Delkfutt's Tower", mapNo: 0 },
@@ -128,6 +186,54 @@ const COORD_FIXES = [
   { page: "Slanderous Utterings", snippet: "Talk to Despachiaire", wrong: null, right: "K-9", zone: "Tavnazian Safehold", mapNo: 2, replace: true },
   { page: "Slanderous Utterings", snippet: "Talk to Despachiaire", wrong: null, right: "K-10", zone: "Tavnazian Safehold", mapNo: 2, replace: true },
   { page: "Slanderous Utterings", snippet: "Enter Sealion's Den", wrong: "H-9", right: "H-10", zone: "Tavnazian Safehold", mapNo: 3, replace: true },
+  // ToAU 2 Dvucca Isle route: prose zone inference mislabels the Arrapago Reef legs
+  { page: "Aht Urhgan Mission 2: Immortal Sentries", snippet: "Head to C-10 on second map", wrong: null, right: "C-10", zone: "Arrapago Reef", mapNo: 2 },
+  { page: "Aht Urhgan Mission 2: Immortal Sentries", snippet: "Head to I-11 on third map", wrong: null, right: "I-11", zone: "Arrapago Reef", mapNo: 3 },
+  { page: "Aht Urhgan Mission 2: Immortal Sentries", snippet: "Go through iron gate at H-11", wrong: null, right: "H-11", zone: "Arrapago Reef", mapNo: 3, replace: true },
+  { page: "Aht Urhgan Mission 2: Immortal Sentries", snippet: "Exit out to Caedarva Mire (I-10)", wrong: null, right: "I-10", zone: "Caedarva Mire", mapNo: 2 },
+  // ToAU 2 Mamool Ja route: coords sit in the zone being left, not the one being entered
+  { page: "Aht Urhgan Mission 2: Immortal Sentries", snippet: "until E-12 and enter Mamook", wrong: null, right: "E-12", zone: "Wajaom Woodlands", mapNo: 1, replace: true },
+  { page: "Aht Urhgan Mission 2: Immortal Sentries", snippet: "until F-10 and enter Bhaflau Thickets", wrong: null, right: "F-10", zone: "Mamook", mapNo: 1, replace: true },
+  { page: "Aht Urhgan Mission 2: Immortal Sentries", snippet: "Head south to H-11", wrong: null, right: "H-11", zone: "Bhaflau Thickets", mapNo: 2 },
+  // ToAU 9: the staging-point route steps never name the zone; I-9 is on the Nyzul hub map
+  { page: "Aht Urhgan Mission 9: Undersea Scouting", snippet: "west to the room at (I-9)", wrong: null, right: "I-9", zone: "Alzadaal Undersea Ruins", mapNo: 8 },
+  // ToAU 31 battlefield is in Periqia; the wiki's Periqia/Maps gallery tags this mission as map 6
+  { page: "Aht Urhgan Mission 31: Shades of Vengeance", snippet: "K23H1-LAMIAE. They are located at (H-9)", wrong: null, right: "H-9", zone: "Periqia", mapNo: 6 },
+  // Windurst 1-1: the tower entrance is outside, in East Sarutabaruta
+  { page: "The Horutoto Ruins Experiment", snippet: "Go to the entrance (#5) to the Inner Horutoto Ruins at J-7", wrong: null, right: "J-7", zone: "East Sarutabaruta", mapNo: 1, replace: true },
+  // Windurst 2-1: the Optistery/Tonana are on Waters North (map 2); the Mahogany Door leg is Inner Horutoto map 2
+  { page: "Lost for Words", snippet: "Talk to Tosuka-Porika in the Optistery", wrong: null, right: "G-8", zone: "Windurst Waters", mapNo: 2 },
+  { page: "Lost for Words", snippet: "Take the warp from Tonana (G-8)", wrong: null, right: "G-8", zone: "Windurst Waters", mapNo: 2 },
+  { page: "Lost for Words", snippet: "Beetle's Burrow at (K-9)", wrong: null, right: "K-9", zone: "Inner Horutoto Ruins", mapNo: 2 },
+  { page: "Lost for Words", snippet: "Head to (G-8) (the tunnel extension", wrong: null, right: "G-8", zone: "Inner Horutoto Ruins", mapNo: 2 },
+  { page: "Lost for Words", snippet: "Go west from (K-9)", wrong: null, right: "K-9", zone: "Inner Horutoto Ruins", mapNo: 2 },
+  { page: "Lost for Words", snippet: "At (I-9), take the west tunnel", wrong: null, right: "I-9", zone: "Inner Horutoto Ruins", mapNo: 2 },
+  { page: "Lost for Words", snippet: "Click on the Mahogany Door at (G-8)", wrong: null, right: "G-8", zone: "Inner Horutoto Ruins", mapNo: 2 },
+  { page: "Lost for Words", snippet: "Return to (G-8) Tosuka-Porika", wrong: null, right: "G-8", zone: "Windurst Waters", mapNo: 2, replace: true },
+  // Windurst 2-2: the Aurastery is on Waters North (map 2)
+  { page: "A Testing Time", snippet: "Moreno-Toeno (inside the Aurastery)", wrong: null, right: "L-6", zone: "Windurst Waters", mapNo: 2 },
+  // Windurst 3-2: wiki's "Rose Tower Map 2" is our Inner Horutoto map 4; Three Mage Gate room is map 3
+  { page: "Written in the Stars", snippet: "Gate of Light\" located at Inner Horutoto Ruins (G-7)", wrong: null, right: "G-7", zone: "Inner Horutoto Ruins", mapNo: 4 },
+  { page: "Written in the Stars", snippet: "Make your way to (E-10)", wrong: null, right: "E-10", zone: "Inner Horutoto Ruins", mapNo: 2 },
+  { page: "Written in the Stars", snippet: "Cracked Door at (D-10)", wrong: null, right: "D-10", zone: "Inner Horutoto Ruins", mapNo: 2 },
+  { page: "Written in the Stars", snippet: "large room at (H-9)", wrong: null, right: "H-9", zone: "Inner Horutoto Ruins", mapNo: 3 },
+  { page: "Written in the Stars", snippet: "head over to the small room in (G-7)", wrong: null, right: "G-7", zone: "Inner Horutoto Ruins", mapNo: 4 },
+  { page: "Written in the Stars", snippet: "east room at (H-6)", wrong: null, right: "H-6", zone: "Inner Horutoto Ruins", mapNo: 4 },
+  // Windurst 6-1 route 4: same Three Mage Gate corridor (maps 2/3) up to the canal door on map 4
+  { page: "Full Moon Fountain (Mission)", snippet: "head to the Gate: Magical Gizmo at (J-8)", wrong: null, right: "J-8", zone: "Outer Horutoto Ruins", mapNo: 4 },
+  { page: "Full Moon Fountain (Mission)", snippet: "Magic Gate of Horutoto at (E-10)", wrong: null, right: "E-10", zone: "Inner Horutoto Ruins", mapNo: 2 },
+  { page: "Full Moon Fountain (Mission)", snippet: "Cracked Wall at (D-10)", wrong: null, right: "D-10", zone: "Inner Horutoto Ruins", mapNo: 2 },
+  { page: "Full Moon Fountain (Mission)", snippet: "Three Mage Gate at (H-9)", wrong: null, right: "H-9", zone: "Inner Horutoto Ruins", mapNo: 3 },
+  { page: "Full Moon Fountain (Mission)", snippet: "Through false wall at (H-8)", wrong: null, right: "H-8", zone: "Inner Horutoto Ruins", mapNo: 3 },
+  { page: "Full Moon Fountain (Mission)", snippet: "Toraimarai Canal door is at (H-6)", wrong: null, right: "H-6", zone: "Inner Horutoto Ruins", mapNo: 4 },
+  // Windurst 7-1 / 8-1 / 8-2: Optistery & Aurastery are on Waters North (map 2); Gate of Darkness is on Rose Tower (map 4)
+  { page: "The Sixth Ministry", snippet: "Tosuka-Porika at the Optistery in Northern Windurst Waters (G-8)", wrong: null, right: "G-8", zone: "Windurst Waters", mapNo: 2 },
+  { page: "Vain", snippet: "at (L-6) for a cutscene and the key item Star Seeker", wrong: null, right: "L-6", zone: "Windurst Waters", mapNo: 2 },
+  { page: "Vain", snippet: "at (L-6) to complete the mission", wrong: null, right: "L-6", zone: "Windurst Waters", mapNo: 2 },
+  { page: "The Jester Who'd Be King", snippet: "Optistery Ring at Optistery, East Wing", wrong: null, right: "G-8", zone: "Windurst Waters", mapNo: 2 },
+  { page: "The Jester Who'd Be King", snippet: "on the next map, to the Cracked Wall at (G-8)", wrong: null, right: "G-8", zone: "Outer Horutoto Ruins", mapNo: 5 },
+  { page: "The Jester Who'd Be King", snippet: "At (I-7) on the fourth map", wrong: null, right: "I-7", zone: "Inner Horutoto Ruins", mapNo: 4 },
+  { page: "The Jester Who'd Be King", snippet: "Check the Gate of Darkness at (I-7)", wrong: null, right: "I-7", zone: "Inner Horutoto Ruins", mapNo: 4 },
   { page: "The Warrior's Path", snippet: "landed at E-12", wrong: null, right: "E-12", zone: "Al'Taieu", mapNo: 1 },
   { page: "Garden of Antiquity", snippet: "Crystalline Field door", wrong: null, right: "H-11", zone: "Al'Taieu", mapNo: 1, replace: true },
   { page: "Garden of Antiquity", snippet: "Auroral Updraft", wrong: null, right: "H-12", zone: "Al'Taieu", mapNo: 1, replace: true },
@@ -250,7 +356,8 @@ function plain(wt) {
   s = s.replace(/<!--[\s\S]*?-->/g, "");
   s = s.replace(/<ref[^>]*>[\s\S]*?<\/ref>/gi, "").replace(/<ref[^>]*\/>/gi, "");
   s = s.replace(/<br\s*\/?>/gi, "\n");
-  s = s.replace(/\[\[(?:File|Image|Category|de|fr|ja|es):[^\]]*\]\]/gi, "");
+  // File captions can nest links: [[File:x.png|thumb|[[Ulrich]] reports...]]
+  s = s.replace(/\[\[(?:File|Image|Category|de|fr|ja|es):(?:[^[\]]|\[\[[^\]]*\]\])*\]\]/gi, "");
   // Hover-map templates -> readable coords: {{Location Tooltip|area=Norg|pos=K-8}} -> (K-8)
   // (text= params may contain lone braces: text={Port Bastok J-5 house})
   const tmplBody = "((?:[^{}]|\\{(?!\\{)|\\}(?!\\}))*)";
@@ -380,6 +487,8 @@ function parseTemplate(wt) {
 
 /** Walkthrough section -> array of step strings ("## " prefix = sub-heading). */
 /** {{Location}}/{{Location Tooltip}} references in a wikitext fragment: zone + sub-map + position. */
+// Wiki names some sub-maps instead of numbering them (map=Surface, map=North); matches fetch-maps numbering
+const NAMED_MAP_NOS = { surface: 1, tunnels: 2, south: 1, north: 2 };
 function locRefs(wt) {
   const out = [];
   const re = /\{\{\s*Location(?: Tooltip)?\s*\|((?:[^{}]|\{(?!\{)|\}(?!\}))*)\}\}/gi;
@@ -388,7 +497,9 @@ function locRefs(wt) {
     const { positional, named } = templateParams(m[1]);
     const zone = plain(named.area ?? positional[0] ?? "").trim();
     const pos = (named.pos ?? positional[1] ?? "").trim().toUpperCase();
-    const mapNo = named.map ? parseInt(named.map.match(/\d+/)?.[0] ?? "", 10) || null : null;
+    const mapNo = named.map
+      ? (parseInt(named.map.match(/\d+/)?.[0] ?? "", 10) || null) ?? NAMED_MAP_NOS[named.map.trim().toLowerCase()] ?? null
+      : null;
     if (zone && /^[A-P]-\d{1,2}$/.test(pos)) out.push({ zone, mapNo, pos });
   }
   return out;
@@ -768,6 +879,31 @@ for (const [title, group] of missionCanon) {
   if (e) missions.push(e);
 }
 
+// Expand walkthroughs that live in shared templates ({{magicite}}) and parsed empty
+const tplNeeds = new Map(); // template page -> entries
+for (const e of [...quests, ...missions]) {
+  if (e.walkthrough.length) continue;
+  const t = WALKTHROUGH_TRANSCLUSIONS.find((x) => x.marker.test(ffxi.pages.get(e.pageTitle) ?? ""));
+  if (t) tplNeeds.set(t.template, [...(tplNeeds.get(t.template) ?? []), e]);
+}
+if (tplNeeds.size) {
+  const tpl = await fetchPages(FFXI, [...tplNeeds.keys()]);
+  for (const [page, entries] of tplNeeds) {
+    const twt = tpl.pages.get(page);
+    if (!twt) { console.log(`  ! transcluded walkthrough not found: ${page}`); continue; }
+    const { steps, stepRefs } = parseWalkthrough(twt);
+    const refs = locRefs(twt);
+    const coords = [...new Set([...plain(twt).matchAll(COORD_RE)].map((m) => m[1]))];
+    for (const e of entries) {
+      e.walkthrough = steps;
+      e.stepRefs = stepRefs.map((r) => ({ ...r }));
+      for (const r of refs) if (!e.mapRefs.some((x) => x.zone === r.zone && x.mapNo === r.mapNo && x.pos === r.pos)) e.mapRefs.push({ ...r });
+      for (const c of coords) if (!e.coords.includes(c)) e.coords.push(c);
+      console.log(`  transcluded walkthrough: ${e.pageTitle} <- ${page} (${steps.length} steps)`);
+    }
+  }
+}
+
 // Dedupe same-name entries (e.g. "Lamia No.13" monster stub vs "Lamia No.13 (Mission)")
 function dedupe(arr) {
   const richness = (x) => x.walkthrough.length * 2 + (x.startNpc ? 1 : 0) + x.items.length + (x.reward ? 1 : 0);
@@ -921,6 +1057,17 @@ for (const fix of COORD_FIXES) {
   }
   console.log(`  corrected ${fix.page} step ${i}: ${fix.wrong ?? pos} -> ${pos}${fix.zone ? ` @ ${fix.zone}${fix.mapNo != null ? ` map ${fix.mapNo}` : ""}` : ""}`);
 }
+
+// Pin each assault to its arena map so the map panel shows it (assault pages have no {{Location}} refs)
+let assaultPinned = 0;
+for (const e of [...quests, ...missions]) {
+  if (e.group !== "Assault") continue;
+  const am = ASSAULT_MAPS.get(e.name);
+  if (!am) continue;
+  const [zone, mapNo] = am;
+  if (!e.mapRefs.some((r) => r.zone === zone)) { e.mapRefs.push({ zone, mapNo, pos: "" }); assaultPinned++; }
+}
+console.log(`Pinned ${assaultPinned} assault arena maps`);
 
 // Backfill missing start-NPC coordinates from the NPCs' own pages ---------------------------------
 function npcLocation(wt) {

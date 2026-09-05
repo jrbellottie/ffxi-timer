@@ -1,7 +1,7 @@
 {
-  "name": "kupo",
+  "name": "Kupo",
   "private": true,
-  "version": "v1.0.1",
+  "version": "v1.0.0",
   "type": "module",
   "main": "dist-electron/main.js",
   "scripts": {

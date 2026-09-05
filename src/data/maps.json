@@ -166,6 +166,81 @@
    ]
   },
   {
+   "id": "alzadaal-undersea-ruins-8",
+   "zone": "Alzadaal Undersea Ruins",
+   "mapNo": 8,
+   "name": "Alzadaal Undersea Ruins - Map 8",
+   "file": "maps/alzadaal-undersea-ruins-8.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "alzadaal-undersea-ruins-9",
+   "zone": "Alzadaal Undersea Ruins",
+   "mapNo": 9,
+   "name": "Alzadaal Undersea Ruins - Map 9",
+   "file": "maps/alzadaal-undersea-ruins-9.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "alzadaal-undersea-ruins-10",
+   "zone": "Alzadaal Undersea Ruins",
+   "mapNo": 10,
+   "name": "Alzadaal Undersea Ruins - Map 10",
+   "file": "maps/alzadaal-undersea-ruins-10.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "alzadaal-undersea-ruins-11",
+   "zone": "Alzadaal Undersea Ruins",
+   "mapNo": 11,
+   "name": "Alzadaal Undersea Ruins - Map 11",
+   "file": "maps/alzadaal-undersea-ruins-11.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "alzadaal-undersea-ruins-12",
+   "zone": "Alzadaal Undersea Ruins",
+   "mapNo": 12,
+   "name": "Alzadaal Undersea Ruins - Map 12",
+   "file": "maps/alzadaal-undersea-ruins-12.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
    "id": "arrapago-reef-1",
    "zone": "Arrapago Reef",
    "mapNo": 1,
@@ -216,6 +291,21 @@
    "mapNo": 4,
    "name": "Arrapago Reef - Map 4",
    "file": "maps/arrapago-reef-4.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "arrapago-reef-5",
+   "zone": "Arrapago Reef",
+   "mapNo": 5,
+   "name": "Arrapago Reef - Map 5",
+   "file": "maps/arrapago-reef-5.png",
    "cell": [
     0.06238,
     0.06238
@@ -1516,6 +1606,36 @@
    ]
   },
   {
+   "id": "halvung-1",
+   "zone": "Halvung",
+   "mapNo": 1,
+   "name": "Halvung - Map 1",
+   "file": "maps/halvung-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "halvung-2",
+   "zone": "Halvung",
+   "mapNo": 2,
+   "name": "Halvung - Map 2",
+   "file": "maps/halvung-2.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
    "id": "halvung-3",
    "zone": "Halvung",
    "mapNo": 3,
@@ -1536,36 +1656,6 @@
    "mapNo": 4,
    "name": "Halvung - Map 4",
    "file": "maps/halvung-4.png",
-   "cell": [
-    0.06238,
-    0.06238
-   ],
-   "origin": [
-    0.03223,
-    0.03223
-   ]
-  },
-  {
-   "id": "halvung-12",
-   "zone": "Halvung",
-   "mapNo": 12,
-   "name": "Halvung - Map 12",
-   "file": "maps/halvung-12.png",
-   "cell": [
-    0.06238,
-    0.06238
-   ],
-   "origin": [
-    0.03223,
-    0.03223
-   ]
-  },
-  {
-   "id": "halvung-23",
-   "zone": "Halvung",
-   "mapNo": 23,
-   "name": "Halvung - Map 23",
-   "file": "maps/halvung-23.png",
    "cell": [
     0.06238,
     0.06238
@@ -1746,6 +1836,156 @@
    "mapNo": 8,
    "name": "Ifrit's Cauldron - Map 8",
    "file": "maps/ifrits-cauldron-8.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "ilrusi-atoll-1",
+   "zone": "Ilrusi Atoll",
+   "mapNo": 1,
+   "name": "Ilrusi Atoll - Map 1",
+   "file": "maps/ilrusi-atoll-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "ilrusi-atoll-2",
+   "zone": "Ilrusi Atoll",
+   "mapNo": 2,
+   "name": "Ilrusi Atoll - Map 2",
+   "file": "maps/ilrusi-atoll-2.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "ilrusi-atoll-3",
+   "zone": "Ilrusi Atoll",
+   "mapNo": 3,
+   "name": "Ilrusi Atoll - Map 3",
+   "file": "maps/ilrusi-atoll-3.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "ilrusi-atoll-4",
+   "zone": "Ilrusi Atoll",
+   "mapNo": 4,
+   "name": "Ilrusi Atoll - Map 4",
+   "file": "maps/ilrusi-atoll-4.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "ilrusi-atoll-5",
+   "zone": "Ilrusi Atoll",
+   "mapNo": 5,
+   "name": "Ilrusi Atoll - Map 5",
+   "file": "maps/ilrusi-atoll-5.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "ilrusi-atoll-6",
+   "zone": "Ilrusi Atoll",
+   "mapNo": 6,
+   "name": "Ilrusi Atoll - Map 6",
+   "file": "maps/ilrusi-atoll-6.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "ilrusi-atoll-7",
+   "zone": "Ilrusi Atoll",
+   "mapNo": 7,
+   "name": "Ilrusi Atoll - Map 7",
+   "file": "maps/ilrusi-atoll-7.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "ilrusi-atoll-8",
+   "zone": "Ilrusi Atoll",
+   "mapNo": 8,
+   "name": "Ilrusi Atoll - Map 8",
+   "file": "maps/ilrusi-atoll-8.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "ilrusi-atoll-9",
+   "zone": "Ilrusi Atoll",
+   "mapNo": 9,
+   "name": "Ilrusi Atoll - Map 9",
+   "file": "maps/ilrusi-atoll-9.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "ilrusi-atoll-10",
+   "zone": "Ilrusi Atoll",
+   "mapNo": 10,
+   "name": "Ilrusi Atoll - Map 10",
+   "file": "maps/ilrusi-atoll-10.png",
    "cell": [
     0.06238,
     0.06238
@@ -2041,6 +2281,306 @@
    ]
   },
   {
+   "id": "lebros-cavern-1",
+   "zone": "Lebros Cavern",
+   "mapNo": 1,
+   "name": "Lebros Cavern - Map 1",
+   "file": "maps/lebros-cavern-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "lebros-cavern-2",
+   "zone": "Lebros Cavern",
+   "mapNo": 2,
+   "name": "Lebros Cavern - Map 2",
+   "file": "maps/lebros-cavern-2.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "lebros-cavern-3",
+   "zone": "Lebros Cavern",
+   "mapNo": 3,
+   "name": "Lebros Cavern - Map 3",
+   "file": "maps/lebros-cavern-3.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "lebros-cavern-4",
+   "zone": "Lebros Cavern",
+   "mapNo": 4,
+   "name": "Lebros Cavern - Map 4",
+   "file": "maps/lebros-cavern-4.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "lebros-cavern-5",
+   "zone": "Lebros Cavern",
+   "mapNo": 5,
+   "name": "Lebros Cavern - Map 5",
+   "file": "maps/lebros-cavern-5.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "lebros-cavern-6",
+   "zone": "Lebros Cavern",
+   "mapNo": 6,
+   "name": "Lebros Cavern - Map 6",
+   "file": "maps/lebros-cavern-6.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "lebros-cavern-7",
+   "zone": "Lebros Cavern",
+   "mapNo": 7,
+   "name": "Lebros Cavern - Map 7",
+   "file": "maps/lebros-cavern-7.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "lebros-cavern-8",
+   "zone": "Lebros Cavern",
+   "mapNo": 8,
+   "name": "Lebros Cavern - Map 8",
+   "file": "maps/lebros-cavern-8.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "lebros-cavern-9",
+   "zone": "Lebros Cavern",
+   "mapNo": 9,
+   "name": "Lebros Cavern - Map 9",
+   "file": "maps/lebros-cavern-9.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "lebros-cavern-10",
+   "zone": "Lebros Cavern",
+   "mapNo": 10,
+   "name": "Lebros Cavern - Map 10",
+   "file": "maps/lebros-cavern-10.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "leujaoam-sanctum-1",
+   "zone": "Leujaoam Sanctum",
+   "mapNo": 1,
+   "name": "Leujaoam Sanctum - Map 1",
+   "file": "maps/leujaoam-sanctum-1.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "leujaoam-sanctum-2",
+   "zone": "Leujaoam Sanctum",
+   "mapNo": 2,
+   "name": "Leujaoam Sanctum - Map 2",
+   "file": "maps/leujaoam-sanctum-2.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "leujaoam-sanctum-3",
+   "zone": "Leujaoam Sanctum",
+   "mapNo": 3,
+   "name": "Leujaoam Sanctum - Map 3",
+   "file": "maps/leujaoam-sanctum-3.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "leujaoam-sanctum-4",
+   "zone": "Leujaoam Sanctum",
+   "mapNo": 4,
+   "name": "Leujaoam Sanctum - Map 4",
+   "file": "maps/leujaoam-sanctum-4.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "leujaoam-sanctum-5",
+   "zone": "Leujaoam Sanctum",
+   "mapNo": 5,
+   "name": "Leujaoam Sanctum - Map 5",
+   "file": "maps/leujaoam-sanctum-5.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "leujaoam-sanctum-6",
+   "zone": "Leujaoam Sanctum",
+   "mapNo": 6,
+   "name": "Leujaoam Sanctum - Map 6",
+   "file": "maps/leujaoam-sanctum-6.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "leujaoam-sanctum-7",
+   "zone": "Leujaoam Sanctum",
+   "mapNo": 7,
+   "name": "Leujaoam Sanctum - Map 7",
+   "file": "maps/leujaoam-sanctum-7.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "leujaoam-sanctum-8",
+   "zone": "Leujaoam Sanctum",
+   "mapNo": 8,
+   "name": "Leujaoam Sanctum - Map 8",
+   "file": "maps/leujaoam-sanctum-8.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "leujaoam-sanctum-9",
+   "zone": "Leujaoam Sanctum",
+   "mapNo": 9,
+   "name": "Leujaoam Sanctum - Map 9",
+   "file": "maps/leujaoam-sanctum-9.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "leujaoam-sanctum-10",
+   "zone": "Leujaoam Sanctum",
+   "mapNo": 10,
+   "name": "Leujaoam Sanctum - Map 10",
+   "file": "maps/leujaoam-sanctum-10.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
    "id": "lower-delkfutts-tower-0",
    "zone": "Lower Delkfutt's Tower",
    "mapNo": 0,
@@ -2131,6 +2671,21 @@
    ]
   },
   {
+   "id": "mamook-1",
+   "zone": "Mamook",
+   "mapNo": 1,
+   "name": "Mamook - Map 1",
+   "file": "maps/mamook-1.png",
+   "cell": [
+    0.0625,
+    0.0625
+   ],
+   "origin": [
+    0.03021,
+    0.03021
+   ]
+  },
+  {
    "id": "mamook-2",
    "zone": "Mamook",
    "mapNo": 2,
@@ -2161,33 +2716,153 @@
    ]
   },
   {
-   "id": "mamook-12",
-   "zone": "Mamook",
-   "mapNo": 12,
-   "name": "Mamook - Map 12",
-   "file": "maps/mamook-12.png",
+   "id": "mamool-ja-training-grounds-1",
+   "zone": "Mamool Ja Training Grounds",
+   "mapNo": 1,
+   "name": "Mamool Ja Training Grounds - Map 1",
+   "file": "maps/mamool-ja-training-grounds-1.png",
    "cell": [
-    0.0625,
-    0.0625
+    0.06238,
+    0.06238
    ],
    "origin": [
-    0.03021,
-    0.03021
+    0.03223,
+    0.03223
    ]
   },
   {
-   "id": "mamook-32",
-   "zone": "Mamook",
-   "mapNo": 32,
-   "name": "Mamook - Map 32",
-   "file": "maps/mamook-32.png",
+   "id": "mamool-ja-training-grounds-2",
+   "zone": "Mamool Ja Training Grounds",
+   "mapNo": 2,
+   "name": "Mamool Ja Training Grounds - Map 2",
+   "file": "maps/mamool-ja-training-grounds-2.png",
    "cell": [
-    0.0625,
-    0.0625
+    0.06238,
+    0.06238
    ],
    "origin": [
-    0.03021,
-    0.03021
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "mamool-ja-training-grounds-3",
+   "zone": "Mamool Ja Training Grounds",
+   "mapNo": 3,
+   "name": "Mamool Ja Training Grounds - Map 3",
+   "file": "maps/mamool-ja-training-grounds-3.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "mamool-ja-training-grounds-4",
+   "zone": "Mamool Ja Training Grounds",
+   "mapNo": 4,
+   "name": "Mamool Ja Training Grounds - Map 4",
+   "file": "maps/mamool-ja-training-grounds-4.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "mamool-ja-training-grounds-5",
+   "zone": "Mamool Ja Training Grounds",
+   "mapNo": 5,
+   "name": "Mamool Ja Training Grounds - Map 5",
+   "file": "maps/mamool-ja-training-grounds-5.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "mamool-ja-training-grounds-6",
+   "zone": "Mamool Ja Training Grounds",
+   "mapNo": 6,
+   "name": "Mamool Ja Training Grounds - Map 6",
+   "file": "maps/mamool-ja-training-grounds-6.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "mamool-ja-training-grounds-7",
+   "zone": "Mamool Ja Training Grounds",
+   "mapNo": 7,
+   "name": "Mamool Ja Training Grounds - Map 7",
+   "file": "maps/mamool-ja-training-grounds-7.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "mamool-ja-training-grounds-8",
+   "zone": "Mamool Ja Training Grounds",
+   "mapNo": 8,
+   "name": "Mamool Ja Training Grounds - Map 8",
+   "file": "maps/mamool-ja-training-grounds-8.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "mamool-ja-training-grounds-9",
+   "zone": "Mamool Ja Training Grounds",
+   "mapNo": 9,
+   "name": "Mamool Ja Training Grounds - Map 9",
+   "file": "maps/mamool-ja-training-grounds-9.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
+   ]
+  },
+  {
+   "id": "mamool-ja-training-grounds-10",
+   "zone": "Mamool Ja Training Grounds",
+   "mapNo": 10,
+   "name": "Mamool Ja Training Grounds - Map 10",
+   "file": "maps/mamool-ja-training-grounds-10.png",
+   "cell": [
+    0.06238,
+    0.06238
+   ],
+   "origin": [
+    0.03223,
+    0.03223
    ]
   },
   {

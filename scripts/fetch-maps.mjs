@@ -29,13 +29,19 @@ const EXTRA_NAMES = new Map([
   ["Pashhow Marshlands", ["Pashow Marshlands"]], // wiki filename typo
 ]);
 
+// Individual named files the numeric regex can't discover; merged into the zone's candidates.
+// Numbering per the zone's "/Maps" subpage (<section begin="Map N"/>).
+const EXTRA_FILES = new Map([
+  ["Arrapago Reef", [[5, "File:ArrapagoReefcutter.png"]]], // the Cutter / Black Coffin dock
+]);
+
 // Maps useful for mission reference even when their page has no coordinate tooltip.
 const REQUIRED_ZONES = ["Al'Taieu", "The Garden of Ru'Hmet", "Grand Palace of Hu'Xzoi"];
 
 // Maps that can't be discovered from the zone page; [mapNo, wiki file] pairs
 const MAP_OVERRIDES = new Map([
   ["Palborough Mines", [[1, "File:Palborough1.png"], [2, "File:Palborough2.png"], [3, "File:Palborough3.png"]]],
-  ["Alzadaal Undersea Ruins", [[1, "File:Alzadaal Undersea Ruins1a.jpg"], [2, "File:Alzadaal Undersea Ruins2a.jpg"], [3, "File:Alzadaal Undersea Ruins3a.jpg"], [4, "File:Alzadaal Undersea Ruins4a.jpg"], [5, "File:Alzadaal Undersea Ruins5a.jpg"], [6, "File:Alzadaal Undersea Ruins6a.jpg"], [7, "File:Alzadaal Undersea Ruins7a.jpg"]]],
+  ["Alzadaal Undersea Ruins", [[1, "File:Alzadaal Undersea Ruins1a.jpg"], [2, "File:Alzadaal Undersea Ruins2a.jpg"], [3, "File:Alzadaal Undersea Ruins3a.jpg"], [4, "File:Alzadaal Undersea Ruins4a.jpg"], [5, "File:Alzadaal Undersea Ruins5a.jpg"], [6, "File:Alzadaal Undersea Ruins6a.jpg"], [7, "File:Alzadaal Undersea Ruins7a.jpg"], [8, "File:Alzadaal Undersea Ruins Nyzul.jpg"], [9, "File:Alzadaal Undersea Ruins Arrapago.jpg"], [10, "File:Alzadaal Undersea Ruins Bhaflau.jpg"], [11, "File:Alzadaal Undersea Ruins Silver Sea.jpg"], [12, "File:Alzadaal Undersea Ruins Zhayolm.jpg"]]],
   ["Grand Palace of Hu'Xzoi", [[1, "File:HuXzoi1.jpg"], [2, "File:HuXzoi2.jpg"], [3, "File:HuXzoi3.jpg"]]],
   ["Riverne - Site #A01", [[1, "File:RiverneSiteA01.png"]]],
   ["Riverne - Site B01", [[1, "File:RiverneSiteB01.png"]]],
@@ -103,12 +109,15 @@ for (const zone of zones) {
       const m = img.title.match(/^File:(.+)\.(png|jpe?g|gif)$/i);
       if (!m) continue;
       if (/-pic$/i.test(m[1].trim())) continue; // zone photos, not maps
-      const hit = squash(m[1]).match(re);
+      // "Halvung1-2.png" is map 1 (2nd upload), not map 12 — strip the revision before squashing
+      const hit = squash(m[1].trim().replace(/(\d)-(\d+)$/, "$1")).match(re);
       if (!hit) continue;
       const mapNo = hit[2] ? parseInt(hit[2], 10) : hit[1] === "north" ? 2 : 1;
       const label = hit[1] ? ` (${hit[1][0].toUpperCase()}${hit[1].slice(1)})` : "";
       candidates.push({ file: img.title, mapNo, label, ext: m[2].toLowerCase() });
     }
+    for (const [mapNo, file] of EXTRA_FILES.get(zone) ?? [])
+      candidates.push({ file, mapNo, label: "", ext: file.match(/\.(\w+)$/)[1].toLowerCase() });
   }
   // Candidates per map number, best first (png and numbered names preferred; bare are often photos)
   const byNo = new Map();

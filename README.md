@@ -1,6 +1,6 @@
 # Kupo
 
-A desktop companion app for **Final Fantasy XI** (era-focused / [LandSandBoat](https://github.com/LandSandBoat/server)-based servers). Hosting a full toolkit of timers and notifications, fishing and clamming references, chocobo digging, weather forecasting, a bestiary, drop and BCNM databases, a skillchain calculator, and a crafting planner.
+A desktop companion app for **Final Fantasy XI** (era-focused / [LandSandBoat](https://github.com/LandSandBoat/server)-based servers). Hosting a full toolkit of timers and notifications, fishing and clamming references, chocobo digging, weather forecasting, a bestiary, item and BCNM databases, a skillchain calculator, a crafting planner, a quest & mission guide with interactive walkthrough maps, and a full zone map atlas.
 
 Vana'diel time is **global** (the same instant for every player on Earth), so the app works out of the box in any time zone. Just install and go.
 
@@ -84,8 +84,8 @@ Vana'diel weather forecaster for every zone. Shows each zone's weather patterns 
 ### ⚔️ BCNM
 Battlefield browser for BCNM/KSNM/ENM fights: filter by arena or type, search by name, and view orb requirements, level caps, and complete loot tables with drop rates.
 
-### 💰 Drops
-Mob drop database searchable by item: drop/steal/despoil rates per mob, mob level range and zone, vendor price, auction house listability, and era availability.
+### 💰 Items
+Item source database searchable by item name. Every item shows **all** the era ways to get it: mob drops (drop/steal/despoil rates, mob level and zone), shop and guild vendors with prices, conquest point purchases, BCNM loot, HELM points, fishing, digging, clamming, quest rewards, and crafting recipes. Rows expand into a full per-item detail view, and items cross-link into the Crafting and BCNM tabs (and back).
 
 ### 📖 Bestiary
 Offline monster database generated from a pinned LandSandBoat revision: per-zone monster groups, level-based HP/MP and combat stats, jobs, family, aggro/link behavior, detection senses, resistances, and modifiers. Choose **ToAU cap** or **WotG cap** rulesets; post-WotG content is excluded. Calculated totals use default LSB settings — live server values can differ, and the detail view labels this.
@@ -97,6 +97,12 @@ Skillchain calculator: pick weapons/weapon skills and find the two- and three-st
 Two tools in one:
 - **Recipes** — browse era-appropriate recipes by craft, level, and crystal (optionally including WotG).
 - **Planner** — enter your skill to see the best recipes to level on, with success rates, expected skill gain per synth, and support/gear/moghancement bonuses factored in. Guild rank-up test items are highlighted.
+
+### 📜 Quests
+Era-gated quest & mission guide (through Treasures of Aht Urhgan) with full walkthroughs. Browse missions by storyline (nations, Zilart, Promathia, ToAU, Assault) or quests by area, with search across names, NPCs, items, rewards, and walkthrough text, plus fame and repeatability filters. The detail view shows requirements, rewards, previous/next chain links, and the complete walkthrough — **hover or click any coordinate to spotlight that grid cell on the zone map** in the side panel, which follows the walkthrough across zones and dungeon floors (including assault arena maps). A sticky header keeps the mission number and a link to the source ffxiclopedia page in view.
+
+### 🗺️ Atlas
+The full Vana'diel map collection (340+ maps across 130+ zones) with a hoverable coordinate grid. Search or pick any map, mouse over it to read grid coordinates, or type a cell like `H-9` to highlight it — handy for following guides outside the Quests tab.
 
 ---
 
@@ -137,6 +143,13 @@ To refresh the bestiary from an LSB checkout:
 
 ```powershell
 npm run bestiary:generate -- C:\path\to\LandSandBoat\server
+```
+
+To refresh the quest/mission database and zone maps from ffxiclopedia:
+
+```powershell
+npm run quests:fetch          # rebuild src/data/quests.json
+node scripts/fetch-maps.mjs   # download maps referenced by the quest data
 ```
 
 The Windows setup installer is produced at `release\Kupo Setup <version>.exe`.
