@@ -25,6 +25,25 @@ type Recipe = {
 };
 
 const RECIPES: Recipe[] = recipesData as Recipe[];
+const ItemInfo = React.lazy(() => import("./ItemInfo"));
+
+function RecipeItemDetails({ recipe }: { recipe: Recipe }) {
+  const [item, setItem] = useState(recipe.res.n);
+  const names = [...new Set([recipe.res.n, ...recipe.hq.map((result) => result.n), ...recipe.ing.map((ingredient) => ingredient.n)])];
+  return (
+    <div style={{ display: "grid", gap: 12, padding: 12, minWidth: 0 }}>
+      <label style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap" }}>
+        Item details
+        <select value={item} onChange={(event) => setItem(event.target.value)} style={{ ...styles.select, maxWidth: "100%" }}>
+          {names.map((name) => <option key={name} value={name}>{name}</option>)}
+        </select>
+      </label>
+      <React.Suspense fallback={<strong>{item}</strong>}>
+        <ItemInfo key={item} name={item} />
+      </React.Suspense>
+    </div>
+  );
+}
 
 const CRAFTS = [
   "Alchemy",
@@ -1091,16 +1110,19 @@ export default function CraftingTab() {
                     const selected = selectedRowKey === rowKey;
                     const rankUp = isRankUpItem(r.craft, r.res.n);
                     return (
+                      <React.Fragment key={rowKey}>
                       <tr
-                        key={rowKey}
-                        onClick={() => setSelectedRowKey(rowKey)}
+                        onClick={() => setSelectedRowKey(selected ? null : rowKey)}
                         style={{ ...clickableRowStyle, ...(selected ? selectedRowStyle : {}) }}
-                        title="Click to highlight this row"
+                        title="Show or hide item details"
                       >
                         <td
                           style={{ ...tdStyle, fontWeight: 700, ...(rankUp ? { color: RANK_UP_COLOR } : {}) }}
                           title={rankUp ? "Guild rank-up test item" : undefined}
                         >
+                          <button type="button" aria-label={`Item details for ${r.res.n}`} aria-expanded={selected} title="Show or hide item details" style={{ background: "none", border: 0, color: "inherit", cursor: "pointer", padding: "2px 6px" }} onClick={(event) => { event.stopPropagation(); setSelectedRowKey(selected ? null : rowKey); }}>
+                            {selected ? "▾" : "▸"}
+                          </button>
                           {renderResult(r, rankUp)}
                         </td>
                         <td style={tdStyle}>{r.craft}</td>
@@ -1116,6 +1138,8 @@ export default function CraftingTab() {
                         <td style={{ ...tdStyle, whiteSpace: "normal", minWidth: 180, opacity: 0.85 }}>{renderHqResults(r)}</td>
                         <td style={{ ...tdStyle, opacity: 0.85 }}>{badges(r) || "—"}</td>
                       </tr>
+                      {selected && <tr><td colSpan={RECIPE_COLUMNS.length + 4} style={tdStyle}><RecipeItemDetails recipe={r} /></td></tr>}
+                      </React.Fragment>
                     );
                   })
                 )}
@@ -1164,11 +1188,11 @@ export default function CraftingTab() {
                     const selected = selectedRowKey === rowKey;
                     const rankUp = isRankUpItem(row.recipe.craft, row.recipe.res.n);
                     return (
+                      <React.Fragment key={rowKey}>
                       <tr
-                        key={rowKey}
-                        onClick={() => setSelectedRowKey(rowKey)}
+                        onClick={() => setSelectedRowKey(selected ? null : rowKey)}
                         style={{ ...clickableRowStyle, ...(selected ? selectedRowStyle : {}) }}
-                        title="Click to highlight this row"
+                        title="Show or hide item details"
                       >
                         <td style={{ ...tdStyle, color: "#8af6b0", fontWeight: 800 }}>
                           {row.expectedPerSynth.toFixed(4)}
@@ -1177,6 +1201,9 @@ export default function CraftingTab() {
                           style={{ ...tdStyle, fontWeight: 700, ...(rankUp ? { color: RANK_UP_COLOR } : {}) }}
                           title={rankUp ? "Guild rank-up test item" : undefined}
                         >
+                          <button type="button" aria-label={`Item details for ${row.recipe.res.n}`} aria-expanded={selected} title="Show or hide item details" style={{ background: "none", border: 0, color: "inherit", cursor: "pointer", padding: "2px 6px" }} onClick={(event) => { event.stopPropagation(); setSelectedRowKey(selected ? null : rowKey); }}>
+                            {selected ? "▾" : "▸"}
+                          </button>
                           {renderResult(row.recipe, rankUp)}
                         </td>
                         <td style={tdStyle}>{row.recipe.lvl}</td>
@@ -1198,6 +1225,8 @@ export default function CraftingTab() {
                         </td>
                         <td style={{ ...tdStyle, opacity: 0.85 }}>{badges(row.recipe) || "—"}</td>
                       </tr>
+                      {selected && <tr><td colSpan={PLANNER_COLUMNS.length + 3} style={tdStyle}><RecipeItemDetails recipe={row.recipe} /></td></tr>}
+                      </React.Fragment>
                     );
                   })
                 )}

@@ -9,6 +9,8 @@ import { navigateToTab, peekNavQuery, hasBackTab, goBackTab } from "./utils/tabN
 import { getItemSources, sourceBadges, allSourcedItems, questRewardsFor, recipesUsingItem } from "./utils/itemSources";
 import dropsData from "./data/drops.json";
 
+const ItemInfo = React.lazy(() => import("./ItemInfo"));
+
 type ItemInfo = {
   /** Display name. */
   n: string;
@@ -353,6 +355,22 @@ const chipLinkStyle: React.CSSProperties = {
   borderColor: "rgba(126,196,232,0.45)",
 };
 
+const CRAFT_COLORS: Record<string, string> = {
+  Woodworking: "#8fd18f",
+  Smithing: "#b6c7db",
+  Goldsmithing: "#e8d47e",
+  Clothcraft: "#c9a2ff",
+  Leathercraft: "#efa975",
+  Bonecraft: "#eee2c6",
+  Alchemy: "#70d8ce",
+  Cooking: "#f19bb5",
+};
+
+function craftChipStyle(craft: string): React.CSSProperties {
+  const color = CRAFT_COLORS[craft] ?? "#7ec4e8";
+  return { ...chipLinkStyle, color, borderColor: `${color}80` };
+}
+
 const MAX_DETAIL = 14;
 
 /** Expanded row: every way to obtain the item, in and out of this table. */
@@ -446,7 +464,7 @@ function ItemDetail({ item, eraOnly }: { item: string; eraOnly: boolean }) {
       sources.craft.map((c, i) => (
         <span
           key={i}
-          style={{ ...chipLinkStyle, color: "#8af6b0", borderColor: "rgba(138,246,176,0.45)" }}
+          style={craftChipStyle(c.craft)}
           title="Open in the Crafting tab"
           onClick={(e) => {
             e.stopPropagation();
@@ -464,7 +482,7 @@ function ItemDetail({ item, eraOnly }: { item: string; eraOnly: boolean }) {
         <button
           key={recipe.id}
           type="button"
-          style={{ ...chipLinkStyle, textAlign: "left", whiteSpace: "normal", maxWidth: "100%" }}
+          style={{ ...craftChipStyle(recipe.craft), textAlign: "left", whiteSpace: "normal", maxWidth: "100%" }}
           title={`Open recipe ${recipe.id} in the Crafting tab`}
           onClick={(event) => {
             event.stopPropagation();
@@ -533,7 +551,9 @@ function ItemDetail({ item, eraOnly }: { item: string; eraOnly: boolean }) {
 
   return (
     <div style={{ display: "grid", gap: 7 }}>
-      <div style={{ fontWeight: 800, fontSize: 13 }}>{item}</div>
+      <React.Suspense fallback={<strong>{item}</strong>}>
+        <ItemInfo name={item} />
+      </React.Suspense>
       {sections.length > 0 ? sections : <div style={{ opacity: 0.7, fontSize: 12 }}>No known sources.</div>}
     </div>
   );

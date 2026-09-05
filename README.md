@@ -162,4 +162,22 @@ npm run quests:fetch          # rebuild src/data/quests.json
 node scripts/fetch-maps.mjs   # download maps referenced by the quest data
 ```
 
+### Item descriptions and tooltips
+
+Expanded Items rows include offline game-tooltip images, wiki descriptions and statistics, equipment level/jobs/slots, weapon stats, stack size, base vendor value, and available LSB modifiers. Food effects and durations, wiki hidden effects, furnishing storage, and conditional server modifiers are included where present. NQ and HQ use separate item IDs. Existing source and recipe links remain below the item information.
+
+The September 5, 2026 import covers 9,021 matched item IDs: 8,561 wiki statistics sections and 8,506 local tooltip images. There are 433 unresolved wiki titles and 27 pages without a Statistics section. Coverage is not a complete FFXI item database: unmatched names, scripted effects, and some templates still need review. Missing descriptions are labeled, never fabricated. LSB data is committed upstream revision `3e73b0bd38626df86481547133332f0c1e59dc1d`, not verified Phoenix configuration; wiki information reflects its page revision and may include later-retail changes. Conditional effects and raw modifier units are labeled separately.
+
+```powershell
+npm run items:generate -- C:\path\to\server
+npm run items:fetch -- --images                 # resume missing pages/images
+npm run items:fetch -- --only "Piccolo,Piccolo +1,Holly Lumber" --refresh --images
+npm run items:fetch -- --refresh --resolve-missing --images
+npm run test:items
+```
+
+Generation reads the selected committed Git revision, records source hashes, and uses the saved recipe SQL snapshot for recipe aliases. Wiki imports save every batch; `--refresh` rechecks cached pages and `--resolve-missing` accepts only unique exact normalized title matches, preserving HQ suffixes. No fuzzy item substitution is performed. Existing image files are reused; to redownload a changed image, remove its generated file before running `items:fetch -- --images`. `--optimize` converts older generated PNGs to lossless WebP.
+
+The metadata component is lazy-loaded when a row expands. Tooltip images are bundled under `public/items` for offline use and currently add approximately 240 MB before installer compression. Wiki text attribution and page revisions accompany each entry; tooltip images link to their source file pages. FFXIclopedia text is attributed to its contributors (CC-BY-SA); game imagery belongs to Square Enix, and individual image licensing should be reviewed before redistribution. These source notices do not imply permission from the rights holder.
+
 The Windows setup installer is produced at `release\Kupo Setup <version>.exe`.
