@@ -27,12 +27,14 @@ export default function MapView({
   highlight,
   width = 420,
   showHoverCell = false,
+  marker,
 }: {
   map: MapDef;
   highlight?: string | null;
   width?: number;
   /** Atlas mode: show the grid cell under the mouse cursor. */
   showHoverCell?: boolean;
+  marker?: { x: number; y: number; label: string };
 }) {
   const [hoverCoord, setHoverCoord] = useState<string | null>(null);
   const rect = highlight ? cellRect(map, highlight) : null;
@@ -52,18 +54,26 @@ export default function MapView({
     : undefined;
 
   return (
-    <div style={{ display: "inline-flex", flexDirection: "column", gap: 4 }}>
+    <div style={{ display: "inline-flex", flexDirection: "column", gap: 4, width, maxWidth: "100%", minWidth: 0 }}>
       <div style={{ fontSize: 12, fontWeight: 700, color: "#9aa0b8" }}>
         {map.name}
         {showHoverCell && hoverCoord && <span style={{ color: "#4dabf7" }}> — {hoverCoord}</span>}
         {!showHoverCell && highlight && rect && <span style={{ color: "#4dabf7" }}> — {highlight.toUpperCase()}</span>}
       </div>
       <div
-        style={{ position: "relative", width, lineHeight: 0, border: "1px solid #2a2a2a", borderRadius: 6, overflow: "hidden", cursor: showHoverCell ? "crosshair" : "default" }}
+        style={{ position: "relative", width: "100%", boxSizing: "border-box", lineHeight: 0, border: "1px solid #2a2a2a", borderRadius: 6, overflow: "hidden", cursor: showHoverCell ? "crosshair" : "default" }}
         onMouseMove={onMouseMove}
         onMouseLeave={showHoverCell ? () => setHoverCoord(null) : undefined}
       >
         <img src={map.file} alt={map.name} style={{ width: "100%", display: "block" }} draggable={false} />
+        {marker && (
+          <span
+            role="img"
+            aria-label={marker.label}
+            title={marker.label}
+            style={{ position: "absolute", left: `${marker.x * 100}%`, top: `${marker.y * 100}%`, width: 18, height: 18, border: "3px solid #ff693f", borderRadius: "50%", boxShadow: "0 0 0 2px #171717, inset 0 0 0 1px #171717", transform: "translate(-50%, -50%)", pointerEvents: "none", boxSizing: "border-box" }}
+          />
+        )}
         {[rect, showHoverCell ? hoverRect : null].map(
           (r, i) =>
             r && (

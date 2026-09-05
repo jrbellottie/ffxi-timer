@@ -1,7 +1,9 @@
 // src/AtlasTab.tsx — browse FFXI zone maps with a hoverable coordinate grid.
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import MapView, { MapDef } from "./MapView";
 import mapData from "./data/maps.json";
+import AlzadaalRoute from "./AlzadaalRoute";
+import { loadJson, saveJson } from "./utils/storage";
 
 const MAPS = (mapData as { maps: MapDef[] }).maps;
 
@@ -14,7 +16,7 @@ const inputStyle: React.CSSProperties = {
   fontSize: 13,
 };
 
-export default function AtlasTab() {
+function AtlasMapBrowser() {
   const [query, setQuery] = useState("");
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [coord, setCoord] = useState("");
@@ -54,6 +56,29 @@ export default function AtlasTab() {
       {selected && (
         <MapView map={selected} width={560} showHoverCell highlight={coordValid ? coord.trim() : null} />
       )}
+    </div>
+  );
+}
+
+export default function AtlasTab() {
+  const [mode, setMode] = useState<"maps" | "routes">(() => loadJson<unknown>("kupo.atlas.mode", "maps") === "routes" ? "routes" : "maps");
+  useEffect(() => {
+    try { saveJson("kupo.atlas.mode", mode); } catch {}
+  }, [mode]);
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: 16, minWidth: 0 }}>
+      <div className="atlas-subtabs" role="tablist" aria-label="Atlas views" onKeyDown={event => {
+        if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
+        event.preventDefault();
+        const next = event.key === "Home" ? "maps" : event.key === "End" ? "routes" : mode === "maps" ? "routes" : "maps";
+        setMode(next);
+        document.getElementById(`atlas-tab-${next}`)?.focus();
+      }}>
+        <button type="button" role="tab" id="atlas-tab-maps" aria-controls="atlas-panel-maps" aria-selected={mode === "maps"} tabIndex={mode === "maps" ? 0 : -1} onClick={() => setMode("maps")}>Maps</button>
+        <button type="button" role="tab" id="atlas-tab-routes" aria-controls="atlas-panel-routes" aria-selected={mode === "routes"} tabIndex={mode === "routes" ? 0 : -1} onClick={() => setMode("routes")}>Alzadaal Routes</button>
+      </div>
+      <div role="tabpanel" id="atlas-panel-maps" aria-labelledby="atlas-tab-maps" hidden={mode !== "maps"}><AtlasMapBrowser /></div>
+      <div role="tabpanel" id="atlas-panel-routes" aria-labelledby="atlas-tab-routes" hidden={mode !== "routes"}><AlzadaalRoute /></div>
     </div>
   );
 }

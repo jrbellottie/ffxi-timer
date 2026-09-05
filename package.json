@@ -1,7 +1,7 @@
 {
   "name": "Kupo",
   "private": true,
-  "version": "v1.1.0",
+  "version": "v1.1.1",
   "type": "module",
   "main": "dist-electron/main.js",
   "scripts": {
@@ -13,7 +13,8 @@
     "recipes:check": "node scripts/convert-recipes.cjs --check",
     "recipes:update": "node scripts/convert-recipes.cjs",
     "test:skillup": "node --test scripts/skillup.test.mjs",
-    "test:data": "node --test scripts/recipes.test.mjs scripts/skillup.test.mjs scripts/item-info.test.mjs",
+    "test:data": "node --test scripts/recipes.test.mjs scripts/skillup.test.mjs scripts/item-info.test.mjs scripts/alzadaal.test.mjs",
+    "test:routes": "node --test scripts/alzadaal.test.mjs",
     "items:generate": "node scripts/generate-item-info.mjs",
     "items:fetch": "node scripts/fetch-item-info.mjs",
     "test:items": "node --test scripts/item-info.test.mjs",
@@ -24,6 +25,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "lucide-react": "^1.41.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

@@ -104,6 +104,10 @@ Era-gated quest & mission guide (through Treasures of Aht Urhgan) with imported 
 ### 🗺️ Atlas
 A Vana'diel map collection (340+ maps across 130+ zones) with a hoverable coordinate grid. Search or pick any map, mouse over it to read grid coordinates, or type a cell like `H-9` to highlight it — handy for following guides outside the Quests tab. Coverage is driven primarily by quest references, not a complete inventory of era zones.
 
+**Alzadaal Routes** provides start/destination routing between the Al Zahbi entrance, Tandjana merit camp, Khimaira, Azouph Isle, Dvucca Isle, Mount Zhayolm behind the gate, Nashmau, both staging points, and all four remnants. Each step shows the departure teleporter letter, its marked pad, and the current/next maps, including outside entrances and exits. Swap endpoints to reverse the trip; route selection and progress are saved locally.
+
+The lettered network follows the supplied two-way connections. Map 1 connects to map 4 via an explicitly marked outdoor walk across Dvucca Isle, not a direct teleport. Routes minimize map transitions through this network; they do not check access requirements, monster danger, or travel times. Portal markers and outside links are based on the bundled map images; map 1's internal pads are not included in the lettered-teleport count.
+
 ---
 
 ## Data & privacy
@@ -149,6 +153,7 @@ npm run data:audit -- --lsb C:\path\to\server --json
 npm run recipes:check                            # compare saved SQL snapshots
 npm run recipes:check -- --lsb C:\path\to\server # compare selected server
 npm run test:data                                # formulas and isolated refresh tests
+npm run test:routes                              # Alzadaal journeys and map references
 ```
 
 `data:audit` checks map image presence, grid metadata, quest map references, recipe IDs and item names, missing refresh scripts, and source fingerprints. `--json` includes full unresolved references and dataset SHA-256 hashes. Neither auditing nor recipe checking writes files. Git must be available for checkout comparisons; sparse checkout inputs can be read from the committed tree.
