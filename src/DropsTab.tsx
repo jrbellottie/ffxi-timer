@@ -1,11 +1,12 @@
 // src/DropsTab.tsx — the Items tab: mob drop tables generated from LandSandBoat
 // SQL (src/data/drops.json) plus every other in-app source per item (shops,
 // guilds, BCNM, gathering, fishing, digging, clamming, quests).
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { styles } from "./styles";
 import { loadJson, saveJson } from "./utils/storage";
 import { craftSearchName, normalizeItemName } from "./utils/itemLinks";
 import { navigateToTab, peekNavQuery, hasBackTab, goBackTab } from "./utils/tabNav";
+import { rememberTabState, peekRestoredTabState } from "./utils/tabNav";
 import { getItemSources, sourceBadges, allSourcedItems, questRewardsFor, recipesUsingItem } from "./utils/itemSources";
 import dropsData from "./data/drops.json";
 
@@ -560,12 +561,15 @@ function ItemDetail({ item, eraOnly }: { item: string; eraOnly: boolean }) {
 }
 
 export default function DropsTab() {
+  const restored = peekRestoredTabState<{ ui: DropsUiState; openRow: number | null }>("drops");
   const [ui, setUi] = useState<DropsUiState>(() => {
+    if (restored) return restored.ui;
     const base = normalizeState(loadJson<unknown>(UI_KEY, {}));
     const navQuery = peekNavQuery("drops");
     return navQuery ? { ...base, itemQuery: navQuery, mobQuery: "", zone: "" } : base;
   });
-  const [openRow, setOpenRow] = useState<number | null>(null);
+  const [openRow, setOpenRow] = useState<number | null>(restored?.openRow ?? null);
+  useEffect(() => { rememberTabState("drops", { ui, openRow }); }, [ui, openRow]);
 
   const update = (patch: Partial<DropsUiState>) => {
     setOpenRow(null);

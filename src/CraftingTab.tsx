@@ -6,6 +6,8 @@ import { loadJson, saveJson } from "./utils/storage";
 import { craftSkillupStats } from "./utils/craftingSkillup";
 import { findableName, normalizeItemName } from "./utils/itemLinks";
 import { navigateToTab, peekNavQuery, peekNavRecipeId, hasBackTab, goBackTab, peekBackTabSeq, nextNavSeq } from "./utils/tabNav";
+import { captureScrollPosition, restoreScrollPosition, type ScrollPosition } from "./utils/scrollPosition";
+import { rememberTabState, peekRestoredTabState } from "./utils/tabNav";
 
 type RecipeItem = { n: string; q: number };
 type RecipeSub = { c: string; l: number };
@@ -26,15 +28,16 @@ type Recipe = {
 
 const RECIPES: Recipe[] = recipesData as Recipe[];
 const ItemInfo = React.lazy(() => import("./ItemInfo"));
+const detailItems = new Map<number, string>();
 
 function RecipeItemDetails({ recipe }: { recipe: Recipe }) {
-  const [item, setItem] = useState(recipe.res.n);
+  const [item, setItem] = useState(detailItems.get(recipe.id) ?? recipe.res.n);
   const names = [...new Set([recipe.res.n, ...recipe.hq.map((result) => result.n), ...recipe.ing.map((ingredient) => ingredient.n)])];
   return (
     <div style={{ display: "grid", gap: 12, padding: 12, minWidth: 0 }}>
       <label style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap" }}>
         Item details
-        <select value={item} onChange={(event) => setItem(event.target.value)} style={{ ...styles.select, maxWidth: "100%" }}>
+        <select value={item} onChange={(event) => { detailItems.set(recipe.id, event.target.value); setItem(event.target.value); }} style={{ ...styles.select, maxWidth: "100%" }}>
           {names.map((name) => <option key={name} value={name}>{name}</option>)}
         </select>
       </label>
@@ -227,6 +230,8 @@ const dropLinkStyle: React.CSSProperties = {
 };
 
 type SearchSnapshot = {
+  scroll: ScrollPosition;
+  selectedRowKey: string | null;
   seq: number;
   mode: Mode;
   rGlobal: string;
@@ -350,7 +355,9 @@ const defaultUi: CraftingUiState = {
 };
 
 export default function CraftingTab() {
+  const restored = peekRestoredTabState<{ ui: CraftingUiState; selectedRowKey: string | null }>("crafting");
   const initialUi = useMemo(() => {
+    if (restored) return restored.ui;
     const loaded = loadJson<Partial<CraftingUiState>>(CRAFTING_UI_KEY, {});
     const navQuery = peekNavQuery("crafting");
     const linkedRecipe = RECIPES.find((recipe) => recipe.id === peekNavRecipeId());
@@ -411,10 +418,10 @@ export default function CraftingTab() {
   const [pSortKey, setPSortKey] = useState<PlannerKey>(initialUi.pSortKey);
   const [pSortDir, setPSortDir] = useState<SortDir>(initialUi.pSortDir);
 
-  const [selectedRowKey, setSelectedRowKey] = useState<string | null>(null);
+  const [selectedRowKey, setSelectedRowKey] = useState<string | null>(restored?.selectedRowKey ?? null);
 
   useEffect(() => {
-    saveJson(CRAFTING_UI_KEY, {
+    const ui = {
       mode,
       includeWotg,
       rGlobal,
@@ -443,8 +450,11 @@ export default function CraftingTab() {
       pHideKeyItem,
       pSortKey,
       pSortDir,
-    } satisfies CraftingUiState);
+    } satisfies CraftingUiState;
+    saveJson(CRAFTING_UI_KEY, ui);
+    rememberTabState("crafting", { ui, selectedRowKey });
   }, [
+    selectedRowKey,
     mode, includeWotg,
     rGlobal, rResult, rIngredient, rCraft, rCrystal, rEra, rLvlMin, rLvlMax, rIncludeDesynth, rSortKey, rSortDir,
     pCraft, pSkill, pSupport, pGearMain, pGearSub, pMogh, pGlobal, pIngredient, pMinSuccess, pLvlMin, pLvlMax, pIncludeDesynth, pHideKeyItem, pSortKey, pSortDir,
@@ -536,7 +546,7 @@ export default function CraftingTab() {
   function searchForIngredient(target: string) {
     updateHistory([
       ...searchHistory,
-      { seq: nextNavSeq(), mode, rGlobal, rResult, rIngredient, rCraft, rCrystal, rEra, rLvlMin, rLvlMax, rIncludeDesynth },
+      { seq: nextNavSeq(), scroll: captureScrollPosition(), selectedRowKey, mode, rGlobal, rResult, rIngredient, rCraft, rCrystal, rEra, rLvlMin, rLvlMax, rIncludeDesynth },
     ]);
     clearRecipeFilters();
     setRResult(target);
@@ -564,6 +574,8 @@ export default function CraftingTab() {
       setRLvlMin(prev.rLvlMin);
       setRLvlMax(prev.rLvlMax);
       setRIncludeDesynth(prev.rIncludeDesynth);
+      setSelectedRowKey(prev.selectedRowKey);
+      restoreScrollPosition(prev.scroll);
       return;
     }
     if (hasBackTab()) goBackTab();

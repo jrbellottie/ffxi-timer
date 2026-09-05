@@ -4,6 +4,7 @@ import { loadJson, saveJson } from "./utils/storage";
 import questData from "./data/quests.json";
 import mapData from "./data/maps.json";
 import MapView, { MapDef } from "./MapView";
+import { captureScrollPosition, restoreScrollPosition, type ScrollPosition } from "./utils/scrollPosition";
 
 type ChainLink = { name: string; id: string | null };
 
@@ -456,6 +457,7 @@ function Detail({ entry, onOpen, onBack }: { entry: Entry; onOpen: (id: string) 
 }
 
 const numKey = (n: string | null) => (n ? n.split("-").map((x) => x.padStart(3, "0")).join(".") : "999");
+let listScroll: ScrollPosition | null = null;
 
 export default function QuestsTab() {
   const [ui, setUi] = useState<UiState>(() => normalizeState(loadJson(UI_KEY, null)));
@@ -464,7 +466,11 @@ export default function QuestsTab() {
 
   const set = (patch: Partial<UiState>) => setUi((u) => ({ ...u, ...patch }));
   const selectedId = ui.selectedId;
-  const setSelectedId = (id: string | null) => set({ selectedId: id });
+  const setSelectedId = (id: string | null) => {
+    if (!selectedId && id) listScroll = captureScrollPosition();
+    set({ selectedId: id });
+    if (!id && listScroll) restoreScrollPosition(listScroll);
+  };
 
   const list = ui.sub === "quests" ? DATA.quests : DATA.missions;
   const groups = ui.sub === "quests" ? QUEST_GROUPS : MISSION_GROUPS;

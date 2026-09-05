@@ -20,7 +20,7 @@ import { AnyTimer, MoonDirection } from "./types";
 import { WEEKDAYS, WEEKDAY_COLORS, weekdayStyle } from "./utils/weekday";
 import { moonDirGlyph, moonGlyphStyle, moonPhaseStyle } from "./utils/moon";
 import { buildTenshodoPresets, GUILD_PRESETS, nextGuildAlertTarget } from "./utils/guilds";
-import { registerTabSwitcher, clearTabNav } from "./utils/tabNav";
+import { registerTabSwitcher, switchTabWithScroll } from "./utils/tabNav";
 import { getNextNmLotteryEvent, getNextNmTimedWindowEvent } from "./utils/nm";
 import FishTab from "./FishTab";
 import BaitTab from "./BaitTab";
@@ -2371,7 +2371,7 @@ export default function AppShell() {
             key={tab.id}
             className={flashing ? "tab-flash" : undefined}
             style={active ? styles.tabButtonActive : styles.tabButton}
-            onClick={() => { clearTabNav(); setActiveTab(tab.id); }}
+            onClick={() => switchTabWithScroll(activeTab, tab.id)}
           >
             <span aria-hidden>{tab.icon}</span>
             {tab.label}
@@ -2388,6 +2388,7 @@ export default function AppShell() {
     <div style={styles.page}>
       {tabBar}
 
+      <div data-scroll-root style={{ display: "contents" }}>
       {activeTab === "home" && (
         <div style={{ ...styles.tabContent, gap: 16 }}>
           <div style={{ ...styles.tabGrid, alignItems: "start", gridAutoRows: "max-content" }}>{clockCard}</div>
@@ -2527,6 +2528,7 @@ export default function AppShell() {
           {calibrationContent}
         </div>
       )}
+      </div>
     </div>
   );
 }
