@@ -6,7 +6,7 @@ import { styles } from "./styles";
 import { loadJson, saveJson } from "./utils/storage";
 import { craftSearchName, normalizeItemName } from "./utils/itemLinks";
 import { navigateToTab, peekNavQuery, hasBackTab, goBackTab } from "./utils/tabNav";
-import { getItemSources, sourceBadges, allSourcedItems, questRewardsFor } from "./utils/itemSources";
+import { getItemSources, sourceBadges, allSourcedItems, questRewardsFor, recipesUsingItem } from "./utils/itemSources";
 import dropsData from "./data/drops.json";
 
 type ItemInfo = {
@@ -45,6 +45,8 @@ type DropKind = "Drop" | "Steal" | "Despoil" | "Other";
 
 type Row = {
   item: string;
+  /** normalizeItemName(item), precomputed for punctuation-tolerant search. */
+  itemNorm: string;
   itemId: number;
   mob: string;
   zone: string;
@@ -103,6 +105,7 @@ function buildRows(): Row[] {
       }
       rows.push({
         item: info.n,
+        itemNorm: normalizeItemName(info.n),
         itemId,
         mob: mob.name,
         zone: mob.zone,
@@ -130,7 +133,7 @@ const ROWS: Row[] = buildRows();
   for (const { norm, display } of allSourcedItems()) {
     if (droppedNorms.has(norm)) continue;
     ROWS.push({
-      item: display, itemId: 0, mob: "—", zone: "—", lv: null, kind: "Other",
+      item: display, itemNorm: norm, itemId: 0, mob: "—", zone: "—", lv: null, kind: "Other",
       rate: 0, grouped: false, stack: 1, sell: 0, ah: false, nm: false, era: true,
     });
   }
@@ -141,7 +144,7 @@ const ERA_ZONES: string[] = [...new Set(ROWS.filter((r) => r.era).map((r) => r.z
   a.localeCompare(b)
 );
 
-const KINDS: DropKind[] = ["Drop", "Steal", "Despoil", "Other"];
+const OPTIONAL_KINDS = ["Steal", "Despoil"] as const;
 
 const KIND_COLORS: Record<DropKind, string> = {
   Drop: "#7ec4e8",
@@ -178,7 +181,7 @@ type DropsUiState = {
   itemQuery: string;
   mobQuery: string;
   zone: string; // "" = all
-  kinds: DropKind[]; // empty = all
+  kinds: DropKind[];
   nmMode: NmMode;
   eraOnly: boolean;
   sortKey: SortKey;
@@ -200,13 +203,14 @@ const DEFAULT_UI: DropsUiState = {
 
 function normalizeState(raw: unknown): DropsUiState {
   const obj = raw && typeof raw === "object" ? (raw as Record<string, unknown>) : {};
+  const savedKinds = Array.isArray(obj.kinds)
+    ? OPTIONAL_KINDS.filter((kind) => obj.kinds instanceof Array && obj.kinds.includes(kind))
+    : [];
   return {
     itemQuery: typeof obj.itemQuery === "string" ? obj.itemQuery : DEFAULT_UI.itemQuery,
     mobQuery: typeof obj.mobQuery === "string" ? obj.mobQuery : DEFAULT_UI.mobQuery,
     zone: typeof obj.zone === "string" && ZONES.includes(obj.zone) ? obj.zone : DEFAULT_UI.zone,
-    kinds: Array.isArray(obj.kinds) && obj.kinds.length > 0
-      ? (obj.kinds.filter((k) => KINDS.includes(k as DropKind)) as DropKind[])
-      : DEFAULT_UI.kinds,
+    kinds: ["Drop", "Other", ...savedKinds],
     nmMode: NM_MODES.some((m) => m.id === obj.nmMode) ? (obj.nmMode as NmMode) : DEFAULT_UI.nmMode,
     eraOnly: typeof obj.eraOnly === "boolean" ? obj.eraOnly : DEFAULT_UI.eraOnly,
     sortKey: COLUMNS.some((c) => c.key === obj.sortKey) ? (obj.sortKey as SortKey) : DEFAULT_UI.sortKey,
@@ -355,6 +359,7 @@ const MAX_DETAIL = 14;
 function ItemDetail({ item, eraOnly }: { item: string; eraOnly: boolean }) {
   const sources = getItemSources(item);
   const quests = useMemo(() => questRewardsFor(item), [item]);
+  const recipes = recipesUsingItem(item).filter((recipe) => !eraOnly || recipe.era !== "WotG");
 
   const dropRows = useMemo(() => {
     const norm = normalizeItemName(item);
@@ -448,8 +453,29 @@ function ItemDetail({ item, eraOnly }: { item: string; eraOnly: boolean }) {
             navigateToTab("crafting", craftSearchName(item) ?? item, "drops");
           }}
         >
-          {c.craft} {c.lvl}
+          {c.craft} {c.lvl}{c.hq ? " (HQ result)" : ""}
         </span>
+      ))
+    ),
+    section(
+      "Used in recipes",
+      "#8af6b0",
+      recipes.map((recipe) => (
+        <button
+          key={recipe.id}
+          type="button"
+          style={{ ...chipLinkStyle, textAlign: "left", whiteSpace: "normal", maxWidth: "100%" }}
+          title={`Open recipe ${recipe.id} in the Crafting tab`}
+          onClick={(event) => {
+            event.stopPropagation();
+            navigateToTab("crafting", recipe.res.n, "drops", recipe.id);
+          }}
+        >
+          {recipe.res.n}
+          <span style={{ opacity: 0.75 }}>
+            {" · "}{recipe.craft} {recipe.lvl}{recipe.d === 1 ? " · Desynth" : ""}{recipe.era === "WotG" ? " · WotG" : ""}
+          </span>
+        </button>
       ))
     ),
     section(
@@ -517,8 +543,7 @@ export default function DropsTab() {
   const [ui, setUi] = useState<DropsUiState>(() => {
     const base = normalizeState(loadJson<unknown>(UI_KEY, {}));
     const navQuery = peekNavQuery("drops");
-    // Item links must find the item regardless of source type.
-    return navQuery ? { ...base, itemQuery: navQuery, mobQuery: "", zone: "", kinds: [] } : base;
+    return navQuery ? { ...base, itemQuery: navQuery, mobQuery: "", zone: "" } : base;
   });
   const [openRow, setOpenRow] = useState<number | null>(null);
 
@@ -532,9 +557,11 @@ export default function DropsTab() {
   };
 
   const itemQ = ui.itemQuery.trim().toLowerCase();
+  // LSB names drop apostrophes/hyphens ("Barons Saio"); match the normalized form too
+  const itemQNorm = itemQ ? normalizeItemName(ui.itemQuery) : "";
   const mobQ = ui.mobQuery.trim().toLowerCase();
 
-  const toggleKind = (k: DropKind) => {
+  const toggleKind = (k: typeof OPTIONAL_KINDS[number]) => {
     const next = ui.kinds.includes(k) ? ui.kinds.filter((x) => x !== k) : [...ui.kinds, k];
     update({ kinds: next });
   };
@@ -549,16 +576,16 @@ export default function DropsTab() {
     for (const r of ROWS) {
       if (ui.eraOnly && !r.era) continue;
       if (ui.zone && r.zone !== ui.zone) continue;
-      if (ui.kinds.length > 0 && !ui.kinds.includes(r.kind)) continue;
+      if ((r.kind === "Steal" || r.kind === "Despoil") && !ui.kinds.includes(r.kind)) continue;
       if (ui.nmMode === "nm" && !r.nm) continue;
       if (ui.nmMode === "normal" && r.nm) continue;
-      if (itemQ && !r.item.toLowerCase().includes(itemQ)) continue;
+      if (itemQ && !r.item.toLowerCase().includes(itemQ) && !r.itemNorm.includes(itemQNorm)) continue;
       if (mobQ && !r.mob.toLowerCase().includes(mobQ) && !r.zone.toLowerCase().includes(mobQ)) continue;
       out.push(r);
     }
     out.sort((a, b) => compareRows(a, b, ui.sortKey, ui.sortDir));
     return out;
-  }, [ui.eraOnly, ui.zone, ui.kinds, ui.nmMode, itemQ, mobQ, ui.sortKey, ui.sortDir]);
+  }, [ui.eraOnly, ui.zone, ui.kinds, ui.nmMode, itemQ, itemQNorm, mobQ, ui.sortKey, ui.sortDir]);
 
   const shown = filtered.length > MAX_ROWS ? filtered.slice(0, MAX_ROWS) : filtered;
 
@@ -638,28 +665,13 @@ export default function DropsTab() {
             </div>
 
             <div style={styles.field}>
-              <label style={styles.label}>Type</label>
-              <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
-                <button
-                  style={{
-                    ...styles.buttonCompact,
-                    ...(ui.kinds.length === 0 ? { borderColor: "#8af6b0", color: "#8af6b0" } : {}),
-                  }}
-                  onClick={() => update({ kinds: [] })}
-                >
-                  All
-                </button>
-                {KINDS.map((k) => (
-                  <button
-                    key={k}
-                    style={{
-                      ...styles.buttonCompact,
-                      ...(ui.kinds.includes(k) ? { borderColor: KIND_COLORS[k], color: KIND_COLORS[k] } : {}),
-                    }}
-                    onClick={() => toggleKind(k)}
-                  >
-                    {k}
-                  </button>
+              <span style={styles.label}>Include</span>
+              <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+                {OPTIONAL_KINDS.map((kind) => (
+                  <label key={kind} style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12, cursor: "pointer" }}>
+                    <input type="checkbox" checked={ui.kinds.includes(kind)} onChange={() => toggleKind(kind)} />
+                    {kind}
+                  </label>
                 ))}
               </div>
             </div>

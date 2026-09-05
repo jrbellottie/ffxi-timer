@@ -99,10 +99,10 @@ Two tools in one:
 - **Planner** — enter your skill to see the best recipes to level on, with success rates, expected skill gain per synth, and support/gear/moghancement bonuses factored in. Guild rank-up test items are highlighted.
 
 ### 📜 Quests
-Era-gated quest & mission guide (through Treasures of Aht Urhgan) with full walkthroughs. Browse missions by storyline (nations, Zilart, Promathia, ToAU, Assault) or quests by area, with search across names, NPCs, items, rewards, and walkthrough text, plus fame and repeatability filters. The detail view shows requirements, rewards, previous/next chain links, and the complete walkthrough — **hover or click any coordinate to spotlight that grid cell on the zone map** in the side panel, which follows the walkthrough across zones and dungeon floors (including assault arena maps). A sticky header keeps the mission number and a link to the source ffxiclopedia page in view.
+Era-gated quest & mission guide (through Treasures of Aht Urhgan) with imported walkthroughs. Browse missions by storyline (nations, Zilart, Promathia, ToAU, Assault) or quests by area, with search across names, NPCs, items, rewards, and walkthrough text, plus fame and repeatability filters. The detail view shows requirements, rewards, previous/next chain links, and available walkthrough text. Hover or click mapped coordinates to spotlight grid cells in the side panel, including assault arena maps. Some entries and coordinate associations are incomplete; the sticky header links to the source ffxiclopedia page.
 
 ### 🗺️ Atlas
-The full Vana'diel map collection (340+ maps across 130+ zones) with a hoverable coordinate grid. Search or pick any map, mouse over it to read grid coordinates, or type a cell like `H-9` to highlight it — handy for following guides outside the Quests tab.
+A Vana'diel map collection (340+ maps across 130+ zones) with a hoverable coordinate grid. Search or pick any map, mouse over it to read grid coordinates, or type a cell like `H-9` to highlight it — handy for following guides outside the Quests tab. Coverage is driven primarily by quest references, not a complete inventory of era zones.
 
 ---
 
@@ -139,11 +139,21 @@ npm run build        # type-check + build renderer/main
 npm run dist:win     # build the Windows installer into release/
 ```
 
-To refresh the bestiary from an LSB checkout:
+### Data checks and refreshes
+
+Run the inexpensive local checks before downloading or replacing data:
 
 ```powershell
-npm run bestiary:generate -- C:\path\to\LandSandBoat\server
+npm run data:audit
+npm run data:audit -- --lsb C:\path\to\server --json
+npm run recipes:check                            # compare saved SQL snapshots
+npm run recipes:check -- --lsb C:\path\to\server # compare selected server
+npm run test:data                                # formulas and isolated refresh tests
 ```
+
+`data:audit` checks map image presence, grid metadata, quest map references, recipe IDs and item names, missing refresh scripts, and source fingerprints. `--json` includes full unresolved references and dataset SHA-256 hashes. Neither auditing nor recipe checking writes files. Git must be available for checkout comparisons; sparse checkout inputs can be read from the committed tree.
+
+After reviewing the diff and confirming the target server revision, run `npm run recipes:update -- --lsb C:\path\to\server`. This replaces the recipe database and writes a provenance sidecar containing the commit, input hashes, generator hash, and output hash. Without `--lsb`, it uses the saved SQL snapshots, whose original revision is unknown. Review generated changes in Git, rerun the audit and tests, then run `npm run build`. Avoid changing the checkout during a refresh.
 
 To refresh the quest/mission database and zone maps from ffxiclopedia:
 

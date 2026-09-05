@@ -115,7 +115,7 @@ function StatTile({ label, value, secondary }: { label: string; value: number | 
 export default function BestiaryTab() {
   // Arriving from an Items-tab mob link pre-fills the search.
   const navQuery = peekNavQuery("bestiary");
-  const [era, setEra] = useState<Era>("WOTG");
+  const [era, setEra] = useState<Era>("TOAU");
   const [query, setQuery] = useState(navQuery ?? "");
   const deferredQuery = useDeferredValue(query.trim().toLowerCase());
   const [zone, setZone] = useState("");
@@ -167,7 +167,7 @@ export default function BestiaryTab() {
     : null;
   const abilities = selected ? DATA.abilityLists[selected.lists.skills] ?? [] : [];
   const clearFilters = () => {
-    setEra("WOTG");
+    setEra("TOAU");
     setQuery(""); setZone(""); setFamily(""); setDetection(""); setMinLevel(""); setMaxLevel("");
     setNmMode("all"); setAggroMode("all"); setLinkMode("all"); setTrueDetectionOnly(false); setWeaknessOnly(false);
   };
@@ -191,13 +191,10 @@ export default function BestiaryTab() {
       </header>
 
       <div className="bestiary-filters">
-        <div className="bestiary-field bestiary-era-field">
-          <span>Phoenix ruleset</span>
-          <div className="bestiary-segments bestiary-era-segments">
-            <button className={era === "TOAU" ? "active" : ""} onClick={() => { setEra("TOAU"); setZone(""); }}>ToAU cap</button>
-            <button className={era === "WOTG" ? "active" : ""} onClick={() => setEra("WOTG")}>WotG cap</button>
-          </div>
-        </div>
+        <label className="bestiary-check">
+          <input type="checkbox" checked={era === "WOTG"} onChange={(event) => { setEra(event.target.checked ? "WOTG" : "TOAU"); setZone(""); }} />
+          Include WotG
+        </label>
         <label className="bestiary-field bestiary-search">
           <span>Search all monster data</span>
           <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Name, zone, family, modifier..." autoComplete="off" />

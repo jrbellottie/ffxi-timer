@@ -5,7 +5,7 @@ import recipesData from "./data/recipes.json";
 import { loadJson, saveJson } from "./utils/storage";
 import { craftSkillupStats } from "./utils/craftingSkillup";
 import { findableName, normalizeItemName } from "./utils/itemLinks";
-import { navigateToTab, peekNavQuery, hasBackTab, goBackTab, peekBackTabSeq, nextNavSeq } from "./utils/tabNav";
+import { navigateToTab, peekNavQuery, peekNavRecipeId, hasBackTab, goBackTab, peekBackTabSeq, nextNavSeq } from "./utils/tabNav";
 
 type RecipeItem = { n: string; q: number };
 type RecipeSub = { c: string; l: number };
@@ -243,15 +243,21 @@ function badges(recipe: Recipe): string {
   return parts.join(" · ");
 }
 
+/** Name match tolerant of LSB's missing punctuation ("Barons Saio" vs "baron's saio"). */
+function nameMatches(name: string, q: string, qNorm: string): boolean {
+  return name.toLowerCase().includes(q) || normalizeItemName(name).includes(qNorm);
+}
+
 function recipeMatchesText(recipe: Recipe, needle: string): boolean {
   const q = needle.trim().toLowerCase();
   if (!q) return true;
-  if (recipe.res.n.toLowerCase().includes(q)) return true;
+  const qn = normalizeItemName(needle);
+  if (nameMatches(recipe.res.n, q, qn)) return true;
   if (recipe.craft.toLowerCase().includes(q)) return true;
   if (recipe.crystal.toLowerCase().includes(q)) return true;
   if (eraLabel(recipe.era).toLowerCase().includes(q)) return true;
-  if (recipe.ing.some((i) => i.n.toLowerCase().includes(q))) return true;
-  if (recipe.hq.some((h) => h.n.toLowerCase().includes(q))) return true;
+  if (recipe.ing.some((i) => nameMatches(i.n, q, qn))) return true;
+  if (recipe.hq.some((h) => nameMatches(h.n, q, qn))) return true;
   return false;
 }
 
@@ -328,6 +334,7 @@ export default function CraftingTab() {
   const initialUi = useMemo(() => {
     const loaded = loadJson<Partial<CraftingUiState>>(CRAFTING_UI_KEY, {});
     const navQuery = peekNavQuery("crafting");
+    const linkedRecipe = RECIPES.find((recipe) => recipe.id === peekNavRecipeId());
     const navOverride: Partial<CraftingUiState> = navQuery
       ? {
           mode: "recipes",
@@ -339,6 +346,16 @@ export default function CraftingTab() {
           rEra: "",
           rLvlMin: "",
           rLvlMax: "",
+          ...(linkedRecipe ? {
+            rResult: linkedRecipe.res.n,
+            rCraft: linkedRecipe.craft,
+            rCrystal: linkedRecipe.crystal,
+            rEra: linkedRecipe.era || "Base",
+            rLvlMin: String(linkedRecipe.lvl),
+            rLvlMax: String(linkedRecipe.lvl),
+            rIncludeDesynth: linkedRecipe.d === 1,
+            includeWotg: linkedRecipe.era === "WotG" || loaded.includeWotg === true,
+          } : {}),
         }
       : {};
     return { ...defaultUi, ...loaded, ...navOverride };
@@ -557,6 +574,35 @@ export default function CraftingTab() {
     );
   };
 
+  /** HQ Results cell: distinct HQ items link to the Items tab like the NQ result does. */
+  const renderHqResults = (recipe: Recipe) => {
+    if (recipe.hq.every((h) => h.n === recipe.res.n)) return hqText(recipe);
+    return recipe.hq.map((h, i) => {
+      const label = `${h.n}${h.q > 1 ? ` x${h.q}` : ""}`;
+      const target = h.n === recipe.res.n ? null : findableName(h.n);
+      return (
+        <React.Fragment key={i}>
+          {i > 0 ? " / " : ""}
+          {`HQ${i + 1}: `}
+          {target ? (
+            <span
+              style={{ color: "#7ec4e8", cursor: "pointer", textDecoration: "underline", textDecorationColor: "rgba(126,196,232,0.6)", textUnderlineOffset: 2 }}
+              title={`Find every source of ${target}`}
+              onClick={(e) => {
+                e.stopPropagation();
+                searchDropsFor(target);
+              }}
+            >
+              {label}
+            </span>
+          ) : (
+            label
+          )}
+        </React.Fragment>
+      );
+    });
+  };
+
   const renderIngredients = (recipe: Recipe) =>
     recipe.ing.map((i, idx) => {
       const label = i.q > 1 ? `${i.n} x${i.q}` : i.n;
@@ -617,8 +663,17 @@ export default function CraftingTab() {
       if (rEra && eraLabel(r.era) !== rEra) return false;
       if (lvlMin !== null && Number.isFinite(lvlMin) && r.lvl < lvlMin) return false;
       if (lvlMax !== null && Number.isFinite(lvlMax) && r.lvl > lvlMax) return false;
-      if (rResult && !r.res.n.toLowerCase().includes(rResult.trim().toLowerCase())) return false;
-      if (rIngredient && !r.ing.some((i) => i.n.toLowerCase().includes(rIngredient.trim().toLowerCase()))) return false;
+      if (rResult) {
+        const q = rResult.trim().toLowerCase();
+        const qn = normalizeItemName(rResult);
+        // HQ versions count as results too (Dusk Gloves +1, Baron's gear...)
+        if (!nameMatches(r.res.n, q, qn) && !r.hq.some((h) => nameMatches(h.n, q, qn))) return false;
+      }
+      if (rIngredient) {
+        const q = rIngredient.trim().toLowerCase();
+        const qn = normalizeItemName(rIngredient);
+        if (!r.ing.some((i) => nameMatches(i.n, q, qn))) return false;
+      }
       if (rGlobal && !recipeMatchesText(r, rGlobal)) return false;
       return true;
     });
@@ -1058,7 +1113,7 @@ export default function CraftingTab() {
                         <td style={{ ...tdStyle, whiteSpace: "normal", minWidth: 260, opacity: 0.9 }}>
                           {renderIngredients(r)}
                         </td>
-                        <td style={{ ...tdStyle, whiteSpace: "normal", minWidth: 180, opacity: 0.85 }}>{hqText(r)}</td>
+                        <td style={{ ...tdStyle, whiteSpace: "normal", minWidth: 180, opacity: 0.85 }}>{renderHqResults(r)}</td>
                         <td style={{ ...tdStyle, opacity: 0.85 }}>{badges(r) || "—"}</td>
                       </tr>
                     );

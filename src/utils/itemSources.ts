@@ -17,7 +17,7 @@ export type GuildSource = { guild: string; rank: string; price: number };
 export type BcnmSource = { name: string; arena: string; type: string };
 export type HelmSource = { kind: string; zone: string; pct: number };
 export type DigSource = { zone: string; rate: number | null };
-export type CraftSource = { craft: string; lvl: number };
+export type CraftSource = { craft: string; lvl: number; hq?: boolean };
 export type CpSource = { nation: string; rank: number | null; cp: number };
 export type QuestSource = { name: string; zone: string | null };
 
@@ -38,7 +38,7 @@ type GuildRow = { n: string; guild: string; price: number; rank: string };
 type HelmRow = { kind: string; zone: string; n: string; pct: number };
 type FishRow = { zone: string; catch: string };
 type DigRow = { zone: string; item: string; rate: number | null };
-type RecipeRow = { craft: string; lvl: number; res: { n: string }; d?: number };
+type RecipeRow = { id: number; craft: string; lvl: number; era: string; ing: { n: string }[]; res: { n: string }; hq: { n: string }[]; d?: number };
 type CpRow = { n: string; nation: string; rank: number | null; cp: number; lvl: number | null };
 type Battlefield = {
   name: string;
@@ -96,9 +96,34 @@ for (const r of recipesData as RecipeRow[]) {
   if (!existing) e.craft.push({ craft: r.craft, lvl: r.lvl });
   else if (r.lvl < existing.lvl) existing.lvl = r.lvl;
 }
+// HQ-only results (Dusk Gloves +1, Baron's gear...) get their own entries; NQ pass runs first
+// so items that are also a normal result keep their unflagged source.
+for (const r of recipesData as RecipeRow[]) {
+  if (r.d === 1) continue;
+  for (const h of new Set(r.hq.map((x) => x.n))) {
+    if (normalizeItemName(h) === normalizeItemName(r.res.n)) continue; // higher-quantity HQ tiers
+    const e = entry(h);
+    const existing = e.craft.find((c) => c.craft === r.craft);
+    if (!existing) e.craft.push({ craft: r.craft, lvl: r.lvl, hq: true });
+    else if (existing.hq && r.lvl < existing.lvl) existing.lvl = r.lvl;
+  }
+}
 
 export function getItemSources(name: string): ItemSources {
   return index.get(normalizeItemName(name)) ?? empty;
+}
+
+const recipesByIngredient = new Map<string, RecipeRow[]>();
+for (const recipe of recipesData as RecipeRow[]) {
+  for (const ingredient of new Set(recipe.ing.map((item) => normalizeItemName(item.n)))) {
+    const recipes = recipesByIngredient.get(ingredient) ?? [];
+    recipes.push(recipe);
+    recipesByIngredient.set(ingredient, recipes);
+  }
+}
+
+export function recipesUsingItem(name: string): readonly RecipeRow[] {
+  return recipesByIngredient.get(normalizeItemName(name)) ?? [];
 }
 
 export type SourceBadge = { label: string; color: string };

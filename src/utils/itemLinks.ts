@@ -38,6 +38,7 @@ export function normalizeItemName(name: string): string {
 
 const craftableByNorm = new Map<string, string>();
 for (const r of recipesData as RecipeLite[]) {
+  if (r.d === 1) continue;
   const norm = normalizeItemName(r.res.n);
   if (!craftableByNorm.has(norm)) craftableByNorm.set(norm, r.res.n);
 }
@@ -91,6 +92,12 @@ const otherSourceByNorm = new Map<string, string>();
   for (const r of fishData as { catch: string }[]) addName(r.catch);
   for (const bf of (bcnmData as { battlefields: { slots: { entries: { item: string | null }[] }[] }[] }).battlefields) {
     for (const slot of bf.slots) for (const le of slot.entries) if (le.item && le.item !== "Gil") addName(le.item);
+  }
+  // Craft results (NQ and HQ) all get synthetic Items-tab rows via itemSources
+  for (const r of recipesData as RecipeLite[]) {
+    if (r.d === 1) continue;
+    addName(r.res.n);
+    for (const h of r.hq) addName(h.n);
   }
 }
 

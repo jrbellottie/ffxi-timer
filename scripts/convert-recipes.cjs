@@ -3,9 +3,30 @@
 // Usage: node scripts/convert-recipes.cjs
 const fs = require("fs");
 const path = require("path");
+const { execFileSync } = require("child_process");
+const { createHash } = require("crypto");
 
 const DATA_DIR = path.join(__dirname, "lsb-data");
-const OUT_FILE = path.join(__dirname, "..", "src", "data", "recipes.json");
+const BUNDLED_FILE = path.join(__dirname, "..", "src", "data", "recipes.json");
+const outputArg = process.argv.indexOf("--output");
+if (outputArg >= 0 && !process.argv[outputArg + 1]) throw new Error("--output requires a file path");
+const OUT_FILE = outputArg >= 0 ? path.resolve(process.argv[outputArg + 1]) : BUNDLED_FILE;
+if (!OUT_FILE.endsWith(".json")) throw new Error("Recipe output must end in .json");
+const CHECK_ONLY = process.argv.includes("--check");
+const sourceArg = process.argv.indexOf("--lsb");
+if (sourceArg >= 0 && !process.argv[sourceArg + 1]) throw new Error("--lsb requires a checkout path");
+const server = sourceArg >= 0 ? path.resolve(process.argv[sourceArg + 1]) : null;
+const inputHashes = {};
+const hash = (content) => createHash("sha256").update(content).digest("hex");
+const readSql = (name) => {
+  const workingFile = server ? path.join(server, "sql", name) : path.join(DATA_DIR, name);
+  if (!server && !fs.existsSync(workingFile)) throw new Error(`Missing SQL snapshot: ${workingFile}`);
+  const content = fs.existsSync(workingFile)
+    ? fs.readFileSync(workingFile, "utf8")
+    : execFileSync("git", ["-C", server, "show", `HEAD:sql/${name}`], { encoding: "utf8", maxBuffer: 64 * 1024 * 1024 });
+  inputHashes[name] = hash(content.replace(/\r\n/g, "\n"));
+  return content;
+};
 
 const ERA_MAP = {
   "": "",
@@ -84,7 +105,7 @@ function splitSqlTuple(body) {
 }
 
 function loadItemNames() {
-  const sql = fs.readFileSync(path.join(DATA_DIR, "item_basic.sql"), "utf8");
+  const sql = readSql("item_basic.sql");
   const names = new Map();
   const re = /^INSERT INTO `item_basic` VALUES \((\d+),\d+,'([^']*)'/gm;
   let m;
@@ -96,7 +117,7 @@ function loadItemNames() {
 
 function main() {
   const itemNames = loadItemNames();
-  const sql = fs.readFileSync(path.join(DATA_DIR, "synth_recipes.sql"), "utf8");
+  const sql = readSql("synth_recipes.sql");
 
   const itemName = (id) => itemNames.get(id) || `Item #${id}`;
   const recipes = [];
@@ -107,10 +128,7 @@ function main() {
 
   while ((m = re.exec(sql)) !== null) {
     const f = splitSqlTuple(m[1]);
-    if (f.length < 31) {
-      console.warn(`Skipping malformed row: ${m[1].slice(0, 80)}`);
-      continue;
-    }
+    if (f.length !== 31) throw new Error(`Unexpected recipe schema: ${f.length} fields`);
 
     const tagRaw = f[30] === "NULL" ? "" : f[30];
     if (!(tagRaw in ERA_MAP)) {
@@ -171,10 +189,40 @@ function main() {
 
   recipes.sort((a, b) => a.craft.localeCompare(b.craft) || a.lvl - b.lvl || a.res.n.localeCompare(b.res.n));
 
-  fs.writeFileSync(OUT_FILE, JSON.stringify(recipes));
+  if (!recipes.length) throw new Error("No recipes parsed; refusing to replace data");
+  const unresolved = recipes.flatMap((recipe) => [recipe.res, ...recipe.hq, ...recipe.ing]).filter((item) => /^Item #\d+$/.test(item.n));
+  if (unresolved.length) throw new Error(`Unresolved item names: ${[...new Set(unresolved.map((item) => item.n))].join(", ")}`);
+  const existing = JSON.parse(fs.readFileSync(BUNDLED_FILE, "utf8"));
+  const previous = new Map(existing.map((recipe) => [recipe.id, recipe]));
+  const next = new Map(recipes.map((recipe) => [recipe.id, recipe]));
+  const added = recipes.filter((recipe) => !previous.has(recipe.id));
+  const removed = existing.filter((recipe) => !next.has(recipe.id));
+  const changed = recipes.filter((recipe) => previous.has(recipe.id) && JSON.stringify(previous.get(recipe.id)) !== JSON.stringify(recipe));
+  console.log(`Recipe diff: ${added.length} added, ${removed.length} removed, ${changed.length} changed`);
+  for (const [kind, rows] of [["Added", added], ["Removed", removed], ["Changed", changed]]) {
+    for (const recipe of rows.slice(0, 20)) {
+      const before = previous.get(recipe.id);
+      const fields = kind === "Changed" ? [...new Set([...Object.keys(before), ...Object.keys(recipe)])].filter((key) => JSON.stringify(before[key]) !== JSON.stringify(recipe[key])) : [];
+      console.log(`  ${kind}: ${recipe.id} ${recipe.res.n} (${recipe.era || "base"})${fields.length ? ` [${fields.join(", ")}]` : ""}`);
+    }
+    if (rows.length > 20) console.log(`  ... ${rows.length - 20} more ${kind.toLowerCase()}`);
+  }
+  if (!CHECK_ONLY) {
+    const output = JSON.stringify(recipes);
+    const provenance = {
+      schemaVersion: 1,
+      source: server ? "server checkout" : "saved SQL snapshots (revision unknown)",
+      revision: server ? execFileSync("git", ["-C", server, "rev-parse", "HEAD"], { encoding: "utf8" }).trim() : null,
+      inputSha256: inputHashes,
+      generatorSha256: hash(fs.readFileSync(__filename)),
+      outputSha256: hash(output),
+    };
+    fs.writeFileSync(OUT_FILE, output);
+    fs.writeFileSync(OUT_FILE.replace(/\.json$/, ".source.json"), JSON.stringify(provenance, null, 2) + "\n");
+  }
   const byEra = {};
   for (const r of recipes) byEra[r.era || "base"] = (byEra[r.era || "base"] || 0) + 1;
-  console.log(`Wrote ${recipes.length} recipes to ${OUT_FILE}`);
+  console.log(CHECK_ONLY ? `Checked ${recipes.length} recipes; no files changed` : `Wrote ${recipes.length} recipes to ${OUT_FILE}`);
   console.log(`Skipped ${skippedEra} recipes from later expansions`);
   console.log("By era:", byEra);
 }

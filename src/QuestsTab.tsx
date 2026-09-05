@@ -46,7 +46,7 @@ const MAPS = (mapData as { maps: MapDef[] }).maps;
 
 /** Tolerant zone comparison: "The Sanctuary of Zi'Tah" / "Windurst Waters (North)" etc. */
 const normZone = (z: string) =>
-  z.toLowerCase().replace(/^the /, "").replace(/#/g, "").replace(/\s*\((?:north|south)\)$/, "").replace(/ (?:north|south)$/, "").trim();
+  z.toLowerCase().replace(/^the /, "").replace(/#/g, "").replace(/\s*\((?:north|south)\)$/, "").replace(/ (?:north|south)$/, "").trim().replace(/^bibiki bay - purgonorgo isle$/, "bibiki bay");
 
 const DATA = questData as { quests: Entry[]; missions: Entry[] };
 const ALL: Entry[] = [...DATA.quests, ...DATA.missions];
