@@ -1,0 +1,173 @@
+{
+  "source": {
+    "bestiaryRevision": "2241fe8c39b9c05979d3d60c3983c3e46360277c",
+    "era": "TOAU",
+    "rule": "Monster crystal element; src/map/entities/mob_entity.cpp awards item 4095 + m_Element. Family assignments may vary by monster."
+  },
+  "crystals": {
+    "4096": {
+      "name": "Fire Crystal",
+      "families": [
+        "Bird",
+        "Bomb",
+        "Bugard",
+        "Cardian",
+        "Cerberus",
+        "Cluster",
+        "Crawler",
+        "Eft",
+        "Elemental",
+        "Goblin",
+        "Lizard",
+        "Orc",
+        "Orcish Warmachine",
+        "Raptor",
+        "Troll",
+        "Wamoura",
+        "Wamouracampa",
+        "Wyrm"
+      ]
+    },
+    "4097": {
+      "name": "Ice Crystal",
+      "families": [
+        "Bomb",
+        "Buffalo",
+        "Doll",
+        "Elemental",
+        "Ghost",
+        "Gigas",
+        "Lizard",
+        "Naraka",
+        "Wyrm"
+      ]
+    },
+    "4098": {
+      "name": "Wind Crystal",
+      "families": [
+        "Bat",
+        "Bee",
+        "Colibri",
+        "Diremite",
+        "Elemental",
+        "Evil Weapon",
+        "Flock Bat",
+        "Fly",
+        "Flytrap",
+        "Hippogryph",
+        "Mamool Ja",
+        "Manticore",
+        "Puk",
+        "Yagudo"
+      ]
+    },
+    "4099": {
+      "name": "Earth Crystal",
+      "families": [
+        "Adamantoise",
+        "Beetle",
+        "Belladonna",
+        "Cardian",
+        "Chigoe",
+        "Cockatrice",
+        "Crawler",
+        "Dhalmel",
+        "Elemental",
+        "Mandragora",
+        "Mantid",
+        "Marid",
+        "Morbol",
+        "Qiqirn",
+        "Rabbit",
+        "Ram",
+        "Sapling",
+        "Scorpion",
+        "Sheep",
+        "Skeleton",
+        "Spider",
+        "Treant",
+        "Wivre",
+        "Worm",
+        "Wyrm",
+        "Yztarg"
+      ]
+    },
+    "4100": {
+      "name": "Lightning Crystal",
+      "families": [
+        "Bugbear",
+        "Coeurl",
+        "Elemental",
+        "Goblin",
+        "Khimaira",
+        "Mammet",
+        "Opo Opo",
+        "Spheroid",
+        "Tiger"
+      ]
+    },
+    "4101": {
+      "name": "Water Crystal",
+      "families": [
+        "Apkallu",
+        "Behemoth",
+        "Botuli",
+        "Cactaur",
+        "Cardian",
+        "Crab",
+        "Elemental",
+        "Flan",
+        "Goobbue",
+        "Hydra",
+        "Lamiae",
+        "Leech",
+        "Orobon",
+        "Poroggo",
+        "Pteraketos",
+        "Pugil",
+        "Quadav",
+        "Sahagin",
+        "Sea Monk",
+        "Slime",
+        "Soulflayer",
+        "Uragnite",
+        "Wyvern"
+      ]
+    },
+    "4102": {
+      "name": "Light Crystal",
+      "families": [
+        "Cardian",
+        "Elemental",
+        "Golem",
+        "Greater Bird",
+        "Magic Pot",
+        "Tonberry"
+      ]
+    },
+    "4103": {
+      "name": "Dark Crystal",
+      "families": [
+        "Ahriman",
+        "Antica",
+        "Antlion",
+        "Corpselight",
+        "Corse",
+        "Demon",
+        "Doomed",
+        "Dragon",
+        "Dvergr",
+        "Elemental",
+        "Fomor",
+        "Funguar",
+        "Hecteyes",
+        "Hound",
+        "Imp",
+        "Qutrub",
+        "Shadow",
+        "Taurus",
+        "Vampyr"
+      ]
+    }
+  }
+}

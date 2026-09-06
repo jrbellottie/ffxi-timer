@@ -5,6 +5,7 @@ import recipesData from "./data/recipes.json";
 import { loadJson, saveJson } from "./utils/storage";
 import { craftSkillupStats } from "./utils/craftingSkillup";
 import { findableName, normalizeItemName } from "./utils/itemLinks";
+import { getPurification, purificationMatches } from "./utils/purification";
 import { navigateToTab, peekNavQuery, peekNavRecipeId, hasBackTab, goBackTab, peekBackTabSeq, nextNavSeq } from "./utils/tabNav";
 import { captureScrollPosition, restoreScrollPosition, type ScrollPosition } from "./utils/scrollPosition";
 import { rememberTabState, peekRestoredTabState } from "./utils/tabNav";
@@ -32,17 +33,22 @@ const detailItems = new Map<number, string>();
 
 function RecipeItemDetails({ recipe }: { recipe: Recipe }) {
   const [item, setItem] = useState(detailItems.get(recipe.id) ?? recipe.res.n);
-  const names = [...new Set([recipe.res.n, ...recipe.hq.map((result) => result.n), ...recipe.ing.map((ingredient) => ingredient.n)])];
+  const recipeNames = [recipe.res.n, ...recipe.hq.map((result) => result.n), ...recipe.ing.map((ingredient) => ingredient.n), `${recipe.crystal} Crystal`];
+  const names = [...new Set(recipeNames.flatMap((name) => {
+    const exchange = getPurification(name);
+    return exchange ? [name, exchange.result, exchange.abjuration] : [name];
+  }))];
+  const selectItem = (name: string) => { detailItems.set(recipe.id, name); setItem(name); };
   return (
-    <div style={{ display: "grid", gap: 12, padding: 12, minWidth: 0 }}>
+    <div className="item-detail-panel" style={{ display: "grid", gap: 12, padding: 12, minWidth: 0 }}>
       <label style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap" }}>
         Item details
-        <select value={item} onChange={(event) => { detailItems.set(recipe.id, event.target.value); setItem(event.target.value); }} style={{ ...styles.select, maxWidth: "100%" }}>
+        <select value={item} onChange={(event) => selectItem(event.target.value)} style={{ ...styles.select, maxWidth: "100%" }}>
           {names.map((name) => <option key={name} value={name}>{name}</option>)}
         </select>
       </label>
       <React.Suspense fallback={<strong>{item}</strong>}>
-        <ItemInfo key={item} name={item} />
+        <ItemInfo key={item} name={item} onSelectName={selectItem} />
       </React.Suspense>
     </div>
   );
@@ -269,7 +275,7 @@ function badges(recipe: Recipe): string {
 
 /** Name match tolerant of LSB's missing punctuation ("Barons Saio" vs "baron's saio"). */
 function nameMatches(name: string, q: string, qNorm: string): boolean {
-  return name.toLowerCase().includes(q) || normalizeItemName(name).includes(qNorm);
+  return name.toLowerCase().includes(q) || normalizeItemName(name).includes(qNorm) || purificationMatches(name, qNorm);
 }
 
 function recipeMatchesText(recipe: Recipe, needle: string): boolean {

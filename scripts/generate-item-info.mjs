@@ -42,7 +42,7 @@ const collect = (value) => {
   else if (Array.isArray(value)) value.forEach(collect);
   else if (value && typeof value === "object") Object.values(value).forEach(collect);
 };
-for (const file of ["drops", "recipes", "shops", "guildShops", "helm", "bcnm", "fish", "bait", "rods", "chocoboDig", "cpItems"]) collect(JSON.parse(readFileSync(path.join(root, "src/data", `${file}.json`), "utf8")));
+for (const file of ["drops", "recipes", "shops", "guildShops", "helm", "bcnm", "fish", "bait", "rods", "chocoboDig", "cpItems", "purification"]) collect(JSON.parse(readFileSync(path.join(root, "src/data", `${file}.json`), "utf8")));
 const aliases = new Map();
 const addAlias = (name, id) => {
   const key = normalizeName(name);
@@ -65,6 +65,10 @@ for (const recipe of recipes) {
 }
 const names = {};
 for (const [name, ids] of aliases) if (requested.has(name) && ids.size === 1) names[name] = [...ids][0];
+for (const name of requested) {
+  const ids = aliases.get(name.replace(/:/g, ""));
+  if (!names[name] && ids?.size === 1) names[name] = [...ids][0];
+}
 const wanted = new Set(Object.values(names));
 const items = {};
 const dropNames = JSON.parse(readFileSync(path.join(root, "src/data/drops.json"), "utf8")).items;

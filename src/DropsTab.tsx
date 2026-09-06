@@ -5,6 +5,8 @@ import React, { useEffect, useMemo, useState } from "react";
 import { styles } from "./styles";
 import { loadJson, saveJson } from "./utils/storage";
 import { craftSearchName, normalizeItemName } from "./utils/itemLinks";
+import { getPurificationOrigin, purificationMatches } from "./utils/purification";
+import { ArrowLeft } from "lucide-react";
 import { navigateToTab, peekNavQuery, hasBackTab, goBackTab } from "./utils/tabNav";
 import { rememberTabState, peekRestoredTabState } from "./utils/tabNav";
 import { getItemSources, sourceBadges, allSourcedItems, questRewardsFor, recipesUsingItem } from "./utils/itemSources";
@@ -375,7 +377,12 @@ function craftChipStyle(craft: string): React.CSSProperties {
 const MAX_DETAIL = 14;
 
 /** Expanded row: every way to obtain the item, in and out of this table. */
-function ItemDetail({ item, eraOnly }: { item: string; eraOnly: boolean }) {
+function ItemDetail({ item: initialItem, eraOnly }: { item: string; eraOnly: boolean }) {
+  const [history, setHistory] = useState<string[]>([]);
+  const item = history[history.length - 1] ?? initialItem;
+  const selectItem = (name: string) => {
+    if (name !== item) setHistory([...history, name]);
+  };
   const sources = getItemSources(item);
   const quests = useMemo(() => questRewardsFor(item), [item]);
   const recipes = recipesUsingItem(item).filter((recipe) => !eraOnly || recipe.era !== "WotG");
@@ -551,11 +558,12 @@ function ItemDetail({ item, eraOnly }: { item: string; eraOnly: boolean }) {
   ].filter(Boolean);
 
   return (
-    <div style={{ display: "grid", gap: 7 }}>
+    <div className="item-detail-panel" style={{ display: "grid", gap: 7 }}>
+      {history.length > 0 && <button type="button" className="purification-link" style={{ display: "flex", alignItems: "center", gap: 6, justifySelf: "start" }} onClick={() => setHistory(history.slice(0, -1))}><ArrowLeft size={16} />{history[history.length - 2] ?? initialItem}</button>}
       <React.Suspense fallback={<strong>{item}</strong>}>
-        <ItemInfo name={item} />
+        <ItemInfo key={item} name={item} onSelectName={selectItem} />
       </React.Suspense>
-      {sections.length > 0 ? sections : <div style={{ opacity: 0.7, fontSize: 12 }}>No known sources.</div>}
+      {sections.length > 0 ? sections : !getPurificationOrigin(item) && <div style={{ opacity: 0.7, fontSize: 12 }}>No known sources.</div>}
     </div>
   );
 }
@@ -603,7 +611,7 @@ export default function DropsTab() {
       if ((r.kind === "Steal" || r.kind === "Despoil") && !ui.kinds.includes(r.kind)) continue;
       if (ui.nmMode === "nm" && !r.nm) continue;
       if (ui.nmMode === "normal" && r.nm) continue;
-      if (itemQ && !r.item.toLowerCase().includes(itemQ) && !r.itemNorm.includes(itemQNorm)) continue;
+      if (itemQ && !r.item.toLowerCase().includes(itemQ) && !r.itemNorm.includes(itemQNorm) && !purificationMatches(r.item, itemQNorm)) continue;
       if (mobQ && !r.mob.toLowerCase().includes(mobQ) && !r.zone.toLowerCase().includes(mobQ)) continue;
       out.push(r);
     }
@@ -798,7 +806,7 @@ export default function DropsTab() {
                             borderBottom: "1px solid rgba(255,255,255,0.14)",
                           }}
                         >
-                          <ItemDetail item={r.item} eraOnly={ui.eraOnly} />
+                          <ItemDetail key={r.item} item={r.item} eraOnly={ui.eraOnly} />
                         </td>
                       </tr>
                     )}

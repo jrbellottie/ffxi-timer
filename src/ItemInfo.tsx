@@ -2,6 +2,10 @@ import { useState } from "react";
 import catalogData from "./data/itemInfo.json";
 import wikiData from "./data/itemWiki.json";
 import { normalizeItemName } from "./utils/itemLinks";
+import PurificationInfo from "./PurificationInfo";
+import { getPurification, getPurificationOrigin } from "./utils/purification";
+import { ArrowLeft } from "lucide-react";
+import crystalFamiliesData from "./data/crystalFamilies.json";
 
 type ItemMetadata = {
   name: string; stack: number; sell: number; flags: number; category: number;
@@ -15,6 +19,7 @@ type ItemMetadata = {
 type WikiItem = { title: string; url?: string; revision?: number; status: string; description?: string; fields?: Record<string, string>; notes?: string; image?: string; imageSource?: string };
 const catalog = catalogData as unknown as { source: { revision: string }; names: Record<string, number>; modifierNames: Record<string, string>; items: Record<string, ItemMetadata> };
 const wiki = wikiData as unknown as { items: Record<string, WikiItem> };
+const crystalFamilies = crystalFamiliesData.crystals as Record<string, { name: string; families: string[] }>;
 const JOBS = ["WAR", "MNK", "WHM", "BLM", "RDM", "THF", "PLD", "DRK", "BST", "BRD", "RNG", "SAM", "NIN", "DRG", "SMN", "BLU", "COR", "PUP", "DNC", "SCH", "GEO", "RUN"];
 const SLOTS = ["Main", "Sub", "Ranged", "Ammo", "Head", "Body", "Hands", "Legs", "Feet", "Neck", "Waist", "Left ear", "Right ear", "Left ring", "Right ring", "Back"];
 const SKILLS: Record<number, string> = { 1: "Hand-to-hand", 2: "Dagger", 3: "Sword", 4: "Great sword", 5: "Axe", 6: "Great axe", 7: "Scythe", 8: "Polearm", 9: "Katana", 10: "Great katana", 11: "Club", 12: "Staff", 25: "Archery", 26: "Marksmanship", 27: "Throwing", 41: "String instrument", 42: "Wind instrument", 48: "Fishing rod" };
@@ -23,11 +28,27 @@ const linkStyle = { color: "#7ec4e8", textUnderlineOffset: 2 };
 const label = (value: string) => value.replace(/_/g, " ").replace(/\b\w/g, (letter) => letter.toUpperCase());
 const signed = (value: number) => value > 0 ? `+${value}` : String(value);
 
-export default function ItemInfo({ name }: { name: string }) {
+export default function ItemInfo({ name, onSelectName }: { name: string; onSelectName?: (name: string) => void }) {
+  const [history, setHistory] = useState<string[]>([]);
+  const selected = history[history.length - 1] ?? name;
+  const select = (next: string) => {
+    if (onSelectName) onSelectName(next);
+    else if (next !== selected) setHistory([...history, next]);
+  };
+  return <>
+    {history.length > 0 && <button type="button" onClick={() => setHistory(history.slice(0, -1))} style={{ display: "flex", alignItems: "center", gap: 6, justifySelf: "start", background: "none", border: 0, padding: "4px 0", color: "#7ec4e8", cursor: "pointer" }}><ArrowLeft size={16} />{history[history.length - 2] ?? name}</button>}
+    <ItemDetails key={selected} name={selected} onSelect={select} />
+  </>;
+}
+
+function ItemDetails({ name, onSelect }: { name: string; onSelect: (name: string) => void }) {
   const [failedImage, setFailedImage] = useState<string | null>(null);
   const id = catalog.names[normalizeItemName(name)];
   const item = catalog.items[id];
   const reference = wiki.items[id];
+  const exchange = getPurification(name);
+  const origin = getPurificationOrigin(name);
+  const crystal = crystalFamilies[id];
   const url = reference?.url ?? `https://ffxiclopedia.fandom.com/wiki/${encodeURIComponent(name.replace(/ /g, "_"))}`;
   const equipment = item?.equipment;
   const weapon = item?.weapon;
@@ -39,11 +60,26 @@ export default function ItemInfo({ name }: { name: string }) {
         <a href={url} target="_blank" rel="noreferrer" style={linkStyle}>FFXIclopedia</a>
         {id && <span style={{ fontSize: 11, color: "#aaa" }}>Item #{id}</span>}
       </div>
+      {crystal && <div style={{ display: "grid", gap: 5, whiteSpace: "normal", overflowWrap: "anywhere", fontSize: 13 }}>
+        <div><strong>Dropped by families:</strong> {crystal.families.join(", ")}</div>
+        <div style={{ color: "#aaa", fontSize: 12 }}>Crystal type can vary by monster within a family. Crystal drops require an eligible EXP-yielding kill and the appropriate regional effect (Signet or Sanction); region restrictions apply.</div>
+      </div>}
+      {exchange && <PurificationInfo
+        cursed={{ name, image: reference?.image }}
+        purified={{ name: exchange.result, image: wiki.items[catalog.names[normalizeItemName(exchange.result)]]?.image }}
+        abjuration={exchange.abjuration}
+        abjurationId={catalog.names[normalizeItemName(exchange.abjuration)]}
+        onSelect={onSelect}
+      />}
+      {origin && <div style={{ whiteSpace: "normal", color: "#bbb", fontSize: 13 }}>
+        Purified from <button type="button" className="purification-link" onClick={() => onSelect(origin.cursed)}>{origin.cursed}</button>
+        {" + "}<button type="button" className="purification-link" onClick={() => onSelect(origin.abjuration)}>{origin.abjuration}</button>
+      </div>}
       <div style={{ display: "flex", flexWrap: "wrap", gap: 16, alignItems: "flex-start", minWidth: 0 }}>
-        {reference?.image && failedImage !== reference.image && (
-          <a href={reference.imageSource ?? url} target="_blank" rel="noreferrer" style={{ maxWidth: "100%", display: "block" }}>
+        {!exchange && reference?.image && failedImage !== reference.image && (
+          <button type="button" onClick={() => onSelect(name)} aria-label={`View ${name}`} style={{ maxWidth: "100%", display: "block", background: "none", border: 0, padding: 0, cursor: "pointer" }}>
             <img src={`${import.meta.env.BASE_URL}${reference.image}`} alt={`${reference.title} in-game item description`} onError={() => setFailedImage(reference.image ?? null)} style={{ display: "block", maxWidth: "100%", height: "auto" }} />
-          </a>
+          </button>
         )}
         <div style={{ flex: "1 1 280px", minWidth: 0, display: "grid", gap: 7 }}>
           {reference?.description && <div style={{ lineHeight: 1.5 }}>{reference.description}</div>}

@@ -11,7 +11,9 @@ const catalog = JSON.parse(readFileSync(path.join(root, "src/data/itemInfo.json"
 const cache = existsSync(output) ? JSON.parse(readFileSync(output, "utf8")) : { source: { site: "https://ffxiclopedia.fandom.com", license: "CC-BY-SA; individual image rights may differ", attribution: "FFXIclopedia contributors; FINAL FANTASY XI images: Square Enix" }, items: {} };
 const onlyArg = process.argv.indexOf("--only");
 if (onlyArg >= 0 && !process.argv[onlyArg + 1]) throw new Error("--only requires comma-separated item names");
-const only = onlyArg >= 0 ? new Set(process.argv[onlyArg + 1].split(",").map(normalizeName)) : null;
+const only = onlyArg >= 0 ? new Set(process.argv[onlyArg + 1].split(",").map(normalizeName)) : process.argv.includes("--purification")
+  ? new Set(JSON.parse(readFileSync(path.join(root, "src/data/purification.json"), "utf8")).exchanges.flat().filter(Boolean).map(normalizeName))
+  : null;
 const refresh = process.argv.includes("--refresh");
 const images = process.argv.includes("--images");
 const optimize = process.argv.includes("--optimize");
@@ -31,6 +33,12 @@ const wikiTitle = (item) => displayName(item.name.replace(/^[a-z]+ of (?!the )/i
 const targets = Object.entries(catalog.items).filter(([id, item]) => !only || only.has(normalizeName(item.name)) || [...only].some((name) => catalog.names[name] === Number(id)));
 if (only && targets.length !== only.size) throw new Error("Some requested names do not resolve uniquely in the item catalog");
 const resolvedTitles = new Map();
+if (process.argv.includes("--purification")) {
+  for (const name of JSON.parse(readFileSync(path.join(root, "src/data/purification.json"), "utf8")).exchanges.flat().filter(Boolean)) {
+    const id = String(catalog.names[normalizeName(name)]);
+    if (cache.items[id]?.status === "missing") resolvedTitles.set(id, name);
+  }
+}
 if (process.argv.includes("--resolve-missing")) {
   const missing = new Set(targets.filter(([id]) => cache.items[id]?.status === "missing").map(([, item]) => normalizeName(wikiTitle(item))));
   const candidates = new Map();
