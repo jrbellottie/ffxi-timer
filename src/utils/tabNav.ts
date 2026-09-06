@@ -5,6 +5,10 @@ import { captureScrollPosition, restoreScrollPosition, type ScrollPosition } fro
 type BackEntry = { tab: string; seq: number; scroll: ScrollPosition; state: unknown };
 
 let switchTab: ((tab: string) => void) | null = null;
+let currentTab = "home";
+
+export function setCurrentTab(tab: string) { currentTab = tab; }
+export function getCurrentTab(): string { return currentTab; }
 let pending: { tab: string; query: string; recipeId?: number } | null = null;
 let seq = 0;
 const backStack: BackEntry[] = [];

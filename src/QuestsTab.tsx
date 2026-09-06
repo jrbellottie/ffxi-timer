@@ -5,6 +5,9 @@ import questData from "./data/quests.json";
 import mapData from "./data/maps.json";
 import MapView, { MapDef } from "./MapView";
 import { captureScrollPosition, restoreScrollPosition, type ScrollPosition } from "./utils/scrollPosition";
+import NpcLink from "./NpcLink";
+import NpcText from "./NpcText";
+import { peekNavQuery, peekRestoredTabState, rememberTabState, hasBackTab, goBackTab } from "./utils/tabNav";
 
 type ChainLink = { name: string; id: string | null };
 
@@ -175,7 +178,7 @@ function CoordText({
   return (
     <>
       {parts.map((p, i) => {
-        if (i % 2 === 0) return <React.Fragment key={i}>{p}</React.Fragment>;
+        if (i % 2 === 0) return <NpcText key={i} text={p} />;
         const occurrence = occurrences.get(p) ?? 0;
         occurrences.set(p, occurrence + 1);
         return (
@@ -325,7 +328,7 @@ function Detail({ entry, onOpen, onBack }: { entry: Entry; onOpen: (id: string) 
     info.push([
       "Start NPC",
       <>
-        {entry.startNpc}
+        <NpcLink name={entry.startNpc} zone={entry.startZone} from="quests" />
         {entry.startZone ? ` — ${entry.startZone}` : ""}
         {entry.startCoord ? <> (<CoordText text={entry.startCoord} {...coordHandlers} />)</> : ""}
       </>,
@@ -460,9 +463,14 @@ const numKey = (n: string | null) => (n ? n.split("-").map((x) => x.padStart(3, 
 let listScroll: ScrollPosition | null = null;
 
 export default function QuestsTab() {
-  const [ui, setUi] = useState<UiState>(() => normalizeState(loadJson(UI_KEY, null)));
+  const [ui, setUi] = useState<UiState>(() => {
+    const saved = normalizeState(peekRestoredTabState<UiState>("quests") ?? loadJson(UI_KEY, null));
+    const query = peekNavQuery("quests");
+    const entry = query ? BY_ID.get(query) ?? ALL.find((entry) => entry.name === query) : undefined;
+    return entry ? { ...saved, sub: entry.type === "mission" ? "missions" : "quests", selectedId: entry.id } : saved;
+  });
 
-  useEffect(() => saveJson(UI_KEY, ui), [ui]);
+  useEffect(() => { saveJson(UI_KEY, ui); rememberTabState("quests", ui); }, [ui]);
 
   const set = (patch: Partial<UiState>) => setUi((u) => ({ ...u, ...patch }));
   const selectedId = ui.selectedId;
@@ -501,7 +509,7 @@ export default function QuestsTab() {
         key={selected.id}
         entry={selected}
         onOpen={(id) => setSelectedId(id)}
-        onBack={() => setSelectedId(null)}
+        onBack={() => hasBackTab() ? goBackTab() : setSelectedId(null)}
       />
     );
   }
@@ -588,7 +596,7 @@ export default function QuestsTab() {
                 {ui.sub === "missions" && <td style={{ ...tdStyle, whiteSpace: "nowrap", color: "#9aa0b8" }}>{e.number ?? ""}</td>}
                 <td style={{ ...tdStyle, fontWeight: 700, whiteSpace: "nowrap" }}>{e.name}</td>
                 <td style={{ ...tdStyle, whiteSpace: "nowrap", color: GROUP_COLORS[e.group] ?? "#eaeaea" }}>{e.group}</td>
-                <td style={{ ...tdStyle, whiteSpace: "nowrap" }}>{e.startNpc ?? "—"}</td>
+                <td style={{ ...tdStyle, whiteSpace: "nowrap" }}>{e.startNpc ? <NpcLink name={e.startNpc} zone={e.startZone} from="quests" /> : "—"}</td>
                 <td style={{ ...tdStyle, whiteSpace: "nowrap" }}>
                   {e.startZone ?? "—"}
                   {e.startCoord ? <span style={{ color: "#ffd166" }}> ({e.startCoord})</span> : null}

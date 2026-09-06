@@ -1,5 +1,6 @@
 // src/AppShell.tsx
 import React, { useEffect, useMemo, useRef, useState } from "react";
+import { UsersRound, Coins } from "lucide-react";
 import {
   Calibration,
   DEFAULT_CALIBRATION,
@@ -20,7 +21,7 @@ import { AnyTimer, MoonDirection } from "./types";
 import { WEEKDAYS, WEEKDAY_COLORS, weekdayStyle } from "./utils/weekday";
 import { moonDirGlyph, moonGlyphStyle, moonPhaseStyle } from "./utils/moon";
 import { buildTenshodoPresets, GUILD_PRESETS, nextGuildAlertTarget } from "./utils/guilds";
-import { registerTabSwitcher, switchTabWithScroll } from "./utils/tabNav";
+import { registerTabSwitcher, switchTabWithScroll, setCurrentTab } from "./utils/tabNav";
 import { getNextNmLotteryEvent, getNextNmTimedWindowEvent } from "./utils/nm";
 import FishTab from "./FishTab";
 import BaitTab from "./BaitTab";
@@ -34,9 +35,11 @@ import SkillchainTab from "./SkillchainTab";
 
 const BestiaryTab = React.lazy(() => import("./BestiaryTab"));
 const CraftingTab = React.lazy(() => import("./CraftingTab"));
+const PrintingTab = React.lazy(() => import("./PrintingTab"));
 const QuestsTab = React.lazy(() => import("./QuestsTab"));
 const AtlasTab = React.lazy(() => import("./AtlasTab"));
 const DropsTab = React.lazy(() => import("./DropsTab"));
+const NpcTab = React.lazy(() => import("./NpcTab"));
 
 function clampInt(n: number, min: number, max: number) {
   return Math.max(min, Math.min(max, Math.floor(n)));
@@ -175,12 +178,12 @@ function isValidTod(raw: string): boolean {
   );
 }
 
-type TabId = "home" | "timers" | "nm" | "presets" | "counters" | "luShang" | "fish" | "bait" | "rods" | "clam" | "chocobo" | "weather" | "bcnm" | "drops" | "bestiary" | "skillchains" | "crafting" | "quests" | "atlas" | "calibration";
+type TabId = "home" | "timers" | "nm" | "presets" | "counters" | "luShang" | "fish" | "bait" | "rods" | "clam" | "chocobo" | "weather" | "bcnm" | "drops" | "npc" | "bestiary" | "skillchains" | "crafting" | "printing" | "quests" | "atlas" | "calibration";
 
 type TabDef = {
   id: TabId;
   label: string;
-  icon: string;
+  icon: React.ReactNode;
 };
 
 const ENABLE_CALIBRATION_DEV_TAB = false;
@@ -202,7 +205,9 @@ const TABS: TabDef[] = [
   { id: "skillchains", label: "Skillchains", icon: "🔗" },
   { id: "bestiary", label: "Bestiary", icon: "📖" },
   { id: "drops", label: "Items", icon: "💰" },
+  { id: "npc", label: "NPC", icon: <UsersRound size={18} /> },
   { id: "crafting", label: "Crafting", icon: "🔨" },
+  { id: "printing", label: "Printing", icon: <Coins size={18} /> },
   { id: "quests", label: "Quests", icon: "📜" },
   { id: "atlas", label: "Atlas", icon: "🗺️" },
   ...(import.meta.env.DEV && ENABLE_CALIBRATION_DEV_TAB
@@ -337,6 +342,7 @@ export default function AppShell() {
     if (stored === "stopwatch") return "timers";
     return TAB_IDS.includes(stored as TabId) ? stored as TabId : "home";
   });
+  useEffect(() => setCurrentTab(activeTab), [activeTab]);
 
   const [cWeekday, setCWeekday] = useState<VanaWeekday>("Firesday");
   const [cHour, setCHour] = useState("0");
@@ -2501,6 +2507,14 @@ export default function AppShell() {
         </div>
       )}
 
+      {activeTab === "npc" && (
+        <div style={styles.tabContent}>
+          <React.Suspense fallback={<div style={styles.card}>Loading NPCs...</div>}>
+            <NpcTab />
+          </React.Suspense>
+        </div>
+      )}
+
       {activeTab === "bestiary" && (
         <div style={styles.tabContent}>
           <React.Suspense fallback={<div style={styles.card}>Loading bestiary...</div>}>
@@ -2519,6 +2533,14 @@ export default function AppShell() {
         <div style={styles.tabContent}>
           <React.Suspense fallback={<div style={styles.card}>Loading recipes...</div>}>
             <CraftingTab />
+          </React.Suspense>
+        </div>
+      )}
+
+      {activeTab === "printing" && (
+        <div style={styles.tabContent}>
+          <React.Suspense fallback={<div style={styles.card}>Loading printing...</div>}>
+            <PrintingTab />
           </React.Suspense>
         </div>
       )}

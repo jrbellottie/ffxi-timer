@@ -6,6 +6,7 @@ import PurificationInfo from "./PurificationInfo";
 import { getPurification, getPurificationOrigin } from "./utils/purification";
 import { ArrowLeft } from "lucide-react";
 import crystalFamiliesData from "./data/crystalFamilies.json";
+import NpcText from "./NpcText";
 
 type ItemMetadata = {
   name: string; stack: number; sell: number; flags: number; category: number;
@@ -82,7 +83,7 @@ function ItemDetails({ name, onSelect }: { name: string; onSelect: (name: string
           </button>
         )}
         <div style={{ flex: "1 1 280px", minWidth: 0, display: "grid", gap: 7 }}>
-          {reference?.description && <div style={{ lineHeight: 1.5 }}>{reference.description}</div>}
+          {reference?.description && <div style={{ lineHeight: 1.5 }}><NpcText text={reference.description} /></div>}
           {equipment && <div style={{ display: "flex", flexWrap: "wrap", gap: "6px 16px", color: "#e8d47e" }}>
             <span>Lv. {equipment.level}</span>
             <span>{JOBS.filter((_, index) => (equipment.jobs & (1 << index)) !== 0).join(" / ")}</span>
@@ -107,7 +108,7 @@ function ItemDetails({ name, onSelect }: { name: string; onSelect: (name: string
               <dt style={{ color: "#aaa", fontSize: 11 }}>{label(key)}</dt><dd style={{ margin: 0, whiteSpace: "pre-wrap", overflowWrap: "anywhere" }}>{value}</dd>
             </div>)}
           </dl>
-          {reference.notes && <div style={{ whiteSpace: "pre-wrap", lineHeight: 1.5, overflowWrap: "anywhere" }}>{reference.notes}</div>}
+          {reference.notes && <div style={{ whiteSpace: "pre-wrap", lineHeight: 1.5, overflowWrap: "anywhere" }}><NpcText text={reference.notes} /></div>}
         </div>
       )}
     </div>

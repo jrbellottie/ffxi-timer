@@ -81,3 +81,17 @@ test("new links discard restoration state and preserve navigation sequence order
   assert.equal(nav.peekRestoredTabState("crafting"), undefined);
   assert.equal(nav.peekNavQuery("drops"), "Flint Stone");
 });
+
+test("shared NPC links retain their originating tab and quest round-trip state", () => {
+  const { nav } = navigation();
+  nav.setCurrentTab("crafting");
+  assert.equal(nav.getCurrentTab(), "crafting");
+  nav.navigateToTab("npc", "northernsandoria:alpholloncmeriard", nav.getCurrentTab());
+  const npcState = { query: "Alphollon C Meriard", selected: "northernsandoria:alpholloncmeriard" };
+  nav.rememberTabState("npc", npcState);
+  nav.navigateToTab("quests", "quest-id", "npc");
+  nav.goBackTab();
+  assert.equal(nav.peekRestoredTabState("npc"), npcState);
+  nav.goBackTab();
+  assert.equal(nav.hasBackTab(), false);
+});

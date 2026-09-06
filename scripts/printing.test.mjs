@@ -1,0 +1,262 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import { buildSync } from "esbuild";
+import { fileURLToPath } from "node:url";
+
+const { outputFiles } = buildSync({ entryPoints: [fileURLToPath(new URL("../src/utils/printing.ts", import.meta.url))], bundle: true, write: false, platform: "node", format: "esm" });
+const { printingChances, printingEstimate, DEFAULT_PRINT_SETTINGS } = await import(`data:text/javascript;base64,${Buffer.from(outputFiles[0].text).toString("base64")}`);
+const recipe = { id: 1, craft: "Woodworking", lvl: 20, crystal: "Wind", era: "", ing: [{ n: "Elm Log", q: 2 }], res: { n: "Output", q: 1 }, hq: [{ n: "Output", q: 2 }, { n: "Output", q: 3 }, { n: "Output", q: 4 }] };
+const settings = { ...DEFAULT_PRINT_SETTINGS, skills: { Woodworking: 71 } };
+const close = (actual, expected) => assert.ok(Math.abs(actual - expected) < 1e-8, `${actual} != ${expected}`);
+const chainBundle = buildSync({ entryPoints: [fileURLToPath(new URL("../src/utils/printingChain.ts", import.meta.url))], bundle: true, write: false, platform: "node", format: "esm" });
+const { createPrintingChain, chainTierCosts, chainBatchAllocation } = await import(`data:text/javascript;base64,${Buffer.from(chainBundle.outputFiles[0].text).toString("base64")}`);
+const key = (name) => name.toLowerCase();
+const lumber = { ...recipe, id: 20, lvl: 1, ing: [{ n: "Log", q: 1 }], res: { n: "Lumber", q: 1 }, hq: [2, 3, 4].map((q) => ({ n: "Lumber", q })) };
+const pole = { ...recipe, id: 21, lvl: 60, ing: [{ n: "Lumber", q: 2 }], res: { n: "Pole", q: 1 }, hq: [1, 1, 1].map((q) => ({ n: "Pole", q })) };
+
+test("upstream lumber HQ makes poles profitable and adds every upstream attempt to time", () => {
+  const prices = { log: 1000, lumber: 1100, "wind crystal": 10 };
+  const chain = createPrintingChain([lumber, pole], settings, (name) => prices[key(name)] ?? null, () => 1800, key);
+  const result = chain.estimate(pole);
+  const output = 0.95 * (0.5 + 0.375 * 2 + 0.09375 * 3 + 0.03125 * 4);
+  close(result.sources[0].node.yield, output);
+  close(result.sources[0].node.price, 1010 / output);
+  assert.ok(result.directProfit < 0);
+  assert.ok(result.profit > 0);
+  close(result.totalAttempts, 1 + 2 / output);
+  close(result.gilPerHour, result.profit * 3600 / (21 * (1 + 2 / output)));
+  const tiers = chainTierCosts(result.sources[0].node, settings, key);
+  assert.ok(tiers[3].price < tiers[0].price);
+  const ceiling = result.rawCeilings.find((leaf) => leaf.name === "Log").maximum;
+  const fixed = createPrintingChain([lumber, pole], settings, (name) => key(name) === "log" ? ceiling : prices[key(name)] ?? null, () => 1800, key, { lumber: 20 });
+  close(fixed.estimate(pole).profit, 0);
+});
+
+test("unknown raw costs preserve a craft chain and propagate a usable log ceiling", () => {
+  const parchment = { ...lumber, id: 22, res: { n: "Parchment", q: 12 }, hq: [12, 12, 12].map((q) => ({ n: "Parchment", q })) };
+  const shihei = { ...pole, id: 23, ing: [{ n: "Parchment", q: 2 }] };
+  const chain = createPrintingChain([parchment, shihei], settings, (name) => name === "Wind Crystal" ? 10 : null, () => 1800, key);
+  const result = chain.estimate(shihei);
+  assert.equal(result.profit, null);
+  close(result.sources[0].node.yield, 0.95 * 12);
+  assert.ok(result.rawCeilings.find((leaf) => leaf.name === "Log").maximum > 0);
+  assert.equal(result.leaves.filter((leaf) => leaf.name === "Wind Crystal").length, 1);
+  close(result.leaves.find((leaf) => leaf.name === "Wind Crystal").quantity, 1 + 2 / (0.95 * 12));
+  const yields = chainTierCosts(result.sources[0].node, settings, key).map((tier) => tier.yield);
+  assert.ok(yields.every((value) => Math.abs(value - yields[0]) < 1e-8));
+});
+
+test("source choices, unavailable recipes and circular chains never invent free inputs", () => {
+  const prices = (name) => name === "Lumber" ? 500 : name === "Wind Crystal" ? 10 : 1000;
+  assert.equal(createPrintingChain([lumber], settings, prices, () => 0, key).resolve("Lumber").recipe.id, 20);
+  assert.equal(createPrintingChain([lumber], settings, prices, () => 0, key, { lumber: 20 }).resolve("Lumber").recipe.id, 20);
+  assert.equal(createPrintingChain([lumber], settings, prices, () => 0, key, { lumber: "buy" }).resolve("Lumber").price, 500);
+  const locked = createPrintingChain([lumber], { ...settings, skills: {} }, prices, () => 0, key, { lumber: 999 }).resolve("Lumber");
+  assert.equal(locked.price, null);
+  assert.ok(locked.issue);
+  const reverse = { ...lumber, id: 24, ing: [{ n: "Lumber", q: 1 }], res: { n: "Log", q: 1 }, hq: [] };
+  const cycle = createPrintingChain([lumber, reverse, pole], settings, () => null, () => 1800, key, { lumber: 20, log: 24 }).estimate(pole);
+  assert.equal(cycle.profit, null);
+  assert.equal(cycle.eligible, false);
+  assert.ok(cycle.issues.some((issue) => issue.startsWith("Circular ingredient chain")));
+});
+
+test("HQ-only ingredients count only matching output and multiple stages preserve costs", () => {
+  const different = { ...lumber, res: { n: "Other Lumber", q: 1 }, hq: [1, 1, 1].map((q) => ({ n: "Lumber", q })) };
+  const chain = createPrintingChain([different, pole], settings, (name) => name === "Wind Crystal" ? 10 : name === "Log" ? 1000 : null, () => 1800, key);
+  close(chain.resolve("Lumber").yield, 0.95 * 0.5);
+  close(chain.resolve("Lumber").price, 1010 / (0.95 * 0.5));
+  const final = { ...pole, id: 25, ing: [{ n: "Pole", q: 2 }], res: { n: "Final", q: 1 }, hq: [] };
+  const result = createPrintingChain([lumber, pole, final], settings, (name) => name === "Wind Crystal" ? 10 : name === "Log" ? 1000 : null, () => 1800, key).estimate(final);
+  assert.ok(result.totalAttempts > 4);
+  close(result.cost, result.leaves.reduce((total, leaf) => total + leaf.quantity * leaf.price, 0));
+});
+
+test("no-loss ingredient synths preserve materials, never crystals; buy-only matches the original model", () => {
+  const prices = (name) => name === "Wind Crystal" ? 10 : name === "Log" ? 1000 : 1100;
+  const noLoss = { ...lumber, d: 2 };
+  const chain = createPrintingChain([noLoss, pole], settings, prices, () => 1800, key, { lumber: 20 });
+  const result = chain.estimate(pole);
+  const output = chain.expectedYield(noLoss, "Lumber");
+  close(result.cost, 2 * (1000 * 0.95 + 10) / output + 10);
+  close(result.leaves.find((leaf) => leaf.name === "Wind Crystal").quantity, 1 + 2 / output);
+  const bought = createPrintingChain([lumber, pole], settings, prices, () => 1800, key, { lumber: "buy" }).estimate(pole);
+  const direct = printingEstimate(pole, settings, prices, () => 1800);
+  close(bought.profit, direct.profit);
+  close(bought.gilPerHour, direct.gilPerHour);
+  assert.equal(bought.totalAttempts, 1);
+});
+
+test("forced under-skilled and over-depth ingredient recipes remain unresolved", () => {
+  const locked = { ...lumber, lvl: 100 };
+  const result = createPrintingChain([locked, pole], { ...settings, skills: { Woodworking: 60 } }, () => 10, () => 1800, key, { lumber: 20 }).estimate(pole);
+  assert.equal(result.eligible, false);
+  assert.equal(result.profit, null);
+  const stages = Array.from({ length: 34 }, (_, index) => ({ ...lumber, id: 100 + index, ing: [{ n: `Stage${index + 1}`, q: 1 }], res: { n: `Stage${index}`, q: 1 }, hq: [] }));
+  const choices = Object.fromEntries(stages.map((stage) => [key(stage.res.n), stage.id]));
+  const deep = createPrintingChain(stages, settings, () => 10, () => 0, key, choices).resolve("Stage0");
+  assert.equal(deep.price, null);
+  assert.match(deep.issue, /More than 32/);
+});
+
+test("Auto expands craftable ingredients despite cheaper known buy prices or missing raw costs", () => {
+  const chain = createPrintingChain([lumber, pole], settings, (name) => name === "Lumber" ? 1 : name === "Wind Crystal" ? 10 : null, () => 1800, key);
+  const result = chain.estimate(pole);
+  assert.equal(result.sources[0].node.recipe.id, 20);
+  assert.ok(result.leaves.some((leaf) => leaf.name === "Log" && leaf.price === null));
+  assert.equal(result.profit, null);
+  const locked = createPrintingChain([{ ...lumber, lvl: 100 }, pole], { ...settings, skills: { Woodworking: 60 } }, () => 1, () => 1800, key).estimate(pole);
+  assert.equal(locked.sources[0].node.recipe.id, 20);
+  assert.ok(locked.sources[0].node.children.some((child) => child.node.name === "Log"));
+  assert.equal(locked.eligible, false);
+  assert.equal(locked.profit, null);
+});
+
+test("12-output parchment allocates only two units of a 4000-gil log batch to Shihei", () => {
+  const parchment = { ...lumber, id: 22, res: { n: "Parchment", q: 12 }, hq: [12, 12, 12].map((q) => ({ n: "Parchment", q })), ing: [{ n: "Elm Log", q: 1 }, { n: "Moko Grass", q: 1 }, { n: "Distilled Water", q: 1 }] };
+  const shihei = { ...pole, id: 23, ing: [{ n: "Parchment", q: 2 }] };
+  const prices = (name) => name === "Elm Log" ? 4000 : 0;
+  const result = createPrintingChain([parchment, shihei], settings, prices, () => 1800, key).estimate(shihei);
+  close(result.sources[0].node.price, 4000 / (12 * 0.95));
+  close(result.cost, 4000 * 2 / (12 * 0.95));
+  close(result.leaves.find((leaf) => leaf.name === "Elm Log").quantity, 2 / (12 * 0.95));
+  assert.equal(result.sources[0].node.children.find((child) => child.node.name === "Elm Log").recipeQuantity, 1);
+  const allocation = chainBatchAllocation(result.sources[0].node, 2, key);
+  assert.equal(allocation.output, 12);
+  assert.equal(allocation.parentQuantity, 2);
+  close(allocation.inputs.find((input) => input.name === "Elm Log").allocatedCost, 666.6666666666666);
+});
+
+test("HQ boundaries, below-cap eligibility, and fractional skill truncation", () => {
+  for (const [skill, tier] of [[19, -1], [20, 0], [30.9, 0], [31, 1], [50, 1], [51, 2], [70, 2], [71, 3]]) {
+    const result = printingChances(recipe, { ...settings, skills: { Woodworking: skill } });
+    assert.equal(result.tier, tier);
+    close(result.distribution.reduce((total, value) => total + value, 0), 1);
+  }
+  assert.equal(printingChances(recipe, { ...settings, skills: { Woodworking: 4 } }).eligible, false);
+  assert.equal(printingChances(recipe, { ...settings, skills: { Woodworking: 5 } }).eligible, true);
+  assert.equal(printingChances(recipe, { ...settings, skills: { Woodworking: 5 }, successBonus: 5 }).success, 0);
+});
+test("subcraft limits HQ and rolls its own break chance; bonuses affect tiers", () => {
+  const sub = { ...recipe, subs: [{ c: "Alchemy", l: 10 }] };
+  const result = printingChances(sub, { ...settings, skills: { Woodworking: 71, Alchemy: 20 } });
+  assert.equal(result.tier, 0);
+  close(result.success, 0.95 * 0.95);
+  assert.equal(printingChances(sub, { ...settings, skills: { Woodworking: 71, Alchemy: 20 }, bonuses: { Alchemy: 1 } }).tier, 1);
+});
+test("HQ upgrades use tier-specific NQ/HQ1/HQ2/HQ3 weights", () => {
+  assert.deepEqual(printingChances(recipe, settings).distribution, [0.5, 0.375, 0.09375, 0.03125]);
+  assert.deepEqual(printingChances(recipe, settings, 1).distribution, [0.9375, 0.046875, 0.015625, 0]);
+});
+test("profit includes crystal, quantities, breaks, and hourly cycle; ceiling is break-even", () => {
+  const result = printingEstimate(recipe, settings, (name) => name === "Wind Crystal" ? 100 : 3000, () => 5000);
+  close(result.revenue, 0.95 * 5000 * (0.5 + 0.375 * 2 + 0.09375 * 3 + 0.03125 * 4));
+  close(result.cost, 6100);
+  close(result.gilPerHour, result.profit * 3600 / 21);
+  const limit = result.ceilings[0].maximum;
+  close(printingEstimate(recipe, settings, (name) => name === "Wind Crystal" ? 100 : limit, () => 5000).profit, 0);
+});
+test("unknown costs and sale values never become free or profitable guesses", () => {
+  const missing = printingEstimate(recipe, settings, () => null, () => 5000);
+  assert.equal(missing.profit, null);
+  assert.equal(missing.materialBudget, null);
+  assert.equal(printingEstimate(recipe, settings, () => 0, () => null).profit, null);
+  assert.ok(printingEstimate(recipe, settings, () => 0, () => 5000).profit > 0);
+  assert.equal(printingEstimate(recipe, settings, () => 1, () => 0).profit, -3);
+});
+test("break material salvage and no-loss recipes never refund crystals", () => {
+  const result = printingEstimate(recipe, { ...settings, lossPct: 50 }, (name) => name === "Wind Crystal" ? 100 : 3000, () => 5000);
+  close(result.cost, 6000 * 0.975 + 100);
+  close(printingEstimate({ ...recipe, d: 2 }, settings, (name) => name === "Wind Crystal" ? 100 : 3000, () => 5000).cost, 6000 * 0.95 + 100);
+});
+
+test("all named print examples are discoverable and material aliases share overrides", async () => {
+  const { outputFiles } = buildSync({ entryPoints: [fileURLToPath(new URL("../src/utils/printingData.ts", import.meta.url))], bundle: true, write: false, platform: "node", format: "esm" });
+  const data = await import(`data:text/javascript;base64,${Buffer.from(outputFiles[0].text).toString("base64")}`);
+  for (const name of data.PRINT_EXAMPLES) {
+    const recipe = data.PRINT_RECIPES.find((recipe) => recipe.res.n.toLowerCase() === name.toLowerCase());
+    assert.ok(recipe, name);
+    assert.notEqual(data.printSellPrice(recipe.res.n, {}), null);
+    console.log(`${name}: cap ${recipe.lvl} ${recipe.craft}; NPC base sale ${data.printSellPrice(recipe.res.n, {})}; NQ/HQ quantities ${[recipe.res, ...recipe.hq].map((item) => item.q).join('/')}`);
+  }
+  assert.equal(data.printBuyPrice("Elm Log", { [data.printItemKey("Elm Log")]: 3000 }), 3000);
+  assert.equal(data.printBuyPrice("Flask of Distilled Water", { [data.printItemKey("Distilled Water")]: 0 }), 0);
+  assert.equal(data.printBuyPrice("Unknown price item", {}), null);
+  assert.equal(data.printBuyPrice("Distilled Water", {}, false), null);
+  assert.ok(data.PRINT_RECIPES.every((recipe) => recipe.d !== 1));
+  const noSale = data.PRINT_RECIPES.flatMap((recipe) => [recipe.res, ...recipe.hq]).find((item) => (data.printItem(item.n)?.flags ?? 0) & 0x1000);
+  assert.ok(noSale);
+  assert.equal(data.printSellPrice(noSale.n, {}), 0);
+  assert.equal(data.printSellPrice(noSale.n, { [data.printItemKey(noSale.n)]: 20 }), 20);
+  const available = data.PRINT_RECIPES.filter((recipe) => !recipe.ki && recipe.era !== "WotG");
+  const skilled = { ...settings, skills: Object.fromEntries(["Woodworking", "Smithing", "Goldsmithing", "Clothcraft", "Leathercraft", "Bonecraft", "Alchemy", "Cooking"].map((craft) => [craft, 100])) };
+  const chain = createPrintingChain(available, skilled, (name) => /Crystal$/.test(name) ? 100 : null, (name) => data.printSellPrice(name, {}), data.printItemKey);
+  for (const [output, raw] of [["Shihei", "Elm Log"], ["Mahogany Pole", "Mahogany Log"]]) {
+    const target = available.find((recipe) => recipe.res.n === output);
+    const ingredient = output === "Shihei" ? "Bast Parchment" : "Mahogany Lumber";
+    const choices = chain.options(ingredient);
+    const selected = choices.find((recipe) => recipe.ing.some((input) => data.printItemKey(input.n) === data.printItemKey(raw)));
+    assert.ok(selected, `${ingredient} has a ${raw} recipe`);
+    const fixed = createPrintingChain(available, skilled, (name) => /Crystal$/.test(name) ? 100 : null, (name) => data.printSellPrice(name, {}), data.printItemKey, { [data.printItemKey(ingredient)]: selected.id });
+    const result = fixed.estimate(target);
+    assert.ok(result.leaves.some((leaf) => leaf.key === data.printItemKey(raw)), `${output} reaches ${raw}`);
+    console.log(`${ingredient} recipe ${selected.id}: ${JSON.stringify({ ing: selected.ing, res: selected.res, hq: selected.hq })}`);
+  }
+  const mahoganyPole = available.find((recipe) => recipe.res.n === "Mahogany Pole");
+  const mahoganyRecipe = chain.options("Mahogany Lumber").find((recipe) => recipe.ing.some((input) => input.n === "Mahogany Log"));
+  const sourceChoice = { [data.printItemKey("Mahogany Lumber")]: mahoganyRecipe.id };
+  const prices = { [data.printItemKey("Mahogany Log")]: 5000, [data.printItemKey("Mahogany Lumber")]: 8000, [data.printItemKey("Wind Crystal")]: 100 };
+  const purchase = (name) => prices[data.printItemKey(name)] ?? null;
+  const payout = (name) => data.printSellPrice(name, {});
+  const lower = createPrintingChain(available, skilled, purchase, payout, data.printItemKey, sourceChoice).estimate(mahoganyPole);
+  const higherSkills = { ...skilled, bonuses: { Woodworking: 2 } };
+  const higher = createPrintingChain(available, higherSkills, purchase, payout, data.printItemKey, sourceChoice).estimate(mahoganyPole);
+  assert.equal(lower.tier, higher.tier, "The final pole HQ tier does not change");
+  assert.equal(lower.sources[0].node.tier, 2);
+  assert.equal(higher.sources[0].node.tier, 3);
+  assert.ok(lower.profit < 0 && higher.profit > 0, "Only the lumber HQ breakpoint turns the pole profitable");
+  const logCeiling = higher.rawCeilings.find((leaf) => leaf.key === data.printItemKey("Mahogany Log")).maximum;
+  const breakEvenBuy = (name) => data.printItemKey(name) === data.printItemKey("Mahogany Log") ? logCeiling : purchase(name);
+  close(createPrintingChain(available, higherSkills, breakEvenBuy, payout, data.printItemKey, sourceChoice).estimate(mahoganyPole).profit, 0);
+  const started = performance.now();
+  let expanded = 0;
+  const unexplainedStops = [];
+  const inspect = (node, engine) => {
+    if (node.recipe) {
+      expanded++;
+      const required = [...node.recipe.ing, { n: `${node.recipe.crystal} Crystal`, q: 1 }];
+      assert.deepEqual(node.children.map((child) => [child.node.key, child.recipeQuantity]), required.map((input) => [data.printItemKey(input.n), input.q]), `All ingredients present for #${node.recipe.id}`);
+      for (const child of node.children) inspect(child.node, engine);
+    } else if (engine.options(node.name).length && !node.issue) unexplainedStops.push(node.name);
+  };
+  for (const target of available) {
+    const result = chain.estimate(target);
+    for (const source of result.sources) inspect(source.node, chain);
+    assert.ok(Number.isFinite(result.totalAttempts) && result.totalAttempts >= 1);
+    if (result.profit !== null) close(result.cost, result.leaves.reduce((total, leaf) => total + leaf.quantity * leaf.price, 0));
+  }
+  const allEngine = createPrintingChain(data.PRINT_RECIPES, skilled, () => 1, payout, data.printItemKey);
+  for (const target of data.PRINT_RECIPES) for (const source of allEngine.estimate(target).sources) inspect(source.node, allEngine);
+  assert.deepEqual(unexplainedStops, [], "Every craftable branch must expand or carry an explicit cycle/depth warning");
+  const shiheiAuto = chain.estimate(available.find((recipe) => recipe.res.n === "Shihei"));
+  const parchmentAuto = shiheiAuto.sources.find((source) => source.node.key === data.printItemKey("Bast Parchment")).node;
+  assert.equal(parchmentAuto.recipe.id, 2015);
+  const water = parchmentAuto.children.find((child) => child.node.key === data.printItemKey("Distilled Water")).node;
+  assert.equal(water.recipe, undefined, "Distilled water is a terminal purchased ingredient");
+  assert.deepEqual(water.children, []);
+  assert.ok(!data.PRINT_MATERIALS.includes("Tahrongi Cactus"));
+  const waterPrice = data.printBuyPrice("Distilled Water", {});
+  const terminal = createPrintingChain(available, skilled, (name) => data.printBuyPrice(name, {}), payout, data.printItemKey, { [data.printItemKey("Distilled Water")]: 60004 });
+  assert.deepEqual(terminal.options("Flask of Distilled Water"), []);
+  assert.equal(terminal.resolve("Flask of Distilled Water").price, waterPrice);
+  assert.equal(terminal.resolve("Flask of Distilled Water").issue, undefined);
+  assert.equal(createPrintingChain(available, skilled, () => 17, payout, data.printItemKey).resolve("Distilled Water").price, 17);
+  console.log(`Breakdown audit: ${data.PRINT_RECIPES.length} recipes (all eras/key items), ${expanded} expanded stages across both scopes, zero unexplained craftable stops in ${Math.round(performance.now() - started)}ms`);
+});
+
+test("distinct HQ sale prices, nerfs, and overhead are applied without changing yields", () => {
+  const special = { ...recipe, hq: [{ n: "HQ", q: 1 }, { n: "HQ", q: 1 }, { n: "HQ", q: 1 }] };
+  const result = printingEstimate(special, { ...settings, sellMultiplier: 50, seconds: 22, overhead: 8 }, () => 0, (name) => name === "HQ" ? 101 : 10);
+  close(result.revenue, 0.95 * (0.5 * 5 + 0.5 * 50));
+  close(result.attemptsPerHour, 120);
+});

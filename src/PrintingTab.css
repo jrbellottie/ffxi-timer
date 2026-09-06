@@ -1,0 +1,91 @@
+.printing-tab { --print-line: #333; --print-green: #91d3a6; --print-cyan: #86c8e9; min-width: 0; color: #eaeaea; font-size: 13px; letter-spacing: 0; }
+.printing-tab * { box-sizing: border-box; }
+.printing-tab h2 { font-size: 21px; margin: 0; }
+.printing-tab h3 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 7px; }
+.printing-tab p { line-height: 1.55; }
+.print-heading, .print-detail-title { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--print-line); }
+.print-heading h2 { display: flex; align-items: center; gap: 8px; }
+.print-heading > button, .print-detail-title > button { margin-left: auto; }
+.print-detail-title > div { flex: 1; min-width: 120px; }
+.print-detail-title img { flex: 0 0 40px; object-fit: contain; }
+.print-detail-title h2 { font-size: 19px; margin-bottom: 4px; overflow-wrap: anywhere; }
+.print-settings { border-bottom: 1px solid var(--print-line); padding: 12px 0; }
+.printing-tab summary { cursor: pointer; color: #ccc; }
+.printing-tab summary > svg { vertical-align: middle; margin-right: 5px; }
+.print-skills, .print-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(115px, 1fr)); gap: 10px; padding: 14px 0; }
+.print-options { grid-template-columns: repeat(auto-fit, minmax(175px, 1fr)); }
+.printing-tab label { display: grid; gap: 5px; font-size: 12px; min-width: 0; }
+.printing-tab label > span { display: flex; align-items: center; gap: 5px; }
+.printing-tab input, .printing-tab select { background: #111; border: 1px solid #444; border-radius: 4px; color: #eee; font: inherit; width: 100%; min-width: 0; padding: 8px; }
+.print-checks { display: flex; flex-wrap: wrap; gap: 16px; margin: 12px 0; }
+.print-checks label { display: flex; align-items: center; gap: 7px; }
+.print-checks input { width: 15px; height: 15px; accent-color: var(--print-green); flex-shrink: 0; }
+.print-muted { color: #aaa; font-size: 12px; }
+.print-profit { color: var(--print-green); }
+.print-loss { color: #f59a99; }
+.print-warning { color: #e6c17a; }
+.print-summary { display: flex; flex-wrap: wrap; gap: 10px 30px; padding: 18px 0; border-bottom: 1px solid var(--print-line); color: #aaa; font-size: 12px; }
+.print-summary strong { font-size: 18px; font-variant-numeric: tabular-nums; margin-right: 4px; }
+.print-filters { display: grid; grid-template-columns: minmax(0, 1fr) repeat(3, minmax(120px, 175px)); gap: 12px; padding: 16px 0; }
+.print-workspace { display: grid; grid-template-columns: minmax(230px, 310px) minmax(0, 1fr); gap: 24px; align-items: start; }
+.print-browser, .print-detail { min-width: 0; }
+.print-list-title { padding: 10px 0; color: #aaa; font-size: 11px; }
+.print-recipe-list { max-height: 760px; overflow: auto; border-top: 1px solid var(--print-line); }
+.print-recipe-list > button { display: grid; gap: 7px; width: 100%; padding: 12px 10px; background: transparent; color: #ddd; border: 0; border-bottom: 1px solid #2c2c2c; text-align: left; cursor: pointer; font: inherit; overflow-wrap: anywhere; }
+.print-recipe-list > button[aria-pressed="true"] { background: #22322a; box-shadow: inset 3px 0 var(--print-green); }
+.print-recipe-list > button:hover { background: #292929; }
+.print-recipe-title { display: flex; align-items: start; justify-content: space-between; gap: 12px; }
+.print-recipe-title > strong { font-size: 13px; }
+.print-recipe-title > span { flex-shrink: 0; font-variant-numeric: tabular-nums; font-size: 12px; }
+.print-metrics { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; padding: 20px 0 5px; }
+.print-metrics > div { display: grid; gap: 7px; }
+.print-metrics span { color: #aaa; font-size: 12px; }
+.print-metrics strong { font-size: 21px; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.print-requirements { display: flex; flex-wrap: wrap; gap: 8px 20px; margin: 12px 0 20px; }
+.print-section { border-top: 1px solid var(--print-line); padding: 18px 0; }
+.print-budget { color: #ddd; font-size: 12px; }
+.print-table-wrap { overflow: auto; max-width: 100%; }
+.printing-tab table { width: 100%; border-collapse: collapse; text-align: left; font-size: 12px; }
+.printing-tab th { background: #181818; color: #aaa; font-weight: 500; }
+.printing-tab td, .printing-tab th { padding: 9px 8px; border-bottom: 1px solid #2c2c2c; vertical-align: top; }
+.printing-tab small { display: block; color: #999; margin-top: 5px; font-size: 10px; }
+.print-price-field { display: flex; gap: 4px; align-items: center; width: 130px; max-width: 100%; }
+.print-price-field input { width: 100px; }
+.print-icon { display: grid; place-items: center; width: 26px; height: 30px; flex: 0 0 26px; padding: 0; background: transparent; border: 0; color: #aaa; cursor: pointer; }
+.print-icon:disabled { opacity: .25; cursor: default; }
+.print-link { background: none; border: 0; padding: 0; font: inherit; color: var(--print-cyan); text-align: left; text-decoration: underline; text-underline-offset: 2px; cursor: pointer; }
+.print-command { display: inline-flex; align-items: center; justify-content: center; gap: 6px; background: #181818; color: #ddd; border: 1px solid #444; border-radius: 4px; padding: 7px 10px; font: inherit; cursor: pointer; }
+.print-sources { display: grid; gap: 5px; padding: 10px 0; font-size: 12px; border-bottom: 1px solid #292929; }
+.print-sources > span { overflow-wrap: anywhere; }
+.print-current-tier { background: #22322a; }
+.print-batch { display: flex; align-items: end; flex-wrap: wrap; gap: 15px; }
+.print-batch label { width: 120px; }
+.print-batch > span { padding-bottom: 8px; }
+.print-empty { padding: 40px 20px; text-align: center; color: #aaa; }
+.printing-tab button:focus-visible { outline: 2px solid var(--print-cyan); outline-offset: -2px; }
+.print-chain-summary { border-left: 2px solid var(--print-green); padding: 8px 12px; font-size: 12px; }
+.print-ingredient { min-width: 0; padding: 15px 0; border-top: 1px solid var(--print-line); }
+.print-crafted-ingredient { margin-top: 18px; padding-top: 22px; border-top: 2px solid #62776a; }
+.print-production > .print-crafted-ingredient:first-child { margin-top: 0; }
+.printing-tab .print-ingredient-heading h3 { margin: 0; font-size: 15px; min-width: 0; overflow-wrap: anywhere; }
+.printing-tab .print-crafted-ingredient > .print-ingredient-heading h3 { font-size: 21px; line-height: 1.3; }
+.print-sourcing { margin: 8px 0 14px; }
+.print-sourcing > summary { padding: 6px 0; font-size: 12px; }
+.print-sourcing .print-source-controls { margin-top: 12px; }
+.print-stage > summary { padding: 10px 0; border-bottom: 1px solid #39473f; line-height: 1.4; overflow-wrap: anywhere; }
+.print-stage-name { font-size: 18px; font-weight: 600; color: #edf3ef; }
+.print-stage-meta { display: block; margin-top: 4px; color: #aaa; font-size: 12px; font-weight: 400; }
+.print-ingredient-heading { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 15px; margin-bottom: 12px; }
+.print-ingredient-heading > strong { margin-left: auto; color: var(--print-green); font-variant-numeric: tabular-nums; }
+.print-source-controls { display: grid; grid-template-columns: minmax(0, 1fr) 140px; gap: 14px; align-items: end; margin-bottom: 12px; }
+.print-stage { padding: 8px 0 0; }
+.print-stage-yield { color: #cbd9d0; font-size: 12px; }
+.print-stage-tiers { margin: 12px 0; }
+.print-stage-tiers table { margin-top: 12px; }
+.print-ingredient-children { border-left: 2px solid #38493e; padding-left: 14px; margin-top: 15px; }
+.print-ingredient-children .print-ingredient-children { padding-left: 8px; }
+.print-ingredient select { text-overflow: ellipsis; }
+@media (max-width: 1100px) { .print-workspace { grid-template-columns: minmax(210px, 260px) minmax(0, 1fr); gap: 16px; } }
+@media (max-width: 850px) { .print-workspace { grid-template-columns: minmax(0, 1fr); } .print-recipe-list { max-height: 280px; } .print-filters { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 550px) { .print-filters { grid-template-columns: minmax(0, 1fr); } .print-skills { grid-template-columns: repeat(2, minmax(0, 1fr)); } .print-metrics strong { font-size: 18px; } .print-options { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 550px) { .print-source-controls { grid-template-columns: minmax(0, 1fr); } .print-ingredient-heading > strong { margin-left: 0; } .print-ingredient-children { padding-left: 8px; } }

@@ -11,6 +11,8 @@ import { navigateToTab, peekNavQuery, hasBackTab, goBackTab } from "./utils/tabN
 import { rememberTabState, peekRestoredTabState } from "./utils/tabNav";
 import { getItemSources, sourceBadges, allSourcedItems, questRewardsFor, recipesUsingItem } from "./utils/itemSources";
 import dropsData from "./data/drops.json";
+import NpcLink from "./NpcLink";
+import { NPCS } from "./utils/npcs";
 
 const ItemInfo = React.lazy(() => import("./ItemInfo"));
 
@@ -432,7 +434,7 @@ function ItemDetail({ item: initialItem, eraOnly }: { item: string; eraOnly: boo
       "#D8B04B",
       sources.shops.slice(0, MAX_DETAIL).map((s, i) => (
         <span key={i} style={chipStyle}>
-          {s.npc}
+          <NpcLink name={s.npc} zone={s.zone} from="drops" />
           <span style={{ opacity: 0.75 }}> · {s.zone} · {s.price.toLocaleString()}g</span>
         </span>
       )),
@@ -444,6 +446,7 @@ function ItemDetail({ item: initialItem, eraOnly }: { item: string; eraOnly: boo
       sources.guild.map((g, i) => (
         <span key={i} style={chipStyle}>
           {g.guild} Guild
+          {NPCS.filter((npc) => npc.guild === g.guild).map((npc) => <span key={npc.id}> · <NpcLink name={npc.name} zone={npc.zone} from="drops" /></span>)}
           <span style={{ opacity: 0.75 }}> · rank {g.rank} · {g.price.toLocaleString()}g</span>
         </span>
       ))
