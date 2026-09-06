@@ -1,0 +1,6 @@
+.item-price-input { display: flex; gap: 4px; align-items: center; width: 150px; max-width: 100%; }
+.item-price-input input { box-sizing: border-box; width: 116px; min-width: 0; background: #111; border: 1px solid #444; border-radius: 4px; color: #eee; padding: 7px; font: inherit; }
+.item-price-input input[aria-invalid="true"] { border-color: #f59a99; }
+.item-price-input button { display: grid; place-items: center; width: 26px; height: 30px; flex: 0 0 26px; padding: 0; background: transparent; border: 0; color: #aaa; cursor: pointer; }
+.item-price-input button:disabled { opacity: .25; cursor: default; }
+.item-price-input :focus-visible { outline: 2px solid #86c8e9; outline-offset: 1px; }

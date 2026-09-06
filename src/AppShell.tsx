@@ -207,7 +207,7 @@ const TABS: TabDef[] = [
   { id: "drops", label: "Items", icon: "💰" },
   { id: "npc", label: "NPC", icon: <UsersRound size={18} /> },
   { id: "crafting", label: "Crafting", icon: "🔨" },
-  { id: "printing", label: "Printing", icon: <Coins size={18} /> },
+  { id: "printing", label: "Profits", icon: <Coins size={18} /> },
   { id: "quests", label: "Quests", icon: "📜" },
   { id: "atlas", label: "Atlas", icon: "🗺️" },
   ...(import.meta.env.DEV && ENABLE_CALIBRATION_DEV_TAB
@@ -2539,7 +2539,7 @@ export default function AppShell() {
 
       {activeTab === "printing" && (
         <div style={styles.tabContent}>
-          <React.Suspense fallback={<div style={styles.card}>Loading printing...</div>}>
+          <React.Suspense fallback={<div style={styles.card}>Loading profits...</div>}>
             <PrintingTab />
           </React.Suspense>
         </div>

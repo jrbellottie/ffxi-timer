@@ -58,6 +58,12 @@
 .print-sources { display: grid; gap: 5px; padding: 10px 0; font-size: 12px; border-bottom: 1px solid #292929; }
 .print-sources > span { overflow-wrap: anywhere; }
 .print-current-tier { background: #22322a; }
+.printing-tab .print-tier-choice { display: flex; align-items: center; gap: 8px; cursor: pointer; }
+.print-tier-choice input { width: 16px; height: 16px; flex: 0 0 16px; margin: 0; padding: 0; accent-color: var(--print-green); }
+.print-tier-auto { margin: 0 0 12px; }
+.print-tier-row { cursor: pointer; }
+.print-tier-row:hover { background: #29372f; }
+.print-tier-row:focus-within { outline: 2px solid var(--print-cyan); outline-offset: -2px; }
 .print-batch { display: flex; align-items: end; flex-wrap: wrap; gap: 15px; }
 .print-batch label { width: 120px; }
 .print-batch > span { padding-bottom: 8px; }

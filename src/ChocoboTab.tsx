@@ -2,7 +2,13 @@ import React, { useEffect, useMemo, useState } from "react";
 import { styles } from "./styles";
 import digData from "./data/chocoboDig.json";
 import digPrices from "./data/digPrices.json";
-import { loadJson, saveJson } from "./utils/storage";
+import { itemPrices, useItemPrices } from "./utils/itemPrices";
+import { printItemKey, printBuyPrice } from "./utils/printingData";
+import PriceInput from "./PriceInput";
+import { selectedSellPrice } from "./utils/itemPriceStore";
+import { Tags } from "lucide-react";
+import { saveJson } from "./utils/storage";
+import { navigateToTab } from "./utils/tabNav";
 import { Calibration, getVanaNow } from "./vanadiel";
 
 type DigMode = "burrow" | "bore" | "both" | null;
@@ -98,9 +104,6 @@ const ZONES = [...new Set(ENTRIES.map((e) => e.zone))];
  * rates themselves (a filtered pool summing to 20% means 80% of digs fail).
  */
 const GYSAHL_COST = 61;
-
-/** localStorage key for user-set AH prices (item name -> gil). */
-const AH_PRICES_KEY = "ffxi_dig_ah_prices_v1";
 
 function rankIndex(rank: string | null): number {
   if (!rank) return 0;
@@ -222,12 +225,10 @@ export default function ChocoboTab({ cal }: { cal: Calibration }) {
   const [weatherItem, setWeatherItem] = useState<string>("");
   // Gil columns basis: per 100 digs (greens spent) or per 100 items (daily cap).
   const [gilBasis, setGilBasis] = useState<GilBasis>("items");
-  // User-set AH prices (item -> gil), persisted across reloads.
-  const [ahPrices, setAhPrices] = useState<Record<string, number>>(() => loadJson(AH_PRICES_KEY, {}));
-
-  useEffect(() => {
-    saveJson(AH_PRICES_KEY, ahPrices);
-  }, [ahPrices]);
+  const prices = useItemPrices();
+  const ahPrices = useMemo(() => Object.fromEntries([...new Set([...ENTRIES.map((entry) => entry.item), weatherItem])]
+    .map((name) => [name, selectedSellPrice(prices, printItemKey(name), vendorPrice(name)) ?? vendorPrice(name)])), [prices, weatherItem]);
+  const greensCost = printBuyPrice("Gysahl Greens", prices.effectiveBuy) ?? GYSAHL_COST;
 
   // Refresh each minute so the moon multiplier tracks the current phase.
   const [nowMs, setNowMs] = useState<number>(() => Date.now());
@@ -242,23 +243,10 @@ export default function ChocoboTab({ cal }: { cal: Calibration }) {
   const moonPercent = getVanaNow(nowMs, cal).moonPercent;
   const moonFactor = 1 / (1.5 - Math.abs(moonPercent - 50) / 50);
 
-  function setAhPrice(item: string, raw: string) {
-    setAhPrices((prev) => {
-      const next = { ...prev };
-      const value = Number(raw);
-      if (raw.trim() === "" || !Number.isFinite(value) || value <= 0) {
-        delete next[item];
-      } else {
-        next[item] = Math.round(value);
-      }
-      return next;
-    });
-  }
-
   /** Effective price: user AH price if set, otherwise vendor price. */
   function eff(item: string): number {
     const ah = ahPrices[item];
-    return ah !== undefined && ah > 0 ? ah : vendorPrice(item);
+    return ah ?? vendorPrice(item);
   }
 
   const allActive = activeModes.length === 0;
@@ -340,10 +328,10 @@ export default function ChocoboTab({ cal }: { cal: Calibration }) {
       // Expected greens (dig attempts) to reach the 100-item daily cap.
       greensMoon[zone] = totalRateMoon > 0 ? Math.ceil(10000 / Math.min(100, totalRateMoon)) : Infinity;
       if (totalRate <= 0) {
-        vendor[zone] = -GYSAHL_COST * 100;
-        withAh[zone] = -GYSAHL_COST * 100;
-        vendorMoon[zone] = -GYSAHL_COST * 100;
-        withAhMoon[zone] = -GYSAHL_COST * 100;
+        vendor[zone] = -greensCost * 100;
+        withAh[zone] = -greensCost * 100;
+        vendorMoon[zone] = -greensCost * 100;
+        withAhMoon[zone] = -greensCost * 100;
         continue;
       }
       const digsBase = gilBasis === "digs" ? 100 : 10000 / Math.min(100, totalRate);
@@ -353,10 +341,10 @@ export default function ChocoboTab({ cal }: { cal: Calibration }) {
       const evAh = pool.reduce((sum, e) => sum + (e.rate / 100) * eff(e.item), 0);
       const evVendorMoon = pool.reduce((sum, e) => sum + (moonRate(e) / 100) * vendorPrice(e.item), 0);
       const evAhMoon = pool.reduce((sum, e) => sum + (moonRate(e) / 100) * eff(e.item), 0);
-      vendor[zone] = Math.round((evVendor - GYSAHL_COST) * digsBase);
-      withAh[zone] = Math.round((evAh - GYSAHL_COST) * digsBase);
-      vendorMoon[zone] = Math.round((evVendorMoon - GYSAHL_COST) * digsMoon);
-      withAhMoon[zone] = Math.round((evAhMoon - GYSAHL_COST) * digsMoon);
+      vendor[zone] = Math.round((evVendor - greensCost) * digsBase);
+      withAh[zone] = Math.round((evAh - greensCost) * digsBase);
+      vendorMoon[zone] = Math.round((evVendorMoon - greensCost) * digsMoon);
+      withAhMoon[zone] = Math.round((evAhMoon - greensCost) * digsMoon);
     }
     return {
       zoneGil: vendor,
@@ -368,7 +356,7 @@ export default function ChocoboTab({ cal }: { cal: Calibration }) {
       zoneGreensMoon: greensMoon,
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [rankFilter, activeModes, ahPrices, allEntries, moonFactor, gilBasis]);
+  }, [rankFilter, activeModes, ahPrices, allEntries, moonFactor, gilBasis, greensCost]);
 
   const filtered = useMemo(() => {
     const q = itemQuery.trim().toLowerCase();
@@ -384,8 +372,10 @@ export default function ChocoboTab({ cal }: { cal: Calibration }) {
     <section style={styles.card}>
       <div style={styles.titleRow}>
         <h3 style={styles.h3}>Chocobo Digging</h3>
-        <div style={styles.sub}>Filter dig results by zone, rank, and burrow/bore</div>
+        <div style={styles.sub}>Gysahl Greens: {greensCost.toLocaleString()} gil each</div>
+        <button type="button" style={{ ...styles.buttonCompact, display: "inline-flex", alignItems: "center", gap: 6 }} onClick={() => { saveJson("kupo.profits.view.v1", "prices"); navigateToTab("printing", "", "chocobo"); }}><Tags size={15} /> Prices</button>
       </div>
+      {prices.error && <p role="alert" style={{ color: "#e6c17a" }}>{prices.error}</p>}
 
       <div style={{ marginTop: 10, display: "grid", gap: 12 }}>
         <div style={styles.subCard}>
@@ -568,20 +558,8 @@ export default function ChocoboTab({ cal }: { cal: Calibration }) {
                         )}
                       </td>
                       <td style={tdStyle}>
-                        <input
-                          type="number"
-                          min={0}
-                          placeholder="-"
-                          value={ahPrices[entry.item] ?? ""}
-                          onChange={(e) => setAhPrice(entry.item, e.target.value)}
-                          style={{
-                            ...styles.inputCompact,
-                            width: 70,
-                            height: 24,
-                            fontSize: 12,
-                            ...(ahPrices[entry.item] !== undefined ? { borderColor: "#8af6b0", color: "#8af6b0" } : {}),
-                          }}
-                        />
+                        <PriceInput label={`AH ${entry.item} gil each`} value={prices.market[printItemKey(entry.item)]} baseline={null} onChange={(value) => itemPrices.setPrice("market", entry.item, value)} />
+                        <small style={{ display: "block", color: "#e6c17a" }}>Applied: {eff(entry.item).toLocaleString()} gil</small>
                       </td>
                       <td style={tdStyle}>{entry.rank ?? "Amateur"}</td>
                       <td style={tdStyle}>

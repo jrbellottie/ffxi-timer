@@ -4,15 +4,138 @@ import { buildSync } from "esbuild";
 import { fileURLToPath } from "node:url";
 
 const { outputFiles } = buildSync({ entryPoints: [fileURLToPath(new URL("../src/utils/printing.ts", import.meta.url))], bundle: true, write: false, platform: "node", format: "esm" });
-const { printingChances, printingEstimate, DEFAULT_PRINT_SETTINGS } = await import(`data:text/javascript;base64,${Buffer.from(outputFiles[0].text).toString("base64")}`);
+const { printingChances, printingEstimate, restorePrintSettings, DEFAULT_PRINT_SETTINGS } = await import(`data:text/javascript;base64,${Buffer.from(outputFiles[0].text).toString("base64")}`);
 const recipe = { id: 1, craft: "Woodworking", lvl: 20, crystal: "Wind", era: "", ing: [{ n: "Elm Log", q: 2 }], res: { n: "Output", q: 1 }, hq: [{ n: "Output", q: 2 }, { n: "Output", q: 3 }, { n: "Output", q: 4 }] };
-const settings = { ...DEFAULT_PRINT_SETTINGS, skills: { Woodworking: 71 } };
+const settings = { ...DEFAULT_PRINT_SETTINGS, lossPct: 100, skills: { Woodworking: 71 } };
 const close = (actual, expected) => assert.ok(Math.abs(actual - expected) < 1e-8, `${actual} != ${expected}`);
 const chainBundle = buildSync({ entryPoints: [fileURLToPath(new URL("../src/utils/printingChain.ts", import.meta.url))], bundle: true, write: false, platform: "node", format: "esm" });
 const { createPrintingChain, chainTierCosts, chainBatchAllocation } = await import(`data:text/javascript;base64,${Buffer.from(chainBundle.outputFiles[0].text).toString("base64")}`);
 const key = (name) => name.toLowerCase();
+const plannerBundle = buildSync({ entryPoints: [fileURLToPath(new URL("../src/utils/printingPlanner.ts", import.meta.url))], bundle: true, write: false, platform: "node", format: "esm" });
+const { createPrintingPlanner } = await import(`data:text/javascript;base64,${Buffer.from(plannerBundle.outputFiles[0].text).toString("base64")}`);
+const tiersBundle = buildSync({ entryPoints: [fileURLToPath(new URL("../src/utils/printingTiers.ts", import.meta.url))], bundle: true, write: false, platform: "node", format: "esm" });
+const { reachablePrintTiers, printTierComparisons, selectPrintTier } = await import(`data:text/javascript;base64,${Buffer.from(tiersBundle.outputFiles[0].text).toString("base64")}`);
 const lumber = { ...recipe, id: 20, lvl: 1, ing: [{ n: "Log", q: 1 }], res: { n: "Lumber", q: 1 }, hq: [2, 3, 4].map((q) => ({ n: "Lumber", q })) };
 const pole = { ...recipe, id: 21, lvl: 60, ing: [{ n: "Lumber", q: 2 }], res: { n: "Pole", q: 1 }, hq: [1, 1, 1].map((q) => ({ n: "Pole", q })) };
+
+test("HQ selection uses best gil/hour within 106, honors manual tiers, and refreshes after repricing", () => {
+  for (const [cap, expected] of [[19, [0, 1, 2, 3]], [55, [0, 1, 2, 3]], [56, [0, 1, 2]], [75, [0, 1, 2]], [76, [0, 1]], [95, [0, 1]], [96, [0]], [106, [0]], [107, []]]) {
+    assert.deepEqual(reachablePrintTiers({ ...recipe, lvl: cap }), expected);
+  }
+  assert.deepEqual(reachablePrintTiers({ ...recipe, subs: [{ c: "Alchemy", l: 96 }] }), [0]);
+  const target = { ...recipe, lvl: 19, hq: [2, 3, 4].map((q) => ({ n: "HQ Output", q })) };
+  const chain = createPrintingChain([target], restorePrintSettings(), () => 10, () => 100, key);
+  const rows = printTierComparisons(chain, target);
+  assert.strictEqual(printTierComparisons(chain, target), rows);
+  assert.equal(selectPrintTier(rows).tier, 3);
+  assert.strictEqual(selectPrintTier(rows, 1), rows[1]);
+  assert.equal(selectPrintTier(rows, 99).tier, 3);
+  const cheaperHQ = chain.reprice(() => 10, (name) => name === "HQ Output" ? 0 : 100, [], [key("HQ Output")]);
+  const updated = printTierComparisons(cheaperHQ, target);
+  assert.equal(selectPrintTier(updated).tier, 0, "Best gil/hour is not necessarily highest HQ tier");
+  assert.equal(selectPrintTier(updated, 2).tier, 2, "Manual selection survives price changes");
+  assert.equal(selectPrintTier(rows.map((row) => ({ ...row, gilPerHour: -100 - row.tier }))).tier, 0);
+  assert.equal(selectPrintTier(rows.map((row) => ({ ...row, gilPerHour: null }))).tier, 0);
+  assert.equal(selectPrintTier([]), undefined);
+});
+
+test("default break loss is 50%, old defaults migrate once, and custom overrides survive", () => {
+  assert.equal(DEFAULT_PRINT_SETTINGS.lossPct, 50);
+  assert.equal(restorePrintSettings().lossPct, 50);
+  assert.equal(restorePrintSettings({ lossPct: 100 }).lossPct, 50);
+  for (const lossPct of [0, 30, 50, 75]) assert.equal(restorePrintSettings({ lossPct }).lossPct, lossPct);
+  const migrated = restorePrintSettings({ lossPct: 100, overhead: 10 });
+  assert.equal(migrated.overhead, 10);
+  assert.equal(restorePrintSettings({ ...migrated, lossPct: 100 }).lossPct, 100);
+  const result = printingEstimate(recipe, restorePrintSettings(), (name) => name === "Wind Crystal" ? 100 : 3000, () => 5000);
+  close(result.success, 0.95);
+  close(result.consumption, 0.975);
+  close(result.cost, 6000 * 0.975 + 100);
+  const chain = createPrintingChain([lumber, pole], restorePrintSettings(), () => 100, () => 1000, key);
+  const chained = chain.estimate(pole);
+  close(chained.sources[0].quantity, 2 * 0.975);
+  close(chained.sources[0].node.children.find((child) => child.node.name === "Log").quantity, 0.975);
+});
+
+test("planner retains estimates across remounts while refreshing changed prices and assumptions", () => {
+  const recipes = [lumber, pole, { ...pole, id: 30, era: "WotG" }, { ...pole, id: 31, ki: true }];
+  let priceReads = 0;
+  const planner = createPrintingPlanner(recipes, key, (name, book, vendors, modernGuilds) => {
+    priceReads++;
+    return book[key(name)] ?? (vendors ? modernGuilds ? 5 : 10 : null);
+  }, (name, book) => book[key(name)] ?? 1000);
+  const state = { settings, buy: {}, sell: {}, sources: {}, vendors: true, modernGuilds: false, wotg: false, keyItems: false };
+  const first = planner(state);
+  const result = first.chain.estimate(pole);
+  const reads = priceReads;
+  const restored = planner(JSON.parse(JSON.stringify(state)));
+  assert.strictEqual(restored, first);
+  assert.strictEqual(restored.chain.estimate(pole), result);
+  assert.equal(priceReads, reads, "Returning with deserialized settings must not recalculate prices");
+  assert.strictEqual(planner({ ...state, query: "Lumber", selected: 21, sort: "profit" }), first);
+  const edited = { ...state, buy: { log: 500 } };
+  const repriced = planner(edited);
+  assert.strictEqual(repriced.available, first.available);
+  assert.notStrictEqual(repriced.chain.estimate(pole), result);
+  assert.strictEqual(planner(JSON.parse(JSON.stringify(edited))), repriced);
+  assert.deepEqual(planner(state).chain.estimate(pole), result, "Restoring an older navigation state resets the price");
+  for (const patch of [{ settings: { ...settings, lossPct: 50 } }, { sources: { lumber: "buy" } }, { vendors: false }, { modernGuilds: true }, { wotg: true }, { keyItems: true }]) {
+    const baseline = planner(state);
+    const updated = planner({ ...state, ...patch });
+    assert.notStrictEqual(updated.chain, baseline.chain);
+    assert.strictEqual(planner(JSON.parse(JSON.stringify({ ...state, ...patch }))), updated);
+    assert.equal(updated.available.length, patch.wotg || patch.keyItems ? 3 : 2);
+  }
+});
+
+test("at-cap planning ignores saved skills throughout the chain and preserves HQ breakpoints", () => {
+  const baseline = { ...DEFAULT_PRINT_SETTINGS, skillMode: "at-cap" };
+  const stale = { ...baseline, skills: { Woodworking: 110, Alchemy: 0 }, bonuses: { Woodworking: 30 } };
+  const target = { ...pole, subs: [{ c: "Alchemy", l: 50 }] };
+  const engine = (config) => createPrintingChain([lumber, target], config, () => 10, () => 100, key);
+  const chain = engine(baseline);
+  const result = chain.estimate(target);
+  assert.deepEqual(engine(stale).estimate(target), result);
+  assert.equal(result.eligible, true);
+  assert.equal(result.tier, 0);
+  assert.equal(result.sources[0].node.tier, 0);
+  close(result.success, 0.95 ** 2);
+  assert.deepEqual(result.requirements.map((requirement) => requirement.gap), [0, 0]);
+  for (const [tier, gap] of [0, 11, 31, 51].entries()) {
+    const comparison = chain.estimate(target, tier);
+    assert.equal(comparison.tier, tier);
+    assert.deepEqual(comparison.requirements.map((requirement) => requirement.gap), [gap, gap]);
+    assert.deepEqual(comparison.sources, result.sources);
+  }
+  const costs = chainTierCosts(result.sources[0].node, baseline, key);
+  assert.ok(costs[3].price < costs[0].price);
+});
+
+test("repricing reuses unrelated estimates and matches a fresh chain, including alternative sources", () => {
+  const alternate = { ...lumber, id: 22, ing: [{ n: "Other Log", q: 1 }] };
+  const unrelated = { ...pole, id: 23, ing: [{ n: "Ore", q: 1 }], res: { n: "Ingot", q: 1 }, hq: [] };
+  const recipes = [lumber, alternate, pole, unrelated];
+  const prices = { log: 100, "other log": 200, ore: 10, "wind crystal": 1 };
+  const buy = (name) => prices[key(name)] ?? null;
+  const chain = createPrintingChain(recipes, settings, buy, () => 1000, key);
+  const original = chain.estimate(pole);
+  const untouched = chain.estimate(unrelated);
+  assert.strictEqual(chain.estimate(pole), original);
+  assert.equal(original.sources[0].node.recipe.id, lumber.id);
+  const cheaper = (name) => key(name) === "other log" ? 20 : buy(name);
+  const repriced = chain.reprice(cheaper, () => 1000, [key("Other Log")], []);
+  assert.strictEqual(repriced.estimate(unrelated), untouched);
+  assert.notStrictEqual(repriced.estimate(pole), original);
+  assert.equal(repriced.estimate(pole).sources[0].node.recipe.id, alternate.id);
+  const fresh = createPrintingChain(recipes, settings, cheaper, () => 1000, key);
+  for (const target of recipes) for (const tier of [undefined, 0, 1, 2, 3]) assert.deepEqual(repriced.estimate(target, tier), fresh.estimate(target, tier));
+  assert.strictEqual(chain.estimate(pole), original);
+  const sale = (name) => name === "Pole" ? 2000 : 1000;
+  const resold = repriced.reprice(cheaper, sale, [], [key("Pole")]);
+  assert.strictEqual(resold.estimate(unrelated), untouched);
+  assert.strictEqual(resold.estimate(pole).sources[0].node, repriced.estimate(pole).sources[0].node);
+  assert.deepEqual(resold.estimate(pole), createPrintingChain(recipes, settings, cheaper, sale, key).estimate(pole));
+});
 
 test("upstream lumber HQ makes poles profitable and adds every upstream attempt to time", () => {
   const prices = { log: 1000, lumber: 1100, "wind crystal": 10 };
@@ -218,6 +341,34 @@ test("all named print examples are discoverable and material aliases share overr
   const logCeiling = higher.rawCeilings.find((leaf) => leaf.key === data.printItemKey("Mahogany Log")).maximum;
   const breakEvenBuy = (name) => data.printItemKey(name) === data.printItemKey("Mahogany Log") ? logCeiling : purchase(name);
   close(createPrintingChain(available, higherSkills, breakEvenBuy, payout, data.printItemKey, sourceChoice).estimate(mahoganyPole).profit, 0);
+  const atCap = { ...DEFAULT_PRINT_SETTINGS, skillMode: "at-cap" };
+  let buyBook = {};
+  let sellBook = {};
+  let incremental = createPrintingChain(available, atCap, (name) => data.printBuyPrice(name, buyBook), payout, data.printItemKey);
+  let previousResults = available.map((target) => incremental.estimate(target));
+  for (const [kind, name, value] of [["buy", "Elm Log", 4000], ["buy", "Wind Crystal", 100], ["sell", "Shihei", 100], ["buy", "Elm Log", null], ["sell", "Shihei", null]]) {
+    const changedKey = data.printItemKey(name);
+    const nextBook = { ...(kind === "buy" ? buyBook : sellBook) };
+    if (value === null) delete nextBook[changedKey]; else nextBook[changedKey] = value;
+    if (kind === "buy") buyBook = nextBook; else sellBook = nextBook;
+    const currentBuy = buyBook;
+    const currentSell = sellBook;
+    const purchase = (item) => data.printBuyPrice(item, currentBuy);
+    const sale = (item) => data.printSellPrice(item, currentSell);
+    const updateStart = performance.now();
+    incremental = incremental.reprice(purchase, sale, kind === "buy" ? [changedKey] : [], kind === "sell" ? [changedKey] : []);
+    const results = available.map((target) => incremental.estimate(target));
+    const updateMs = performance.now() - updateStart;
+    const freshStart = performance.now();
+    const fresh = createPrintingChain(available, atCap, purchase, sale, data.printItemKey);
+    const expected = available.map((target) => fresh.estimate(target));
+    const freshMs = performance.now() - freshStart;
+    assert.deepEqual(results, expected, `${kind} ${name} ${value}: incremental results match full rebuild`);
+    const reused = results.filter((result, index) => result === previousResults[index]).length;
+    assert.ok(reused > 0 && reused < available.length, `${name}: only affected recipes recompute`);
+    console.log(`Reprice ${kind} ${name}=${value}: ${reused}/${available.length} reused; ${Math.round(updateMs)}ms incremental vs ${Math.round(freshMs)}ms fresh`);
+    previousResults = results;
+  }
   const started = performance.now();
   let expanded = 0;
   const unexplainedStops = [];

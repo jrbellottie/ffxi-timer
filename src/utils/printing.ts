@@ -4,8 +4,12 @@ export const PRINT_CRAFTS = ["Woodworking", "Smithing", "Goldsmithing", "Clothcr
 export const HQ_GAPS = [0, 11, 31, 51];
 export const DEFAULT_HQ_RATES = [1.5625, 6.25, 25, 50];
 export type PrintRecipe = { id: number; craft: string; lvl: number; crystal: string; era: string; ing: { n: string; q: number }[]; res: { n: string; q: number }; hq: { n: string; q: number }[]; subs?: { c: string; l: number }[]; d?: number; ki?: boolean };
-export type PrintSettings = { skills: Record<string, number>; bonuses: Record<string, number>; hqRates: number[]; lossPct: number; seconds: number; overhead: number; sellMultiplier: number; successBonus: number };
-export const DEFAULT_PRINT_SETTINGS: PrintSettings = { skills: {}, bonuses: {}, hqRates: DEFAULT_HQ_RATES, lossPct: 100, seconds: 21, overhead: 0, sellMultiplier: 100, successBonus: 0 };
+export type PrintSettings = { skillMode?: "at-cap"; lossDefaultVersion?: number; skills: Record<string, number>; bonuses: Record<string, number>; hqRates: number[]; lossPct: number; seconds: number; overhead: number; sellMultiplier: number; successBonus: number };
+export const DEFAULT_PRINT_SETTINGS: PrintSettings = { skills: {}, bonuses: {}, hqRates: DEFAULT_HQ_RATES, lossPct: 50, lossDefaultVersion: 1, seconds: 21, overhead: 0, sellMultiplier: 100, successBonus: 0 };
+export function restorePrintSettings(saved: Partial<PrintSettings> = {}): PrintSettings {
+  return { ...DEFAULT_PRINT_SETTINGS, ...saved, skillMode: "at-cap", lossDefaultVersion: 1,
+    lossPct: saved.lossDefaultVersion === undefined && saved.lossPct === 100 ? DEFAULT_PRINT_SETTINGS.lossPct : saved.lossPct ?? DEFAULT_PRINT_SETTINGS.lossPct };
+}
 export type PricedInput = { name: string; quantity: number; price: number | null; crystal: boolean };
 export const validPrice = (value: number | null | undefined): value is number => typeof value === "number" && Number.isFinite(value) && value >= 0;
 const clamp = (value: number, min: number, max: number) => Math.min(max, Math.max(min, Number.isFinite(value) ? value : min));
@@ -13,6 +17,10 @@ const clamp = (value: number, min: number, max: number) => Math.min(max, Math.ma
 export function printingChances(recipe: PrintRecipe, settings: PrintSettings, tierOverride?: number) {
   const required = [{ c: recipe.craft, l: recipe.lvl }, ...(recipe.subs ?? [])];
   const requirements = required.map(({ c, l }) => {
+    if (settings.skillMode === "at-cap") {
+      const effective = l + HQ_GAPS[tierOverride ?? 0];
+      return { craft: c, cap: l, skill: effective, effective, gap: effective - l, eligible: true };
+    }
     const skill = Math.floor(clamp(settings.skills[c] ?? 0, 0, 110));
     const effective = skill + clamp(settings.bonuses[c] ?? 0, 0, 30);
     return { craft: c, cap: l, skill, effective, gap: effective - l, eligible: skill >= l - 15 };
