@@ -1,6 +1,6 @@
 // src/AppShell.tsx
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { UsersRound, Coins } from "lucide-react";
+import { UsersRound, Coins, Pickaxe } from "lucide-react";
 import {
   Calibration,
   DEFAULT_CALIBRATION,
@@ -40,6 +40,7 @@ const QuestsTab = React.lazy(() => import("./QuestsTab"));
 const AtlasTab = React.lazy(() => import("./AtlasTab"));
 const DropsTab = React.lazy(() => import("./DropsTab"));
 const NpcTab = React.lazy(() => import("./NpcTab"));
+const HelmTab = React.lazy(() => import("./HelmTab"));
 
 function clampInt(n: number, min: number, max: number) {
   return Math.max(min, Math.min(max, Math.floor(n)));
@@ -178,7 +179,7 @@ function isValidTod(raw: string): boolean {
   );
 }
 
-type TabId = "home" | "timers" | "nm" | "presets" | "counters" | "luShang" | "fish" | "bait" | "rods" | "clam" | "chocobo" | "weather" | "bcnm" | "drops" | "npc" | "bestiary" | "skillchains" | "crafting" | "printing" | "quests" | "atlas" | "calibration";
+type TabId = "home" | "timers" | "nm" | "presets" | "counters" | "luShang" | "fish" | "bait" | "rods" | "clam" | "chocobo" | "helm" | "weather" | "bcnm" | "drops" | "npc" | "bestiary" | "skillchains" | "crafting" | "printing" | "quests" | "atlas" | "calibration";
 
 type TabDef = {
   id: TabId;
@@ -200,6 +201,7 @@ const TABS: TabDef[] = [
   { id: "rods", label: "Rods", icon: "🎣" },
   { id: "clam", label: "Clam", icon: "🪣" },
   { id: "chocobo", label: "Digging", icon: "🐤" },
+  { id: "helm", label: "HELM", icon: <Pickaxe size={18} /> },
   { id: "weather", label: "Weather", icon: "🌦️" },
   { id: "bcnm", label: "BCNM", icon: "⚔️" },
   { id: "skillchains", label: "Skillchains", icon: "🔗" },
@@ -2454,6 +2456,14 @@ export default function AppShell() {
       {activeTab === "weather" && (
         <div style={styles.tabContent}>
           <WeatherTab cal={cal} />
+        </div>
+      )}
+
+      {activeTab === "helm" && (
+        <div style={styles.tabContent}>
+          <React.Suspense fallback={<div style={styles.card}>Loading HELM...</div>}>
+            <HelmTab />
+          </React.Suspense>
         </div>
       )}
 

@@ -78,6 +78,19 @@ Clamming reference for all clamming points: item drop rates (with and without +1
 ### 🐤 Digging
 Chocobo digging tables by zone: item rates, vendor/AH prices, moon-phase success modifiers, digging rank requirements, and gil-per-dig estimates.
 
+### HELM
+Phoenix mining, harvesting, excavation, and logging reference. Search zones or items, compare drop chances, inspect tools and equipment modifiers, and browse annotated FFXIclopedia gathering maps with sheet selection and zoom. ToAU is the default; WotG zones are opt-in and Abyssea is excluded.
+
+Locations bundles 47 gathering map images covering 35 activity/zone combinations, with original annotations and credits retained and links to the source file pages. Pashhow Marshlands and Yhoator Jungle harvesting have no discovered annotated map and show explicitly unmarked zone references instead. Wiki markers are reference locations, not live active points or verified Phoenix positions. Raw XYZ coordinates are not shown or projected onto unverified map floors. Maps are bundled for offline use; refresh with `npm run helm:maps`. Image revisions, source URLs, dimensions and bundled-file hashes are recorded in `src/data/helmMaps.json`.
+
+Data comes from Phoenix beta revision `ace1415cf5643d8d45ff72067522d97f2ccb038f`, with the pinned pre-WotG item adjustments. This is a source-backed scenario, not a live-server feed or confirmation of deployed settings. The WotG-zone option retains that same item-adjustment scenario. Source links are available in the tab.
+
+**Pool share** is the item's fraction of the adjusted drop weights; **per attempt** multiplies it by the zone's obtain rate. Tool breakage is an independent roll and does not cancel the item reward. Level gates and full inventory prevent rewards but not tool loss. Gear and camping modify breakage only. Colored rocks follow the selected Vana'diel weekday; this HELM routine has no moon, weather, or Treasure Hunter rate modifier. NPC values are Phoenix BaseSell references, not fame-adjusted quotes.
+
+Scenario controls cover NQ/HQ equipment modifier totals, camp penalty, inventory space, weekday, shared depletion, and per-item daily counts. Each zone's minimum main-job level is shown as a note; displayed chances assume that requirement is met, regardless of any previously saved level. Higher levels do not improve gathering chances. Pool weights follow the source's integer rounding and are renormalized after adjustments. Daily caps reset on zone-in after midnight JST; shared depletion resets on normal zoning, not logout. Entered counts are manual scenario values, stored per activity and zone; Kupo does not observe gathering or automatically clear them. Mechanics includes point relocation/respawn rules, reset conditions, equipment, the optional attempt-delay setting, and the Wajaom Rainbow Berry quest exception.
+
+Regenerate with `npm run phoenix:generate -- <Phoenix checkout>`; append `--check` for reproducibility verification. Run `npm run test:helm` for source-pool, era, gear, success/break, level, cap, depletion, weekday, and gathering-map integrity/coverage tests. HELM checks are also included in `test:data` and `test:phoenix`.
+
 ### 🌦️ Weather
 Vana'diel weather forecaster for every zone. Shows each zone's weather patterns and elements and predicts upcoming weather by Vana'diel day.
 
