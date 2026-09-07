@@ -2,6 +2,7 @@ import npcData from "../data/npcs.json";
 import wikiData from "../data/npcWiki.json";
 import questData from "../data/quests.json";
 import { normalizeNpcName, npcKey } from "./npcLinks";
+import { PHOENIX_GUILD_NPCS, shopsData } from "./phoenixData";
 
 export type NpcQuest = { id: string; name: string; type: string; relation: string; requirements: string | null; reward: string | null };
 export type Npc = {
@@ -11,7 +12,18 @@ export type Npc = {
   quests: NpcQuest[]; services: string[]; guild: string | null;
 };
 export type NpcProfile = { status: string; title?: string; url?: string; revision?: number; locations?: { zone: string; coord: string }[]; location?: string; fields?: Record<string, string>; notes?: string; related?: { name: string; relation: string }[] };
-export const NPCS = npcData.npcs as Npc[];
+export const NPCS = (npcData.npcs as Npc[]).map(npc => {
+  if (!PHOENIX_GUILD_NPCS.has(npc.name) && npc.name !== "Valeriano") return npc;
+  const offers = shopsData.filter(row => npcKey(row.npc, row.zone) === npcKey(npc.name, npc.zone));
+  return { ...npc, inventory: offers.map(row => ({ name: row.n, price: row.price })) };
+});
+const existingIds = new Set(NPCS.flatMap(npc => [npc.id, ...npc.aliases]));
+for (const offer of shopsData) {
+  const id = npcKey(offer.npc, offer.zone);
+  if (existingIds.has(id)) continue;
+  existingIds.add(id);
+  NPCS.push({ id, aliases: [], name: offer.npc, zone: offer.zone, coordinates: [], positions: [], roles: ["Shop"], inventory: shopsData.filter(row => npcKey(row.npc, row.zone) === id).map(row => ({ name: row.n, price: row.price })), quests: [], services: [], guild: null });
+}
 const profiles = wikiData.npcs as Record<string, NpcProfile>;
 const byId = new Map(NPCS.flatMap((npc) => [npc.id, ...npc.aliases].map((id) => [id, npc] as const)));
 const quests = [...questData.quests, ...questData.missions];

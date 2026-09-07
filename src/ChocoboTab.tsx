@@ -1,15 +1,15 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { styles } from "./styles";
-import digData from "./data/chocoboDig.json";
-import digPrices from "./data/digPrices.json";
+import { phoenixDigging as digData } from "./utils/phoenixData";
+import { diggingDistribution, diggingExtras, DIG_DAY_ITEMS, ORE_ZONES, type DigLayer } from "./utils/digging";
 import { itemPrices, useItemPrices } from "./utils/itemPrices";
-import { printItemKey, printBuyPrice } from "./utils/printingData";
+import { printItemKey, printBuyPrice, printSellPrice } from "./utils/printingData";
 import PriceInput from "./PriceInput";
 import { selectedSellPrice } from "./utils/itemPriceStore";
 import { Tags } from "lucide-react";
 import { saveJson } from "./utils/storage";
 import { navigateToTab } from "./utils/tabNav";
-import { Calibration, getVanaNow } from "./vanadiel";
+import { Calibration, getVanaNow, type VanaWeekday } from "./vanadiel";
 
 type DigMode = "burrow" | "bore" | "both" | null;
 
@@ -21,6 +21,8 @@ type DigEntry = {
   rank: string | null;
   /** burrow | bore | both | null (normal dig). */
   mode: DigMode;
+  layer: DigLayer;
+  conditional?: boolean;
 };
 
 // Digging ranks in progression order. "Amateur" = no rank requirement.
@@ -46,7 +48,7 @@ const MODE_TOGGLES = [
 
 type ModeId = (typeof MODE_TOGGLES)[number]["id"];
 
-/** Basis for the gil columns: 100 dig attempts, or 100 items (the daily cap). */
+/** Basis for the gil columns: 100 attempts, or 100 successful attempts. */
 type GilBasis = "digs" | "items";
 
 type SortKey = "zone" | "item" | "rate" | "vendor" | "ah" | "rank" | "type" | "success" | "greens" | "zoneGil" | "zoneGilAh" | "zoneGilMoon" | "zoneGilAhMoon";
@@ -55,7 +57,7 @@ type SortDir = "asc" | "desc";
 const COLUMNS: { key: SortKey; label: string }[] = [
   { key: "zone", label: "Zone" },
   { key: "item", label: "Item" },
-  { key: "rate", label: "Rate" },
+  { key: "rate", label: "Reward chance (moon / base)" },
   { key: "vendor", label: "Vendor" },
   { key: "ah", label: "AH price" },
   { key: "rank", label: "Min Rank" },
@@ -68,41 +70,16 @@ const COLUMNS: { key: SortKey; label: string }[] = [
   { key: "zoneGilAhMoon", label: "Moon gil / 100 digs (AH)" },
 ];
 
-const ENTRIES: DigEntry[] = (digData as { entries: DigEntry[] }).entries;
-
-const PRICES = digPrices as Record<string, number>;
-
-// Cluster vendor prices (LSB item_basic BaseSell); clusters only come from
-// double-weather digs so they are not in digPrices.json.
-const CLUSTER_PRICES: Record<string, number> = {
-  "Fire Cluster": 200,
-  "Ice Cluster": 400,
-  "Wind Cluster": 200,
-  "Earth Cluster": 200,
-  "Lightning Cluster": 400,
-  "Water Cluster": 200,
-  "Light Cluster": 1000,
-  "Dark Cluster": 1000,
-};
+const ENTRIES = digData.entries as DigEntry[];
 
 function vendorPrice(item: string): number {
-  return PRICES[item] ?? CLUSTER_PRICES[item] ?? 0;
+  return printSellPrice(item, {}) ?? 0;
 }
 
 const WEATHER_ELEMENTS = ["Fire", "Ice", "Wind", "Earth", "Lightning", "Water", "Light", "Dark"] as const;
 
-// Per LSB logic.lua: during weather, the matching crystal (single weather) or
-// cluster (double weather) is added to the regular dig layer with a 10% roll,
-// no rank requirement.
-const WEATHER_RATE = 10;
-
 const ZONES = [...new Set(ENTRIES.map((e) => e.zone))];
 
-/**
- * Cost of Gysahl Greens per dig attempt (61g each). Every dig consumes one
- * green whether or not an item is found; failed digs are modeled by the item
- * rates themselves (a filtered pool summing to 20% means 80% of digs fail).
- */
 const GYSAHL_COST = 61;
 
 function rankIndex(rank: string | null): number {
@@ -132,12 +109,13 @@ function compareEntries(
     zoneGreensMoon: Record<string, number>;
     eff: (item: string) => number;
     ah: Record<string, number>;
+    rewardRates: Map<DigEntry, [number, number]>;
   }
 ): number {
   let cmp = 0;
 
   if (key === "rate") {
-    cmp = a.rate - b.rate;
+    cmp = (ctx.rewardRates.get(a)?.[0] ?? 0) - (ctx.rewardRates.get(b)?.[0] ?? 0);
   } else if (key === "vendor") {
     cmp = vendorPrice(a.item) - vendorPrice(b.item);
   } else if (key === "ah") {
@@ -216,17 +194,16 @@ export default function ChocoboTab({ cal }: { cal: Calibration }) {
   const [zoneFilter, setZoneFilter] = useState<string[]>([]);
   const [rankFilter, setRankFilter] = useState<Rank>("Adept");
   const [itemQuery, setItemQuery] = useState<string>("");
-  // Empty selection = "All" (no dig type filtering). Default to Normal dig:
-  // burrow/bore are WotG additions and not in the game yet on this era.
   const [activeModes, setActiveModes] = useState<ModeId[]>(["normal"]);
   const [sortKey, setSortKey] = useState<SortKey>("zoneGilAh");
   const [sortDir, setSortDir] = useState<SortDir>("desc");
   // Weather item ("" = no weather): crystal for single weather, cluster for double.
   const [weatherItem, setWeatherItem] = useState<string>("");
-  // Gil columns basis: per 100 digs (greens spent) or per 100 items (daily cap).
+  const [moonOverride, setMoonOverride] = useState<number | null>(null);
+  const [dayOverride, setDayOverride] = useState<VanaWeekday | "">("");
   const [gilBasis, setGilBasis] = useState<GilBasis>("items");
   const prices = useItemPrices();
-  const ahPrices = useMemo(() => Object.fromEntries([...new Set([...ENTRIES.map((entry) => entry.item), weatherItem])]
+  const ahPrices = useMemo(() => Object.fromEntries([...new Set([...ENTRIES.map((entry) => entry.item), ...Object.values(DIG_DAY_ITEMS).flat(), weatherItem])]
     .map((name) => [name, selectedSellPrice(prices, printItemKey(name), vendorPrice(name)) ?? vendorPrice(name)])), [prices, weatherItem]);
   const greensCost = printBuyPrice("Gysahl Greens", prices.effectiveBuy) ?? GYSAHL_COST;
 
@@ -237,11 +214,9 @@ export default function ChocoboTab({ cal }: { cal: Calibration }) {
     return () => clearInterval(t);
   }, []);
 
-  // LSB logic.lua: every dig roll is rand(1,1000) * (1.5 - |moon - 50| / 50),
-  // so effective item rates scale by 1/multiplier:
-  // new/full moon x2, quarter x1 (the listed rates), half moon x0.67.
-  const moonPercent = getVanaNow(nowMs, cal).moonPercent;
-  const moonFactor = 1 / (1.5 - Math.abs(moonPercent - 50) / 50);
+  const vana = getVanaNow(nowMs, cal);
+  const moonPercent = moonOverride ?? vana.moonPercent;
+  const day = dayOverride || vana.weekday;
 
   /** Effective price: user AH price if set, otherwise vendor price. */
   function eff(item: string): number {
@@ -249,9 +224,8 @@ export default function ChocoboTab({ cal }: { cal: Calibration }) {
     return ah ?? vendorPrice(item);
   }
 
-  const allActive = activeModes.length === 0;
-
   function toggleMode(id: ModeId) {
+    if (id === "normal") return;
     setActiveModes((prev) => (prev.includes(id) ? prev.filter((m) => m !== id) : [...prev, id]));
   }
 
@@ -277,41 +251,19 @@ export default function ChocoboTab({ cal }: { cal: Calibration }) {
 
   function matchesRankAndMode(entry: DigEntry): boolean {
     if (rankIndex(entry.rank) > maxRank) return false;
+    if (entry.layer === "treasure" || entry.layer === "regular") return true;
     return (
-      activeModes.length === 0 ||
-      (activeModes.includes("normal") && entry.mode === null) ||
       (activeModes.includes("burrow") && (entry.mode === "burrow" || entry.mode === "both")) ||
       (activeModes.includes("bore") && (entry.mode === "bore" || entry.mode === "both"))
     );
   }
 
-  // With weather active, every zone's normal dig layer also drops the matching
-  // crystal/cluster at a 10% rate (no rank requirement).
   const allEntries = useMemo(() => {
-    if (weatherItem === "") return ENTRIES;
-    const extra: DigEntry[] = ZONES.map((zone) => ({
-      zone,
-      item: weatherItem,
-      rate: WEATHER_RATE,
-      rank: null,
-      mode: null,
-    }));
+    const extra: DigEntry[] = ZONES.flatMap(zone => diggingExtras(zone, maxRank, moonPercent, day, weatherItem).map(entry => ({ ...entry, zone, mode: null, rank: entry.item.endsWith(" Ore") ? "Craftsman" : entry.item === weatherItem ? null : "Novice", conditional: true })));
     return [...ENTRIES, ...extra];
-  }, [weatherItem]);
+  }, [weatherItem, maxRank, moonPercent, day]);
 
-  // Expected gil per 100 digs (roughly one day of digging) for each zone,
-  // given the current rank and dig type filters, minus the cost of greens.
-  // Item rates are absolute per-dig chances, so a filtered pool summing to
-  // 20% means 80% of digs find nothing but still consume a green:
-  // EV per dig = sum(rate/100 * price) - green cost.
-  // Computed twice: once with vendor prices only, once with user AH prices
-  // falling back to vendor prices. zoneSuccess = chance a dig finds anything
-  // at the listed (quarter moon) rates; zoneSuccessMoon = at the current moon.
-  // The "Moon" gil variants apply the moon factor to every item rate
-  // (capped at 100% each) before pricing.
-  // Gil basis: "digs" = EV/dig x 100 greens; "items" = EV/dig x the digs
-  // needed to hit 100 items (10000 / success rate), i.e. the daily cap.
-  const { zoneGil, zoneGilAh, zoneGilMoon, zoneGilAhMoon, zoneSuccess, zoneSuccessMoon, zoneGreensMoon } = useMemo(() => {
+  const { zoneGil, zoneGilAh, zoneGilMoon, zoneGilAhMoon, zoneSuccess, zoneSuccessMoon, zoneGreensMoon, rewardRates } = useMemo(() => {
     const vendor: Record<string, number> = {};
     const withAh: Record<string, number> = {};
     const vendorMoon: Record<string, number> = {};
@@ -319,28 +271,21 @@ export default function ChocoboTab({ cal }: { cal: Calibration }) {
     const success: Record<string, number> = {};
     const successMoon: Record<string, number> = {};
     const greensMoon: Record<string, number> = {};
+    const rewardRates = new Map<DigEntry, [number, number]>();
     for (const zone of ZONES) {
       const pool = allEntries.filter((e) => e.zone === zone && matchesRankAndMode(e));
-      const totalRate = pool.reduce((sum, e) => sum + e.rate, 0);
-      const totalRateMoon = pool.reduce((sum, e) => sum + Math.min(100, e.rate * moonFactor), 0);
-      success[zone] = Math.min(100, Math.round(totalRate));
-      successMoon[zone] = Math.min(100, Math.round(totalRateMoon));
-      // Expected greens (dig attempts) to reach the 100-item daily cap.
-      greensMoon[zone] = totalRateMoon > 0 ? Math.ceil(10000 / Math.min(100, totalRateMoon)) : Infinity;
-      if (totalRate <= 0) {
-        vendor[zone] = -greensCost * 100;
-        withAh[zone] = -greensCost * 100;
-        vendorMoon[zone] = -greensCost * 100;
-        withAhMoon[zone] = -greensCost * 100;
-        continue;
-      }
-      const digsBase = gilBasis === "digs" ? 100 : 10000 / Math.min(100, totalRate);
-      const digsMoon = gilBasis === "digs" ? 100 : 10000 / Math.min(100, totalRateMoon);
-      const moonRate = (e: DigEntry) => Math.min(100, e.rate * moonFactor);
-      const evVendor = pool.reduce((sum, e) => sum + (e.rate / 100) * vendorPrice(e.item), 0);
-      const evAh = pool.reduce((sum, e) => sum + (e.rate / 100) * eff(e.item), 0);
-      const evVendorMoon = pool.reduce((sum, e) => sum + (moonRate(e) / 100) * vendorPrice(e.item), 0);
-      const evAhMoon = pool.reduce((sum, e) => sum + (moonRate(e) / 100) * eff(e.item), 0);
+      const base = diggingDistribution(pool.map(entry => entry.conditional && entry.item.endsWith(" Ore") ? { ...entry, rate: 0 } : entry), 25);
+      const current = diggingDistribution(pool, moonPercent);
+      pool.forEach((entry, index) => rewardRates.set(entry, [current.rewards[index] * 100, base.rewards[index] * 100]));
+      success[zone] = Number((base.successChance * 100).toFixed(2));
+      successMoon[zone] = Number((current.successChance * 100).toFixed(2));
+      greensMoon[zone] = current.successChance > 0 ? Math.ceil(100 / current.successChance) : Infinity;
+      const digsBase = gilBasis === "digs" ? 100 : base.successChance > 0 ? 100 / base.successChance : 0;
+      const digsMoon = gilBasis === "digs" ? 100 : current.successChance > 0 ? 100 / current.successChance : 0;
+      const evVendor = pool.reduce((sum, entry, index) => sum + base.rewards[index] * vendorPrice(entry.item), 0);
+      const evAh = pool.reduce((sum, entry, index) => sum + base.rewards[index] * eff(entry.item), 0);
+      const evVendorMoon = pool.reduce((sum, entry, index) => sum + current.rewards[index] * vendorPrice(entry.item), 0);
+      const evAhMoon = pool.reduce((sum, entry, index) => sum + current.rewards[index] * eff(entry.item), 0);
       vendor[zone] = Math.round((evVendor - greensCost) * digsBase);
       withAh[zone] = Math.round((evAh - greensCost) * digsBase);
       vendorMoon[zone] = Math.round((evVendorMoon - greensCost) * digsMoon);
@@ -354,9 +299,10 @@ export default function ChocoboTab({ cal }: { cal: Calibration }) {
       zoneSuccess: success,
       zoneSuccessMoon: successMoon,
       zoneGreensMoon: greensMoon,
+      rewardRates,
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [rankFilter, activeModes, ahPrices, allEntries, moonFactor, gilBasis, greensCost]);
+  }, [rankFilter, activeModes, ahPrices, allEntries, moonPercent, gilBasis, greensCost]);
 
   const filtered = useMemo(() => {
     const q = itemQuery.trim().toLowerCase();
@@ -364,9 +310,9 @@ export default function ChocoboTab({ cal }: { cal: Calibration }) {
       if (zoneFilter.length > 0 && !zoneFilter.includes(entry.zone)) return false;
       if (q !== "" && !entry.item.toLowerCase().includes(q)) return false;
       return matchesRankAndMode(entry);
-    }).sort((a, b) => compareEntries(a, b, sortKey, sortDir, { zoneGil, zoneGilAh, zoneGilMoon, zoneGilAhMoon, zoneSuccess: zoneSuccessMoon, zoneGreensMoon, eff, ah: ahPrices }));
+    }).sort((a, b) => compareEntries(a, b, sortKey, sortDir, { zoneGil, zoneGilAh, zoneGilMoon, zoneGilAhMoon, zoneSuccess: zoneSuccessMoon, zoneGreensMoon, eff, ah: ahPrices, rewardRates }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [zoneFilter, rankFilter, itemQuery, activeModes, sortKey, sortDir, zoneGil, zoneGilAh, ahPrices, allEntries]);
+  }, [zoneFilter, rankFilter, itemQuery, activeModes, sortKey, sortDir, zoneGil, zoneGilAh, zoneGilMoon, zoneGilAhMoon, zoneSuccessMoon, zoneGreensMoon, rewardRates, ahPrices, allEntries]);
 
   return (
     <section style={styles.card}>
@@ -432,7 +378,7 @@ export default function ChocoboTab({ cal }: { cal: Calibration }) {
             </div>
 
             <div style={styles.field}>
-              <label style={styles.label}>Weather (adds crystal to every zone)</label>
+              <label style={styles.label}>Assumed weather</label>
               <select value={weatherItem} onChange={(e) => setWeatherItem(e.target.value)} style={styles.select}>
                 <option value="">None</option>
                 <optgroup label="Single weather (crystal)">
@@ -453,28 +399,16 @@ export default function ChocoboTab({ cal }: { cal: Calibration }) {
             </div>
 
             <div style={styles.field}>
-              <label style={styles.label}>Dig type (tap to toggle)</label>
-              <div style={{ display: "flex", gap: 8 }}>
-                <button
-                  style={{
-                    ...styles.buttonCompact,
-                    ...(allActive ? { borderColor: "#8af6b0", color: "#8af6b0" } : {}),
-                  }}
-                  onClick={() => setActiveModes([])}
-                >
-                  All
-                </button>
+              <label style={styles.label}>Vana'diel day<select aria-label="Digging day" style={styles.select} value={dayOverride} onChange={event => setDayOverride(event.target.value as VanaWeekday | "")}><option value="">Live: {vana.weekday}</option>{Object.keys(DIG_DAY_ITEMS).map(day => <option key={day}>{day}</option>)}</select></label>
+            </div>
+            <div style={styles.field}>
+              <label style={styles.label}>Moon (%)<input aria-label="Digging moon percent" type="number" min={0} max={100} placeholder={`Live: ${vana.moonPercent}`} value={moonOverride ?? ""} style={{ ...styles.input, width: 110 }} onChange={event => setMoonOverride(event.target.value === "" ? null : Math.max(0, Math.min(100, Number(event.target.value))))} /></label>
+            </div>
+            <div style={styles.field}>
+              <label style={styles.label}>Dig layers (extra abilities unverified)</label>
+              <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
                 {MODE_TOGGLES.map((mode) => (
-                  <button
-                    key={mode.id}
-                    style={{
-                      ...styles.buttonCompact,
-                      ...(activeModes.includes(mode.id) ? { borderColor: "#8af6b0", color: "#8af6b0" } : {}),
-                    }}
-                    onClick={() => toggleMode(mode.id)}
-                  >
-                    {mode.label}
-                  </button>
+                  <label key={mode.id} style={styles.sub}><input type="checkbox" checked={activeModes.includes(mode.id)} disabled={mode.id === "normal"} onChange={() => toggleMode(mode.id)} /> {mode.label}</label>
                 ))}
               </div>
             </div>
@@ -482,7 +416,7 @@ export default function ChocoboTab({ cal }: { cal: Calibration }) {
 
           <div style={{ marginTop: 8, display: "flex", alignItems: "center", gap: 14, flexWrap: "wrap" }}>
             <div style={styles.sub}>
-              {filtered.length} result{filtered.length === 1 ? "" : "s"} &middot; Moon {moonPercent}% (dig rates ×{moonFactor.toFixed(2)})
+              {filtered.length} result{filtered.length === 1 ? "" : "s"} &middot; {day} / Moon {moonPercent}%
             </div>
             <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
               <span style={styles.sub}>Gil per</span>
@@ -497,13 +431,14 @@ export default function ChocoboTab({ cal }: { cal: Calibration }) {
                 <button
                   style={{ ...segBtnStyle, ...(gilBasis === "items" ? segActiveStyle : {}) }}
                   onClick={() => setGilBasis("items")}
-                  title="Expected profit from digging until 100 items (the daily cap)"
+                  title="Expected profit for 100 successful digs, shared across the Phoenix account; resets at midnight JST. Extra layers count once per successful dig."
                 >
-                  100 items
+                  100 successes / account
                 </button>
               </div>
             </div>
           </div>
+          <details style={{ marginTop: 10, ...styles.sub }}><summary>Elemental ore: {DIG_DAY_ITEMS[day][1]} / {maxRank >= 6 && weatherItem && moonPercent >= 7 && moonPercent <= 21 ? "conditions met in eligible zones" : "conditions not met"}</summary><p>Craftsman (60+) / elemental weather / moon 7-21%, either direction. Ore follows the day, not the weather. Qualifying candidates compete with other rewards; the 10% base roll is not the final reward chance.</p><p>{ORE_ZONES.join(", ")}</p><p>Phoenix fatigue is account-wide. Estimates assume movement between digs, available inventory, no fatigue bypass or rare-item equipment, and constant day/weather/moon. Public defaults specify 100 successful digs; live settings are not published.</p></details>
         </div>
 
         <div style={styles.subCard}>
@@ -524,7 +459,7 @@ export default function ChocoboTab({ cal }: { cal: Calibration }) {
                   <tr>
                     {COLUMNS.map((col) => {
                       const active = col.key === sortKey;
-                      const label = col.label.replace("100 digs", gilBasis === "digs" ? "100 digs" : "100 items");
+                      const label = col.label.replace("100 digs", gilBasis === "digs" ? "100 digs" : "100 successes");
                       return (
                         <th
                           key={col.key}
@@ -541,7 +476,7 @@ export default function ChocoboTab({ cal }: { cal: Calibration }) {
                 </thead>
                 <tbody>
                   {filtered.map((entry) => (
-                    <tr key={`${entry.zone}|${entry.item}|${entry.mode ?? "normal"}`}>
+                    <tr key={`${entry.zone}|${entry.item}|${entry.layer}|${entry.conditional ?? false}`}>
                       <td style={tdStyle}>{entry.zone}</td>
                       <td style={{ ...tdStyle, fontWeight: 700 }}>
                         {entry.item}
@@ -549,7 +484,7 @@ export default function ChocoboTab({ cal }: { cal: Calibration }) {
                           <span style={{ marginLeft: 6, fontSize: 11, fontWeight: 400, color: "#8af6b0" }}>weather</span>
                         )}
                       </td>
-                      <td style={tdStyle}>{entry.rate}%</td>
+                      <td style={tdStyle} title={`Candidate roll before competition: ${entry.rate}% at 25/75% moon`}>{(rewardRates.get(entry)?.[0] ?? 0).toFixed(2)}% / {(rewardRates.get(entry)?.[1] ?? 0).toFixed(2)}%</td>
                       <td style={tdStyle}>
                         {vendorPrice(entry.item) > 0 ? (
                           `${vendorPrice(entry.item).toLocaleString()}g`
@@ -563,7 +498,7 @@ export default function ChocoboTab({ cal }: { cal: Calibration }) {
                       </td>
                       <td style={tdStyle}>{entry.rank ?? "Amateur"}</td>
                       <td style={tdStyle}>
-                        {entry.mode === null ? "Normal" : entry.mode === "both" ? "Burrow/Bore" : entry.mode === "burrow" ? "Burrow" : "Bore"}
+                        {entry.layer === "treasure" ? "Treasure" : entry.mode === null ? "Normal" : entry.mode === "burrow" ? "Burrow" : "Bore"}
                       </td>
                       <td
                         style={{
@@ -581,7 +516,7 @@ export default function ChocoboTab({ cal }: { cal: Calibration }) {
                       </td>
                       <td
                         style={tdStyle}
-                        title="Expected Gysahl Greens (dig attempts) to reach the 100-item daily cap at the current moon phase"
+                        title="Expected greens for 100 successful digs, shared across the account; resets at midnight JST"
                       >
                         {Number.isFinite(zoneGreensMoon[entry.zone]) ? zoneGreensMoon[entry.zone] : "\u2014"}
                       </td>

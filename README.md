@@ -55,7 +55,7 @@ Track notorious monsters in two modes:
 Durations accept `10s`, `2.5h`, `1h45m55s`, or colon formats (`1:45:55`); all fields validate live.
 
 ### ⭐ Presets
-One-click Vana'diel timers for recurring openings: **crafting guilds** (all nine, each skipping its weekly holiday), **Tenshodo** locations, and **Next Dig** (00:00 chocobo digging reset). A configurable offset alerts you N Vana'diel hours before opening, and each card previews its next fire time.
+One-click Vana'diel timers for recurring openings: **crafting guilds** (all nine, each skipping its weekly holiday), **Tenshodo** locations, and **Next Day** (00:00 Vana'diel time). A configurable offset alerts you N Vana'diel hours before the target time, and each card previews its next fire time. Next Day is server-independent; it does not represent Phoenix's separate midnight-JST digging fatigue reset.
 
 ### 🔢 Counters
 Manual tally counters for sessions: **Success/Failure** with a success-rate percentage, and a **Synthesis** tracker for HQ1/HQ2/HQ3/NQ/Break results with per-tier percentages. Left-click adds, right-click subtracts.

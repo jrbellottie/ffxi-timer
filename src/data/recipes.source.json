@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "source": "server checkout",
+  "revision": "ace1415cf5643d8d45ff72067522d97f2ccb038f",
+  "inputSha256": {
+    "item_basic.sql": "36b0ca357e56fec4ec42724bde8d6d56cf8d2ce86ab27e90b6ca0bc628a08c3b",
+    "synth_recipes.sql": "17b061046923e0103fd0a8571342fa051d28b88d9363a20282d7ef8d84cf9f4c"
+  },
+  "generatorSha256": "7ff9ea64c22ea4d991f687110f597ecfaa63e79ac4470c8731edc98a28a5783d",
+  "outputSha256": "42caafbc670befadb5cc478ee2c595234fa8347295a2d664e76bb6c6c5a5d858"
+}

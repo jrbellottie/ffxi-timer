@@ -1,5 +1,5 @@
 import { useState } from "react";
-import catalogData from "./data/itemInfo.json";
+import { catalogData } from "./utils/phoenixData";
 import wikiData from "./data/itemWiki.json";
 import { normalizeItemName } from "./utils/itemLinks";
 import PurificationInfo from "./PurificationInfo";

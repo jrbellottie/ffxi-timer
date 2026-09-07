@@ -1,11 +1,10 @@
 // src/utils/itemSources.ts — aggregates every in-app source for an item name
 // (mob drops live in DropsTab's own table; this covers everything else).
-import shopsData from "../data/shops.json";
+import { shopsData, helmData, phoenixDigging as chocoboDigData } from "./phoenixData";
+import { DIG_DAY_ITEMS, ORE_ZONES } from "./digging";
 import guildShopsData from "../data/guildShops.json";
-import helmData from "../data/helm.json";
 import bcnmData from "../data/bcnm.json";
 import fishData from "../data/fish.json";
-import chocoboDigData from "../data/chocoboDig.json";
 import recipesData from "../data/recipes.json";
 import questsData from "../data/quests.json";
 import cpItemsData from "../data/cpItems.json";
@@ -16,7 +15,7 @@ export type ShopSource = { npc: string; zone: string; price: number };
 export type GuildSource = { guild: string; rank: string; price: number };
 export type BcnmSource = { name: string; arena: string; type: string };
 export type HelmSource = { kind: string; zone: string; pct: number };
-export type DigSource = { zone: string; rate: number | null };
+export type DigSource = { zone: string; rate: number | null; condition?: string };
 export type CraftSource = { craft: string; lvl: number; hq?: boolean };
 export type CpSource = { nation: string; rank: number | null; cp: number };
 export type QuestSource = { name: string; zone: string | null };
@@ -73,7 +72,11 @@ for (const r of cpItemsData as CpRow[]) entry(r.n).cp.push({ nation: r.nation, r
 for (const r of helmData as HelmRow[]) entry(r.n).helm.push({ kind: r.kind, zone: r.zone, pct: r.pct });
 for (const r of chocoboDigData.entries as DigRow[]) {
   const e = entry(r.item);
-  if (!e.digging.some((d) => d.zone === r.zone)) e.digging.push({ zone: r.zone, rate: r.rate });
+  if (!e.digging.some((d) => d.zone === r.zone)) e.digging.push({ zone: r.zone, rate: null });
+}
+for (const [day, [rock, ore]] of Object.entries(DIG_DAY_ITEMS)) {
+  for (const zone of ORE_ZONES) entry(ore).digging.push({ zone, rate: null, condition: `${day}; Craftsman (60+), elemental weather, moon 7-21%` });
+  for (const zone of new Set(chocoboDigData.entries.map(row => row.zone))) entry(rock).digging.push({ zone, rate: null, condition: `${day}; Novice (30+)` });
 }
 for (const r of fishData as FishRow[]) {
   const e = entry(r.catch);

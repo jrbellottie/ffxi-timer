@@ -10,6 +10,18 @@ async function loadUtility(name) {
 }
 const craft = await loadUtility("craftingSkillup");
 const fishing = await loadUtility("fishingSkillup");
+test("fishing escape compares raw size and low-skill risks and preserves uint8 durability", () => {
+  const rod = { size: "L", minRank: 20, maxRank: 30, legendary: false, breakable: true };
+  const fish = { fish: "Test", skillCap: 100, ranking: 10, size: "S", legendary: false };
+  assert.equal(fishing.calculateRodRisk(0, fish, rod).escapePct, 50);
+  assert.equal(fishing.calculateRodRisk(0, { ...fish, ranking: 21 }, rod).escapePct, 55);
+  assert.equal(fishing.calculateRodRisk(0, { ...fish, size: "L", legendary: true }, { ...rod, size: "S", maxRank: 1 }).snapPct, 0);
+  assert.equal(fishing.getRodHiddenSuccessBonus("Lu Shang's Fishing Rod"), 10);
+  assert.equal(fishing.getRodHiddenSuccessBonus("Ebisu Fishing Rod"), 15);
+  const risk = fishing.calculateRodRisk(0, { ...fish, size: "L", ranking: 40 }, rod);
+  assert.equal(risk.skillupResolvePct, 100 - risk.escapePct);
+  assert.ok(risk.skillupResolvePct > risk.landPct);
+});
 
 test("era crafting thresholds at 50 and 60", () => {
   assert.equal(craft.eraSkillupChance(499), 0.6);

@@ -1,10 +1,8 @@
 // src/BaitTab.tsx
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { styles } from "./styles";
-import baitData from "./data/bait.json";
-import fishData from "./data/fish.json";
+import { baitData, fishData, rodFishData, phoenixFish } from "./utils/phoenixData";
 import rodsData from "./data/rods.json";
-import rodFishData from "./data/rodFish.json";
 import { loadJson, saveJson } from "./utils/storage";
 import { formatVendorPrice, getVendorPriceEach } from "./utils/vendorPrice";
 import {
@@ -81,6 +79,7 @@ function buildSpots(): PoolEntry[] {
 
   const poolMembers = new Map<string, FishZoneEntry[]>();
   for (const f of FISH_ZONES) {
+    if (phoenixFish[f.catch]?.item || phoenixFish[f.catch]?.disabled) continue;
     const key = `${f.zone}|${f.area}`;
     const list = poolMembers.get(key);
     if (list) list.push(f);
@@ -102,7 +101,7 @@ function buildSpots(): PoolEntry[] {
       for (const m of members) {
         const row = (baitByFish.get(m.catch) ?? []).find((r) => r.bait === baitName);
         if (!row) continue;
-        const weight = Math.min(120, Math.max(20, (25 + (row.hookBonus as number)) * rarityValue(m.rarity)));
+        const weight = Math.min(120, Math.max(20, Math.floor(Math.fround((25 + (row.hookBonus as number)) * Math.fround(rarityValue(m.rarity))))));
         biters.push({ member: m, row, weight });
       }
 
@@ -192,7 +191,7 @@ const SPOT_COLUMNS: { key: SpotKey; label: string }[] = [
 ];
 
 const SKILLUP_COLUMNS: { key: SkillupKey; label: string }[] = [
-  { key: "expectedLandedGain", label: "Expected Gain / 100 Hooks" },
+  { key: "expectedLandedGain", label: "Est. Gain / 100 Fish Hooks" },
   { key: "fish", label: "Fish" },
   { key: "fishLevel", label: "Fish Lvl" },
   { key: "levelDifference", label: "+Lvl" },
@@ -808,7 +807,7 @@ export default function BaitTab() {
 
         const risk = calculateRodRisk(effectiveSkill, fish, rod);
         const expectedResolvedGain = skillup.expectedGainPerTargetHook * (pool.sharePct / 100) * 100;
-        const expectedLandedGain = expectedResolvedGain * (risk.landPct / 100);
+        const expectedLandedGain = expectedResolvedGain * (risk.skillupResolvePct / 100);
         const candidate: SkillupRow = {
           ...pool,
           fishLevel: pool.lvl,
@@ -1240,8 +1239,8 @@ export default function BaitTab() {
             </div>
 
             <div style={{ marginTop: 8, ...styles.sub }}>
-              Ranked by expected landed skill gained per 100 resolved pool hooks: fish skill-up rate × pool share ×
-              rod landing chance. Base skill alone controls eligibility and the skill-up roll. Gear/support and the
+              Neutral-moon estimate per 100 fish-pool hooks, not per cast. Line snaps and rod breaks can still
+              skill up; escape cannot. Guild rank caps, fatigue, quests, special gear, and time-dependent hook weights are not modeled. Base skill alone controls eligibility and the skill-up roll. Gear/support and the
               selected bonus skill only improve success. Hidden rod success bonus is applied automatically: Lu Shang
               rods use +10, Ebisu rods use +15. City fishing receives the server&apos;s lower skill-up rate, and Lu
               Shang&apos;s under-50 skill-up penalty is applied.

@@ -511,17 +511,8 @@ export default function AppShell() {
     });
   }, [now, nowMs, cal, presetOffsetHours]);
 
-  const nextDigPreview = useMemo(() => {
-    // "Next Dig" target is 00:00; we alert `presetOffsetHours` before that.
-    const target = nextGuildAlertTarget(
-      now,
-      {
-        openHour: 0,
-        openMinute: 0,
-        closedOn: null,
-      },
-      presetOffsetHours
-    );
+  const nextDayPreview = useMemo(() => {
+    const target = nextGuildAlertTarget(now, { openHour: 0, openMinute: 0, closedOn: null }, presetOffsetHours);
     const nextAt = nextEarthMsForVanaWeekdayTime({
       nowEarthMs: nowMs,
       cal,
@@ -529,7 +520,7 @@ export default function AppShell() {
       targetHour: target.targetHour,
       targetMinute: target.targetMinute,
     });
-    return { label: "Next Dig", ...target, nextAt };
+    return { ...target, nextAt };
   }, [now, nowMs, cal, presetOffsetHours]);
 
   useEffect(() => {
@@ -863,24 +854,13 @@ export default function AppShell() {
     ]);
   }
 
-  function addNextDigTimer() {
-    const target = nextGuildAlertTarget(
-      now,
-      {
-        openHour: 0,
-        openMinute: 0,
-        closedOn: null,
-      },
-      presetOffsetHours
-    );
-
+  function addNextDayTimer() {
+    const target = nextGuildAlertTarget(now, { openHour: 0, openMinute: 0, closedOn: null }, presetOffsetHours);
     setTimers((prev) => [
       {
         id: uid(),
         kind: "VANA_WEEKDAY_TIME",
-        label: `Next Dig (offset ${presetOffsetHours}h) — ${target.targetWeekday} ${pad2(target.targetHour)}:${pad2(
-          target.targetMinute
-        )}`,
+        label: `Next Day (offset ${presetOffsetHours}h) - ${target.targetWeekday} ${pad2(target.targetHour)}:${pad2(target.targetMinute)}`,
         enabled: true,
         createdAtMs: Date.now(),
         targetWeekday: target.targetWeekday,
@@ -1980,27 +1960,27 @@ export default function AppShell() {
                 alignItems: "start",
               }}
             >
-              {/* Next Dig */}
+              {/* Next Day */}
               <div style={styles.subCard}>
                 <div style={styles.titleRow}>
-                  <div style={{ fontWeight: 800 }}>Next Dig</div>
+                  <div style={{ fontWeight: 800 }}>Next Day</div>
                   <div style={styles.sub}>
-                    Targets 00:00 → fires {pad2(nextDigPreview.targetHour)}:{pad2(nextDigPreview.targetMinute)} (offset {presetOffsetHours}h)
+                    Targets 00:00 → fires {pad2(nextDayPreview.targetHour)}:{pad2(nextDayPreview.targetMinute)} (offset {presetOffsetHours}h)
                   </div>
                 </div>
 
                 <div style={{ marginTop: 8, ...styles.sub }}>
                   Will set:{" "}
-                  <span style={weekdayStyle(nextDigPreview.targetWeekday)}>{nextDigPreview.targetWeekday}</span>{" "}
-                  {pad2(nextDigPreview.targetHour)}:{pad2(nextDigPreview.targetMinute)}
+                  <span style={weekdayStyle(nextDayPreview.targetWeekday)}>{nextDayPreview.targetWeekday}</span>{" "}
+                  {pad2(nextDayPreview.targetHour)}:{pad2(nextDayPreview.targetMinute)}
                   <br />
-                  Next: {new Date(nextDigPreview.nextAt).toLocaleString()} — In:{" "}
-                  {formatCountdown(nextDigPreview.nextAt - nowMs)}
+                  Next: {new Date(nextDayPreview.nextAt).toLocaleString()} — In:{" "}
+                  {formatCountdown(nextDayPreview.nextAt - nowMs)}
                 </div>
 
                 <div style={{ marginTop: 10, ...styles.buttonRow }}>
-                  <button style={styles.buttonPrimary} onClick={addNextDigTimer}>
-                    Add Next Dig timer
+                  <button style={styles.buttonPrimary} onClick={addNextDayTimer}>
+                    Add Next Day timer
                   </button>
                 </div>
               </div>

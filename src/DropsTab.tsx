@@ -513,7 +513,7 @@ function ItemDetail({ item: initialItem, eraOnly }: { item: string; eraOnly: boo
       sources.helm.map((h, i) => (
         <span key={i} style={chipStyle}>
           {h.kind}
-          <span style={{ opacity: 0.75 }}> · {h.zone} · {h.pct.toFixed(1)}%</span>
+          <span style={{ opacity: 0.75 }} title="Share of a fresh successful HELM pool, before daily caps or depletion. Not chance per tool use."> · {h.zone} · {h.pct.toFixed(1)}% of pool</span>
         </span>
       ))
     ),
@@ -531,6 +531,7 @@ function ItemDetail({ item: initialItem, eraOnly }: { item: string; eraOnly: boo
       sources.digging.map((d, i) => (
         <span key={i} style={chipStyle}>
           {d.zone}
+          {d.condition ? <span style={{ opacity: 0.75 }}> · {d.condition}</span> : null}
           {d.rate != null ? <span style={{ opacity: 0.75 }}> · {d.rate}%</span> : null}
         </span>
       ))

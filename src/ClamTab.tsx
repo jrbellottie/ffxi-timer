@@ -1,6 +1,8 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { styles } from "./styles";
 import { loadJson, saveJson } from "./utils/storage";
+import { printItem, printItemKey, printSellPrice } from "./utils/printingData";
+import { clammingRates, clammingLossChance } from "./utils/clamming";
 
 type ClamItem = {
   key: string;
@@ -8,9 +10,7 @@ type ClamItem = {
   weight: number;
   vendorGil: number;
   noSale?: boolean;
-  /** Per-dig drop rate (%), base loot table. */
   ratePct: number;
-  /** Per-dig drop rate (%) with +1 swimwear bottoms. */
   ratePlusPct: number;
 };
 
@@ -31,7 +31,7 @@ const CLAM_ITEMS: ClamItem[] = [
   { key: "pebble", name: "Pebble", weight: 7, vendorGil: 1, ratePct: 15.2, ratePlusPct: 10.9 },
   { key: "igneousRock", name: "Igneous Rock", weight: 35, vendorGil: 180, ratePct: 4.7, ratePlusPct: 14.1 },
   { key: "bibikiUrchin", name: "Bibiki Urchin", weight: 6, vendorGil: 750, ratePct: 0.1, ratePlusPct: 0.3 },
-  { key: "brokenWillowRod", name: "Broken Willow Rod", weight: 6, vendorGil: 0, noSale: true, ratePct: 0.7, ratePlusPct: 2.1 },
+  { key: "brokenWillowRod", name: "Broken Willow Fishing Rod", weight: 6, vendorGil: 0, noSale: true, ratePct: 0.7, ratePlusPct: 2.1 },
   { key: "coralFragment", name: "Coral Fragment", weight: 6, vendorGil: 1750, ratePct: 0.3, ratePlusPct: 0.9 },
   { key: "crabShell", name: "Crab Shell", weight: 6, vendorGil: 383, ratePct: 0.8, ratePlusPct: 2.4 },
   { key: "elmLog", name: "Elm Log", weight: 6, vendorGil: 383, ratePct: 0.3, ratePlusPct: 0.9 },
@@ -41,8 +41,8 @@ const CLAM_ITEMS: ClamItem[] = [
   { key: "goblinMail", name: "Goblin Mail", weight: 6, vendorGil: 0, noSale: true, ratePct: 0.8, ratePlusPct: 2.4 },
   { key: "hobgoblinBread", name: "Hobgoblin Bread", weight: 6, vendorGil: 90, ratePct: 0.6, ratePlusPct: 1.8 },
   { key: "hobgoblinPie", name: "Hobgoblin Pie", weight: 6, vendorGil: 156, ratePct: 0.8, ratePlusPct: 2.4 },
-  { key: "hqCrabShell", name: "HQ Crab Shell", weight: 6, vendorGil: 3325, ratePct: 0.1, ratePlusPct: 0.3 },
-  { key: "hqPugilScales", name: "HQ Pugil Scales", weight: 6, vendorGil: 255, ratePct: 0.4, ratePlusPct: 1.2 },
+  { key: "hqCrabShell", name: "High-quality Crab Shell", weight: 6, vendorGil: 3325, ratePct: 0.1, ratePlusPct: 0.3 },
+  { key: "hqPugilScales", name: "Handful of High-Quality Pugil Scales", weight: 6, vendorGil: 255, ratePct: 0.4, ratePlusPct: 1.2 },
   { key: "lacquerTreeLog", name: "Lacquer Tree Log", weight: 6, vendorGil: 3500, ratePct: 0.1, ratePlusPct: 0.3 },
   { key: "mapleLog", name: "Maple Log", weight: 6, vendorGil: 15, ratePct: 0.4, ratePlusPct: 1.2 },
   { key: "nebimonite", name: "Nebimonite", weight: 6, vendorGil: 52, ratePct: 0.9, ratePlusPct: 2.7 },
@@ -56,7 +56,7 @@ const CLAM_ITEMS: ClamItem[] = [
   { key: "titanictusShell", name: "Titanictus Shell", weight: 6, vendorGil: 350, ratePct: 0.3, ratePlusPct: 0.9 },
   { key: "tropicalClam", name: "Tropical Clam", weight: 20, vendorGil: 5040, ratePct: 0.3, ratePlusPct: 0.9 },
   { key: "turtleShell", name: "Turtle Shell", weight: 6, vendorGil: 1200, ratePct: 0.1, ratePlusPct: 0.3 },
-];
+].map(item => ({ ...item, vendorGil: printSellPrice(item.name, {}) ?? item.vendorGil, noSale: Boolean((printItem(item.name)?.flags ?? 0) & 4096) }));
 
 /** For the Items tab source index. */
 export const CLAM_ITEM_NAMES: string[] = CLAM_ITEMS.map((i) => i.name);
@@ -88,8 +88,8 @@ const SORT_COLUMNS: { key: SortKey; label: string }[] = [
   { key: "name", label: "Item" },
   { key: "weight", label: "Weight" },
   { key: "vendorGil", label: "Vendor Value" },
-  { key: "ratePct", label: "Drop Rate" },
-  { key: "ratePlusPct", label: "With +1 Bottoms" },
+  { key: "ratePct", label: "Low tide (after incident check)" },
+  { key: "ratePlusPct", label: "High tide (after incident check)" },
 ];
 
 function nextCapacity(current: number): number | null {
@@ -148,6 +148,11 @@ export default function ClamTab() {
   const [status, setStatus] = useState<string>("Ready to clam.");
   const [sortKey, setSortKey] = useState<SortKey>("ratePct");
   const [sortDesc, setSortDesc] = useState<boolean>(true);
+  const clamItems = useMemo(() => {
+    const low = clammingRates(capacity, false);
+    const high = clammingRates(capacity, true);
+    return CLAM_ITEMS.map(item => ({ ...item, ratePct: low[printItemKey(item.name)] ?? 0, ratePlusPct: high[printItemKey(item.name)] ?? 0 }));
+  }, [capacity]);
 
   useEffect(() => {
     saveJson(CLAM_UI_KEY, {
@@ -159,28 +164,13 @@ export default function ClamTab() {
 
   const isBroken = currentWeight > capacity;
   const atRiskOfBreak = currentWeight >= capacity - 5;
-  const canExpand = atRiskOfBreak && capacity < 200;
+  const canExpand = !isBroken && atRiskOfBreak && capacity < 200;
   const remaining = capacity - currentWeight;
   const nextCap = nextCapacity(capacity);
   const towardUpgrade = Math.max(capacity - 5 - currentWeight, 0);
   const riskEntries = useMemo(() => {
-    const sixPzItems = CLAM_ITEMS.filter((item) => item.weight === 6);
-    const weightedRisks = [
-      { label: "Bibiki Slug 3pz", weight: 3, ratePct: 37.2, ratePlusPct: 10.8 },
-      {
-        label: "6pz items",
-        weight: 6,
-        ratePct: sixPzItems.reduce((sum, item) => sum + item.ratePct, 0),
-        ratePlusPct: sixPzItems.reduce((sum, item) => sum + item.ratePlusPct, 0),
-      },
-      { label: "Pebble 7pz", weight: 7, ratePct: 15.2, ratePlusPct: 10.9 },
-      { label: "Jacknife 11pz", weight: 11, ratePct: 25.1, ratePlusPct: 10.8 },
-      { label: "Tropical Clam 20pz", weight: 20, ratePct: 0.3, ratePlusPct: 0.9 },
-      { label: "Igneous Rock 35pz", weight: 35, ratePct: 4.7, ratePlusPct: 14.1 },
-    ];
-
-    return weightedRisks.filter((item) => currentWeight + item.weight > capacity);
-  }, [capacity, currentWeight]);
+    return clamItems.filter(item => item.ratePct > 0 && currentWeight + item.weight > capacity).map(item => ({ ...item, label: `${item.name} ${item.weight}pz` }));
+  }, [capacity, currentWeight, clamItems]);
 
   const riskTotals = useMemo(() => {
     return riskEntries.reduce(
@@ -213,14 +203,14 @@ export default function ClamTab() {
   }, [counts]);
 
   const sortedDropTable = useMemo(() => {
-    const rows = [...CLAM_ITEMS];
+    const rows = [...clamItems];
     rows.sort((a, b) => {
       const cmp =
         sortKey === "name" ? a.name.localeCompare(b.name) : (a[sortKey] as number) - (b[sortKey] as number);
       return sortDesc ? -cmp : cmp;
     });
     return rows;
-  }, [sortKey, sortDesc]);
+  }, [sortKey, sortDesc, clamItems]);
 
   function toggleSort(key: SortKey) {
     if (key === sortKey) {
@@ -262,6 +252,7 @@ export default function ClamTab() {
   }
 
   function expandBucket() {
+    if (isBroken) return;
     const target = nextCapacity(capacity);
     if (!target) {
       setStatus("Bucket is already maxed at 200 pz.");
@@ -297,7 +288,7 @@ export default function ClamTab() {
               Bucket broken: current load is {currentWeight}/{capacity} pz.
             </div>
             <div style={{ marginTop: 6, color: "#ffc1c1", fontSize: 13 }}>
-              Remove items or expand the bucket to recover.
+              Contents are lost in game. Reset the bucket; subtraction only corrects a mistaken entry.
             </div>
           </div>
         ) : canExpand ? (
@@ -341,7 +332,7 @@ export default function ClamTab() {
               {currentWeight} / {capacity} pz
             </div>
             <div style={{ fontWeight: 800, fontSize: 18, color: "#8af6b0" }}>
-              Bucket value: {formatGil(bucketValue)}
+              Bucket value: {formatGil(isBroken ? 0 : bucketValue)}
             </div>
             <div style={{ ...styles.sub, fontSize: 13 }}>
               {remaining >= 0 ? `Remaining: ${remaining} pz` : `Over by: ${Math.abs(remaining)} pz`}
@@ -378,11 +369,11 @@ export default function ClamTab() {
           <div style={{ marginTop: 8, ...styles.sub }}>{status}</div>
           {capacity === 200 ? (
             <div style={{ marginTop: 6, fontSize: 12, color: "#ffb3a1" }}>
-              At 200 pz, every dig has a 10% incident chance that dumps the whole bucket (5% with a +1 swimwear top).
+              At 200 pz, each dig has a 37% incident chance before the item roll (32% with incident-reducing swimwear body).
             </div>
           ) : null}
           <div style={{ marginTop: 4, ...styles.sub }}>
-            Reference: 10s delay between digs. All 8 points share one loot table. The bucket survives zoning and logout.
+            Next-dig bucket loss: {formatRate(clammingLossChance(capacity, currentWeight, false, false))} / {formatRate(clammingLossChance(capacity, currentWeight, false, true))} with swimwear body. Cooldown: 16s, or 10s with improved-results bottoms. Leaving Bibiki Bay discards the kit and contents.
           </div>
         </div>
 
@@ -391,7 +382,7 @@ export default function ClamTab() {
             <div style={{ fontWeight: 800 }}>Weight buttons (add / subtract)</div>
             <div style={styles.sub}>
               Use + to simulate dig results; use - to adjust mistakes |{" "}
-              <span style={{ color: "#ffa552", fontWeight: 700 }}>summer gear drop rate</span>
+              <span style={{ color: "#ffa552", fontWeight: 700 }}>high-tide rate</span>
             </div>
           </div>
 
@@ -400,10 +391,10 @@ export default function ClamTab() {
               marginTop: 10,
               display: "grid",
               gap: 8,
-              gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))",
+              gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 340px), 1fr))",
             }}
           >
-            {CLAM_ITEMS.map((item) => {
+            {clamItems.map((item) => {
               const count = counts[item.key] ?? 0;
               return (
                 <div
@@ -417,13 +408,13 @@ export default function ClamTab() {
                     background: count > 0 ? "rgba(138,246,176,0.04)" : "rgba(255,255,255,0.01)",
                   }}
                 >
-                  <div style={{ display: "flex", justifyContent: "space-between", gap: 8, alignItems: "baseline" }}>
+                  <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", gap: 8, alignItems: "baseline" }}>
                     <div style={{ fontSize: 14, fontWeight: 700 }}>{item.name}</div>
                     <div style={{ ...styles.sub, fontSize: 12, whiteSpace: "nowrap" }}>
                       {item.weight} pz | {item.noSale ? "no NPC sale" : formatGil(item.vendorGil)} |{" "}
-                      <span style={{ color: "#eaeaea" }}>{item.ratePct}%</span>
+                      <span style={{ color: "#eaeaea" }}>{formatRate(item.ratePct)}</span>
                       {" | "}
-                      <span style={{ color: "#ffa552", fontWeight: 700 }}>{item.ratePlusPct}%</span>
+                      <span style={{ color: "#ffa552", fontWeight: 700 }}>{formatRate(item.ratePlusPct)}</span>
                     </div>
                   </div>
                   <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
@@ -497,7 +488,7 @@ export default function ClamTab() {
         <div style={styles.subCard}>
           <div style={styles.titleRow}>
             <div style={{ fontWeight: 800 }}>Shared drop table (all 8 points)</div>
-            <div style={styles.sub}>Every point rolls the same table; +1 swimwear bottoms triple non-trash rates</div>
+            <div style={styles.sub}>{capacity}-pz table. Committed source selects low-tide weights for both tides; bottoms change cooldown, not rates.</div>
           </div>
 
           <div
@@ -532,8 +523,8 @@ export default function ClamTab() {
                     <td style={{ ...tdStyle, fontWeight: 700 }}>{item.name}</td>
                     <td style={tdStyle}>{item.weight} pz</td>
                     <td style={tdStyle}>{item.noSale ? "0 g (no NPC sale)" : formatGil(item.vendorGil)}</td>
-                    <td style={tdStyle}>{item.ratePct}%</td>
-                    <td style={{ ...tdStyle, color: "#ffa552", fontWeight: 700 }}>{item.ratePlusPct}%</td>
+                    <td style={tdStyle}>{formatRate(item.ratePct)}</td>
+                    <td style={{ ...tdStyle, color: "#ffa552", fontWeight: 700 }}>{formatRate(item.ratePlusPct)}</td>
                   </tr>
                 ))}
               </tbody>
@@ -551,8 +542,8 @@ export default function ClamTab() {
             <li>Clamming Kit: 500 g from Toh Zonikki on Purgonorgo Isle. Manaclipper ticket: 80 g single / 500 g for 10 rides (Tswe Panipahr, Bibiki Bay).</li>
             <li>Boat to Purgonorgo departs 05:30 and 17:30 game time; return trip is free at 09:15 and 21:15.</li>
             <li>Upgrade path: dig to ~45 at 50 pz, take the free +50 upgrade; again at ~95 for 150 pz. At 150 pz, dig to ~140-145 and cash out.</li>
-            <li>The 200 pz upgrade is usually negative EV without a +1 swimwear top (10% incident per dig, 5% with the top).</li>
-            <li>Average pull is ~7-8 pz. Expect roughly 1,200-1,400 g per bucket base (~2,500-2,800 g with +1 bottoms) against ~580 g overhead.</li>
+            <li>The 200-pz tier has a separate 37% incident risk per dig (32% with the body modifier), before overweight risk.</li>
+            <li>Rewards depend on bucket capacity. Old aggregate bucket-profit and triple-loot swimwear estimates do not match this source.</li>
             <li>Overweight digs break the bucket and lose everything. If your bags are full when turning in, Zonikki holds the overflow.</li>
           </ul>
         </div>

@@ -29,6 +29,7 @@ export type RodRisk = {
   breakPct: number;
   escapePct: number;
   landPct: number;
+  skillupResolvePct: number;
 };
 
 const CITY_ZONES = new Set([
@@ -79,9 +80,9 @@ export function calculateRodRisk(effectiveSkill: number, fish: SkillupFish, rod:
     if (rod.legendary) snapBonus = 1;
     else snapPenalty += 3;
   }
-  const durability = rod.maxRank + levelDifferenceBonus + snapBonus - snapPenalty;
+  const durability = (rod.maxRank + levelDifferenceBonus + snapBonus - snapPenalty) & 255;
   const snapPct = fish.ranking > durability
-    ? clamp(Math.floor((fish.ranking - durability) * 8.5), 0, 55)
+    ? clamp(Math.floor((fish.ranking - durability) * 8.5) & 255, 0, 55)
     : 0;
 
   let breakPct = 0;
@@ -93,21 +94,21 @@ export function calculateRodRisk(effectiveSkill: number, fish: SkillupFish, rod:
     if (!rod.legendary && fish.legendary) breakPenalty = 5;
     const threshold = rod.maxRank + levelDifferenceBonus + breakBonus;
     breakPct = fish.ranking > threshold
-      ? clamp(Math.floor((fish.ranking - threshold + breakPenalty) * 1.3), 0, 55)
+      ? clamp(Math.floor(Math.fround((fish.ranking - threshold + breakPenalty) * Math.fround(1.3))) & 255, 0, 55)
       : 0;
   }
 
-  let escapePct = 0;
+  let sizeChance = 0;
   if (!rod.legendary && sizeRank(fish.size) > sizeRank(rod.size) && fish.ranking > rod.maxRank) {
-    escapePct = clamp(50 + (fish.skillCap - effectiveSkill), 0, 50);
+    sizeChance = (50 + fish.skillCap - effectiveSkill) & 255;
   } else if (!rod.legendary && sizeRank(fish.size) < sizeRank(rod.size) && fish.ranking < rod.minRank) {
-    escapePct = clamp(50 + (fish.skillCap - effectiveSkill), 0, 50);
-  } else if (effectiveSkill + 7 < fish.skillCap) {
-    escapePct = clamp(Math.floor((fish.skillCap - (effectiveSkill + 7)) * 0.8), 0, 55);
+    sizeChance = Math.max(0, 50 + fish.skillCap - effectiveSkill);
   }
+  const lowSkillChance = effectiveSkill + 7 < fish.skillCap ? Math.floor(Math.fround((fish.skillCap - effectiveSkill - 7) * Math.fround(0.8))) : 0;
+  const escapePct = sizeChance > lowSkillChance ? clamp(sizeChance, 0, 50) : clamp(lowSkillChance, 0, 55);
 
   const landPct = 100 * (1 - escapePct / 100) * (1 - snapPct / 100) * (1 - breakPct / 100);
-  return { snapPct, breakPct, escapePct, landPct };
+  return { snapPct, breakPct, escapePct, landPct, skillupResolvePct: 100 - escapePct };
 }
 
 /** Exact TOAU server formula under neutral moon. Equipment/support skill is deliberately excluded. */
@@ -122,7 +123,7 @@ export function calculateSkillup(baseSkill: number, fishLevel: number, zone: str
   const distanceModifier = Math.floor(200 * normalPdf);
   const maxChance = Math.max(
     4,
-    distanceModifier + Math.floor((100 - skill) / 10) - Math.floor(skill / 10)
+    distanceModifier + Math.trunc((100 - skill) / 10) - Math.floor(skill / 10)
   );
 
   let skillRoll = 90;

@@ -1,6 +1,5 @@
 import recipeData from "../data/recipes.json";
-import catalogData from "../data/itemInfo.json";
-import shopsData from "../data/shops.json";
+import { catalogData, shopsData, PHOENIX_SOURCE } from "./phoenixData";
 import guildData from "../data/guildShops.json";
 import { normalizeItemName } from "./itemLinks";
 import { validPrice, type PrintRecipe } from "./printing";
@@ -8,7 +7,7 @@ import { validPrice, type PrintRecipe } from "./printing";
 type Item = { name: string; sell: number; stack: number; flags: number };
 const catalog = catalogData as unknown as { names: Record<string, number>; items: Record<string, Item>; source: { revision: string } };
 export const PRINT_RECIPES = (recipeData as PrintRecipe[]).filter((recipe) => recipe.d !== 1 && printItemKey(recipe.res.n) !== printItemKey("Distilled Water"));
-export const PRINT_PRICE_REVISION = catalog.source.revision;
+export const PRINT_PRICE_REVISION = PHOENIX_SOURCE.revision;
 export type PrintOffer = { price: number; npc?: string; zone?: string; guild?: string; rank?: string };
 export type PriceBook = Record<string, number>;
 export function printItemKey(name: string): string { return String(catalog.names[normalizeItemName(name)] ?? normalizeItemName(name)); }

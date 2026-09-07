@@ -1,0 +1,20 @@
+import baseCatalog from "../data/itemInfo.json";
+import baseShops from "../data/shops.json";
+import phoenix from "../data/phoenix.json";
+import baseFish from "../data/fish.json";
+import baseRodFish from "../data/rodFish.json";
+import baseBait from "../data/bait.json";
+
+type EconomyItem = { sell: number; stack: number; flags: number; name?: string; category?: number };
+const overrides = phoenix.items as Record<string, EconomyItem>;
+const extraItems = Object.fromEntries(Object.entries(overrides).filter(([, item]) => item.name).map(([id, item]) => [id, { category: 0, ...item, name: item.name! }]));
+export const catalogData = { ...baseCatalog, names: { ...baseCatalog.names, ...Object.fromEntries(Object.entries(extraItems).map(([id, item]) => [item.name.toLowerCase(), Number(id)])) }, items: { ...Object.fromEntries(Object.entries(baseCatalog.items).map(([id, item]) => [id, { ...item, ...overrides[id] }])), ...extraItems } };
+export const PHOENIX_GUILD_NPCS = new Set(phoenix.guildNpcs);
+export const shopsData = [...baseShops.filter(row => !PHOENIX_GUILD_NPCS.has(row.npc) && row.npc !== "Valeriano"), ...phoenix.guildOffers.filter(row => row.stocked), ...phoenix.valerianoOffers];
+export const helmData = phoenix.helm;
+export const phoenixDigging = phoenix.digging;
+export const PHOENIX_SOURCE = phoenix.source;
+export const phoenixFish = phoenix.fishing as Record<string, { skillCap: number; item: boolean; disabled: boolean }>;
+export const fishData = baseFish.map(row => ({ ...row, lvl: phoenixFish[row.catch]?.skillCap ?? row.lvl }));
+export const rodFishData = baseRodFish.map(row => ({ ...row, skillCap: phoenixFish[row.fish]?.skillCap ?? row.skillCap }));
+export const baitData = baseBait.map(row => ({ ...row, lvl: phoenixFish[row.fish]?.skillCap ?? row.lvl }));

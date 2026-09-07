@@ -1,4 +1,5 @@
 import vendorPricesData from "../data/vendorPrices.json";
+import { catalogData } from "./phoenixData";
 
 type VendorPriceEntry = {
   fish: string;
@@ -22,8 +23,10 @@ const exactPriceByFish = new Map<string, number>();
 const normalizedPriceByFish = new Map<string, number>();
 
 for (const row of VENDOR_PRICES) {
-  exactPriceByFish.set(row.fish, row.vendorPriceEach);
-  normalizedPriceByFish.set(normalizeFishName(row.fish), row.vendorPriceEach);
+  const item = catalogData.items[String(row.itemId)];
+  const price = item ? (item.flags & 4096 ? 0 : item.sell) : row.vendorPriceEach;
+  exactPriceByFish.set(row.fish, price);
+  normalizedPriceByFish.set(normalizeFishName(row.fish), price);
 }
 
 export function getVendorPriceEach(fishName: string): number | null {

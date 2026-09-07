@@ -3,7 +3,8 @@ import React, { useEffect, useMemo, useState } from "react";
 import { styles } from "./styles";
 import { loadJson, saveJson } from "./utils/storage";
 import rodsData from "./data/rods.json";
-import rodFishData from "./data/rodFish.json";
+import { rodFishData } from "./utils/phoenixData";
+import { calculateRodRisk, getRodHiddenSuccessBonus } from "./utils/fishingSkillup";
 
 type Rod = {
   rodId: number;
@@ -44,49 +45,6 @@ const BREAK_FISH: BreakFish[] = rodFishData as BreakFish[];
 const SKILL_KEY = "ffxi_rod_skill_v1";
 const RODS_UI_KEY = "ffxi_rods_ui_v1";
 
-// ---- Server formulas (fishingutils.cpp) ----
-
-const clamp = (v: number, lo: number, hi: number) => Math.max(lo, Math.min(hi, v));
-const sz = (s: string) => (s === "L" ? 1 : 0);
-
-/** CalculateSnapChance */
-function calcSnap(skill: number, f: BreakFish, r: Rod): number {
-  const ldb = skill + 10 > f.skillCap ? 2 : 0;
-  let pen = !r.legendary && sz(f.size) > sz(r.size) ? 2 : 0;
-  let bonus = 0;
-  if (f.legendary) {
-    if (r.legendary) bonus = 1;
-    else pen += 3;
-  }
-  const dura = r.maxRank + ldb + bonus - pen;
-  return f.ranking > dura ? clamp(Math.floor((f.ranking - dura) * 8.5), 0, 55) : 0;
-}
-
-/** CalculateBreakChance */
-function calcBreak(skill: number, f: BreakFish, r: Rod): number {
-  if (!r.breakable) return 0;
-  const ldb = skill + 10 > f.skillCap ? 2 : 0;
-  let pen = 0;
-  let bonus = 0;
-  if (!r.legendary && sz(f.size) > sz(r.size)) pen = 2;
-  else if (r.legendary && f.size === "L") bonus = 1;
-  if (!r.legendary && f.legendary) pen = 5; // replaces the size penalty
-  const t = r.maxRank + ldb + bonus;
-  return f.ranking > t ? clamp(Math.floor((f.ranking - t + pen) * 1.3), 0, 55) : 0;
-}
-
-/** CalculateLoseChance — TooBig > TooSmall > LowSkill */
-function calcEscape(skill: number, f: BreakFish, r: Rod): number {
-  if (!r.legendary && sz(f.size) > sz(r.size) && f.ranking > r.maxRank) {
-    return clamp(50 + (f.skillCap - skill), 0, 50);
-  }
-  if (!r.legendary && sz(f.size) < sz(r.size) && f.ranking < r.minRank) {
-    return clamp(50 + (f.skillCap - skill), 0, 50);
-  }
-  if (skill + 7 < f.skillCap) return clamp(Math.floor((f.skillCap - (skill + 7)) * 0.8), 0, 55);
-  return 0;
-}
-
 type MatrixRow = {
   rod: string;
   rodMaxRank: number;
@@ -105,9 +63,7 @@ function buildMatrix(skill: number): MatrixRow[] {
   const rows: MatrixRow[] = [];
   for (const r of RODS) {
     for (const f of BREAK_FISH) {
-      const snapPct = calcSnap(skill, f, r);
-      const breakPct = calcBreak(skill, f, r);
-      const escapePct = calcEscape(skill, f, r);
+      const { snapPct, breakPct, escapePct } = calculateRodRisk(skill + getRodHiddenSuccessBonus(r.rod), f, r);
       // Sequential d100 rolls: escape, then snap, then break.
       const okPct =
         Math.round(1000 * (1 - escapePct / 100) * (1 - snapPct / 100) * (1 - breakPct / 100)) / 10;
@@ -305,7 +261,7 @@ export default function RodsTab() {
   const [skillInput, setSkillInput] = useState(() => String(loadJson<number>(SKILL_KEY, 100)));
   const skill = useMemo(() => {
     const n = Number(skillInput);
-    return Number.isFinite(n) ? clamp(Math.floor(n), 0, 200) : 100;
+    return Number.isFinite(n) ? Math.max(0, Math.min(200, Math.floor(n))) : 100;
   }, [skillInput]);
 
   useEffect(() => {

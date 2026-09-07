@@ -1,7 +1,7 @@
 // src/FishTab.tsx
 import React, { useEffect, useMemo, useState } from "react";
 import { styles } from "./styles";
-import fishData from "./data/fish.json";
+import { fishData } from "./utils/phoenixData";
 import { loadJson, saveJson } from "./utils/storage";
 import { formatVendorPrice, getVendorPriceEach } from "./utils/vendorPrice";
 

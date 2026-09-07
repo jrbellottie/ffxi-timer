@@ -1,12 +1,10 @@
 // src/utils/itemLinks.ts — item-name lookups linking the Crafting and Drops tabs.
 import recipesData from "../data/recipes.json";
 import dropsData from "../data/drops.json";
-import shopsData from "../data/shops.json";
+import { shopsData, helmData, phoenixDigging as chocoboDigData } from "./phoenixData";
 import guildShopsData from "../data/guildShops.json";
-import helmData from "../data/helm.json";
 import bcnmData from "../data/bcnm.json";
 import fishData from "../data/fish.json";
-import chocoboDigData from "../data/chocoboDig.json";
 import cpItemsData from "../data/cpItems.json";
 
 type RecipeLite = { res: { n: string }; hq: { n: string }[]; d?: number };
